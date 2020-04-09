@@ -445,9 +445,10 @@
         </activity>
 
 
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA" />
+            android:value="abcde12345" />
 
 
 
