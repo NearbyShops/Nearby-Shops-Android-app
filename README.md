@@ -10,6 +10,16 @@ width="120">
 
 
 
+#### Payment Required for Both Commercial and Non-Commercial Use
+-----------------------------------
+We have a small License fee which you need to pay in order to use (white-label) this app. Even for Non-commercial purpose payment is required. If you have financial difficulty you can talk to us !
+
+https://nearbyshops.org/pricing.html
+
+We cant maintain this project without financial support. Your understanding is appreciated ! 
+
+
+
 About Nearby Shops
 --------------------
 
@@ -175,17 +185,13 @@ If you're interested please get in touch with us on https://forum.nearbyshops.or
 
 
 
+### Commercial use Requires Permission
+
+Commercial Use not allowed without permission. Commercial use or commercial fork of this project must require permission. 
+
+
 License
 =======
-
-GNU GENERAL PUBLIC LICENSE
-                       Version 2, June 1991
-
- Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
- 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
- 
 
 Copyright (c) 2020 Nearby Shops
 
