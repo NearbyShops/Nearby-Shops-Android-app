@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+
+
+
+    <!--<TextView-->
+        <!--android:textSize="20sp"-->
+        <!--android:padding="5dp"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@color/gplus_color_1"-->
+        <!--android:text="Selected Market"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+
+    <LinearLayout
+        android:background="#22000000"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:padding="5dp"
+            android:text="Selected Market"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/log_out_button"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:padding="5dp"
+            android:text="@string/list_item_market_current_log_out_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <!--<TextView-->
+        <!--android:textSize="20sp"-->
+        <!--android:id="@+id/service_name"-->
+        <!--android:textStyle="bold"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--android:text="@string/list_item_market_current_market_name_text"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content" />-->
+
+        <!--<TextView-->
+        <!--android:layout_marginStart="5dp"-->
+        <!--android:id="@+id/border_name"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/service_name"-->
+        <!--app:layout_constraintTop_toTopOf="@id/service_name"-->
+        <!--app:layout_constraintStart_toEndOf="@id/service_name"-->
+        <!--android:background="@color/blueGrey800"-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="15dp" />-->
+
+
+
+
+        <!--<TextView-->
+        <!--android:layout_marginStart="5dp"-->
+        <!--android:layout_marginTop="3dp"-->
+        <!--android:id="@+id/address"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toEndOf="@id/border_name"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/service_name"-->
+        <!--app:layout_constraintTop_toTopOf="@id/service_name"-->
+        <!--android:text="@string/list_item_market_current_address_text"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content" />-->
+
+
+
+
+
+
+        <!--<TextView-->
+        <!--android:id="@+id/border_top"-->
+        <!--android:layout_marginTop="1dp"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/service_name"-->
+        <!--android:background="#22000000"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="1dp" />-->
+
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guide"
+            app:layout_constraintGuide_percent="0.4"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+
+
+
+
+        <TextView
+            android:layout_marginStart="5dp"
+            android:textSize="20sp"
+            android:id="@+id/market_name"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/vertical_guide"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/list_item_market_current_market_name_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <TextView
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="3dp"
+            android:id="@+id/address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/vertical_guide"
+            app:layout_constraintTop_toBottomOf="@id/market_name"
+            android:text="@string/list_item_market_current_address_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+        <!--<TextView-->
+            <!--android:id="@+id/distance"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_marginStart="5dp"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="@id/vertical_guide"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/address"-->
+            <!--android:text="@string/list_item_market_distance_text"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+
+        <!--
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/border_bottom"
+                android:background="#88000000"
+                app:layout_constraintTop_toBottomOf="@+id/shop_logo"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="1dp" />
+        -->
+
+
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:background="#33000000"
+            android:id="@+id/border_description"
+            app:layout_constraintTop_toBottomOf="@+id/address"
+            app:layout_constraintLeft_toLeftOf="@+id/address"
+            app:layout_constraintRight_toRightOf="@+id/address"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/border_description"
+            app:layout_constraintLeft_toLeftOf="@+id/address"
+            app:layout_constraintRight_toRightOf="@+id/address"
+            android:layout_marginTop="1dp"
+            android:id="@+id/description"
+            android:text="@string/list_item_market_current_description_text"
+            android:layout_width="0dp"
+            android:maxLines="3"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_nature_people_white_48px"
+            android:scaleType="centerCrop"
+            android:id="@+id/market_image"
+            android:minHeight="150dp"
+            android:background="@color/backgroundTinted"
+            app:layout_constraintTop_toTopOf="@+id/market_name"
+            app:layout_constraintBottom_toBottomOf="@id/description"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toLeftOf="@+id/vertical_guide" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
+

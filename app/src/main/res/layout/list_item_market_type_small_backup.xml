@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    android:id="@+id/list_item"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+<!--    android:layout_width="150dp"-->
+<!--    android:layout_height="100dp"-->
+    <ImageView
+        android:background="@color/backgroundTinted"
+        android:scaleType="centerCrop"
+        android:id="@+id/market_photo"
+        android:layout_width="120dp"
+        android:layout_height="80dp" />
+
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textSize="17sp"
+        android:text="@string/list_item_market_type_small_backup_market_name_text"
+        android:id="@+id/market_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:textSize="12sp"
+        android:id="@+id/market_city"
+        android:text="@string/list_item_market_type_small_backup_market_city_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:id="@+id/select_market"
+            android:padding="2dp"
+            android:gravity="center"
+            android:text="@string/list_item_market_type_small_backup_select_market_text"
+            android:background="@color/mapbox_blue"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_select"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/select_market"
+            app:layout_constraintBottom_toBottomOf="@id/select_market"
+            app:layout_constraintStart_toStartOf="@id/select_market"
+            app:layout_constraintEnd_toEndOf="@id/select_market"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

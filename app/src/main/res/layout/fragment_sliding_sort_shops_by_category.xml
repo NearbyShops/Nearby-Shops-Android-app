@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--android:layout_marginLeft="@dimen/slidinglayerwidth"
+    android:layout_marginStart="@dimen/slidinglayerwidth"-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/slidingContents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+
+        <TextView
+            android:id="@+id/text_sortby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/fragment_sliding_sort_shops_by_category_text_sortby_text"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/border_zero"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="#88000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_sortby" />
+
+        <TextView
+            android:id="@+id/header_criterion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/fragment_sliding_sort_shops_by_category_header_criterion_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/border_zero" />
+
+
+        <TextView
+            android:id="@+id/sort_distance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#22000000"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/fragment_sliding_sort_shops_by_category_sort_distance_text"
+            app:layout_constraintTop_toBottomOf="@id/header_criterion"
+            app:layout_constraintEnd_toStartOf="@+id/sort_rating"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/sort_rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#22000000"
+            android:gravity="center"
+            android:paddingLeft="2dp"
+            android:paddingTop="10dp"
+            android:paddingRight="2dp"
+            android:paddingBottom="10dp"
+            android:text="@string/fragment_sliding_sort_shops_by_category_sort_rating_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/sort_distance"
+            app:layout_constraintTop_toBottomOf="@+id/header_criterion" />
+
+
+        <!--<TextView-->
+        <!--android:layout_marginStart="1dp"-->
+        <!--android:layout_marginLeft="1dp"-->
+        <!--android:id="@+id/popularity"-->
+        <!--android:padding="10dp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="#22000000"-->
+        <!--android:text="Popularity"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content" />-->
+
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/sort_row_two"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:weightSum="2"-->
+        <!--android:layout_below="@id/sort_bar"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+
+        <!--<TextView-->
+        <!--android:visibility="invisible"-->
+        <!--android:layout_marginStart="5dp"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:background="#22000000"-->
+        <!--android:id="@+id/price_a"-->
+        <!--android:paddingTop="10dp"-->
+        <!--android:paddingBottom="10dp"-->
+        <!--android:paddingLeft="2dp"-->
+        <!--android:paddingRight="2dp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="Price"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content" />-->
+
+
+        <!--</LinearLayout>-->
+
+
+        <TextView
+            android:id="@+id/border_one"
+            android:layout_width="352dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="#55000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sort_distance" />
+
+        <TextView
+            android:id="@+id/header_sort_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/fragment_sliding_sort_shops_by_category_header_sort_order_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/border_one" />
+
+
+        <TextView
+            android:id="@+id/sort_ascending"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/gplus_color_2"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/sort_by_ascending"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/sort_descending"
+            app:layout_constraintEnd_toStartOf="@+id/sort_descending"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/sort_descending"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#22000000"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/sort_by_descending"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/sort_ascending"
+            app:layout_constraintTop_toBottomOf="@+id/header_sort_order" />
+
+
+        <TextView
+            android:id="@+id/border_two"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            app:layout_constraintEnd_toEndOf="@+id/sort_descending"
+            app:layout_constraintStart_toStartOf="@+id/sort_ascending"
+            app:layout_constraintTop_toBottomOf="@+id/sort_descending" />
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/text_filter"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:text="Filter Shop's"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/border_two" />-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/border_three"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:background="#88000000"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/text_filter" />-->
+
+
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/header_filter_by_type"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:text="Filter by Delivery Type"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/border_three" />-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/clear_filter_delivery_type"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:background="@color/orangeDark"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/header_filter_by_type"-->
+<!--            app:layout_constraintTop_toTopOf="@id/header_filter_by_type"-->
+<!--            android:paddingEnd="5dp"-->
+<!--            android:paddingStart="5dp"-->
+<!--            android:paddingTop="3dp"-->
+<!--            android:paddingBottom="3dp"-->
+<!--            android:text="Reset Filter"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/filter_by_delivery_type_bar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:weightSum="2"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/header_filter_by_type">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/filter_home_delivery"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="#22000000"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="10dp"-->
+<!--                android:text="Home Delivery" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/filter_pick_from_shop"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:background="@color/buttonColor"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingLeft="2dp"-->
+<!--                android:paddingTop="10dp"-->
+<!--                android:paddingRight="2dp"-->
+<!--                android:paddingBottom="10dp"-->
+<!--                android:text="Pick from Shop" />-->
+
+
+<!--        </LinearLayout>-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/filter_option_description"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text=" - "-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/filter_by_delivery_type_bar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+            <TextView
+                android:textSize="20sp"
+                android:text="Add Staff to Shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:background="@color/mapbox_blue"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+
+
+
+            <TextView
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:text="Step 1 : Please Select Role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/role_shop_staff"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@color/buttonColor"
+                    android:padding="10dp"
+                    android:text="@string/dialog_add_shop_staff_role_shop_staff_text"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+
+
+                <TextView
+                    android:id="@+id/role_delivery"
+                    android:gravity="center"
+                    android:layout_marginStart="1dp"
+                    android:textColor="@color/blueGrey800"
+                    android:background="@color/light_grey"
+                    android:padding="10dp"
+                    android:text="@string/dialog_add_shop_staff_role_delivery_text"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+            <TextView
+                android:textSize="15sp"
+                android:layout_marginTop="15dp"
+                android:text="Step 2 : Enter Email or Phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+            <EditText
+                android:inputType="text"
+                android:id="@+id/input_user_id"
+                android:hint="Email, Phone or UserID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+
+
+            <TextView
+                android:textSize="15sp"
+                android:layout_marginTop="15dp"
+                android:text="Step 3 : Enter Secret Code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+            <EditText
+                android:inputType="number"
+                android:id="@+id/input_secret_code"
+                android:hint="Secret Code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+
+
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:background="@color/mapbox_blue"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+
+
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:id="@+id/add_member"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textColor="@color/white"
+                        android:background="@color/gplus_color_1"
+                        android:layout_weight="1"
+                        android:text="@string/dialog_add_shop_staff_add_member_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                    <ProgressBar
+                        android:visibility="gone"
+                        android:id="@+id/progress_bar_add_member"
+                        app:layout_constraintTop_toTopOf="@id/add_member"
+                        app:layout_constraintBottom_toBottomOf="@id/add_member"
+                        app:layout_constraintEnd_toEndOf="@id/add_member"
+                        app:layout_constraintStart_toStartOf="@id/add_member"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/dismiss"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:layout_marginStart="1dp"
+                    android:textColor="@color/white"
+                    android:background="@color/gplus_color_4"
+                    android:layout_weight="1"
+                    android:text="@string/dialog_add_shop_staff_dismiss_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,140 @@
+//buildscript {
+//    repositories {
+//        maven { url 'https://plugins.gradle.org/m2/' }
+//    }
+//    dependencies {
+//        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:0.12.1'
+////        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.11.0, 0.99.99]'
+//    }
+//}
+
+
+//apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+
+
+
+
+android {
+
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "org.nearbyshops.enduserappnew"
+        minSdkVersion 19
+        targetSdkVersion 28
+        multiDexEnabled = true
+        versionCode 27
+        versionName "1.26"
+//        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        buildConfigField "String", "Mapbox_Style_URL", localProperties['mapbox_style_url']
+
+
+//
+//        manifestPlaceholders = [onesignal_app_id               : "b6fe253c-2a93-4452-8cd7-36555aa046ca",
+//                                // Project number pulled from dashboard, local value is ignored.
+//                                onesignal_google_project_number: "REMOTE"]
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+//    buildToolsVersion = '29.0.2'
+}
+
+
+
+
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+
+
+    def paging_version = "2.1.1"
+
+    implementation "androidx.paging:paging-runtime:$paging_version" // For Kotlin use paging-runtime-ktx
+    testImplementation "androidx.paging:paging-common:$paging_version" // For Kotlin use paging-common-ktx
+
+
+//    implementation "com.android.support:support-compat:28.0.0"
+
+    implementation 'com.roughike:bottom-bar:2.3.1'
+
+
+    implementation 'com.google.android.libraries.places:places:2.2.0'
+
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.firebase:firebase-messaging:20.1.4'
+//    implementation 'com.onesignal:OneSignal:3.10.9'
+
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+
+
+    implementation 'com.yalantis:ucrop:2.2.0'
+    implementation 'com.wunderlist:sliding-layer:1.2.5'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    implementation 'com.hbb20:ccp:2.2.7'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.0'
+    implementation 'com.github.sujithkanna:smileyrating:1.6.8'
+    implementation 'com.alexvasilkov:gesture-views:2.6.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.5.0'
+    implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.palette:palette:1.0.0'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
+    implementation 'com.github.clans:fab:1.6.4'
+
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.4.1'
+
+
+    implementation 'com.google.dagger:dagger:2.27'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
+
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
+    testImplementation 'junit:junit:4.13'
+
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+apply plugin: 'com.google.gms.google-services'

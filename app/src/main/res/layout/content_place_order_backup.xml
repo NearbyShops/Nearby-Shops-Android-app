@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity"
+        tools:showIn="@layout/activity_place_order">
+
+        <!--
+
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+
+        android:textColor="@color/cyan900"
+        -->
+
+
+        <TextView
+            android:textSize="24sp"
+            android:layout_margin="10dp"
+            android:id="@+id/step_one"
+            android:text="@string/content_place_order_backup_step_one_text"
+            android:layout_alignParentTop="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <RadioGroup
+            android:layout_below="@id/step_one"
+            android:background="#22000000"
+            android:id="@+id/radioGroup"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Delivery Type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#88000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <RadioButton
+                android:id="@+id/radioPickFromShop"
+                android:layout_marginTop="10dp"
+                android:textSize="17dp"
+                android:textColor="@color/cyan900"
+                android:text="@string/content_place_order_backup_radioPickFromShop_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/radioHomeDelivery"
+                android:textSize="17dp"
+                android:textColor="@color/cyan900"
+                android:layout_marginTop="10dp"
+                android:text="@string/content_place_order_backup_radioHomeDelivery_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RadioGroup>
+
+
+
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/radioGroup"
+            android:textSize="24sp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/step_two"
+            android:text="@string/content_place_order_backup_step_two_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:id="@+id/border_step_two"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/step_two"
+            android:background="@color/blueGrey800"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+
+        <TextView
+            android:layout_below="@id/border_step_two"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:id="@+id/pickFromSavedAddresses"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/phonographyBlue"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/content_place_order_backup_pickFromSavedAddresses_text"
+            android:layout_alignParentRight="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <!--
+
+        <TextView
+            android:textColor="#ffffff"
+            android:background="@color/gplus_color_1"
+            android:layout_below="@id/pickFromSavedAddresses"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/selectedAddressTitle"
+            android:padding="5dp"
+            android:textSize="20dp"
+            android:text="@string/content_place_order_backup_selectedAddress_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
+            android:id="@+id/borderSelected"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/selectedAddressTitle"
+            android:background="#88000000"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+
+        -->
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_below="@id/pickFromSavedAddresses"
+            android:id="@+id/selectedDeliveryAddress"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#22000000"
+            android:padding="10dp"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+
+
+            <TextView
+                android:textColor="#ffffff"
+                android:layout_marginTop="10dp"
+                android:background="@color/gplus_color_2"
+
+                android:id="@+id/selectedAddress"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:text="@string/content_place_order_backup_selectedAddress_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/borderFour"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/selectedAddress"
+                android:background="#88000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:layout_below="@id/borderFour"
+                android:id="@+id/name"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:text="@string/content_place_order_backup_name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/border"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/name"
+                android:background="#88000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+
+            <TextView
+
+                android:layout_below="@id/border"
+                android:id="@+id/deliveryAddress"
+                android:padding="5dp"
+                android:textSize="15dp"
+                android:text="@string/content_place_order_backup_deliveryAddress_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:layout_below="@id/deliveryAddress"
+                android:id="@+id/city"
+                android:padding="5dp"
+                android:textSize="15dp"
+                android:text="@string/content_place_order_backup_city_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_below="@id/deliveryAddress"
+                android:layout_toRightOf="@id/city"
+                android:id="@+id/pincode"
+                android:padding="5dp"
+                android:textSize="15dp"
+                android:text="@string/content_place_order_backup_pincode_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_below="@id/city"
+                android:id="@+id/landmark"
+                android:padding="5dp"
+                android:textSize="15dp"
+                android:text="@string/content_place_order_backup_landmark_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/borderTwo"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/landmark"
+                android:background="#88000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+            <TextView
+                android:layout_below="@id/borderTwo"
+                android:id="@+id/phoneNumber"
+                android:padding="5dp"
+                android:textSize="15dp"
+                android:text="@string/content_place_order_backup_phoneNumber_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/borderThree"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/phoneNumber"
+                android:background="#88000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        </RelativeLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/totalGroup"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/selectedDeliveryAddress"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="17sp"
+                android:id="@+id/free_delivery_info"
+                android:text="@string/content_place_order_backup_free_delivery_info_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:id="@+id/subTotal"
+                android:text="@string/content_place_order_backup_subTotal_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:text="@string/content_place_order_backup_deliveryCharges_text"
+                android:id="@+id/deliveryCharges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="25dp"
+                android:text="@string/content_place_order_backup_total_text"
+                android:id="@+id/total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="25sp"
+                android:text="All Payments are made at the time of Delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:text="You pay the bill amount to the delivery Guy !"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+<!--
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_marginTop="54dp"
+            android:layout_below="@id/totalGroup"
+            android:layout_centerHorizontal="true" />
+-->
+
+
+
+        <TextView
+            android:layout_below="@id/totalGroup"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:id="@+id/placeOrder"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/phonographyBlue"
+            android:textSize="20dp"
+            android:text="@string/content_place_order_backup_placeOrder_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/totalGroup"
+            android:background="#88000000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+
+        <ProgressBar
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@id/placeOrder"
+            android:layout_toEndOf="@id/placeOrder"
+            android:layout_toLeftOf="@id/placeOrder"
+            android:layout_toRightOf="@id/placeOrder"
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
+
+    </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>

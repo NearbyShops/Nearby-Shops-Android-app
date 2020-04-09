@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <!--
+
+        android:theme="@style/AppTheme.AppBarOverlay"
+
+        <LinearLayout
+            app:layout_scrollFlags = "scroll|enterAlways"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/subTotal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="0dp"
+                android:text="Sub Total \nDelivery Charges "
+                android:textSize="15dp"
+                android:padding="10dp"
+                android:gravity="left"
+                android:textColor="@color/colorWhite"
+                android:background="@color/grey800"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <TextView
+                android:id="@+id/subTotalValue"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="5dp"
+                android:text=": Rs 521 \n: Rs 20"
+                android:textSize="15dp"
+                android:padding="10dp"
+                android:gravity="left"
+                android:textColor="@color/colorWhite"
+                android:background="@color/grey800"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+
+        </LinearLayout>
+
+        -->
+
+
+
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleTextColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary" >
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/header_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="21sp"
+                    android:textColor="@color/white"
+                    android:text="@string/fragment_cart_item_list_header_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <!--                android:text="@string/app_name"-->
+
+
+                <TextView
+                    android:text="@string/fragment_cart_item_list_shop_name_text"
+                    android:id="@+id/shop_name"
+                    app:layout_constraintStart_toStartOf="@id/header_title"
+                    app:layout_constraintTop_toBottomOf="@id/header_title"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+<!--
+
+    <include layout="@layout/list_item_shop_carts"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp" />
+
+-->
+
+
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/swipeContainer"
+        android:paddingBottom="70sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="#00000000"
+                android:id="@+id/recyclerView"
+                android:layout_marginBottom="55dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/empty_screen"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--app:srcCompat="@drawable/ic_no_drivers_found"-->
+
+        <ImageView
+            android:id="@+id/empty_screen_image"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_shopping_cart_color"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="140dp"
+            android:layout_height="140dp" />
+
+        <TextView
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="10sp"
+            android:text="Designed By Freepik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--app:srcCompat="@drawable/empty_seven"-->
+
+
+        <TextView
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:text="No items in your cart !"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/empty_screen_message"
+            android:text="@string/fragment_cart_item_list_empty_screen_message_text"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/button_try_again"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:text="@string/fragment_cart_item_list_button_try_again_text"
+            android:background="@color/buttonColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="1dp"
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView
+            android:background="@color/blueGrey800"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+
+
+        <TextView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/confirm"
+            android:text="@string/fragment_cart_item_list_confirm_text"
+            android:textSize="17sp"
+            android:layout_margin="10sp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:background="@color/blueGrey800"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp" />
+
+
+
+        <!--
+
+                    <LinearLayout
+                        android:layout_above="@id/confirm"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="#000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
+
+                    <LinearLayout
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_above="@id/confirm"
+                        android:background="#000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
+        -->
+
+
+
+        <TextView
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/totalValue"
+            android:id="@+id/total"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/fragment_cart_item_list_total_text"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="17dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/blueGrey800"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+        <TextView
+            app:layout_constraintHorizontal_chainStyle="spread"
+            android:id="@+id/totalValue"
+            android:layout_margin="10dp"
+            android:text="@string/fragment_cart_item_list_totalValue_text"
+            android:textSize="24sp"
+            android:padding="5dp"
+            android:textColor="@color/blueGrey800"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/confirm"
+            app:layout_constraintStart_toEndOf="@id/total"
+            app:layout_constraintTop_toTopOf="@id/total"/>
+
+
+
+
+        <TextView
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/total"
+            app:layout_constraintEnd_toStartOf="@id/confirm"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="5dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_above="@id/total"
+            android:id="@+id/estimatedTotal"
+            android:text="Estimated Total (Before Update) : Rs 00.00"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--
+    android:text="Confirm Items"
+    -->
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

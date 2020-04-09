@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    android:background="#22000000"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/carts_list_item"
+    android:paddingBottom="2dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
+    android:paddingTop="2dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_marginBottom="5dp"
+        android:background="#88000000"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+
+    <RelativeLayout
+        android:padding="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:background="#44000000"
+            android:layout_marginRight="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/shopImage" />
+
+
+        <!--
+        android:background="#99424242"
+        -->
+
+        <TextView
+            android:layout_marginTop="0dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daily Needs, Green Hills"
+            android:id="@+id/shopName"
+            android:layout_marginStart="3dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/shopImage"/>
+
+
+
+
+        <LinearLayout
+            android:layout_marginStart="5dp"
+            android:layout_alignBottom="@id/shopImage"
+            android:layout_toEndOf="@id/shopImage"
+            android:layout_marginTop="2dp"
+            android:weightSum="2"
+            android:id="@+id/labels_delivery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/indicator_pick_from_shop"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@color/orangeDark"
+                android:text="@string/list_item_cart_indicator_pick_from_shop_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/indicator_home_delivery"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                android:layout_marginStart="0dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@color/phonographyBlue"
+                android:text="@string/list_item_cart_indicator_home_delivery_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_item_cart_deliveryCharge_text"
+            android:id="@+id/deliveryCharge"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/shopImage"
+            android:layout_marginRight="0dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="0dp"
+            android:layout_above="@id/labels_delivery"/>
+
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginStart="5dp"
+            android:layout_above="@id/deliveryCharge"
+            android:textColor="@color/colorWhite"
+            android:background="@color/gplus_color_2"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            android:id="@+id/rating"
+            android:layout_toEndOf="@id/shopImage"/>
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_alignBottom="@id/rating"
+            android:layout_toEndOf="@id/rating"
+            android:layout_toRightOf="@id/rating"
+            android:text="(0 Ratings)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_toEndOf="@id/shopImage"
+            android:layout_toRightOf="@id/shopImage"
+            android:layout_marginBottom="2dp"
+            android:padding="1dp"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/blueGrey800"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/rating"
+            android:text="@string/list_item_cart_distance_text"
+            android:id="@+id/distance" />
+
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_marginBottom="0dp"
+        android:background="#88000000"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="horizontal">
+
+
+        <!--android:paddingTop="5dp"-->
+        <!--android:paddingBottom="5dp"-->
+        <!--android:paddingStart="10dp"-->
+        <!--android:paddingEnd="10dp"-->
+
+
+        <TextView
+            android:padding="5dp"
+            android:id="@+id/itemsInCart"
+            android:textColor="@color/colorWhite"
+            android:background="@color/teal"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 Items in Cart"/>
+
+
+        <TextView
+            android:id="@+id/cartTotal"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="1"
+            android:textColor="@color/colorWhite"
+            android:background="@color/teal"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_item_cart_cartTotal_text"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:background="#88000000"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</LinearLayout>

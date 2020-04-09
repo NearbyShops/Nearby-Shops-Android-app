@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:contentDescription="@string/content_description_close_dialog"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/dialog_dismiss_icon"
+            app:srcCompat="@drawable/ic_clear_black_24px"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/header_title"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:textSize="24dp"
+            android:text="@string/dialog_rate_review_shop_header_title_text"
+            android:layout_alignTop="@id/dialog_dismiss_icon"
+            android:layout_alignBottom="@id/dialog_dismiss_icon"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="#000000"
+            android:layout_alignLeft="@id/dialog_dismiss_icon"
+            android:layout_alignStart="@id/dialog_dismiss_icon"
+            android:layout_alignTop="@id/dialog_dismiss_icon"
+            android:layout_alignBottom="@id/dialog_dismiss_icon"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+
+
+        <ImageView
+            android:background="@color/backgroundTinted"
+            android:scaleType="centerCrop"
+            android:id="@+id/member_profile_image"
+            android:layout_below="@id/header_title"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:textSize="17sp"
+            android:gravity="center"
+            android:text="@string/dialog_rate_review_shop_member_name_text"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:id="@+id/member_name"
+            android:layout_toEndOf="@id/member_profile_image"
+            android:layout_toRightOf="@id/member_profile_image"
+            android:layout_alignTop="@id/member_profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:id="@+id/item_rating_text"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@color/gplus_color_2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/member_profile_image"
+            android:layout_toRightOf="@id/member_profile_image"
+            android:layout_below="@id/member_name"
+            android:layout_alignBottom="@id/member_profile_image"
+            android:text="@string/dialog_rate_review_shop_item_rating_text_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+        <RatingBar
+            android:numStars="5"
+            android:isIndicator="true"
+            android:id="@+id/member_rating"
+            android:layout_marginStart="10dp"
+            android:layout_alignBottom="@id/member_profile_image"
+            android:layout_toEndOf="@id/item_rating_text"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+
+
+        <com.hsalf.smilerating.SmileRating
+            android:layout_marginTop="20dp"
+            android:id="@+id/smile_rating"
+            android:layout_below="@id/member_profile_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/member_profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <RatingBar
+            android:visibility="gone"
+            android:id="@+id/rating_bar"
+            android:layout_marginTop="10dp"
+            android:isIndicator="false"
+            android:stepSize="1"
+            android:rating="7"
+            android:numStars="10"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_below="@id/member_profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <!--
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_below="@id/rating_bar"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    -->
+
+
+            <EditText
+                android:layout_below="@id/smile_rating"
+                android:gravity="top"
+                android:id="@+id/review_title"
+                android:inputType="text|textMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title"/>
+
+
+        <EditText
+                android:layout_below="@id/review_title"
+                android:gravity="top"
+                android:id="@+id/review_text"
+                android:inputType="text|textMultiLine"
+                android:layout_width="match_parent"
+                android:minHeight="100dp"
+                android:layout_height="wrap_content"
+                android:hint="Description"/>
+
+    <!---    </android.support.design.widget.TextInputLayout> -->
+
+
+
+        <LinearLayout
+            android:id="@+id/login_button_row"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/review_text"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:background="@color/deepOrange900"
+                android:id="@+id/cancel_button"
+                android:textColor="@color/white"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:text="@string/dialog_rate_review_shop_cancel_button_text"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:id="@+id/submit_button"
+                android:textColor="@color/white"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@color/blueGrey800"
+                android:gravity="center"
+                android:text="@string/dialog_rate_review_shop_submit_button_text"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/login_button_row"
+            android:text="Forgot Password ?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

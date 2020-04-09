@@ -1,0 +1,1204 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<!--        android:layout_height="?attr/actionBarSize"-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/app_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="21sp"
+                    android:textColor="@color/white"
+                    android:text="@string/fragment_profile_app_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/service_name"
+                    app:layout_constraintStart_toStartOf="@id/app_name"
+                    app:layout_constraintTop_toBottomOf="@id/app_name"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/emergency"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/gplus_color_2"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:visibility="gone"-->
+                    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                    <!--app:layout_constraintRight_toRightOf="parent"-->
+                    <!--app:layout_constraintTop_toTopOf="parent">-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="50dp"-->
+                            <!--android:layout_weight="0.4"-->
+                            <!--android:tint="@color/gplus_color_4"-->
+                            <!--app:srcCompat="@drawable/ic_add_alert_black_24px" />-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_marginEnd="0dp"-->
+                            <!--android:layout_weight="0.6"-->
+                            <!--android:gravity="start"-->
+                            <!--android:text="Report\nEmergency"-->
+                            <!--android:textColor="@color/gplus_color_4"-->
+                            <!--android:textSize="20dp"-->
+                            <!--android:textStyle="bold" />-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:background="@color/buttonColorDark" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="Press here to report emergency !"-->
+                        <!--android:textColor="@color/gplus_color_4"-->
+                        <!--android:textStyle="bold" />-->
+
+                <!--</LinearLayout>-->
+
+
+                <!--<android.support.constraint.ConstraintLayout-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/emergency"-->
+                <!--android:padding="5dp"-->
+                <!--android:id="@+id/user_profile"-->
+                <!--android:background="@color/light_grey"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="90dp">-->
+
+                <!--<ImageView-->
+                <!--android:background="@color/colorAccent"-->
+                <!--android:id="@+id/profile_image"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:srcCompat="@drawable/ic_face_black_24px"-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="100dp" />-->
+
+
+                <!--<TextView-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:id="@+id/user_name"-->
+                <!--android:layout_marginEnd="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:textSize="24sp"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:text="Sumeet Kumar"-->
+                <!--app:layout_constraintTop_toTopOf="@+id/profile_image"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintRight_toLeftOf="@+id/profile_image"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+                <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/edit_profile"-->
+                <!--android:textSize="17sp"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:text="Edit Profile"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/user_name"-->
+                <!--app:layout_constraintRight_toRightOf="@+id/user_name"-->
+                <!--app:layout_constraintLeft_toLeftOf="@+id/user_name"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <!--</android.support.constraint.ConstraintLayout>-->
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.4" />
+
+
+                <TextView
+                    android:id="@+id/border_profile_top"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="0dp"
+                    android:background="#55000000"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.4"
+                    android:background="@color/backgroundTinted"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="h,4:3"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/border_profile_top" />
+
+
+                <LinearLayout
+                    android:id="@+id/user_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_image"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/profile_image">
+
+
+                    <TextView
+                        android:textColor="@color/orange"
+                        android:id="@+id/header_booked_by"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_profile_header_booked_by_text"
+                        app:layout_constraintLeft_toRightOf="@id/guideline"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/profile_image" />
+
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:gravity="start"
+                        android:paddingTop="0dp"
+                        android:text="@string/fragment_profile_user_name_text"
+                        android:textColor="@color/blueGrey800"
+                        android:textSize="20sp"
+                        android:textStyle="normal"
+                        app:layout_constraintLeft_toLeftOf="@+id/guideline"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/profile_image" />
+
+
+                    <TextView
+                        android:textColor="@color/orangeDark"
+                        android:id="@+id/user_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_profile_user_id_text" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:id="@+id/phone_icon"
+                            android:layout_width="15dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@id/profile_image"
+                            app:layout_constraintLeft_toLeftOf="@id/user_name"
+                            app:srcCompat="@drawable/ic_call_black_24px" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone : "
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:gravity="center"
+                            android:text="@string/fragment_profile_phone_text"
+                            android:textColor="#000000"
+                            android:textSize="17sp"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toBottomOf="@+id/phone_icon"
+                            app:layout_constraintLeft_toRightOf="@+id/phone_icon"
+                            app:layout_constraintTop_toTopOf="@id/phone_icon" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/border_profile_bottom"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#55000000"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+
+                <!--<android.support.constraint.ConstraintLayout-->
+                <!--android:id="@+id/taxi_status"-->
+                <!--android:layout_width="0dp"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/taxi_profile_update"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+
+                <!--<TextView-->
+                <!--android:textSize="20sp"-->
+                <!--android:id="@+id/header_status"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:padding="5dp"-->
+                <!--android:background="#22000000"-->
+                <!--android:text="Taxi Status"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+                <!--<TextView-->
+                <!--android:background="@color/blueGrey800"-->
+                <!--android:layout_marginTop="3dp"-->
+                <!--android:id="@+id/baseline"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/header_status"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="1dp" />-->
+
+
+                <!--<ProgressBar-->
+                <!--android:layout_margin="5dp"-->
+                <!--app:layout_constraintTop_toTopOf="@id/header_status"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/header_status"-->
+                <!--android:id="@+id/progress_bar"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:indeterminate="true" />-->
+
+
+                <!--<RadioGroup-->
+                <!--android:background="@color/light_grey"-->
+                <!--android:padding="10dp"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:id="@+id/radio_group_status"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/header_status"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="70dp">-->
+
+                <!--<RadioButton-->
+                <!--android:text="Not Available"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/radio_button_not_available"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent" />-->
+
+                <!--<RadioButton-->
+                <!--android:text="Available"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/radio_button_available"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent" />-->
+
+                <!--<RadioButton-->
+                <!--android:enabled="false"-->
+                <!--android:text="Occupied"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/radio_button_occupied"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent" />-->
+
+                <!--</RadioGroup>-->
+
+
+                <!--<LinearLayout-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--android:orientation="vertical"-->
+                <!--android:id="@+id/taxi_status"-->
+                <!--android:layout_width="0dp"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/border_profile_bottom"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:background="#55000000"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="2dp" />&ndash;&gt;-->
+
+
+                <!--<LinearLayout-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                <!--android:textStyle="bold"-->
+                <!--android:gravity="start"-->
+                <!--android:textColor="@color/buttonColorDark"-->
+                <!--android:textSize="20sp"-->
+                <!--android:id="@+id/header_status"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Taxi Status"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+                <!--<ProgressBar-->
+                <!--android:visibility="gone"-->
+                <!--android:layout_marginEnd="10dp"-->
+                <!--android:id="@+id/progress_bar_status"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:indeterminate="true" />-->
+
+
+                <!--</LinearLayout>-->
+
+                <!--<TextView-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:background="#33000000"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp" />-->
+
+                <!--<RadioGroup-->
+                <!--android:padding="10dp"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:id="@+id/radio_group_status"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/header_status"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="70dp">-->
+
+                <!--<RadioButton-->
+                <!--android:text="Not Available"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/radio_button_not_available"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent" />-->
+
+                <!--<RadioButton-->
+                <!--android:text="Available"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/radio_button_available"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent" />-->
+
+                <!--<RadioButton-->
+                <!--android:enabled="false"-->
+                <!--android:text="Occupied"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/radio_button_occupied"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent" />-->
+
+                <!--</RadioGroup>-->
+
+
+                <!--<TextView-->
+                <!--android:background="#55000000"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="2dp" />-->
+
+
+                <!--</LinearLayout>-->
+
+
+                <!--<android.support.constraint.ConstraintLayout-->
+                <!--android:visibility="gone"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:padding="0dp"-->
+                <!--android:id="@+id/taxi_profile_placeholder"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/taxi_status"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content">-->
+
+
+                <!--<ImageView-->
+                <!--android:id="@+id/add_taxi_placeholder"-->
+                <!--app:srcCompat="@drawable/ic_add_circle_outline_black_24px"-->
+                <!--android:background="@color/backgroundTinted"-->
+                <!--android:layout_margin="0dp"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="100dp" />-->
+
+                <!--<TextView-->
+                <!--android:textColor="@color/white"-->
+                <!--android:padding="5dp"-->
+                <!--android:background="@color/buttonColorDark"-->
+                <!--android:gravity="center"-->
+                <!--android:textSize="17sp"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/add_taxi_placeholder"-->
+                <!--android:text="Add Taxi"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <!--</android.support.constraint.ConstraintLayout>-->
+
+
+                <!--<ImageView-->
+                <!--android:visibility="gone"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:background="@color/backgroundTinted"-->
+                <!--android:id="@+id/taxi_profile_image"-->
+                <!--app:layout_constraintRight_toLeftOf="@+id/guideline"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/taxi_profile_placeholder"-->
+                <!--app:layout_constraintDimensionRatio="h,4:3"-->
+                <!--android:layout_weight="0.4"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp" />-->
+
+
+                <!--<LinearLayout-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--android:layout_marginStart="10dp"-->
+                <!--android:visibility="gone"-->
+                <!--android:padding="0dp"-->
+                <!--android:id="@+id/taxi_profile"-->
+                <!--app:layout_constraintTop_toTopOf="@id/taxi_profile_image"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toRightOf="@id/guideline"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content">-->
+
+
+                <!--<TextView-->
+                <!--android:text="Taxi Profile"-->
+                <!--app:layout_constraintLeft_toRightOf="@id/guideline"-->
+                <!--app:layout_constraintTop_toTopOf="@id/profile_image"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+                <!--<TextView-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginStart="0dp"-->
+                <!--android:textColor="@color/blueGrey800"-->
+                <!--android:paddingTop="0dp"-->
+                <!--android:id="@+id/model_name"-->
+                <!--android:textStyle="normal"-->
+                <!--android:textSize="17sp"-->
+                <!--android:gravity="start"-->
+                <!--android:text="BMW x3"-->
+                <!--app:layout_constraintTop_toTopOf="@id/profile_image"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:layout_constraintLeft_toLeftOf="@+id/guideline" />-->
+
+
+                <!--<LinearLayout-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+
+                <!--<TextView-->
+                <!--android:textSize="11sp"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--app:layout_constraintLeft_toLeftOf="@+id/user_name"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/user_name"-->
+                <!--android:id="@+id/rating"-->
+                <!--android:padding="0dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:background="@color/gplus_color_2"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text=" 2.7 "-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+                <!--<TextView-->
+                <!--android:textSize="11sp"-->
+                <!--android:layout_marginStart="5dp"-->
+                <!--android:id="@+id/ratings_count"-->
+                <!--android:text="(201 Ratings)"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/rating"-->
+                <!--app:layout_constraintLeft_toRightOf="@+id/rating"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <!--</LinearLayout>-->
+
+
+                <!--<TextView-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Vehicle ID : 252123"-->
+                <!--android:id="@+id/vehicle_id"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <!--</LinearLayout>-->
+
+
+                <!--<LinearLayout-->
+                <!--app:layout_constraintTop_toBottomOf="@id/taxi_profile"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content">-->
+
+
+                <!--</LinearLayout>-->
+
+
+                <TextView
+                    android:id="@+id/border_bottom_taxi_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#55000000"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/border_profile_bottom" />
+
+
+                <LinearLayout
+                    android:id="@+id/billing_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/border_bottom_taxi_profile">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Billing Information" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#33000000" />
+
+                    <TextView
+                        android:id="@+id/current_dues"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/fragment_profile_current_dues_text"
+                        android:textSize="20sp" />
+
+
+
+
+
+
+                    <TextView
+                        android:id="@+id/credit_limit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/fragment_profile_credit_limit_text" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Your services will be suspended if your bill exceeds your credit limit. Please pay your bills to avoid suspension of your services."
+                        android:visibility="gone" />
+
+
+                    <!--<TextView-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:text="Service Charge : \u20B9 3023"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                    <!--<TextView-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:text="Credits : \u20B9 3023"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                    <!--<TextView-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:text="Payments made : \u20B9 3023"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#55000000" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/billing_info">
+
+
+
+                    <LinearLayout
+                        android:id="@+id/dashboard_by_role"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/darkGreen"
+                        android:minHeight="60dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/dashboard_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+                        <!--Check the faq's before you contact support this will save your ti-->
+
+                        <TextView
+                            android:id="@+id/dashboard_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/faqs_block"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/buttonColorDark"
+                        android:minHeight="60dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="FAQ's"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+                        <!--Check the faq's before you contact support this will save your ti-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Frequently asked questions. Get answers to the most common questions."
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+
+
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/staff_block"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/phonographyBlue"
+                        android:minHeight="60dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="Staff"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Give feedback, suggestions or report a complaint. Feel free to contact our staff"
+                            android:textColor="@color/white" />
+
+                        <!--and ask questions.-->
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/tos_block"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/blueGrey800"
+                        android:minHeight="60dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="Terms of Service"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Read our terms of service"
+                            android:textColor="@color/white" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/privacy_policy_block"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/blueGrey800"
+                        android:minHeight="60dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="Privacy Policy"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Read our privacy policy"
+                            android:textColor="@color/white" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/login_block"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/grey800"
+                        android:minHeight="60dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/label_login"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="@string/fragment_profile_label_login_text"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Press here to logout"
+                            android:textColor="@color/white" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!--// current status-->
+                <!--// add/ edit Vehicle-->
+                <!--// Trip History-->
+                <!--// Billing -->
+                <!--// Select Service-->
+                <!--// settings-->
+                <!--// About-->
+
+
+                <!--<ImageView-->
+                <!--android:padding="5dp"-->
+                <!--android:background="@color/backgroundTinted"-->
+                <!--android:id="@+id/icon_login"-->
+                <!--app:srcCompat="@drawable/ic_dashboard_black_24dp"-->
+                <!--android:layout_width="60dp"-->
+                <!--android:layout_height="60dp"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/billing_info" />-->
+
+
+                <!--<TextView-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:background="@color/backgroundTinted"-->
+                <!--android:id="@+id/label_login"-->
+                <!--android:textSize="24sp"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:text="@string/fragment_profile_label_login_text"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toRightOf="@+id/icon_login"-->
+                <!--app:layout_constraintTop_toTopOf="@+id/icon_login"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/icon_login"-->
+                <!--app:layout_constraintHorizontal_bias="1.0"-->
+                <!--app:layout_constraintVertical_bias="1.0" />-->
+
+
+                <!--<ImageView-->
+                <!--android:visibility="gone"-->
+                <!--android:padding="5dp"-->
+                <!--android:background="@color/blueGrey800"-->
+                <!--android:id="@+id/icon_add_vehicle"-->
+                <!--app:srcCompat="@drawahome_icon24dp"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/label_login"-->
+                <!--app:layout_constraintHorizontal_chainStyle="spread_inside"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent" />-->
+
+
+                <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:background="@color/blueGrey800"-->
+                <!--app:layout_constraintTop_toTopOf="@+id/icon_add_vehicle"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/icon_add_vehicle"-->
+                <!--android:id="@+id/label_add_vehicle"-->
+                <!--android:textSize="24sp"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:text="Add / Edit Vehicle"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toRightOf="@+id/icon_add_vehicle" />-->
+
+
+                <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/border_one"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:background="#88000000"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/icon_add_vehicle"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp" />-->
+
+
+                <!--<ImageView-->
+                <!--android:visibility="gone"-->
+                <!--android:padding="5dp"-->
+                <!--android:background="@color/buttonColor"-->
+                <!--android:id="@+id/icon_trip_history"-->
+                <!--app:srcCompat="@drawable/ic_clear_black_24px"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/icon_add_vehicle" />-->
+
+
+                <!--<TextView-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:background="@color/buttonColor"-->
+                <!--app:layout_constraintTop_toTopOf="@+id/icon_trip_history"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/icon_trip_history"-->
+                <!--android:id="@+id/label_trip_history"-->
+                <!--android:textSize="24sp"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:text="Trip History"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toRightOf="@+id/icon_trip_history"/>-->
+
+
+                <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/border_two"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:background="#88000000"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/icon_trip_history"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp" />-->
+
+
+                <!--<ImageView-->
+                <!--android:visibility="gone"-->
+                <!--android:padding="5dp"-->
+                <!--android:background="@color/cyan900"-->
+                <!--android:id="@+id/icon_select_service"-->
+                <!--app:srcCompat="@drawahome_icon24dp"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/border_two"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"/>-->
+
+
+                <!--<TextView-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:background="@color/cyan900"-->
+                <!--app:layout_constraintTop_toTopOf="@+id/icon_select_service"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/icon_select_service"-->
+                <!--android:id="@+id/label_select_service"-->
+                <!--android:textSize="24sp"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:text="Select Service"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toRightOf="@+id/icon_select_service"/>-->
+
+
+                <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/border_five"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:background="#88000000"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/icon_select_service"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp" />-->
+
+
+                <!--<ImageView-->
+                <!--android:background="@color/gplus_color_1"-->
+                <!--android:padding="5dp"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:id="@+id/icon_settings"-->
+                <!--app:srcCompat="@drawable/ic_notifications_black_24dp"-->
+                <!--android:layout_width="60dp"-->
+                <!--android:layout_height="60dp"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/border_five" />-->
+
+
+                <!--<TextView-->
+                <!--app:layout_constraintTop_toTopOf="@+id/icon_settings"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/icon_settings"-->
+                <!--android:id="@+id/label_settings"-->
+                <!--android:textSize="24sp"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:text="Settings"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:background="@color/gplus_color_1"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toRightOf="@+id/icon_settings"/>-->
+
+
+                <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/border_six"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:background="#88000000"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/icon_settings"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp" />-->
+
+
+                <!--<ImageView-->
+                <!--android:padding="5dp"-->
+                <!--android:background="@color/gplus_color_2"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:id="@+id/icon_about"-->
+                <!--app:srcCompat="@drawable/ic_dashboard_black_24dp"-->
+                <!--android:layout_width="60dp"-->
+                <!--android:layout_height="60dp"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/border_six"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent" />-->
+
+
+                <!--<TextView-->
+                <!--android:textColor="@color/white"-->
+                <!--android:background="@color/gplus_color_2"-->
+                <!--android:gravity="center_vertical"-->
+                <!--app:layout_constraintTop_toTopOf="@+id/icon_about"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/icon_about"-->
+                <!--android:id="@+id/label_about"-->
+                <!--android:textSize="24sp"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:text="About"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--app:layout_constraintLeft_toRightOf="@+id/icon_about"-->
+                <!--app:layout_constraintRight_toRightOf="parent"/>-->
+
+
+                <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/border_seven"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:background="#88000000"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/icon_about"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp" />-->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

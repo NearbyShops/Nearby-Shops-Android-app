@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <Button
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/white"
+        android:background="@color/buttonColorDark"
+        android:id="@+id/next"
+        android:text="@string/fragment_add_credit_header_text"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="40dp" />
+
+
+    <ProgressBar
+        app:layout_constraintBottom_toBottomOf="@id/next"
+        app:layout_constraintTop_toTopOf="@id/next"
+        app:layout_constraintEnd_toEndOf="@id/next"
+        app:layout_constraintStart_toStartOf="@id/next"
+        android:id="@+id/progress_bar"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+
+
+
+    <TextView
+        android:id="@+id/border_next"
+        android:background="#55000000"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/next"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="1dp" />
+
+
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_constraintBottom_toTopOf="@id/next"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="0dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/header"
+                android:text="@string/fragment_add_credit_header_text"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:id="@+id/border_header"
+                android:layout_marginTop="10dp"
+                android:background="#55000000"
+                app:layout_constraintTop_toBottomOf="@+id/header"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp" />
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/header_select"-->
+                <!--android:textSize="17sp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/border_header"-->
+                <!--android:text="Please Select account"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+            <!--<RadioGroup-->
+                <!--android:padding="10dp"-->
+                <!--android:background="#22000000"-->
+                <!--android:orientation="vertical"-->
+                <!--android:weightSum="3"-->
+                <!--android:id="@+id/radio_group_accounts"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/header_select"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<RadioButton-->
+                    <!--android:id="@+id/radio_app_account"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="App Account"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                <!--<RadioButton-->
+                    <!--android:id="@+id/radio_tax_account"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="Tax Account"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+            <!--</RadioGroup>-->
+
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/header_amount"
+                android:textSize="17sp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/border_header"
+                android:text="@string/fragment_add_credit_header_amount_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <!--<RadioGroup-->
+                <!--android:orientation="horizontal"-->
+                <!--android:weightSum="3"-->
+                <!--android:id="@+id/radio_group_accounts"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/header_select"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<RadioButton-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="App Account"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                <!--<RadioButton-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="Tax Account"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                <!--<RadioButton-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="Requests Account"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</RadioGroup>-->
+
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username_text_input"
+                android:layout_marginTop="10dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:hint="Enter Amount"
+                    android:id="@+id/amount_to_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/next"-->
+                <!--android:textSize="24sp"-->
+                <!--android:text="Next"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/username_text_input"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

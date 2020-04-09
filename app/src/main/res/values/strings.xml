@@ -1,0 +1,113 @@
+<resources>
+    <string name="app_name">Nearby Shops</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="dialog_dismissed">Dismissed !</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="tos_link">https://example.com/tos.html</string>
+    <string name="privacy_policy_link">https://example.com/pivacy_policy.html</string>
+
+
+
+    <string name="notice_account_deactivated">Notice :\nYour account is not activated. Please contact support to activate your account.</string>
+    <string name="low_balance_message">Alert : Your service is stopped due to low balance in your account. Please add balance to start your service.</string>
+
+
+    <string name="notice_low_balance">Attention : Your services are paused due to low balance in your account please add balance to resume your services !</string>
+
+
+    <string name="phone_registration_message">Currently registration through phone is available only in India. This will be available in other countries very Soon.</string>
+
+    <string name="rupee_symbol">\u20B9</string>
+    <string name="fake_key">pk.fakekey</string>
+
+    <string name="delivery_coordinates_message">Giving accurate location coordinates will help the delivery person to locate your address easily and deliver your order in less amount of time.</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+
+    <!--Shared Preferences-->
+    <string name="preference_file_name">sharedpreferencefile</string>
+
+
+    <!--Delivery Type Description-->
+    <string name="delivery_type_description_pick_from_shop">Pick from Shop - You need to pick this order from the shop when its ready for pickup. This order will not be delivered to your home.</string>
+    <string name="delivery_type_description_home_delivery">Home Delivery - This order will be delivered to your home by the shop owner.</string>
+
+
+    <!--API Response Messages-->
+
+    <string name="udate_successful_api_response">Update Successful !</string>
+    <string name="api_response_partially_updated">Partially Updated. Check data changes !</string>
+    <string name="api_response_no_item_updated">No item updated !</string>
+
+
+    <!--Content Description-->
+    <string name="content_description_close_dialog">Close Dialog</string>
+
+
+    <!--Rate Review Dialog Messages-->
+    <string name="market_review_be_the_first_to_review">"Be the first to review and rate this Market. "</string>
+    <string name="shop_review_be_the_first_to_review">"Be the first to review and rate this Shop. "</string>
+    <string name="item_review_be_the_first_to_review">"Be the first to review and rate this Item. "</string>
+
+
+    <!--Sort labels-->
+
+    <string name="sort_by_ascending">Ascending</string>
+    <string name="sort_by_descending">Descending</string>
+
+
+    <string name="network_request_failed">Network request failed. Please check your connection !</string>
+
+    <string name="sign_in_header">Log In to shop around you</string>
+    <string name="default_notification_channel_id">nbs_end_user</string>
+
+
+
+    <string-array name="service_level">
+        <item>City</item>
+        <item>State</item>
+        <item>Country</item>
+        <item>Global</item>
+    </string-array>
+
+
+
+
+
+    <string name="leaf_node_item_category_usage">
+        You cannot have a sub Item Category Under a leaf node Item Category.
+        But you can have Items placed under a Leaf Node Item Category.
+        Leaf Node Item Category is an Item Category which can have Items placed under them but cannot have Sub Item Category / Item Categories under it.</string>
+
+    <!-- An Abstract Item Category can have only Sub Item Categories and cannot contain items under them. -->
+    <string name="abstract_category_usage">
+        Item Categories Marked as abstract cannot have Items placed under them.
+        But they can have Sub Item Categories Under them.
+        Consider An Example: You have an Item Category : Groceries.
+        You may not want to add / place items directly under Item Category : Groceries.
+        You may want to create sub Item Categories like Dairy\, Shampoo\, Soap under Groceries and then add items under these categories.
+        If i add item \"Milk\" directly under Groceries that will not make sense, but if i add \"Milk\" under Dairy that will make more sense.
+        There are certain Item Categories which doesn\'t need to contain Items placed directly under them and you will want to make it abstract.
+        Making the Item Categories as Abstract will protect / prevent someone from placing items directly under it.</string>
+    <string name="channel_name">nbs_app</string>
+    <string name="channel_description">notifications for nearby shops app</string>
+
+
+</resources>

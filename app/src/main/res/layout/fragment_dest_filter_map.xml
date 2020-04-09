@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--<com.mapbox.mapboxsdk.maps.MapView-->
+
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--android:id="@+id/mapview"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp" />-->
+
+
+
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/mapview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:mapbox_cameraZoom="15"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
+
+
+    <SeekBar
+        android:id="@+id/seekbar_map"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:textColor="@color/white"
+        android:background="#55000000"
+        app:layout_constraintBottom_toTopOf="@id/seekbar_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/label"
+        android:text="@string/fragment_dest_filter_map_label_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+
+    <!--app:mapbox_styleUrl="mapbox://styles/mapbox/satellite-streets-v10"-->
+
+    <!--app:mapbox_styleUrl="mapbox://styles/mapbox/satellite-streets-v10"-->
+
+    <!--app:mapbox_styleUrl="mapbox://styles/mapbox/streets-v10"-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

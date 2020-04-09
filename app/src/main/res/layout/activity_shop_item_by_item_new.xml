@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:layout_height="wrap_content">
+
+            <!--app:layout_scrollFlags="scroll|enterAlways"-->
+
+            <androidx.appcompat.widget.Toolbar
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary" />
+
+
+            <LinearLayout
+                android:background="@color/buttonColor"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+<!--                <TextView-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:id="@+id/shop_count_indicator"-->
+<!--                    android:paddingLeft="10dp"-->
+<!--                    android:paddingRight="10dp"-->
+<!--                    android:paddingTop="0dp"-->
+<!--                    android:paddingBottom="10dp"-->
+<!--                    android:text=""-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content" />-->
+
+
+
+
+                <ImageView
+                    android:id="@+id/icon_sort"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/ic_sort_black_24px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/text_sort"
+                    android:padding="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/activity_shop_item_by_item_new_text_sort_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+
+                <ImageView
+                    android:id="@+id/icon_checkout"
+                    app:srcCompat="@drawable/ic_shopping_basket_white_24px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/activity_shop_item_by_item_new_text_checkout_text"
+                    android:id="@+id/text_checkout"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <FrameLayout
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+
+        <com.wunderlist.slidinglayer.SlidingLayer
+            android:id="@+id/slidingLayer"
+            android:elevation="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:background="@color/white"
+                android:layout_gravity="end"
+                android:layout_marginLeft="@dimen/slidinglayerwidth"
+                android:layout_marginStart="@dimen/slidinglayerwidth"
+                android:id="@+id/slidinglayerfragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+        </com.wunderlist.slidinglayer.SlidingLayer>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

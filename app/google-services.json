@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "462976306421",
+    "firebase_url": "https://nearbyshops-f7b77.firebaseio.com",
+    "project_id": "nearbyshops-f7b77",
+    "storage_bucket": "nearbyshops-f7b77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462976306421:android:a4c6e07f8dfca3156bc9bc",
+        "android_client_info": {
+          "package_name": "org.nearbyshops.enduserappnew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeYzoOQCI66drZP15UMPgNrCfHgCNWM34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462976306421:android:b1b47867ce56e0e76bc9bc",
+        "android_client_info": {
+          "package_name": "org.nearbyshops.shopkeeperappnew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeYzoOQCI66drZP15UMPgNrCfHgCNWM34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

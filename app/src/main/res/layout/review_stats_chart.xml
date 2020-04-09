@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chart"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:id="@+id/header"
+        android:textSize="20sp"
+        android:text="@string/review_stats_chart_header_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="@+id/header"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintRight_toRightOf="@+id/header"
+        android:id="@+id/rating_text"
+        android:textSize="15sp"
+        android:text="@string/review_stats_chart_rating_text_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RatingBar
+        app:layout_constraintLeft_toLeftOf="@+id/rating_text"
+        app:layout_constraintTop_toBottomOf="@+id/rating_text"
+        android:id="@+id/rating_bar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:numStars="10"
+        android:rating="7.6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/bar_one"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rating_bar"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/ten_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="75dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_one"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_one"
+        app:layout_constraintTop_toTopOf="@+id/bar_one"
+        android:text="Ten Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/ten_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_one"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_one"
+        app:layout_constraintTop_toTopOf="@+id/bar_one"
+        android:text="@string/review_stats_chart_ten_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_top_bar_height"
+        android:id="@+id/bar_two"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_one"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/nine_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_two"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_two"
+        app:layout_constraintTop_toTopOf="@+id/bar_two"
+        android:text="Nine Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/nine_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_two"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_two"
+        app:layout_constraintTop_toTopOf="@+id/bar_two"
+        android:text="@string/review_stats_chart_nine_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_top_bar_height"
+        android:id="@+id/bar_three"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_two"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/eight_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_three"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_three"
+        app:layout_constraintTop_toTopOf="@+id/bar_three"
+        android:text="Eight Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/eight_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_three"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_three"
+        app:layout_constraintTop_toTopOf="@+id/bar_three"
+        android:text="@string/review_stats_chart_eight_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <!--Bar Four-->
+
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_top_bar_height"
+        android:id="@+id/bar_four"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_three"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/seven_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="40dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_four"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_four"
+        app:layout_constraintTop_toTopOf="@+id/bar_four"
+        android:text="Seven Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/seven_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_four"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_four"
+        app:layout_constraintTop_toTopOf="@+id/bar_four"
+        android:text="@string/review_stats_chart_seven_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_top_bar_height"
+        android:id="@+id/bar_five"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_four"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/six_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="40dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_five"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_five"
+        app:layout_constraintTop_toTopOf="@+id/bar_five"
+        android:text="Six Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/six_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_five"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_five"
+        app:layout_constraintTop_toTopOf="@+id/bar_five"
+        android:text="@string/review_stats_chart_six_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_top_bar_height"
+        android:id="@+id/bar_six"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_five"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/five_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="30dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_six"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_six"
+        app:layout_constraintTop_toTopOf="@+id/bar_six"
+        android:text="Five Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/five_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_six"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_six"
+        app:layout_constraintTop_toTopOf="@+id/bar_six"
+        android:text="@string/review_stats_chart_five_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_top_bar_height"
+        android:id="@+id/bar_seven"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_six"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/four_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="15dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_seven"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_seven"
+        app:layout_constraintTop_toTopOf="@+id/bar_seven"
+        android:text="Four Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/four_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_seven"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_seven"
+        app:layout_constraintTop_toTopOf="@+id/bar_seven"
+        android:text="@string/review_stats_chart_four_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_top_bar_height"
+        android:id="@+id/bar_eight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_seven"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/three_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="80dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_eight"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_eight"
+        app:layout_constraintTop_toTopOf="@+id/bar_eight"
+        android:text="Three Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/three_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_eight"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_eight"
+        app:layout_constraintTop_toTopOf="@+id/bar_eight"
+        android:text="@string/review_stats_chart_three_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_top_bar_height"
+        android:id="@+id/bar_nine"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_eight"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/two_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="80dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_nine"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_nine"
+        app:layout_constraintTop_toTopOf="@+id/bar_nine"
+        android:text="Two Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/two_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_nine"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_nine"
+        app:layout_constraintTop_toTopOf="@+id/bar_nine"
+        android:text="@string/review_stats_chart_two_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_top_bar_height"
+        android:id="@+id/bar_ten"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_nine"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/one_star_bar_color"
+            android:background="@color/buttonColor"
+            android:layout_width="100dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toLeftOf="@+id/bar_ten"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_ten"
+        app:layout_constraintTop_toTopOf="@+id/bar_ten"
+        android:text="One Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/one_star_bar_count"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/bar_ten"
+        app:layout_constraintBottom_toBottomOf="@+id/bar_ten"
+        app:layout_constraintTop_toTopOf="@+id/bar_ten"
+        android:text="@string/review_stats_chart_one_star_bar_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

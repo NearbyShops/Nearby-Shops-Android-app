@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+
+    <item android:id="@+id/edit"
+        android:orderInCategory="1"
+        android:title="Edit"
+        android:icon="@drawable/ic_edit_white_36px" />
+
+
+
+    <item android:id="@+id/delete"
+        android:orderInCategory="2"
+        android:title="Delete"
+        android:icon="@drawable/ic_search_white_24px" />
+
+
+
+
+
+    <!--<item-->
+        <!--android:id="@+id/action_settings"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:title="@string/action_settings"-->
+        <!--app:showAsAction="never" />-->
+
+
+    <!--android:actionViewClass="android.widget.SearchView"-->
+</menu>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/list_item"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/border_profile_top"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:background="#55000000" />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <ImageView
+            android:background="@color/buttonColor"
+            android:id="@+id/profile_image"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/user_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:textColor="@color/white"
+                android:background="@color/gplus_color_2"
+                android:id="@+id/user_role_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/list_item_user_profile_new_user_role_badge_text" />
+
+
+            <TextView
+                android:id="@+id/account_creation_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:gravity="start"
+                android:paddingTop="0dp"
+                android:text="@string/list_item_user_profile_new_user_name_text"
+                android:textColor="@color/blueGrey800"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="@color/orangeDark"
+                android:id="@+id/user_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/list_item_user_profile_new_user_id_text" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/phone_icon"
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_image"
+                    app:layout_constraintLeft_toLeftOf="@id/user_name"
+                    app:srcCompat="@drawable/ic_call_black_24px" />
+
+                <TextView
+                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone : "
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:text="@string/list_item_user_profile_new_phone_text"
+                    android:textColor="#000000"
+                    android:textSize="17sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/phone_icon"
+                    app:layout_constraintLeft_toRightOf="@+id/phone_icon"
+                    app:layout_constraintTop_toTopOf="@id/phone_icon" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:background="@color/mapbox_blue"
+        android:layout_marginTop="10dp"
+        android:id="@+id/add_profile_info_notice"
+        android:text="@string/list_item_user_profile_new_add_profile_info_notice_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/border_profile_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#55000000" />
+
+
+</LinearLayout>
+
+

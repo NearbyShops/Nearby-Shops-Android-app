@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.appcompat.widget.Toolbar
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:paddingBottom="70dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:padding="5dp"
+                android:background="#33000000"
+                android:text="Administrative Options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <CheckBox
+                android:layout_marginTop="10dp"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_add_remove_items_text"
+                android:id="@+id/permit_add_remove_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <CheckBox
+                android:layout_marginTop="10dp"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_update_items_in_shop_text"
+                android:id="@+id/permit_update_items_in_shop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <CheckBox
+                android:layout_marginTop="10dp"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_cancel_orders_text"
+                android:id="@+id/permit_cancel_orders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <CheckBox
+                android:layout_marginTop="10dp"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_confirm_orders_text"
+                android:id="@+id/permit_confirm_orders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <CheckBox
+                android:layout_marginTop="10dp"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_set_orders_packed_text"
+                android:id="@+id/permit_set_orders_packed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <CheckBox
+                android:layout_marginTop="10dp"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_handover_to_delivery_text"
+                android:id="@+id/permit_handover_to_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <CheckBox
+                android:layout_marginTop="10dp"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_accept_payments_text"
+                android:id="@+id/permit_accept_payments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <CheckBox
+                android:layout_marginTop="10dp"
+                android:text="@string/fragment_edit_shop_staff_permissions_permit_accept_returns_text"
+                android:id="@+id/permit_accept_returns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/designation"
+                    android:inputType="text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Designation"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="63dp">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/blueGrey800"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="center"
+            android:paddingEnd="2dp"
+            android:paddingStart="2dp"
+            android:textColor="@color/white"
+            android:background="@color/phonographyBlue"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:id="@+id/saveButton"
+            android:text="@string/fragment_edit_shop_staff_permissions_saveButton_text"
+            android:layout_width="@dimen/request_button_width"
+            android:layout_height="0dp" />
+
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:layout_marginEnd="0dp"
+            app:layout_constraintRight_toRightOf="@id/saveButton"
+            app:layout_constraintLeft_toLeftOf="@id/saveButton"
+            app:layout_constraintTop_toTopOf="@id/saveButton"
+            app:layout_constraintBottom_toBottomOf="@id/saveButton"
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

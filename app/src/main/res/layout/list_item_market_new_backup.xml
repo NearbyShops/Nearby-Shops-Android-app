@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="5dp"
+    android:id="@+id/list_item_market"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_guide"
+        app:layout_constraintGuide_percent="0.4"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+
+
+
+    <ImageView
+        app:srcCompat="@drawable/ic_nature_people_white_48px"
+        android:scaleType="centerCrop"
+        android:id="@+id/logo"
+        android:background="@color/backgroundTinted"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vertical_guide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="110dp" />
+
+
+
+
+
+    <LinearLayout
+        android:paddingStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/vertical_guide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/logo"
+        app:layout_constraintBottom_toBottomOf="@id/logo"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/service_name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/list_item_market_new_backup_service_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/border_name"
+            app:layout_constraintBottom_toBottomOf="@id/service_name"
+            app:layout_constraintTop_toTopOf="@id/service_name"
+            android:text="@string/list_item_market_new_backup_address_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_marginTop="3dp"
+                android:id="@+id/rating"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/list_item_market_new_backup_rating_text"
+                android:textColor="@color/white"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                android:textStyle="bold"
+                android:background="@color/gplus_color_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginStart="5dp"
+                android:id="@+id/rating_count"
+                app:layout_constraintLeft_toRightOf="@+id/rating"
+                app:layout_constraintBottom_toBottomOf="@+id/rating"
+                android:text="@string/list_item_market_new_backup_rating_count_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/select_market"
+                android:padding="3dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="@string/list_item_market_new_backup_select_market_text"
+                android:background="@color/mapbox_blue"
+                app:layout_constraintStart_toStartOf="@id/rating"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/white"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+<!--            <ProgressBar-->
+<!--                android:id="@+id/progress_bar_select"-->
+<!--                android:visibility="gone"-->
+<!--                app:layout_constraintTop_toTopOf="@id/select_market"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/select_market"-->
+<!--                app:layout_constraintStart_toStartOf="@id/select_market"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/select_market"-->
+<!--                android:layout_width="25dp"-->
+<!--                android:layout_height="25dp" />-->
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar_select"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/logo"
+        app:layout_constraintBottom_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="@id/logo"
+        app:layout_constraintEnd_toEndOf="@id/logo"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--</android.support.v7.widget.CardView>-->

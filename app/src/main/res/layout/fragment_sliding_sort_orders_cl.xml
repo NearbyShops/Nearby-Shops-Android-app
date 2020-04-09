@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="end"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--android:layout_marginLeft="@dimen/slidinglayerwidth"
+    android:layout_marginStart="@dimen/slidinglayerwidth"-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/slidingContents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/text_sortby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/fragment_sliding_sort_orders_cl_text_sortby_text"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/border_zero"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_sortby" />
+
+        <TextView
+            android:id="@+id/header_criterion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/fragment_sliding_sort_orders_cl_header_criterion_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_zero" />
+
+        <LinearLayout
+            android:id="@+id/sort_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_criterion">
+
+            <TextView
+                android:id="@+id/sort_distance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#22000000"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/fragment_sliding_sort_orders_cl_sort_distance_text" />
+
+            <TextView
+                android:id="@+id/sort_date_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="#22000000"
+                android:gravity="center"
+                android:paddingLeft="2dp"
+                android:paddingTop="10dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="10dp"
+                android:text="@string/fragment_sliding_sort_orders_cl_sort_date_time_text" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/sort_row_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sort_bar">
+
+            <TextView
+                android:id="@+id/order_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#22000000"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/fragment_sliding_sort_orders_cl_order_status_text" />
+
+            <TextView
+                android:id="@+id/pincode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="#22000000"
+                android:gravity="center"
+                android:paddingLeft="2dp"
+                android:paddingTop="10dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="10dp"
+                android:text="@string/fragment_sliding_sort_orders_cl_pincode_text" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/border_one"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#55000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sort_row_three" />
+
+        <TextView
+            android:id="@+id/header_sort_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/fragment_sliding_sort_orders_cl_header_sort_order_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_one" />
+
+        <LinearLayout
+            android:id="@+id/row_sort_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_sort_order">
+
+            <TextView
+                android:id="@+id/sort_ascending"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/gplus_color_2"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/sort_by_ascending"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/sort_descending"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="#22000000"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/sort_by_descending" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/border_two"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_sort_order" />
+
+
+
+        <TextView
+            android:id="@+id/text_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/fragment_sliding_sort_orders_cl_text_filter_text"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_two" />
+
+
+        <TextView
+            android:id="@+id/border_three"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_filter" />
+
+        <TextView
+            android:id="@+id/header_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/fragment_sliding_sort_orders_cl_header_filter_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_three" />
+
+
+        <TextView
+            android:id="@+id/clear_filter_order_status"
+            android:textColor="@color/white"
+            android:background="@color/orangeDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/header_filter"
+            app:layout_constraintTop_toTopOf="@id/header_filter"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="@string/fragment_sliding_sort_orders_cl_clear_filter_delivery_type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/filter_by_status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_filter">
+
+            <TextView
+                android:id="@+id/filter_pending"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@color/phonographyBlue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_pending_text" />
+
+            <TextView
+                android:id="@+id/filter_complete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="#22000000"
+                android:gravity="center"
+                android:paddingLeft="2dp"
+                android:paddingTop="10dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="10dp"
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_complete_text" />
+
+
+
+            <TextView
+                android:id="@+id/filter_cancelled"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="#22000000"
+                android:gravity="center"
+                android:paddingLeft="2dp"
+                android:paddingTop="10dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="10dp"
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_cancelled_text" />
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/border_filter_by_delivery_type"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
+            android:background="#55000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/filter_by_status_bar" />
+
+
+
+
+        <TextView
+            android:id="@+id/header_filter_by_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/fragment_sliding_sort_orders_cl_header_filter_by_type_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_filter_by_delivery_type" />
+
+
+        <TextView
+            android:id="@+id/clear_filter_delivery_type"
+            android:textColor="@color/white"
+            android:background="@color/orangeDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/header_filter_by_type"
+            app:layout_constraintTop_toTopOf="@id/header_filter_by_type"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="@string/fragment_sliding_sort_orders_cl_clear_filter_delivery_type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/filter_by_delivery_type_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_filter_by_type">
+
+            <TextView
+                android:id="@+id/filter_home_delivery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#22000000"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_home_delivery_text" />
+
+            <TextView
+                android:id="@+id/filter_pick_from_shop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@color/buttonColor"
+                android:gravity="center"
+                android:paddingLeft="2dp"
+                android:paddingTop="10dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="10dp"
+                android:text="@string/fragment_sliding_sort_orders_cl_filter_pick_from_shop_text" />
+
+
+        </LinearLayout>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

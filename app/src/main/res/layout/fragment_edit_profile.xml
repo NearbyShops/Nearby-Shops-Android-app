@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <!--app:layout_scrollFlags="scroll|enterAlways"-->
+
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+        <androidx.appcompat.widget.Toolbar
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingBottom="63dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <androidx.core.widget.NestedScrollView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin">
+
+
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<ImageView-->
+
+                        <!--android:background="#7737474F"-->
+                        <!--android:scaleType="centerCrop"-->
+                        <!--android:id="@+id/uploadImage"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="@dimen/image_view_height" />-->
+
+
+
+                    <!--&lt;!&ndash;android:paddingStart="10dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:paddingLeft="10dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:paddingTop="10dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:paddingBottom="10dp"&ndash;&gt;-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textChangePicture"-->
+                        <!--android:textSize="25sp"-->
+                        <!--android:padding="10dp"-->
+                        <!--android:background="#88000000"-->
+                        <!--android:textColor="#ffffff"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/fragment_edit_profile_textChangePicture_text" />-->
+
+
+                    <!--<ImageView-->
+                        <!--android:paddingBottom="10dp"-->
+                        <!--android:layout_marginRight="10dp"-->
+                        <!--android:scaleType="centerCrop"-->
+                        <!--android:foregroundGravity="right"-->
+                        <!--android:layout_width="90dp"-->
+                        <!--android:layout_height="90dp"-->
+                        <!--app:srcCompat="@drawable/nature_people"-->
+                        <!--android:id="@+id/changePicture"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:layout_marginEnd="10dp" />-->
+
+                <!--</RelativeLayout>-->
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintDimensionRatio="H,1:1"
+                        android:background="#7737474F"
+                        android:scaleType="centerCrop"
+                        android:id="@+id/uploadImage"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"/>
+
+
+                    <TextView
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:id="@+id/textChangePicture"
+                        android:textSize="25sp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="#88000000"
+                        android:textColor="#ffffff"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_edit_profile_textChangePicture_text" />
+
+
+                    <ImageView
+                        android:paddingBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="centerCrop"
+                        android:foregroundGravity="right"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        app:srcCompat="@drawable/ic_nature_people_white_48px"
+                        android:id="@+id/changePicture"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="10dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/removePicture"
+                    android:textStyle="normal"
+                    android:paddingLeft="10dp"
+                    android:textSize="20sp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_edit_profile_removePicture_text"/>
+
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/local_user_id_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:enabled="false"
+                        android:id="@+id/local_user_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Local User ID"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:enabled="false"
+                        android:id="@+id/global_user_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Global User ID"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:inputType="text"
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Name"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:inputType="number"
+                        android:id="@+id/secret_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Secret Code"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Username"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:text="@string/fragment_edit_profile_password_text"
+                        android:enabled="false"
+                        android:id="@+id/password"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Password"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <TextView
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:background="@color/gplus_color_2"
+                    android:padding="10dp"
+                    android:id="@+id/label_change_password"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/fragment_edit_profile_label_change_password_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:enabled="false"
+                        android:id="@+id/email"
+                        android:inputType="textEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter E-mail"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:background="@color/gplus_color_2"
+                    android:padding="10dp"
+                    android:id="@+id/label_add_or_change_email"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/fragment_edit_profile_label_add_or_change_email_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <!--<TextView-->
+                    <!--android:textSize="15sp"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:background="@color/gplus_color_2"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:visibility="visible"-->
+                    <!--android:id="@+id/label_verify_email"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:text="Your e-mail is not verified. Click here to verify your email !"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:enabled="false"
+                        android:id="@+id/phone"
+                        android:inputType="phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter phone"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:background="@color/gplus_color_2"
+                    android:padding="10dp"
+                    android:id="@+id/label_add_or_change_phone"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/fragment_edit_profile_label_add_or_change_phone_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/about"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tell something about you"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:padding="5dp"
+                    android:background="#33000000"
+                    android:text="Gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioGroup
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:text="@string/fragment_edit_profile_choice_male_text"
+                        android:id="@+id/choice_male"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+
+                    <RadioButton
+                        android:text="@string/fragment_edit_profile_choice_female_text"
+                        android:id="@+id/choice_female"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                </RadioGroup>
+
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:background="#55000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp" />
+
+                <CheckBox
+                    android:layout_marginTop="10dp"
+                    android:text="I wish not to specify my gender."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<EditText-->
+                        <!--android:inputType="text"-->
+                        <!--android:id="@+id/designation"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="Enter your designation (Roles and Responsibilities)"/>-->
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<EditText-->
+                        <!--android:inputType="phone"-->
+                        <!--android:id="@+id/phone_number"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="Enter Phone Number"/>-->
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<EditText-->
+                        <!--android:textColor="#000000"-->
+                        <!--android:inputType="textMultiLine"-->
+                        <!--android:id="@+id/govt_id_name"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="Government ID Name"/>-->
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<EditText-->
+                        <!--android:inputType="textMultiLine"-->
+                        <!--android:textColor="#000000"-->
+                        <!--android:id="@+id/govt_id_number"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="Government ID Number"/>-->
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <!--android:paddingLeft="5dp"-->
+                <!--android:paddingStart="5dp"-->
+                <!--android:paddingTop="5dp"-->
+                <!--android:paddingBottom="5dp"-->
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:padding="5dp"
+                    android:background="#33000000"
+                    android:text="Privacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:layout_marginTop="10dp"
+                    android:text="@string/fragment_edit_profile_make_account_private_text"
+                    android:id="@+id/make_account_private"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="Private accounts are hidden from public"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+    <!--<Button-->
+        <!--android:layout_gravity="bottom"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--android:layout_marginBottom="0dp"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:elevation="10dp"-->
+        <!--android:id="@+id/saveButton"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="@color/blueGrey800"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:text="@string/fragment_edit_profile_saveButton_text"/>-->
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="63dp">
+
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:orientation="vertical"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/trip_distance_approx"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--android:text="Distance (approx) : "-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/estimated_fare"-->
+                <!--android:layout_marginTop="2dp"-->
+                <!--android:text="Estimated Fare : \u20B9 234 "-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+        <!--</LinearLayout>-->
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/blueGrey800"
+            android:layout_width="0dp"
+            android:layout_height="3dp" />
+
+        <TextView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="center"
+            android:paddingEnd="2dp"
+            android:paddingStart="2dp"
+            android:textColor="@color/white"
+            android:background="@color/phonographyBlue"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:id="@+id/saveButton"
+            android:text="@string/fragment_edit_profile_saveButton_text"
+            android:layout_width="@dimen/request_button_width"
+            android:layout_height="0dp" />
+
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:layout_marginEnd="0dp"
+            app:layout_constraintRight_toRightOf="@id/saveButton"
+            app:layout_constraintLeft_toLeftOf="@id/saveButton"
+            app:layout_constraintTop_toTopOf="@id/saveButton"
+            app:layout_constraintBottom_toBottomOf="@id/saveButton"
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
