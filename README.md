@@ -12,11 +12,11 @@ width="120">
 
 #### Payment Required for Both Commercial and Non-Commercial Use
 -----------------------------------
-We have a small License fee which you need to pay in order to use (white-label) this app. Even for Non-commercial purpose payment is required. If you have financial difficulty you can talk to us !
+We have a small License fee which you need to pay in order to use (white-label) this app. Even for Non-commercial purpose payment is required. If you have financial difficulty and need help you can talk to us !
 
 https://nearbyshops.org/pricing.html
 
-We cant maintain this project without financial support. Your understanding is appreciated ! 
+We need financial support to maintain this project. Your understanding is appreciated !
 
 
 
@@ -187,13 +187,15 @@ If you're interested please get in touch with us on https://forum.nearbyshops.or
 
 ### Commercial use Requires Permission
 
-Commercial Use not allowed without permission. Commercial use or commercial fork of this project must require permission. 
+Commercial use or commercial fork of this project must require our permission. 
 
 
 License
 =======
 
-Copyright (c) 2020 Nearby Shops
+Copyright (c) 2020 Nearby Shops Commercial License
+
+Commercial Use or any Commercial Fork must require our explict legal permission. 
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
