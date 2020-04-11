@@ -61,7 +61,7 @@ import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionFragmen
 import org.nearbyshops.enduserappnew.aSellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Login.LoginLocalUsingPasswordFragment;
-import org.nearbyshops.enduserappnew.Login.LoginLocalUsingOTPFragment;
+import org.nearbyshops.enduserappnew.Login.Backups.LoginLocalUsingOTPFragment;
 import org.nearbyshops.enduserappnew.Login.ServiceIndicatorFragment;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.MarketDetailFragment;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailMarket.RateReviewDialogMarket;

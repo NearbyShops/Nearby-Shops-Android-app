@@ -416,7 +416,13 @@ public class FragmentVerifyPhone extends Fragment {
     }
 
 
-    void changePhone()
+
+
+
+
+
+
+    private void changePhone()
     {
 
 
@@ -555,7 +561,10 @@ public class FragmentVerifyPhone extends Fragment {
 
 
 
-    void showToastMessage(String message)
+
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }

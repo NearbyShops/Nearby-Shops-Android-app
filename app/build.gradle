@@ -34,8 +34,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         multiDexEnabled = true
-        versionCode 27
-        versionName "1.26"
+        versionCode 28
+        versionName "1.27"
 //        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        buildConfigField "String", "Mapbox_Style_URL", localProperties['mapbox_style_url']

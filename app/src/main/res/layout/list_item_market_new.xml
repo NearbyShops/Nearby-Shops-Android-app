@@ -30,6 +30,7 @@
 
 
 
+
     <ImageView
         app:srcCompat="@drawable/ic_nature_people_white_48px"
         android:scaleType="centerCrop"
@@ -66,18 +67,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+
         <TextView
             android:textColor="@color/orange"
-            android:lines="1"
-            android:text="@string/list_item_market_new_address_text"
+            android:maxLines="1"
+            android:text="Order fruits and vegetables from our local market"
             android:id="@+id/short_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
-
-
-
-
 
 
         <LinearLayout
@@ -112,7 +109,10 @@
         </LinearLayout>
 
 
+
         <LinearLayout
+            app:layout_constraintBottom_toBottomOf="@id/logo"
+            app:layout_constraintStart_toStartOf="@id/logo"
             android:orientation="horizontal"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
@@ -132,7 +132,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+
             <TextView
+                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:id="@+id/rating_count"
@@ -142,7 +144,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-
 
 
 

@@ -61,7 +61,7 @@ public class MyApplication extends MultiDexApplication {
         MyApplication.context = getApplicationContext();
         MyApplication.application = this;
 
-        Places.initialize(getApplicationContext(), "abcde12345");
+        Places.initialize(getApplicationContext(), "AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA");
 
 
         ApplicationState.getInstance().setMyApplication(this);
