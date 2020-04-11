@@ -174,17 +174,21 @@ If you're interested please get in touch with us on https://forum.nearbyshops.or
 
 
 
-### Commercial use Requires Permission
-
-Commercial use or commercial fork of this project must require our permission. 
 
 
 License
 =======
 
-Copyright (c) 2020 Nearby Shops Commercial License
+Copyright (c) 2020 Nearby Shops
 
-Commercial Use or any Commercial Fork must require our explict legal permission. 
+
+           GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+ 
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
