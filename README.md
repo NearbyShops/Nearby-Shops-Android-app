@@ -15,7 +15,7 @@ About Nearby Shops
 Nearby Shops is an Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 5 $ per month in hosting fees.
 
 
-Nearby Shops implements Alibaba's Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
+Nearby Shops implements Alibaba's new Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
 
 The installation guide and app customization guide is provided at http://developer.nearbyshops.org
 
@@ -157,23 +157,12 @@ Code Review and Architecture
 
 
 
-## Hiring Remote Workers - Be the part of Our International Community !
-
-Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
-
-1. Raise funds for the Project - Example : Create Kickstarter campaign and raise donations
-2. Content Creators 
-   - Create Images and Video for publicity purposes
-   - Write articles to create publicity
-3. Growth Hackers - help us grow the platform 
-4. Distribution Experts / Digital Marketing Experts / Social Media Experts
-5. Developers - Android, Web, PostgreSQL, Java
-6. Any other way you want to help – Suggestions and Ideas are Welcome !
-
-If you're interested please get in touch with us on https://forum.nearbyshops.org
 
 
+#### Commercial Use Permitted
 
+If you want to build your own commercial e-commerce business using this software. Go ahead you dont need our permission. If you want to build a third party app for our platform and want to sell it yes you can. 
+If there is any other kind of commercial use you can always talk to us. 
 
 
 License
