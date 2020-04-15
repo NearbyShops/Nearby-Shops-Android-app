@@ -216,16 +216,17 @@
             android:gravity="center"
             android:paddingEnd="5dp"
             android:paddingStart="5dp"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/white"
             android:background="@color/buttonColor"
             android:text="@string/list_item_shop_item_small_quantity_quarter_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/dummy_text_for_margin"
-            android:layout_width="5dp"
-            android:layout_height="5dp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/dummy_text_for_margin"-->
+<!--            android:layout_width="5dp"-->
+<!--            android:layout_height="5dp"/>-->
 
 
         <TextView
