@@ -243,10 +243,10 @@ public class MarketViewModel extends AndroidViewModel {
 //                                dataset.add(new HeaderItemsList());
 //                            }
 
+                                dataset.add(new SetLocationManually());
 
                                 if(response.body().getResults().size()>0)
                                 {
-                                    dataset.add(new SetLocationManually());
 
                                     if(PrefGeneral.getServiceURL(getApplication())==null)
                                     {
