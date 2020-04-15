@@ -201,7 +201,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:text="@string/list_item_shop_item_seller_itemPrice_text"
                 android:layout_weight="1"
                 android:layout_width="0dp"

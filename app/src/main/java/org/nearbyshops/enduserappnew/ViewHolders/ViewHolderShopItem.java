@@ -423,7 +423,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                 itemName.setText(item.getItemName());
 //                itemPrice.setText(currency + " " + String.format("%.0f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
-                itemPrice.setText(currency + " " + String.format("%.0f",shopItem.getItemPrice()) + " / " + item.getQuantityUnit());
+                itemPrice.setText(currency + " " + String.format("%.2f",shopItem.getItemPrice()) + " / " + item.getQuantityUnit());
 
                 if(item.getRt_rating_count()==0)
                 {

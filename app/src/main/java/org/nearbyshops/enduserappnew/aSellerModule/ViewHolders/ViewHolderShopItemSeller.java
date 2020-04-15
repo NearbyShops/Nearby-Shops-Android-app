@@ -288,7 +288,7 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
             if(!itemPrice.getText().toString().equals(""))
             {
 
-                String priceLocal = String.valueOf(Integer.parseInt(itemPrice.getText().toString()));
+                String priceLocal = String.valueOf(Double.parseDouble(itemPrice.getText().toString()));
 
                 if(item!=null)
                 {
@@ -333,13 +333,13 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
         if(!itemPrice.getText().toString().equals(""))
         {
 
-            if(Integer.parseInt(itemPrice.getText().toString())<=0)
+            if(Double.parseDouble(itemPrice.getText().toString())<=0)
             {
                 return;
             }
 
 
-            String priceLocal = String.valueOf(Integer.parseInt(itemPrice.getText().toString())-1);
+            String priceLocal = String.valueOf(Double.parseDouble(itemPrice.getText().toString())-1);
 
             itemPrice.setText(priceLocal);
 
@@ -373,7 +373,7 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
         if(!itemPrice.getText().toString().equals(""))
         {
 
-            String priceLocal = String.valueOf(Integer.parseInt(itemPrice.getText().toString())+1);
+            String priceLocal = String.valueOf(Double.parseDouble(itemPrice.getText().toString())+1);
 
             itemPrice.setText(priceLocal);
 
@@ -411,7 +411,7 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
         {
 
             int quantityLocal = Integer.parseInt(itemQuantity.getText().toString());
-            int priceLocal = Integer.parseInt(itemPrice.getText().toString());
+            double priceLocal = Double.parseDouble(itemPrice.getText().toString());
 
                 /*
                 if(quantityLocal <= 0 || priceLocal<=0)
@@ -678,7 +678,8 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
             //holder.availableText.setText("Available : " + shopItem.getAvailableItemQuantity() + " Items");
             //holder.priceText.setText("Price : " + shopItem.getItemPrice());
 
-            itemPrice.setText(String.valueOf((int)shopItem.getItemPrice()));
+
+            itemPrice.setText(String.valueOf(shopItem.getItemPrice()));
             itemQuantity.setText(String.valueOf(shopItem.getAvailableItemQuantity()));
 
             //holder.itemPrice.setText(String.format( "%.0f", shopItem.getItemPrice()));
