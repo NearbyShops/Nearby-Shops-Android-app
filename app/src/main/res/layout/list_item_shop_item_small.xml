@@ -201,7 +201,6 @@
 
 
     <LinearLayout
-        android:visibility="gone"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="@id/reduceQuantity"
         app:layout_constraintTop_toTopOf="@id/reduceQuantity"

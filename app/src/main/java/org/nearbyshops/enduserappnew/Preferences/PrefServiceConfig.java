@@ -33,7 +33,7 @@ public class PrefServiceConfig {
 
 
 
-    public static final String SERVICE_URL_SDS = SDS_URL_NEARBY_SHOPS;
+    public static final String SERVICE_URL_SDS = SDS_URL_LOCAL_HOTSPOT;
 
 
 

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -71,6 +72,14 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
     @BindView(R.id.increaseQuantity)
     ImageView increaseQuantity;
 
+
+    @BindView(R.id.allow_quarter_quantity)
+    TextView allowQuarterQuantity;
+
+    @BindView(R.id.allow_half_quantity)
+    TextView allowHalfQuantity;
+
+
     @BindView(R.id.priceText)
     TextView priceText;
 
@@ -84,8 +93,8 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
     ImageView increasePrice;
 
     @BindView(R.id.removeButton) TextView removeButton;
-    @BindView(R.id.progress_bar_remove)
-    ProgressBar progressBarRemove;
+    @BindView(R.id.progress_bar_remove) ProgressBar progressBarRemove;
+
 
     @BindView(R.id.updateButton) TextView updateButton;
     @BindView(R.id.progress_bar) ProgressBar progressBarUpdate;
@@ -696,7 +705,76 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
                 priceText.setText("Price : " + shopItem.getItemPrice() + " per Item");
             }
 
+
+
+            bindQuarterQuantity();
+            bindHalfQuantity();
     }
+
+
+
+
+
+    private void bindQuarterQuantity()
+    {
+
+        if(shopItem.isAllowQuarterQuantity())
+        {
+            allowQuarterQuantity.setBackgroundColor(ContextCompat.getColor(context,R.color.buttonColor));
+            allowQuarterQuantity.setTextColor(ContextCompat.getColor(context,R.color.white));
+        }
+        else
+        {
+            allowQuarterQuantity.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey));
+            allowQuarterQuantity.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
+        }
+
+    }
+
+
+
+
+
+    private void bindHalfQuantity()
+    {
+
+        if(shopItem.isAllowHalfQuantity())
+        {
+            allowHalfQuantity.setBackgroundColor(ContextCompat.getColor(context,R.color.buttonColor));
+            allowHalfQuantity.setTextColor(ContextCompat.getColor(context,R.color.white));
+        }
+        else
+        {
+            allowHalfQuantity.setBackgroundColor(ContextCompat.getColor(context,R.color.light_grey));
+            allowHalfQuantity.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
+        }
+
+    }
+
+
+
+
+
+
+    @OnClick(R.id.allow_half_quantity)
+    void halfQuantityClick()
+    {
+        shopItem.setAllowHalfQuantity(!shopItem.isAllowHalfQuantity());
+
+        bindHalfQuantity();
+    }
+
+
+
+    @OnClick(R.id.allow_quarter_quantity)
+    void quarterQuantityClick()
+    {
+        shopItem.setAllowQuarterQuantity(!shopItem.isAllowQuarterQuantity());
+
+        bindQuarterQuantity();
+    }
+
+
 
 
 

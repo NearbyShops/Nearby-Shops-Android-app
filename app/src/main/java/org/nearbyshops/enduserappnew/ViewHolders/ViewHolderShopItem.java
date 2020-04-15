@@ -67,6 +67,10 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
     @BindView(R.id.itemQuantity) TextView itemQuantityText;
     @BindView(R.id.reduceQuantity) ImageView reduceQuantity;
 
+    @BindView(R.id.quantity_half) TextView quantityHalf;
+    @BindView(R.id.quantity_quarter) TextView quantityQuarter;
+
+
 
 
     @BindView(R.id.out_of_stock_indicator) TextView outOfStockIndicator;
@@ -299,12 +303,13 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
         if (!itemQuantityText.getText().toString().equals("")){
 
-            itemQuantityText.setText("0.25");
+//            itemQuantityText.setText("0.25");
+
+            itemQuantityText.setText(String.valueOf(Double.parseDouble(itemQuantityText.getText().toString()) + 0.25));
         }
 
 
-//        itemQuantityText.setText(String.valueOf(Double.parseDouble(itemQuantityText.getText().toString()) + 0.25));
-        itemQuantityText.setText("0.25");
+//        itemQuantityText.setText("0.25");
 
         addToCartTimer();
     }
@@ -322,14 +327,12 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
         if (!itemQuantityText.getText().toString().equals("")){
 
-            itemQuantityText.setText("0.50");
+//            itemQuantityText.setText("0.50");
+
+            itemQuantityText.setText(String.valueOf(Double.parseDouble(itemQuantityText.getText().toString()) + 0.50));
         }
 
-//            itemQuantityText.setText(String.valueOf(Double.parseDouble(itemQuantityText.getText().toString()) + 0.5));
-
-
-
-        itemQuantityText.setText("0.50");
+//        itemQuantityText.setText("0.50");
 
         addToCartTimer();
     }
@@ -350,6 +353,26 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 //        holder.distance.setText(String.format( "%.2f", dataset.get(position).getDistance() )+ " Km");
 
 
+        if(shopItem.isAllowQuarterQuantity())
+        {
+            quantityQuarter.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            quantityQuarter.setVisibility(View.GONE);
+        }
+
+
+
+
+        if(shopItem.isAllowHalfQuantity())
+        {
+            quantityHalf.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            quantityHalf.setVisibility(View.GONE);
+        }
 
 
 

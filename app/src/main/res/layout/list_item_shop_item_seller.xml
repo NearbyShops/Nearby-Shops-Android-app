@@ -43,7 +43,6 @@
 
 
         <TextView
-            android:visibility="gone"
             android:textColor="@color/white"
             android:padding="5dp"
             android:background="@color/gplus_color_1"
@@ -57,7 +56,6 @@
 
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_marginTop="5dp"
             android:id="@+id/quantities"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +67,7 @@
 
 
             <TextView
+                android:id="@+id/allow_quarter_quantity"
                 android:layout_marginEnd="2.5dp"
                 android:background="@color/light_grey"
                 android:padding="5dp"
@@ -78,8 +77,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
-
             <TextView
+                android:id="@+id/allow_half_quantity"
                 android:background="@color/light_grey"
                 android:layout_marginStart="2.5dp"
                 android:padding="5dp"
@@ -88,9 +87,6 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
-
-
-
 
         </LinearLayout>
 

@@ -40,6 +40,9 @@ public class ShopItem{
 	private int availableItemQuantity;
 	private double itemPrice;
 
+	private boolean allowQuarterQuantity;
+	private boolean allowHalfQuantity;
+
 
 
 
@@ -50,10 +53,21 @@ public class ShopItem{
 	private Timestamp lastUpdateDateTime;
 
 
+	public boolean isAllowQuarterQuantity() {
+		return allowQuarterQuantity;
+	}
 
+	public void setAllowQuarterQuantity(boolean allowQuarterQuantity) {
+		this.allowQuarterQuantity = allowQuarterQuantity;
+	}
 
+	public boolean isAllowHalfQuantity() {
+		return allowHalfQuantity;
+	}
 
-
+	public void setAllowHalfQuantity(boolean allowHalfQuantity) {
+		this.allowHalfQuantity = allowHalfQuantity;
+	}
 
 	public double getItemPrice() {
 		return itemPrice;

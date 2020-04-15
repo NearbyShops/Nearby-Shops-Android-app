@@ -73,8 +73,8 @@
     <string name="list_item_shop_item_small_item_title_text">Item Name</string>
     <string name="list_item_shop_item_small_item_price_text">Rs. 43 per Dozen</string>
     <string name="list_item_shop_item_small_itemQuantity_text">0</string>
-    <string name="list_item_shop_item_small_quantity_quarter_text">Quarter</string>
-    <string name="list_item_shop_item_small_quantity_half_text">Half</string>
+    <string name="list_item_shop_item_small_quantity_quarter_text">+ Quarter</string>
+    <string name="list_item_shop_item_small_quantity_half_text">+ Half</string>
     <string name="list_item_shop_item_small_add_label_text">Add</string>
     <string name="list_item_shop_item_small_out_of_stock_indicator_text">Out of Stock</string>
     <string name="list_item_shop_item_small_item_total_text"> - </string>
