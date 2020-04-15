@@ -70,6 +70,8 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
     @BindView(R.id.quantity_half) TextView quantityHalf;
     @BindView(R.id.quantity_quarter) TextView quantityQuarter;
 
+    @BindView(R.id.dummy_text_for_margin) TextView dummyTextForMargin;
+
 
 
 
@@ -373,6 +375,19 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
         {
             quantityHalf.setVisibility(View.GONE);
         }
+
+
+        if(shopItem.isAllowHalfQuantity() && shopItem.isAllowQuarterQuantity())
+        {
+            dummyTextForMargin.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            dummyTextForMargin.setVisibility(View.GONE);
+        }
+
+
+
 
 
 

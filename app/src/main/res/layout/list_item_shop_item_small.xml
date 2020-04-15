@@ -200,7 +200,10 @@
 
 
 
+
     <LinearLayout
+
+        android:gravity="center_vertical"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="@id/reduceQuantity"
         app:layout_constraintTop_toTopOf="@id/reduceQuantity"
@@ -209,27 +212,31 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content">
 
+
         <TextView
+            android:visibility="gone"
             android:id="@+id/quantity_quarter"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:gravity="center"
             android:paddingEnd="5dp"
             android:paddingStart="5dp"
-            android:layout_marginBottom="5dp"
             android:textColor="@color/white"
             android:background="@color/buttonColor"
             android:text="@string/list_item_shop_item_small_quantity_quarter_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-<!--        <TextView-->
-<!--            android:id="@+id/dummy_text_for_margin"-->
-<!--            android:layout_width="5dp"-->
-<!--            android:layout_height="5dp"/>-->
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/dummy_text_for_margin"
+            android:layout_width="5dp"
+            android:layout_height="5dp"/>
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/quantity_half"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
