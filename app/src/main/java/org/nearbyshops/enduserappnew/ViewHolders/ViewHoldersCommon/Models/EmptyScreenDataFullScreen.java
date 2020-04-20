@@ -88,7 +88,7 @@ public class EmptyScreenDataFullScreen {
         data.setTitle("No Orders to Show !");
         data.setShowDesignedByFreepik(false);
         data.setMessage("You have not received any orders ... When you receive orders they will appear here !");
-        data.setDrawableResource(R.drawable.ic_local_shipping_black_24px);
+        data.setDrawableResource(R.drawable.ic_receipt_color);
 
         return data;
     }
@@ -203,8 +203,6 @@ public class EmptyScreenDataFullScreen {
 
         return data;
     }
-
-
 
 
 

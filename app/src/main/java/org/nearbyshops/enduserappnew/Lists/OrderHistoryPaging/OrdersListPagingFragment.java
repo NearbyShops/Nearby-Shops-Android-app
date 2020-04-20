@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging;
 
+import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -63,8 +65,6 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
 
 
-//    @Inject
-//    OrderServicePFS orderService;
 
     public static final String TAG_SLIDING_LAYER = "sliding_layer_orders";
     public static final String IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP";
@@ -145,11 +145,10 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
 
 
-        viewModelOrders = ViewModelProviders.of(this).get(ViewModelOrders.class);
 
 
-
-
+//        viewModelOrders = ViewModelProviders.of(this).get(ViewModelOrders.class);
+        viewModelOrders = new ViewModelOrders(MyApplication.application);
 
 
 
@@ -292,6 +291,9 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
             public void onChanged(PagedList<Object> objects) {
 
                 adapter.submitList(objects);
+
+
+                swipeContainer.setRefreshing(false);
             }
         });
 
@@ -304,7 +306,6 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
     @Override
     public void onRefresh() {
 
-        swipeContainer.setRefreshing(false);
 
         viewModelOrders.refresh();
     }
@@ -315,25 +316,47 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
 
 
-    private void makeRefreshNetworkCall()
-    {
+//    private void makeRefreshNetworkCall()
+//    {
+//        swipeContainer.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                swipeContainer.setRefreshing(true);
+//
+//                if(!isVisible())
+//                {
+//                    return;
+//                }
+//
+//
+//
+//                onRefresh();
+//            }
+//        });
+//    }
+
+
+    private void makeRefreshNetworkCall() {
+
         swipeContainer.post(new Runnable() {
             @Override
             public void run() {
                 swipeContainer.setRefreshing(true);
 
-                if(!isVisible())
+                try {
+
+
+                    onRefresh();
+
+                } catch (IllegalArgumentException ex)
                 {
-                    return;
+                    ex.printStackTrace();
+
                 }
-
-
-
-                onRefresh();
             }
         });
-    }
 
+    }
 
 
 

@@ -114,7 +114,6 @@
             android:layout_marginTop="3dp"
             android:weightSum="2"
             android:id="@+id/labels_delivery"
-            app:layout_constraintTop_toBottomOf="@id/shop_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="match_parent"

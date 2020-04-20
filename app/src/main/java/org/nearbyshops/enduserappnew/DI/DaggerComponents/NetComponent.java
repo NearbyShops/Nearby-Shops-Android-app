@@ -24,7 +24,11 @@ import org.nearbyshops.enduserappnew.Login.LoginGlobalUsingOTPFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemBackup;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
+import org.nearbyshops.enduserappnew.aSDSAdminModule.DashboardAdmin.SDSAdminDashboardFragment;
+import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.MarketsDataSource;
+import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.MarketsListFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy.FilterDeliveryFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.Fragment.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
@@ -71,7 +75,6 @@ import org.nearbyshops.enduserappnew.Lists.Markets.SubmitURLDialog;
 import org.nearbyshops.enduserappnew.Lists.Markets.AdapterMarkets;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarketSmall;
-import org.nearbyshops.enduserappnew.ViewModels.MarketViewModel;
 import org.nearbyshops.enduserappnew.PushOneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.FragmentOrderDetail;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
@@ -167,7 +170,7 @@ public interface NetComponent {
 
     void Inject(ViewHolderMarket viewHolderMarket);
 
-    void Inject(MarketViewModel marketViewModel);
+    void Inject(ViewModelMarkets viewModelMarkets);
 
     void Inject(MarketsFragment marketsFragment);
 
@@ -307,4 +310,11 @@ public interface NetComponent {
     void Inject(PlacePickerWithMapFragment placePickerWithMapFragment);
 
     void Inject(LoginLocalUsingOTPFragmentNew loginLocalUsingOTPFragmentNew);
+
+
+    void Inject(SDSAdminDashboardFragment SDSAdminDashboardFragment);
+
+    void Inject(MarketsDataSource marketsDataSource);
+
+    void Inject(MarketsListFragment marketsListFragment);
 }

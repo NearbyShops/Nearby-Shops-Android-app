@@ -83,16 +83,17 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
     private ShopItem shopItem;
     private CartItem cartItem;
-//    private CartStats cartStats;
+
+
 
     private Context context;
     private Fragment fragment;
 
     private RecyclerView.Adapter listAdapter;
 
+
+
     @BindView(R.id.progress_bar) ProgressBar progressBar;
-
-
     @BindView(R.id.item_total) TextView itemTotalText;
 
 //    @BindView(R.id.label) TextView label;
@@ -461,7 +462,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                 itemName.setText(item.getItemName());
 //                itemPrice.setText(currency + " " + String.format("%.0f",shopItem.getItemPrice()) + " per " + item.getQuantityUnit());
-                itemPrice.setText(currency + " " + String.format("%.2f",shopItem.getItemPrice()) + " / " + item.getQuantityUnit());
+                itemPrice.setText(currency + " " + refinedString(shopItem.getItemPrice()) + " / " + item.getQuantityUnit());
+
+//                String.format("%.2f",shopItem.getItemPrice())
 
                 if(item.getRt_rating_count()==0)
                 {

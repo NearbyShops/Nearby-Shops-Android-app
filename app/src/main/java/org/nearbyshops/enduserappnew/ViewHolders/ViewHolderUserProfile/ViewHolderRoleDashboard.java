@@ -285,7 +285,7 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         {
             marketName.setText(marketNameString);
 
-            dashboardName.setText("Become a Seller for " + marketNameString);
+            dashboardName.setText("Create your Shop in " + marketNameString);
             dashboardDescription.setText(" ... Press here to create your shop !");
         }
 

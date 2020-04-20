@@ -37,7 +37,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
-import org.nearbyshops.enduserappnew.ViewModels.MarketViewModel;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
@@ -77,7 +77,7 @@ public class MarketsFragmentNew extends Fragment implements
     @BindView(R.id.service_name) TextView serviceName;
 
 
-    private MarketViewModel viewModel;
+    private ViewModelMarkets viewModel;
     private ViewModelUser viewModelUser;
 
 
@@ -141,7 +141,7 @@ public class MarketsFragmentNew extends Fragment implements
 
 //            viewModel  = ViewModelProviders.of(this).get(MarketViewModel.class);
 
-            viewModel = new MarketViewModel(MyApplication.application);
+            viewModel = new ViewModelMarkets(MyApplication.application);
             viewModelUser = new ViewModelUser(MyApplication.application);
 
 
@@ -274,7 +274,7 @@ public class MarketsFragmentNew extends Fragment implements
     @Override
     public void onRefresh() {
 
-        viewModel.loadData(true);
+        viewModel.getNearbyMarketsList(true);
 //        showToastMessage("OnRefresh()");
 
         viewModelUser.getUserProfile();

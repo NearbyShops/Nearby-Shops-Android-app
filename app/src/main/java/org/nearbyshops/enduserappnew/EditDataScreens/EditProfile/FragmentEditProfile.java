@@ -127,6 +127,8 @@ public class FragmentEditProfile extends Fragment {
     public static final String EDIT_MODE_INTENT_KEY = "edit_mode";
 
     public static final int MODE_UPDATE_BY_ADMIN = 55;
+    public static final int MODE_UPDATE_BY_SUPER_ADMIN = 56;
+
     public static final int MODE_UPDATE = 52;
     public static final int MODE_ADD = 51;
 
@@ -200,6 +202,15 @@ public class FragmentEditProfile extends Fragment {
 
                 getUserDetails();
             }
+            else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+            {
+
+                String jsonString = getActivity().getIntent().getStringExtra("user_profile");
+                user = UtilityFunctions.provideGson().fromJson(jsonString,User.class);
+                bindUserData();
+
+                getUserDetails();
+            }
         }
 
 
@@ -223,9 +234,6 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-
-
-
     private void getUserDetails()
     {
 
@@ -233,10 +241,37 @@ public class FragmentEditProfile extends Fragment {
         pd.setMessage("Please with ... Getting user details !");
         pd.show();
 
-        Call<User> call = userService.getUserDetails(
-                PrefLogin.getAuthorizationHeaders(getActivity()),
-                user.getUserID()
-        );
+
+        Call<User> call;
+
+
+        if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        {
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).getUserDetails(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    user.getUserID()
+            );
+
+
+        }
+        else
+        {
+
+            call = userService.getUserDetails(
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
+                    user.getUserID()
+            );
+        }
+
+
 
 
         call.enqueue(new Callback<User>() {
@@ -469,7 +504,7 @@ public class FragmentEditProfile extends Fragment {
         {
             addAccount();
         }
-        else if(current_mode == MODE_UPDATE || current_mode==MODE_UPDATE_BY_ADMIN)
+        else if(current_mode == MODE_UPDATE || current_mode==MODE_UPDATE_BY_ADMIN || current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
         {
             update();
         }
@@ -768,6 +803,7 @@ public class FragmentEditProfile extends Fragment {
 
         if(current_mode==MODE_UPDATE)
         {
+
             if(PrefGeneral.getMultiMarketMode(getActivity()))
             {
                 Retrofit retrofit = new Retrofit.Builder()
@@ -814,6 +850,23 @@ public class FragmentEditProfile extends Fragment {
                     PrefLogin.getAuthorizationHeaders(getActivity()),
                     user
             );
+
+        }
+        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        {
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            call = retrofit.create(UserServiceGlobal.class).updateProfileByAdmin(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    user
+            );
+
 
         }
         else

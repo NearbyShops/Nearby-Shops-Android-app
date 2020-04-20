@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -94,6 +96,9 @@
         <activity android:name=".PlacePickerGoogleMaps.GooglePlacePicker"/>
 
         <activity android:name=".aSellerModule.DashboardDeliveryGuy.DeliveryHome"/>
+
+
+        <activity android:name=".aSDSAdminModule.DashboardAdmin.SDSAdminDashboard"/>
 
         <activity android:name=".adminModule.DashboardAdmin.AdminDashboard"/>
         <activity android:name=".adminModule.DashboardStaff.StaffDashboard"/>

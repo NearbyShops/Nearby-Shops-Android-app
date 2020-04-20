@@ -96,6 +96,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
@@ -160,6 +161,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
 
+
+
     @Override
     public int getItemCount() {
 
@@ -168,14 +171,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-
-
-
     public void setLoadMore(boolean loadMore)
     {
         this.loadMore = loadMore;
     }
-
-
 
 }

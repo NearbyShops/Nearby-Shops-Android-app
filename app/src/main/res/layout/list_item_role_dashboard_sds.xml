@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/dashboard_by_role"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
+    android:background="@color/darkGreen"
+    android:minHeight="60dp"
+    android:orientation="vertical"
+    android:layout_margin="5dp"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/dashboard_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+
+    <!--Check the faq's before you contact support this will save your ti-->
+
+    <TextView
+        android:id="@+id/dashboard_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white" />
+
+</LinearLayout>

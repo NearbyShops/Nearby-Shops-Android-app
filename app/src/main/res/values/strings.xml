@@ -9,6 +9,7 @@
 
     <string name="tos_link">https://example.com/tos.html</string>
     <string name="privacy_policy_link">https://example.com/pivacy_policy.html</string>
+    <string name="faqs_link">https://example.com/faq_link.html</string>
 
 
 
@@ -108,6 +109,8 @@
         Making the Item Categories as Abstract will protect / prevent someone from placing items directly under it.</string>
     <string name="channel_name">nbs_app</string>
     <string name="channel_description">notifications for nearby shops app</string>
+    <string name="fragment_admin_dashboard_sds_users_string">Users List</string>
+    <string name="fragment_sds_admin_text_markets_list">Markets</string>
 
 
 </resources>

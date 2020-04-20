@@ -2,12 +2,9 @@
 <resources>
 
 
-
-
-
         <color name="colorPrimary">@color/mapboxBlue</color>
         <color name="colorPrimaryDark">@color/buttonColorDark</color>
-        <color name="colorAccent">@color/gplus_color_2</color>
+        <color name="colorAccent">@color/orangeDark</color>
 
 
 

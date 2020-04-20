@@ -8,13 +8,14 @@ import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurati
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.*;
 
 
 /**
  * Created by sumeet on 12/3/16.
  */
-public interface ServiceConfigService {
+public interface MarketService {
 
 
     @GET("/api/v1/ServiceConfiguration/UpdateService")
@@ -31,6 +32,9 @@ public interface ServiceConfigService {
 //    @Query("IsOfficial") Boolean isOfficial, @Query("IsVerified") Boolean isVerified,
 //    @Query("ServiceType") Integer serviceType,
 //@Query("proximity") Double proximity,
+
+
+
 
 
     @GET("/api/v1/ServiceConfiguration")
@@ -52,6 +56,26 @@ public interface ServiceConfigService {
             @Query("SearchString") String searchString,
             @Query("SortBy") String sortBy,
             @Query("Limit") Integer limit, @Query("Offset") int offset
+    );
+
+
+
+
+
+
+
+    @GET ("/api/v1/ServiceConfiguration/MarketsList")
+    Call<ServiceConfigurationEndPoint> getMarketsList(
+            @Header("Authorization") String headers,
+            @Query("latCenter")Double latCenter, @Query("lonCenter")Double lonCenter,
+            @Query("ServiceURL") String serviceURL,
+            @Query("SearchString") String searchString,
+            @Query("IsOfficial") Boolean isOfficial,@Query("IsVerified")Boolean isVerified,
+            @Query("ServiceType") Integer serviceType,
+            @Query("SortBy") String sortBy,
+            @Query("Limit") int limit, @Query("Offset") int offset,
+            @Query("GetRowCount")boolean getRowCount,
+            @Query("MetadataOnly")boolean getOnlyMetaData
     );
 
 

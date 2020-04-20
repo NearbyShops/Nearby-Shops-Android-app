@@ -21,7 +21,7 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.enduserappnew.API.API_SDS.ServiceConfigService;
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -227,7 +227,7 @@ public class SubmitURLDialog extends DialogFragment implements View.OnClickListe
                 .build();
 
 
-        Call<ResponseBody> call = retrofit.create(ServiceConfigService.class).saveService(service_url.getText().toString());
+        Call<ResponseBody> call = retrofit.create(MarketService.class).saveService(service_url.getText().toString());
 
         progressBar.setVisibility(View.VISIBLE);
         submit_button.setVisibility(View.INVISIBLE);

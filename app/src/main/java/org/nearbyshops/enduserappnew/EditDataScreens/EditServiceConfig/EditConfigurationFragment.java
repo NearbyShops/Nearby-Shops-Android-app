@@ -34,7 +34,7 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 
-import org.nearbyshops.enduserappnew.API.API_SDS.ServiceConfigService;
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.PlacePickerMapbox.PlacePickerWithRadius.PickDeliveryRange;
@@ -641,7 +641,7 @@ public class EditConfigurationFragment extends Fragment {
                 .build();
 
 
-        Call<ResponseBody> call = retrofit.create(ServiceConfigService.class).saveService(PrefGeneral.getServiceURL(getActivity()));
+        Call<ResponseBody> call = retrofit.create(MarketService.class).saveService(PrefGeneral.getServiceURL(getActivity()));
 
 
         call.enqueue(new Callback<ResponseBody>() {

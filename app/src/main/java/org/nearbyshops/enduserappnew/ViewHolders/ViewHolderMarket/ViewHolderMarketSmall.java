@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 
-import org.nearbyshops.enduserappnew.ViewModels.MarketViewModel;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
@@ -54,7 +54,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    private MarketViewModel viewModel;
+    private ViewModelMarkets viewModel;
 
 
     @Inject Gson gson;
@@ -83,7 +83,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 //        viewModel  = ViewModelProviders.of(fragment).get(MarketViewModel.class);
-        viewModel  = new MarketViewModel(MyApplication.application);
+        viewModel  = new ViewModelMarkets(MyApplication.application);
 
 
         viewModel.getEvent().observe(fragment, new Observer<Integer>() {
@@ -91,7 +91,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
             public void onChanged(Integer integer) {
 
 
-                if(integer==MarketViewModel.EVENT_LOCAL_CONFIG_FETCHED || integer==MarketViewModel.EVENT_LOGGED_IN_TO_LOCAL_SUCCESS)
+                if(integer== ViewModelMarkets.EVENT_LOCAL_CONFIG_FETCHED || integer== ViewModelMarkets.EVENT_LOGGED_IN_TO_LOCAL_SUCCESS)
                 {
 
 //                    selectMarket.setVisibility(View.VISIBLE);
@@ -105,7 +105,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
                     }
 
                 }
-                else if(integer==MarketViewModel.EVENT_NETWORK_FAILED)
+                else if(integer== ViewModelMarkets.EVENT_NETWORK_FAILED)
                 {
 //                    selectMarket.setVisibility(View.VISIBLE);
                     marketPhoto.setVisibility(View.VISIBLE);

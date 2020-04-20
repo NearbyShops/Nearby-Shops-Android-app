@@ -79,7 +79,7 @@ public class ViewHolderSetLocationManually extends RecyclerView.ViewHolder{
 
 
 
-    @OnClick(R.id.changeLocation)
+    @OnClick(R.id.list_item)
     void changeLocation()
     {
         if(fragment instanceof ListItemClick)

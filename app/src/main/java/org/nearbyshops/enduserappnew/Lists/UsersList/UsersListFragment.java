@@ -23,6 +23,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
+import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissions;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
@@ -30,12 +31,15 @@ import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToShopStaffD
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.UserEndpoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissions;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.UserFilters;
@@ -51,9 +55,12 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by sumeet on 14/6/17.
@@ -68,6 +75,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
     public static final String USER_MODE_INTENT_KEY = "user_mode_key";
 
 
+    public static final int MODE_SUPER_ADMIN_USER_LIST = 50;
     public static final int MODE_ADMIN_USER_LIST = 51;
     public static final int MODE_ADMIN_STAFF_LIST = 52;
     public static final int MODE_SHOP_ADMIN_SHOP_STAFF_LIST = 53;
@@ -92,6 +100,8 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
     @BindView(R.id.fab) FloatingActionButton fab;
 
 
+    @Inject
+    Gson gson;
 
 
     private GridLayoutManager layoutManager;
@@ -155,14 +165,12 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
         else if(current_mode==MODE_ADMIN_STAFF_LIST)
         {
             ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_STAFF_CODE);
-
         }
         else if(current_mode==MODE_ADMIN_USER_LIST)
         {
             ViewHolderFilterUsers.saveFilterByRole(getActivity(),0);
             fab.setVisibility(View.GONE);
         }
-
 
 
 
@@ -179,6 +187,8 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
         return rootView;
     }
+
+
 
 
 
@@ -347,14 +357,42 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
+        Call<UserEndpoint> call = null;
 
-        Call<UserEndpoint> call = userService.getUsers(
-                PrefLogin.getAuthorizationHeaders(getActivity()),
+
+
+        if(current_mode==MODE_SUPER_ADMIN_USER_LIST)
+        {
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            call = retrofit.create(UserServiceGlobal.class).getUsers(
+                PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
                 userRole,
                 null, ViewHolderFilterUsers.getSortString(getActivity()),
                 limit, offset,
                 clearDataset,false
-        );
+            );
+
+
+        }
+        else
+        {
+            call = userService.getUsers(
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
+                    userRole,
+                    null, ViewHolderFilterUsers.getSortString(getActivity()),
+                    limit, offset,
+                    clearDataset,false
+            );
+        }
 
 
 
@@ -530,6 +568,17 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
             intent.putExtra("user_profile",jsonString);
             intent.putExtra(FragmentEditProfile.EDIT_MODE_INTENT_KEY, FragmentEditProfile.MODE_UPDATE_BY_ADMIN);
             startActivity(intent);
+        }
+        else if(current_mode==MODE_SUPER_ADMIN_USER_LIST)
+        {
+            Gson gson = UtilityFunctions.provideGson();
+            String jsonString = gson.toJson(user);
+
+            Intent intent = new Intent(getActivity(), EditProfile.class);
+            intent.putExtra("user_profile",jsonString);
+            intent.putExtra(FragmentEditProfile.EDIT_MODE_INTENT_KEY, FragmentEditProfile.MODE_UPDATE_BY_SUPER_ADMIN);
+            startActivity(intent);
+
         }
         else if(current_mode==MODE_ADMIN_STAFF_LIST)
         {

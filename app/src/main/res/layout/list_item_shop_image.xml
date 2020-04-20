@@ -59,8 +59,8 @@
     <ImageView
         android:visibility="gone"
         android:id="@+id/check_icon"
-        app:layout_constraintStart_toStartOf="@id/taxi_image"
-        app:layout_constraintTop_toTopOf="@id/taxi_image"
+        app:layout_constraintStart_toStartOf="@id/image"
+        app:layout_constraintTop_toTopOf="@id/image"
         android:layout_margin="10dp"
         app:srcCompat="@drawable/ic_check_circle_white"
         android:layout_width="50dp"

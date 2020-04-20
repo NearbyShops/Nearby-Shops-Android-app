@@ -119,6 +119,7 @@ public class PrefLoginGlobal {
 
 
 
+
     public static String getAuthorizationHeaders(Context context)
     {
         context = MyApplication.getAppContext();

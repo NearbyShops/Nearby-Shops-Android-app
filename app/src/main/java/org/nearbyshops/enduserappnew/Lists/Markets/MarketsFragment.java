@@ -19,7 +19,7 @@ import butterknife.OnClick;
 import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 
-import org.nearbyshops.enduserappnew.API.API_SDS.ServiceConfigService;
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
@@ -408,7 +408,7 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
 
         if(PrefLoginGlobal.getUser(getActivity())==null)
         {
-            call = retrofit.create(ServiceConfigService.class).getShopListSimple(
+            call = retrofit.create(MarketService.class).getShopListSimple(
                     PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                     null,
                     searchQuery,
@@ -418,7 +418,7 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
         else
         {
 
-            call = retrofit.create(ServiceConfigService.class).getShopListSimple(
+            call = retrofit.create(MarketService.class).getShopListSimple(
                     PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
                     PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                     null,

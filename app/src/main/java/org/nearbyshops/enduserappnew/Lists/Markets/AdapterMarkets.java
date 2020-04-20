@@ -15,6 +15,8 @@ import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurati
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarkerSDS;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderRoleDashboardSDS;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarker;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderRoleDashboard;
@@ -52,7 +54,9 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 7;
     private static final int VIEW_TYPE_create_market = 8;
     private static final int view_type_role_dashboard = 9;
-    public static final int VIEW_TYPE_SET_LOCATION_MANUALLY = 10;
+    private static final int view_type_role_dashboard_SDS = 10;
+    public static final int VIEW_TYPE_SET_LOCATION_MANUALLY = 11;
+
 
 
     @Inject Gson gson;
@@ -121,6 +125,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return ViewHolderRoleDashboard.create(parent,fragment.getActivity(),fragment);
         }
+        else if(viewType ==view_type_role_dashboard_SDS)
+        {
+            return ViewHolderRoleDashboardSDS.create(parent,fragment.getActivity(),fragment);
+        }
         else if(viewType==VIEW_TYPE_SET_LOCATION_MANUALLY)
         {
             return ViewHolderSetLocationManually.create(parent,fragment.getActivity(),fragment);
@@ -175,6 +183,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return view_type_role_dashboard;
         }
+        else if(dataset.get(position) instanceof RoleDashboardMarkerSDS)
+        {
+            return view_type_role_dashboard_SDS;
+        }
         else if(dataset.get(position) instanceof SetLocationManually)
         {
             return VIEW_TYPE_SET_LOCATION_MANUALLY;
@@ -201,6 +213,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         else if(holderVH instanceof ViewHolderRoleDashboard)
         {
             ((ViewHolderRoleDashboard) holderVH).bindDashboard();
+        }
+        else if(holderVH instanceof ViewHolderRoleDashboardSDS)
+        {
+            ((ViewHolderRoleDashboardSDS) holderVH).bindDashboard();
         }
         else if(holderVH instanceof ViewHolderHorizontalList)
         {

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging;
+package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList;
 
 import android.app.Application;
 
@@ -11,18 +11,18 @@ import androidx.paging.PagedList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class ViewModelOrders extends AndroidViewModel {
+public class ViewModelMarkets extends AndroidViewModel {
 
 
     private Executor executor;
     private LiveData<PagedList<Object>> articleLiveData;
 
-    private OrdersDataFactory feedDataFactory;
+    private MarketsDataFactory feedDataFactory;
 
 
 
 
-    public ViewModelOrders(@NonNull Application application) {
+    public ViewModelMarkets(@NonNull Application application) {
         super(application);
 
         init();
@@ -35,7 +35,7 @@ public class ViewModelOrders extends AndroidViewModel {
 
         executor = Executors.newFixedThreadPool(5);
 
-        feedDataFactory = new OrdersDataFactory();
+        feedDataFactory = new MarketsDataFactory();
 
         PagedList.Config pagedListConfig =
                 (new PagedList.Config.Builder())

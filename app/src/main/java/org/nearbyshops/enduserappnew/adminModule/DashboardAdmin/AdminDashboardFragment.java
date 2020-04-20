@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
+import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrderHistoryPaging;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -247,7 +248,7 @@ public class AdminDashboardFragment extends Fragment {
     @OnClick(R.id.orders_database)
     void ordersClick()
     {
-        Intent intent = new Intent(getActivity(), OrderHistory.class);
+        Intent intent = new Intent(getActivity(), OrderHistoryPaging.class);
         startActivity(intent);
     }
 

@@ -43,38 +43,22 @@ import javax.inject.Inject;
 public class FragmentChangePassword extends Fragment {
 
 
-    /* Token renewal variables : BEGIN */
-
-    // constants - request codes for token renewal
-    public static final int REQUEST_CODE_CHANGE_PASSWORD = 1;
-
-    // housekeeping for token renewal
-    int token_renewal_attempts = 0;  // variable to keep record of renewal attempts
-    int token_renewal_request_code = -1; // variable to store the request code;
-
-    /* Token renewal variables : END */
-
-
 
     @Inject
     Gson gson;
 
-
-
     @Inject
     UserService userService;
-    @BindView(R.id.password)
-    EditText password;
-    @BindView(R.id.password_new)
-    EditText passwordNew;
-    @BindView(R.id.password_confirm)
-    EditText passwordConfirm;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
 
 
-    boolean isDestroyed = false;
+    @BindView(R.id.password) EditText password;
+    @BindView(R.id.password_new) EditText passwordNew;
+    @BindView(R.id.password_confirm) EditText passwordConfirm;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
+
+
+    private boolean isDestroyed = false;
 
 
     public FragmentChangePassword() {
@@ -105,7 +89,9 @@ public class FragmentChangePassword extends Fragment {
 
 
 
-    void setActionBarTitle()
+
+
+    private void setActionBarTitle()
     {
         if(getActivity() instanceof AppCompatActivity)
         {
@@ -119,11 +105,12 @@ public class FragmentChangePassword extends Fragment {
 
 
 
-    boolean validatePassword()
+
+
+
+    private boolean validatePassword()
     {
         boolean isValid = true;
-
-
 
 
         if(passwordConfirm.getText().toString().length()==0)
@@ -203,6 +190,10 @@ public class FragmentChangePassword extends Fragment {
         return isValid;
 
     }
+
+
+
+
 
 
 
@@ -344,7 +335,10 @@ public class FragmentChangePassword extends Fragment {
     }
 
 
-    void showToastMessage(String message)
+
+
+
+    private void showToastMessage(String message)
     {
         Toast.makeText(getContext(),message, Toast.LENGTH_SHORT).show();
     }
@@ -364,44 +358,6 @@ public class FragmentChangePassword extends Fragment {
         super.onDestroy();
         isDestroyed = true;
     }
-
-
-
-
-
-
-
-    // renew token in case it was expired
-//    boolean checkTokenExpired(boolean showMessage)
-//    {
-//        if(PrefLogin.getUsername(getActivity())==null)
-//        {
-//            // not logged in
-//            showToastMessage("User logged out !");
-//            return false;
-//        }
-//
-//
-//        if(PrefLogin.getExpires(getActivity())
-//                .before(new Timestamp(System.currentTimeMillis())))
-//        {
-//            // Token expired renew the token
-//
-//            if(showMessage)
-//            {
-//                showToastMessage("Please try again !");
-//            }
-//
-//            getActivity().startService(new Intent(getActivity(),RenewToken.class));
-//
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//
-//    }
 
 
 

@@ -385,12 +385,16 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
+
+
     @OnClick(R.id.faqs_block)
     void faqsBlock()
     {
-//        Intent intent = new Intent(getActivity(), MapzenMap.class);
-//        startActivity(intent);
 
+        String url = getString(R.string.faqs_link);
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
 
@@ -399,7 +403,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @OnClick(R.id.privacy_policy_block)
     void privacyPolicyClick()
     {
-        String url = "";
+        String url = getString(R.string.tos_link);
+
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
@@ -412,11 +417,13 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @OnClick(R.id.tos_block)
     void termsOfServiceClick()
     {
-        String url = "";
+        String url = getString(R.string.privacy_policy_link);
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
     }
+
+
 
 
 

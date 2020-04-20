@@ -11,8 +11,9 @@ import okhttp3.OkHttpClient;
 
 import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.API.API_SDS.ServiceConfigService;
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarkerSDS;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
@@ -43,7 +44,7 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 
-public class MarketViewModel extends AndroidViewModel {
+public class ViewModelMarkets extends AndroidViewModel {
 
     private MutableLiveData<List<Object>> datasetLive;
     private List<Object> dataset;
@@ -70,7 +71,7 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
-    public MarketViewModel(@NonNull Application application) {
+    public ViewModelMarkets(@NonNull Application application) {
         super(application);
 
         event = new MutableLiveData<>();
@@ -117,7 +118,7 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
-    public void loadData(final boolean clearDataset)
+    public void getNearbyMarketsList(final boolean clearDataset)
     {
 
             String sortBy = " distance ";
@@ -139,7 +140,7 @@ public class MarketViewModel extends AndroidViewModel {
             if(PrefLoginGlobal.getUser(getApplication())==null)
             {
 
-                call = retrofit.create(ServiceConfigService.class).getShopListSimple(
+                call = retrofit.create(MarketService.class).getShopListSimple(
                         PrefLocation.getLatitude(getApplication()), PrefLocation.getLongitude(getApplication()),
                         null,
                         null,
@@ -150,7 +151,7 @@ public class MarketViewModel extends AndroidViewModel {
             else
             {
 
-                call = retrofit.create(ServiceConfigService.class).getShopListSimple(
+                call = retrofit.create(MarketService.class).getShopListSimple(
                         PrefLoginGlobal.getAuthorizationHeaders(getApplication()),
                         PrefLocation.getLatitude(getApplication()), PrefLocation.getLongitude(getApplication()),
                         null,
@@ -223,6 +224,11 @@ public class MarketViewModel extends AndroidViewModel {
                                 }
                                 else
                                 {
+                                    if(userGlobal.getRole()==User.ROLE_ADMIN_CODE)
+                                    {
+                                        dataset.add(new RoleDashboardMarkerSDS());
+                                    }
+
                                     dataset.add(userGlobal);
                                 }
 
@@ -366,9 +372,6 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
-
-
-
     public void fetchLocalConfiguration(final ServiceConfigurationGlobal configurationGlobal)
     {
 
@@ -433,7 +436,7 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
-                    event.postValue(MarketViewModel.EVENT_LOCAL_CONFIG_FETCHED);
+                    event.postValue(ViewModelMarkets.EVENT_LOCAL_CONFIG_FETCHED);
 
 
                 }
@@ -446,7 +449,7 @@ public class MarketViewModel extends AndroidViewModel {
 
 
 
-                    event.postValue(MarketViewModel.EVENT_NETWORK_FAILED);
+                    event.postValue(ViewModelMarkets.EVENT_NETWORK_FAILED);
                 }
 
 
@@ -465,7 +468,7 @@ public class MarketViewModel extends AndroidViewModel {
 //                selectMarket.setVisibility(View.VISIBLE);
 //                progressBarSelect.setVisibility(View.INVISIBLE);
 
-                    event.postValue(MarketViewModel.EVENT_NETWORK_FAILED);
+                    event.postValue(ViewModelMarkets.EVENT_NETWORK_FAILED);
                     message.postValue("Failed ... Please check your network ! ");
             }
         });
@@ -603,12 +606,12 @@ public class MarketViewModel extends AndroidViewModel {
 
                     UtilityFunctions.updateFirebaseSubscriptions();
 
-                    event.postValue(MarketViewModel.EVENT_LOGGED_IN_TO_LOCAL_SUCCESS);
+                    event.postValue(ViewModelMarkets.EVENT_LOGGED_IN_TO_LOCAL_SUCCESS);
 
                 }
                 else
                 {
-                    event.postValue(MarketViewModel.EVENT_NETWORK_FAILED);
+                    event.postValue(ViewModelMarkets.EVENT_NETWORK_FAILED);
                     message.postValue("Login Failed : Username or password is incorrect !");
 
                 }
@@ -623,7 +626,7 @@ public class MarketViewModel extends AndroidViewModel {
 
 
                 message.postValue("Failed ... Please check your network connection !");
-                event.postValue(MarketViewModel.EVENT_NETWORK_FAILED);
+                event.postValue(ViewModelMarkets.EVENT_NETWORK_FAILED);
 
 //                selectMarket.setVisibility(View.VISIBLE);
 //                progressBarSelect.setVisibility(View.INVISIBLE);

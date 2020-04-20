@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.API.API_SDS;
 
 
 import org.nearbyshops.enduserappnew.Model.Image;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.UserEndpoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 
 import okhttp3.RequestBody;
@@ -206,6 +207,34 @@ public interface UserServiceGlobal {
 
 
 
+
+
+    @GET ("/api/v1/User")
+    Call<UserEndpoint> getUsers(
+            @Header("Authorization") String headers,
+            @Query("UserRole") Integer userRole,
+            @Query("Gender") Boolean gender,
+            @Query("SortBy") String sortBy,
+            @Query("Limit")int limit, @Query("Offset")int offset,
+            @Query("GetRowCount")boolean getRowCount,
+            @Query("MetadataOnly")boolean getOnlyMetaData
+    );
+
+
+
+    @GET ("/api/v1/User/GetUserDetails/{UserID}")
+    Call<User> getUserDetails(
+            @Header("Authorization") String headers,
+            @Path("UserID")int userID
+    );
+
+
+
+    @PUT("/api/v1/User/UpdateProfileByAdmin")
+    Call<ResponseBody> updateProfileByAdmin(
+            @Header("Authorization") String headers,
+            @Body User user
+    );
 
 
 }

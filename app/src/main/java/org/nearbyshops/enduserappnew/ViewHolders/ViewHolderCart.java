@@ -96,8 +96,9 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
 
         Shop shop = cartStats.getShop();
 
+
         itemsInCart.setText(cartStats.getItemsInCart() + " Items in Cart");
-        cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + cartStats.getCart_Total());
+        cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + UtilityFunctions.refinedString(cartStats.getCart_Total()));
 
 
         if (shop != null) {

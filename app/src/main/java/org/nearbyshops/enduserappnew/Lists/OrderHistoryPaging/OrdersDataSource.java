@@ -14,6 +14,7 @@ import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,7 +108,10 @@ public class OrdersDataSource extends PageKeyedDataSource<Long,Object> {
                 null, null,
                 null, null,
                 ordersPendingStatus, null,
-                current_sort, params.requestedLoadSize, 0,  true,false);
+                current_sort,
+                params.requestedLoadSize, 0,
+                true,false
+        );
 
 
 
@@ -135,6 +139,13 @@ public class OrdersDataSource extends PageKeyedDataSource<Long,Object> {
                         }
 
                     }
+
+
+                    if(item_count==0)
+                    {
+                        dataset.add(EmptyScreenDataFullScreen.emptyScreenOrders());
+                    }
+
 
                 }
 
@@ -217,7 +228,9 @@ public class OrdersDataSource extends PageKeyedDataSource<Long,Object> {
                 null, null,
                 null, null,
                 ordersPendingStatus, null,
-                current_sort, params.requestedLoadSize, params.key.intValue(),  false,false);
+                current_sort, params.requestedLoadSize, params.key.intValue(),
+                false,false);
+
 
 
 
