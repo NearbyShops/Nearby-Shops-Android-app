@@ -7,13 +7,18 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
@@ -22,6 +27,7 @@ import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditAddressFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditDeliveryAddress;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAddress;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -38,7 +44,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ViewHolderDeliveryAddress.ListItemClick, View.OnClickListener {
+public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener,
+        ViewHolderDeliveryAddress.ListItemClick, View.OnClickListener {
 
 
 
@@ -62,6 +69,11 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     TextView addNewAddress;
 
 
+    @BindView(R.id.service_name) TextView serviceName;
+
+
+
+
     public DeliveryAddressActivity() {
 
         DaggerComponentBuilder.getInstance()
@@ -79,8 +91,7 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         // findView By id'// STOPSHIP: 11/6/16
@@ -90,6 +101,17 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
         addNewAddress = findViewById(R.id.addNewAddress);
 
         addNewAddress.setOnClickListener(this);
+
+
+
+
+
+        if(PrefServiceConfig.getServiceName(this)!=null) {
+//            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(this));
+        }
+
+
 
 
         if(savedInstanceState==null)
@@ -284,15 +306,6 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-//        ButterKnife.unbind(this);
-
-    }
-
-
 
     @Override
     public void notifyEdit(DeliveryAddress deliveryAddress) {
@@ -357,6 +370,8 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
                     showToastMessage("Successful !");
                     dataset.remove(position);
                     adapter.notifyItemRemoved(position);
+
+                    makeRefreshNetworkCall();
                 }
                 else
                 {
@@ -438,16 +453,33 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
 
 
+
+
+
+    @OnClick(R.id.fab)
     void addNewAddressClick(View view)
     {
 //        Intent intent = new Intent(this,AddAddressActivity.class);
 //        startActivity(intent);
 
+
         Intent intent = new Intent(this,EditDeliveryAddress.class);
         intent.putExtra(EditAddressFragment.EDIT_MODE_INTENT_KEY, EditAddressFragment.MODE_ADD);
-        startActivity(intent);
+        startActivityForResult(intent,21);
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==21)
+        {
+            makeRefreshNetworkCall();
+        }
+    }
+
 
 
 }

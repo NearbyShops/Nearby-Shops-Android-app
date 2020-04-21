@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.Checkout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -76,11 +77,11 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     // address views
     TextView name;
     TextView deliveryAddressView;
-    TextView city;
-    TextView pincode;
-    TextView landmark;
+//    TextView city;
+//    TextView pincode;
+//    TextView landmark;
     TextView phoneNumber;
-    RelativeLayout addressContainer;
+    LinearLayout addressContainer;
 
     // address views ends
 
@@ -124,9 +125,9 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
         name = findViewById(R.id.name);
         deliveryAddressView = findViewById(R.id.deliveryAddress);
-        city = findViewById(R.id.city);
-        pincode = findViewById(R.id.pincode);
-        landmark = findViewById(R.id.landmark);
+//        city = findViewById(R.id.city);
+//        pincode = findViewById(R.id.pincode);
+//        landmark = findViewById(R.id.landmark);
         phoneNumber = findViewById(R.id.phoneNumber);
         addressContainer = findViewById(R.id.selectedDeliveryAddress);
 
@@ -222,18 +223,36 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     }
 
 
+
+
+
+
+
+
+
     void bindDataToViews(DeliveryAddress deliveryAddress)
     {
         if(deliveryAddress != null)
         {
             name.setText(deliveryAddress.getName());
-            deliveryAddressView.setText(deliveryAddress.getDeliveryAddress());
-            city.setText(deliveryAddress.getCity());
-            pincode.setText(String.valueOf(deliveryAddress.getPincode()));
-            landmark.setText(deliveryAddress.getLandmark());
-            phoneNumber.setText(String.valueOf(deliveryAddress.getPhoneNumber()));
+
+            String address  = deliveryAddress.getDeliveryAddress() + ", "
+                    + deliveryAddress.getCity() + ", " + deliveryAddress.getPincode();
+
+
+
+            deliveryAddressView.setText(address);
+
+//            city.setText(deliveryAddress.getCity());
+//            pincode.setText(String.valueOf(deliveryAddress.getPincode()));
+//            landmark.setText(deliveryAddress.getLandmark());
+
+            phoneNumber.setText("Phone : " + String.valueOf(deliveryAddress.getPhoneNumber()));
         }
     }
+
+
+
 
 
 
@@ -311,14 +330,14 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             freeDeliveryInfo.setText("Free delivery is offered above the order of " + PrefGeneral.getCurrencySymbol(this) + " " + cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery());
 
 
-            subTotal.setText("Subtotal: " + PrefGeneral.getCurrencySymbol(this) + " " + cartStats.getCart_Total());
+            subTotal.setText("Item Total: " + PrefGeneral.getCurrencySymbol(this) + " " + cartStats.getCart_Total());
             deliveryCharges.setText("Delivery Charges : N/A");
 
             //total.setText("Total : " + cartStats.getCart_Total()+ );
 
             if(pickFromShopCheck.isChecked())
             {
-                total.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total()));
+                total.setText("Net Payable : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total()));
                 deliveryCharges.setText("Delivery Charges : "+ PrefGeneral.getCurrencySymbol(this) + " " + 0);
             }
 
@@ -331,7 +350,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                 if(cartStatsFromNetworkCall.getCart_Total() < cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery())
                 {
 
-                    total.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total() + cartStats.getShop().getDeliveryCharges()));
+                    total.setText("Net Payable : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total() + cartStats.getShop().getDeliveryCharges()));
                     deliveryCharges.setText("Delivery Charges : " + PrefGeneral.getCurrencySymbol(this) + " " + cartStats.getShop().getDeliveryCharges());
                 }
                 else
@@ -359,12 +378,12 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
         if(pickFromShopCheck.isChecked())
         {
-            addPickAddress.setText("Select Address");
+            addPickAddress.setText("Pick Address");
             deliveryInstructions.setText("You need to pick the order from the shop. ");
         }
         else
         {
-            addPickAddress.setText("Select Delivery Address");
+            addPickAddress.setText("Pick Delivery Address");
             deliveryInstructions.setText("Your order will be delivered to your home at your given address.");
         }
     }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -21,14 +22,15 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
 
     @BindView(R.id.name) TextView name;
     @BindView(R.id.deliveryAddress) TextView deliveryAddress;
-    @BindView(R.id.city) TextView city;
-    @BindView(R.id.pincode) TextView pincode;
-    @BindView(R.id.landmark) TextView landmark;
-    @BindView(R.id.phoneNumber) TextView phoneNumber;
+//    @BindView(R.id.city) TextView city;
+//    @BindView(R.id.pincode) TextView pincode;
+//    @BindView(R.id.landmark) TextView landmark;
+//    @BindView(R.id.phoneNumber) TextView phoneNumber;
     @BindView(R.id.editButton) TextView editButton;
     @BindView(R.id.removeButton) TextView removeButton;
 
-    @BindView(R.id.list_item_delivery_address) ConstraintLayout listItemDeliveryAddress;
+    @BindView(R.id.list_item_delivery_address)
+    LinearLayout listItemDeliveryAddress;
 
 
 
@@ -44,7 +46,7 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
     {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_address_item_new,parent,false);
+                .inflate(R.layout.list_item_address,parent,false);
 
         return new ViewHolderDeliveryAddress(view,context,fragment);
     }
@@ -93,10 +95,12 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
 
         name.setText(address.getName());
         deliveryAddress.setText(address.getDeliveryAddress());
-        city.setText(address.getCity());
-        pincode.setText(" - " + address.getPincode());
-        landmark.setText(address.getLandmark());
-        phoneNumber.setText(String.valueOf(address.getPhoneNumber()));
+//        city.setText(address.getCity());
+//        pincode.setText(" - " + address.getPincode());
+//        landmark.setText(address.getLandmark());
+//        phoneNumber.setText(String.valueOf(address.getPhoneNumber()));
+
+
     }
 
 

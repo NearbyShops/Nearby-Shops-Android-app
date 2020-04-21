@@ -62,10 +62,11 @@
                 android:layout_height="wrap_content"
                 android:text="Delivery Type" />
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:background="#88000000" />
 
@@ -74,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Pick From Shop"
+                android:text="Pick Up From Shop"
                 android:textColor="@color/cyan900"
                 android:textSize="17dp" />
 
@@ -106,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:text="Step 2 : Select Address"
+            android:text="Step 2 : Tell us your Address"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/radioGroup" />
@@ -134,7 +135,7 @@
             android:background="@color/phonographyBlue"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Select Delivery address"
+            android:text="Pick Delivery address"
             android:textColor="@color/colorWhite"
             android:textSize="20dp"
             app:layout_constraintRight_toRightOf="parent"
@@ -177,13 +178,14 @@
             android:id="@+id/selectedDeliveryAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
             android:background="#22000000"
             android:padding="10dp"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pickFromSavedAddresses">
 
 
@@ -386,7 +388,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="You pay the bill amount to the delivery Guy !"
+                android:text="You pay the bill amount to the delivery Person !"
                 android:textSize="20sp" />
 
         </LinearLayout>

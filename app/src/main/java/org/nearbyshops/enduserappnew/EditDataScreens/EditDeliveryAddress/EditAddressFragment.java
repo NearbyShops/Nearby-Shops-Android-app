@@ -335,7 +335,8 @@ public class EditAddressFragment extends Fragment {
             @Override
             public void onResponse(Call<DeliveryAddress> call, Response<DeliveryAddress> response) {
 
-                if (response != null && response.code() == 201) {
+
+                if (response.code() == 201) {
 
                     showToastMessage("Added Successfully !");
 
@@ -345,6 +346,14 @@ public class EditAddressFragment extends Fragment {
 //                    bindDataToViews();
 
                     setActionBarTitle();
+
+
+
+                    if(getActivity()!=null)
+                    {
+                        getActivity().finish();
+                    }
+
                 }
                 else
                 {

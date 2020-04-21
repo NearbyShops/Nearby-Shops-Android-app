@@ -49,7 +49,7 @@ public class ViewHolderItemCategory extends RecyclerView.ViewHolder{
                                                 RecyclerView.Adapter adapter)
     {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_new,parent,false);
         return new ViewHolderItemCategory(view,context,fragment,adapter);
     }
 
