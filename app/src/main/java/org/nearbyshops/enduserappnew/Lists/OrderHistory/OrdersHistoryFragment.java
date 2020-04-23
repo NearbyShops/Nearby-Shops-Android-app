@@ -40,6 +40,7 @@ import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.OrderDetail;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -578,11 +579,14 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
                     }
 
 
-                    emptyScreen.setVisibility(View.VISIBLE);
+//                    emptyScreen.setVisibility(View.VISIBLE);
+//                    showToastMessage("Network Request failed !");
 
 
+                    dataset.clear();
+                    dataset.add(EmptyScreenDataFullScreen.getOffline());
+                    adapter.notifyDataSetChanged();
 
-                    showToastMessage("Network Request failed !");
                     swipeContainer.setRefreshing(false);
 
                 }

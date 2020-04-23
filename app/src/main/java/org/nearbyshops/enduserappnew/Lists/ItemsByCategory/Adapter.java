@@ -10,7 +10,9 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
@@ -41,6 +43,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static final int VIEW_TYPE_HEADER = 4;
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
+
+    public static final int VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM = 7;
     
 
     private boolean loadMore;
@@ -91,7 +95,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
         {
-            return ViewHolderEmptyScreenFullScreen.create(parent,context);
+            return ViewHolderEmptyScreenFullScreen.create(parent,context,fragment);
+        }
+        else if(viewType==VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM)
+        {
+            return ViewHolderEmptyScreenListItem.create(parent,context, fragment);
         }
 
 
@@ -139,7 +147,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
-
+        else if(holder instanceof ViewHolderEmptyScreenListItem)
+        {
+            ((ViewHolderEmptyScreenListItem) holder).setItem((EmptyScreenDataListItem) dataset.get(position));
+        }
 
 
     }
@@ -178,6 +189,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
         {
             return VIEW_TYPE_EMPTY_SCREEN;
+        }
+        else if(dataset.get(position) instanceof EmptyScreenDataListItem)
+        {
+            return VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM;
         }
 
 

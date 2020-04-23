@@ -34,6 +34,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,7 +46,8 @@ import java.util.List;
 
 
 public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener,
-        ViewHolderDeliveryAddress.ListItemClick, View.OnClickListener {
+        ViewHolderDeliveryAddress.ListItemClick, View.OnClickListener,
+        ViewHolderEmptyScreenFullScreen.ListItemClick {
 
 
 
@@ -468,6 +470,16 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
         startActivityForResult(intent,21);
 
     }
+
+
+
+    @Override
+    public void emptyScreenButtonClicked() {
+        addNewAddressClick(null);
+    }
+
+
+
 
 
     @Override

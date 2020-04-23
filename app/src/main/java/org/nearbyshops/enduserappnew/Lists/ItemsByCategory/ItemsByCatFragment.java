@@ -41,7 +41,12 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,7 +67,8 @@ public class ItemsByCatFragment extends Fragment implements
         LocationUpdated,
         SwipeRefreshLayout.OnRefreshListener,
         ViewHolderItemCategorySmall.ListItemClick,
-        ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch {
+        ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch ,
+        ViewHolderEmptyScreenListItem.ListItemClick {
 
 
     private static final String TAG_SLIDING = "tag_sliding_sort";
@@ -661,6 +667,21 @@ public class ItemsByCatFragment extends Fragment implements
 
 
                         }
+                        else if(item_count_item==0)
+                        {
+
+
+                            if(PrefGeneral.getMultiMarketMode(getActivity()))
+                            {
+//                                    dataset.add(new CreateShopData());
+                                dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListMultiMarket());
+                            }
+                            else
+                            {
+//                                    dataset.add(new CreateShopData());
+                                dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListSingleMarket());
+                            }
+                        }
 
 
 
@@ -676,10 +697,17 @@ public class ItemsByCatFragment extends Fragment implements
                             if(response.body().getResults().size()>0)
                             {
                                 headerItem.setHeading(currentCategory.getCategoryName() + " Items");
+
+                                dataset.add(headerItem);
                             }
                             else
                             {
-                                headerItem.setHeading("No Items in this category");
+                                if(response.body().getSubcategories()!=null && response.body().getSubcategories().size()>0)
+                                {
+                                    headerItem.setHeading("No Items in this category");
+
+                                    dataset.add(headerItem);
+                                }
                             }
 
 
@@ -694,13 +722,16 @@ public class ItemsByCatFragment extends Fragment implements
                             {
                                 headerItem.setHeading("No items for the given search !");
                             }
+
+
+                            dataset.add(headerItem);
                         }
 
 
 
-                        dataset.add(headerItem);
 
                     }
+
 
 
 
@@ -741,9 +772,13 @@ public class ItemsByCatFragment extends Fragment implements
 
 
 
-                swipeContainer.setRefreshing(false);
+                dataset.clear();
+                dataset.add(EmptyScreenDataFullScreen.getOffline());
+                listAdapter.notifyDataSetChanged();
 
-                showToastMessage("Items: Network request failed. Please check your connection !");
+
+                swipeContainer.setRefreshing(false);
+//                showToastMessage("Items: Network request failed. Please check your connection !");
 
             }
         });
@@ -966,5 +1001,29 @@ public class ItemsByCatFragment extends Fragment implements
 //        showToastMessage("Search Collapsed !");
         searchQuery = null;
         makeRefreshNetworkCall();
+    }
+
+
+
+
+
+
+
+    @Override
+    public void buttonClick(String url) {
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+
+            if(getActivity() instanceof ShowFragment)
+            {
+                ((ShowFragment) getActivity()).showProfileFragment(false);
+            }
+        }
+        else
+        {
+
+            makeRefreshNetworkCall();
+        }
     }
 }

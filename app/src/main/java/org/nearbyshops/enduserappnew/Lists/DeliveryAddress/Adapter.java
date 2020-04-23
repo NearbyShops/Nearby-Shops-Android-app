@@ -2,6 +2,8 @@ package org.nearbyshops.enduserappnew.Lists.DeliveryAddress;
 
 import android.content.Context;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
@@ -20,6 +22,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<Object> dataset = null;
     private Context context;
+    private Fragment fragment;
     private ViewHolderDeliveryAddress.ListItemClick listItemClick;
 
 
@@ -50,10 +53,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType == VIEW_TYPE_EMPTY_SCREEN)
         {
-            return ViewHolderEmptyScreenFullScreen.create(parent,context);
+            return ViewHolderEmptyScreenFullScreen.create(parent,context,null);
         }
 
-        return ViewHolderEmptyScreenFullScreen.create(parent,context);
+        return ViewHolderEmptyScreenFullScreen.create(parent,context,null);
     }
 
 

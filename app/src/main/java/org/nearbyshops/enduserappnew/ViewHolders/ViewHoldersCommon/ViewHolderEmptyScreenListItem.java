@@ -26,6 +26,7 @@ public class ViewHolderEmptyScreenListItem extends RecyclerView.ViewHolder{
     private Context context;
     private Fragment fragment;
 
+    @BindView(R.id.title) TextView title;
     @BindView(R.id.message) TextView message;
     @BindView(R.id.button) TextView button;
     @BindView(R.id.image) ImageView graphicImage;
@@ -67,12 +68,11 @@ public class ViewHolderEmptyScreenListItem extends RecyclerView.ViewHolder{
     @OnClick(R.id.button)
     void selectMarket()
     {
-        if(fragment instanceof VHEmptyScreen)
+        if(fragment instanceof ListItemClick)
         {
-            ((VHEmptyScreen) fragment).buttonClick(data.getUrlForButtonClick());
+            ((ListItemClick) fragment).buttonClick(data.getUrlForButtonClick());
         }
     }
-
 
 
 
@@ -86,6 +86,7 @@ public class ViewHolderEmptyScreenListItem extends RecyclerView.ViewHolder{
 
         message.setText(data.getMessage());
         button.setText(data.getButtonText());
+        title.setText(data.getTitle());
 
         if(data.getImageResource()==0)
         {
@@ -102,7 +103,7 @@ public class ViewHolderEmptyScreenListItem extends RecyclerView.ViewHolder{
 
 
 
-    public interface VHEmptyScreen
+    public interface ListItemClick
     {
         void buttonClick(String url);
     }

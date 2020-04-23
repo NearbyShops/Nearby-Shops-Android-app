@@ -151,7 +151,7 @@ public class ViewModelUser extends AndroidViewModel {
             public void onFailure(Call<User> call, Throwable t) {
 
 
-                message.postValue("Failed ! Check your network connection !");
+//                message.postValue("Failed ! Check your network connection !");
 
             }
         });

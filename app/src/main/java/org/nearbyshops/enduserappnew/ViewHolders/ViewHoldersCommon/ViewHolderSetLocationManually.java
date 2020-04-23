@@ -61,7 +61,7 @@ public class ViewHolderSetLocationManually extends RecyclerView.ViewHolder{
 
 
 
-    private void bindDashboard()
+    public void bindDashboard()
     {
         boolean isLocationSetByUser = PrefLocation.isLocationSetByUser(context);
 

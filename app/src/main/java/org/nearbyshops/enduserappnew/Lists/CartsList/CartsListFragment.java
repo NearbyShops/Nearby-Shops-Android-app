@@ -29,6 +29,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -250,9 +252,15 @@ public class CartsListFragment extends Fragment implements SwipeRefreshLayout.On
                 }
 
 
-                emptyScreen.setVisibility(View.VISIBLE);
+//                emptyScreen.setVisibility(View.VISIBLE);
+//                showToastMessage("Network Request failed !");
 
-                showToastMessage("Network Request failed !");
+
+                dataset.clear();
+                dataset.add(EmptyScreenDataFullScreen.getOffline());
+                adapter.notifyDataSetChanged();
+
+
                 swipeContainer.setRefreshing(false);
             }
         });

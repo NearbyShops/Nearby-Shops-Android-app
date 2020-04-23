@@ -197,7 +197,7 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
 
-            dialog.setTitle("Confirm Become a Seller !")
+            dialog.setTitle("Create your Shop !")
                     .setMessage("Do you want to Create your Shop and become a seller !")
                     .setPositiveButton("Yes",new DialogInterface.OnClickListener(){
 

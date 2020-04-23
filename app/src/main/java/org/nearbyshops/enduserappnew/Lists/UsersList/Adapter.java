@@ -78,7 +78,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
         {
-            return ViewHolderEmptyScreenFullScreen.create(parent,context);
+            return ViewHolderEmptyScreenFullScreen.create(parent,context,fragment);
         }
         else if(viewType==VIEW_TYPE_FILTER_USERS)
         {

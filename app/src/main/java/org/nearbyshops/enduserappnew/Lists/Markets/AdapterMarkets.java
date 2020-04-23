@@ -17,6 +17,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarkerSDS;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderRoleDashboardSDS;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarker;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderRoleDashboard;
@@ -24,6 +25,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHo
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
@@ -56,6 +58,8 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int view_type_role_dashboard = 9;
     private static final int view_type_role_dashboard_SDS = 10;
     public static final int VIEW_TYPE_SET_LOCATION_MANUALLY = 11;
+
+    public static final int VIEW_TYPE_EMPTY_SCREEN = 12;
 
 
 
@@ -133,9 +137,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return ViewHolderSetLocationManually.create(parent,fragment.getActivity(),fragment);
         }
-
-
-
+        else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
+        {
+            return ViewHolderEmptyScreenFullScreen.create(parent,fragment.getActivity(), fragment);
+        }
 
         return null;
     }
@@ -179,6 +184,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             return VIEW_TYPE_create_market;
         }
+        else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
+        {
+            return VIEW_TYPE_EMPTY_SCREEN;
+        }
         else if(dataset.get(position) instanceof RoleDashboardMarker)
         {
             return view_type_role_dashboard;
@@ -191,6 +200,7 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return VIEW_TYPE_SET_LOCATION_MANUALLY;
         }
+
 
 
 
@@ -236,6 +246,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             ((ViewHolderMarket)holderVH).setItem((ServiceConfigurationGlobal) dataset.get(position));
 
+        }
+        else if(holderVH instanceof ViewHolderEmptyScreenFullScreen)
+        {
+            ((ViewHolderEmptyScreenFullScreen) holderVH).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
         else if(holderVH instanceof ViewHolderEmptyScreenListItem)
         {

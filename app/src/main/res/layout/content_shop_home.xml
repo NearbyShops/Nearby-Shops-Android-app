@@ -114,7 +114,7 @@
                     android:layout_above="@+id/text_add_items"
                     android:padding="10dp"
                     android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_items_24px" />
+                    app:srcCompat="@drawable/ic_items_white" />
 
 
                 <TextView
@@ -180,7 +180,7 @@
                     android:layout_above="@+id/text_add_stock"
                     android:padding="10dp"
                     android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_items_24px" />
+                    app:srcCompat="@drawable/ic_items_white" />
 
 
                 <!--android:text="Edit Stock"-->

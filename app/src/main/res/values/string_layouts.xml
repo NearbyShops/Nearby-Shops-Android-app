@@ -802,7 +802,7 @@
     <string name="fragment_admin_dashboard_app_name_text">Admin Dashboard</string>
     <string name="activity_items_in_stock_by_cat_text_sub_text">4 out of 46 Grocery Items</string>
     <string name="activity_items_in_stock_by_cat_text_sort_text">Filter / Sort</string>
-    <string name="list_item_set_location_manually_locationAddress_text">Current Location - Detected Automatically</string>
+    <string name="list_item_set_location_manually_locationAddress_text">Current Location ( Detected Automatically )</string>
     <string name="list_item_set_location_manually_changeLocation_text">Change Location</string>
     <string name="content_admin_dashboard_header_items_text">Shops and Items</string>
     <string name="content_admin_dashboard_text_shop_approvals_text">Shops Database</string>

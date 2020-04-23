@@ -53,7 +53,7 @@ import java.util.List;
 public class MarketsFragmentNew extends Fragment implements
         ViewHolderMarket.ListItemClick, SwipeRefreshLayout.OnRefreshListener,
         NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn,
-        ViewHolderEmptyScreenListItem.VHEmptyScreen , ViewHolderSetLocationManually.ListItemClick {
+        ViewHolderEmptyScreenListItem.ListItemClick, ViewHolderSetLocationManually.ListItemClick {
 
 
 

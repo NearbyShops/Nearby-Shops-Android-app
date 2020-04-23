@@ -25,6 +25,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.PlacePickerMapbox.PickLocation;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
@@ -35,13 +36,21 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderCreateShop;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 import org.nearbyshops.enduserappnew.zHighlightSlider.Model.Highlights;
 
@@ -62,7 +71,8 @@ import java.util.ArrayList;
  */
 public class FragmentShopsList extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch ,
-        ViewHolderShopSmall.ListItemClick , ViewHolderSetLocationManually.ListItemClick {
+        ViewHolderShopSmall.ListItemClick , ViewHolderSetLocationManually.ListItemClick,
+        ViewHolderEmptyScreenListItem.ListItemClick , ViewHolderCreateShop.ListItemClick {
 
 
     private static final String TAG_SLIDING = "tag_sliding_layer_sort_shops";
@@ -196,11 +206,13 @@ public class FragmentShopsList extends Fragment implements
             serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
 
 
+
             if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
             {
 
                 buttonTryAgain.setText("Change Market");
-                emptyScreenMessage.setText("Uh .. oh .. no shops available at your location .. change your market ... and explore other markets !");
+                emptyScreenMessage.setText("" +
+                        "Uh .. oh .. no shops available at your location .. change your market ... and explore other markets !");
             }
             else
             {
@@ -500,6 +512,8 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+
+
             callEndpoint.enqueue(new Callback<ShopEndPoint>() {
                 @Override
                 public void onResponse(Call<ShopEndPoint> call, Response<ShopEndPoint> response) {
@@ -523,7 +537,6 @@ public class FragmentShopsList extends Fragment implements
                         dataset.addAll(response.body().getResults());
 
 
-                        adapter.notifyDataSetChanged();
                         if(response.body().getItemCount()!=null)
                         {
                             item_count = response.body().getItemCount();
@@ -533,13 +546,76 @@ public class FragmentShopsList extends Fragment implements
                         if(response.body().getResults().size()==0)
                         {
                             dataset.add(0, new SetLocationManually());
-                            emptyScreen.setVisibility(View.VISIBLE);
+//                            emptyScreen.setVisibility(View.VISIBLE);
+
+
+
+
+
+                            if(PrefGeneral.getMultiMarketMode(getActivity()))
+                            {
+                                User user = PrefLogin.getUser(getActivity());
+
+                                if(user!=null)
+                                {
+                                    if(user.getRole()==User.ROLE_END_USER_CODE)
+                                    {
+                                        dataset.add(new CreateShopData());
+                                    }
+                                }
+                                else
+                                {
+                                    dataset.add(new CreateShopData());
+                                }
+
+
+                                dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListMultiMarket());
+                            }
+                            else
+                            {
+
+                                User user = PrefLogin.getUser(getActivity());
+
+                                if(user!=null)
+                                {
+                                    if(user.getRole()==User.ROLE_END_USER_CODE)
+                                    {
+                                        dataset.add(new CreateShopData());
+                                    }
+                                }
+                                else
+                                {
+                                    dataset.add(new CreateShopData());
+                                }
+
+
+                                dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListSingleMarket());
+                            }
+
+
+
+
                         }
                         else
                         {
                             if(dataset.size()>=1)
                             {
                                 dataset.add(1, new SetLocationManually());
+
+                                User user = PrefLogin.getUser(getActivity());
+
+                                if(user!=null)
+                                {
+                                    if(user.getRole()==User.ROLE_END_USER_CODE)
+                                    {
+                                        dataset.add(2, new CreateShopData());
+                                    }
+                                }
+                                else
+                                {
+                                    dataset.add(2, new CreateShopData());
+                                }
+
                             }
                         }
 
@@ -561,6 +637,7 @@ public class FragmentShopsList extends Fragment implements
                     }
 
 
+                    adapter.notifyDataSetChanged();
 
                     swipeContainer.setRefreshing(false);
 
@@ -574,10 +651,18 @@ public class FragmentShopsList extends Fragment implements
                         return;
                     }
 
-                    emptyScreen.setVisibility(View.VISIBLE);
+                    dataset.clear();
+
+                    dataset.add(EmptyScreenDataFullScreen.getOffline());
 
 
-                    showToastMessage(getString(R.string.network_request_failed));
+
+//                    emptyScreen.setVisibility(View.VISIBLE);
+
+
+                    adapter.notifyDataSetChanged();
+
+//                    showToastMessage(getString(R.string.network_request_failed));
                     swipeContainer.setRefreshing(false);
                 }
             });
@@ -589,8 +674,8 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-        @OnClick(R.id.button_try_again)
-        void tryAgainClick()
+//        @OnClick(R.id.button_try_again)
+        private void tryAgainClick()
         {
 
             if(PrefGeneral.getMultiMarketMode(getActivity()))
@@ -607,6 +692,15 @@ public class FragmentShopsList extends Fragment implements
                 makeRefreshNetworkCall();
             }
         }
+
+
+
+
+    @Override
+    public void buttonClick(String url) {
+            tryAgainClick();
+    }
+
 
 
 
@@ -727,15 +821,30 @@ public class FragmentShopsList extends Fragment implements
         {
             if(data!=null)
             {
-                PrefLocation.saveLatLonCurrent(data.getDoubleExtra("lat_dest",0.0),data.getDoubleExtra("lon_dest",0.0),
-                        getActivity());
-
-                PrefLocation.setLocationSetByUser(true,getActivity());
-
-                makeRefreshNetworkCall();
             }
 
+
+
+            PrefLocation.saveLatLonCurrent(data.getDoubleExtra("lat_dest",0.0),data.getDoubleExtra("lon_dest",0.0),
+                    getActivity());
+
+            PrefLocation.setLocationSetByUser(true,getActivity());
+
+            makeRefreshNetworkCall();
+
         }
+        else if (requestCode==57121)
+        {
+            makeRefreshNetworkCall();
+        }
+    }
+
+
+
+
+    @Override
+    public void listItemClick() {
+
     }
 
 

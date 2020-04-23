@@ -14,6 +14,7 @@ import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarkerSDS;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
@@ -362,7 +363,14 @@ public class ViewModelMarkets extends AndroidViewModel {
                 @Override
                 public void onFailure(Call<ServiceConfigurationEndPoint> call, Throwable t) {
 
-                    message.setValue("Failed ... please check your network connection !");
+//                    message.setValue("Failed ... please check your network connection !");
+
+
+
+                    dataset.clear();
+                    dataset.add(EmptyScreenDataFullScreen.getOffline());
+                    datasetLive.postValue(dataset);
+
 
                 }
             });

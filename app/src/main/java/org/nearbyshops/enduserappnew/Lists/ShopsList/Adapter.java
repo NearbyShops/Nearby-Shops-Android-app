@@ -9,11 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopMedium;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderCreateShop;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
@@ -42,7 +46,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int VIEW_TYPE_HEADER = 4;
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
-    public static final int VIEW_TYPE_SET_LOCATION_MANUALLY = 7;
+    public static final int VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM = 7;
+    public static final int VIEW_TYPE_SET_LOCATION_MANUALLY = 8;
+    public static final int VIEW_TYPE_CREATE_SHOP = 9;
 
 
 
@@ -78,13 +84,21 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return ViewHolderHeader.create(parent,context);
         }
+        else if(viewType == VIEW_TYPE_CREATE_SHOP)
+        {
+            return ViewHolderCreateShop.create(parent,context,fragment);
+        }
         else if(viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR)
         {
             return LoadingViewHolder.create(parent,context);
         }
         else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
         {
-            return ViewHolderEmptyScreenFullScreen.create(parent,context);
+            return ViewHolderEmptyScreenFullScreen.create(parent,context, fragment);
+        }
+        else if(viewType==VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM)
+        {
+            return ViewHolderEmptyScreenListItem.create(parent,context, fragment);
         }
         else if(viewType==VIEW_TYPE_SET_LOCATION_MANUALLY)
         {
@@ -110,6 +124,15 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(holder instanceof ViewHolderShopMedium)
         {
             ((ViewHolderShopMedium) holder).setItem((Shop) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderCreateShop)
+        {
+            ((ViewHolderCreateShop) holder).setItem((CreateShopData) dataset.get(position));
+
+        }
+        else if(holder instanceof ViewHolderSetLocationManually)
+        {
+            ((ViewHolderSetLocationManually)holder).bindDashboard();
         }
         else if(holder instanceof ViewHolderHorizontalList) {
 
@@ -138,6 +161,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(holder instanceof ViewHolderEmptyScreenFullScreen)
         {
             ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderEmptyScreenListItem)
+        {
+            ((ViewHolderEmptyScreenListItem) holder).setItem((EmptyScreenDataListItem) dataset.get(position));
         }
 
     }
@@ -168,6 +195,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return VIEW_TYPE_SHOP;
         }
+        else if(dataset.get(position) instanceof CreateShopData)
+        {
+            return VIEW_TYPE_CREATE_SHOP;
+        }
         else if(dataset.get(position) instanceof HeaderTitle)
         {
             return VIEW_TYPE_HEADER;
@@ -175,6 +206,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
         {
             return VIEW_TYPE_EMPTY_SCREEN;
+        }
+        else if(dataset.get(position) instanceof EmptyScreenDataListItem)
+        {
+            return VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM;
         }
         else if(dataset.get(position) instanceof Highlights)
         {
@@ -184,8 +219,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return VIEW_TYPE_SET_LOCATION_MANUALLY;
         }
-
-
 
 
         return -1;

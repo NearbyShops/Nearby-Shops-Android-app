@@ -5,10 +5,41 @@ import org.nearbyshops.enduserappnew.R;
 public class EmptyScreenDataListItem {
 
 
+    private String title;
     private String message;
     private String buttonText;
     private String urlForButtonClick;
     private int imageResource;
+
+
+
+    public static EmptyScreenDataListItem getEmptyScreenShopsListMultiMarket()
+    {
+        EmptyScreenDataListItem data = new EmptyScreenDataListItem();
+        data.setTitle("No Shops at your Location");
+//        data.setShowCopyrightInfo(false);
+        data.setMessage("Uh .. oh .. no shops available at your location .. try to change your market ... or explore other markets !");
+        data.setImageResource(R.drawable.ic_barcode);
+        data.setButtonText("Change Market");
+
+        return data;
+    }
+
+
+
+    public static EmptyScreenDataListItem getEmptyScreenShopsListSingleMarket()
+    {
+        EmptyScreenDataListItem data = new EmptyScreenDataListItem();
+        data.setTitle("No Shops at your Location");
+//        data.setShowCopyrightInfo(false);
+        data.setMessage("Uh .. oh .. no shops available at your location .. change your location ... and try again");
+        data.setImageResource(R.drawable.ic_barcode);
+        data.setButtonText("Try Again");
+
+        return data;
+    }
+
+
 
 
     public static EmptyScreenDataListItem getCreateMarketData()
@@ -20,7 +51,6 @@ public class EmptyScreenDataListItem {
 
         return data;
     }
-
 
 
 
@@ -37,6 +67,16 @@ public class EmptyScreenDataListItem {
         return data;
     }
 
+
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public int getImageResource() {
         return imageResource;

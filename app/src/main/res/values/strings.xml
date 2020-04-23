@@ -13,7 +13,7 @@
 
 
 
-    <string name="notice_account_deactivated">Notice :\nYour account is not activated. Please contact support to activate your account.</string>
+    <string name="notice_account_deactivated">Notice :\nYour account is not activated. Please contact Market Support to activate your account.</string>
     <string name="low_balance_message">Alert : Your service is stopped due to low balance in your account. Please add balance to start your service.</string>
 
 

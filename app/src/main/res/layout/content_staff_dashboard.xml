@@ -88,7 +88,7 @@
             android:layout_marginStart="5dp"
             android:paddingBottom="40dp"
             android:paddingTop="10dp"
-            app:srcCompat="@drawable/ic_items_24px"
+            app:srcCompat="@drawable/ic_items_white"
             android:layout_marginTop="10dp"
             android:background="@color/buttonColor"
             android:id="@+id/items_database"

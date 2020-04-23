@@ -14,7 +14,7 @@
 
     <item
         android:id="@+id/bottom_tab_items"
-        android:icon="@drawable/ic_items_24px"
+        android:icon="@drawable/ic_items_white"
         android:title="Items" />
 
 
