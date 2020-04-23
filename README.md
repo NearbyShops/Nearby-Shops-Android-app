@@ -159,10 +159,12 @@ Code Review and Architecture
 
 
 
-#### Commercial Use Permitted
+#### Commercial Use Permitted Under Ethical Restrictions
 
-If you want to build your own commercial e-commerce business using this software. Go ahead you dont need our permission. If you want to build a third party app for our platform and want to sell it yes you can. 
-If there is any other kind of commercial use you can always talk to us. 
+Commercial Use of this Software is permited under certain Ethical Restrictions. Please read more about our 
+restrictions at this link. https://blog.nearbyshops.org/single-market-license/
+
+If you want to build a third party app for our platform and want to sell it yes you can. If there is any other kind of commercial use you can talk to us. 
 
 
 License
