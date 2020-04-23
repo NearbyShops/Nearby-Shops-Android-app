@@ -112,6 +112,7 @@
     <string name="fragment_admin_dashboard_sds_users_string">Users List</string>
     <string name="fragment_sds_admin_text_markets_list">Markets</string>
     <string name="title_delivery_address_list">Delivery Address</string>
+    <string name="change_address">Change Delivery Address</string>
 
 
 </resources>

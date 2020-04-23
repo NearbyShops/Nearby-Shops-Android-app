@@ -362,6 +362,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @Override
     public void onRefresh() {
         makeRequestShopItem(true,true);
+        getCartStats(true,0,true);
     }
 
 
@@ -674,7 +675,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         // clear selected items
 //        listAdapter.selectedItems.clear();
 
-//        getCartStats(true,0,true);
+        getCartStats(true,0,true);
 
 
 
@@ -873,7 +874,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
             listAdapter.cartStats.setItemsInCart(itemsInCartValue);
 
-
+//            getCartStats(true,0,true);
         }
     }
 

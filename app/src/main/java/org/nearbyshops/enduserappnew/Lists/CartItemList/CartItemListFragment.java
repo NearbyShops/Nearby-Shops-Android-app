@@ -192,9 +192,12 @@ public class CartItemListFragment extends Fragment
         }
 
 
+
+
         displayCartStats();
 
 
+        fetchCartStats();
 
 
         return rootView;

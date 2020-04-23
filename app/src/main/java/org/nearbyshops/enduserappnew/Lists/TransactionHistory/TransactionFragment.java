@@ -19,12 +19,15 @@ import com.google.gson.Gson;
 
 
 import org.nearbyshops.enduserappnew.API.TransactionService;
+import org.nearbyshops.enduserappnew.Lists.TransactionHistory.ViewHolders.ViewHolderTransactionDetail;
 import org.nearbyshops.enduserappnew.Model.ModelBilling.Transaction;
 import org.nearbyshops.enduserappnew.Model.ModelBilling.TransactionEndpoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
 import java.util.ArrayList;
@@ -41,7 +44,7 @@ import retrofit2.Response;
  * Created by sumeet on 14/6/17.
  */
 
-public class TransactionFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, Adapter.NotificationsFromAdapter{
+public class TransactionFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, ViewHolderTransactionDetail.ListItemClick {
 
     boolean isDestroyed = false;
 
@@ -145,7 +148,7 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
     void setupRecyclerView()
     {
 
-        listAdapter = new Adapter(dataset,getActivity(),this,this);
+        listAdapter = new Adapter(dataset,getActivity(),this);
         recyclerView.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),1, LinearLayoutManager.VERTICAL,false);
@@ -314,6 +317,15 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
                 }
 
 
+                if(item_count_vehicle==0)
+                {
+
+                    dataset.add(EmptyScreenDataFullScreen.getNoTransactions());
+
+
+                    listAdapter.notifyDataSetChanged();
+                }
+
                 swipeContainer.setRefreshing(false);
             }
 
@@ -326,7 +338,14 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
                     return;
                 }
 
-                showToastMessage("Network Connection Failed !");
+
+
+                dataset.clear();
+                dataset.add(EmptyScreenDataFullScreen.getOffline());
+                listAdapter.notifyDataSetChanged();
+
+
+//                showToastMessage("Network Connection Failed !");
 
                 swipeContainer.setRefreshing(false);
             }
@@ -344,10 +363,6 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-    @Override
-    public void notifyTripRequestSelected() {
-
-    }
 
 
 
@@ -365,11 +380,6 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-
-    @Override
-    public boolean listItemLongClick(View view, Transaction transaction, int position) {
-        return false;
-    }
 
 
 

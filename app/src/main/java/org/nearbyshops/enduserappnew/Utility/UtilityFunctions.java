@@ -159,9 +159,6 @@ public class UtilityFunctions {
 
 
 
-
-
-
     public static void showToastMessage(String message, Context context)
     {
         Toast.makeText(context,message, Toast.LENGTH_SHORT).show();

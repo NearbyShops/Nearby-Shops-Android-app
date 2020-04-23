@@ -28,6 +28,20 @@ public class EmptyScreenDataFullScreen {
 
 
 
+
+    public static EmptyScreenDataFullScreen getNoTransactions()
+    {
+        EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
+        data.setTitle("No Transactions to Show !");
+        data.setShowCopyrightInfo(false);
+        data.setMessage("You you make any money transactions they will appear here !");
+        data.setDrawableResource(R.drawable.ic_receipt_color);
+        
+        return data;
+    }
+
+
+
     public static EmptyScreenDataFullScreen getEmptyScreenShopsListMultiMarket()
     {
         EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();

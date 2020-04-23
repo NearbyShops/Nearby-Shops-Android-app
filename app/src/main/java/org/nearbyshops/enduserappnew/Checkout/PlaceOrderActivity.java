@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,7 +53,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     CartStats cartStats;
     CartStats cartStatsFromNetworkCall;
 
-    TextView addPickAddress;
+    TextView addOrSaveAddress;
     DeliveryAddress selectedAddress;
 
 
@@ -119,8 +118,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
         // findViewByID'// STOPSHIP: 11/6/16
 
-        addPickAddress = findViewById(R.id.pickFromSavedAddresses);
-        addPickAddress.setOnClickListener(this);
+        addOrSaveAddress = findViewById(R.id.pickFromSavedAddresses);
+        addOrSaveAddress.setOnClickListener(this);
 
 
         name = findViewById(R.id.name);
@@ -193,8 +192,6 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
         startActivityForResult(intent,1);
 
-
-
         //startActivity(intent);
     }
 
@@ -213,6 +210,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             if(selectedAddress!=null)
             {
                 addressContainer.setVisibility(View.VISIBLE);
+
+                addOrSaveAddress.setText(R.string.change_address);
 
                 bindDataToViews(selectedAddress);
 
@@ -378,12 +377,12 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
         if(pickFromShopCheck.isChecked())
         {
-            addPickAddress.setText("Pick Address");
+            addOrSaveAddress.setText("Pick Address");
             deliveryInstructions.setText("You need to pick the order from the shop. ");
         }
         else
         {
-            addPickAddress.setText("Pick Delivery Address");
+            addOrSaveAddress.setText("Pick Delivery Address");
             deliveryInstructions.setText("Your order will be delivered to your home at your given address.");
         }
     }
