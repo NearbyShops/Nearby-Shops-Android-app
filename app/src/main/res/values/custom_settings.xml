@@ -4,7 +4,7 @@
 
     <string name="custom_icon">@mipmap/blue_icon</string>
     <string name="custom_url">"http://markets-blr.nearbyshops.org:5021"</string>
-    <string name="multi_market_enabled">false</string>
+    <bool name="multi_market_enabled">false</bool>
 
     <string name="tos_link">https://example.com/tos.html</string>
     <string name="privacy_policy_link">https://example.com/pivacy_policy.html</string>
