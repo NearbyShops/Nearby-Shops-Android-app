@@ -43,8 +43,6 @@ public class PrefLocation {
 
 
 
-
-
     public static void saveLatLonCurrent(double lat,double lon, Context context)
     {
         context = MyApplication.getAppContext();
@@ -94,6 +92,8 @@ public class PrefLocation {
 
 
 
+
+
     // saving longitude
 
     public static void saveLongitude(float longitude, Context context)
@@ -111,8 +111,6 @@ public class PrefLocation {
     }
 
 
-
-
     public static double getLongitude(Context context)
     {
         context = MyApplication.getAppContext();
@@ -120,10 +118,6 @@ public class PrefLocation {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         return (double) sharedPref.getFloat(KEY_LON_CENTER, 0f);
     }
-
-
-
-
 
 
 
@@ -142,9 +136,6 @@ public class PrefLocation {
         prefsEditor.putBoolean(KEY_LOCATION_SET_BY_USER,isLocationSetByUser);
         prefsEditor.apply();
     }
-
-
-
 
 
     public static boolean isLocationSetByUser(Context context)

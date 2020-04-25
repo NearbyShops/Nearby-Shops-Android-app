@@ -19,6 +19,7 @@ import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
@@ -107,7 +108,7 @@ public class ViewHolderCreateShop extends RecyclerView.ViewHolder{
     {
 
 
-        if(PrefLoginGlobal.getUser(context)==null)
+        if(PrefLogin.getUser(context)==null)
         {
 
             Intent intent = new Intent(fragment.getActivity(), Login.class);

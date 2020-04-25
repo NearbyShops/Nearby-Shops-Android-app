@@ -34,9 +34,9 @@ public class EmptyScreenDataFullScreen {
         EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
         data.setTitle("No Transactions to Show !");
         data.setShowCopyrightInfo(false);
-        data.setMessage("You you make any money transactions they will appear here !");
+        data.setMessage("When you make any monetary transactions they will appear here !");
         data.setDrawableResource(R.drawable.ic_receipt_color);
-        
+
         return data;
     }
 

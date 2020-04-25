@@ -25,13 +25,14 @@ public class PrefGeneral {
 
     public static final String SERVICE_URL_NEARBYSHOPS_DEMO = "http://markets-blr.nearbyshops.org:5021";
 
-    public static final String SERVICE_URL_LOCAL_ = "http://167.71.236.77:5000";
+    public static final String SERVICE_URL_LOCAL_ = "http://142.93.219.138:80";
+
 
 
     // for multi-market mode set default service url to null and multi market mode to true
     // for single-market mode set multi-market mode false and set default service url to your api server url
-    public static final String DEFAULT_SERVICE_URL = null;
-    public static final boolean MULTI_MARKET_MODE_ENABLED = true;
+    public static final String DEFAULT_SERVICE_URL = SERVICE_URL_NEARBYSHOPS_DEMO;
+    public static final boolean MULTI_MARKET_MODE_ENABLED = false;
 
 
 

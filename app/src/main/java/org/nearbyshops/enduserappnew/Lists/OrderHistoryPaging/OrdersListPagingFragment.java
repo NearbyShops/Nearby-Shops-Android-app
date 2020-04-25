@@ -134,21 +134,34 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
         if(savedInstanceState==null)
         {
-            makeRefreshNetworkCall();
+//            makeRefreshNetworkCall();
+
+
         }
 
 
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 //        toolbar.setTitle(getString(R.string.app_name));
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+//        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 
 
 
 
 //        viewModelOrders = ViewModelProviders.of(this).get(ViewModelOrders.class);
-        viewModelOrders = new ViewModelOrders(MyApplication.application);
+
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeContainer.setRefreshing(true);
+
+
+                viewModelOrders = new ViewModelOrders(MyApplication.application);
+                setupRecyclerView();
+            }
+        });
+
 
 
 
@@ -164,7 +177,6 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
         }
 
 
-        setupRecyclerView();
         setupSwipeContainer();
 
         setupSlidingLayer();

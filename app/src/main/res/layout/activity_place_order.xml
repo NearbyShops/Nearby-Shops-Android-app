@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -142,7 +143,6 @@
 
                 <TextView
                     android:layout_marginTop="10dp"
-                    android:id="@+id/border_step_two"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/blueGrey800" />
@@ -161,8 +161,8 @@
 
 
 
+
             <TextView
-                android:id="@+id/border_step_two"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="10dp"
@@ -366,16 +366,6 @@
             </LinearLayout>
 
 
-            <!--
-
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ratingBar"
-                android:layout_marginTop="54dp"
-                android:layout_below="@id/totalGroup"
-                android:layout_centerHorizontal="true" />
-    -->
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -401,20 +391,7 @@
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/totalGroup" />
-
-
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/linearLayout"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:layout_marginLeft="20dp"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    android:layout_marginBottom="5dp"-->
-<!--                    android:background="#88000000"-->
-<!--                    android:visibility="gone"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@id/totalGroup" />-->
+                    app:layout_constraintTop_toTopOf="parent"/>
 
 
                 <ProgressBar
