@@ -1,17 +1,10 @@
 <resources>
-    <string name="app_name">Nearby Shops</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_settings">Settings</string>
     <string name="dialog_dismissed">Dismissed !</string>
     <string name="action_settings">Settings</string>
-
-    <string name="tos_link">https://example.com/tos.html</string>
-    <string name="privacy_policy_link">https://example.com/pivacy_policy.html</string>
-    <string name="faqs_link">https://example.com/faq_link.html</string>
-
-
 
     <string name="notice_account_deactivated">Notice :\nYour account is not activated. Please contact Market Support to activate your account.</string>
     <string name="low_balance_message">Alert : Your service is stopped due to low balance in your account. Please add balance to start your service.</string>
