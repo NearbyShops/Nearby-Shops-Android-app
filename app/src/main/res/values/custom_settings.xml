@@ -3,7 +3,7 @@
     <string name="app_name">Nearby Shops</string>
 
     <string name="custom_icon">@mipmap/blue_icon</string>
-    <string name="custom_url">"https://independencia.xyz"</string>
+    <string name="custom_url">"http://markets-blr.nearbyshops.org:5021"</string>
     <string name="multi_market_enabled">false</string>
 
     <string name="tos_link">https://example.com/tos.html</string>
