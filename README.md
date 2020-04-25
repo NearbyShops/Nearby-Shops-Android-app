@@ -170,16 +170,9 @@ If you want to build a third party app for our platform and want to sell it yes 
 License
 =======
 
-Copyright (c) 2020 Nearby Shops
+Copyright (c) 2020 Nearby Shops 
 
-
-           GNU GENERAL PUBLIC LICENSE
-                       Version 3, 29 June 2007
-
- Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
- 
+Nearby Shops Commercial License : For terms of Use please read full version of our License
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
