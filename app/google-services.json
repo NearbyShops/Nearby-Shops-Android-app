@@ -1,34 +1,63 @@
 {
   "project_info": {
-    "project_number": "902367788093",
-    "firebase_url": "https://mimandado-6b39d.firebaseio.com",
-    "project_id": "mimandado-6b39d",
-    "storage_bucket": "mimandado-6b39d.appspot.com"
+    "project_number": "462976306421",
+    "firebase_url": "https://nearbyshops-f7b77.firebaseio.com",
+    "project_id": "nearbyshops-f7b77",
+    "storage_bucket": "nearbyshops-f7b77.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:902367788093:android:67b860f71ad6e893c3fe54",
+        "mobilesdk_app_id": "1:462976306421:android:a4c6e07f8dfca3156bc9bc",
         "android_client_info": {
           "package_name": "org.nearbyshops.enduserappnew"
         }
       },
       "oauth_client": [
         {
-          "client_id": "902367788093-ft9ddqs35p2hia4kt8602qdh2p0dbku1.apps.googleusercontent.com",
+          "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAaE_5XUq6tvPm2MZENYO23OKag3St21wc"
+          "current_key": "AIzaSyCeYzoOQCI66drZP15UMPgNrCfHgCNWM34"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "902367788093-ft9ddqs35p2hia4kt8602qdh2p0dbku1.apps.googleusercontent.com",
+              "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462976306421:android:b1b47867ce56e0e76bc9bc",
+        "android_client_info": {
+          "package_name": "org.nearbyshops.shopkeeperappnew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeYzoOQCI66drZP15UMPgNrCfHgCNWM34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
