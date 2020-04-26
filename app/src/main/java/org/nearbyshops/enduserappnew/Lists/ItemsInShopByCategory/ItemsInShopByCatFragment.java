@@ -110,6 +110,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+    @BindView(R.id.cart_stats) LinearLayout cartStatsBlock;
 
     private ArrayList<Object> dataset = new ArrayList<>();
 
@@ -743,15 +744,21 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
+
+
+
     @Override
     public void notifyItemImageClick(Item item) {
+
+//        showToastMessage("Item Image Click !");
 
         Intent intent = new Intent(getActivity(), ItemDetail.class);
 //        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
 
         String itemJson = UtilityFunctions.provideGson().toJson(item);
         intent.putExtra(ItemDetailFragment.TAG_JSON_STRING,itemJson);
-        getActivity().startActivity(intent);
+        startActivity(intent);
     }
 
 
@@ -780,9 +787,11 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         if(listAdapter.cartStats.getCartID()==0)
         {
             System.out.println("Cart ID Zero !");
-            getCartStats(true,0,true);
+//            getCartStats(true,0,true);
         }
 
+
+        fetchCartStats();
     }
 
 
@@ -793,93 +802,30 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @Override
     public void setCartTotal(double cartTotalValue, boolean save) {
 
-
-
-//        cartStatsBlock.setVisibility(View.VISIBLE);
-
-
-
-//        cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.valueOf(cartTotalValue));
-
         cartTotal.setText(PrefGeneral.getCurrencySymbol(getActivity()) + " " + UtilityFunctions.refinedString(cartTotalValue));
 
 
         if(save)
         {
-//            Shop shop = PrefShopHome.getShopDetails(getActivity());
-//
-//            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
-//            cartStats.setCart_Total(cartTotalValue);
-//            listAdapter.cartStatsMap.put(shop.getShopID(),cartStats);
-
             listAdapter.cartStats.setCart_Total(cartTotalValue);
         }
-        else
-        {
-
-//            if(listAdapter.cartStats.getCartID()==0)
-//            {
-//                getCartStats(true,0,true);
-//            }
-
-        }
-
-
-
-
     }
-
-
-
-
-
 
 
 
     @Override
     public void setItemsInCart(int itemsInCartValue, boolean save) {
 
-
-//        if(itemsInCartValue==0)
-//        {
-//            cartStatsBlock.setVisibility(View.GONE);
-//        }
-//        else
-//        {
-//            cartStatsBlock.setVisibility(View.VISIBLE);
-//        }
-
-
-
-//        itemsInCart.setText(String.valueOf(itemsInCartValue) + " " + "Items in Cart");
         itemsInCart.setText(itemsInCartValue + " " + "Items");
-
-
-
-
-//        if(itemsInCartValue==1 && listAdapter.cartStats.getCartID()==0)
-//        {
-//            getCartStats(true,0,true);
-//        }
-
 
         if(save)
         {
-
-//            Shop shop = PrefShopHome.getShopDetails(getActivity());
-
-//            CartStats cartStats = listAdapter.cartStatsMap.get(shop.getShopID());
-//            cartStats.setItemsInCart(itemsInCartValue);
-//            listAdapter.cartStatsMap.put(shop.getShopID(),cartStats);
-
             listAdapter.cartStats.setItemsInCart(itemsInCartValue);
-
-//            getCartStats(true,0,true);
         }
     }
 
 
-    @BindView(R.id.cart_stats) LinearLayout cartStatsBlock;
+
 
 
 
@@ -957,15 +903,14 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
+
+
     @Inject
     CartItemService cartItemService;
 
     @Inject
     CartStatsService cartStatsService;
-
-
-
-
 
 
 
@@ -1132,6 +1077,69 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         });
 
 
+    }
+
+
+
+    void fetchCartStats()
+    {
+
+        Shop shop = PrefShopHome.getShop(getActivity());
+        User endUser = PrefLogin.getUser(getActivity());
+
+
+        Call<List<CartStats>> listCall = cartStatsService
+                .getCart(endUser.getUserID(), null,shop.getShopID(),
+                        true,null,null);
+
+
+
+        listCall.enqueue(new Callback<List<CartStats>>() {
+            @Override
+            public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
+
+//                listAdapter.cartStatsMap.clear();
+
+
+
+
+                if(response.isSuccessful() && response.body()!=null)
+                {
+                    for(CartStats cartStats: response.body())
+                    {
+
+                        listAdapter.cartStats.setItemsInCart(cartStats.getItemsInCart());
+                        listAdapter.cartStats.setCart_Total(cartStats.getCart_Total());
+                        listAdapter.cartStats.setShopID(cartStats.getShopID());
+                        listAdapter.cartStats.setCartID(cartStats.getCartID());
+                        listAdapter.cartStats.setShop(cartStats.getShop());
+
+
+                        setItemsInCart(cartStats.getItemsInCart(),false);
+                        setCartTotal(cartStats.getCart_Total(),false);
+
+                    }
+                }
+                else
+                {
+
+
+                    listAdapter.cartStats.setItemsInCart(0);
+                    listAdapter.cartStats.setCart_Total(0);
+                    listAdapter.cartStats.setShopID(shop.getShopID());
+
+                    setItemsInCart(0,false);
+                    setCartTotal(0,false);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<CartStats>> call, Throwable t) {
+
+                Toast.makeText(getActivity()," Unsuccessful !",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

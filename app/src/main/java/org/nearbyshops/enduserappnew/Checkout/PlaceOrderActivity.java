@@ -196,6 +196,9 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     }
 
 
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -329,7 +332,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
             freeDeliveryInfo.setText("Free delivery is offered above the order of " + PrefGeneral.getCurrencySymbol(this) + " " + cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery());
 
 
-            subTotal.setText("Item Total: " + PrefGeneral.getCurrencySymbol(this) + " " + cartStats.getCart_Total());
+            subTotal.setText("Item Total: " + PrefGeneral.getCurrencySymbol(this) + " " + UtilityFunctions.refinedStringWithDecimals(cartStats.getCart_Total()));
             deliveryCharges.setText("Delivery Charges : N/A");
 
             //total.setText("Total : " + cartStats.getCart_Total()+ );
@@ -339,6 +342,8 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                 total.setText("Net Payable : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total()));
                 deliveryCharges.setText("Delivery Charges : "+ PrefGeneral.getCurrencySymbol(this) + " " + 0);
             }
+
+
 
 
 
@@ -356,7 +361,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                 {
 
                     deliveryCharges.setText("Delivery Charges : Zero " + "(Delivery is free above the order of : " + PrefGeneral.getCurrencySymbol(this) + " " + cartStatsFromNetworkCall.getShop().getBillAmountForFreeDelivery() + " )");
-                    total.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total()));
+                    total.setText("Total : " + PrefGeneral.getCurrencySymbol(this) + " " + String.format( "%.2f", cartStats.getCart_Total())) ;
                 }
 
             }

@@ -67,6 +67,12 @@ public class UtilityFunctions {
     }
 
 
+    public static String refinedStringWithDecimals(double number)
+    {
+        return String.format("%.2f",number);
+    }
+
+
 
 
 

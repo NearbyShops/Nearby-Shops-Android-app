@@ -96,9 +96,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
     @BindView(R.id.progress_bar) ProgressBar progressBar;
     @BindView(R.id.item_total) TextView itemTotalText;
 
-//    @BindView(R.id.label) TextView label;
-
-
 
 
 
@@ -186,15 +183,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                             if(cartItem==null)
                             {
 
-
-
-//                                if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
-//                                {
-//                                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
-//                                }
-
-
-
                                 itemsInCart = cartStats.getItemsInCart();
                                 if(fragment instanceof ListItemClick)
                                 {
@@ -204,13 +192,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                             }else
                             {
-
-//                                if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
-//                                {
-//                                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()-1) + " " + "Items in Cart");
-////                                        addToCartText.setBackgroundColor(ContextCompat.getColor(context,R.color.deepOrange900));
-//                                }
-
 
                                 itemsInCart = cartStats.getItemsInCart()-1;
                                 if(fragment instanceof ListItemClick)
@@ -226,12 +207,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                             if(cartItem==null)
                             {
                                 // no shop exist
-
-
-//                                if(fragment instanceof ItemsInShopByCatFragmentDeprecated)
-//                                {
-//                                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart() + 1) + " " + "Items in Cart");
-//                                }
 
 
                                 itemsInCart = cartStats.getItemsInCart()+1;
@@ -251,8 +226,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                                 if(fragment instanceof ListItemClick)
                                 {
-//                                    ((ItemsInShopByCatFragmentDeprecated)fragment).itemsInCart.setText(String.valueOf(cartStats.getItemsInCart()) + " " + "Items in Cart");
-
                                     ((ListItemClick) fragment).setItemsInCart(cartStats.getItemsInCart(),false);
 
                                 }
@@ -505,6 +478,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+
+
+
     @OnClick(R.id.item_image)
     void itemImageClick()
     {
@@ -513,7 +489,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
         if(item!=null && fragment instanceof ListItemClick)
         {
             ((ListItemClick) fragment).notifyItemImageClick(item);
-
         }
     }
 
@@ -942,6 +917,26 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+    @OnClick(R.id.add_label)
+    void addClick()
+    {
+
+        int availableItems = shopItem.getAvailableItemQuantity();
+
+
+        if (availableItems==0) {
+            // item out of stock
+            showMessage("Item Out of Stock !");
+            return;
+        }
+
+        itemQuantityText.setText(String.valueOf(1));
+        addToCartClick();
+    }
+
+
+
+
 
 
 
@@ -952,23 +947,20 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+
+    private void showMessage(String message)
+    {
+        Toast.makeText(context,message, Toast.LENGTH_SHORT).show();
+    }
+
+
+
     private void showLoginDialog()
     {
-
-//        if(context instanceof AppCompatActivity)
-//        {
-//            FragmentManager fm =  ((AppCompatActivity)context).getSupportFragmentManager();
-//            LoginDialog loginDialog = new LoginDialog();
-//            loginDialog.show(fm,"serviceUrl");
-//        }
-
-
-
         if(fragment instanceof ListItemClick)
         {
             ((ListItemClick) fragment).showLogin();
         }
-
     }
 
 
@@ -976,14 +968,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-
-
-    @OnClick(R.id.add_label)
-    void addClick()
-    {
-        itemQuantityText.setText(String.valueOf(1));
-        addToCartClick();
-    }
 
 
 
