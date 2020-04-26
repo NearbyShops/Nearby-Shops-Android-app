@@ -13,8 +13,8 @@
     <string name="content_shop_home_for_staff_text_pick_from_shop_text">Pick From Shop Inventory</string>
     <string name="content_shop_home_for_staff_text_orders_history_text">Order History</string>
     <string name="activity_place_order_app_name_text">Place Order</string>
-    <string name="list_item_market_service_name_text">Farmers Garden</string>
-    <string name="list_item_market_address_text">Begumpet bazaar of the lal baza</string>
+    <string name="list_item_market_service_name_text" translatable="false">Farmers Garden</string>
+    <string name="list_item_market_address_text" translatable="false">Begumpet bazaar of the lal baza</string>
     <string name="list_item_market_distance_text">Distance : -</string>
     <string name="list_item_market_rating_text">4.1</string>
     <string name="list_item_market_rating_count_text">( 23 Ratings)</string>
@@ -137,11 +137,11 @@
     <string name="list_item_empty_screen_message_text">Message</string>
     <string name="list_item_empty_screen_button_text">button</string>
     <string name="list_item_market_current_log_out_button_text">| Log Out</string>
-    <string name="list_item_market_current_market_name_text">Farmers Garden</string>
-    <string name="list_item_market_current_address_text">Begumpet bazaar of the lal baza</string>
+    <string name="list_item_market_current_market_name_text" translatable="false">Farmers Garden</string>
+    <string name="list_item_market_current_address_text" translatable="false">Begumpet bazaar of the lal baza</string>
     <string name="list_item_market_current_description_text">Buy latest electronics, tech products from our market.</string>
     <string name="activity_pick_delivery_radius_label_instructions_text">Long Press to select location and use slider to adjust Radius.</string>
-    <string name="activity_pick_delivery_radius_copyrights_map_text">\u00a9 OpenMapTiles \u00a9 OpenStreetMap contributors</string>
+    <string name="activity_pick_delivery_radius_copyrights_map_text" translatable="false">\u00a9 OpenMapTiles \u00a9 OpenStreetMap contributors</string>
     <string name="activity_pick_delivery_radius_label_text"> - </string>
     <string name="fragment_market_detail_market_name_text">Market Name</string>
     <string name="fragment_market_detail_rating_avg_text"> - </string>
@@ -205,7 +205,7 @@
     <string name="fragment_orders_new_text_sort_text">Filter / Sort</string>
     <string name="fragment_orders_new_empty_screen_message_text">No orders to show here ! If the filters are turned on try turning them off !</string>
     <string name="fragment_orders_new_button_try_again_text">Try Again</string>
-    <string name="list_item_shop_item_layout_shopName_text">D-Mart, Green hills</string>
+    <string name="list_item_shop_item_layout_shopName_text" translatable="false">D-Mart, Green hills</string>
     <string name="list_item_shop_item_layout_indicator_pick_from_shop_text">Pick from shop</string>
     <string name="list_item_shop_item_layout_indicator_home_delivery_text">Home Delivery</string>
     <string name="list_item_shop_item_layout_deliveryCharge_text">Delivery : </string>
@@ -228,10 +228,10 @@
     <string name="list_item_filter_users_clear_filter_roles_text"> Clear </string>
     <string name="list_item_filter_users_role_end_user_text">EndUser</string>
     <string name="list_item_filter_users_role_delivery_text">Delivery</string>
-    <string name="list_item_filter_users_role_shop_staff_text">ShopStaff</string>
+    <string name="list_item_filter_users_role_shop_staff_text" translatable="false">ShopStaff</string>
     <string name="list_item_filter_users_role_admin_text">Admin</string>
-    <string name="list_item_filter_users_role_staff_text">Staff</string>
-    <string name="list_item_filter_users_role_shop_admin_text">ShopAdmin</string>
+    <string name="list_item_filter_users_role_staff_text" translatable="false">Staff</string>
+    <string name="list_item_filter_users_role_shop_admin_text" translatable="false">ShopAdmin</string>
     <string name="fragment_carts_list_app_name_text">Cart</string>
     <string name="fragment_carts_list_empty_screen_message_text">You have not added any items in your cart ! When you add items to cart they will appear here !</string>
     <string name="fragment_carts_list_button_try_again_text">Try Again</string>
@@ -285,8 +285,8 @@
     <string name="fragment_item_image_slider_title_text">Title</string>
     <string name="fragment_item_image_slider_description_text">Description</string>
     <string name="fragment_item_image_slider_copyrights_text">Copyrigts</string>
-    <string name="fragment_edit_staff_permissions_permit_create_update_item_cat_text">Create Update Item Categories</string>
-    <string name="fragment_edit_staff_permissions_permit_create_update_items_text">Create Update Items</string>
+    <string name="fragment_edit_staff_permissions_permit_create_update_item_cat_text" translatable="false">Create Update Item Categories</string>
+    <string name="fragment_edit_staff_permissions_permit_create_update_items_text" translatable="false">Create Update Items</string>
     <string name="fragment_edit_staff_permissions_permit_enable_shops_text">Enable / Disable Shops</string>
     <string name="fragment_edit_staff_permissions_designation_hint">Enter Designation</string>
     <string name="fragment_edit_staff_permissions_saveButton_text">Save</string>
