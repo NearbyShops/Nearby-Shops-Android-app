@@ -46,7 +46,7 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
     {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_address,parent,false);
+                .inflate(R.layout.list_item_address_new,parent,false);
 
         return new ViewHolderDeliveryAddress(view,context,fragment);
     }
