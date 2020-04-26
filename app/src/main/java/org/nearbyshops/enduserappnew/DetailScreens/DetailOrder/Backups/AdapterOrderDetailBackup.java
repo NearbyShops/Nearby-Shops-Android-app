@@ -243,7 +243,7 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
 //            OrderStats orderStats = order.getOrderStats();
             Shop shop = order.getShop();
 
-            holder.orderID.setText("Order ID : " + order.getOrderID());
+            holder.orderID.setText(context.getString(R.string.order_id) + ": " + order.getOrderID());
             holder.dateTimePlaced.setText("" + order.getDateTimePlaced().toLocaleString());
 
 
@@ -252,13 +252,13 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
             holder.deliveryAddress.setText(deliveryAddress.getDeliveryAddress() + ",\n"
                     + deliveryAddress.getCity() + " - " + deliveryAddress.getPincode());
 
-            holder.deliveryAddressPhone.setText("Phone : " + deliveryAddress.getPhoneNumber());
+            holder.deliveryAddressPhone.setText(context.getString(R.string.phone) + ": " + deliveryAddress.getPhoneNumber());
 
 
 //            holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
-            holder.numberOfItems.setText(order.getItemCount() + " Items");
+            holder.numberOfItems.setText(order.getItemCount() + " "+ context.getString(R.string.items));
 //            holder.orderTotal.setText("| Total : " + String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + String.valueOf(orderStats.getItemTotal() + order.getDeliveryCharges()));
-            holder.orderTotal.setText("| Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f",order.getNetPayable()));
+            holder.orderTotal.setText("| "+context.getString(R.string.total)+" : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f",order.getNetPayable()));
 
 
             String status = "";
@@ -271,7 +271,7 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
                 holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context, R.color.orangeDark));
-                holder.isPickFromShop.setText("Pick from Shop");
+                holder.isPickFromShop.setText(context.getString(R.string.pick_from_shop));
 
                 holder.deliveryTypeDescription.setBackgroundColor(ContextCompat.getColor(context, R.color.orangeDark));
                 holder.deliveryTypeDescription.setText(context.getString(R.string.delivery_type_description_pick_from_shop));
@@ -283,7 +283,7 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
                 holder.isPickFromShop.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
-                holder.isPickFromShop.setText("Home Delivery");
+                holder.isPickFromShop.setText(context.getString(R.string.home_delivery));
 
 
                 holder.deliveryTypeDescription.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
@@ -294,7 +294,7 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
 
-            holder.currentStatus.setText("Current Status : " + status);
+            holder.currentStatus.setText(context.getString(R.string.current_status)+": " + status);
 
 
 
@@ -342,8 +342,9 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
                         .placeholder(placeholder)
                         .into(holder.shopLogo);
 
-                holder.delivery.setText("Delivery : " + PrefGeneral.getCurrencySymbol(context) + " " +  String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
-                holder.distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
+                holder.delivery.setText(context.getString(R.string.delivery) + ": " + PrefGeneral.getCurrencySymbol(context) + " " +  String.format( "%.2f", shop.getDeliveryCharges()) +
+                        " "+ context.getString(R.string.per_order));
+                holder.distance.setText(context.getString(R.string.distance) + ": " + String.format( "%.2f", shop.getRt_distance()) + " Km");
 
 
 
@@ -356,7 +357,7 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
                 else
                 {
                     holder.rating.setText(String.format("%.2f",shop.getRt_rating_avg()));
-                    holder.rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
+                    holder.rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " "+context.getString(R.string.ratings)+")");
                 }
 
 
@@ -444,6 +445,7 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private void bindOrderItem(ViewHolderOrderItem holder, int position)
     {
+        // ? Delete these lines ?
         if(!(dataset.get(position) instanceof OrderItem))
         {
 //            return;
@@ -453,13 +455,19 @@ class AdapterOrderDetailBackup extends RecyclerView.Adapter<RecyclerView.ViewHol
         OrderItem orderItem = (OrderItem) dataset.get(position);
         Item item = orderItem.getItem();
 
-        holder.itemID.setText("Item ID : " + orderItem.getItemID());
+        holder.itemID.setText(context.getString(R.string.item_id) + " : " + orderItem.getItemID());
 
         holder.itemName.setText(item.getItemName());
-        holder.quantity.setText("Item Quantity : " + orderItem.getItemQuantity() + " "  + item.getQuantityUnit());
-        holder.itemPrice.setText("Item Price : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() + " per "  + item.getQuantityUnit());
+        holder.quantity.setText(context.getString(R.string.item_quantity) +": " +
+                orderItem.getItemQuantity() + " "  + item.getQuantityUnit());
+        holder.itemPrice.setText(context.getString(R.string.item_price) +" : " +
+                        PrefGeneral.getCurrencySymbol(context) + " " +
+                        orderItem.getItemPriceAtOrder() + " "+
+                        context.getString(R.string.per) + " " + item.getQuantityUnit());
 
-        holder.itemTotal.setText("Item Total : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() * orderItem.getItemQuantity());
+        holder.itemTotal.setText(context.getString(R.string.item_total) + " : " +
+                PrefGeneral.getCurrencySymbol(context) + " " +
+                orderItem.getItemPriceAtOrder() * orderItem.getItemQuantity());
 
 
 
