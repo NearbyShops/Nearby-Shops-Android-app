@@ -108,4 +108,37 @@
     <string name="change_address">Change Delivery Address</string>
 
 
+    <string name="current_location_custom">Current Location - Set by you</string>
+    <string name="current_location_automated">Current Location - Detected Automatically</string>
+
+    <string name="order_id">Order ID</string>
+    <string name="phone">Phone</string>
+    <string name="items">Items</string>
+    <string name="total">Total</string>
+    <string name="pick_from_shop">Pick from Shop</string>
+    <string name="delivery">Delivery</string>
+    <string name="current_status">Current Status</string>
+    <string name="home_delivery">Home Delivery</string>
+    <string name="distance">Distance</string>
+    <string name="per_order">per Order</string>
+    <string name="item_id">Item ID</string>
+    <string name="item_quantity">Item Quantity</string>
+    <string name="item_price">Item Price</string>
+    <string name="per">per</string>
+    <string name="item_total">Item Total</string>
+    <string name="ratings">Ratings</string>
+    <string name="get_shop_details">\Please wait ... getting shop details !\</string>
+    <string name="create_shop">\Create your Shop !\</string>
+    <string name="become_shop_seller">\Do you want to Create your Shop and become a seller !\</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="shop_dashboard">Shop Dashboard</string>
+    <string name="access_shop">Press here to access the shop dashboard !</string>
+    <string name="staff_dashboard">Shop Staff Dashboard</string>
+    <string name="access_staff">Press here to access shop dashboard !</string>
+    <string name="delivery_dashboard">Delivery Dashboard</string>
+    <string name="access_delivery">Press here to access the Delivery dashboard !</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="access_admin">Press here to access the admin dashboard !</string>
 </resources>
