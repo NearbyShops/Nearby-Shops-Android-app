@@ -306,8 +306,8 @@
     <string name="content_edit_item_image_fragment_imageOrder_hint">Image Order</string>
     <string name="content_edit_item_image_fragment_saveButton_text">Save</string>
     <string name="fragment_service_indicator_status_text"> - </string>
-    <string name="fragment_service_indicator_market_name_text">Farmer\'s Garden</string>
-    <string name="fragment_service_indicator_market_city_text">Hyderabad</string>
+    <string name="fragment_service_indicator_market_name_text" translatable="false">Farmer\'s Garden</string>
+    <string name="fragment_service_indicator_market_city_text" translatable="false">Hyderabad</string>
     <string name="content_staff_dashboard_header_items_text">Shops and Items</string>
     <string name="content_staff_dashboard_text_shop_approvals_text">Shops Database</string>
     <string name="content_staff_dashboard_text_add_items_text">Items Database</string>
@@ -331,9 +331,9 @@
     <string name="content_shop_admin_home_header_text">Shop Home</string>
     <string name="content_shop_admin_home_current_dues_text">Balance : \u20B9 0</string>
     <string name="content_shop_admin_home_credit_limit_text">Minimum balance required : \u20B9 0</string>
-    <string name="content_shop_admin_home_label_text">Nearby Shops</string>
-    <string name="content_shop_admin_home_website_url_text">https://nearbyshops.org</string>
-    <string name="content_shop_admin_home_faqs_link_text">FAQs</string>
+    <string name="content_shop_admin_home_label_text" translatable="false">Nearby Shops</string>
+    <string name="content_shop_admin_home_website_url_text" translatable="false">https://nearbyshops.org</string>
+    <string name="content_shop_admin_home_faqs_link_text" translatable="false">FAQs</string>
     <string name="content_shop_admin_home_contact_support_link_text">Contact Support</string>
     <string name="content_shop_admin_home_about_us_link_text">About Us</string>
     <string name="content_shop_admin_home_credits_link_text">Credits</string>
@@ -401,7 +401,7 @@
     <string name="fragment_profile_current_dues_text">You Owe : \u20B9 3023</string>
     <string name="fragment_profile_credit_limit_text">Your Credit Limit : \u20B9 5000</string>
     <string name="fragment_profile_label_login_text">Logout</string>
-    <string name="list_item_market_type_small_market_name_text">Farmers Garden</string>
+    <string name="list_item_market_type_small_market_name_text" translatable="false">Farmers Garden</string>
     <string name="list_item_market_type_small_market_city_text">Pune</string>
     <string name="content_delivery_address_addNewAddress_text">Add new address</string>
     <string name="list_item_order_item_order_detail_item_id_text">Item ID : 234</string>
