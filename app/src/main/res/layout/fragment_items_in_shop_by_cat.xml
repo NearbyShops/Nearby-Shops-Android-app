@@ -308,7 +308,7 @@
             android:textSize="15sp"
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
-            android:text="View Cart"
+            android:text="@string/fragment_items_in_shop_by_cat_view_cart_text_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
 
