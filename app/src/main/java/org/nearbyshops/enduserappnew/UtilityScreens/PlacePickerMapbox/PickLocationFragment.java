@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.PlacePickerMapbox;
+package org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox;
 
 import android.os.Bundle;
 import android.view.Gravity;

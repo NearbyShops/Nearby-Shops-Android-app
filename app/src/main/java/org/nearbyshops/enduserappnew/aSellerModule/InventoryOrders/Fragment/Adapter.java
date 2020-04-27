@@ -53,6 +53,11 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
 
+
+
+
+
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -88,9 +93,6 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         return null;
     }
-
-
-
 
 
     @Override

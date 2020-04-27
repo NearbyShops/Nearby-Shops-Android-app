@@ -397,12 +397,6 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
     }
 
 
-
-
-
-
-
-
     private void showToastMessage(String message)
     {
         if(getActivity()!=null)

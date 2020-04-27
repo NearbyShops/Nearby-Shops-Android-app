@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.PlacePickerGoogleMaps;
+package org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps;
 
 import android.os.Bundle;
 

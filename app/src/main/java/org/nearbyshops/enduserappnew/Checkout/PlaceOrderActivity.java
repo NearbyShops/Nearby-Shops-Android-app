@@ -401,7 +401,6 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     void placeOrderClick()
     {
 
-
         if(!pickFromShopCheck.isChecked() && !homeDelieryCheck.isChecked())
         {
             showToastMessage("Please select delivery type !");

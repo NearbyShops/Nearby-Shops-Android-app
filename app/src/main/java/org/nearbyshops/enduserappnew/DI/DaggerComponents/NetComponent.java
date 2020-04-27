@@ -10,7 +10,7 @@ import org.nearbyshops.enduserappnew.HomeBackup;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.Login.LoginGlobalUsingPasswordFragment;
 import org.nearbyshops.enduserappnew.Login.LoginLocalUsingOTPFragmentNew;
-import org.nearbyshops.enduserappnew.PlacePickerGoogleMaps.PlacePickerWithMapFragment;
+import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.PlacePickerWithMapFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.BackupViewHolderMarketSmall1Mar20;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.zHighlightSlider.ViewHolders;
+package org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.ViewHolders;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.zHighlightSlider.Model.TutorialStep;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model.TutorialStep;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

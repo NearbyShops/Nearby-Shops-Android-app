@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.zHighlightSlider;
+package org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider;
 
 import android.content.Context;
 import android.view.ViewGroup;
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import org.nearbyshops.enduserappnew.zHighlightSlider.Model.HighlightItem;
-import org.nearbyshops.enduserappnew.zHighlightSlider.Model.TutorialStep;
-import org.nearbyshops.enduserappnew.zHighlightSlider.ViewHolders.ViewHolderHighlight;
-import org.nearbyshops.enduserappnew.zHighlightSlider.ViewHolders.ViewHolderTutorialStep;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model.HighlightItem;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model.TutorialStep;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.ViewHolders.ViewHolderHighlight;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.ViewHolders.ViewHolderTutorialStep;
 
 import java.util.List;
 

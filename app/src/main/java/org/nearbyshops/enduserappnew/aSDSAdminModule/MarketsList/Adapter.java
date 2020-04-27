@@ -20,7 +20,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrd
 /**
  * Created by sumeet on 13/6/16.
  */
-class AdapterPaged extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
+class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
 
 
 
@@ -43,7 +43,7 @@ class AdapterPaged extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
 
 
 
-    public AdapterPaged(Context context, Fragment fragment) {
+    public Adapter(Context context, Fragment fragment) {
 
         super(DIFF_CALLBACK_OBJECT);
 

@@ -93,7 +93,7 @@
 
 
 
-        <activity android:name=".PlacePickerGoogleMaps.GooglePlacePicker"/>
+        <activity android:name=".UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker"/>
 
         <activity android:name=".aSellerModule.DashboardDeliveryGuy.DeliveryHome"/>
 
@@ -135,7 +135,7 @@
         <activity android:name=".Lists.UsersList.UsersList" />
         <activity android:name=".Lists.DeliveryAddress.DeliveryAddressActivity" />
         <activity android:name=".EditDataScreens.EditDeliveryAddress.EditDeliveryAddress" />
-        <activity android:name=".PlacePickerMapbox.PickLocation" />
+        <activity android:name=".UtilityScreens.PlacePickerMapbox.PickLocation" />
         <activity android:name=".Lists.CartItemList.CartItemList" />
         <activity android:name=".Checkout.PlaceOrderActivity" />
         <activity android:name=".DetailScreens.DetailMarket.MarketDetail" />
@@ -155,7 +155,7 @@
 
 <!--        <activity android:name=".aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat" />-->
 <!--        <activity android:name=".aSellerModule.ItemsInShopSeller.ItemsInShop" />-->
-        <activity android:name=".PlacePickerMapbox.PlacePickerWithRadius.PickDeliveryRange" />
+        <activity android:name=".UtilityScreens.PlacePickerMapbox.PlacePickerWithRadius.PickDeliveryRange" />
 <!--        <activity android:name=".aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery" />-->
 <!--        <activity android:name=".aSellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory" />-->
 <!--        <activity android:name=".aSellerModule.QuickStockEditor.QuickStockEditor" />-->

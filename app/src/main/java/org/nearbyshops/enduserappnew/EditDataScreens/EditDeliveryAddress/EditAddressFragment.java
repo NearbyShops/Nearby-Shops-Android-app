@@ -21,7 +21,7 @@ import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
-import org.nearbyshops.enduserappnew.PlacePickerMapbox.PickLocation;
+import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PickLocation;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 //import org.nearbyshops.enduserappnew.LocationPicker.PickLocation;
@@ -99,7 +99,7 @@ public class EditAddressFragment extends Fragment {
 
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         current_mode = getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY,MODE_ADD);

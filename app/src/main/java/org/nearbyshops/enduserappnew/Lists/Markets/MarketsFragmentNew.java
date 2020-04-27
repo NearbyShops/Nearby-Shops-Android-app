@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
-import org.nearbyshops.enduserappnew.PlacePickerGoogleMaps.GooglePlacePicker;
+import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;

@@ -17,7 +17,7 @@ import org.nearbyshops.enduserappnew.R;
 import butterknife.ButterKnife;
 
 
-public class MarketsListPaging extends AppCompatActivity {
+public class MarketsList extends AppCompatActivity {
 
 
 
@@ -37,7 +37,7 @@ public class MarketsListPaging extends AppCompatActivity {
         boolean filterByShopID = false;
 
 
-        if(getIntent().getBooleanExtra(MarketsListPaging.IS_FILTER_BY_SHOP,false))
+        if(getIntent().getBooleanExtra(MarketsList.IS_FILTER_BY_SHOP,false))
         {
             filterByShopID = true;
         }

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.PlacePickerMapbox.PlacePickerWithRadius;
+package org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PlacePickerWithRadius;
 
 import android.content.Intent;
 import android.graphics.Color;

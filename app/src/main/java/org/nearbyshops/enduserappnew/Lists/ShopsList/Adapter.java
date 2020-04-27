@@ -21,8 +21,8 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmp
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
-import org.nearbyshops.enduserappnew.zHighlightSlider.AdapterHighlights;
-import org.nearbyshops.enduserappnew.zHighlightSlider.Model.Highlights;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.AdapterHighlights;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model.Highlights;
 
 import java.util.List;
 

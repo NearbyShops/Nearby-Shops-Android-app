@@ -26,8 +26,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.PlacePickerGoogleMaps.GooglePlacePicker;
-import org.nearbyshops.enduserappnew.PlacePickerMapbox.PickLocation;
+import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -37,7 +36,6 @@ import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
@@ -49,10 +47,8 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderCre
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
-import org.nearbyshops.enduserappnew.zHighlightSlider.Model.Highlights;
 
 import retrofit2.Call;
 import retrofit2.Callback;

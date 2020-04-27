@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.zHighlightSlider.Model;
+package org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model;
 
 import java.util.ArrayList;
 import java.util.List;

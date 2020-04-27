@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.zHighlightSlider.ViewHolders;
+package org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.ViewHolders;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 
 
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.zHighlightSlider.Model.HighlightItem;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model.HighlightItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

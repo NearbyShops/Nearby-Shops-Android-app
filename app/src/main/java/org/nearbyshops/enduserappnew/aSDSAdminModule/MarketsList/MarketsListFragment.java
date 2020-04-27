@@ -1,47 +1,31 @@
 package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.paging.PagedList;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.wunderlist.slidinglayer.SlidingLayer;
-
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.OrderDetail;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
-import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
-import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +33,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         NotifySort, NotifySearch {
@@ -66,7 +46,7 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
 
 
     private RecyclerView recyclerView;
-    private AdapterPaged adapter;
+    private Adapter adapter;
 
     public List<Object> dataset = new ArrayList<>();
     private SwipeRefreshLayout swipeContainer;
@@ -194,7 +174,7 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
     private void setupRecyclerView()
     {
 
-        adapter = new AdapterPaged(getActivity(),this);
+        adapter = new Adapter(getActivity(),this);
 
         recyclerView.setAdapter(adapter);
 
