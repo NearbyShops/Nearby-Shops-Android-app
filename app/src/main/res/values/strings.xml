@@ -141,4 +141,5 @@
     <string name="access_delivery">Press here to access the Delivery dashboard !</string>
     <string name="admin_dashboard">Admin Dashboard</string>
     <string name="access_admin">Press here to access the admin dashboard !</string>
+    <string name="field_phone">Phone</string>
 </resources>

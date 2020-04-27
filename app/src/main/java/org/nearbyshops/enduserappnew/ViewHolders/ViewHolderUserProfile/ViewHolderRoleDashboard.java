@@ -272,7 +272,7 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         else if(user.getRole()==User.ROLE_ADMIN_CODE)
         {
             marketName.setText(marketNameString);
-            dashboardName.setText(context.getString(R.string.admin_dashboard);
+            dashboardName.setText(context.getString(R.string.admin_dashboard));
             dashboardDescription.setText(context.getString(R.string.access_admin));
         }
         else if(user.getRole()==User.ROLE_STAFF_CODE)

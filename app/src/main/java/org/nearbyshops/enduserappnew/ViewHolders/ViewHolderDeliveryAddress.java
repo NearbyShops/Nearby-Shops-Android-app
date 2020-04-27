@@ -25,7 +25,7 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
 //    @BindView(R.id.city) TextView city;
 //    @BindView(R.id.pincode) TextView pincode;
 //    @BindView(R.id.landmark) TextView landmark;
-//    @BindView(R.id.phoneNumber) TextView phoneNumber;
+    @BindView(R.id.phoneNumber) TextView phoneNumber;
     @BindView(R.id.editButton) TextView editButton;
     @BindView(R.id.removeButton) TextView removeButton;
 
@@ -94,11 +94,21 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
         this.item = address;
 
         name.setText(address.getName());
-        deliveryAddress.setText(address.getDeliveryAddress());
+        String addressString = address.getDeliveryAddress()
+                + ", " + address.getCity()
+                + " - " + address.getPincode();
+
+
+        deliveryAddress.setText(addressString);
+
+        phoneNumber.setText(context.getString(R.string.field_phone) + " : " + String.valueOf(address.getPhoneNumber()));
+
+
+
 //        city.setText(address.getCity());
 //        pincode.setText(" - " + address.getPincode());
 //        landmark.setText(address.getLandmark());
-//        phoneNumber.setText(String.valueOf(address.getPhoneNumber()));
+
 
 
     }
