@@ -2,10 +2,11 @@
 <resources>
     <string name="app_name">Nearby Shops</string>
 
-    <string name="custom_icon">@mipmap/blue_icon</string>
-    <string name="custom_url">"independencia.xyz"</string>
+    <drawable name="custom_icon">@mipmap/blue_icon</drawable>
+    <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
+
     <bool name="multi_market_enabled">false</bool>
-    <bool name="only_fooddelivery_mode">true</bool>
+    <bool name="only_fooddelivery_mode">false</bool>
 
     <string name="tos_link">https://example.com/tos.html</string>
     <string name="privacy_policy_link">https://example.com/pivacy_policy.html</string>
