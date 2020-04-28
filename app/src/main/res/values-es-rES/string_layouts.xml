@@ -463,7 +463,7 @@
     <string name="dialog_submit_url_new_service_url_hint">Ingrese la URL del servicio</string>
     <string name="dialog_submit_url_new_cancel_button_text">Pegar URL</string>
     <string name="dialog_submit_url_new_submit_button_text">Enviar</string>
-    <string name="fragment_sliding_sort_items_by_category_text_sortby_text">Ordenar artículo \\'s</string>
+    <string name="fragment_sliding_sort_items_by_category_text_sortby_text">Ordenar artículos</string>
     <string name="fragment_sliding_sort_items_by_category_header_criterion_text">Criterio de clasificación</string>
     <string name="fragment_sliding_sort_items_by_category_sort_rating_text">Valoración del artículo</string>
     <string name="fragment_sliding_sort_items_by_category_sort_popularity_text">Popularidad</string>
