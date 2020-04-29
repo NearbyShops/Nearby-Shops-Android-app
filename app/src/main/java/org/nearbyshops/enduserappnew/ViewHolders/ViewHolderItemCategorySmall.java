@@ -48,7 +48,7 @@ public class ViewHolderItemCategorySmall extends RecyclerView.ViewHolder
                                                      RecyclerView.Adapter adapter)
     {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_small,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_new_small,parent,false);
         return new ViewHolderItemCategorySmall(view,context,fragment,adapter);
     }
 

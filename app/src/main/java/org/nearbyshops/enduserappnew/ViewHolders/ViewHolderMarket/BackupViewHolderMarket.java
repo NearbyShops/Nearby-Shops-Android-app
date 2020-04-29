@@ -21,8 +21,7 @@ import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
@@ -63,7 +62,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
     @BindView(R.id.select_market) TextView selectMarket;
 
 
-    private ServiceConfigurationGlobal configurationGlobal;
+    private Market configurationGlobal;
     private Fragment subscriber;
     private Context context;
 
@@ -118,7 +117,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
-    public void setItem(ServiceConfigurationGlobal configurationGlobal)
+    public void setItem(Market configurationGlobal)
     {
         this.configurationGlobal = configurationGlobal;
 
@@ -213,7 +212,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
     {
 
 
-        ServiceConfigurationGlobal configurationGlobal = this.configurationGlobal;
+        Market configurationGlobal = this.configurationGlobal;
 
 
 
@@ -247,7 +246,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
-    private void fetchConfiguration(final ServiceConfigurationGlobal configurationGlobal)
+    private void fetchConfiguration(final Market configurationGlobal)
     {
 
 //            PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplicationContext());
@@ -270,7 +269,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
 
-        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(0.0,0.0);
+        Call<Market> call = service.getServiceConfiguration(0.0,0.0);
 
 
 
@@ -278,9 +277,9 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
         progressBarSelect.setVisibility(View.VISIBLE);
 
 
-        call.enqueue(new Callback<ServiceConfigurationLocal>() {
+        call.enqueue(new Callback<Market>() {
             @Override
-            public void onResponse(Call<ServiceConfigurationLocal> call, Response<ServiceConfigurationLocal> response) {
+            public void onResponse(Call<Market> call, Response<Market> response) {
 
 
                 selectMarket.setVisibility(View.VISIBLE);
@@ -295,7 +294,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
                     PrefServiceConfig.saveServiceConfigLocal(response.body(),context);
 
 
-                    ServiceConfigurationLocal config = response.body();
+                    Market config = response.body();
 
                     if(config!=null)
                     {
@@ -331,7 +330,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
             @Override
-            public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
+            public void onFailure(Call<Market> call, Throwable t) {
 
 
                 selectMarket.setVisibility(View.VISIBLE);
@@ -348,7 +347,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
-    private void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
+    private void loginToLocalEndpoint(final Market configurationGlobal)
     {
 
 //        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
@@ -459,7 +458,7 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 
 
-                    ServiceConfigurationLocal configurationLocal = user.getServiceConfigurationLocal();
+                    Market configurationLocal = user.getServiceConfigurationLocal();
 
                     PrefServiceConfig.saveServiceConfigLocal(configurationLocal,context);
 
@@ -522,8 +521,8 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
     public interface ListItemClick
     {
-        void listItemClick(ServiceConfigurationGlobal configurationGlobal, int position);
-        void selectMarketSuccessful(ServiceConfigurationGlobal configurationGlobal, int position);
+        void listItemClick(Market configurationGlobal, int position);
+        void selectMarketSuccessful(Market configurationGlobal, int position);
         void showMessage(String message);
     }
 

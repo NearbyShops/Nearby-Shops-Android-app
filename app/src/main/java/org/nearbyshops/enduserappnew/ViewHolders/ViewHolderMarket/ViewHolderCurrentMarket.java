@@ -18,8 +18,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
@@ -36,7 +36,7 @@ public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
     @BindView(R.id.log_out_button) TextView logOutButton;
 
 
-    private ServiceConfigurationLocal configurationLocal;
+    private Market configurationLocal;
     private Context context;
 
 
@@ -64,7 +64,7 @@ public class ViewHolderCurrentMarket extends RecyclerView.ViewHolder {
 
 
 
-    public void setItem(ServiceConfigurationLocal item)
+    public void setItem(Market item)
     {
 
         this.configurationLocal = item;

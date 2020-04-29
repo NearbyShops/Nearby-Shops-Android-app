@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
@@ -378,7 +378,7 @@ public class MarketsFragmentNew extends Fragment implements
 
 
     @Override
-    public void listItemClick(ServiceConfigurationGlobal configurationGlobal, int position) {
+    public void listItemClick(Market configurationGlobal, int position) {
 
 
         //        showToastMessage("List item click !");
@@ -397,7 +397,7 @@ public class MarketsFragmentNew extends Fragment implements
 
 
     @Override
-    public void selectMarketSuccessful(ServiceConfigurationGlobal configurationGlobal, int position) {
+    public void selectMarketSuccessful(Market configurationGlobal, int position) {
 
 
         if(getActivity() instanceof MarketSelected)

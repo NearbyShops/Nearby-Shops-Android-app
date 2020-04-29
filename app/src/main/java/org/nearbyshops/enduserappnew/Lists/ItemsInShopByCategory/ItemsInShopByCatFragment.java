@@ -297,7 +297,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                 else if(dataset.get(position) instanceof ShopItem)
                 {
 
-                    return 6;
+                    return 3;
                 }
                 else if(dataset.get(position) instanceof HeaderTitle)
                 {
@@ -655,7 +655,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         currentCategory.setParentCategory(temp);
 
         makeRefreshNetworkCall();
-        getCartStats(true,0,true);
+//        getCartStats(true,0,true);
 
         // End Search Mode
         searchQuery = null;
@@ -676,7 +676,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         // clear selected items
 //        listAdapter.selectedItems.clear();
 
-        getCartStats(true,0,true);
+//        getCartStats(true,0,true);
 
 
 
@@ -1081,7 +1081,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-    void fetchCartStats()
+
+    private void fetchCartStats()
     {
 
         Shop shop = PrefShopHome.getShop(getActivity());

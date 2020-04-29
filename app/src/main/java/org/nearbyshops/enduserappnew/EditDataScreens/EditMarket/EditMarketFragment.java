@@ -1,7 +1,8 @@
-package org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig;
+package org.nearbyshops.enduserappnew.EditDataScreens.EditMarket;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -37,9 +38,13 @@ import com.yalantis.ucrop.UCropActivity;
 import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PlacePickerWithRadius.PickDeliveryRange;
 import org.nearbyshops.enduserappnew.Model.Image;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -69,9 +74,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
+import static android.view.View.VISIBLE;
 
 
-public class EditConfigurationFragment extends Fragment {
+public class EditMarketFragment extends Fragment {
 
 
 
@@ -90,9 +96,10 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
+
     // flag for knowing whether the image is changed or not
-    boolean isImageChanged = false;
-    boolean isImageRemoved = false;
+    private boolean isImageChanged = false;
+    private boolean isImageRemoved = false;
 
 
     // bind views
@@ -134,14 +141,18 @@ public class EditConfigurationFragment extends Fragment {
 
     public static final int MODE_UPDATE = 52;
     public static final int MODE_ADD = 51;
+    public static final int MODE_UPDATE_BY_SUPER_ADMIN = 53;
+
+
+
 
     private int current_mode = MODE_UPDATE;
 
 
-    private ServiceConfigurationLocal serviceConfiguration = null;
+    private Market market = null;
 
 
-    public EditConfigurationFragment() {
+    public EditMarketFragment() {
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
@@ -162,9 +173,10 @@ public class EditConfigurationFragment extends Fragment {
 
         ButterKnife.bind(this,rootView);
 
+
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         setupSpinners();
@@ -181,39 +193,120 @@ public class EditConfigurationFragment extends Fragment {
 
             if(current_mode == MODE_UPDATE)
             {
-                serviceConfiguration = PrefServiceConfig.getServiceConfigLocal(getActivity());
+                market = PrefServiceConfig.getServiceConfigLocal(getActivity());
+            }
+            else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+            {
+                String jsonString = getActivity().getIntent().getStringExtra("market_profile");
+                market = UtilityFunctions.provideGson().fromJson(jsonString, Market.class);
+                bindDataToViews();
+
+                getMarketDetailsNew();
             }
 
 
-            if(serviceConfiguration!=null) {
+
+
+
+            if(market !=null) {
 
                 bindDataToViews();
             }
 
-
-            showLogMessage("Inside OnCreateView - Saved Instance State !");
         }
 
 
 
-//        if(validator==null)
-//        {
-//            validator = new Validator(this);
-//            validator.setValidationListener(this);
-//        }
 
         updateIDFieldVisibility();
 
 
-        if(serviceConfiguration!=null) {
-            loadImage(serviceConfiguration.getLogoImagePath());
-            showLogMessage("Inside OnCreateView : DeliveryGUySelf : Not Null !");
+        if(market !=null) {
+            loadImage();
+        }
+
+        return rootView;
+    }
+
+
+
+
+
+
+
+
+    private void getMarketDetailsNew()
+    {
+
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.setMessage("Please wait ... getting market Details !");
+        pd.show();
+
+
+        Call<Market> call = null;
+
+
+        if(current_mode==MODE_UPDATE)
+        {
+            call = configurationService.getServiceConfiguration(null,null);
+
+
+        }
+        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            call = retrofit.create(MarketService.class).getMarketDetails(
+                    market.getServiceID(),
+                    PrefLocation.getLatitude(MyApplication.getAppContext()), PrefLocation.getLongitude(MyApplication.getAppContext())
+            );
+
+
+        }
+        else
+        {
+            return;
         }
 
 
-        showLogMessage("Inside On Create View !");
 
-        return rootView;
+        call.enqueue(new Callback<Market>() {
+            @Override
+            public void onResponse(Call<Market> call, Response<Market> response) {
+
+                if (!isVisible()) {
+                    return;
+                }
+
+                pd.dismiss();
+
+
+                if (response.code() == 200) {
+                    market = response.body();
+
+                    bindDataToViews();
+
+                } else {
+                    showToastMessage("Failed to get Details : Code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Market> call, Throwable t) {
+
+
+                pd.dismiss();
+
+                System.out.println("Check your network !");
+            }
+        });
+
     }
 
 
@@ -303,9 +396,26 @@ public class EditConfigurationFragment extends Fragment {
 
 
 
-    private void loadImage(String imagePath) {
+    private void loadImage() {
 
-        String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/ServiceConfiguration/Image/" + imagePath;
+        String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/ServiceConfiguration/Image/" + market.getLogoImagePath();
+
+
+
+        if(current_mode==MODE_UPDATE)
+        {
+            iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/ServiceConfiguration/Image/" + market.getLogoImagePath();
+        }
+        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        {
+
+            iamgepath = PrefServiceConfig.getServiceURL_SDS(getActivity())
+                    + "/api/v1/ServiceConfiguration/Image/three_hundred_" + market.getLogoImagePath() + ".jpg";
+        }
+
+
+
+
 
         Picasso.get()
                 .load(iamgepath)
@@ -327,17 +437,21 @@ public class EditConfigurationFragment extends Fragment {
 
         if(current_mode == MODE_ADD)
         {
-            serviceConfiguration = new ServiceConfigurationLocal();
+            market = new Market();
             addAccount();
         }
-        else if(current_mode == MODE_UPDATE)
+        else if(current_mode == MODE_UPDATE || current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
         {
             update();
         }
     }
 
 
-    boolean validateData()
+
+
+
+
+    private boolean validateData()
     {
         boolean isValid = true;
 /*
@@ -392,7 +506,10 @@ public class EditConfigurationFragment extends Fragment {
     }
 
 
-    void addAccount()
+
+
+
+    private void addAccount()
     {
         if(isImageChanged)
         {
@@ -432,7 +549,7 @@ public class EditConfigurationFragment extends Fragment {
 
 
             // delete previous Image from the Server
-            deleteImage(serviceConfiguration.getLogoImagePath());
+            deleteImage(market.getLogoImagePath());
 
             /*ImageCalls.getInstance()
                     .deleteImage(
@@ -443,7 +560,7 @@ public class EditConfigurationFragment extends Fragment {
 
             if(isImageRemoved)
             {
-                serviceConfiguration.setLogoImagePath(null);
+                market.setLogoImagePath(null);
                 retrofitPUTRequest();
             }else
             {
@@ -465,31 +582,31 @@ public class EditConfigurationFragment extends Fragment {
 
     private void bindDataToViews()
     {
-        if(serviceConfiguration!=null) {
+        if(market !=null) {
 
-            item_id.setText(String.valueOf(serviceConfiguration.getServiceID()));
-            service_name.setText(serviceConfiguration.getServiceName());
-            helpline_number.setText(serviceConfiguration.getHelplineNumber());
+            item_id.setText(String.valueOf(market.getServiceID()));
+            service_name.setText(market.getServiceName());
+            helpline_number.setText(market.getHelplineNumber());
 //            spinnerServiceType.setSelection(serviceConfiguration.getServiceType()-1);
 //            spinnerServiceLevel.setSelection(serviceConfiguration.getServiceLevel()-1);
-            address.setText(serviceConfiguration.getAddress());
-            city.setText(serviceConfiguration.getCity());
-            pincode.setText(String.valueOf(serviceConfiguration.getPincode()));
-            landmark.setText(serviceConfiguration.getLandmark());
-            state.setText(serviceConfiguration.getState());
-            spinnerCountry.setSelection(countryCodeList.indexOf(serviceConfiguration.getISOCountryCode()));
-            autoComplete.setText(serviceConfiguration.getISOLanguageCode());
-            latitude.setText(String.valueOf(serviceConfiguration.getLatCenter()));
-            longitude.setText(String.valueOf(serviceConfiguration.getLonCenter()));
-            serviceCoverage.setText(String.valueOf(serviceConfiguration.getServiceRange()));
+            address.setText(market.getAddress());
+            city.setText(market.getCity());
+            pincode.setText(String.valueOf(market.getPincode()));
+            landmark.setText(market.getLandmark());
+            state.setText(market.getState());
+            spinnerCountry.setSelection(countryCodeList.indexOf(market.getISOCountryCode()));
+            autoComplete.setText(market.getISOLanguageCode());
+            latitude.setText(String.valueOf(market.getLatCenter()));
+            longitude.setText(String.valueOf(market.getLonCenter()));
+            serviceCoverage.setText(String.valueOf(market.getServiceRange()));
 
 //            latitude.setText(String.format("%.2d",serviceConfiguration.getLatCenter()));
 //            longitude.setText(String.format("%.2d",serviceConfiguration.getLonCenter()));
 //            serviceCoverage.setText(String.format("%.2d",serviceConfiguration.getServiceRange()));
 
 
-            descriptionShort.setText(serviceConfiguration.getDescriptionShort());
-            descriptionLong.setText(serviceConfiguration.getDescriptionLong());
+            descriptionShort.setText(market.getDescriptionShort());
+            descriptionLong.setText(market.getDescriptionLong());
         }
     }
 
@@ -497,11 +614,11 @@ public class EditConfigurationFragment extends Fragment {
 
     private void getDataFromViews()
     {
-        if(serviceConfiguration==null)
+        if(market ==null)
         {
             if(current_mode == MODE_ADD)
             {
-                serviceConfiguration = new ServiceConfigurationLocal();
+                market = new Market();
             }
             else
             {
@@ -517,43 +634,43 @@ public class EditConfigurationFragment extends Fragment {
 
 
 //            serviceConfigurationForEdit.setConfigurationNickname(nickname.getText().toString());
-        serviceConfiguration.setServiceName(service_name.getText().toString());
+        market.setServiceName(service_name.getText().toString());
 //            serviceConfigurationForEdit.setServiceURL(service_url.getText().toString());
-        serviceConfiguration.setHelplineNumber(helpline_number.getText().toString());
+        market.setHelplineNumber(helpline_number.getText().toString());
 //        serviceConfiguration.setServiceType(spinnerServiceType.getSelectedItemPosition() + 1);
 //        serviceConfiguration.setServiceLevel(spinnerServiceLevel.getSelectedItemPosition() + 1);
-        serviceConfiguration.setAddress(address.getText().toString());
-        serviceConfiguration.setCity(city.getText().toString());
+        market.setAddress(address.getText().toString());
+        market.setCity(city.getText().toString());
 
         if(!pincode.getText().toString().equals(""))
         {
-            serviceConfiguration.setPincode(Long.parseLong(pincode.getText().toString()));
+            market.setPincode(Long.parseLong(pincode.getText().toString()));
         }
 
 
-        serviceConfiguration.setLandmark(landmark.getText().toString());
-        serviceConfiguration.setState(state.getText().toString());
-        serviceConfiguration.setISOCountryCode(countryCodeList.get(spinnerCountry.getSelectedItemPosition()));
+        market.setLandmark(landmark.getText().toString());
+        market.setState(state.getText().toString());
+        market.setISOCountryCode(countryCodeList.get(spinnerCountry.getSelectedItemPosition()));
 
-        Locale locale = new Locale("", serviceConfiguration.getISOCountryCode());
-        serviceConfiguration.setCountry(locale.getDisplayCountry());
+        Locale locale = new Locale("", market.getISOCountryCode());
+        market.setCountry(locale.getDisplayCountry());
 
-        serviceConfiguration.setISOLanguageCode(autoComplete.getText().toString());
+        market.setISOLanguageCode(autoComplete.getText().toString());
 
         if(!latitude.getText().toString().equals("")&&!longitude.getText().toString().equals(""))
         {
-            serviceConfiguration.setLatCenter(Double.parseDouble(latitude.getText().toString()));
-            serviceConfiguration.setLonCenter(Double.parseDouble(longitude.getText().toString()));
+            market.setLatCenter(Double.parseDouble(latitude.getText().toString()));
+            market.setLonCenter(Double.parseDouble(longitude.getText().toString()));
         }
 
         if(!serviceCoverage.getText().toString().equals(""))
         {
-            serviceConfiguration.setServiceRange(Double.parseDouble(serviceCoverage.getText().toString()));
+            market.setServiceRange(Double.parseDouble(serviceCoverage.getText().toString()));
         }
 
 
-        serviceConfiguration.setDescriptionShort(descriptionShort.getText().toString());
-        serviceConfiguration.setDescriptionLong(descriptionLong.getText().toString());
+        market.setDescriptionShort(descriptionShort.getText().toString());
+        market.setDescriptionLong(descriptionLong.getText().toString());
 
 
 //        serviceConfiguration.setStyleURL(styleURL.getText().toString());
@@ -573,10 +690,45 @@ public class EditConfigurationFragment extends Fragment {
 
 
 //        final Staff staff = UtilityStaff.getStaff(getContext());
-        Call<ResponseBody> call = configurationService.putServiceConfiguration(
-                PrefLogin.getAuthorizationHeaders(getContext()),
-                serviceConfiguration
-        );
+        Call<ResponseBody> call = null;
+
+
+        if(current_mode==MODE_UPDATE)
+        {
+            call = configurationService.putServiceConfiguration(
+                    PrefLogin.getAuthorizationHeaders(getContext()),
+                    market
+            );
+        }
+        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        {
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            call = retrofit.create(MarketService.class).updateMarket(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    market,market.getServiceID()
+            );
+
+
+        }
+        else
+        {
+
+
+            showToastMessage("Current Mode : " + current_mode);
+            buttonUpdateItem.setVisibility(VISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
+            return;
+        }
+
+
 
 
 
@@ -593,7 +745,7 @@ public class EditConfigurationFragment extends Fragment {
                 {
                     showToastMessage("Update Successful !");
 
-                    PrefServiceConfig.saveServiceConfigLocal(serviceConfiguration,getContext());
+                    PrefServiceConfig.saveServiceConfigLocal(market,getContext());
 //                    updateMarketEntry();
 
                 }
@@ -1029,20 +1181,20 @@ public class EditConfigurationFragment extends Fragment {
 //                    loadImage(image.getPath());
 
 
-                    serviceConfiguration.setLogoImagePath(image.getPath());
+                    market.setLogoImagePath(image.getPath());
 
                 }
                 else if(response.code()==417)
                 {
                     showToastMessage("Cant Upload Image. Image Size should not exceed 2 MB.");
 
-                    serviceConfiguration.setLogoImagePath(null);
+                    market.setLogoImagePath(null);
 
                 }
                 else
                 {
                     showToastMessage("Image Upload failed !");
-                    serviceConfiguration.setLogoImagePath(null);
+                    market.setLogoImagePath(null);
 
                 }
 
@@ -1067,7 +1219,7 @@ public class EditConfigurationFragment extends Fragment {
 
 
                 showToastMessage("Image Upload failed !");
-                serviceConfiguration.setLogoImagePath(null);
+                market.setLogoImagePath(null);
 
                 if(isModeEdit)
                 {

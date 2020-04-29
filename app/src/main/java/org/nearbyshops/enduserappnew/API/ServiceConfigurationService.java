@@ -2,7 +2,7 @@ package org.nearbyshops.enduserappnew.API;
 
 
 import org.nearbyshops.enduserappnew.Model.Image;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -16,14 +16,15 @@ public interface ServiceConfigurationService {
 
 
     @GET("/api/ServiceConfiguration")
-    Call<ServiceConfigurationLocal> getServiceConfiguration(@Query("latCenter") Double latCenter,
-                                                            @Query("lonCenter") Double lonCenter);
+    Call<Market> getServiceConfiguration(@Query("latCenter") Double latCenter,
+                                         @Query("lonCenter") Double lonCenter);
+
 
 
 
     @PUT("/api/ServiceConfiguration")
     Call<ResponseBody> putServiceConfiguration(@Header("Authorization") String headers,
-                                               @Body ServiceConfigurationLocal serviceConfiguration);
+                                               @Body Market serviceConfiguration);
 
 
 

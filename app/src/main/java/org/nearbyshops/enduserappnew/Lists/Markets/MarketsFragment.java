@@ -24,8 +24,7 @@ import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
@@ -408,7 +407,7 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
 
         if(PrefLoginGlobal.getUser(getActivity())==null)
         {
-            call = retrofit.create(MarketService.class).getShopListSimple(
+            call = retrofit.create(MarketService.class).getMarketsList(
                     PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                     null,
                     searchQuery,
@@ -418,7 +417,7 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
         else
         {
 
-            call = retrofit.create(MarketService.class).getShopListSimple(
+            call = retrofit.create(MarketService.class).getMarketsList(
                     PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
                     PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                     null,
@@ -467,7 +466,7 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
 
 //                            dataset.add(PrefServiceConfig.getServiceConfigLocal(getActivity()));
 
-                            ServiceConfigurationLocal configurationLocal = PrefServiceConfig.getServiceConfigLocal(getActivity());
+                            Market configurationLocal = PrefServiceConfig.getServiceConfigLocal(getActivity());
 
                             if(configurationLocal!=null)
                             {
@@ -648,7 +647,7 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
 
 
     @Override
-    public void listItemClick(ServiceConfigurationGlobal configurationGlobal, int position) {
+    public void listItemClick(Market configurationGlobal, int position) {
 
 
         //        showToastMessage("List item click !");
@@ -663,7 +662,7 @@ public class MarketsFragment extends Fragment implements ViewHolderMarket.ListIt
     }
 
     @Override
-    public void selectMarketSuccessful(ServiceConfigurationGlobal configurationGlobal, int position) {
+    public void selectMarketSuccessful(Market configurationGlobal, int position) {
 
         if(getActivity() instanceof MarketSelected)
         {

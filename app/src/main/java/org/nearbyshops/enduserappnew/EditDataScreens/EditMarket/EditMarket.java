@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig;
+package org.nearbyshops.enduserappnew.EditDataScreens.EditMarket;
 
 import android.os.Bundle;
 
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.nearbyshops.enduserappnew.R;
 
 
-public class EditConfiguration extends AppCompatActivity {
+public class EditMarket extends AppCompatActivity {
 
     public static final String TAG_FRAGMENT_EDIT = "fragment_edit";
 
@@ -23,7 +23,7 @@ public class EditConfiguration extends AppCompatActivity {
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container,new EditConfigurationFragment(),TAG_FRAGMENT_EDIT)
+                    .add(R.id.fragment_container,new EditMarketFragment(),TAG_FRAGMENT_EDIT)
                     .commit();
         }
     }
@@ -32,7 +32,7 @@ public class EditConfiguration extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
+//        overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 
 }

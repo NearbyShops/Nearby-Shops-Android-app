@@ -12,8 +12,8 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
@@ -85,7 +85,7 @@ public class UtilityFunctions {
 //        FirebaseApp.getInstance().delete();
 
         User user = PrefLogin.getUser(MyApplication.getAppContext());
-        ServiceConfigurationLocal localConfig = PrefServiceConfig.getServiceConfigLocal(MyApplication.getAppContext());
+        Market localConfig = PrefServiceConfig.getServiceConfigLocal(MyApplication.getAppContext());
 
 
         if(user==null || localConfig==null || localConfig.getRt_market_id_for_fcm()==null)
@@ -125,7 +125,7 @@ public class UtilityFunctions {
 
 
         Shop shop = PrefShopAdminHome.getShop(MyApplication.getAppContext());
-        ServiceConfigurationLocal localConfig = PrefServiceConfig.getServiceConfigLocal(MyApplication.getAppContext());
+        Market localConfig = PrefServiceConfig.getServiceConfigLocal(MyApplication.getAppContext());
 
 
         if(shop==null || localConfig==null || localConfig.getRt_market_id_for_fcm()==null)

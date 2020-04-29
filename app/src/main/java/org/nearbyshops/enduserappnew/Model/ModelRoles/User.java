@@ -1,7 +1,7 @@
 package org.nearbyshops.enduserappnew.Model.ModelRoles;
 
 
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 
 import java.sql.Timestamp;
 
@@ -158,7 +158,7 @@ public class User {
 
 
 
-    private ServiceConfigurationLocal serviceConfigurationLocal;
+    private Market serviceConfigurationLocal;
 
 
 
@@ -224,11 +224,12 @@ public class User {
         this.userProfileGlobal = userProfileGlobal;
     }
 
-    public ServiceConfigurationLocal getServiceConfigurationLocal() {
+
+    public Market getServiceConfigurationLocal() {
         return serviceConfigurationLocal;
     }
 
-    public void setServiceConfigurationLocal(ServiceConfigurationLocal serviceConfigurationLocal) {
+    public void setServiceConfigurationLocal(Market serviceConfigurationLocal) {
         this.serviceConfigurationLocal = serviceConfigurationLocal;
     }
 

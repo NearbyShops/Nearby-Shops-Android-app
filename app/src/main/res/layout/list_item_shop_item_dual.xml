@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+
+
+
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_marginTop="5dp"
+    android:layout_margin="5dp"
     android:id="@+id/list_item"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
     android:animateLayoutChanges="false"
-    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -26,6 +29,8 @@
 
 
 
+
+
         <ImageView
             android:layout_height="0dp"
             android:layout_width="match_parent"
@@ -35,7 +40,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@color/backgroundTinted"
-            app:layout_constraintDimensionRatio="5:3" />
+            app:layout_constraintDimensionRatio="4:3" />
 
 
 
@@ -43,9 +48,10 @@
 
 
     <TextView
+        android:visibility="gone"
         android:layout_margin="10dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="@id/item_image"
-        app:layout_constraintBottom_toBottomOf="@id/item_image"
         android:layout_marginTop="3dp"
         android:id="@+id/rating"
         android:textColor="@color/white"
@@ -80,14 +86,16 @@
 
 
     <TextView
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@id/item_image"
         app:layout_constraintStart_toStartOf="@id/item_image"
-        app:layout_constraintEnd_toStartOf="@id/reduceQuantity"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/item_title"
-        android:textSize="20sp"
-        android:text="@string/list_item_shop_item_small_item_title_text"
+        android:textSize="17sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
@@ -104,19 +112,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+
             <TextView
+                android:text="Rs 50"
                 android:layout_marginEnd="10dp"
                 android:id="@+id/list_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/item_price"
                 android:text="@string/list_item_shop_item_small_item_price_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+
+
 
 
         <TextView
@@ -128,7 +142,7 @@
             android:id="@+id/discount_indicator"
             android:background="@drawable/white_circle_drawable"
             android:layout_margin="10dp"
-            app:layout_constraintTop_toTopOf="@id/item_image"
+            app:layout_constraintTop_toBottomOf="@id/rating"
             app:layout_constraintStart_toStartOf="@id/item_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -137,10 +151,68 @@
 
 
 
+    <LinearLayout
+        android:id="@+id/special_quantity_block"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/item_price_block"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textSize="13sp"
+            android:id="@+id/quantity_quarter"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/white"
+            android:background="@color/buttonColor"
+            android:text="@string/list_item_shop_item_small_quantity_quarter_text"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:id="@+id/dummy_text_for_margin"
+            android:layout_width="5dp"
+            android:layout_height="5dp"/>
+
+
+        <TextView
+            android:textSize="13sp"
+            android:id="@+id/quantity_half"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/white"
+            android:background="@color/orange"
+            android:text="@string/list_item_shop_item_small_quantity_half_text"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+
+
+
         <ImageView
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/item_price_block"
-            app:layout_constraintTop_toTopOf="@id/item_title"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/special_quantity_block"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/increaseQuantity"
             android:background="@color/gplus_color_1"
@@ -149,22 +221,32 @@
             android:layout_height="30dp" />
 
 
+
+
+
         <TextView
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@id/reduceQuantity"
             app:layout_constraintBottom_toBottomOf="@id/increaseQuantity"
             app:layout_constraintTop_toTopOf="@id/increaseQuantity"
             app:layout_constraintEnd_toStartOf="@id/increaseQuantity"
             android:id="@+id/itemQuantity"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:text="@string/list_item_shop_item_small_itemQuantity_text"
             android:textSize="15sp"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"/>
 
 
+
         <ImageView
+            android:layout_marginStart="5dp"
             app:layout_constraintTop_toTopOf="@id/increaseQuantity"
             app:layout_constraintBottom_toBottomOf="@id/increaseQuantity"
-            app:layout_constraintEnd_toStartOf="@id/itemQuantity"
+            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/reduceQuantity"
             android:layout_gravity="center_vertical"
             android:background="@color/gplus_color_1"
@@ -233,63 +315,13 @@
 
 
 
-    <LinearLayout
 
-        android:gravity="center_vertical"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/reduceQuantity"
-        app:layout_constraintTop_toTopOf="@id/reduceQuantity"
-        app:layout_constraintEnd_toStartOf="@id/reduceQuantity"
-        android:orientation="vertical"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content">
+
+
 
 
         <TextView
             android:visibility="gone"
-            android:id="@+id/quantity_quarter"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:gravity="center"
-            android:paddingEnd="5dp"
-            android:paddingStart="5dp"
-            android:textColor="@color/white"
-            android:background="@color/buttonColor"
-            android:text="@string/list_item_shop_item_small_quantity_quarter_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/dummy_text_for_margin"
-            android:layout_width="5dp"
-            android:layout_height="5dp"/>
-
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/quantity_half"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:gravity="center"
-            android:paddingEnd="5dp"
-            android:paddingStart="5dp"
-            android:textColor="@color/white"
-            android:background="@color/orange"
-            android:text="@string/list_item_shop_item_small_quantity_half_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-
-
-
-
-
-    <TextView
-        android:visibility="invisible"
             android:layout_marginEnd="2dp"
             android:id="@+id/add_label"
             android:textColor="@color/white"
@@ -307,17 +339,15 @@
 <!--    style="?android:attr/progressBarStyleHorizontal"-->
 
         <ProgressBar
-            android:visibility="invisible"
-            android:layout_marginBottom="15dp"
-            style="?android:attr/progressBarStyleHorizontal"
+            android:visibility="gone"
             android:id="@+id/progress_bar"
             android:indeterminate="true"
-            app:layout_constraintStart_toStartOf="@id/reduceQuantity"
-            app:layout_constraintEnd_toEndOf="@id/increaseQuantity"
-            app:layout_constraintBottom_toTopOf="@id/increaseQuantity"
             app:layout_constraintTop_toTopOf="@id/itemQuantity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintStart_toStartOf="@id/itemQuantity"
+            app:layout_constraintEnd_toEndOf="@id/itemQuantity"
+            app:layout_constraintBottom_toBottomOf="@id/itemQuantity"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
 
 
 
@@ -348,13 +378,13 @@
             android:paddingTop="2dp"
             android:paddingEnd="5dp"
             android:paddingStart="5dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="#55000000"
             android:textColor="@color/white"
             android:text="@string/list_item_shop_item_small_item_total_text"
-            app:layout_constraintEnd_toEndOf="@id/item_image"
+            app:layout_constraintStart_toStartOf="@id/item_image"
             app:layout_constraintBottom_toBottomOf="@id/item_image"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
 

@@ -1,7 +1,7 @@
 package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model;
 
 
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class MarketsList {
 
 
     private String listTitle;
-    private List<ServiceConfigurationGlobal> dataset;
+    private List<Market> dataset;
 
 
     // constructors
@@ -17,7 +17,7 @@ public class MarketsList {
     public MarketsList() {
     }
 
-    public MarketsList(String listTitle, List<ServiceConfigurationGlobal> dataset) {
+    public MarketsList(String listTitle, List<Market> dataset) {
         this.listTitle = listTitle;
         this.dataset = dataset;
     }
@@ -26,11 +26,11 @@ public class MarketsList {
     // getter and setters
 
 
-    public List<ServiceConfigurationGlobal> getDataset() {
+    public List<Market> getDataset() {
         return dataset;
     }
 
-    public void setDataset(List<ServiceConfigurationGlobal> dataset) {
+    public void setDataset(List<Market> dataset) {
         this.dataset = dataset;
     }
 

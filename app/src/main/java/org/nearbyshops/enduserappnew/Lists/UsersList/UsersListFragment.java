@@ -168,6 +168,13 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
         }
         else if(current_mode==MODE_ADMIN_USER_LIST)
         {
+            // clear filter
+            ViewHolderFilterUsers.saveFilterByRole(getActivity(),0);
+            fab.setVisibility(View.GONE);
+        }
+        else if(current_mode==MODE_SUPER_ADMIN_USER_LIST)
+        {
+            // clear filter
             ViewHolderFilterUsers.saveFilterByRole(getActivity(),0);
             fab.setVisibility(View.GONE);
         }

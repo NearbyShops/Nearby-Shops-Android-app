@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list_item"
+        android:padding="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="false"
+        android:background="@color/white"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guide"
+            app:layout_constraintGuide_percent="0.4"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/item_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/vertical_guide"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/backgroundTinted"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+
+
+
+        <TextView
+            android:gravity="end"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/item_image"
+            android:id="@+id/item_title"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="@string/list_item_shop_item_small_item_title_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:textSize="10sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/rating_count"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/item_title"
+            app:layout_constraintEnd_toEndOf="@id/item_title"
+            android:text="@string/list_item_shop_item_small_rating_count_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <TextView
+            android:textSize="10sp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/rating_count"
+            app:layout_constraintTop_toTopOf="@id/rating_count"
+            app:layout_constraintEnd_toStartOf="@id/rating_count"
+            android:id="@+id/rating"
+            android:textColor="@color/white"
+            android:background="@color/gplus_color_1"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:text="@string/list_item_shop_item_small_rating_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/item_price_block"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/rating"
+            app:layout_constraintEnd_toEndOf="@id/item_title"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Rs 50"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/list_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/item_price"
+                android:text="@string/list_item_shop_item_small_item_price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@id/item_title"
+            app:layout_constraintTop_toBottomOf="@id/item_price_block"
+            android:id="@+id/item_total"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="5dp"
+            android:text="Total : 124"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+
+
+
+        <TextView
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/item_image"
+            app:layout_constraintTop_toTopOf="@id/rating"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:id="@+id/discount_indicator"
+            android:background="@drawable/white_circle_drawable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintTop_toBottomOf="@id/item_total"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/item_title"
+            android:id="@+id/increaseQuantity"
+            android:background="@color/colorPrimaryDark"
+            app:srcCompat="@drawable/ic_add_white_24px"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+
+        <TextView
+            app:layout_constraintBottom_toBottomOf="@id/increaseQuantity"
+            app:layout_constraintTop_toTopOf="@id/increaseQuantity"
+            app:layout_constraintEnd_toStartOf="@id/increaseQuantity"
+            android:id="@+id/itemQuantity"
+            android:gravity="center"
+            android:text="@string/list_item_shop_item_small_itemQuantity_text"
+            android:textSize="15sp"
+            android:layout_width="40dp"
+            android:layout_height="0dp"/>
+
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="@id/increaseQuantity"
+            app:layout_constraintBottom_toBottomOf="@id/increaseQuantity"
+            app:layout_constraintEnd_toStartOf="@id/itemQuantity"
+            android:id="@+id/reduceQuantity"
+            android:layout_gravity="center_vertical"
+            android:background="@color/colorPrimaryDark"
+            app:srcCompat="@drawable/ic_remove_white_24px"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+
+
+        <TextView
+            android:layout_marginEnd="2dp"
+            android:id="@+id/add_label"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="@string/list_item_shop_item_small_add_label_text"
+            app:layout_constraintBottom_toBottomOf="@id/increaseQuantity"
+            app:layout_constraintTop_toTopOf="@id/increaseQuantity"
+            app:layout_constraintStart_toStartOf="@id/reduceQuantity"
+            app:layout_constraintEnd_toStartOf="@id/increaseQuantity"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+
+
+        <TextView
+            android:gravity="center"
+            android:textSize="15sp"
+            android:id="@+id/label"
+            app:layout_constraintStart_toStartOf="@id/reduceQuantity"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/reduceQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/special_quantities"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/item_image"-->
+        <!--            app:layout_constraintEnd_toEndOf="@id/increaseQuantity"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content">-->
+
+        <!--            <TextView-->
+        <!--                android:paddingTop="2dp"-->
+        <!--                android:paddingBottom="2dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:paddingEnd="5dp"-->
+        <!--                android:paddingStart="5dp"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:background="@color/buttonColor"-->
+        <!--                android:text="@string/list_item_shop_item_small_quantity_quarter_text"-->
+        <!--                android:layout_width="70dp"-->
+        <!--                android:layout_height="wrap_content"/>-->
+
+
+
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/dummy_text_for_margin"-->
+        <!--                android:layout_width="5dp"-->
+        <!--                android:layout_height="5dp"/>-->
+
+
+        <!--            <TextView-->
+        <!--                android:paddingTop="2dp"-->
+        <!--                android:paddingBottom="2dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:paddingEnd="5dp"-->
+        <!--                android:paddingStart="5dp"-->
+        <!--                android:textColor="@color/blueGrey800"-->
+        <!--                android:background="@color/light_grey"-->
+        <!--                android:text="@string/list_item_shop_item_small_quantity_half_text"-->
+        <!--                android:layout_width="70dp"-->
+        <!--                android:layout_height="wrap_content"/>-->
+
+        <!--        </LinearLayout>-->
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/item_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/special_quantity_block"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:textSize="12sp"
+                android:id="@+id/quantity_quarter"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:gravity="center"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:textColor="@color/white"
+                android:background="@color/buttonColor"
+                android:text="@string/list_item_shop_item_small_quantity_quarter_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/dummy_text_for_margin"
+                android:layout_width="5dp"
+                android:layout_height="5dp"/>
+
+
+
+            <TextView
+                android:textSize="12sp"
+                android:id="@+id/quantity_half"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:gravity="center"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:text="@string/list_item_shop_item_small_quantity_half_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/progress_bar"
+            android:indeterminate="true"
+            style="?android:attr/progressBarStyleHorizontal"
+            app:layout_constraintBottom_toTopOf="@id/reduceQuantity"
+            app:layout_constraintStart_toStartOf="@id/reduceQuantity"
+            app:layout_constraintEnd_toEndOf="@id/increaseQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toTopOf="@id/item_image"
+            app:layout_constraintStart_toStartOf="@id/item_image"
+            android:id="@+id/out_of_stock_indicator"
+            android:textColor="@color/white"
+            android:background="@color/gplus_color_4"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="center"
+            android:text="@string/list_item_shop_item_small_out_of_stock_indicator_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+
+

@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -20,12 +22,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarket;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarketFragment;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewHolder.ViewHolderMarketAdmin;
+import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewModel.ViewModelMarkets;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +43,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        NotifySort, NotifySearch {
+        NotifySort, NotifySearch , ViewHolderMarketAdmin.ListItemClick {
 
 
 
@@ -96,19 +104,33 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
 
         if(savedInstanceState==null)
         {
-            makeRefreshNetworkCall();
+//            makeRefreshNetworkCall();
         }
 
 
+
+
+
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
-//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-//        toolbar.setTitle(getString(R.string.app_name));
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
+        setupSwipeContainer();
 
 
 
-        viewModelMarkets = new ViewModelMarkets(MyApplication.application);
+
+
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeContainer.setRefreshing(true);
+
+                viewModelMarkets = new ViewModelMarkets(MyApplication.application);
+                setupRecyclerView();
+            }
+        });
+
+
 
 
 
@@ -124,8 +146,7 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
         }
 
 
-        setupRecyclerView();
-        setupSwipeContainer();
+//        setupRecyclerView();
 
 
         return rootView;
@@ -189,10 +210,25 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
 
                 adapter.submitList(objects);
 
-
-                swipeContainer.setRefreshing(false);
+//                System.out.println("Submitted Size : " + objects.size());
             }
         });
+
+
+
+        adapter.addLoadStateListener(new PagedList.LoadStateListener() {
+            @Override
+            public void onLoadStateChanged(@NonNull PagedList.LoadType type, @NonNull PagedList.LoadState state, @Nullable Throwable error) {
+
+//                System.out.println("Load Type : State " + type + " | " + state);
+
+                if(state.equals(PagedList.LoadState.DONE))
+                {
+                    swipeContainer.setRefreshing(false);
+                }
+            }
+        });
+
 
     }
 
@@ -219,12 +255,6 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
             @Override
             public void run() {
                 swipeContainer.setRefreshing(true);
-
-                if(!isVisible())
-                {
-                    return;
-                }
-
 
 
                 onRefresh();
@@ -306,6 +336,21 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
         makeRefreshNetworkCall();
     }
 
+
+
+
+
+
+    @Override
+    public void listItemClick(Market market, int position) {
+
+        Intent intent = new Intent(getActivity(),EditMarket.class);
+        String jsonString = UtilityFunctions.provideGson().toJson(market);
+        intent.putExtra("market_profile",jsonString);
+        intent.putExtra(EditMarketFragment.EDIT_MODE_INTENT_KEY,EditMarketFragment.MODE_UPDATE_BY_SUPER_ADMIN);
+
+        startActivity(intent);
+    }
 
 
 

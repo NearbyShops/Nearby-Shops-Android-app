@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import com.google.gson.Gson;
 
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -44,7 +44,9 @@ public class PrefServiceConfig {
 
 
 
-    public static void saveServiceConfigLocal(ServiceConfigurationLocal configurationLocal, Context context)
+
+
+    public static void saveServiceConfigLocal(Market configurationLocal, Context context)
     {
         context = MyApplication.getAppContext();
         //Creating a shared preference
@@ -70,7 +72,7 @@ public class PrefServiceConfig {
 
 
 
-    public static ServiceConfigurationLocal getServiceConfigLocal(Context context)
+    public static Market getServiceConfigLocal(Context context)
     {
         context = MyApplication.getAppContext();
 
@@ -84,8 +86,10 @@ public class PrefServiceConfig {
         Gson gson = UtilityFunctions.provideGson();
         String json = sharedPref.getString(TAG_PREF_CONFIG, null);
 
-        return gson.fromJson(json, ServiceConfigurationLocal.class);
+        return gson.fromJson(json, Market.class);
     }
+
+
 
 
 
@@ -95,7 +99,7 @@ public class PrefServiceConfig {
     {
         context = MyApplication.getAppContext();
 
-        ServiceConfigurationLocal serviceConfigurationLocal = getServiceConfigLocal(context);
+        Market serviceConfigurationLocal = getServiceConfigLocal(context);
 
 
         if(serviceConfigurationLocal==null)

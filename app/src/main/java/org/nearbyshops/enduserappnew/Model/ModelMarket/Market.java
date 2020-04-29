@@ -1,107 +1,12 @@
-package org.nearbyshops.enduserappnew.Model.ModelServiceConfig;
+package org.nearbyshops.enduserappnew.Model.ModelMarket;
 
 import java.sql.Timestamp;
 
 /**
  * Created by sumeet on 19/6/16.
  */
-public class ServiceConfigurationGlobal {
+public class Market {
 
-
-    // Table Name
-    public static final String TABLE_NAME = "SERVICE_CONFIGURATION";
-
-    // column Names
-    public static final String SERVICE_CONFIGURATION_ID = "SERVICE_CONFIGURATION_ID";
-
-//    public static final String IMAGE_PATH = "IMAGE_PATH";
-    public static final String LOGO_IMAGE_PATH = "LOGO_IMAGE_PATH";
-    public static final String BACKDROP_IMAGE_PATH = "BACKDROP_IMAGE_PATH";
-
-    public static final String SERVICE_NAME = "SERVICE_NAME";
-    public static final String HELPLINE_NUMBER = "HELPLINE_NUMBER";
-
-    public static final String DESCRIPTION_SHORT = "DESCRIPTION_SHORT";
-    public static final String DESCRIPTION_LONG = "DESCRIPTION_LONG";
-
-    public static final String ADDRESS = "ADDRESS";
-    public static final String CITY = "CITY";
-    public static final String PINCODE = "PINCODE";
-    public static final String LANDMARK = "LANDMARK";
-    public static final String STATE = "STATE";
-    public static final String COUNTRY = "COUNTRY";
-
-    public static final String ISO_COUNTRY_CODE = "ISO_COUNTRY_CODE";
-    public static final String ISO_LANGUAGE_CODE = "ISO_LANGUAGE_CODE";
-    public static final String ISO_CURRENCY_CODE = "ISO_CURRENCY_CODE";
-
-    public static final String SERVICE_TYPE = "SERVICE_TYPE";
-    public static final String SERVICE_LEVEL = "SERVICE_LEVEL";
-
-    public static final String LAT_CENTER = "LAT_CENTER";
-    public static final String LON_CENTER = "LON_CENTER";
-
-    public static final String SERVICE_RANGE = "SERVICE_RANGE";
-
-    // to be taken out to global Service Configuration
-    public static final String IS_OFFICIAL_SERVICE_PROVIDER = "IS_OFFICIAL_SERVICE_PROVIDER";
-    public static final String IS_VERIFIED = "IS_VERIFIED";
-    public static final String SERVICE_URL = "SERVICE_URL";
-
-    public static final String CREATED = "CREATED";
-    public static final String UPDATED = "UPDATED";
-
-
-    // Consider Revising : Are these fields Required ?
-//    public static final String LAT_MAX = "LAT_MAX";
-//    public static final String LON_MAX = "LON_MAX";
-//    public static final String LAT_MIN = "LAT_MIN";
-//    public static final String LON_MIN = "LON_MIN";
-
-
-
-
-    // Create Table Statement
-    public static final String createTableServiceConfigurationPostgres
-            = "CREATE TABLE IF NOT EXISTS " + ServiceConfigurationGlobal.TABLE_NAME + "("
-
-            + " " + ServiceConfigurationGlobal.SERVICE_CONFIGURATION_ID + " SERIAL PRIMARY KEY,"
-
-//            + " " + ServiceConfigurationLocal.IMAGE_PATH + " text,"
-            + " " + ServiceConfigurationGlobal.LOGO_IMAGE_PATH + " text,"
-            + " " + ServiceConfigurationGlobal.BACKDROP_IMAGE_PATH + " text,"
-
-            + " " + ServiceConfigurationGlobal.SERVICE_NAME + " text,"
-            + " " + ServiceConfigurationGlobal.HELPLINE_NUMBER + " text,"
-
-            + " " + ServiceConfigurationGlobal.DESCRIPTION_SHORT + " text,"
-            + " " + ServiceConfigurationGlobal.DESCRIPTION_LONG + " text,"
-
-            + " " + ServiceConfigurationGlobal.ADDRESS + " text,"
-            + " " + ServiceConfigurationGlobal.CITY + " text,"
-            + " " + ServiceConfigurationGlobal.PINCODE + " BIGINT,"
-            + " " + ServiceConfigurationGlobal.LANDMARK + " text,"
-            + " " + ServiceConfigurationGlobal.STATE + " text,"
-            + " " + ServiceConfigurationGlobal.COUNTRY + " text,"
-
-            + " " + ServiceConfigurationGlobal.ISO_COUNTRY_CODE + " text,"
-            + " " + ServiceConfigurationGlobal.ISO_LANGUAGE_CODE + " text,"
-            + " " + ServiceConfigurationGlobal.ISO_CURRENCY_CODE + " text,"
-
-            + " " + ServiceConfigurationGlobal.SERVICE_TYPE + " INT,"
-            + " " + ServiceConfigurationGlobal.SERVICE_LEVEL + " INT,"
-
-            + " " + ServiceConfigurationGlobal.LAT_CENTER + " FLOAT,"
-            + " " + ServiceConfigurationGlobal.LON_CENTER + " FLOAT,"
-            + " " + ServiceConfigurationGlobal.SERVICE_RANGE + " FLOAT,"
-
-            + " " + ServiceConfigurationGlobal.IS_OFFICIAL_SERVICE_PROVIDER + " boolean,"
-            + " " + ServiceConfigurationGlobal.IS_VERIFIED + " boolean,"
-            + " " + ServiceConfigurationGlobal.SERVICE_URL + " text UNIQUE NOT NULL,"
-
-            + " " + ServiceConfigurationGlobal.UPDATED + " timestamp with time zone,"
-            + " " + ServiceConfigurationGlobal.CREATED + " timestamp with time zone NOT NULL DEFAULT now()"
-            + ")";
 
 
 
@@ -120,7 +25,7 @@ public class ServiceConfigurationGlobal {
 
     private String address;
     private String city;
-    private Long pincode;
+    private long pincode;
 
     private String landmark;
     private String state;
@@ -130,36 +35,36 @@ public class ServiceConfigurationGlobal {
     private String ISOLanguageCode;
     private String ISOCurrencyCode;
 
-    private Integer serviceType;
-    private Integer serviceLevel;
+    private int serviceType;
+    private int serviceLevel;
 
-    private Double latCenter;
-    private Double lonCenter;
+    private double latCenter;
+    private double lonCenter;
 
-    private Integer serviceRange;
-//    private Integer shopDeliveryRangeMax;
+    private double serviceRange;
 
-    private Boolean isOfficial;
-    private Boolean isVerified;
+    private boolean isOfficial;
+    private boolean isVerified;
     private String serviceURL;
 
     private Timestamp created;
     private Timestamp updated;
 
 
-    // Consider Revising : Are these variables needed or not ?
-//    private Double latMax;
-//    private Double lonMax;
-//    private Double latMin;
-//    private Double lonMin;
-
 
     // real time variables : the values of these variables are generated in real time.
-    private Double rt_distance;
+    private double rt_distance;
 
     private float rt_rating_avg;
     private float rt_rating_count;
 
+
+
+    // real time variables : the values of these variables are generated in real time.
+    private String rt_styleURL;
+
+    private boolean rt_login_using_otp_enabled;
+    private String rt_market_id_for_fcm;
 
 
 
@@ -170,6 +75,30 @@ public class ServiceConfigurationGlobal {
 
     // getter and setters
 
+
+    public String getRt_styleURL() {
+        return rt_styleURL;
+    }
+
+    public void setRt_styleURL(String rt_styleURL) {
+        this.rt_styleURL = rt_styleURL;
+    }
+
+    public boolean isRt_login_using_otp_enabled() {
+        return rt_login_using_otp_enabled;
+    }
+
+    public void setRt_login_using_otp_enabled(boolean rt_login_using_otp_enabled) {
+        this.rt_login_using_otp_enabled = rt_login_using_otp_enabled;
+    }
+
+    public String getRt_market_id_for_fcm() {
+        return rt_market_id_for_fcm;
+    }
+
+    public void setRt_market_id_for_fcm(String rt_market_id_for_fcm) {
+        this.rt_market_id_for_fcm = rt_market_id_for_fcm;
+    }
 
     public float getRt_rating_avg() {
         return rt_rating_avg;
@@ -381,30 +310,61 @@ public class ServiceConfigurationGlobal {
         this.serviceLevel = serviceLevel;
     }
 
-    public Double getLatCenter() {
+
+    public void setPincode(long pincode) {
+        this.pincode = pincode;
+    }
+
+    public void setServiceType(int serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public void setServiceLevel(int serviceLevel) {
+        this.serviceLevel = serviceLevel;
+    }
+
+
+    public double getLatCenter() {
         return latCenter;
     }
 
-    public void setLatCenter(Double latCenter) {
+    public void setLatCenter(double latCenter) {
         this.latCenter = latCenter;
     }
 
-    public Double getLonCenter() {
+    public double getLonCenter() {
         return lonCenter;
     }
 
-    public void setLonCenter(Double lonCenter) {
+    public void setLonCenter(double lonCenter) {
         this.lonCenter = lonCenter;
     }
 
-    public Integer getServiceRange() {
+    public double getServiceRange() {
         return serviceRange;
     }
 
-    public void setServiceRange(Integer serviceRange) {
+    public void setServiceRange(double serviceRange) {
         this.serviceRange = serviceRange;
     }
 
+    public boolean isOfficial() {
+        return isOfficial;
+    }
 
+    public void setOfficial(boolean official) {
+        isOfficial = official;
+    }
 
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(boolean verified) {
+        isVerified = verified;
+    }
+
+    public void setRt_distance(double rt_distance) {
+        this.rt_distance = rt_distance;
+    }
 }

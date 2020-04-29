@@ -38,7 +38,7 @@ import org.nearbyshops.enduserappnew.Model.ModelEndPoints.MarketReviewEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelReviewMarket.FavouriteMarket;
 import org.nearbyshops.enduserappnew.Model.ModelReviewMarket.MarketReview;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
 import org.nearbyshops.enduserappnew.Login.Login;
@@ -138,7 +138,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
 
-    private ServiceConfigurationGlobal market;
+    private Market market;
     private MarketReview reviewForUpdate;
 
 
@@ -206,7 +206,7 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
 
 
         String json = getActivity().getIntent().getStringExtra(TAG_JSON_STRING);
-        market = UtilityFunctions.provideGson().fromJson(json, ServiceConfigurationGlobal.class);
+        market = UtilityFunctions.provideGson().fromJson(json, Market.class);
 
 
         toolbar.setTitle(market.getServiceName());

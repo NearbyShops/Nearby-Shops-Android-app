@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarketSmall;
 
 import java.util.List;
@@ -16,14 +16,14 @@ public class AdapterSavedMarkets extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
 
-    private List<ServiceConfigurationGlobal> dataset;
+    private List<Market> dataset;
     private Context context;
     private Fragment subscriber;
 
 
 
 
-    public AdapterSavedMarkets(List<ServiceConfigurationGlobal> dataset, Context context, Fragment subscriber) {
+    public AdapterSavedMarkets(List<Market> dataset, Context context, Fragment subscriber) {
         this.dataset = dataset;
         this.context = context;
         this.subscriber = subscriber;

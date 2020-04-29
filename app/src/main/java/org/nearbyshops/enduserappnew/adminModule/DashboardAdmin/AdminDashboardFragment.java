@@ -16,9 +16,9 @@ import androidx.fragment.app.Fragment;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrderHistoryPaging;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfiguration;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarket;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseAdmin;
@@ -26,7 +26,6 @@ import org.nearbyshops.enduserappnew.adminModule.ShopsList.ShopsDatabase;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
-import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
 import org.nearbyshops.enduserappnew.R;
 
 import javax.inject.Inject;
@@ -125,13 +124,13 @@ public class AdminDashboardFragment extends Fragment {
         pd.setMessage("loading");
         pd.show();
 
-        Call<ServiceConfigurationLocal> call = configurationService.getServiceConfiguration(null,null);
+        Call<Market> call = configurationService.getServiceConfiguration(null,null);
 
 
 
-        call.enqueue(new Callback<ServiceConfigurationLocal>() {
+        call.enqueue(new Callback<Market>() {
             @Override
-            public void onResponse(Call<ServiceConfigurationLocal> call, Response<ServiceConfigurationLocal> response) {
+            public void onResponse(Call<Market> call, Response<Market> response) {
 
                 if(response.code()==200 && response.body()!=null)
                 {
@@ -143,7 +142,7 @@ public class AdminDashboardFragment extends Fragment {
 
                     if(launchEditConfig)
                     {
-                        startActivity(new Intent(getActivity(), EditConfiguration.class));
+                        startActivity(new Intent(getActivity(), EditMarket.class));
                     }
                 }
                 else
@@ -154,8 +153,10 @@ public class AdminDashboardFragment extends Fragment {
                 pd.dismiss();
             }
 
+
+
             @Override
-            public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
+            public void onFailure(Call<Market> call, Throwable t) {
 
 
                 pd.dismiss();

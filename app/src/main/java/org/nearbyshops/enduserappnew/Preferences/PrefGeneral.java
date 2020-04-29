@@ -29,6 +29,9 @@ public class PrefGeneral {
     public static final String SERVICE_URL_LOCAL_ = "http://142.93.219.138:80";
 
 
+//    "http://167.71.225.180"
+
+
 
     // for multi-market mode set default service url to null and multi market mode to true
     // for single-market mode set multi-market mode false and set default service url to your api server url

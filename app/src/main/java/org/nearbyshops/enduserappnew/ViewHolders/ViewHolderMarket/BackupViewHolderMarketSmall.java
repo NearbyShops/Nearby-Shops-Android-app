@@ -22,8 +22,7 @@ import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
@@ -58,7 +57,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    private ServiceConfigurationGlobal configurationGlobal;
+    private Market configurationGlobal;
     private Context context;
 
 
@@ -99,7 +98,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    public void setItem(ServiceConfigurationGlobal item)
+    public void setItem(Market item)
     {
 
         this.configurationGlobal = item;
@@ -151,7 +150,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
     {
 
 
-        ServiceConfigurationGlobal configurationGlobal = this.configurationGlobal;
+        Market configurationGlobal = this.configurationGlobal;
 
 
         if(PrefLoginGlobal.getUser(context)==null)
@@ -172,7 +171,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    private void fetchConfiguration(final ServiceConfigurationGlobal configurationGlobal)
+    private void fetchConfiguration(final Market configurationGlobal)
     {
 
 //            PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplicationContext());
@@ -194,7 +193,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
 
-        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(0.0,0.0);
+        Call<Market> call = service.getServiceConfiguration(0.0,0.0);
 
 
 
@@ -203,9 +202,9 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
         progressBarSelect.setVisibility(View.VISIBLE);
 
 
-        call.enqueue(new Callback<ServiceConfigurationLocal>() {
+        call.enqueue(new Callback<Market>() {
             @Override
-            public void onResponse(Call<ServiceConfigurationLocal> call, Response<ServiceConfigurationLocal> response) {
+            public void onResponse(Call<Market> call, Response<Market> response) {
 
 
                 selectMarket.setVisibility(View.VISIBLE);
@@ -221,7 +220,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
                     PrefServiceConfig.saveServiceConfigLocal(response.body(),context);
 
 
-                    ServiceConfigurationLocal config = response.body();
+                    Market config = response.body();
 
 
                     if(config!=null)
@@ -256,7 +255,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
             @Override
-            public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
+            public void onFailure(Call<Market> call, Throwable t) {
 
 
                 selectMarket.setVisibility(View.VISIBLE);
@@ -272,7 +271,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    private void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
+    private void loginToLocalEndpoint(final Market configurationGlobal)
     {
 
 
@@ -372,7 +371,7 @@ public class BackupViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-                    ServiceConfigurationLocal configurationLocal = user.getServiceConfigurationLocal();
+                    Market configurationLocal = user.getServiceConfigurationLocal();
                     PrefServiceConfig.saveServiceConfigLocal(configurationLocal,context);
 
 

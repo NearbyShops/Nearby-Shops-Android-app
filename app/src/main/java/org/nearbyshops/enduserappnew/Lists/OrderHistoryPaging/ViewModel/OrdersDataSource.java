@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging;
+package org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.ViewModel;
 
 
 
@@ -66,7 +66,6 @@ public class OrdersDataSource extends PageKeyedDataSource<Long,Object> {
         if (endUser == null) {
             return;
         }
-
 
 
 

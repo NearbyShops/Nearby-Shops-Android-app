@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -34,6 +35,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,6 +74,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
     @BindView(R.id.quantity_quarter) TextView quantityQuarter;
 
     @BindView(R.id.dummy_text_for_margin) TextView dummyTextForMargin;
+
+    @BindView(R.id.discount_indicator) TextView discountIndicator;
+    @BindView(R.id.list_price) TextView listPrice;
 
 
 
@@ -111,7 +117,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
     {
 
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_small,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_dual,parent,false);
         return new ViewHolderShopItem(view,context,fragment,adapter,cartItemMap,cartStats);
     }
 
@@ -438,6 +444,29 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                 itemPrice.setText(currency + " " + refinedString(shopItem.getItemPrice()) + " / " + item.getQuantityUnit());
 
 //                String.format("%.2f",shopItem.getItemPrice())
+
+
+
+                if(item.getListPrice()>0.0 && item.getListPrice()>shopItem.getItemPrice())
+                {
+                    listPrice.setText(currency + " " + refinedString(item.getListPrice()));
+                    listPrice.setPaintFlags(listPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    listPrice.setVisibility(View.VISIBLE);
+
+
+                    double discountPercent = ((item.getListPrice() - shopItem.getItemPrice())/100)*100;
+                    discountIndicator.setText(UtilityFunctions.refinedStringWithDecimals(discountPercent) + " %\nOff");
+
+                    discountIndicator.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    discountIndicator.setVisibility(View.GONE);
+                    listPrice.setVisibility(View.GONE);
+                }
+
+
+
 
                 if(item.getRt_rating_count()==0)
                 {
@@ -875,14 +904,26 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+
+
+
     @OnClick(R.id.increaseQuantity)
     void increaseQuantityClick(View view)
     {
+        User endUser = PrefLogin.getUser(context);
+        if(endUser==null)
+        {
+
+//                        Toast.makeText(context, "Please LoginUsingOTP to continue ...", Toast.LENGTH_SHORT).show();
+            showLoginDialog();
+
+            return;
+        }
+
 
 
 
         int availableItems = shopItem.getAvailableItemQuantity();
-
 
         if (!itemQuantityText.getText().toString().equals("")) {
 

@@ -385,13 +385,21 @@ public class FragmentEditProfile extends Fragment {
     private void updateFieldVisibility()
     {
 
-
         if(current_mode==MODE_UPDATE_BY_ADMIN)
         {
 
             labelChangePhone.setVisibility(GONE);
             labelChangeEmail.setVisibility(GONE);
             labelChangePassword.setVisibility(GONE);
+        }
+        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        {
+
+
+            labelChangePhone.setVisibility(GONE);
+            labelChangeEmail.setVisibility(GONE);
+            labelChangePassword.setVisibility(GONE);
+
         }
         else
         {
@@ -430,7 +438,17 @@ public class FragmentEditProfile extends Fragment {
         if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             // multi-market mode enabled
-            localUserIDBlock.setVisibility(VISIBLE);
+
+            if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+            {
+                localUserIDBlock.setVisibility(GONE);
+            }
+            else
+            {
+                localUserIDBlock.setVisibility(VISIBLE);
+            }
+
+
             globalUserID.setHint("Global User ID");
         }
         else

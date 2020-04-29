@@ -19,8 +19,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignIn
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -141,7 +140,7 @@ public class ViewModelMarkets extends AndroidViewModel {
             if(PrefLoginGlobal.getUser(getApplication())==null)
             {
 
-                call = retrofit.create(MarketService.class).getShopListSimple(
+                call = retrofit.create(MarketService.class).getMarketsList(
                         PrefLocation.getLatitude(getApplication()), PrefLocation.getLongitude(getApplication()),
                         null,
                         null,
@@ -152,7 +151,7 @@ public class ViewModelMarkets extends AndroidViewModel {
             else
             {
 
-                call = retrofit.create(MarketService.class).getShopListSimple(
+                call = retrofit.create(MarketService.class).getMarketsList(
                         PrefLoginGlobal.getAuthorizationHeaders(getApplication()),
                         PrefLocation.getLatitude(getApplication()), PrefLocation.getLongitude(getApplication()),
                         null,
@@ -380,7 +379,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 
 
 
-    public void fetchLocalConfiguration(final ServiceConfigurationGlobal configurationGlobal)
+    public void fetchLocalConfiguration(final Market configurationGlobal)
     {
 
 //            PrefGeneral.saveServiceURL(configurationGlobal.getServiceURL(),getApplicationContext());
@@ -408,7 +407,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
 
-        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(0.0,0.0);
+        Call<Market> call = service.getServiceConfiguration(0.0,0.0);
 
 
 
@@ -416,9 +415,9 @@ public class ViewModelMarkets extends AndroidViewModel {
 //        progressBarSelect.setVisibility(View.VISIBLE);
 
 
-        call.enqueue(new Callback<ServiceConfigurationLocal>() {
+        call.enqueue(new Callback<Market>() {
             @Override
-            public void onResponse(Call<ServiceConfigurationLocal> call, Response<ServiceConfigurationLocal> response) {
+            public void onResponse(Call<Market> call, Response<Market> response) {
 
 
 //                selectMarket.setVisibility(View.VISIBLE);
@@ -433,7 +432,7 @@ public class ViewModelMarkets extends AndroidViewModel {
                     PrefServiceConfig.saveServiceConfigLocal(response.body(),getApplication());
 
 
-                    ServiceConfigurationLocal config = response.body();
+                    Market config = response.body();
 
                     if(config!=null)
                     {
@@ -470,7 +469,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 
 
             @Override
-            public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
+            public void onFailure(Call<Market> call, Throwable t) {
 
 
 //                selectMarket.setVisibility(View.VISIBLE);
@@ -484,7 +483,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 
 
 
-    public void loginToLocalEndpoint(final ServiceConfigurationGlobal configurationGlobal)
+    public void loginToLocalEndpoint(final Market configurationGlobal)
     {
 
 //        final String phoneWithCode = ccp.getSelectedCountryCode()+ username.getText().toString();
@@ -598,7 +597,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 
 
 
-                    ServiceConfigurationLocal configurationLocal = user.getServiceConfigurationLocal();
+                    Market configurationLocal = user.getServiceConfigurationLocal();
 
                     PrefServiceConfig.saveServiceConfigLocal(configurationLocal,getApplication());
 

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket;
+package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewHolder;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -12,30 +12,21 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnLongClick;
 
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.ViewModels.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 
-import javax.inject.Inject;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
-
-public class ViewHolderMarket extends RecyclerView.ViewHolder{
+public class ViewHolderMarketAdmin extends RecyclerView.ViewHolder{
 
 
     @BindView(R.id.service_name) TextView serviceName;
@@ -51,29 +42,21 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder{
     @BindView(R.id.distance) TextView distance;
 
     @BindView(R.id.progress_bar_select) ProgressBar progressBarSelect;
-//    @BindView(R.id.select_market) TextView selectMarket;
-
 
     private Market configurationGlobal;
     private Fragment fragment;
     private Context context;
 
-    private ViewModelMarkets viewModel;
-
-
-    @Inject Gson gson;
 
 
 
-
-
-    public static ViewHolderMarket create(ViewGroup parent, Context context, Fragment subscriber)
+    public static ViewHolderMarketAdmin create(ViewGroup parent, Context context, Fragment subscriber)
     {
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_market_new, parent, false);
 
-        return new ViewHolderMarket(view,parent,context,subscriber);
+        return new ViewHolderMarketAdmin(view,parent,context,subscriber);
     }
 
 
@@ -82,82 +65,14 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder{
 
 
 
-    public ViewHolderMarket(View itemView, ViewGroup parent, Context context, Fragment fragment)
+    public ViewHolderMarketAdmin(View itemView, ViewGroup parent, Context context, Fragment fragment)
     {
         super(itemView);
         ButterKnife.bind(this,itemView);
 
 
-
         this.context = context;
         this.fragment = fragment;
-
-//        itemView = LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.list_item_market,parent,false);
-
-
-//        viewModel  = ViewModelProviders.of(fragment).get(MarketViewModel.class);
-        viewModel = new ViewModelMarkets(MyApplication.application);
-
-        viewModel.getEvent().observe(fragment, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-
-
-//                showToastMessage("Event : " + integer);
-
-
-
-                if(integer== ViewModelMarkets.EVENT_LOCAL_CONFIG_FETCHED || integer== ViewModelMarkets.EVENT_LOGGED_IN_TO_LOCAL_SUCCESS)
-                {
-
-//                    selectMarket.setVisibility(View.VISIBLE);
-                    serviceLogo.setVisibility(View.VISIBLE);
-                    progressBarSelect.setVisibility(View.INVISIBLE);
-
-
-                    if(fragment instanceof ListItemClick)
-                    {
-                        ((ListItemClick) fragment).selectMarketSuccessful(configurationGlobal,getAdapterPosition());
-                    }
-
-                }
-                else if(integer== ViewModelMarkets.EVENT_NETWORK_FAILED)
-                {
-//                    selectMarket.setVisibility(View.VISIBLE);
-                    serviceLogo.setVisibility(View.VISIBLE);
-                    progressBarSelect.setVisibility(View.INVISIBLE);
-                }
-
-            }
-        });
-
-
-
-
-
-        viewModel.getMessage().observe(fragment, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-
-                if(fragment instanceof ListItemClick)
-                {
-                    ((ListItemClick) fragment).showMessage(s);
-                }
-
-            }
-        });
-
-
-
-
-//        itemView.setOnClickListener(this);
-
-
-
-        DaggerComponentBuilder.getInstance()
-                .getNetComponent()
-                .Inject(this);
     }
 
 
@@ -246,54 +161,15 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder{
 
 
 
-//        @OnClick(R.id.description)
-//        void copyURLClick()
-//        {
-//            ClipboardManager clipboard = (ClipboardManager) fragment.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-//            ClipData clip = ClipData.newPlainText("URL", serviceURL.getText().toString());
-//            clipboard.setPrimaryClip(clip);
-//
-//            showToastMessage("Copied !");
-//        }
-
-
-
 
     @OnClick(R.id.list_item_market)
     void selectMarket()
     {
-
-        Market configurationGlobal = this.configurationGlobal;
-
-//        selectMarket.setVisibility(View.INVISIBLE);
-        serviceLogo.setVisibility(View.INVISIBLE);
-        progressBarSelect.setVisibility(View.VISIBLE);
-
-        if(PrefLoginGlobal.getUser(context)==null)
-        {
-            // user not logged in so just fetch configuration
-            viewModel.fetchLocalConfiguration(configurationGlobal);
-        }
-        else
-        {
-            viewModel.loginToLocalEndpoint(configurationGlobal);
-        }
-
-    }
-
-
-
-
-
-    @OnLongClick(R.id.list_item_market)
-    void showDetailsClick()
-    {
         if(fragment instanceof ListItemClick)
         {
-            ((ListItemClick) fragment).listItemClick(configurationGlobal,getLayoutPosition());
+            ((ListItemClick) fragment).listItemClick(configurationGlobal,getAdapterPosition());
         }
     }
-
 
 
 
@@ -301,8 +177,6 @@ public class ViewHolderMarket extends RecyclerView.ViewHolder{
     public interface ListItemClick
     {
         void listItemClick(Market configurationGlobal, int position);
-        void selectMarketSuccessful(Market configurationGlobal, int position);
-        void showMessage(String message);
     }
 
 

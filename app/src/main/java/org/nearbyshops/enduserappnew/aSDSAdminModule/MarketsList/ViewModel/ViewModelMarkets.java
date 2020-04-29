@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList;
+package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewModel;
 
 import android.app.Application;
 
@@ -62,10 +62,9 @@ public class ViewModelMarkets extends AndroidViewModel {
     }
 
 
-
-
-
     public LiveData<PagedList<Object>> getArticleLiveData() {
         return articleLiveData;
     }
+
+
 }

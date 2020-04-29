@@ -165,13 +165,31 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
 
 
 
+
+
             if(shop.getHomeDeliveryAvailable())
             {
                 homeDeliveryIndicator.setVisibility(View.VISIBLE);
+                delivery.setVisibility(View.VISIBLE);
+
+                if(shop.getDeliveryCharges()==0)
+                {
+                    delivery.setText(" Free home delivery ");
+                    delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.darkGreen));
+                    delivery.setTextColor(ContextCompat.getColor(context,R.color.white));
+                }
+                else
+                {
+                    delivery.setText("Delivery : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
+
+                    delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.white));
+                    delivery.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
+                }
             }
             else
             {
                 homeDeliveryIndicator.setVisibility(View.GONE);
+                delivery.setVisibility(View.INVISIBLE);
             }
 
 
@@ -201,23 +219,10 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
 
 
 
-            String currency = "";
-            currency = PrefGeneral.getCurrencySymbol(context);
+//            String currency = "";
+//            currency = PrefGeneral.getCurrencySymbol(context);
 
 
-            if(shop.getDeliveryCharges()==0)
-            {
-                delivery.setText(" Free home delivery ");
-                delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.darkGreen));
-                delivery.setTextColor(ContextCompat.getColor(context,R.color.white));
-            }
-            else
-            {
-                delivery.setText("Delivery : " + currency + " " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
-
-                delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.white));
-                delivery.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
-            }
 
 //            distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
 

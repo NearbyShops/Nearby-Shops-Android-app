@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     android:layout_marginTop="5dp"
     android:id="@+id/list_item"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
+    android:weightSum="2"
     android:animateLayoutChanges="false"
     android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,80 +26,66 @@
 <!--            android:layout_height="0dp" />-->
 
 
-
-
-        <ImageView
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:scaleType="centerCrop"
-            android:id="@+id/item_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/backgroundTinted"
-            app:layout_constraintDimensionRatio="5:3" />
-
-
-
-
-
-
-    <TextView
-        android:layout_margin="10dp"
-        app:layout_constraintStart_toStartOf="@id/item_image"
-        app:layout_constraintBottom_toBottomOf="@id/item_image"
-        android:layout_marginTop="3dp"
-        android:id="@+id/rating"
-        android:textColor="@color/white"
-        android:background="@color/gplus_color_1"
-        android:paddingStart="7dp"
-        android:paddingEnd="7dp"
-        android:text="@string/list_item_shop_item_small_rating_text"
+    <ImageView
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:id="@+id/item_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="200dp" />
 
 
 
 
-
-    <TextView
-        android:textColor="@color/white"
-        android:id="@+id/rating_count"
-        android:layout_marginLeft="10dp"
+    <LinearLayout
         android:layout_marginStart="10dp"
-        app:layout_constraintLeft_toRightOf="@+id/rating"
-        app:layout_constraintBottom_toBottomOf="@+id/rating"
-        android:text="@string/list_item_shop_item_small_rating_count_text"
+        android:layout_weight="1"
+        android:orientation="vertical"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_title"
+            android:textSize="20sp"
+            android:text="@string/list_item_shop_item_small_item_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
+            <TextView
+                app:layout_constraintStart_toStartOf="@id/item_image"
+                app:layout_constraintBottom_toBottomOf="@id/item_image"
+                android:id="@+id/rating"
+                android:textColor="@color/white"
+                android:background="@color/gplus_color_1"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
+                android:text="@string/list_item_shop_item_small_rating_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/rating_count"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/list_item_shop_item_small_rating_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
 
-
-
-
-    <TextView
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintTop_toBottomOf="@id/item_image"
-        app:layout_constraintStart_toStartOf="@id/item_image"
-        app:layout_constraintEnd_toStartOf="@id/reduceQuantity"
-        android:id="@+id/item_title"
-        android:textSize="20sp"
-        android:text="@string/list_item_shop_item_small_item_title_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
-
-
-
+        </LinearLayout>
 
 
         <LinearLayout
             android:id="@+id/item_price_block"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/item_title"
             app:layout_constraintStart_toStartOf="@id/item_title"
             android:orientation="horizontal"
@@ -117,6 +105,8 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+
 
 
         <TextView
@@ -186,111 +176,64 @@
             android:layout_height="wrap_content"/>
 
 
-<!--        <LinearLayout-->
-<!--            android:id="@+id/special_quantities"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/item_image"-->
-<!--            app:layout_constraintEnd_toEndOf="@id/increaseQuantity"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--            <TextView-->
-<!--                android:paddingTop="2dp"-->
-<!--                android:paddingBottom="2dp"-->
-<!--                android:gravity="center"-->
-<!--                android:paddingEnd="5dp"-->
-<!--                android:paddingStart="5dp"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:background="@color/buttonColor"-->
-<!--                android:text="@string/list_item_shop_item_small_quantity_quarter_text"-->
-<!--                android:layout_width="70dp"-->
-<!--                android:layout_height="wrap_content"/>-->
 
 
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/reduceQuantity"
+            app:layout_constraintTop_toTopOf="@id/reduceQuantity"
+            app:layout_constraintEnd_toStartOf="@id/reduceQuantity"
+            android:orientation="vertical"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content">
 
 
-<!--            <TextView-->
-<!--                android:id="@+id/dummy_text_for_margin"-->
-<!--                android:layout_width="5dp"-->
-<!--                android:layout_height="5dp"/>-->
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/quantity_quarter"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:gravity="center"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:textColor="@color/white"
+                android:background="@color/buttonColor"
+                android:text="@string/list_item_shop_item_small_quantity_quarter_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
-<!--            <TextView-->
-<!--                android:paddingTop="2dp"-->
-<!--                android:paddingBottom="2dp"-->
-<!--                android:gravity="center"-->
-<!--                android:paddingEnd="5dp"-->
-<!--                android:paddingStart="5dp"-->
-<!--                android:textColor="@color/blueGrey800"-->
-<!--                android:background="@color/light_grey"-->
-<!--                android:text="@string/list_item_shop_item_small_quantity_half_text"-->
-<!--                android:layout_width="70dp"-->
-<!--                android:layout_height="wrap_content"/>-->
-
-<!--        </LinearLayout>-->
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/dummy_text_for_margin"
+                android:layout_width="5dp"
+                android:layout_height="5dp"/>
 
 
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/quantity_half"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:gravity="center"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:text="@string/list_item_shop_item_small_quantity_half_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
 
-    <LinearLayout
 
-        android:gravity="center_vertical"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/reduceQuantity"
-        app:layout_constraintTop_toTopOf="@id/reduceQuantity"
-        app:layout_constraintEnd_toStartOf="@id/reduceQuantity"
-        android:orientation="vertical"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content">
+
 
 
         <TextView
             android:visibility="gone"
-            android:id="@+id/quantity_quarter"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:gravity="center"
-            android:paddingEnd="5dp"
-            android:paddingStart="5dp"
-            android:textColor="@color/white"
-            android:background="@color/buttonColor"
-            android:text="@string/list_item_shop_item_small_quantity_quarter_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/dummy_text_for_margin"
-            android:layout_width="5dp"
-            android:layout_height="5dp"/>
-
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/quantity_half"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:gravity="center"
-            android:paddingEnd="5dp"
-            android:paddingStart="5dp"
-            android:textColor="@color/white"
-            android:background="@color/orange"
-            android:text="@string/list_item_shop_item_small_quantity_half_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-
-
-
-
-
-    <TextView
-        android:visibility="invisible"
-            android:layout_marginEnd="2dp"
             android:id="@+id/add_label"
             android:textColor="@color/white"
             android:gravity="center"
@@ -298,24 +241,21 @@
             app:layout_constraintBottom_toBottomOf="@id/increaseQuantity"
             app:layout_constraintTop_toTopOf="@id/increaseQuantity"
             app:layout_constraintStart_toStartOf="@id/reduceQuantity"
-            app:layout_constraintEnd_toStartOf="@id/increaseQuantity"
+            app:layout_constraintEnd_toEndOf="@id/increaseQuantity"
             android:background="@color/gplus_color_1"
             android:layout_width="0dp"
             android:layout_height="0dp"/>
 
 
-<!--    style="?android:attr/progressBarStyleHorizontal"-->
 
         <ProgressBar
             android:visibility="invisible"
-            android:layout_marginBottom="15dp"
-            style="?android:attr/progressBarStyleHorizontal"
             android:id="@+id/progress_bar"
             android:indeterminate="true"
+            style="?android:attr/progressBarStyleHorizontal"
+            app:layout_constraintBottom_toTopOf="@id/reduceQuantity"
             app:layout_constraintStart_toStartOf="@id/reduceQuantity"
             app:layout_constraintEnd_toEndOf="@id/increaseQuantity"
-            app:layout_constraintBottom_toTopOf="@id/increaseQuantity"
-            app:layout_constraintTop_toTopOf="@id/itemQuantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
@@ -358,4 +298,18 @@
             android:layout_height="wrap_content"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

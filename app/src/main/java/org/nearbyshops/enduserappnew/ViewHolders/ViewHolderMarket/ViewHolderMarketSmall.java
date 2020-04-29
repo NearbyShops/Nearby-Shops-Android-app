@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso;
 
 
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelMarkets;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
@@ -48,7 +48,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    private ServiceConfigurationGlobal configurationGlobal;
+    private Market configurationGlobal;
     private Context context;
     private Fragment fragment;
 
@@ -139,7 +139,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    public void setItem(ServiceConfigurationGlobal item)
+    public void setItem(Market item)
     {
 
         this.configurationGlobal = item;
@@ -191,7 +191,7 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
     @OnClick(R.id.list_item)
     void selectMarket()
     {
-        ServiceConfigurationGlobal configurationGlobal = this.configurationGlobal;
+        Market configurationGlobal = this.configurationGlobal;
 
 
 //        selectMarket.setVisibility(View.INVISIBLE);

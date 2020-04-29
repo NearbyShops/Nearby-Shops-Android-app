@@ -16,15 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
-import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,7 +74,7 @@ public class ViewHolderCreateShop extends RecyclerView.ViewHolder{
         if(PrefGeneral.getMultiMarketMode(context))
         {
 
-            ServiceConfigurationLocal globalConfig = PrefServiceConfig.getServiceConfigLocal(context);
+            Market globalConfig = PrefServiceConfig.getServiceConfigLocal(context);
 
             if(globalConfig==null)
             {

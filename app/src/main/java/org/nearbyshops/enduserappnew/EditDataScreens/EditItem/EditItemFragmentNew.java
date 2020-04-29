@@ -539,7 +539,8 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     }
 
 
-    void update()
+
+    private void update()
     {
 
         if(isImageChanged)
@@ -581,7 +582,10 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-    void bindDataToViews()
+
+
+
+    private void bindDataToViews()
     {
         if(item !=null) {
 
@@ -616,7 +620,8 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-    void getDataFromViews()
+
+    private void getDataFromViews()
     {
         if(item ==null)
         {
@@ -711,7 +716,8 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-    void retrofitPOSTRequest()
+
+    private void retrofitPOSTRequest()
     {
         getDataFromViews();
         item.setItemCategoryID(itemCategory.getItemCategoryID());

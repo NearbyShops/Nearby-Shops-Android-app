@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList;
+package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewModel;
 
 
 
@@ -170,7 +170,7 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
                 null,null,
                 null,null,null,
                 sortBy,
-                params.requestedLoadSize,0,
+                params.requestedLoadSize,params.key.intValue(),
                 false,false
         );
 

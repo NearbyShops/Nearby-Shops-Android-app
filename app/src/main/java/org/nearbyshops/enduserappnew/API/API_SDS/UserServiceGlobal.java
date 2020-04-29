@@ -230,6 +230,7 @@ public interface UserServiceGlobal {
 
 
 
+
     @PUT("/api/v1/User/UpdateProfileByAdmin")
     Call<ResponseBody> updateProfileByAdmin(
             @Header("Authorization") String headers,

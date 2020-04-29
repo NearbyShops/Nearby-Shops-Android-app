@@ -1,6 +1,5 @@
 package org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging;
 
-import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +33,7 @@ import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
+import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.ViewModel.ViewModelOrders;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.MyApplication;
@@ -303,9 +302,21 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
             public void onChanged(PagedList<Object> objects) {
 
                 adapter.submitList(objects);
+            }
+        });
 
 
-                swipeContainer.setRefreshing(false);
+
+        adapter.addLoadStateListener(new PagedList.LoadStateListener() {
+            @Override
+            public void onLoadStateChanged(@NonNull PagedList.LoadType type, @NonNull PagedList.LoadState state, @Nullable Throwable error) {
+
+//                System.out.println("Load Type : State " + type + " | " + state);
+
+                if(state.equals(PagedList.LoadState.DONE))
+                {
+                    swipeContainer.setRefreshing(false);
+                }
             }
         });
 

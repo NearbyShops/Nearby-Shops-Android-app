@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging;
+package org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.ViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;

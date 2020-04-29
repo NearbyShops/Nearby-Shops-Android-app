@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Lists.Markets.AdapterSavedMarkets;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
 import org.nearbyshops.enduserappnew.R;
@@ -62,7 +62,7 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
 
 
-    public void setItem(List<ServiceConfigurationGlobal> item)
+    public void setItem(List<Market> item)
     {
 
 //        this.configurationGlobal = item;

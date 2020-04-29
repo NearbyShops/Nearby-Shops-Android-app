@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging;
+package org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.ViewModel;
 
 import android.app.Application;
 

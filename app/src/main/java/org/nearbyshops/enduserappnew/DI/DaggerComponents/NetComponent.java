@@ -13,7 +13,7 @@ import org.nearbyshops.enduserappnew.Login.LoginLocalUsingOTPFragmentNew;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.PlacePickerWithMapFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.BackupViewHolderMarketSmall1Mar20;
-import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersDataSource;
+import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.ViewModel.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToShopStaffDialog;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
@@ -27,14 +27,14 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSDSAdminModule.DashboardAdmin.SDSAdminDashboardFragment;
-import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.MarketsDataSource;
+import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewModel.MarketsDataSource;
 import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.MarketsListFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy.FilterDeliveryFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.Fragment.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
 import org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboardFragment;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditServiceConfig.EditConfigurationFragment;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarketFragment;
 import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListFragment;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity;
@@ -256,7 +256,7 @@ public interface NetComponent {
 
     void Inject(AdminDashboardFragment adminDashboardFragment);
 
-    void Inject(EditConfigurationFragment editConfigurationFragment);
+    void Inject(EditMarketFragment editMarketFragment);
 
     void Inject(EditShopForAdminFragment editShopForAdminFragment);
 

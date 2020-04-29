@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    app:contentPadding="0dp"
+    app:cardElevation="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_height="wrap_content"
+    android:layout_width="130dp"
+    android:focusable="true">
+
+
+<!--    app:cardCornerRadius="0dp"-->
+
+<!--    android:layout_marginTop="5dp"-->
+<!--    android:layout_marginBottom="5dp"-->
+<!--    android:layout_marginEnd="10dp"-->
+
+
+<!--    app:cardCornerRadius="0dp"-->
+
+
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:foreground="?android:attr/selectableItemBackground"-->
+    <!--app:cardCornerRadius="0dp"-->
+    <!--app:contentPadding="0dp"-->
+    <!--android:layout_margin="2.5dp"-->
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/itemCategoryListItem"
+        android:padding="0dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <!--<ImageView-->
+            <!--android:background="#44000000"-->
+            <!--android:id="@+id/categoryImage"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="130dp"-->
+            <!--app:srcCompat="@drawable/ic_nature_people_white_48px"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--android:layout_marginStart="0dp"/>-->
+
+        <!--app:layout_constraintDimensionRatio="H,1:1"-->
+
+
+
+        <ImageView
+            android:background="#44000000"
+            android:id="@+id/categoryImage"
+            android:scaleType="centerCrop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="W,3:5"
+            app:srcCompat="@drawable/ic_nature_people_white_48px"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="0dp"/>
+
+
+
+
+        <!--
+            <TextView
+                android:visibility="gone"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="#77000000"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:id="@+id/categoryDescription"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category Description"/>-->
+
+
+        <TextView
+            android:padding="5dp"
+            android:id="@+id/name"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="25dp"
+            android:textSize="15sp"
+            android:gravity="start"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@id/categoryImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/categoryImage"
+            app:layout_constraintEnd_toEndOf="@id/categoryImage"
+            android:text="@string/list_item_item_category_new_name_text"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

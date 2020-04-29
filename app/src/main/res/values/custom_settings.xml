@@ -11,7 +11,7 @@
     <string name="faqs_link">https://example.com/faq_link.html</string>
 
 
-    <string name="custom_mapbox_url">"https://api.maptiler.com/maps/bright/style.json?key=rgEe333l5zT9WTGlZXNR"</string>
+    <string name="custom_mapbox_url">https://api.maptiler.com/maps/bright/style.json?key=rgEe333l5zT9WTGlZXNR</string>
 
 
 </resources>

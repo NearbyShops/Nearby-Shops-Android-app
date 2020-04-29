@@ -3,7 +3,7 @@ package org.nearbyshops.enduserappnew.API.API_SDS;
 
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -24,9 +24,9 @@ public interface MarketService {
 
 
     @PUT("/api/v1/ServiceConfiguration/UpdateByStaff/{ServiceID}")
-    Call<ResponseBody> updateShop(@Header("Authorization") String headers,
-                                  ServiceConfigurationGlobal serviceConfigurationGlobal,
-                                  @Path("ServiceID") int serviceID);
+    Call<ResponseBody> updateMarket(@Header("Authorization") String headers,
+                                      @Body Market market,
+                                      @Path("ServiceID") int serviceID);
 
 
 //    @Query("IsOfficial") Boolean isOfficial, @Query("IsVerified") Boolean isVerified,
@@ -38,7 +38,7 @@ public interface MarketService {
 
 
     @GET("/api/v1/ServiceConfiguration")
-    Call<ServiceConfigurationEndPoint> getShopListSimple(
+    Call<ServiceConfigurationEndPoint> getMarketsList(
             @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
             @Query("ServiceURL") String serviceURL,
             @Query("SearchString") String searchString,
@@ -49,7 +49,7 @@ public interface MarketService {
 
 
     @GET("/api/v1/ServiceConfiguration")
-    Call<ServiceConfigurationEndPoint> getShopListSimple(
+    Call<ServiceConfigurationEndPoint> getMarketsList(
             @Header("Authorization") String headers,
             @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
             @Query("ServiceURL") String serviceURL,
@@ -77,6 +77,14 @@ public interface MarketService {
             @Query("GetRowCount")boolean getRowCount,
             @Query("MetadataOnly")boolean getOnlyMetaData
     );
+
+
+
+
+
+    @GET ("/api/v1/ServiceConfiguration/GetMarketDetails/{MarketID}")
+    Call<Market> getMarketDetails(@Path("MarketID")int marketID,
+                                     @Query("latCenter")double latCenter, @Query("lonCenter")double lonCenter);
 
 
 

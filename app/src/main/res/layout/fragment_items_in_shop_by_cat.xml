@@ -182,9 +182,9 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:paddingStart="2.5dp"
-        android:paddingEnd="2.5dp"
-        android:paddingTop="2.5dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
         android:paddingBottom="45dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

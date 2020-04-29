@@ -23,8 +23,8 @@ import com.squareup.picasso.Picasso;
 import okhttp3.OkHttpClient;
 
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -130,7 +130,7 @@ public class ServiceIndicatorFragment extends Fragment {
         {
 
 
-            ServiceConfigurationLocal serviceConfig = PrefServiceConfig.getServiceConfigLocal(getActivity());
+            Market serviceConfig = PrefServiceConfig.getServiceConfigLocal(getActivity());
 
 
 //                serviceName.setText(serviceConfig.getServiceName());
@@ -200,15 +200,15 @@ public class ServiceIndicatorFragment extends Fragment {
 
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
 
-        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(0.0,0.0);
+        Call<Market> call = service.getServiceConfiguration(0.0,0.0);
 
 
 
 
 
-        call.enqueue(new Callback<ServiceConfigurationLocal>() {
+        call.enqueue(new Callback<Market>() {
             @Override
-            public void onResponse(Call<ServiceConfigurationLocal> call, Response<ServiceConfigurationLocal> response) {
+            public void onResponse(Call<Market> call, Response<Market> response) {
 
                 if(isDestroyed)
                 {
@@ -249,7 +249,7 @@ public class ServiceIndicatorFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
+            public void onFailure(Call<Market> call, Throwable t) {
 
                 if(isDestroyed)
                 {

@@ -2,7 +2,7 @@ package org.nearbyshops.enduserappnew.Model.ModelEndPoints;
 
 
 
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationGlobal;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,27 +17,27 @@ public class ServiceConfigurationEndPoint {
     private int offset;
     private int limit;
     private int max_limit;
-    private List<ServiceConfigurationGlobal> savedMarkets;
-    private ArrayList<ServiceConfigurationGlobal> results;
+    private List<Market> savedMarkets;
+    private ArrayList<Market> results;
 
 
 
     // getter and setter methods
 
 
-    public List<ServiceConfigurationGlobal> getSavedMarkets() {
+    public List<Market> getSavedMarkets() {
         return savedMarkets;
     }
 
-    public void setSavedMarkets(List<ServiceConfigurationGlobal> savedMarkets) {
+    public void setSavedMarkets(List<Market> savedMarkets) {
         this.savedMarkets = savedMarkets;
     }
 
-    public ArrayList<ServiceConfigurationGlobal> getResults() {
+    public ArrayList<Market> getResults() {
         return results;
     }
 
-    public void setResults(ArrayList<ServiceConfigurationGlobal> results) {
+    public void setResults(ArrayList<Market> results) {
         this.results = results;
     }
 

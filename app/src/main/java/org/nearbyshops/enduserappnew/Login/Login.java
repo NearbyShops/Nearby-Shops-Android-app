@@ -5,9 +5,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragmentSelectService;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
 //        toolbar.setTitle("LoginUsingOTP");
 //        setSupportActionBar(toolbar);
 
-        ServiceConfigurationLocal configurationLocal = PrefServiceConfig.getServiceConfigLocal(this);
+        Market configurationLocal = PrefServiceConfig.getServiceConfigLocal(this);
 
 
 

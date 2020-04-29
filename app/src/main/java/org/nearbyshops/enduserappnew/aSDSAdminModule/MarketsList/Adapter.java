@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
+import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewHolder.ViewHolderMarketAdmin;
 
 /**
  * Created by sumeet on 13/6/16.
@@ -24,10 +25,7 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
 
 
 
-//    private List<Object> dataset = null;
-
-
-    public static final int VIEW_TYPE_ORDER = 1;
+    public static final int VIEW_TYPE_MARKET = 1;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 3;
     private final static int VIEW_TYPE_PROGRESS_BAR = 6;
 
@@ -63,9 +61,9 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
         View view = null;
 
 
-        if(viewType==VIEW_TYPE_ORDER)
+        if(viewType==VIEW_TYPE_MARKET)
         {
-            return ViewHolderOrder.create(parent,context,fragment);
+            return ViewHolderMarketAdmin.create(parent,context,fragment);
         }
         else if (viewType == VIEW_TYPE_PROGRESS_BAR) {
 
@@ -97,9 +95,9 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
         {
             return VIEW_TYPE_PROGRESS_BAR;
         }
-        else if(item instanceof Order)
+        else if(item instanceof Market)
         {
-            return VIEW_TYPE_ORDER;
+            return VIEW_TYPE_MARKET;
         }
         else if(item instanceof EmptyScreenDataFullScreen)
         {
@@ -117,24 +115,15 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holderVH, int position) {
 
 
-        if(holderVH instanceof ViewHolderOrder)
+        if(holderVH instanceof ViewHolderMarketAdmin)
         {
-            if(getItem(position) instanceof Order)
+            if(getItem(position) instanceof Market)
             {
-                ((ViewHolderOrder) holderVH).setItem((Order) getItem(position));
+                ((ViewHolderMarketAdmin) holderVH).setItem((Market) getItem(position));
             }
 
         }
         else if (holderVH instanceof LoadingViewHolder) {
-
-//            if(position < getItemCount())
-//            {
-//                ((LoadingViewHolder) holderVH).setLoading(true);
-//            }
-//            else
-//            {
-//                ((LoadingViewHolder) holderVH).setLoading(false);
-//            }
 
 
             ((LoadingViewHolder) holderVH).setLoading(true);

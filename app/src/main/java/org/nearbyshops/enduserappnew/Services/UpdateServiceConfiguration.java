@@ -7,8 +7,8 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.Model.ModelServiceConfig.ServiceConfigurationLocal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -81,15 +81,15 @@ public class UpdateServiceConfiguration extends IntentService {
 
         ServiceConfigurationService service = retrofit.create(ServiceConfigurationService.class);
 
-        Call<ServiceConfigurationLocal> call = service.getServiceConfiguration(0.0,0.0);
+        Call<Market> call = service.getServiceConfiguration(0.0,0.0);
 
 
 
 
 
-        call.enqueue(new Callback<ServiceConfigurationLocal>() {
+        call.enqueue(new Callback<Market>() {
             @Override
-            public void onResponse(Call<ServiceConfigurationLocal> call, Response<ServiceConfigurationLocal> response) {
+            public void onResponse(Call<Market> call, Response<Market> response) {
 
 
 
@@ -99,7 +99,7 @@ public class UpdateServiceConfiguration extends IntentService {
 
 
 
-                    ServiceConfigurationLocal config = response.body();
+                    Market config = response.body();
 
                     if(config!=null)
                     {
@@ -116,7 +116,7 @@ public class UpdateServiceConfiguration extends IntentService {
 
 
             @Override
-            public void onFailure(Call<ServiceConfigurationLocal> call, Throwable t) {
+            public void onFailure(Call<Market> call, Throwable t) {
 
 //                PrefServiceConfig.saveServiceConfigLocal(null,getApplicationContext());
             }
