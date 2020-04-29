@@ -13,8 +13,8 @@
     <string name="content_shop_home_for_staff_text_pick_from_shop_text">Pick From Shop Inventory</string>
     <string name="content_shop_home_for_staff_text_orders_history_text">Order History</string>
     <string name="activity_place_order_app_name_text">Place Order</string>
-    <string name="list_item_market_service_name_text">Farmers Garden</string>
-    <string name="list_item_market_address_text">Begumpet bazaar of the lal baza</string>
+    <string name="list_item_market_service_name_text" translatable="false">Farmers Garden</string>
+    <string name="list_item_market_address_text" translatable="false">Begumpet bazaar of the lal baza</string>
     <string name="list_item_market_distance_text">Distance : -</string>
     <string name="list_item_market_rating_text">4.1</string>
     <string name="list_item_market_rating_count_text">( 23 Ratings)</string>
@@ -137,11 +137,11 @@
     <string name="list_item_empty_screen_message_text">Message</string>
     <string name="list_item_empty_screen_button_text">button</string>
     <string name="list_item_market_current_log_out_button_text">| Log Out</string>
-    <string name="list_item_market_current_market_name_text">Farmers Garden</string>
-    <string name="list_item_market_current_address_text">Begumpet bazaar of the lal baza</string>
+    <string name="list_item_market_current_market_name_text" translatable="false">Farmers Garden</string>
+    <string name="list_item_market_current_address_text" translatable="false">Begumpet bazaar of the lal baza</string>
     <string name="list_item_market_current_description_text">Buy latest electronics, tech products from our market.</string>
     <string name="activity_pick_delivery_radius_label_instructions_text">Long Press to select location and use slider to adjust Radius.</string>
-    <string name="activity_pick_delivery_radius_copyrights_map_text">\u00a9 OpenMapTiles \u00a9 OpenStreetMap contributors</string>
+    <string name="activity_pick_delivery_radius_copyrights_map_text" translatable="false">\u00a9 OpenMapTiles \u00a9 OpenStreetMap contributors</string>
     <string name="activity_pick_delivery_radius_label_text"> - </string>
     <string name="fragment_market_detail_market_name_text">Market Name</string>
     <string name="fragment_market_detail_rating_avg_text"> - </string>
@@ -205,7 +205,7 @@
     <string name="fragment_orders_new_text_sort_text">Filter / Sort</string>
     <string name="fragment_orders_new_empty_screen_message_text">No orders to show here ! If the filters are turned on try turning them off !</string>
     <string name="fragment_orders_new_button_try_again_text">Try Again</string>
-    <string name="list_item_shop_item_layout_shopName_text">D-Mart, Green hills</string>
+    <string name="list_item_shop_item_layout_shopName_text" translatable="false">D-Mart, Green hills</string>
     <string name="list_item_shop_item_layout_indicator_pick_from_shop_text">Pick from shop</string>
     <string name="list_item_shop_item_layout_indicator_home_delivery_text">Home Delivery</string>
     <string name="list_item_shop_item_layout_deliveryCharge_text">Delivery : </string>
@@ -228,10 +228,10 @@
     <string name="list_item_filter_users_clear_filter_roles_text"> Clear </string>
     <string name="list_item_filter_users_role_end_user_text">EndUser</string>
     <string name="list_item_filter_users_role_delivery_text">Delivery</string>
-    <string name="list_item_filter_users_role_shop_staff_text">ShopStaff</string>
+    <string name="list_item_filter_users_role_shop_staff_text" translatable="false">ShopStaff</string>
     <string name="list_item_filter_users_role_admin_text">Admin</string>
-    <string name="list_item_filter_users_role_staff_text">Staff</string>
-    <string name="list_item_filter_users_role_shop_admin_text">ShopAdmin</string>
+    <string name="list_item_filter_users_role_staff_text" translatable="false">Staff</string>
+    <string name="list_item_filter_users_role_shop_admin_text" translatable="false">ShopAdmin</string>
     <string name="fragment_carts_list_app_name_text">Cart</string>
     <string name="fragment_carts_list_empty_screen_message_text">You have not added any items in your cart ! When you add items to cart they will appear here !</string>
     <string name="fragment_carts_list_button_try_again_text">Try Again</string>
@@ -285,8 +285,8 @@
     <string name="fragment_item_image_slider_title_text">Title</string>
     <string name="fragment_item_image_slider_description_text">Description</string>
     <string name="fragment_item_image_slider_copyrights_text">Copyrigts</string>
-    <string name="fragment_edit_staff_permissions_permit_create_update_item_cat_text">Create Update Item Categories</string>
-    <string name="fragment_edit_staff_permissions_permit_create_update_items_text">Create Update Items</string>
+    <string name="fragment_edit_staff_permissions_permit_create_update_item_cat_text" translatable="false">Create Update Item Categories</string>
+    <string name="fragment_edit_staff_permissions_permit_create_update_items_text" translatable="false">Create Update Items</string>
     <string name="fragment_edit_staff_permissions_permit_enable_shops_text">Enable / Disable Shops</string>
     <string name="fragment_edit_staff_permissions_designation_hint">Enter Designation</string>
     <string name="fragment_edit_staff_permissions_saveButton_text">Save</string>
@@ -306,8 +306,8 @@
     <string name="content_edit_item_image_fragment_imageOrder_hint">Image Order</string>
     <string name="content_edit_item_image_fragment_saveButton_text">Save</string>
     <string name="fragment_service_indicator_status_text"> - </string>
-    <string name="fragment_service_indicator_market_name_text">Farmer\'s Garden</string>
-    <string name="fragment_service_indicator_market_city_text">Hyderabad</string>
+    <string name="fragment_service_indicator_market_name_text" translatable="false">Farmer\'s Garden</string>
+    <string name="fragment_service_indicator_market_city_text" translatable="false">Hyderabad</string>
     <string name="content_staff_dashboard_header_items_text">Shops and Items</string>
     <string name="content_staff_dashboard_text_shop_approvals_text">Shops Database</string>
     <string name="content_staff_dashboard_text_add_items_text">Items Database</string>
@@ -331,9 +331,9 @@
     <string name="content_shop_admin_home_header_text">Shop Home</string>
     <string name="content_shop_admin_home_current_dues_text">Balance : \u20B9 0</string>
     <string name="content_shop_admin_home_credit_limit_text">Minimum balance required : \u20B9 0</string>
-    <string name="content_shop_admin_home_label_text">Nearby Shops</string>
-    <string name="content_shop_admin_home_website_url_text">https://nearbyshops.org</string>
-    <string name="content_shop_admin_home_faqs_link_text">FAQs</string>
+    <string name="content_shop_admin_home_label_text" translatable="false">Nearby Shops</string>
+    <string name="content_shop_admin_home_website_url_text" translatable="false">https://nearbyshops.org</string>
+    <string name="content_shop_admin_home_faqs_link_text" translatable="false">FAQs</string>
     <string name="content_shop_admin_home_contact_support_link_text">Contact Support</string>
     <string name="content_shop_admin_home_about_us_link_text">About Us</string>
     <string name="content_shop_admin_home_credits_link_text">Credits</string>
@@ -401,7 +401,7 @@
     <string name="fragment_profile_current_dues_text">You Owe : \u20B9 3023</string>
     <string name="fragment_profile_credit_limit_text">Your Credit Limit : \u20B9 5000</string>
     <string name="fragment_profile_label_login_text">Logout</string>
-    <string name="list_item_market_type_small_market_name_text">Farmers Garden</string>
+    <string name="list_item_market_type_small_market_name_text" translatable="false">Farmers Garden</string>
     <string name="list_item_market_type_small_market_city_text">Pune</string>
     <string name="content_delivery_address_addNewAddress_text">Add new address</string>
     <string name="list_item_order_item_order_detail_item_id_text">Item ID : 234</string>
@@ -439,7 +439,7 @@
     <string name="fragment_edit_shop_fragment_shopAddress_hint">Enter Shop Address</string>
     <string name="fragment_edit_shop_fragment_shopCity_hint">Enter Shop City / Town</string>
     <string name="fragment_edit_shop_fragment_shopPincode_hint">Enter Shop Pincode</string>
-    <string name="fragment_edit_shop_fragment_shopLandmark_hint">Enter Landmark</string>
+    <string name="fragment_edit_shop_fragment_shopLandmark_hint" translatable="false">Enter Landmark</string>
     <string name="fragment_edit_shop_fragment_customerHelplineNumber_hint">Enter Customer Helpline Number</string>
     <string name="fragment_edit_shop_fragment_deliveryHelplineNumber_hint">Enter Delivery Helpline Number</string>
     <string name="fragment_edit_shop_fragment_shopShortDescription_hint">Short Description</string>
@@ -515,12 +515,12 @@
     <string name="fragment_check_reset_code_message_resend_text">Sending Verification Code ...</string>
     <string name="list_item_tutorial_step_title_top_text">Step 1</string>
     <string name="list_item_tutorial_step_title_text">Send Request to Multiple Drivers</string>
-    <string name="list_item_tutorial_step_description_text">Why pay full package fare when you finish earlier</string>
+    <string name="list_item_tutorial_step_description_text" translatable="false">Why pay full package fare when you finish earlier</string>
     <string name="list_item_sign_in_sign_in_button_text">Sign In</string>
     <string name="list_item_order_button_double_distance_text"> - </string>
     <string name="list_item_order_button_double_get_directions_text"> |  Get Directions</string>
     <string name="list_item_order_button_double_button_left_text">Delivered</string>
-    <string name="list_item_order_button_double_button_right_text">Return</string>
+    <string name="list_item_order_button_double_button_right_text" translatable="false">Return</string>
     <string name="fragment_sliding_sort_review_text_sortby_text">Sort Shop Reviews</string>
     <string name="fragment_sliding_sort_review_header_criterion_text">Sort Criterion</string>
     <string name="fragment_sliding_sort_review_sort_by_date_text">Date</string>
@@ -546,7 +546,7 @@
     <string name="activity_shop_item_by_item_new_text_sort_text">Filter / Sort</string>
     <string name="activity_shop_item_by_item_new_text_checkout_text">Checkout</string>
     <string name="activity_dest_filter_map_label_instructions_text">Long Press to select location.</string>
-    <string name="activity_dest_filter_map_copyrights_map_text">\u00a9 OpenMapTiles \u00a9 OpenStreetMap contributors</string>
+    <string name="activity_dest_filter_map_copyrights_map_text" translatable="false">\u00a9 OpenMapTiles \u00a9 OpenStreetMap contributors</string>
     <string name="activity_dest_filter_map_use_selected_button_text">Use Selected Location</string>
     <string name="activity_shop_home_for_staff_app_name_text">Staff Dashboard</string>
     <string name="fragment_verify_email_update_email_text">Update E-Mail</string>
@@ -570,10 +570,10 @@
     <string name="fragment_edit_item_category_descriptionShort_hint">Enter Short Description</string>
     <string name="fragment_edit_item_category_itemCategoryDescription_hint">Enter Long Description</string>
     <string name="fragment_edit_item_category_category_order_hint">Enter Category Sort Order</string>
-    <string name="fragment_edit_item_category_isLeafNode_text">:  Is Leaf Node Item Category ?</string>
-    <string name="fragment_edit_item_category_whatleaf_text">What is Leaf Node Item Category ? </string>
-    <string name="fragment_edit_item_category_isAbstractNode_text">:  Is Abstract Node Item Category?</string>
-    <string name="fragment_edit_item_category_what_is_abstract_node_text">What is Abstract Node Item Category ? </string>
+    <string name="fragment_edit_item_category_isLeafNode_text" translatable="false">:  Is Leaf Node Item Category ?</string>
+    <string name="fragment_edit_item_category_whatleaf_text" translatable="false">What is Leaf Node Item Category ? </string>
+    <string name="fragment_edit_item_category_isAbstractNode_text" translatable="false">:  Is Abstract Node Item Category?</string>
+    <string name="fragment_edit_item_category_what_is_abstract_node_text" translatable="false">What is Abstract Node Item Category ? </string>
     <string name="fragment_edit_item_category_saveButton_text">Save</string>
     <string name="list_item_order_button_single_button_single_text"> Confirm </string>
     <string name="list_item_address_item_new_name_text">Abhinav Kumar</string>
@@ -612,9 +612,9 @@
     <string name="content_shop_admin_home_backup_header_text">Shop Home</string>
     <string name="content_shop_admin_home_backup_current_dues_text">Balance : \u20B9 0</string>
     <string name="content_shop_admin_home_backup_credit_limit_text">Minimum balance required : \u20B9 0</string>
-    <string name="content_shop_admin_home_backup_label_text">Nearby Shops</string>
-    <string name="content_shop_admin_home_backup_website_url_text">https://nearbyshops.org</string>
-    <string name="content_shop_admin_home_backup_faqs_link_text">FAQs</string>
+    <string name="content_shop_admin_home_backup_label_text" translatable="false">Nearby Shops</string>
+    <string name="content_shop_admin_home_backup_website_url_text" translatable="false">https://nearbyshops.org</string>
+    <string name="content_shop_admin_home_backup_faqs_link_text" translatable="false">FAQs</string>
     <string name="content_shop_admin_home_backup_contact_support_link_text">Contact Support</string>
     <string name="content_shop_admin_home_backup_about_us_link_text">About Us</string>
     <string name="content_shop_admin_home_backup_credits_link_text">Credits</string>
@@ -662,7 +662,7 @@
     <string name="fragment_change_phone_header_password_text">Please enter your current password to verify its you</string>
     <string name="fragment_change_phone_password_hint">Enter Current Password</string>
     <string name="fragment_dest_filter_map_label_text"> - </string>
-    <string name="list_item_market_new_backup_service_name_text">Farmers Garden</string>
+    <string name="list_item_market_new_backup_service_name_text" translatable="false">Farmers Garden</string>
     <string name="list_item_market_new_backup_address_text">Hyderabad</string>
     <string name="list_item_market_new_backup_rating_text">4.1</string>
     <string name="list_item_market_new_backup_rating_count_text">( 23 Ratings)</string>
