@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -39,7 +40,6 @@ import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
-import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -136,6 +136,11 @@ public class EditMarketFragment extends Fragment {
     @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
+    @BindView(R.id.admin_options_block)
+    LinearLayout adminOptionsBlock;
+
+
+
     public static final String STAFF_INTENT_KEY = "staff_intent_key";
     public static final String EDIT_MODE_INTENT_KEY = "edit_mode";
 
@@ -169,7 +174,7 @@ public class EditMarketFragment extends Fragment {
 
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_edit_service, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_edit_market, container, false);
 
         ButterKnife.bind(this,rootView);
 
@@ -370,11 +375,18 @@ public class EditMarketFragment extends Fragment {
         {
             buttonUpdateItem.setText("Create Account");
             item_id.setVisibility(View.GONE);
+            adminOptionsBlock.setVisibility(View.GONE);
         }
         else if(current_mode== MODE_UPDATE)
         {
             item_id.setVisibility(View.VISIBLE);
             buttonUpdateItem.setText("Save");
+            adminOptionsBlock.setVisibility(View.GONE);
+
+        }
+        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        {
+            adminOptionsBlock.setVisibility(VISIBLE);
         }
     }
 

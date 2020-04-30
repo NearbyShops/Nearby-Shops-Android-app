@@ -142,4 +142,6 @@
     <string name="admin_dashboard">Admin Dashboard</string>
     <string name="access_admin">Press here to access the admin dashboard !</string>
     <string name="field_phone">Phone</string>
+    <string name="enable_disable_market">Enable / Disable Market</string>
+    <string name="admin_options_header">Administrative Options</string>
 </resources>

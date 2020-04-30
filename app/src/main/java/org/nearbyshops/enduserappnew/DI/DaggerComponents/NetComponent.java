@@ -96,7 +96,6 @@ import org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword.FragmentResetPa
 import org.nearbyshops.enduserappnew.Login.SignUp.FragmentEmailOrPhone;
 import org.nearbyshops.enduserappnew.Login.SignUp.FragmentEnterPassword;
 import org.nearbyshops.enduserappnew.Login.SignUp.FragmentVerify;
-import org.nearbyshops.enduserappnew.EditDataScreens.Deprecated.EditShopForAdmin.EditShopForAdminFragment;
 import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseForAdminFragment;
 import org.nearbyshops.enduserappnew.adminModule.ChangeParent.Adapter;
 import org.nearbyshops.enduserappnew.adminModule.ChangeParent.ItemCategoriesParent;
@@ -258,8 +257,6 @@ public interface NetComponent {
     void Inject(AdminDashboardFragment adminDashboardFragment);
 
     void Inject(EditMarketFragment editMarketFragment);
-
-    void Inject(EditShopForAdminFragment editShopForAdminFragment);
 
     void Inject(ItemsDatabaseForAdminFragment itemsDatabaseForAdminFragment);
 
