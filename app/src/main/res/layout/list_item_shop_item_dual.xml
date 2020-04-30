@@ -138,9 +138,10 @@
 
 
 
+
         <TextView
             android:textSize="10sp"
-            android:padding="7dp"
+            android:padding="0dp"
             android:textStyle="bold"
             android:gravity="center"
             android:textColor="@color/white"

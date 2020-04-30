@@ -454,8 +454,8 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                     listPrice.setVisibility(View.VISIBLE);
 
 
-                    double discountPercent = ((item.getListPrice() - shopItem.getItemPrice())/100)*100;
-                    discountIndicator.setText(UtilityFunctions.refinedStringWithDecimals(discountPercent) + " %\nOff");
+                    double discountPercent = ((item.getListPrice() - shopItem.getItemPrice())/item.getListPrice())*100;
+                    discountIndicator.setText(String.format("%.0f ",discountPercent) + " %\nOff");
 
                     discountIndicator.setVisibility(View.VISIBLE);
                 }
