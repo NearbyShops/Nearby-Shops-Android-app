@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -138,6 +139,10 @@ public class EditMarketFragment extends Fragment {
 
     @BindView(R.id.admin_options_block)
     LinearLayout adminOptionsBlock;
+
+
+    @BindView(R.id.switch_enable)
+    Switch marketENable;
 
 
 
@@ -619,8 +624,12 @@ public class EditMarketFragment extends Fragment {
 
             descriptionShort.setText(market.getDescriptionShort());
             descriptionLong.setText(market.getDescriptionLong());
+
+            marketENable.setChecked(market.getVerified());
         }
     }
+
+
 
 
 
@@ -638,10 +647,9 @@ public class EditMarketFragment extends Fragment {
             }
         }
 
-//        if(current_mode == MODE_ADD)
-//        {
-//            deliveryGuySelf.setShopID(UtilityShopHome.getShopDetails(getContext()).getShopID());
-//        }
+
+
+        market.setVerified(marketENable.isChecked());
 
 
 
