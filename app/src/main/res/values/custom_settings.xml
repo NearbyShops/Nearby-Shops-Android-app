@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Nearby Shops</string>
 
+    <!-- App name that you see on your front screen -->
+    <string name="app_name">Nearby Markets</string>
     <drawable name="custom_icon">@mipmap/blue_icon</drawable>
+
+
+    <!-- Your instance url goes here. Connect your app to your instance -->
     <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
 
 
     <bool name="multi_market_enabled">true</bool>
     <bool name="only_fooddelivery_mode">false</bool>
+
+
+    <!-- set whether you want to show create shop option in the front screen (shops list) screen of the market-->
     <bool name="show_create_shop">false</bool>
 
+
+    <!--It is mandatory to provide terms of service and privacy policy link to publish your app on google play-->
     <string name="tos_link">https://example.com/tos.html</string>
     <string name="privacy_policy_link">https://example.com/pivacy_policy.html</string>
     <string name="faqs_link">https://example.com/faq_link.html</string>
 
+
+    <!-- Enable maps and Places API and Mapbox map here -->
+    <string name="google_maps_api_key">AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA</string>
     <string name="custom_mapbox_url">https://api.maptiler.com/maps/bright/style.json?key=rgEe333l5zT9WTGlZXNR</string>
 
 </resources>

@@ -61,7 +61,7 @@ public class MyApplication extends MultiDexApplication {
         MyApplication.context = getApplicationContext();
         MyApplication.application = this;
 
-        Places.initialize(getApplicationContext(), "AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA");
+        Places.initialize(getApplicationContext(), getAppContext().getString(R.string.google_maps_api_key));
 
 
         ApplicationState.getInstance().setMyApplication(this);

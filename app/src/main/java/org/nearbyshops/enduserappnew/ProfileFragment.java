@@ -68,22 +68,24 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private boolean isDestroyed = false;
 
 
-
     @BindView(R.id.label_login)TextView labelLogin;
     @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
 
-
     @BindView(R.id.user_profile) LinearLayout profileBlock;
     @BindView(R.id.profile_image) ImageView profileImage;
-
 
     @BindView(R.id.user_name) TextView userName;
     @BindView(R.id.phone) TextView phone;
     @BindView(R.id.user_id) TextView userID;
 
-
     @BindView(R.id.current_dues) TextView currentDues;
     @BindView(R.id.credit_limit) TextView creditLimit;
+
+    @BindView(R.id.dashboard_name) TextView dashboardName;
+    @BindView(R.id.dashboard_description) TextView dashboardDescription;
+
+
+
 
 
     @Inject
@@ -252,9 +254,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-    @BindView(R.id.dashboard_name) TextView dashboardName;
-    @BindView(R.id.dashboard_description) TextView dashboardDescription;
-
 
     private void bindDashboard()
     {
@@ -289,18 +288,10 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
             dashboardName.setText("Become a Seller");
-            dashboardDescription.setText("Press here to create a shop and become a seller on currently selected market !");
+            dashboardDescription.setText("Press here to create a shop and become a seller !");
         }
 
-
     }
-
-
-
-
-
-
-
 
 
 
@@ -413,7 +404,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
 
-
     @OnClick(R.id.tos_block)
     void termsOfServiceClick()
     {
@@ -423,16 +413,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         startActivity(i);
     }
 
-
-
-
-
-
-//    @OnClick(R.id.staff_block)
-//    void staffClick()
-//    {
-//        getActivity().startActivity(new Intent(getActivity(), StaffList.class));
-//    }
 
 
 
@@ -595,9 +575,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         });
 
     }
-
-
-
 
 
 

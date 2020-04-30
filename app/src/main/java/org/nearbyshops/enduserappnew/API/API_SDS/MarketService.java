@@ -29,12 +29,6 @@ public interface MarketService {
                                       @Path("ServiceID") int serviceID);
 
 
-//    @Query("IsOfficial") Boolean isOfficial, @Query("IsVerified") Boolean isVerified,
-//    @Query("ServiceType") Integer serviceType,
-//@Query("proximity") Double proximity,
-
-
-
 
 
     @GET("/api/v1/ServiceConfiguration")

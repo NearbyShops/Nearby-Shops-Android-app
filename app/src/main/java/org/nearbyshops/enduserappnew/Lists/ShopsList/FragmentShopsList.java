@@ -26,6 +26,7 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -539,6 +540,11 @@ public class FragmentShopsList extends Fragment implements
                         }
 
 
+
+                        boolean showCreateShop = MyApplication.getAppContext().getResources().getBoolean(R.bool.show_create_shop);
+
+
+
                         if(response.body().getResults().size()==0)
                         {
                             dataset.add(0, new SetLocationManually());
@@ -546,12 +552,10 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+                            User user = PrefLogin.getUser(getActivity());
 
-
-                            if(PrefGeneral.getMultiMarketMode(getActivity()))
+                            if(showCreateShop)
                             {
-                                User user = PrefLogin.getUser(getActivity());
-
                                 if(user!=null)
                                 {
                                     if(user.getRole()==User.ROLE_END_USER_CODE)
@@ -563,26 +567,18 @@ public class FragmentShopsList extends Fragment implements
                                 {
                                     dataset.add(new CreateShopData());
                                 }
+                            }
 
+
+
+
+                            if(PrefGeneral.getMultiMarketMode(getActivity()))
+                            {
 
                                 dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListMultiMarket());
                             }
                             else
                             {
-
-                                User user = PrefLogin.getUser(getActivity());
-
-                                if(user!=null)
-                                {
-                                    if(user.getRole()==User.ROLE_END_USER_CODE)
-                                    {
-                                        dataset.add(new CreateShopData());
-                                    }
-                                }
-                                else
-                                {
-                                    dataset.add(new CreateShopData());
-                                }
 
 
                                 dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListSingleMarket());
@@ -598,19 +594,25 @@ public class FragmentShopsList extends Fragment implements
                             {
                                 dataset.add(1, new SetLocationManually());
 
-                                User user = PrefLogin.getUser(getActivity());
 
-                                if(user!=null)
+
+                                if(showCreateShop)
                                 {
-                                    if(user.getRole()==User.ROLE_END_USER_CODE)
+                                    User user = PrefLogin.getUser(getActivity());
+
+                                    if(user!=null)
+                                    {
+                                        if(user.getRole()==User.ROLE_END_USER_CODE)
+                                        {
+                                            dataset.add(2, new CreateShopData());
+                                        }
+                                    }
+                                    else
                                     {
                                         dataset.add(2, new CreateShopData());
                                     }
                                 }
-                                else
-                                {
-                                    dataset.add(2, new CreateShopData());
-                                }
+
 
                             }
                         }
