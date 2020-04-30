@@ -42,23 +42,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextWatcher, View.OnClickListener {
 
 
-    private ImageView shopImage;
-    private TextView rating;
-    private TextView itemName;
-    private TextView itemsAvailable;
-    private TextView itemPrice;
-    private TextView itemTotal;
-    private ImageView increaseQuantity;
-    private ImageView reduceQuantity;
-    private EditText itemQuantity;
-    private TextView updateButton;
-    private TextView removeButton;
-    private ProgressBar progressBarRemove;
-    private ProgressBar progressBarUpdate;
+public class ViewHolderCartItemNew extends RecyclerView.ViewHolder implements TextWatcher{
 
+
+    ImageView itemImage;
+    TextView itemName;
+    TextView itemsAvailable;
+    TextView itemPrice;
+    TextView itemTotal;
+    ImageView increaseQuantity;
+    ImageView reduceQuantity;
+    EditText itemQuantity;
+    ProgressBar progressBar;
 
 
 
@@ -93,22 +90,22 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
 
 
-    public static ViewHolderCartItem create(ViewGroup parent, Context context,
-                                            RecyclerView.Adapter adapter,List<Object> dataset,
-                                            Fragment fragment)
+    public static ViewHolderCartItemNew create(ViewGroup parent, Context context,
+                                               RecyclerView.Adapter adapter, List<Object> dataset,
+                                               Fragment fragment)
     {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_cart_item_new,parent,false);
 
-        return new ViewHolderCartItem( view, context, adapter, dataset, fragment);
+        return new ViewHolderCartItemNew( view, context, adapter, dataset, fragment);
     }
 
 
 
 
-    public ViewHolderCartItem(@NonNull View itemView, Context context,
-                              RecyclerView.Adapter adapter, List<Object> dataset,
-                              Fragment fragment) {
+    public ViewHolderCartItemNew(@NonNull View itemView, Context context,
+                                 RecyclerView.Adapter adapter, List<Object> dataset,
+                                 Fragment fragment) {
         super(itemView);
 
         this.context = context;
@@ -124,33 +121,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
-
-
-
-        updateButton = itemView.findViewById(R.id.textUpdate);
-        removeButton = itemView.findViewById(R.id.textRemove);
-        reduceQuantity = itemView.findViewById(R.id.reduceQuantity);
-        increaseQuantity = itemView.findViewById(R.id.increaseQuantity);
-        itemTotal = itemView.findViewById(R.id.itemTotal);
-        itemPrice = itemView.findViewById(R.id.itemPrice);
-        itemsAvailable = itemView.findViewById(R.id.itemsAvailable);
-        rating = itemView.findViewById(R.id.rating);
-        itemName = itemView.findViewById(R.id.itemName);
-        shopImage = itemView.findViewById(R.id.itemImage);
-
-        itemQuantity = itemView.findViewById(R.id.itemQuantity);
-
-
-        progressBarRemove = itemView.findViewById(R.id.progress_bar_remove);
-        progressBarUpdate = itemView.findViewById(R.id.progress_bar_update);
-
-
-
-        itemQuantity.addTextChangedListener(this);
-        reduceQuantity.setOnClickListener(this);
-        increaseQuantity.setOnClickListener(this);
-        updateButton.setOnClickListener(this);
-        removeButton.setOnClickListener(this);
     }
 
 
@@ -177,18 +147,12 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
             itemQuantity.setText(UtilityFunctions.refinedString(cartItem.getItemQuantity()));
             itemPrice.setText("Price : " + String.format("%.2f", cartItem.getRt_itemPrice()) + " per " + item.getQuantityUnit());
 
-            //holder.itemTotal.setText(" x " + cartItem.getRt_availableItemQuantity() + " (Unit Price) = "
-            //        + "Rs:" +  String.format( "%.2f", cartItem.getRt_itemPrice()*cartItem.getItemQuantity()));
-
 
             itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " "
                     + String.format("%.2f", cartItem.getRt_itemPrice() * cartItem.getItemQuantity()));
 
             itemsAvailable.setText("Available : " + cartItem.getRt_availableItemQuantity() + " " + item.getQuantityUnit());
 
-
-//            imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
-//                    + item.getItemImageURL();
 
             String imagePath = PrefGeneral.getServiceURL(context)
                     + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
@@ -199,10 +163,11 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
                             R.drawable.ic_nature_people_white_48px, context.getTheme());
 
 
+
             Picasso.get()
                     .load(imagePath)
                     .placeholder(placeholder)
-                    .into(shopImage);
+                    .into(itemImage);
 
         }
 
@@ -228,7 +193,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        setFilter();
     }
 
     @Override
@@ -301,99 +265,17 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
     }
 
 
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId())
-        {
-            case R.id.textRemove:
-
-                removeClick();
-
-                break;
-
-            case R.id.textUpdate:
-
-                updateClick();
-
-                break;
-
-            case R.id.reduceQuantity:
-
-                reduceQuantityClick();
-
-                break;
-
-            case R.id.increaseQuantity:
-
-                increaseQuantityClick();
-
-                break;
-
-
-            default:
-                break;
-        }
-
-    }
 
 
 
 
 
-
-
-
-    private void removeClick()
-    {
-
-//            notifyCartItem.notifyRemove(dataset.get(getLayoutPosition()));
-
-
-        progressBarRemove.setVisibility(View.VISIBLE);
-        removeButton.setVisibility(View.INVISIBLE);
-
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        builder.setTitle("Confirm Remove Item !")
-                .setMessage("Are you sure you want to remove this item !")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        removeItem();
-
-                        progressBarRemove.setVisibility(View.INVISIBLE);
-                        removeButton.setVisibility(View.VISIBLE);
-
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        showToastMessage(" Not Removed !");
-
-                        progressBarRemove.setVisibility(View.INVISIBLE);
-                        removeButton.setVisibility(View.VISIBLE);
-
-                    }
-                })
-                .show();
-
-    }
 
 
 
 
     private void removeItem()
     {
-
-        progressBarRemove.setVisibility(View.VISIBLE);
-        removeButton.setVisibility(View.INVISIBLE);
-
 
         Call<ResponseBody> call = cartItemService.deleteCartItem(cartItem.getCartID(),cartItem.getItemID(),0,0);
 
@@ -420,9 +302,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
                 adapter.notifyItemRemoved(getLayoutPosition());
                 dataset.remove(cartItem);
 
-                progressBarRemove.setVisibility(View.INVISIBLE);
-                removeButton.setVisibility(View.VISIBLE);
-
             }
 
             @Override
@@ -430,8 +309,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
                 showToastMessage("Remove failed. Please Try again !");
 
-                progressBarRemove.setVisibility(View.INVISIBLE);
-                removeButton.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -441,10 +318,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
     private void updateClick()
     {
-
-        progressBarUpdate.setVisibility(View.VISIBLE);
-        updateButton.setVisibility(View.INVISIBLE);
-
 
 
         Call<ResponseBody> call = cartItemService.updateCartItem(cartItem,0,0);
@@ -462,8 +335,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
                 }
 
 
-                progressBarUpdate.setVisibility(View.INVISIBLE);
-                updateButton.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -471,9 +342,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
                 showToastMessage("Update failed. Try again !");
 
-
-                progressBarUpdate.setVisibility(View.INVISIBLE);
-                updateButton.setVisibility(View.VISIBLE);
             }
         });
 
@@ -485,7 +353,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
     private void reduceQuantityClick()
     {
-        setFilter();
 
         double total = 0;
 
@@ -525,12 +392,8 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
     private void increaseQuantityClick()
     {
-        setFilter();
-
 
         int availableItems = cartItem.getRt_availableItemQuantity();
-
-
 
         double total = 0;
 
@@ -562,30 +425,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
         }
 
     }
-
-
-
-
-
-
-
-    private void setFilter() {
-
-//            CartItem cartItem = null;
-//
-//            if (getLayoutPosition() != -1) {
-//
-//                cartItem = dataset.get(getLayoutPosition());
-//            }
-//
-//            if (cartItem != null) {
-//                int availableItems = cartItem.getRt_availableItemQuantity();
-//
-//                itemQuantity.setFilters(new InputFilter[]{new InputFilterMinMax("0", String.valueOf(availableItems))});
-//            }
-
-    }
-
 
 
 

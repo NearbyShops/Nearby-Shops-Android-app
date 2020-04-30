@@ -5,7 +5,7 @@
     <drawable name="custom_icon">@mipmap/blue_icon</drawable>
     <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
 
-    <bool name="multi_market_enabled">false</bool>
+    <bool name="multi_market_enabled">true</bool>
     <bool name="only_fooddelivery_mode">false</bool>
 
     <string name="tos_link">https://example.com/tos.html</string>

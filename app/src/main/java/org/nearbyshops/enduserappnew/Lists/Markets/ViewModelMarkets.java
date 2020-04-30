@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ViewModels;
+package org.nearbyshops.enduserappnew.Lists.Markets;
 
 import android.app.Application;
 
@@ -14,6 +14,7 @@ import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarkerSDS;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
@@ -214,7 +215,15 @@ public class ViewModelMarkets extends AndroidViewModel {
 
                                 if(userLocal!=null)
                                 {
-                                    dataset.add(new RoleDashboardMarker());
+                                    if(userLocal.getRole()==User.ROLE_END_USER_CODE)
+                                    {
+                                        dataset.add(new CreateShopData());
+                                    }
+                                    else
+                                    {
+                                        dataset.add(new RoleDashboardMarker());
+                                    }
+
                                 }
 
 

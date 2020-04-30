@@ -23,7 +23,7 @@ import butterknife.OnLongClick;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import org.nearbyshops.enduserappnew.ViewModels.ViewModelMarkets;
+import org.nearbyshops.enduserappnew.Lists.Markets.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;

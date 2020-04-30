@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <ImageView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/item_image"
+        android:background="@color/gplus_color_2"
+        android:scaleType="centerCrop"
+        android:layout_width="130dp"
+        android:layout_height="130dp"/>
+
+
+
+    <TextView
+        android:id="@+id/item_count"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="3"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@id/button_add"
+        app:layout_constraintStart_toStartOf="@id/button_add"
+        app:layout_constraintBottom_toBottomOf="@id/button_reduce"
+        app:layout_constraintTop_toTopOf="@id/button_add"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@id/item_count"
+        app:layout_constraintEnd_toEndOf="@id/item_count"
+        app:layout_constraintBottom_toBottomOf="@id/item_count"
+        app:layout_constraintTop_toTopOf="@id/item_count"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+
+
+    <ImageView
+        android:id="@+id/button_add"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/fab_add"
+        android:background="@drawable/white_circle_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+
+    <ImageView
+        android:id="@+id/button_reduce"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_remove_white_24px"
+        android:background="@drawable/white_circle_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+
+    <LinearLayout
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toStartOf="@id/item_count"
+        app:layout_constraintStart_toEndOf="@id/item_image"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/item_name"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Item Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/item_available_count"
+            android:layout_marginTop="10dp"
+            android:text="Available : 45 Kg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:text="Rs. 45 per Kg"
+            android:layout_marginTop="10dp"
+            android:id="@+id/item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:textSize="17sp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:text="Total : Rs. 34233"
+        app:layout_constraintEnd_toStartOf="@id/item_count"
+        app:layout_constraintStart_toEndOf="@id/item_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

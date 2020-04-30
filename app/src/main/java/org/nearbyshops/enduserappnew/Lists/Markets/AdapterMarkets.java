@@ -16,6 +16,8 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarkerSDS;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderRoleDashboardSDS;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderCreateShop;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarker;
@@ -59,6 +61,8 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static final int VIEW_TYPE_SET_LOCATION_MANUALLY = 11;
 
     public static final int VIEW_TYPE_EMPTY_SCREEN = 12;
+
+    public static final int VIEW_TYPE_CREATE_SHOP = 13;
 
 
 
@@ -112,8 +116,11 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         else if (viewType == VIEW_TYPE_Market) {
 
-
             return ViewHolderMarket.create(parent,fragment.getActivity(), fragment);
+        }
+        else if(viewType == VIEW_TYPE_CREATE_SHOP)
+        {
+            return ViewHolderCreateShop.create(parent,fragment.getActivity(),fragment);
         }
         else if (viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR) {
 
@@ -199,6 +206,10 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         {
             return VIEW_TYPE_SET_LOCATION_MANUALLY;
         }
+        else if(dataset.get(position) instanceof CreateShopData)
+        {
+            return VIEW_TYPE_CREATE_SHOP;
+        }
 
 
 
@@ -226,6 +237,11 @@ public class AdapterMarkets extends RecyclerView.Adapter<RecyclerView.ViewHolder
         else if(holderVH instanceof ViewHolderRoleDashboardSDS)
         {
             ((ViewHolderRoleDashboardSDS) holderVH).bindDashboard();
+        }
+        else if(holderVH instanceof ViewHolderCreateShop)
+        {
+            ((ViewHolderCreateShop) holderVH).setItem((CreateShopData) dataset.get(position));
+
         }
         else if(holderVH instanceof ViewHolderHorizontalList)
         {

@@ -12,6 +12,7 @@ import org.nearbyshops.enduserappnew.Login.LoginGlobalUsingPasswordFragment;
 import org.nearbyshops.enduserappnew.Login.LoginLocalUsingOTPFragmentNew;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.PlacePickerWithMapFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItemNew;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.BackupViewHolderMarketSmall1Mar20;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.ViewModel.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
@@ -24,7 +25,7 @@ import org.nearbyshops.enduserappnew.Login.LoginGlobalUsingOTPFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemBackup;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
-import org.nearbyshops.enduserappnew.ViewModels.ViewModelMarkets;
+import org.nearbyshops.enduserappnew.Lists.Markets.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSDSAdminModule.DashboardAdmin.SDSAdminDashboardFragment;
 import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewModel.MarketsDataSource;
@@ -317,4 +318,6 @@ public interface NetComponent {
     void Inject(MarketsDataSource marketsDataSource);
 
     void Inject(MarketsListFragment marketsListFragment);
+
+    void Inject(ViewHolderCartItemNew viewHolderCartItemNew);
 }
