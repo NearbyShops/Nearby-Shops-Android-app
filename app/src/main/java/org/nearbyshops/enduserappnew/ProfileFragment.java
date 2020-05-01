@@ -83,6 +83,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @BindView(R.id.dashboard_name) TextView dashboardName;
     @BindView(R.id.dashboard_description) TextView dashboardDescription;
+    @BindView(R.id.dashboard_by_role) LinearLayout dashboardByRole;
 
 
 
@@ -287,8 +288,17 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
-            dashboardName.setText("Become a Seller");
-            dashboardDescription.setText("Press here to create a shop and become a seller !");
+            if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
+            {
+                dashboardByRole.setVisibility(View.GONE);
+            }
+            else
+            {
+                dashboardByRole.setVisibility(View.VISIBLE);
+                dashboardName.setText("Become a Seller");
+                dashboardDescription.setText("Press here to create a shop and become a seller !");
+            }
+
         }
 
     }

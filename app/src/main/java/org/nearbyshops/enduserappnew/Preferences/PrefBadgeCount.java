@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.Preferences.PreferencesDeprecated;
+package org.nearbyshops.enduserappnew.Preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;

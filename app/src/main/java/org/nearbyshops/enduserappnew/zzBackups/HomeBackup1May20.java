@@ -1,9 +1,8 @@
-package org.nearbyshops.enduserappnew;
+package org.nearbyshops.enduserappnew.zzBackups;
 
 
 import android.Manifest;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -24,32 +23,39 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 
 import org.nearbyshops.enduserappnew.Interfaces.LocationUpdated;
+import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
-import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
+import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCatFragment;
 import org.nearbyshops.enduserappnew.Lists.Markets.MarketsFragmentNew;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.Lists.ShopsList.FragmentShopsList;
 import org.nearbyshops.enduserappnew.Login.LoginPlaceholder.FragmentSignInMessage;
-import org.nearbyshops.enduserappnew.PushOneSignal.PrefOneSignal;
-import org.nearbyshops.enduserappnew.PushOneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.ProfileFragment;
+import org.nearbyshops.enduserappnew.PushOneSignal.PrefOneSignal;
+import org.nearbyshops.enduserappnew.PushOneSignal.UpdateOneSignalID;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Services.LocationUpdateService;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 
-public class HomeBackup extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketSelected {
+public class HomeBackup1May20 extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketSelected {
 
 
 
@@ -76,11 +82,11 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 
 
 
-    public HomeBackup() {
+    public HomeBackup1May20() {
 
-        DaggerComponentBuilder.getInstance()
-                .getNetComponent()
-                .Inject(this);
+//        DaggerComponentBuilder.getInstance()
+//                .getNetComponent()
+//                .Inject(this);
     }
 
 
@@ -110,16 +116,6 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 
 
 
-//        TelephonyManager tm = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
-//        String countryCodeValue = tm.getNetworkCountryIso();
-//        Currency currency = Currency.getInstance(new Locale("",countryCodeValue));
-//        PrefGeneral.saveCurrencySymbol(currency.getSymbol(),this);
-//
-
-
-
-
-
         if (PrefGeneral.getMultiMarketMode(this)) {
 
             bottomBar.getMenu().getItem(4).setTitle("Markets");
@@ -135,6 +131,8 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 //            bottomBar.getTabWithId(R.id.tab_profile).setTitle("Profile");
         }
 
+
+        bottomBar.getMenu().getItem(1).setVisible(false);
 
 
         bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -183,6 +181,8 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 
 
 //        startSettingsCheck();
+
+
 
         checkPermissions();
         fetchLocation();
@@ -377,7 +377,11 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 //            }
 
 
+            startService(new Intent(this, LocationUpdateService.class));
+
             fetchLocation();
+
+
 
         } else {
             // permission denied, boo! Disable the
@@ -490,7 +494,7 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, OrdersHistoryFragment.newInstance(true,false,false), TAG_ORDERS_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
         }
@@ -510,7 +514,7 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
 
@@ -537,7 +541,7 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new CartsListFragment(), TAG_CARTS_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
 
@@ -571,10 +575,11 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 
 
             if (getSupportFragmentManager().findFragmentByTag(TAG_MARKET_FRAGMENT) == null) {
+
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
 
@@ -631,9 +636,14 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
             if (getSupportFragmentManager().findFragmentByTag(TAG_SHOPS_FRAGMENT) == null) {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
-                        .commit();
+                        .replace(R.id.fragment_container, new ItemsInShopByCatFragment(), TAG_SHOPS_FRAGMENT)
+                        .commitNow();
+
+//                FragmentShopsList.newInstance(false)
             }
+
+
+
 
 //
 //            getSupportFragmentManager()
@@ -649,6 +659,9 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 
 
     }
+
+
+
 
 
     @Override
@@ -667,7 +680,7 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                        .commit();
+                        .commitNow();
 
             }
 
@@ -687,7 +700,7 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new ItemsByCatFragment(), TAG_ITEMS_FRAGMENT)
-                        .commit();
+                        .commitNow();
             }
 
 //            else {
@@ -711,6 +724,8 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 
 
 
+
+
     void initialFragmentSetup()
     {
         if (PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this) == null) {
@@ -721,7 +736,7 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
-                    .commit();
+                    .commitNow();
 
 
         }
@@ -733,7 +748,8 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
-                    .commit();
+                    .commitNow();
+
 
         }
     }
@@ -917,6 +933,8 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
     protected void onDestroy() {
         super.onDestroy();
         stopLocationUpdates();
+
+        PrefLocation.setLocationSetByUser(false,this);
     }
 
 
@@ -924,56 +942,117 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 
 
 
+    private LocationRequest mLocationRequestTwo;
+    private com.google.android.gms.location.LocationCallback locationCallback;
+
+
+
     void fetchLocation() {
 
-        // Acquire a reference to the system Location Manager
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
 
-        // Define a listener that responds to location updates
-        locationListener = new LocationListener() {
-            public void onLocationChanged(Location location) {
-                // Called when a new location is found by the network location provider.
+            showToastMessage("We cannot access Location ... Please grant permission for Location access !");
+
+            return;
+        }
+
+
+
+
+        mLocationRequestTwo = LocationRequest.create();
+        mLocationRequestTwo.setInterval(1000);
+        mLocationRequestTwo.setSmallestDisplacement(10);
+        mLocationRequestTwo.setFastestInterval(1000);
+        mLocationRequestTwo.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+
+//        locationCallback = new MyLocationCallback();
+
+        locationCallback = new com.google.android.gms.location.LocationCallback(){
+            @Override
+            public void onLocationResult(com.google.android.gms.location.LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                if(HomeBackup1May20.this.isDestroyed())
+                {
+                    return;
+                }
+
+                double lat = 0;
+                double lon = 0;
+
+                Location location = locationResult.getLocations().get(locationResult.getLocations().size()-1);
+
+                lat = location.getLatitude();
+                lon = location.getLongitude();
+
+
+
+                PrefLocation.saveLatLonCurrent(lat,lon, HomeBackup1May20.this);
 
                 saveLocation(location);
+
+
                 stopLocationUpdates();
+
+//                showToastMessage("Location Updated !");
+
+
             }
 
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
 
-            public void onProviderEnabled(String provider) {
-            }
-
-            public void onProviderDisabled(String provider) {
+            @Override
+            public void onLocationAvailability(com.google.android.gms.location.LocationAvailability locationAvailability) {
+                super.onLocationAvailability(locationAvailability);
             }
         };
 
 
-            // Register the listener with the Location Manager to receive location updates
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-
-
-            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 
 
-            if(location==null)
-            {
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 100, locationListener);
-            }
-            else
-            {
-                saveLocation(location);
-            }
+
+        com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(this)
+                .getLastLocation()
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+
+                        com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(HomeBackup1May20.this)
+                                .requestLocationUpdates(mLocationRequestTwo,locationCallback, null);
+
+
+                    }
+                })
+                .addOnSuccessListener(new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+
+
+                        if(location==null)
+                        {
+
+                            com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(HomeBackup1May20.this)
+                                    .requestLocationUpdates(mLocationRequestTwo,locationCallback, null);
+
+                            return;
+                        }
+
+                        saveLocation(location);
+                    }
+                });
+
+
 
     }
 
@@ -993,8 +1072,8 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
         {
             // save location only if there is a significant change in location
 
-            PrefLocation.saveLatitude((float) location.getLatitude(), HomeBackup.this);
-            PrefLocation.saveLongitude((float) location.getLongitude(), HomeBackup.this);
+            PrefLocation.saveLatitude((float) location.getLatitude(), HomeBackup1May20.this);
+            PrefLocation.saveLongitude((float) location.getLongitude(), HomeBackup1May20.this);
 
 
 //        showToast("Home : Location Updated");
@@ -1012,16 +1091,14 @@ public class HomeBackup extends AppCompatActivity implements ShowFragment, Notif
 
 
 
+
     protected void stopLocationUpdates() {
 
-//        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
-        if(locationManager!=null && locationListener!=null)
+        if(locationCallback!=null)
         {
-            locationManager.removeUpdates(locationListener);
+            com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(HomeBackup1May20.this)
+                    .removeLocationUpdates(locationCallback);
         }
-
-//        stopSelf();
     }
 
 

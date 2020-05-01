@@ -34,7 +34,7 @@ public class ItemsInShopByCat extends AppCompatActivity{
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container,new ItemsInShopByCatFragment(),TAG_FRAGMENT)
+                    .add(R.id.fragment_container,ItemsInShopByCatFragment.newInstance(false),TAG_FRAGMENT)
                     .commit();
         }
     }

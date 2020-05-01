@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -45,6 +47,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetail;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategorySmall;
@@ -61,6 +64,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -122,6 +127,12 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     private GridLayoutManager layoutManager;
     private Adapter listAdapter;
 
+    private ViewModelShop viewModelShop;
+    private ProgressDialog progressDialog;
+
+
+    @BindView(R.id.shop_name) TextView shopName;
+    @BindView(R.id.shop_address) TextView shopAddress;
 
 
 
@@ -144,15 +155,14 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         currentCategory = new ItemCategory();
         currentCategory.setItemCategoryID(1);
+//        currentCategory.setItemCategoryID(4);
         currentCategory.setCategoryName("");
         currentCategory.setParentCategoryID(-1);
+
+
     }
 
 
-
-
-    @BindView(R.id.shop_name) TextView shopName;
-    @BindView(R.id.shop_address) TextView shopAddress;
 
 
 
@@ -173,16 +183,94 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 
+        setupRecyclerView();
+        setupSwipeContainer();
+        setupShop();
+
+
         Shop shop = PrefShopHome.getShop(getActivity());
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(shop.getShopName());
 
 
+        if(savedInstanceState ==null && shop!=null)
+        {
+            makeRefreshNetworkCall();
+            getCartStatsWithItemAvailability(false,0,true);
+        }
+        else
+        {
+            setupViewModel();
+            getShopDetails();
+        }
+
+
+
+
+
+
+
+        notifyItemIndicatorChanged();
+
+        return rootView;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static ItemsInShopByCatFragment newInstance(boolean singleVendorEnabled) {
+
+        ItemsInShopByCatFragment fragment = new ItemsInShopByCatFragment();
+        Bundle args = new Bundle();
+        args.putBoolean("single_vendor_enabled",singleVendorEnabled);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+
+
+
+
+
+
+    private void setupShop()
+    {
+
+        boolean singleVendorEnabled = getArguments().getBoolean("single_vendor_enabled");
+
+
+        if(singleVendorEnabled)
+        {
+            cartStatsBlock.setVisibility(View.GONE);
+            swipeContainer.setPadding(15,0,15,0);
+        }
+        else
+        {
+            cartStatsBlock.setVisibility(View.VISIBLE);
+//            swipeContainer.setPadding(5,0,5,95);
+        }
+
+
+
+        Shop shop = PrefShopHome.getShop(getActivity());
+
+        if(shop==null)
+        {
+            return;
+        }
 
 
         shopName.setText(shop.getShopName());
         shopAddress.setText(String.format("%.2f Km",shop.getRt_distance()) + " | " + shop.getShopAddress());
-
-
 
 
         String imagePath = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/Shop/Image/five_hundred_"
@@ -200,30 +288,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-        setupRecyclerView();
-        setupSwipeContainer();
 
-
-        if(savedInstanceState ==null)
-        {
-            makeRefreshNetworkCall();
-        }
-        else
-        {
-            // add this at every rotation
-//            listAdapter.shopItemMap.putAll(shopItemMapTemp);
-        }
-
-
-
-
-
-        getCartStats(false,0,true);
-
-        notifyItemIndicatorChanged();
-
-        return rootView;
     }
+
 
 
 
@@ -349,10 +416,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     }
 
 
-//    @State int previous_position = -1;
-
-
-
 
 
 
@@ -363,7 +426,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @Override
     public void onRefresh() {
         makeRequestShopItem(true,true);
-        getCartStats(true,0,true);
+        getCartStatsWithItemAvailability(true,0,true);
     }
 
 
@@ -450,6 +513,13 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         Shop currentShop = PrefShopHome.getShop(getContext());
 
+        if(currentShop==null)
+        {
+            swipeContainer.setRefreshing(false);
+            return;
+        }
+
+
 
         if(searchQuery==null)
         {
@@ -460,7 +530,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
             endPointCall = shopItemService.getShopItemEndpoint(
                     currentCategory.getItemCategoryID(),clearDataset,
                     currentShop.getShopID(),
-                    null,null,null,null,null,null,null,
+                    null,
+                    null,null,
+                    null,null,null,null,
                     null,null,
                     null,null,null,
                     null,true,current_sort,
@@ -475,7 +547,9 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
             endPointCall = shopItemService.getShopItemEndpoint(
                     null,clearDataset,
                     currentShop.getShopID(),
-                    null,null,null,null,null,
+                    null,
+                    null,null,
+                    null,null,
                     null,null,null,null,
                     null,null,null,
                     searchQuery,
@@ -483,6 +557,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                     limit_item,offset_item,clearDataset,
                     false);
         }
+
+
 
 
         endPointCall.enqueue(new Callback<ShopItemEndPoint>() {
@@ -654,6 +730,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         currentCategory = itemCategory;
         currentCategory.setParentCategory(temp);
 
+//        showToastMessage("Category ID : " + itemCategory.getItemCategoryID());
+
         makeRefreshNetworkCall();
 //        getCartStats(true,0,true);
 
@@ -780,6 +858,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
+
     @Override
     public void cartUpdated() {
 
@@ -787,7 +867,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         if(listAdapter.cartStats.getCartID()==0)
         {
             System.out.println("Cart ID Zero !");
-//            getCartStats(true,0,true);
         }
 
 
@@ -840,7 +919,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         if(requestCode==123 && resultCode == RESULT_OK)
         {
             // login success
-            getCartStats(true,0,true);
+            getCartStatsWithItemAvailability(true,0,true);
         }
     }
 
@@ -876,14 +955,10 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-//    @OnClick({R.id.view_cart_icon,R.id.view_cart_text})
+
     @OnClick({R.id.cart_stats})
     void viewCartClick()
     {
-//                Intent intent = new Intent(getActivity(), CartsList.class);
-//        startActivity(intent);
-
-
         Intent intent = new Intent(getActivity(), CartItemList.class);
 
 
@@ -915,12 +990,19 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-    public void getCartStats(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
+
+
+    public void getCartStatsWithItemAvailability(final boolean notifyChange, final int position, final boolean notifyDatasetChanged)
     {
 
 
 
         Shop shop = PrefShopHome.getShop(getActivity());
+
+        if(shop == null)
+        {
+            return;
+        }
 
         listAdapter.cartItemMap.clear();
 //        listAdapter.cartStatsMap.clear();
@@ -1080,12 +1162,16 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     }
 
 
-
-
     private void fetchCartStats()
     {
 
         Shop shop = PrefShopHome.getShop(getActivity());
+
+        if(shop ==null)
+        {
+            return;
+        }
+
         User endUser = PrefLogin.getUser(getActivity());
 
 
@@ -1143,6 +1229,80 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         });
     }
 
+
+
+
+
+
+
+
+    private void getShopDetails()
+    {
+        int shopID = 0;
+
+        if(getArguments().getBoolean("single_vendor_enabled"))
+        {
+            shopID = getResources().getInteger(R.integer.single_vendor_shop_id);
+        }
+
+
+        viewModelShop.makeNetworkCallShop(shopID);
+
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Please wait ... getting Shop Details !");
+        progressDialog.show();
+    }
+
+
+
+
+
+    private void setupViewModel()
+    {
+
+        viewModelShop = new ViewModelShop(MyApplication.application);
+
+
+        viewModelShop.getShopLive().observe(getViewLifecycleOwner(), new Observer<Shop>() {
+            @Override
+            public void onChanged(Shop shop) {
+
+                PrefShopHome.saveShop(shop,ItemsInShopByCatFragment.this.getActivity());
+                makeRefreshNetworkCall();
+                setupShop();
+            }
+        });
+
+
+        viewModelShop.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+
+
+                if(integer == ViewModelShop.EVENT_SHOP_DETAILS_FETCHED || integer == ViewModelShop.EVENT_NETWORK_FAILED)
+                {
+                    if(progressDialog!=null)
+                    {
+                        progressDialog.dismiss();
+                    }
+
+                    swipeContainer.setRefreshing(false);
+                }
+
+            }
+        });
+
+
+
+
+        viewModelShop.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                showToastMessage(s);
+            }
+        });
+
+    }
 
 
 }
