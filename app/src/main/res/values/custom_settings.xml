@@ -4,7 +4,8 @@
 
 
     <!-- Your instance url goes here. Connect your app to your instance -->
-    <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
+    <string name="custom_url">http://167.71.225.180</string>
+    <bool name="multi_market_enabled">false</bool>
 
 
     <!-- App name that you see on your front screen ( shops list screen ) -->
@@ -23,12 +24,12 @@
     <string name="faqs_link">https://example.com/faq_link.html</string>
 
 
+
     <!-- Other Settings -->
-    <bool name="multi_market_enabled">true</bool>
     <bool name="only_fooddelivery_mode">false</bool>
+
 
     <!-- set whether you want to show create shop option in the front screen (shops list) screen of the market-->
     <bool name="show_create_shop">false</bool>
-
 
 </resources>

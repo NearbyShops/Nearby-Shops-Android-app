@@ -17,6 +17,8 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 
+
+
 public class PrefServiceConfig {
 
     // simple or advanced at service selection screen
@@ -31,7 +33,7 @@ public class PrefServiceConfig {
     public static final String SDS_URL_NEARBY_SHOPS = "http://sds.nearbyshops.org";
     public static final String SDS_URL_LOCAL_HOTSPOT = "http://192.168.43.233:5125";
 
-    public static final String SERVICE_URL_SDS = SDS_URL_LOCAL_HOTSPOT;
+    public static final String SERVICE_URL_SDS = SDS_URL_NEARBY_SHOPS;
 
 
 
@@ -68,8 +70,6 @@ public class PrefServiceConfig {
 
 
 
-
-
     public static Market getServiceConfigLocal(Context context)
     {
         context = MyApplication.getAppContext();
@@ -86,10 +86,6 @@ public class PrefServiceConfig {
 
         return gson.fromJson(json, Market.class);
     }
-
-
-
-
 
 
 
@@ -112,8 +108,6 @@ public class PrefServiceConfig {
 
 
 
-
-
     public static String getServiceURL_SDS(Context context) {
 
         context = MyApplication.getAppContext();
@@ -121,8 +115,6 @@ public class PrefServiceConfig {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
         return sharedPref.getString(TAG_SDS_URL, SERVICE_URL_SDS);
     }
-
-
 
 
 

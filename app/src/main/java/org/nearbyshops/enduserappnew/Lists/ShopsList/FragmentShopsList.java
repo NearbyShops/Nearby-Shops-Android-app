@@ -1,6 +1,9 @@
 package org.nearbyshops.enduserappnew.Lists.ShopsList;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -15,18 +18,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import com.google.android.gms.location.LocationServices;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Services.LocationUpdateService;
+import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -225,6 +233,7 @@ public class FragmentShopsList extends Fragment implements
             {
                 // ensure that there is no swipe to right on first fetch
 //                    isbackPressed = true;
+
                 makeRefreshNetworkCall();
                 isSaved = true;
             }
@@ -239,10 +248,48 @@ public class FragmentShopsList extends Fragment implements
             setupSlidingLayer();
 
 
-//                getActivity().startService(new Intent(getActivity(), LocationUpdateService.class));
 
-//                IntentFilter filter = new IntentFilter(LocationUpdateService.ACTION);
+
+
+            getActivity().startService(new Intent(getActivity(), LocationUpdateService.class));
+
+
 //                LocalBroadcastManager.getInstance(getActivity()).registerReceiver(testReceiver, filter);
+
+
+
+
+
+
+            IntentFilter filter = new IntentFilter();
+
+            filter.addAction(UpdateServiceConfiguration.INTENT_ACTION_MARKET_CONFIG_FETCHED);
+            filter.addAction(LocationUpdateService.INTENT_ACTION_LOCATION_UPDATED);
+
+            LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+
+
+                    if(getActivity()!=null)
+                    {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                serviceName.setVisibility(View.VISIBLE);
+                                serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+
+                                makeRefreshNetworkCall();
+
+                            }
+                        });
+                    }
+
+
+                }
+            },filter);
+
 
 
 
@@ -707,7 +754,7 @@ public class FragmentShopsList extends Fragment implements
 
         private void showToastMessage(String message)
         {
-            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyApplication.getAppContext(),message,Toast.LENGTH_SHORT).show();
         }
 
 

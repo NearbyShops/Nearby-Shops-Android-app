@@ -3,6 +3,8 @@ package org.nearbyshops.enduserappnew.Services;
 import android.app.IntentService;
 import android.content.Intent;
 import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 
@@ -30,8 +32,7 @@ public class UpdateServiceConfiguration extends IntentService {
     @Inject
     Gson gson;
 
-//    @Inject
-//    ServiceConfigurationService service;
+    public static String INTENT_ACTION_MARKET_CONFIG_FETCHED = "market_config_fetched";
 
 
 
@@ -106,6 +107,13 @@ public class UpdateServiceConfiguration extends IntentService {
                         Currency currency = Currency.getInstance(new Locale("",config.getISOCountryCode()));
                         PrefGeneral.saveCurrencySymbol(currency.getSymbol(),getApplicationContext());
                     }
+
+
+                    Intent intent = new Intent();
+                    intent.setAction(INTENT_ACTION_MARKET_CONFIG_FETCHED);
+//                    sendBroadcast(intent);
+                    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+
                 }
                 else
                 {

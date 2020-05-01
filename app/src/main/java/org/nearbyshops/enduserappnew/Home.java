@@ -42,6 +42,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.Services.LocationUpdateService;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.Lists.ShopsList.FragmentShopsList;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -367,7 +368,11 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 //            }
 
 
+            startService(new Intent(this, LocationUpdateService.class));
+
             fetchLocation();
+
+
 
         } else {
             // permission denied, boo! Disable the
