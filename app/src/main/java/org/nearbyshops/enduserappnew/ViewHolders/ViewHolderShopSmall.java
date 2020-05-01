@@ -185,19 +185,29 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
                     delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.white));
                     delivery.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
                 }
+
+
+
+                if(shop.getShopAddress()!=null)
+                {
+                    shopAddress.setText(String.format( "%.2f", shop.getRt_distance()) + " Km - " + shop.getShopAddress());
+                }
+
             }
             else
             {
                 homeDeliveryIndicator.setVisibility(View.GONE);
-                delivery.setVisibility(View.INVISIBLE);
+                delivery.setVisibility(View.VISIBLE);
+
+                if(shop.getShopAddress()!=null)
+                {
+                    shopAddress.setText(String.format( "%.2f", shop.getRt_distance()) + " Km");
+                    delivery.setText(shop.getShopAddress());
+                }
+
             }
 
 
-
-            if(shop.getShopAddress()!=null)
-            {
-                shopAddress.setText(String.format( "%.2f", shop.getRt_distance()) + " Km - " + shop.getShopAddress());
-            }
 
 
 

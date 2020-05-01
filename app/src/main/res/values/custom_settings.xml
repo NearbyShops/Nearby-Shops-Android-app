@@ -4,7 +4,7 @@
 
 
     <!-- Your instance url goes here. Connect your app to your instance -->
-    <string name="custom_url">http://167.71.225.180</string>
+    <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
     <bool name="multi_market_enabled">false</bool>
 
 
@@ -31,9 +31,8 @@
     <!-- To enable single vendor mode set single vendor mode to true and set shop id to the shop which you want to set as your default
     shop. Please note that the Shop must be enabled to be visible by the customers. -->
 
-    <bool name="single_vendor_mode_enabled">true</bool>
+    <bool name="single_vendor_mode_enabled">false</bool>
     <integer name="single_vendor_shop_id">33</integer>
-
 
 
     <!-- set whether you want to show create shop option in the front screen (shops list) screen of the market-->

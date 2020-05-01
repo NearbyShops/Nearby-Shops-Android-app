@@ -1,6 +1,9 @@
 package org.nearbyshops.enduserappnew.Lists.Markets;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +26,8 @@ import butterknife.OnClick;
 import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
+import org.nearbyshops.enduserappnew.Services.LocationUpdateService;
+import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
@@ -134,87 +140,25 @@ public class MarketsFragmentNew extends Fragment implements
 
             setupRecyclerView();
             setupSwipeContainer();
+            setupViewModel();
+
+            setupLocalBroadcastManager();
 
 
 
 
-//            viewModel  = ViewModelProviders.of(this).get(MarketViewModel.class);
-
-            viewModel = new ViewModelMarkets(MyApplication.application);
-            viewModelUser = new ViewModelUser(MyApplication.application);
-
-
-
-
-            viewModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Object>>() {
-                    @Override
-                    public void onChanged(@Nullable List<Object> objects) {
-
-                        dataset.clear();
-
-                        if(objects!=null)
-                        {
-                            dataset.addAll(objects);
-                        }
-
-
-                        adapter.setLoadMore(false);
-                        adapter.notifyDataSetChanged();
-
-
-                        swipeContainer.setRefreshing(false);
-                    }
-                });
+            if(!PrefLocation.isLocationSetByUser(getActivity()))
+            {
+                getActivity().startService(new Intent(getActivity(), LocationUpdateService.class));
+            }
 
 
 
+            if(PrefServiceConfig.getServiceName(getActivity())!=null) {
 
-
-            viewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
-                @Override
-                public void onChanged(@Nullable String s) {
-
-                    showToastMessage(s);
-
-                    swipeContainer.setRefreshing(false);
-                }
-            });
-
-
-
-
-
-                viewModelUser.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-                    @Override
-                    public void onChanged(Integer integer) {
-
-                        if(integer == ViewModelUser.EVENT_profile_fetched)
-                        {
-                            adapter.notifyDataSetChanged();
-                        }
-
-                    }
-                });
-
-
-
-
-                viewModelUser.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
-                        @Override
-                        public void onChanged(String s) {
-
-                            showToastMessage(s);
-                        }
-                });
-
-
-
-
-        if(PrefServiceConfig.getServiceName(getActivity())!=null) {
-
-            serviceName.setVisibility(View.VISIBLE);
-            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
-        }
+                serviceName.setVisibility(View.VISIBLE);
+                serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+            }
 
 
 
@@ -225,6 +169,123 @@ public class MarketsFragmentNew extends Fragment implements
 
 
 
+
+
+    private void setupLocalBroadcastManager()
+    {
+
+
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(UpdateServiceConfiguration.INTENT_ACTION_MARKET_CONFIG_FETCHED);
+        filter.addAction(LocationUpdateService.INTENT_ACTION_LOCATION_UPDATED);
+
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+
+                if(getActivity()!=null)
+                {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            serviceName.setVisibility(View.VISIBLE);
+                            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+
+                            makeRefreshNetworkCall();
+
+                        }
+                    });
+                }
+
+
+            }
+        },filter);
+    }
+
+
+
+
+
+
+    private void setupViewModel()
+    {
+
+
+//            viewModel  = ViewModelProviders.of(this).get(MarketViewModel.class);
+
+        viewModel = new ViewModelMarkets(MyApplication.application);
+        viewModelUser = new ViewModelUser(MyApplication.application);
+
+
+
+
+        viewModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Object>>() {
+            @Override
+            public void onChanged(@Nullable List<Object> objects) {
+
+                dataset.clear();
+
+                if(objects!=null)
+                {
+                    dataset.addAll(objects);
+                }
+
+
+                adapter.setLoadMore(false);
+                adapter.notifyDataSetChanged();
+
+
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+
+
+
+
+        viewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+
+                showToastMessage(s);
+
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+
+
+
+
+        viewModelUser.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+
+                if(integer == ViewModelUser.EVENT_profile_fetched)
+                {
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+        });
+
+
+
+
+        viewModelUser.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+                showToastMessage(s);
+            }
+        });
+
+
+
+    }
 
 
 

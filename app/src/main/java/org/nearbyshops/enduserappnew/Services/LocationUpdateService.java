@@ -202,20 +202,16 @@ public class LocationUpdateService extends IntentService {
     {
         Location currentLocation = PrefLocation.getLocation(this);
 
-
-        Intent intent = new Intent();
-        intent.setAction(INTENT_ACTION_LOCATION_UPDATED);
-        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
-
-        PrefLocation.saveLatitude((float) location.getLatitude(), getApplicationContext());
-        PrefLocation.saveLongitude((float) location.getLongitude(), getApplicationContext());
-
-
         if(currentLocation.distanceTo(location)>100)
         {
             // save location only if there is a significant change in location
 
+            Intent intent = new Intent();
+            intent.setAction(INTENT_ACTION_LOCATION_UPDATED);
+            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
 
+            PrefLocation.saveLatitude((float) location.getLatitude(), getApplicationContext());
+            PrefLocation.saveLongitude((float) location.getLongitude(), getApplicationContext());
         }
 
     }

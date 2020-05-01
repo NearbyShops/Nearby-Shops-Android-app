@@ -179,7 +179,7 @@
             android:textColor="@color/colorWhite"
             android:background="@color/teal"
             android:textSize="15sp"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0 Items in Cart"/>
 

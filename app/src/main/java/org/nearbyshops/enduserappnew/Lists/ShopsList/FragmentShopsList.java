@@ -251,14 +251,24 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-            getActivity().startService(new Intent(getActivity(), LocationUpdateService.class));
+
+            if(!PrefLocation.isLocationSetByUser(getActivity()))
+            {
+                getActivity().startService(new Intent(getActivity(), LocationUpdateService.class));
+            }
 
 
-//                LocalBroadcastManager.getInstance(getActivity()).registerReceiver(testReceiver, filter);
+            setupLocalBroadcastManager();
+
+
+            return rootView;
+        }
 
 
 
 
+        private void setupLocalBroadcastManager()
+        {
 
 
             IntentFilter filter = new IntentFilter();
@@ -289,15 +299,7 @@ public class FragmentShopsList extends Fragment implements
 
                 }
             },filter);
-
-
-
-
-            return rootView;
         }
-
-
-
 
 
 
@@ -322,12 +324,12 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-    @OnClick({R.id.icon_sort, R.id.text_sort})
-    void sortClick()
-    {
-        slidingLayer.openLayer(true);
-//        showToastMessage("Sort Clicked");
-    }
+            @OnClick({R.id.icon_sort, R.id.text_sort})
+            void sortClick()
+            {
+                slidingLayer.openLayer(true);
+        //        showToastMessage("Sort Clicked");
+            }
 
 
 

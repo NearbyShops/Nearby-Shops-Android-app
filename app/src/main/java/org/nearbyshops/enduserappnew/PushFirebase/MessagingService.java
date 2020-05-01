@@ -39,7 +39,11 @@ public class MessagingService extends FirebaseMessagingService
 
 
 
+
+
         String notificationType = remoteMessage.getData().get("notification_type");
+        String notificationTitle = remoteMessage.getData().get("notification_title");
+        String notificationMessage = remoteMessage.getData().get("notification_message");
 
 
 
@@ -48,24 +52,21 @@ public class MessagingService extends FirebaseMessagingService
         {
             MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.attention_please_order_received);
             mp.start();
-
-
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.default_notification_channel_id))
-                    .setSmallIcon(R.drawable.ic_shopping_basket_blue)
-                    .setContentTitle("Order Received")
-                    .setContentText("You have Received an Order. Please check the order in the shop dashboard !")
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-            // notificationId is a unique int for each notification that you must define
-            notificationManager.notify(1, builder.build());
         }
+
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.default_notification_channel_id))
+                .setSmallIcon(R.drawable.ic_shopping_basket_blue)
+                .setContentTitle(notificationTitle)
+                .setContentText(notificationMessage)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        // notificationId is a unique int for each notification that you must define
+        notificationManager.notify(1, builder.build());
     }
-
-
-
 
 
     @Override

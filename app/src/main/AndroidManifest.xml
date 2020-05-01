@@ -153,7 +153,10 @@
         <activity android:name=".Checkout.PlaceOrderActivity" />
         <activity android:name=".DetailScreens.DetailMarket.MarketDetail" />
         <activity android:name=".DetailScreens.DetailOrder.OrderDetail" />
-        <activity android:name=".Lists.ItemsInShopByCategory.ItemsInShopByCat" />
+
+
+
+
         <activity android:name=".ShopReview.ShopReviews" />
         <activity android:name=".Lists.CartsList.CartsList" />
         <activity android:name=".EditDataScreens.EditItem.EditItem" />
@@ -452,6 +455,21 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Home" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:launchMode="singleTop"
+            android:name=".Lists.ItemsInShopByCategory.ItemsInShopByCat">
 
             <meta-data
                 android:name="android.app.searchable"

@@ -100,58 +100,6 @@
                 android:layout_height="match_parent"/>
 
 
-            <!--<TextView-->
-            <!--android:background="@color/white"-->
-            <!--android:layout_width="1dp"-->
-            <!--android:layout_height="match_parent" />-->
-
-
-            <!--<LinearLayout-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"/>-->
-
-
-
-
-
-            <!--<ImageView-->
-                <!--android:id="@+id/icon_filter"-->
-                <!--android:layout_marginStart="10dp"-->
-                <!--android:layout_marginLeft="10dp"-->
-                <!--app:srcCompat="@drawable/ic_filter_list_black_24px"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent" />-->
-
-            <!--<TextView-->
-                <!--android:textColor="@color/white"-->
-                <!--android:id="@+id/text_filter"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Filter "-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content" />-->
-
-            <!--<LinearLayout-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"/>-->
-
-
-            <!--<ImageView-->
-            <!--android:id="@+id/icon_view_type_switcher"-->
-            <!--android:layout_marginEnd="10dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--app:srcCompat="@drawable/ic_view_list_white_24px"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent" />-->
-
-
-            <!--<TextView-->
-                <!--android:background="@color/white"-->
-                <!--android:layout_width="1dp"-->
-                <!--android:layout_height="match_parent" />-->
-
-
             <ImageView
                 android:id="@+id/icon_sort"
                 app:srcCompat="@drawable/ic_sort_black_24px"

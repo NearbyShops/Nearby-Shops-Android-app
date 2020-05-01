@@ -34,7 +34,7 @@
             app:expandedTitleMarginStart="20dp"
             app:expandedTitleMarginEnd="0dp"
             android:theme="@style/ToolBarStyle"
-            app:contentScrim="@color/gplus_color_1"
+            app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
@@ -53,16 +53,6 @@
                 android:layout_height="wrap_content" />
 
 
-            <TextView
-                android:background="#55000000"
-                android:textStyle="bold"
-                android:padding="2dp"
-                android:textColor="@color/white"
-                android:layout_margin="10dp"
-                android:id="@+id/image_count"
-                android:layout_gravity="end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
 
             <androidx.appcompat.widget.Toolbar
@@ -73,10 +63,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-<!--                ?attr/actionBarSize-->
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:padding="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="5dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -89,13 +81,6 @@
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-
-
-<!--                    app:layout_constraintStart_toEndOf="@id/shop_name"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="@id/shop_name"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@id/shop_name"-->
-
 
 
                     <TextView
@@ -151,26 +136,6 @@
                 android:layout_height="wrap_content" />
 
 
-<!--            <LinearLayout-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="match_parent"/>-->
-
-
-<!--            <ImageView-->
-<!--                android:id="@+id/icon_sort"-->
-<!--                app:srcCompat="@drawable/ic_sort_black_24px"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent" />-->
-
-<!--            <TextView-->
-<!--                android:layout_marginEnd="5dp"-->
-<!--                android:layout_marginRight="5dp"-->
-<!--                android:id="@+id/text_sort"-->
-<!--                android:padding="5dp"-->
-<!--                android:text="Filter / Sort"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content" />-->
 
         </LinearLayout>
 
