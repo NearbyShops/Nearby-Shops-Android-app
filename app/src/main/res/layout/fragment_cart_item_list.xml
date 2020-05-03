@@ -325,10 +325,20 @@
             android:textColor="@color/blueGrey800"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@id/confirm"
             app:layout_constraintStart_toEndOf="@id/total"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/total"/>
+
+
+        <ProgressBar
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/totalValue"
+            app:layout_constraintBottom_toBottomOf="@id/totalValue"
+            app:layout_constraintEnd_toEndOf="@id/totalValue"
+            app:layout_constraintStart_toStartOf="@id/totalValue"
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
 
 
 

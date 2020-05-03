@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,6 +78,7 @@ public class CartItemListFragment extends Fragment
     private double cartTotal = 0;
 
 
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
     @BindView(R.id.bottom_bar) ConstraintLayout bottomBar;
@@ -216,6 +218,8 @@ public class CartItemListFragment extends Fragment
     private void fetchCartStats()
     {
 
+
+
         User endUser = PrefLogin.getUser(getActivity());
 
         if(endUser==null || shop==null)
@@ -224,6 +228,8 @@ public class CartItemListFragment extends Fragment
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+        totalValue.setVisibility(View.INVISIBLE);
 
         Call<List<CartStats>> call = cartStatsService.getCart(endUser.getUserID(),null,shop.getShopID(),false,null,null);
 
@@ -231,6 +237,10 @@ public class CartItemListFragment extends Fragment
 
             @Override
             public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
+
+
+                progressBar.setVisibility(View.GONE);
+                totalValue.setVisibility(View.VISIBLE);
 
                 if(response.code()==200 && response.body()!=null)
                 {
@@ -247,6 +257,9 @@ public class CartItemListFragment extends Fragment
 
             @Override
             public void onFailure(Call<List<CartStats>> call, Throwable t) {
+
+                progressBar.setVisibility(View.GONE);
+                totalValue.setVisibility(View.VISIBLE);
 
             }
         });
