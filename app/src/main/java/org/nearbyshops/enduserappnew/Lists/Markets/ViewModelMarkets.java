@@ -209,7 +209,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 
                             if(PrefGeneral.getServiceURL(getApplication())!=null)
                             {
-                                User userGlobal = PrefLoginGlobal.getUser(getApplication());
+
                                 User userLocal = PrefLogin.getUser(getApplication());
 
 
@@ -225,25 +225,27 @@ public class ViewModelMarkets extends AndroidViewModel {
                                     }
 
                                 }
-
-
-                                if(userGlobal==null)
-                                {
-                                    dataset.add(new SignInMarker());
-                                }
-                                else
-                                {
-                                    if(userGlobal.getRole()==User.ROLE_ADMIN_CODE)
-                                    {
-                                        dataset.add(new RoleDashboardMarkerSDS());
-                                    }
-
-                                    dataset.add(userGlobal);
-                                }
-
                             }
 
 
+
+
+                            User userGlobal = PrefLoginGlobal.getUser(getApplication());
+
+
+                            if(userGlobal==null)
+                            {
+                                dataset.add(new SignInMarker());
+                            }
+                            else
+                            {
+                                if(userGlobal.getRole()==User.ROLE_ADMIN_CODE)
+                                {
+                                    dataset.add(new RoleDashboardMarkerSDS());
+                                }
+
+                                dataset.add(userGlobal);
+                            }
 
 
 
@@ -296,7 +298,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 
                             if(PrefGeneral.getServiceURL(getApplication())==null)
                             {
-                                User userGlobal = PrefLoginGlobal.getUser(getApplication());
+                                userGlobal = PrefLoginGlobal.getUser(getApplication());
 
 
                                 if(userGlobal==null)

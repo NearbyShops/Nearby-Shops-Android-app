@@ -338,9 +338,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-        User user = PrefLogin.getUser(getActivity());
-
-
 
 
         Integer userRole = null;
@@ -355,13 +352,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-        if(user ==null)
-        {
-            swipeContainer.setRefreshing(false);
-            showToastMessage("User null !");
-            return;
-        }
-
 
 
         Call<UserEndpoint> call = null;
@@ -370,6 +360,17 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
         if(current_mode==MODE_SUPER_ADMIN_USER_LIST)
         {
+
+            User user = PrefLoginGlobal.getUser(getActivity());
+
+
+            if(user ==null)
+            {
+                swipeContainer.setRefreshing(false);
+                showToastMessage("User null !");
+                return;
+            }
+
 
 
             Retrofit retrofit = new Retrofit.Builder()
@@ -392,6 +393,20 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
         }
         else
         {
+
+
+            User user = PrefLogin.getUser(getActivity());
+
+
+            if(user ==null)
+            {
+                swipeContainer.setRefreshing(false);
+                showToastMessage("User null !");
+                return;
+            }
+
+
+
             call = userService.getUsers(
                     PrefLogin.getAuthorizationHeaders(getActivity()),
                     userRole,

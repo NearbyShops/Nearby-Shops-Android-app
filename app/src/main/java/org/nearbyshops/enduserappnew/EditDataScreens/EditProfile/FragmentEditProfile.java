@@ -715,7 +715,10 @@ public class FragmentEditProfile extends Fragment {
             if(PrefGeneral.getMultiMarketMode(getActivity()))
             {
                 User localUserProfile = PrefLogin.getUser(getActivity());
-                localUserID.setText(String.valueOf(localUserProfile.getUserID()));
+                if(localUserProfile!=null)
+                {
+                    localUserID.setText(String.valueOf(localUserProfile.getUserID()));
+                }
             }
 
 
