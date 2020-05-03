@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -35,6 +36,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItemNew;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,7 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartItemListFragment extends Fragment
-        implements SwipeRefreshLayout.OnRefreshListener, ViewHolderCartItem.ListItemClick {
+        implements SwipeRefreshLayout.OnRefreshListener, ViewHolderCartItemNew.ListItemClick {
 
 
 //    TextView confirmItems;
@@ -262,7 +265,7 @@ public class CartItemListFragment extends Fragment
         if(cartStats!=null)
         {
             cartTotal = cartStats.getCart_Total();
-            totalValue.setText("Total : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
+            totalValue.setText("Total " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
 //            adapter.setCartStats(cartStats);
         }
     }
@@ -343,8 +346,11 @@ public class CartItemListFragment extends Fragment
         adapter = new Adapter(dataset,getActivity(),this);
         recyclerView.setAdapter(adapter);
 
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL));
     }
 
 
@@ -551,6 +557,9 @@ public class CartItemListFragment extends Fragment
 //
 //            }
 //        });
+
+
+        fetchCartStats();
     }
 
 

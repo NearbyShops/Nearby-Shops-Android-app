@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.ViewHolders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -36,7 +37,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,18 +47,18 @@ import retrofit2.Response;
 
 
 
-public class ViewHolderCartItemNew extends RecyclerView.ViewHolder implements TextWatcher{
+public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
 
 
-    ImageView itemImage;
-    TextView itemName;
-    TextView itemsAvailable;
-    TextView itemPrice;
-    TextView itemTotal;
-    ImageView increaseQuantity;
-    ImageView reduceQuantity;
-    EditText itemQuantity;
-    ProgressBar progressBar;
+    @BindView(R.id.item_image) ImageView itemImage;
+    @BindView(R.id.item_name) TextView itemName;
+    @BindView(R.id.item_available_count) TextView itemsAvailable;
+    @BindView(R.id.item_price) TextView itemPrice;
+    @BindView(R.id.item_total) TextView itemTotal;
+    @BindView(R.id.button_add) ImageView increaseQuantity;
+    @BindView(R.id.button_reduce) ImageView reduceQuantity;
+    @BindView(R.id.item_count) TextView itemQuantity;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
 
 
@@ -69,7 +72,6 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder implements Te
 
     private CartStats cartStats;
     private double cartTotal = 0;
-
 
 
 
@@ -95,7 +97,7 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder implements Te
                                                Fragment fragment)
     {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_cart_item_new,parent,false);
+                .inflate(R.layout.list_item_cart_item,parent,false);
 
         return new ViewHolderCartItemNew( view, context, adapter, dataset, fragment);
     }
@@ -191,13 +193,245 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder implements Te
 
 
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+
+
+
+    private void removeItem()
+    {
+        progressBar.setVisibility(View.VISIBLE);
+
+        Call<ResponseBody> call = cartItemService.deleteCartItem(cartItem.getCartID(),cartItem.getItemID(),0,0);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                progressBar.setVisibility(View.GONE);
+
+
+                if(response.code() == 200)
+                {
+                    showToastMessage("Item Removed");
+
+                    // refresh the list
+//                        makeNetworkCall();
+
+                    if(fragment instanceof ListItemClick)
+                    {
+                        ((ListItemClick) fragment).notifyRemove(cartItem);
+
+                    }
+                }
+
+
+
+
+                adapter.notifyItemRemoved(getLayoutPosition());
+                dataset.remove(cartItem);
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                showToastMessage("Remove failed. Please Try again !");
+
+            }
+        });
     }
 
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+
+
+    private void updateQuantity()
+    {
+        progressBar.setVisibility(View.VISIBLE);
+
+
+        updateTotal();
+
+
+        Call<ResponseBody> call = cartItemService.updateCartItem(cartItem,0,0);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+
+                progressBar.setVisibility(View.GONE);
+
+                if(response.code() == 200)
+                {
+                    if(fragment instanceof ListItemClick)
+                    {
+                        ((ListItemClick) fragment).notifyUpdate(cartItem);
+                    }
+                }
+                else
+                {
+                    showToastMessage("Failed Code : " + response.code());
+                }
+
+//                showToastMessage("Updated : " + response.code());
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                showToastMessage("Update failed. Try again !");
+
+            }
+        });
+
+    }
+
+
+
+
+
+    @OnClick(R.id.button_reduce)
+    void reduceQuantityClick()
+    {
+
+        double total = 0;
+
+        if (!itemQuantity.getText().toString().equals("")){
+
+            try{
+
+                if(Double.parseDouble(itemQuantity.getText().toString())<=0) {
+
+                    removeItem();
+
+                    return;
+                }
+
+                itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) - 1));
+
+
+
+                if(Double.parseDouble(itemQuantity.getText().toString())<=0)
+                {
+                    removeItem();
+                }
+                else
+                {
+                    updateQuantityTimer();
+                }
+
+
+
+                total = cartItem.getRt_itemPrice() * Double.parseDouble(itemQuantity.getText().toString());
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
+
+        }else
+        {
+            itemQuantity.setText(String.valueOf(0));
+            itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
+        }
+
+    }
+
+
+
+
+
+
+    @OnClick(R.id.button_add)
+    void increaseQuantityClick()
+    {
+
+        int availableItems = cartItem.getRt_availableItemQuantity();
+
+        double total = 0;
+
+        if (!itemQuantity.getText().toString().equals("")) {
+
+            try {
+
+
+                if (Double.parseDouble(itemQuantity.getText().toString()) >= availableItems) {
+                    return;
+                }
+
+                itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) + 1));
+
+                updateQuantityTimer();
+
+                total = cartItem.getRt_itemPrice() * Double.parseDouble(itemQuantity.getText().toString());
+
+
+            }catch (Exception ex)
+            {
+
+            }
+
+            itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
+
+        }else
+        {
+            itemQuantity.setText(String.valueOf(0));
+            itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
+        }
+
+    }
+
+
+
+
+
+    private void updateQuantityTimer()
+    {
+        progressBar.setVisibility(View.VISIBLE);
+
+        countDownTimer.cancel();
+        countDownTimer.start();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    private CountDownTimer countDownTimer = new CountDownTimer(700, 500) {
+
+        public void onTick(long millisUntilFinished) {
+
+//            logMessage("Timer onTick()");
+        }
+
+
+        public void onFinish() {
+
+            updateQuantity();
+        }
+    };
+
+
+
+
+
+
+
+    private void updateTotal()
+    {
         double previousTotal = cartItem.getRt_itemPrice()*cartItem.getItemQuantity();
 
         double total = 0;
@@ -247,7 +481,7 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder implements Te
         //        + "Rs:" + String.format( "%.2f", total));
 
 
-        itemTotal.setText("Total "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
+//        itemTotal.setText("Total "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
 
 
@@ -255,178 +489,7 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder implements Te
         {
             ((ListItemClick) fragment).notifyTotal(cartTotal);
         }
-
-        //cartTotal.setText("Cart Total : Rs " + String.format( "%.2f", total));
     }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-    private void removeItem()
-    {
-
-        Call<ResponseBody> call = cartItemService.deleteCartItem(cartItem.getCartID(),cartItem.getItemID(),0,0);
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if(response.code() == 200)
-                {
-                    showToastMessage("Item Removed");
-
-                    // refresh the list
-//                        makeNetworkCall();
-
-                    if(fragment instanceof ListItemClick)
-                    {
-                        ((ListItemClick) fragment).notifyRemove(cartItem);
-                    }
-                }
-
-
-
-
-                adapter.notifyItemRemoved(getLayoutPosition());
-                dataset.remove(cartItem);
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                showToastMessage("Remove failed. Please Try again !");
-
-            }
-        });
-    }
-
-
-
-
-    private void updateClick()
-    {
-
-
-        Call<ResponseBody> call = cartItemService.updateCartItem(cartItem,0,0);
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if(response.code() == 200)
-                {
-                    if(fragment instanceof ListItemClick)
-                    {
-                        ((ListItemClick) fragment).notifyUpdate(cartItem);
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                showToastMessage("Update failed. Try again !");
-
-            }
-        });
-
-    }
-
-
-
-
-
-    private void reduceQuantityClick()
-    {
-
-        double total = 0;
-
-        if (!itemQuantity.getText().toString().equals("")){
-
-            try{
-
-                if(Double.parseDouble(itemQuantity.getText().toString())<=0) {
-
-                    return;
-                }
-
-                itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) - 1));
-
-                total = cartItem.getRt_itemPrice() * Double.parseDouble(itemQuantity.getText().toString());
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
-
-        }else
-        {
-            itemQuantity.setText(String.valueOf(0));
-            itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
-        }
-
-    }
-
-
-
-
-
-
-    private void increaseQuantityClick()
-    {
-
-        int availableItems = cartItem.getRt_availableItemQuantity();
-
-        double total = 0;
-
-        if (!itemQuantity.getText().toString().equals("")) {
-
-            try {
-
-
-                if (Double.parseDouble(itemQuantity.getText().toString()) >= availableItems) {
-                    return;
-                }
-
-                itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) + 1));
-
-                total = cartItem.getRt_itemPrice() * Double.parseDouble(itemQuantity.getText().toString());
-
-
-            }catch (Exception ex)
-            {
-
-            }
-
-            itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
-
-        }else
-        {
-            itemQuantity.setText(String.valueOf(0));
-            itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
-        }
-
-    }
-
-
 
 
 

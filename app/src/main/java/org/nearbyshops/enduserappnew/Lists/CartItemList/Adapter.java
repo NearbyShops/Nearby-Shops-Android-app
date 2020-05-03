@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItemNew;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
@@ -63,7 +64,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         if(viewType == VIEW_TYPE_CART_ITEM)
         {
-            return ViewHolderCartItem.create(parent,context,this,dataset,fragment);
+            return ViewHolderCartItemNew.create(parent,context,this,dataset,fragment);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
@@ -104,9 +105,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-        if(holder instanceof ViewHolderCartItem)
+        if(holder instanceof ViewHolderCartItemNew)
         {
-            ((ViewHolderCartItem) holder).setItem((CartItem)dataset.get(position));
+            ((ViewHolderCartItemNew) holder).setItem((CartItem)dataset.get(position));
         }
         else if (holder instanceof ViewHolderHeader) {
 

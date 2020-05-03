@@ -113,16 +113,11 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         if (PrefGeneral.getMultiMarketMode(this)) {
 
             bottomBar.getMenu().getItem(4).setTitle("Markets");
-
-//            bottomBar.getTabWithId(R.id.tab_profile).setTitle("Markets");
         }
         else
         {
 
             bottomBar.getMenu().getItem(4).setTitle("Profile");
-
-
-//            bottomBar.getTabWithId(R.id.tab_profile).setTitle("Profile");
         }
 
 
@@ -132,6 +127,14 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         {
             bottomBar.getMenu().getItem(0).setVisible(false);
         }
+        else
+        {
+            if(!getResources().getBoolean(R.bool.show_items_screen_in_multi_vendor))
+            {
+                bottomBar.getMenu().getItem(1).setVisible(false);
+            }
+        }
+
 
 
 

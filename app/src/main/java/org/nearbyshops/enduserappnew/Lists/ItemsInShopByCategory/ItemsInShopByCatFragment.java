@@ -723,6 +723,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
+
     @Override
     public void notifyRequestSubCategory(ItemCategory itemCategory) {
 
@@ -730,16 +731,10 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         currentCategory = itemCategory;
         currentCategory.setParentCategory(temp);
 
-//        showToastMessage("Category ID : " + itemCategory.getItemCategoryID());
-
         makeRefreshNetworkCall();
-//        getCartStats(true,0,true);
 
         // End Search Mode
         searchQuery = null;
-
-        // reset previous flag
-
     }
 
 
@@ -750,12 +745,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         // reset previous flag
 
         int currentCategoryID = 1; // the ID of root category is always supposed to be 1
-
-        // clear selected items
-//        listAdapter.selectedItems.clear();
-
-//        getCartStats(true,0,true);
-
 
 
         if(currentCategory!=null) {

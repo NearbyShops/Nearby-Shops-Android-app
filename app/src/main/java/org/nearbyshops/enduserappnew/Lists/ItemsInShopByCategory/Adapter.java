@@ -36,12 +36,10 @@ import java.util.Map;
 
 public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-//    Map<Integer,ShopItemParcelable> shopItemMap = new HashMap<>();
-//    Map<Integer,Item> selectedItems = new HashMap<>();
+
 
 
     public Map<Integer, CartItem> cartItemMap = new HashMap<>();
-//    public Map<Integer, CartStats> cartStatsMap = new HashMap<>();
     public CartStats cartStats = new CartStats();
 
 
@@ -65,12 +63,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     private boolean loadMore;
-
-
     private Fragment fragment;
-//    private ViewHolderShopItemSeller viewHolderShopItem;
-
-
 
 
 

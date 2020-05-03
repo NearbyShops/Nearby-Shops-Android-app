@@ -526,7 +526,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 
 
 
-        System.out.println(PrefLoginGlobal.getToken(getApplication()));
+//        System.out.println(PrefLoginGlobal.getToken(getApplication()));
 
 
 
@@ -534,6 +534,8 @@ public class ViewModelMarkets extends AndroidViewModel {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
+
+
 
 
 
@@ -612,10 +614,19 @@ public class ViewModelMarkets extends AndroidViewModel {
 
 
 
+
                     if(configurationLocal!=null)
                     {
                         Currency currency = Currency.getInstance(new Locale("",configurationLocal.getISOCountryCode()));
                         PrefGeneral.saveCurrencySymbol(currency.getSymbol(),getApplication());
+
+                        String jsonString = UtilityFunctions.provideGson().toJson(configurationLocal);
+
+                        System.out.println(jsonString);
+                    }
+                    else
+                    {
+                        System.out.println("Configuration Null ! ViewModelMarkets line no 622");
                     }
 
 

@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.ViewHolders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -459,6 +460,9 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
                     {
                         ((ListItemClick) fragment).notifyUpdate(cartItem);
                     }
+
+
+                    showToastMessage("Updated !");
                 }
 
 
@@ -562,6 +566,11 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
         }
 
     }
+
+
+
+
+
 
 
 

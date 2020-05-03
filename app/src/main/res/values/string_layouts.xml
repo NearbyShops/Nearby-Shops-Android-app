@@ -384,7 +384,7 @@
     <string name="fragment_cart_item_list_shop_name_text">Daily Needs</string>
     <string name="fragment_cart_item_list_empty_screen_message_text">You have not added any items in your cart ! When you add items to cart they will appear here !</string>
     <string name="fragment_cart_item_list_button_try_again_text">Try Again</string>
-    <string name="fragment_cart_item_list_confirm_text">Checkout !</string>
+    <string name="fragment_cart_item_list_confirm_text">Checkout</string>
     <string name="fragment_cart_item_list_total_text">Total</string>
     <string name="fragment_cart_item_list_totalValue_text"> 00.00</string>
     <string name="fragment_cart_item_list_estimatedTotal_text">Estimated Total (Before Update) : $ 00.00</string>

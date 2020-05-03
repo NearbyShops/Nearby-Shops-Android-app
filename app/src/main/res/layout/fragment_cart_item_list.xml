@@ -231,18 +231,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/white"
         android:layout_gravity="bottom|center"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="3dp"
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp">
 
         <TextView
-            android:background="@color/blueGrey800"
+            android:background="#33000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="0dp"
-            android:layout_height="1dp" />
+            android:layout_height="3dp" />
 
 
 
@@ -252,12 +252,12 @@
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/confirm"
             android:text="@string/fragment_cart_item_list_confirm_text"
-            android:textSize="17sp"
+            android:textSize="20sp"
             android:layout_margin="10sp"
             android:padding="10dp"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
-            android:background="@color/blueGrey800"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
             android:layout_width="wrap_content"
             android:layout_height="0dp" />
 
@@ -312,10 +312,13 @@
 
 
 
+
         <TextView
+            android:gravity="center_vertical"
+            android:textStyle="bold"
             app:layout_constraintHorizontal_chainStyle="spread"
             android:id="@+id/totalValue"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
             android:text="@string/fragment_cart_item_list_totalValue_text"
             android:textSize="24sp"
             android:padding="5dp"
@@ -324,6 +327,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@id/confirm"
             app:layout_constraintStart_toEndOf="@id/total"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/total"/>
 
 
