@@ -146,8 +146,10 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
 
             itemName.setText(item.getItemName());
 
+
             itemQuantity.setText(UtilityFunctions.refinedString(cartItem.getItemQuantity()));
-            itemPrice.setText("Price : " + String.format("%.2f", cartItem.getRt_itemPrice()) + " per " + item.getQuantityUnit());
+            itemPrice.setText(PrefGeneral.getCurrencySymbol(context)  + String.format(" %.2f", cartItem.getRt_itemPrice()) + " per " + item.getQuantityUnit());
+
 
 
             itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " "

@@ -839,11 +839,17 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
     @Override
     public void showLogin() {
+        checkLogin();
+    }
+
+
+    void checkLogin()
+    {
+
 
         Intent intent = new Intent(getActivity(), Login.class);
         startActivityForResult(intent,123);
     }
-
 
 
 
@@ -948,6 +954,16 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     @OnClick({R.id.cart_stats})
     void viewCartClick()
     {
+        User user = PrefLogin.getUser(getActivity());
+
+        if(user==null)
+        {
+            checkLogin();
+            return;
+        }
+
+
+
         Intent intent = new Intent(getActivity(), CartItemList.class);
 
 

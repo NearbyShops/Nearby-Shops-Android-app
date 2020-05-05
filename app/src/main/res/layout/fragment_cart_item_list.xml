@@ -228,6 +228,8 @@
 
 
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/white"
         android:layout_gravity="bottom|center"
@@ -242,7 +244,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="0dp"
-            android:layout_height="3dp" />
+            android:layout_height="1dp" />
 
 
 

@@ -45,6 +45,7 @@ public class EmptyScreenDataListItem {
     public static EmptyScreenDataListItem getCreateMarketData()
     {
         EmptyScreenDataListItem data = new EmptyScreenDataListItem();
+        data.setTitle("Create Market");
         data.setMessage("Create your own Market ... help local Economy ... !");
         data.setButtonText("Create Market");
         data.setUrlForButtonClick("https://nearbyshops.org/volunteer.html");
