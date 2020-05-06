@@ -21,6 +21,7 @@ import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
+import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PickLocation;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -448,7 +449,23 @@ public class EditAddressFragment extends Fragment {
 //        startActivityForResult(intent,REQUEST_CODE_PICK_LAT_LON);
 
 
-        Intent intent = new Intent(getActivity(), PickLocation.class);
+        Intent intent = null;
+
+
+        if(getResources().getBoolean(R.bool.use_google_maps))
+        {
+            intent = new Intent(getActivity(), GooglePlacePicker.class);
+        }
+        else
+        {
+            intent = new Intent(getActivity(), PickLocation.class);
+        }
+
+
+
+//        Intent intent = new Intent(getActivity(), PickLocation.class);
+
+
         intent.putExtra("lat_dest",Double.parseDouble(latitude.getText().toString()));
         intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
         startActivityForResult(intent,3);
@@ -483,7 +500,7 @@ public class EditAddressFragment extends Fragment {
             latitude.setText(String.valueOf(data.getDoubleExtra("latitude",0)));
             longitude.setText(String.valueOf(data.getDoubleExtra("longitude",0)));
         }
-        else if(requestCode==3 && resultCode==3)
+        else if(requestCode==3 && resultCode==6)
         {
             latitude.setText(String.valueOf(data.getDoubleExtra("lat_dest",0.0)));
             longitude.setText(String.valueOf(data.getDoubleExtra("lon_dest",0.0)));

@@ -50,6 +50,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
+import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PickLocation;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderCreateShop;
@@ -847,8 +848,19 @@ public class FragmentShopsList extends Fragment implements
     @Override
     public void changeLocationClick() {
 
-//        Intent intent = new Intent(getActivity(), PickLocation.class);
-        Intent intent = new Intent(getActivity(), GooglePlacePicker.class);
+        Intent intent = null;
+
+
+        if(getResources().getBoolean(R.bool.use_google_maps))
+        {
+            intent = new Intent(getActivity(), GooglePlacePicker.class);
+        }
+        else
+        {
+            intent = new Intent(getActivity(), PickLocation.class);
+        }
+
+
         intent.putExtra("lat_dest",PrefLocation.getLatitude(getActivity()));
         intent.putExtra("lon_dest",PrefLocation.getLongitude(getActivity()));
         startActivityForResult(intent,3);

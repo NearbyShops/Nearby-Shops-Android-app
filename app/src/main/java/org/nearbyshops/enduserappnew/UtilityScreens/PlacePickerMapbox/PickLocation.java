@@ -355,7 +355,7 @@ public class PickLocation extends AppCompatActivity {
             intent.putExtra("lat_dest",latLng.getLatitude());
             intent.putExtra("lon_dest",latLng.getLongitude());
 //            intent.putExtra("radius",radius/1000);
-            setResult(3,intent);
+            setResult(6,intent);
         }
 
 

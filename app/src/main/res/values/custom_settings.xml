@@ -3,7 +3,6 @@
 
 
 
-
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
     <string name="custom_url">http://192.168.43.233:5121</string>
     <bool name="multi_market_enabled">false</bool>
@@ -17,8 +16,11 @@
 
 
     <!-- Enable maps and Places API and Mapbox map here -->
-    <string name="google_maps_api_key">your-google-maps-api-key</string>
+    <string name="google_maps_api_key">AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA</string>
     <string name="custom_mapbox_url">https://api.maptiler.com/maps/bright/style.json?key=rgEe333l5zT9WTGlZXNR</string>
+
+    <!--Switch between Google Maps or Mapbox API by using this setting-->
+    <bool name="use_google_maps">true</bool>
 
 
     <!--It is mandatory to provide terms of service and privacy policy link to publish your app on google play-->
@@ -40,6 +42,8 @@
 
     <!-- set whether you want to show create shop option in the front screen (shops list) screen of the market-->
     <bool name="show_create_shop">true</bool>
+
+    <!-- You may want to disable items screen in the multi-vendor app. You can do it with this setting !-->
     <bool name="show_items_screen_in_multi_vendor">true</bool>
 
 

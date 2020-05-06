@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Services.LocationUpdateService;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
+import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PickLocation;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
@@ -575,7 +576,21 @@ public class MarketsFragmentNew extends Fragment implements
     @Override
     public void changeLocationClick() {
 //        Intent intent = new Intent(getActivity(), PickLocation.class);
-        Intent intent = new Intent(getActivity(), GooglePlacePicker.class);
+
+
+        Intent intent = null;
+
+
+        if(getResources().getBoolean(R.bool.use_google_maps))
+        {
+            intent = new Intent(getActivity(), GooglePlacePicker.class);
+        }
+        else
+        {
+            intent = new Intent(getActivity(), PickLocation.class);
+        }
+
+//        Intent intent = new Intent(getActivity(), GooglePlacePicker.class);
         intent.putExtra("lat_dest", PrefLocation.getLatitude(getActivity()));
         intent.putExtra("lon_dest",PrefLocation.getLongitude(getActivity()));
         startActivityForResult(intent,3);

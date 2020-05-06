@@ -123,6 +123,9 @@ public class PlacePickerWithMapFragment extends Fragment {
 
         initializeMapGoogle();
 
+        selectedFromGeocoder.setLocationAddress("Current Location");
+        selectedFromGeocoder.setLocationName("Current Location");
+
         return rootView;
     }
 
@@ -168,6 +171,19 @@ public class PlacePickerWithMapFragment extends Fragment {
                         selectedFromGeocoder.setLongitude(lon);
                         selectedFromGeocoder.setLocationName(getActivity().getIntent().getStringExtra("name"));
                         selectedFromGeocoder.setLocationAddress(getActivity().getIntent().getStringExtra("address"));
+
+                        if(selectedFromGeocoder.getLocationName()==null)
+                        {
+                            selectedFromGeocoder.setLocationName("Current Location");
+                        }
+
+                        if(selectedFromGeocoder.getLocationAddress()==null)
+                        {
+                            selectedFromGeocoder.setLocationAddress("Current Location");
+                        }
+
+
+
                     }
 
 
@@ -210,6 +226,8 @@ public class PlacePickerWithMapFragment extends Fragment {
 
                             if(selectedLocation.distanceFrom(selectedFromGeocoder.getLatitude(),selectedFromGeocoder.getLongitude())<300)
                             {
+
+
 
                                 selectedLocation.setLocationName(selectedFromGeocoder.getLocationName());
                                 selectedLocation.setLocationAddress(selectedFromGeocoder.getLocationAddress());
