@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static org.nearbyshops.enduserappnew.Utility.UtilityFunctions.refinedString;
+
 
 public class ViewHolderOrderItem extends RecyclerView.ViewHolder{
 
@@ -32,9 +35,13 @@ public class ViewHolderOrderItem extends RecyclerView.ViewHolder{
     @BindView(R.id.itemImage) ImageView itemImage;
     @BindView(R.id.itemName) TextView itemName;
     @BindView(R.id.quantity) TextView quantity;
-    @BindView(R.id.pincode) TextView itemPrice;
+    @BindView(R.id.item_price) TextView itemPrice;
     @BindView(R.id.item_total) TextView itemTotal;
     @BindView(R.id.item_id) TextView itemID;
+
+
+    @BindView(R.id.discount_indicator) TextView discountIndicator;
+    @BindView(R.id.list_price) TextView listPrice;
 
 
     private Context context;
@@ -78,9 +85,34 @@ public class ViewHolderOrderItem extends RecyclerView.ViewHolder{
         itemID.setText("Item ID : " + orderItem.getItemID());
         itemName.setText(item.getItemName());
         quantity.setText("Item Quantity : " + orderItem.getItemQuantity() + " "  + item.getQuantityUnit());
-        itemPrice.setText("Item Price : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() + " per "  + item.getQuantityUnit());
+        itemPrice.setText("" + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() + " per "  + item.getQuantityUnit());
         itemTotal.setText("Item Total : " + PrefGeneral.getCurrencySymbol(context) + " " + UtilityFunctions.refinedStringWithDecimals(orderItem.getItemPriceAtOrder() * orderItem.getItemQuantity()));
 
+
+
+        String currency = "";
+        currency = PrefGeneral.getCurrencySymbol(context);
+
+
+
+        if(orderItem.getListPriceAtOrder()>0.0 && orderItem.getListPriceAtOrder() > orderItem.getItemPriceAtOrder())
+        {
+            listPrice.setText(currency + " " + refinedString(orderItem.getListPriceAtOrder()));
+            listPrice.setPaintFlags(listPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            listPrice.setVisibility(View.VISIBLE);
+
+
+            double discountPercent = ((orderItem.getListPriceAtOrder() - orderItem.getItemPriceAtOrder())/orderItem.getListPriceAtOrder())*100;
+            discountIndicator.setText(String.format("%.0f ",discountPercent) + " %\nOff");
+
+
+            discountIndicator.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            discountIndicator.setVisibility(View.GONE);
+            listPrice.setVisibility(View.GONE);
+        }
 
 
         String imagePath = PrefGeneral.getServiceURL(context)

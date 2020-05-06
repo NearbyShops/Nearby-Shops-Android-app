@@ -431,7 +431,7 @@ public class CartItemListFragment extends Fragment
 
         Call<List<CartItem>> call = cartItemService.getCartItem(null,null,
                 endUser.getUserID(),shop.getShopID(),true,
-                Item.TABLE_NAME + "." + Item.ITEM_ID,
+                Item.TABLE_NAME + "." + Item.ITEM_NAME,
                 null,null,false
         );
 

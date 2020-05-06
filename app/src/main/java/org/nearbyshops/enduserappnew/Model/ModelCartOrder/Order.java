@@ -72,6 +72,7 @@ public class Order {
     private double appServiceCharge;
     private double deliveryCharges;
     private double netPayable;
+    private double savingsOverMRP;
 
     private boolean isCancelledByEndUser;
     private String reasonCancelledByShop;
@@ -103,6 +104,14 @@ public class Order {
 
     // getter and setter
 
+
+    public double getSavingsOverMRP() {
+        return savingsOverMRP;
+    }
+
+    public void setSavingsOverMRP(double savingsOverMRP) {
+        this.savingsOverMRP = savingsOverMRP;
+    }
 
     public int getOrderID() {
         return orderID;

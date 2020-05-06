@@ -40,11 +40,21 @@ public class OrderItem {
     private int orderID;
     private double itemQuantity;
     private double itemPriceAtOrder;
+    private double listPriceAtOrder;
 
     private Item item;
 
 
 
+
+
+    public double getListPriceAtOrder() {
+        return listPriceAtOrder;
+    }
+
+    public void setListPriceAtOrder(double listPriceAtOrder) {
+        this.listPriceAtOrder = listPriceAtOrder;
+    }
 
     public int getItemID() {
         return itemID;

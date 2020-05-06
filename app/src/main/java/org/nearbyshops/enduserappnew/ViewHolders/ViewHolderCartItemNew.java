@@ -303,7 +303,7 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
                 }
                 else
                 {
-                    showToastMessage("Failed Code : " + response.code());
+//                    showToastMessage("Failed Code : " + response.code());
                 }
 
 //                showToastMessage("Updated : " + response.code());

@@ -32,6 +32,8 @@
 
 
 
+
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_guide"
         android:layout_height="0dp"
@@ -51,6 +53,22 @@
         app:layout_constraintRight_toLeftOf="@+id/vertical_guide"
         android:layout_height="0dp"
         android:layout_width="0dp" />
+
+
+    <TextView
+        android:textSize="10sp"
+        android:padding="0dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:id="@+id/discount_indicator"
+        android:background="@drawable/white_circle_drawable"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toTopOf="@id/itemImage"
+        app:layout_constraintStart_toStartOf="@id/itemImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 
 
 
@@ -97,18 +115,53 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:textColor="#000000"
-        android:layout_marginTop="2dp"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        android:id="@+id/pincode"
+
+<!--    <TextView-->
+<!--        app:layout_constraintLeft_toLeftOf="@+id/itemName"-->
+<!--        app:layout_constraintRight_toRightOf="@+id/itemName"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/quantity"-->
+<!--        android:textColor="#000000"-->
+<!--        android:layout_marginTop="2dp"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="normal"-->
+<!--        android:id="@+id/pincode"-->
+<!--        android:text="Item Price : Rs 108.00"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content" />-->
+
+
+
+
+    <LinearLayout
         app:layout_constraintLeft_toLeftOf="@+id/itemName"
         app:layout_constraintRight_toRightOf="@+id/itemName"
         app:layout_constraintTop_toBottomOf="@+id/quantity"
-        android:text="Item Price : Rs 108.00"
+        android:id="@+id/item_price_block"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textSize="15sp"
+            android:text="Rs 50"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/list_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:id="@+id/item_price"
+            android:text="@string/list_item_shop_item_small_item_price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 
 
     <TextView
@@ -119,7 +172,7 @@
         android:text="@string/list_item_order_item_order_detail_item_total_text"
         app:layout_constraintLeft_toLeftOf="@+id/itemName"
         app:layout_constraintRight_toRightOf="@+id/itemName"
-        app:layout_constraintTop_toBottomOf="@+id/pincode"
+        app:layout_constraintTop_toBottomOf="@+id/item_price_block"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 

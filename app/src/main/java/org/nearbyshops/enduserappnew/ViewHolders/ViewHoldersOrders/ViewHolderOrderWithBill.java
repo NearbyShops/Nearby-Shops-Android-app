@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -27,6 +28,9 @@ public class ViewHolderOrderWithBill extends ViewHolderOrder {
     @BindView(R.id.delivery_charge_value) TextView deliveryCharge;
     @BindView(R.id.app_service_charge_value) TextView appServiceCharge;
     @BindView(R.id.net_payable_value) TextView netPayable;
+    @BindView(R.id.savings_value) TextView savingsOverMRP;
+
+    @BindView(R.id.savings_block) LinearLayout savingsBlock;
 
 
     private Context context;
@@ -83,6 +87,16 @@ public class ViewHolderOrderWithBill extends ViewHolderOrder {
         deliveryCharge.setText(PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f",order.getDeliveryCharges()));
         appServiceCharge.setText(PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", order.getAppServiceCharge()));
         netPayable.setText(PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f",order.getNetPayable()));
+
+        if(order.getSavingsOverMRP()>0)
+        {
+            savingsBlock.setVisibility(View.VISIBLE);
+            savingsOverMRP.setText(PrefGeneral.getCurrencySymbol(context ) + " " + String.format("%.2f",order.getSavingsOverMRP()));
+        }
+        else
+        {
+            savingsBlock.setVisibility(View.GONE);
+        }
 
     }
 

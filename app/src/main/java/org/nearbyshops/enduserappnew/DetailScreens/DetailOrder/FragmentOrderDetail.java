@@ -227,6 +227,7 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
                         order.setItemTotal(extraDetails.getItemTotal());
                         order.setAppServiceCharge(extraDetails.getAppServiceCharge());
                         order.setDeliveryCharges(extraDetails.getDeliveryCharges());
+                        order.setSavingsOverMRP(extraDetails.getSavingsOverMRP());
                     }
 
 
