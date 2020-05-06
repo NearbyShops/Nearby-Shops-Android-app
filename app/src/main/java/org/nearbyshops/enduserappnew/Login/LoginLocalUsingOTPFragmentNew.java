@@ -244,6 +244,8 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
     }
 
 
+
+
     private boolean validateEmail()
     {
         boolean isValid = true;
@@ -620,6 +622,33 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
 
     private void bindRegistrationMode()
     {
+        boolean emailEnabled = getResources().getBoolean(R.bool.login_using_email_enabled);
+        boolean phoneEnabled = getResources().getBoolean(R.bool.login_using_phone_enabled);
+
+        if(emailEnabled && phoneEnabled)
+        {
+            selectPhone.setVisibility(View.VISIBLE);
+            selectEmail.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            selectPhone.setVisibility(View.GONE);
+            selectEmail.setVisibility(View.GONE);
+
+            if(phoneEnabled)
+            {
+                registrationMode=User.REGISTRATION_MODE_PHONE;
+
+            }
+            else if(emailEnabled)
+            {
+                registrationMode=User.REGISTRATION_MODE_EMAIL;
+            }
+        }
+
+
+
+
         if(registrationMode==User.REGISTRATION_MODE_EMAIL)
         {
             selectEmail.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));

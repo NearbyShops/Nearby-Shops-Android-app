@@ -873,7 +873,7 @@
     <string name="fragment_sliding_sort_items_in_stock_filter_out_of_stock_text">Out of Stock</string>
     <string name="fragment_sliding_sort_items_in_stock_filter_price_not_set_text">Price not Set</string>
     <string name="fragment_email_or_phone_next_text">Next</string>
-    <string name="fragment_email_or_phone_header_text">Step 2 : Enter Phone</string>
+    <string name="fragment_email_or_phone_header_text">Step 2 : Enter Email or Phone</string>
     <string name="fragment_email_or_phone_header_title_text">Enter Phone</string>
     <string name="fragment_email_or_phone_select_email_text">E-mail</string>
     <string name="fragment_email_or_phone_select_phone_text">Phone</string>

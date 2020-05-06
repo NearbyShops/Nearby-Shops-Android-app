@@ -57,8 +57,7 @@ public class FragmentEmailOrPhone extends Fragment {
     @BindView(R.id.select_email) TextView selectPhone;
     @BindView(R.id.select_phone) TextView selectEmail;
 
-    @BindView(R.id.text_input_phone)
-    TextInputLayout phoneLayout;
+    @BindView(R.id.text_input_phone) TextInputLayout phoneLayout;
     @BindView(R.id.text_input_email) TextInputLayout emailLayout;
 
 
@@ -73,6 +72,9 @@ public class FragmentEmailOrPhone extends Fragment {
     @BindView(R.id.message) TextView textAvailable;
 
     @BindView(R.id.phone_registration_message) TextView phoneRegistrationMessage;
+
+
+    @BindView(R.id.header) TextView header;
 
 
     @BindView(R.id.progress_bar) ProgressBar progressBar;
@@ -139,6 +141,8 @@ public class FragmentEmailOrPhone extends Fragment {
         }
 
 
+
+        setupVisiblity();
 
 
 
@@ -213,30 +217,110 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
+
+
+    private void setupVisiblity()
+    {
+        boolean phoneEnabled = getResources().getBoolean(R.bool.login_using_phone_enabled);
+        boolean emailEnabled = getResources().getBoolean(R.bool.login_using_email_enabled);
+
+        if(phoneEnabled && emailEnabled)
+        {
+            selectEmail.setVisibility(View.VISIBLE);
+            selectPhone.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            selectEmail.setVisibility(View.GONE);
+            selectPhone.setVisibility(View.GONE);
+
+
+            if(phoneEnabled)
+            {
+                user.setRt_registration_mode(User.REGISTRATION_MODE_PHONE);
+                bindRegistrationMode();
+                header.setText("Step 2 : Enter Phone");
+            }
+            else if(emailEnabled)
+            {
+                user.setRt_registration_mode(User.REGISTRATION_MODE_EMAIL);
+                bindRegistrationMode();
+
+                header.setText("Step 2 : Enter Email");
+            }
+        }
+    }
+
+
+
+
+
+
+
     @OnClick(R.id.select_email)
     void selectEmailClick()
     {
-
         user.setRt_registration_mode(User.REGISTRATION_MODE_EMAIL);
-        email.requestFocus();
-
-
-        selectPhone.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-        selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
-
-        selectEmail.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
-        selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        bindRegistrationMode();
+    }
 
 
 
-        ccp.setVisibility(View.GONE);
-        phoneLayout.setVisibility(View.INVISIBLE);
-        emailLayout.setVisibility(View.VISIBLE);
+
+
+    private void bindRegistrationMode()
+    {
+
+        if(user.getRt_registration_mode()==User.REGISTRATION_MODE_EMAIL)
+        {
+            email.requestFocus();
+
+            selectPhone.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+            selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
+
+            selectEmail.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+            selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+
+
+
+            ccp.setVisibility(View.GONE);
+            phoneLayout.setVisibility(View.INVISIBLE);
+            emailLayout.setVisibility(View.VISIBLE);
+
+
+        }
+        else if(user.getRt_registration_mode()==User.REGISTRATION_MODE_PHONE)
+        {
+            phone.requestFocus();
+
+
+            ccp.setVisibility(View.VISIBLE);
+            phoneLayout.setVisibility(View.VISIBLE);
+            emailLayout.setVisibility(View.INVISIBLE);
+
+
+            selectEmail.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+            selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
+
+            selectPhone.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+            selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        }
+
+
+
+
+
+
+
 
 //        phoneOrEmail = 2;  // set flag
 
 
-        phoneRegistrationMessage.setVisibility(View.GONE);
+
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        {
+            phoneRegistrationMessage.setVisibility(View.VISIBLE);
+        }
 
 
 //        bindViews();
@@ -245,6 +329,7 @@ public class FragmentEmailOrPhone extends Fragment {
         crossIcon.setVisibility(View.INVISIBLE);
         textAvailable.setVisibility(View.INVISIBLE);
         textInputChanged();
+
 
 
     }
@@ -260,41 +345,46 @@ public class FragmentEmailOrPhone extends Fragment {
     {
 
         user.setRt_registration_mode(User.REGISTRATION_MODE_PHONE);
-
-        phone.requestFocus();
-
-
-        selectEmail.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-        selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
-
-        selectPhone.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
-        selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+        bindRegistrationMode();
 
 
-        ccp.setVisibility(View.VISIBLE);
-        phoneLayout.setVisibility(View.VISIBLE);
-        emailLayout.setVisibility(View.INVISIBLE);
-
-
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
-        {
-            phoneRegistrationMessage.setVisibility(View.VISIBLE);
-        }
-
-
-//        phoneOrEmail = 1; // set flag
-
-        checkIcon.setVisibility(View.INVISIBLE);
-        crossIcon.setVisibility(View.INVISIBLE);
-        textAvailable.setVisibility(View.INVISIBLE);
-        textInputChanged();
+//
+//        phone.requestFocus();
+//
+//
+//        selectEmail.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+//        selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.phonographyBlue));
+//
+//        selectPhone.setTextColor(ContextCompat.getColor(getActivity(), R.color.blueGrey800));
+//        selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.light_grey));
+//
+//
+//        ccp.setVisibility(View.VISIBLE);
+//        phoneLayout.setVisibility(View.VISIBLE);
+//        emailLayout.setVisibility(View.INVISIBLE);
+//
+//
+//        if(PrefGeneral.getMultiMarketMode(getActivity()))
+//        {
+//            phoneRegistrationMessage.setVisibility(View.VISIBLE);
+//        }
+//
+//
+////        phoneOrEmail = 1; // set flag
+//
+//        checkIcon.setVisibility(View.INVISIBLE);
+//        crossIcon.setVisibility(View.INVISIBLE);
+//        textAvailable.setVisibility(View.INVISIBLE);
+//        textInputChanged();
 
 
     }
 
 
 
-    void bindViews()
+
+
+    private void bindViews()
     {
             phone.setText(user.getPhone());
             email.setText(user.getEmail());
@@ -305,12 +395,7 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
-
-
-
-
-
-    void saveDataFromViews()
+    private void saveDataFromViews()
     {
 
 //            user.setPhone(ccp.getSelectedCountryCode()+phone.getText().toString());

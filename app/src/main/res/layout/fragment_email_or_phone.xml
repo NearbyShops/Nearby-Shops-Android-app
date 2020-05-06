@@ -114,6 +114,7 @@
             <!--android:text="Step 2 : Enter Phone or E-mail"-->
 
             <TextView
+                android:layout_marginTop="10dp"
                 android:textStyle="normal"
                 android:id="@+id/header"
                 android:text="@string/fragment_email_or_phone_header_text"

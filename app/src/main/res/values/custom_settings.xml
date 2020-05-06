@@ -42,4 +42,11 @@
     <bool name="show_create_shop">true</bool>
     <bool name="show_items_screen_in_multi_vendor">true</bool>
 
+
+    <!--Enable or Disable Phone or Email for login based on your Preferences -->
+    <!--Please ensure at least one mode of registration is Enabled -->
+    <bool name="login_using_email_enabled">false</bool>
+    <bool name="login_using_phone_enabled">true</bool>
+
+
 </resources>
