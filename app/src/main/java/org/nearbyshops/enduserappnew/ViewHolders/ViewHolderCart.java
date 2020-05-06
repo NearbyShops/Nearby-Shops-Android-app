@@ -32,16 +32,18 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
 
 
 
-    ImageView shopImage;
-    TextView shopName;
-    TextView rating;
-    TextView distance;
-    TextView deliveryCharge;
-    TextView itemsInCart;
-    TextView cartTotal;
-    LinearLayout cartsListItem;
-    TextView pickFromShopIndicator;
-    TextView homeDeliveryIndicator;
+    private ImageView shopImage;
+    private TextView shopName;
+    private TextView rating;
+    private TextView distance;
+    private TextView deliveryCharge;
+    private TextView itemsInCart;
+    private TextView cartTotal;
+    private LinearLayout cartsListItem;
+    private TextView pickFromShopIndicator;
+    private TextView homeDeliveryIndicator;
+
+
 
 
     private Context context;

@@ -1035,7 +1035,8 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,null,
-                endUser.getUserID(),shop.getShopID(),false);
+                endUser.getUserID(),shop.getShopID(),false,
+                null,null,null,false);
 
 
 

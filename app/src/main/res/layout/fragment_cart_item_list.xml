@@ -132,7 +132,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/swipeContainer"
-        android:paddingBottom="70sp"
+        android:paddingBottom="80sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -229,6 +229,10 @@
 
 
 
+    <!--
+    android:text="Confirm Items"
+    -->
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/white"
@@ -236,7 +240,7 @@
         android:layout_marginTop="3dp"
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:background="#33000000"
@@ -261,53 +265,6 @@
             android:textColor="@color/white"
             android:background="@color/colorPrimaryDark"
             android:layout_width="wrap_content"
-            android:layout_height="0dp" />
-
-
-
-        <!--
-
-                    <LinearLayout
-                        android:layout_above="@id/confirm"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:background="#000000"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"/>
-
-                    <LinearLayout
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_above="@id/confirm"
-                        android:background="#000000"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"/>
-        -->
-
-
-
-        <TextView
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/totalValue"
-            android:id="@+id/total"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="1dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/fragment_cart_item_list_total_text"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:textSize="17dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="@color/blueGrey800"
-            android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
 
@@ -316,20 +273,44 @@
 
 
         <TextView
+            android:textColor="@color/white"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Savings Over MRP : 345"
+            app:layout_constraintStart_toStartOf="@id/totalValue"
+            app:layout_constraintBottom_toTopOf="@id/totalValue"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/savings_over_mrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+
+
+
+
+
+        <TextView
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/savings_over_mrp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:gravity="center_vertical"
             android:textStyle="bold"
             app:layout_constraintHorizontal_chainStyle="spread"
             android:id="@+id/totalValue"
-            android:layout_marginStart="10dp"
             android:text="@string/fragment_cart_item_list_totalValue_text"
             android:textSize="24sp"
             android:padding="5dp"
             android:textColor="@color/blueGrey800"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/total"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@id/total"/>
+            android:layout_height="wrap_content" />
 
 
         <ProgressBar
@@ -341,6 +322,9 @@
             android:id="@+id/progress_bar"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
+
+
+
 
 
 
@@ -361,10 +345,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <!--
-    android:text="Confirm Items"
-    -->
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -197,7 +197,7 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
 
             Drawable placeholder = VectorDrawableCompat
                     .create(context.getResources(),
-                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+                            R.drawable.ic_nature_people_grey, context.getTheme());
 
 
             Picasso.get()
@@ -208,11 +208,6 @@ public class ViewHolderCartItem extends RecyclerView.ViewHolder implements TextW
         }
 
     }
-
-
-
-
-
 
 
 

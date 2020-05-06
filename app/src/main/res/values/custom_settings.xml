@@ -3,8 +3,9 @@
 
 
 
+
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
+    <string name="custom_url">http://192.168.43.233:5121</string>
     <bool name="multi_market_enabled">false</bool>
 
     <!-- If multi-market mode is disabled then simply ignore this URL. It tells you url to SDS server which enables multi-market mode. -->

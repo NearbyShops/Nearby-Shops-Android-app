@@ -18,6 +18,7 @@ import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.OrderItem;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,11 +74,12 @@ public class ViewHolderOrderItem extends RecyclerView.ViewHolder{
 
         Item item = orderItem.getItem();
 
+
         itemID.setText("Item ID : " + orderItem.getItemID());
         itemName.setText(item.getItemName());
         quantity.setText("Item Quantity : " + orderItem.getItemQuantity() + " "  + item.getQuantityUnit());
         itemPrice.setText("Item Price : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() + " per "  + item.getQuantityUnit());
-        itemTotal.setText("Item Total : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() * orderItem.getItemQuantity());
+        itemTotal.setText("Item Total : " + PrefGeneral.getCurrencySymbol(context) + " " + UtilityFunctions.refinedStringWithDecimals(orderItem.getItemPriceAtOrder() * orderItem.getItemQuantity()));
 
 
 

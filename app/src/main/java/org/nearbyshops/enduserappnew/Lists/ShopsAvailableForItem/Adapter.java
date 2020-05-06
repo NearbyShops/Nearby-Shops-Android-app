@@ -100,7 +100,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
         Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,item.getItemID(),
-                endUser.getUserID(),null,false);
+                endUser.getUserID(),null,false,
+                null,null,null,false);
+
+
 
         cartItemCall.enqueue(new Callback<List<CartItem>>() {
             @Override

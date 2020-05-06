@@ -25,6 +25,7 @@ import butterknife.OnClick;
 
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
+import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
@@ -76,6 +77,9 @@ public class CartItemListFragment extends Fragment
     private TextView totalValue;
     private TextView estimatedTotal;
     private double cartTotal = 0;
+
+
+    @BindView(R.id.savings_over_mrp) TextView savingsOverMRP;
 
 
     @BindView(R.id.progress_bar) ProgressBar progressBar;
@@ -279,7 +283,19 @@ public class CartItemListFragment extends Fragment
         {
             cartTotal = cartStats.getCart_Total();
             totalValue.setText("Total " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
-//            adapter.setCartStats(cartStats);
+
+
+            if(cartStats.getSavingsOverMRP()>0)
+            {
+                savingsOverMRP.setText("Savings Over MRP : " + PrefGeneral.getCurrencySymbol(getActivity()) + " " + UtilityFunctions.refinedStringWithDecimals(cartStats.getSavingsOverMRP()));
+
+                savingsOverMRP.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                savingsOverMRP.setVisibility(View.GONE);
+            }
+
         }
     }
 
@@ -414,7 +430,10 @@ public class CartItemListFragment extends Fragment
 
 
         Call<List<CartItem>> call = cartItemService.getCartItem(null,null,
-                endUser.getUserID(),shop.getShopID(),true);
+                endUser.getUserID(),shop.getShopID(),true,
+                Item.TABLE_NAME + "." + Item.ITEM_ID,
+                null,null,false
+        );
 
 
         call.enqueue(new Callback<List<CartItem>>() {

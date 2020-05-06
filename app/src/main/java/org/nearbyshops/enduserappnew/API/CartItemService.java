@@ -20,7 +20,13 @@ public interface CartItemService {
                                      @Query("ItemID") Integer itemID,
                                      @Query("EndUserID") Integer endUserID,
                                      @Query("ShopID") Integer shopID,
-                                     @Query("GetItems") Boolean getItems);
+                                     @Query("GetItems") Boolean getItems,
+                                     @Query("SortBy") String sortBy,
+                                     @Query("Limit")Integer limit, @Query("Offset")Integer offset,
+                                     @Query("metadata_only")Boolean metaonly
+    );
+
+
 
 
 

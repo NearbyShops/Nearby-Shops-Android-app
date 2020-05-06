@@ -323,7 +323,7 @@
     <string name="list_item_order_order_detail_item_total_value_text">$ 0</string>
     <string name="list_item_order_order_detail_delivery_charge_text_text">Delivery Charge </string>
     <string name="list_item_order_order_detail_delivery_charge_value_text">$ 0</string>
-    <string name="list_item_order_order_detail_app_service_charge_text_text">App Service Charge </string>
+    <string name="list_item_order_order_detail_app_service_charge_text_text">Market Fee </string>
     <string name="list_item_order_order_detail_app_service_charge_value_text">$ 0</string>
     <string name="list_item_order_order_detail_net_payable_text_text">Net Payable </string>
     <string name="list_item_order_order_detail_net_payable_value_text">$ 0</string>

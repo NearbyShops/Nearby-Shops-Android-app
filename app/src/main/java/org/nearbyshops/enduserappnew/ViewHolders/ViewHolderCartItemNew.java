@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -45,6 +46,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static org.nearbyshops.enduserappnew.Utility.UtilityFunctions.refinedString;
 
 
 public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
@@ -59,6 +61,10 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
     @BindView(R.id.button_reduce) ImageView reduceQuantity;
     @BindView(R.id.item_count) TextView itemQuantity;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
+
+
+    @BindView(R.id.discount_indicator) TextView discountIndicator;
+    @BindView(R.id.list_price) TextView listPrice;
 
 
 
@@ -147,9 +153,32 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
             itemName.setText(item.getItemName());
 
 
-            itemQuantity.setText(UtilityFunctions.refinedString(cartItem.getItemQuantity()));
+            itemQuantity.setText(refinedString(cartItem.getItemQuantity()));
             itemPrice.setText(PrefGeneral.getCurrencySymbol(context)  + String.format(" %.2f", cartItem.getRt_itemPrice()) + " per " + item.getQuantityUnit());
 
+
+
+            String currency = "";
+            currency = PrefGeneral.getCurrencySymbol(context);
+
+
+            if(item.getListPrice()>0.0 && item.getListPrice()>cartItem.getRt_itemPrice())
+            {
+                listPrice.setText(currency + " " + refinedString(item.getListPrice()));
+                listPrice.setPaintFlags(listPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                listPrice.setVisibility(View.VISIBLE);
+
+
+                double discountPercent = ((item.getListPrice() - cartItem.getRt_itemPrice())/item.getListPrice())*100;
+                discountIndicator.setText(String.format("%.0f ",discountPercent) + " %\nOff");
+
+                discountIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                discountIndicator.setVisibility(View.GONE);
+                listPrice.setVisibility(View.GONE);
+            }
 
 
             itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " "
@@ -312,7 +341,7 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
                     return;
                 }
 
-                itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) - 1));
+                itemQuantity.setText(refinedString(Double.parseDouble(itemQuantity.getText().toString()) - 1));
 
 
 
@@ -367,7 +396,7 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
                     return;
                 }
 
-                itemQuantity.setText(UtilityFunctions.refinedString(Double.parseDouble(itemQuantity.getText().toString()) + 1));
+                itemQuantity.setText(refinedString(Double.parseDouble(itemQuantity.getText().toString()) + 1));
 
                 updateQuantityTimer();
 
