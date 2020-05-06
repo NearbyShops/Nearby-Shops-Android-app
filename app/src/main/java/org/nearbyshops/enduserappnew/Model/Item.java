@@ -44,6 +44,7 @@ public class Item{
 	private String itemImageURL;
 
 	private float listPrice;
+	private float discountedPrice;
 	private String barcode;
 	private String barcodeFormat;
 	private String imageCopyrights;
@@ -71,8 +72,22 @@ public class Item{
 
 
 
+
+
+
+
+
+
 	// getter and setter methods
 
+
+	public float getDiscountedPrice() {
+		return discountedPrice;
+	}
+
+	public void setDiscountedPrice(float discountedPrice) {
+		this.discountedPrice = discountedPrice;
+	}
 
 	public String getImageCopyrights() {
 		return imageCopyrights;

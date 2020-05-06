@@ -125,6 +125,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
     @BindView(R.id.image_copyrights) TextView imageCopyrights;
     @BindView(R.id.list_price) EditText listPrice;
+    @BindView(R.id.discounted_price) EditText discountedPrice;
 //    String barcode;
 //    String barcodeFormat;
 
@@ -604,6 +605,9 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
             listPrice.setText(String.valueOf(item.getListPrice()));
+            discountedPrice.setText(String.valueOf(item.getDiscountedPrice()));
+
+
 
             imageCopyrights.setText(item.getImageCopyrights());
 
@@ -652,6 +656,13 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
         {
             item.setListPrice(Float.parseFloat(listPrice.getText().toString()));
         }
+
+        if(!discountedPrice.getText().toString().equals(""))
+        {
+            item.setDiscountedPrice(Float.parseFloat(discountedPrice.getText().toString()));
+        }
+
+
 
         item.setImageCopyrights(imageCopyrights.getText().toString());
 //        item.setBarcode();

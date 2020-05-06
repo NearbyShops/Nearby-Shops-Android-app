@@ -23,11 +23,11 @@
     <bool name="use_google_maps">true</bool>
 
 
+
     <!--It is mandatory to provide terms of service and privacy policy link to publish your app on google play-->
     <string name="tos_link">https://example.com/tos.html</string>
     <string name="privacy_policy_link">https://example.com/pivacy_policy.html</string>
     <string name="faqs_link">https://example.com/faq_link.html</string>
-
 
 
     <!-- Other Settings -->
@@ -51,6 +51,5 @@
     <!--Please ensure at least one mode of registration is Enabled -->
     <bool name="login_using_email_enabled">false</bool>
     <bool name="login_using_phone_enabled">true</bool>
-
 
 </resources>
