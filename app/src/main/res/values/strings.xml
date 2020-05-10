@@ -144,4 +144,5 @@
     <string name="field_phone">Phone</string>
     <string name="enable_disable_market">Enable / Disable Market</string>
     <string name="admin_options_header">Administrative Options</string>
+    <string name="add_country_code">Note : Please add country code when using phone numbers</string>
 </resources>

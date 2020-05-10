@@ -75,6 +75,8 @@ TextInputEditText phone;
     @BindView(R.id.progress_bar_button) ProgressBar progressBarButton;
     @BindView(R.id.next) TextView nextButton;
 
+    @BindView(R.id.phone_code_message) TextView phoneCodeMessage;
+
 
 
 //    int phoneOrEmail = 1; // flag for indicating the input mode 1 for phone and 2 for email
@@ -180,6 +182,7 @@ TextInputEditText phone;
     @OnClick(R.id.select_email)
     void selectEmailClick()
     {
+        phoneCodeMessage.setVisibility(View.GONE);
 
         user.setRt_registration_mode(User.REGISTRATION_MODE_EMAIL);
 
@@ -209,6 +212,9 @@ TextInputEditText phone;
     @OnClick(R.id.select_phone)
     void selectPhoneClick()
     {
+
+        phoneCodeMessage.setVisibility(View.VISIBLE);
+
         user.setRt_registration_mode(User.REGISTRATION_MODE_PHONE);
 
         phone.requestFocus();

@@ -4,11 +4,11 @@
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://192.168.43.233:5121</string>
+    <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
     <bool name="multi_market_enabled">false</bool>
 
     <!-- If multi-market mode is disabled then simply ignore this URL. It tells you url to SDS server which enables multi-market mode. -->
-    <string name="sds_url">http://sds.nearbyshops.org</string>
+    <string name="sds_url">http://192.168.43.233:8091</string>
 
     <!-- App name that you see on your front screen ( shops list screen ) -->
     <string name="app_name">Nearby Shops</string>
@@ -31,7 +31,7 @@
 
 
     <!-- Other Settings -->
-    <bool name="only_fooddelivery_mode">false</bool>
+
 
     <!-- To enable single vendor mode set single vendor mode to true and set shop id to the shop which you want to set as your default
     shop. Please note that the Shop must be enabled to be visible by the customers. -->
@@ -49,7 +49,8 @@
 
     <!--Enable or Disable Phone or Email for login based on your Preferences -->
     <!--Please ensure at least one mode of registration is Enabled -->
-    <bool name="login_using_email_enabled">false</bool>
+    <bool name="login_using_email_enabled">true</bool>
     <bool name="login_using_phone_enabled">true</bool>
+
 
 </resources>

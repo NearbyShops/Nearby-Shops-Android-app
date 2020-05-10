@@ -22,7 +22,7 @@
 
 
     <TextView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:textSize="17sp"
         android:id="@+id/title"
@@ -51,6 +51,7 @@
 
 
     <TextView
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
         android:textSize="17sp"
         android:paddingBottom="7dp"

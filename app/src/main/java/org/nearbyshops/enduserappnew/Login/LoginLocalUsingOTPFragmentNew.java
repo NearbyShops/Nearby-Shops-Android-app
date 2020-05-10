@@ -69,7 +69,7 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
 //    @BindView(R.id.select_service) TextView selectAutomatic;
 
 
-    @BindView(R.id.login) Button loginButton;
+    @BindView(R.id.login) TextView loginButton;
     @BindView(R.id.text_input_password) TextInputLayout textInputPassword;
 
     private int registrationMode = User.REGISTRATION_MODE_PHONE;
@@ -92,7 +92,7 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_login_using_otp_local, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login_using_otp_local_new, container, false);
         ButterKnife.bind(this,rootView);
 
         bindRegistrationMode();
@@ -652,7 +652,7 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
         if(registrationMode==User.REGISTRATION_MODE_EMAIL)
         {
             selectEmail.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-            selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
+            selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_1));
 
             selectPhone.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
             selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
@@ -669,7 +669,7 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
             selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
 
             selectPhone.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-            selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
+            selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_1));
 
             ccp.setVisibility(View.VISIBLE);
 

@@ -119,7 +119,8 @@
 
         <activity android:name=".aSellerModule.DashboardShopAdmin.ShopAdminHome"/>
         <activity android:name=".Lists.ShopsAvailableForItem.ShopItemByItem" />
-        <activity android:name=".Login.Login" />
+        <activity android:name=".Login.Login"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".DetailScreens.DetailItem.ItemDetail" />
         <activity android:name=".DetailScreens.DetailShop.ShopDetail" />
         <activity android:name=".ImageList.ImageListForShop.ShopImageList" />
