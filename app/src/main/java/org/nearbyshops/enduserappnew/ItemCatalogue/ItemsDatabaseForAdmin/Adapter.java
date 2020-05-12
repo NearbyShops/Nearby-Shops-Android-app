@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin;
+package org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin;
 
 import android.content.Context;
 import android.view.View;
@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemAdmin;
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
@@ -17,8 +19,6 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.Header
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemAdmin;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 
 import java.util.HashMap;
 import java.util.List;

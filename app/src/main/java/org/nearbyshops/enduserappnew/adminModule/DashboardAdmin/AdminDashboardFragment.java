@@ -21,7 +21,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarket;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseAdmin;
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ItemsDatabaseAdmin;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.ShopsDatabase;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;

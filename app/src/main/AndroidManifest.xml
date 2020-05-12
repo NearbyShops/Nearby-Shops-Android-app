@@ -286,7 +286,7 @@
 
 
         <activity
-            android:name=".aSellerModule.ItemsDatabase.ItemsDatabase"
+            android:name=".ItemCatalogue.ItemsDatabase.ItemsDatabase"
             android:label="Items Database"
             android:launchMode="singleTop"
             android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
@@ -391,7 +391,7 @@
 
 
         <activity
-            android:name=".adminModule.ItemsDatabaseForAdmin.ItemsDatabaseAdmin"
+            android:name=".ItemCatalogue.ItemsDatabaseForAdmin.ItemsDatabaseAdmin"
             android:label="Items by Category"
             android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
             <meta-data

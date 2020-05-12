@@ -18,7 +18,7 @@ import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseAdmin;
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ItemsDatabaseAdmin;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.ShopsDatabase;
 
 import butterknife.BindView;

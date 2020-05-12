@@ -765,7 +765,17 @@ public class EditMarketFragment extends Fragment {
                 {
                     showToastMessage("Update Successful !");
 
-                    PrefServiceConfig.saveServiceConfigLocal(market,getContext());
+
+                    if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+                    {
+
+                    }
+                    else
+                    {
+                        PrefServiceConfig.saveServiceConfigLocal(market,getContext());
+                    }
+
+
 //                    updateMarketEntry();
 
                 }

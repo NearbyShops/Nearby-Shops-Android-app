@@ -22,6 +22,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterMarkets;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterMarkets;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 
 import java.util.ArrayList;
@@ -75,6 +77,10 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
         String sortBy = " distance ";
 
 
+//        sortBy = ViewHolderFilterMarkets.getSortBy(MyApplication.getAppContext());
+        boolean filterByPingStatus = ViewHolderFilterMarkets.getPingStatusFilter(MyApplication.getAppContext());
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
@@ -87,7 +93,7 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
                 PrefLocation.getLatitude(MyApplication.getAppContext()), PrefLocation.getLongitude(MyApplication.getAppContext()),
                 null,null,
                 null,null,null,
-                sortBy,
+                sortBy,filterByPingStatus,
                 params.requestedLoadSize,0,
                 true,false
         );
@@ -112,8 +118,10 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
 
                         if (response.body().getResults() != null) {
 
+                            dataset.add(new FilterMarkets());
+
                             dataset.addAll(response.body().getResults());
-                            callback.onResult(dataset,null, (long) params.requestedLoadSize);
+//                            callback.onResult(dataset,null, (long) params.requestedLoadSize);
 
                         }
 
@@ -122,11 +130,17 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
 
                     if(item_count==0)
                     {
-                        dataset.add(EmptyScreenDataFullScreen.emptyScreenOrders());
+                        dataset.add(EmptyScreenDataFullScreen.getNoMarkets());
                     }
 
 
                 }
+                else
+                {
+                    dataset.add(EmptyScreenDataFullScreen.getError(response.code()));
+                }
+
+                callback.onResult(dataset,null, (long) params.requestedLoadSize);
 
 
             }
@@ -134,6 +148,9 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
             @Override
             public void onFailure(Call<ServiceConfigurationEndPoint> call, Throwable t) {
 
+
+
+                dataset.add(EmptyScreenDataFullScreen.getOffline());
             }
         });
 
@@ -155,6 +172,11 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
 
 
 
+        final List<Object> dataset = new ArrayList<>();
+
+
+
+
         String sortBy = " distance ";
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -164,12 +186,18 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
                 .build();
 
 
+
+        sortBy = ViewHolderFilterMarkets.getSortBy(MyApplication.getAppContext());
+        boolean filterByPingStatus = ViewHolderFilterMarkets.getPingStatusFilter(MyApplication.getAppContext());
+
+
+
         Call<ServiceConfigurationEndPoint> call = retrofit.create(MarketService.class).getMarketsList(
                 PrefLoginGlobal.getAuthorizationHeaders(MyApplication.getAppContext()),
                 PrefLocation.getLatitude(MyApplication.getAppContext()), PrefLocation.getLongitude(MyApplication.getAppContext()),
                 null,null,
                 null,null,null,
-                sortBy,
+                sortBy, filterByPingStatus,
                 params.requestedLoadSize,params.key.intValue(),
                 false,false
         );
@@ -184,6 +212,9 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
             @Override
             public void onResponse(Call<ServiceConfigurationEndPoint> call, Response<ServiceConfigurationEndPoint> response) {
 
+
+                Long nextKey = null;
+
                 if (response.code() == 200) {
 
 
@@ -194,9 +225,9 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
                         if (response.body().getResults() != null) {
 
 
-                            List<Object> list = new ArrayList<>(response.body().getResults());
+                            dataset.addAll(response.body().getResults());
 
-                            Long nextKey = null;
+
 
                             if(params.key<=item_count)
                             {
@@ -205,7 +236,7 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
 
 
 
-                            callback.onResult(list,nextKey);
+                            callback.onResult(dataset,nextKey);
 
 
                         }
@@ -213,11 +244,24 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
                     }
 
                 }
+                else
+                {
+                    dataset.add(EmptyScreenDataFullScreen.getError(response.code()));
+                    callback.onResult(dataset,nextKey);
+                }
+
 
             }
 
             @Override
             public void onFailure(Call<ServiceConfigurationEndPoint> call, Throwable t) {
+
+
+
+                dataset.add(EmptyScreenDataFullScreen.getOffline());
+                callback.onResult(dataset,null);
+
+
 
             }
         });

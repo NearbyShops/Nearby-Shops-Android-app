@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 public class Market {
 
 
+    public static final String CREATED = " CREATED ";
 
 
     // Instance Variables

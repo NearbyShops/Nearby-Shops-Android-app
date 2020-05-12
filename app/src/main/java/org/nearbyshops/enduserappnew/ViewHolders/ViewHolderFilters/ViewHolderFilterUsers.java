@@ -520,12 +520,5 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
 
 
 
-
-
-
-
-
-
-
 }
 

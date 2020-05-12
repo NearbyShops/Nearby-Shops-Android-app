@@ -23,7 +23,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissions;
@@ -35,7 +34,7 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.UserFilters;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterUsers;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterUsers;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderUserProfileItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
@@ -350,7 +349,7 @@ public class UsersListFragment20Mar20 extends Fragment implements SwipeRefreshLa
 
                         if(user.getRole()==User.ROLE_ADMIN_CODE || user.getRole()==User.ROLE_STAFF_CODE)
                         {
-                            dataset.add(new UserFilters());
+                            dataset.add(new FilterUsers());
                         }
 
 

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin;
+package org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;

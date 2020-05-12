@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin;
+package org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin;
 
 import android.content.Context;
 import android.view.ViewGroup;
@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 
 import java.util.List;
 import java.util.Map;

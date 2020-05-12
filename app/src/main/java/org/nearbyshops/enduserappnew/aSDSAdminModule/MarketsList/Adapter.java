@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterMarkets;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterMarkets;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
@@ -26,6 +28,7 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
 
 
     public static final int VIEW_TYPE_MARKET = 1;
+    public static final int VIEW_TYPE_FILTER_MARKETS = 2;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 3;
     private final static int VIEW_TYPE_PROGRESS_BAR = 6;
 
@@ -65,6 +68,11 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
         {
             return ViewHolderMarketAdmin.create(parent,context,fragment);
         }
+        else if(viewType == VIEW_TYPE_FILTER_MARKETS)
+        {
+            return ViewHolderFilterMarkets.create(parent,context,fragment);
+
+        }
         else if (viewType == VIEW_TYPE_PROGRESS_BAR) {
 
             return LoadingViewHolder.create(parent,context);
@@ -98,6 +106,10 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
         else if(item instanceof Market)
         {
             return VIEW_TYPE_MARKET;
+        }
+        else if(item instanceof FilterMarkets)
+        {
+            return VIEW_TYPE_FILTER_MARKETS;
         }
         else if(item instanceof EmptyScreenDataFullScreen)
         {

@@ -55,7 +55,7 @@ import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForItem.ItemImageListFragment;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabaseFragment;
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabase.ItemsDatabaseFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCatSellerFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShopFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.Fragment.OrdersInventoryFragment;
@@ -96,7 +96,7 @@ import org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword.FragmentResetPa
 import org.nearbyshops.enduserappnew.Login.SignUp.FragmentEmailOrPhone;
 import org.nearbyshops.enduserappnew.Login.SignUp.FragmentEnterPassword;
 import org.nearbyshops.enduserappnew.Login.SignUp.FragmentVerify;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseForAdminFragment;
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ItemsDatabaseForAdminFragment;
 import org.nearbyshops.enduserappnew.adminModule.ChangeParent.Adapter;
 import org.nearbyshops.enduserappnew.adminModule.ChangeParent.ItemCategoriesParent;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.Fragment.FragmentShopList;

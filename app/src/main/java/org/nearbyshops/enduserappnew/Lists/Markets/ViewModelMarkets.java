@@ -233,11 +233,7 @@ public class ViewModelMarkets extends AndroidViewModel {
                             User userGlobal = PrefLoginGlobal.getUser(getApplication());
 
 
-                            if(userGlobal==null)
-                            {
-                                dataset.add(new SignInMarker());
-                            }
-                            else
+                            if(userGlobal!=null)
                             {
                                 if(userGlobal.getRole()==User.ROLE_ADMIN_CODE)
                                 {

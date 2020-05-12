@@ -27,6 +27,31 @@ public class EmptyScreenDataFullScreen {
     }
 
 
+    public static EmptyScreenDataFullScreen getError(int errorCode)
+    {
+        EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
+        data.setTitle("There is an Error !");
+        data.setShowCopyrightInfo(false);
+        data.setMessage("There is an error with Error Code : " + errorCode + " . Please try again !");
+        data.setDrawableResource(R.drawable.ic_clear_black_24px);
+
+        return data;
+    }
+
+
+    public static EmptyScreenDataFullScreen getNoMarkets()
+    {
+        EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
+        data.setTitle("No Markets to Show !");
+        data.setShowCopyrightInfo(false);
+        data.setMessage("There are no Markets available to show ");
+        data.setDrawableResource(R.drawable.ic_refresh_black_24px);
+
+        return data;
+    }
+
+
+
 
 
     public static EmptyScreenDataFullScreen getNoTransactions()

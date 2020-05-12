@@ -13,7 +13,7 @@ import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase.ItemsDatabase;
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabase.ItemsDatabase;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShop;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;

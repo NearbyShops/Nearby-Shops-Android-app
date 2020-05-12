@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders;
+package org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ViewHolders;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,7 +32,6 @@ import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;

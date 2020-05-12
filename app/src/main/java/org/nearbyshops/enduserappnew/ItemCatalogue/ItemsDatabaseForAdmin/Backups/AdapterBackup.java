@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.Backups;
+package org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.Backups;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,7 +37,7 @@ import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ItemsDatabaseForAdminFragment;
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ItemsDatabaseForAdminFragment;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin;
+package org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -27,6 +27,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.nearbyshops.enduserappnew.API.ItemCategoryService;
 import org.nearbyshops.enduserappnew.API.ItemService;
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemAdmin;
+import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemEndPoint;
@@ -47,8 +49,6 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemAdmin;
-import org.nearbyshops.enduserappnew.adminModule.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 import org.nearbyshops.enduserappnew.adminModule.Preferences.PrefSortItemsByCategory;
 import org.nearbyshops.enduserappnew.adminModule.ChangeParent.ItemCategoriesParent;
 

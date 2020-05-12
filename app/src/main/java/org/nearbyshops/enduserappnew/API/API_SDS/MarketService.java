@@ -67,10 +67,12 @@ public interface MarketService {
             @Query("IsOfficial") Boolean isOfficial,@Query("IsVerified")Boolean isVerified,
             @Query("ServiceType") Integer serviceType,
             @Query("SortBy") String sortBy,
+            @Query("IsLiveMarkets") boolean isLiveMarkets,
             @Query("Limit") int limit, @Query("Offset") int offset,
             @Query("GetRowCount")boolean getRowCount,
             @Query("MetadataOnly")boolean getOnlyMetaData
     );
+
 
 
 

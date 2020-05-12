@@ -42,7 +42,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.UserFilters;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterUsers;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterUsers;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderUserProfileItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
@@ -442,7 +442,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
                         if(current_mode==MODE_ADMIN_USER_LIST)
                         {
-                            dataset.add(new UserFilters());
+                            dataset.add(new FilterUsers());
                         }
 
 

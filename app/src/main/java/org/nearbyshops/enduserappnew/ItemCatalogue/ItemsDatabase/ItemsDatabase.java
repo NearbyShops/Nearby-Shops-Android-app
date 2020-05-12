@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSellerModule.ItemsDatabase;
+package org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabase;
 
 import android.app.SearchManager;
 import android.content.Intent;

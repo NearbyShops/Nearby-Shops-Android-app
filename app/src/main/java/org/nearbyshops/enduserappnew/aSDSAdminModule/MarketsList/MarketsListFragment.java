@@ -32,6 +32,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterMarkets;
 import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewHolder.ViewHolderMarketAdmin;
 import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewModel.ViewModelMarkets;
 
@@ -43,7 +44,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        NotifySort, NotifySearch , ViewHolderMarketAdmin.ListItemClick {
+        NotifySort, NotifySearch , ViewHolderMarketAdmin.ListItemClick, ViewHolderFilterMarkets.ListItemClick {
 
 
 
@@ -64,10 +65,6 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
 
 
     private ViewModelMarkets viewModelMarkets;
-
-
-
-    @BindView(R.id.service_name) TextView serviceName;
 
 
 
@@ -94,7 +91,7 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
 
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_orders_new, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_markets_list_new, container, false);
         ButterKnife.bind(this,rootView);
 
 
@@ -132,18 +129,6 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-
-
-
-        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
-        {
-            serviceName.setVisibility(View.VISIBLE);
-            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
-        }
-        else
-        {
-            serviceName.setVisibility(View.GONE);
-        }
 
 
 //        setupRecyclerView();
@@ -352,6 +337,15 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
         startActivity(intent);
     }
 
+
+
+
+
+
+    @Override
+    public void filtersUpdated() {
+        makeRefreshNetworkCall();
+    }
 
 
 }
