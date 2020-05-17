@@ -23,7 +23,7 @@ public class PrefGeneral {
 
 
     public static final String SERVICE_URL_LOCAL_HOTSPOT = "http://192.168.43.233:5121";
-    public static final String SERVICE_URL_NEARBYSHOPS_DEMO = "http://markets-blr.nearbyshops.org:5021";
+    public static final String SERVICE_URL_NEARBYSHOPS_DEMO = "http://markets-blr.nearbyshops.org:5602";
     public static final String SERVICE_URL_LOCAL_ = "http://142.93.219.138:80";
 
 

@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewModel;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewModel;
 
 
 
@@ -9,19 +9,12 @@ import androidx.paging.PageKeyedDataSource;
 import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
-import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
-import org.nearbyshops.enduserappnew.API.OrderService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
-import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterMarkets;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterMarkets;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
@@ -77,7 +70,7 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
         String sortBy = " distance ";
 
 
-//        sortBy = ViewHolderFilterMarkets.getSortBy(MyApplication.getAppContext());
+        sortBy = ViewHolderFilterMarkets.getSortString(MyApplication.getAppContext());
         boolean filterByPingStatus = ViewHolderFilterMarkets.getPingStatusFilter(MyApplication.getAppContext());
 
 
@@ -187,7 +180,8 @@ public class MarketsDataSource extends PageKeyedDataSource<Long,Object> {
 
 
 
-        sortBy = ViewHolderFilterMarkets.getSortBy(MyApplication.getAppContext());
+        
+        sortBy = ViewHolderFilterMarkets.getSortString(MyApplication.getAppContext());
         boolean filterByPingStatus = ViewHolderFilterMarkets.getPingStatusFilter(MyApplication.getAppContext());
 
 

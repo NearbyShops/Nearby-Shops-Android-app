@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.aSDSAdminModule.DashboardAdmin.SDSAdminDashboard;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.DashboardAdmin.SDSAdminDashboard;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

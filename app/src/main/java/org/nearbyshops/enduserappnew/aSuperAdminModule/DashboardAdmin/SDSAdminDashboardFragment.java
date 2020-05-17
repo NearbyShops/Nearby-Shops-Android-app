@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSDSAdminModule.DashboardAdmin;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.DashboardAdmin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.MarketsList;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.MarketsList;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

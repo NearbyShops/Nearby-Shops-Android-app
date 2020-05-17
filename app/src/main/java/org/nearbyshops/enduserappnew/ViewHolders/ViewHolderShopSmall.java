@@ -95,7 +95,7 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
 
                 if(integer == ViewModelShop.EVENT_SHOP_DELETED)
                 {
-                    ViewHolderShopSmall.this.adapter.notifyItemRemoved(getLayoutPosition());
+                    ViewHolderShopSmall.this.adapter.notifyItemRemoved(getAdapterPosition());
                 }
 
             }

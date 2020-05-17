@@ -242,6 +242,14 @@ public class ViewModelMarkets extends AndroidViewModel {
 
                                 dataset.add(userGlobal);
                             }
+                            else
+                            {
+                                if(PrefGeneral.getServiceURL(getApplication())!=null)
+                                {
+
+                                    dataset.add(new SignInMarker());
+                                }
+                            }
 
 
 

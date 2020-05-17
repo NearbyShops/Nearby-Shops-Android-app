@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,18 +27,15 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterMarkets;
-import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewHolder.ViewHolderMarketAdmin;
-import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewModel.ViewModelMarkets;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewHolder.ViewHolderMarketAdmin;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewModel.ViewModelMarkets;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

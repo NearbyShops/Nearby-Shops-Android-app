@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewHolder;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewHolder;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

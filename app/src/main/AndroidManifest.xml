@@ -110,8 +110,8 @@
         <activity android:name=".aSellerModule.DashboardDeliveryGuy.DeliveryHome"/>
 
 
-        <activity android:name=".aSDSAdminModule.MarketsList.MarketsList"/>
-        <activity android:name=".aSDSAdminModule.DashboardAdmin.SDSAdminDashboard"/>
+        <activity android:name=".aSuperAdminModule.MarketsList.MarketsList"/>
+        <activity android:name=".aSuperAdminModule.DashboardAdmin.SDSAdminDashboard"/>
 
         <activity android:name=".adminModule.DashboardAdmin.AdminDashboard"/>
         <activity android:name=".adminModule.DashboardStaff.StaffDashboard"/>

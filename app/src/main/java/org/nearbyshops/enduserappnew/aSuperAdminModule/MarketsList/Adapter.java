@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList;
 
 import android.content.Context;
 import android.util.Log;
@@ -18,7 +18,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFil
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
-import org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList.ViewHolder.ViewHolderMarketAdmin;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewHolder.ViewHolderMarketAdmin;
 
 /**
  * Created by sumeet on 13/6/16.

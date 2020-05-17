@@ -4,11 +4,14 @@
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://192.168.43.233:5121</string>
-    <bool name="multi_market_enabled">true</bool>
+    <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
+    <bool name="multi_market_enabled">false</bool>
+
 
     <!-- If multi-market mode is disabled then simply ignore this URL. It tells you url to SDS server which enables multi-market mode. -->
     <string name="sds_url">@string/service_url_sds</string>
+
+
 
 
     <!-- App name that you see on your front screen ( shops list screen ) -->
@@ -16,9 +19,11 @@
     <drawable name="custom_icon">@mipmap/blue_icon</drawable>
 
 
+
     <!-- Enable maps and Places API and Mapbox map here -->
-    <string name="google_maps_api_key">AIzaSyAHjmh3U3OVYngo6huNoEpYhscFqcV9CFA</string>
+    <string name="google_maps_api_key">abcde</string>
     <string name="custom_mapbox_url">https://api.maptiler.com/maps/bright/style.json?key=rgEe333l5zT9WTGlZXNR</string>
+
 
     <!--Switch between Google Maps or Mapbox API by using this setting-->
     <bool name="use_google_maps">true</bool>
@@ -57,10 +62,8 @@
 
 
 
-
     <string name="service_url_sds">http://sds.nearbyshops.org</string>
+    <string name="service_url_sds_demo">http://sds.nearbyshops.org:5000</string>
     <string name="service_url_sds_local_hotspot">http://192.168.43.233:5125</string>
-
-
 
 </resources>

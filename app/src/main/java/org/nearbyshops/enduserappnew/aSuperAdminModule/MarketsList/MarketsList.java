@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSDSAdminModule.MarketsList;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList;
 
 import android.app.SearchManager;
 import android.content.Intent;

@@ -118,7 +118,7 @@ public class ViewHolderFilterMarkets extends RecyclerView.ViewHolder {
     @OnClick(R.id.sort_by_distance)
     void sortByTimeClick()
     {
-        saveSortBy(context,"distance");
+        saveSortBy(context," distance ");
         bindSort(true);
     }
 
@@ -145,7 +145,8 @@ public class ViewHolderFilterMarkets extends RecyclerView.ViewHolder {
         }
 
 
-        if(sortBy.equals("distance"))
+
+        if(sortBy.equals(" distance "))
         {
             sortByDistance.setTextColor(ContextCompat.getColor(context, R.color.white));
             sortByDistance.setBackgroundColor(ContextCompat.getColor(context, R.color.buttonColor));
@@ -169,6 +170,8 @@ public class ViewHolderFilterMarkets extends RecyclerView.ViewHolder {
 
 
 
+
+
     @OnClick(R.id.sort_ascending)
     void ascendingClick()
     {
@@ -177,12 +180,16 @@ public class ViewHolderFilterMarkets extends RecyclerView.ViewHolder {
     }
 
 
+
+
     @OnClick(R.id.sort_descending)
     void descendingClick()
     {
         saveSortOrder(context,MyApplication.SORT_DESCENDING);
         bindSortOrder(true);
     }
+
+
 
 
 
@@ -328,16 +335,11 @@ public class ViewHolderFilterMarkets extends RecyclerView.ViewHolder {
 
     /*Preferences*/
 
-    public static void resetFilters(Context context)
-    {
-        saveFilterByRole(context,0);
-    }
-
 
 
     public static String getSortString(Context context)
     {
-        return getSortBy(context) + getSortOrder(context);
+        return getSortBy(context) + " " +  getSortOrder(context);
     }
 
 
@@ -372,30 +374,6 @@ public class ViewHolderFilterMarkets extends RecyclerView.ViewHolder {
 
 
 
-    public static void saveFilterByRole(Context context, int userRole)
-    {
-        // get a handle to shared Preference
-        SharedPreferences sharedPref;
-
-        sharedPref = context.getSharedPreferences(
-                context.getString(R.string.preference_file_name),
-                MODE_PRIVATE);
-
-        // write to the shared preference
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("filter_by_user_role", userRole);
-        editor.apply();
-    }
-
-
-
-
-    public static int getFilterByRole(Context context)
-    {
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getInt("filter_by_user_role", 0);
-    }
-
 
 
 
@@ -419,7 +397,7 @@ public class ViewHolderFilterMarkets extends RecyclerView.ViewHolder {
     public static String getSortBy(Context context)
     {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getString("sort_for_markets_list", User.TIMESTAMP_CREATED);
+        return sharedPref.getString("sort_for_markets_list", Market.CREATED);
     }
 
 

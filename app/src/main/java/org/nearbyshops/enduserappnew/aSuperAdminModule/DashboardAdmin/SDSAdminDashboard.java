@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSDSAdminModule.DashboardAdmin;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.DashboardAdmin;
 
 import android.os.Bundle;
 
