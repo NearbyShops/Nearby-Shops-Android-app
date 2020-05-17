@@ -12,7 +12,7 @@ width="120">
 About Nearby Shops
 --------------------
 
-Nearby Shops is a **Open-Source** food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 10 Minutes.
+Nearby Shops is a **Free and Open-Source** food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 10 Minutes.
 
 
 Nearby Shops implements Alibaba's new Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
@@ -158,21 +158,27 @@ Code Review and Architecture
 
 
 
+#### Commercial Use Permitted
 
-#### Commercial Use Permitted Under Ethical Restrictions
-
-Commercial Use of this Software is permited under certain Ethical Restrictions. Please read more about our 
-restrictions at this link. https://blog.nearbyshops.org/single-market-license/
-
-If you want to build a third party app for our platform and want to sell it yes you can. If there is any other kind of commercial use you can talk to us. 
+Commercial Use of this Software is permited. If you like this project please consider supporting it through donations or any other means. 
 
 
 License
 =======
 
-Copyright (c) 2020 Nearby Shops 
+MIT License
 
-Nearby Shops Commercial License : For terms of Use please read full version of our License
+Copyright (c) 2020 Nearby Shops
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
