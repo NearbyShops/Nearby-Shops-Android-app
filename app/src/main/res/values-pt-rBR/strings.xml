@@ -87,57 +87,57 @@
 
 
     <string name="leaf_node_item_category_usage">
-        You cannot have a sub Item Category Under a leaf node Item Category.
-        But you can have Items placed under a Leaf Node Item Category.
-        Leaf Node Item Category is an Item Category which can have Items placed under them but cannot have Sub Item Category / Item Categories under it.</string>
+        Você não pode ter uma "Subcategoria de Item" sob um nó folha "Categoria de Item".
+        Mas você pode colocar Itens sob uma Categoria de Item do Nó Folha.
+        Categoria de Item do Nó Folha é uma Categoria de Item que pode ter Itens colocados sob eles, mas não pode ter Subcategoria de Item / Categorias de Item abaixo.</string>
 
     <!-- An Abstract Item Category can have only Sub Item Categories and cannot contain items under them. -->
     <string name="abstract_category_usage">
-        Item Categories Marked as abstract cannot have Items placed under them.
-        But they can have Sub Item Categories Under them.
-        Consider An Example: You have an Item Category : Groceries.
-        You may not want to add / place items directly under Item Category : Groceries.
-        You may want to create sub Item Categories like Dairy\, Shampoo\, Soap under Groceries and then add items under these categories.
-        If i add item \"Milk\" directly under Groceries that will not make sense, but if i add \"Milk\" under Dairy that will make more sense.
-        There are certain Item Categories which doesn\'t need to contain Items placed directly under them and you will want to make it abstract.
-        Making the Item Categories as Abstract will protect / prevent someone from placing items directly under it.</string>
+        Categorias de Item marcadas como abstratas não podem ter Itens colocados sob elas.
+         Mas eles podem ter Categorias de Sub Itens abaixo deles.
+         Considere um exemplo: Você tem uma Categoria de Item: Compras.
+         Talvez você não queira adicionar / colocar itens diretamente em Categoria do item: Compras.
+         Você pode criar Subcategorias de Itens, como Laticínios \, Xampu \, Sabonete em Compras e depois adicionar itens nessas Categorias.
+         Se eu adicionar o item "Leite" diretamente em Compras, isso não fará sentido, mas se eu adicionar "Leite" em Laticínios, isso fará mais sentido.
+         Existem certas Categorias de Itens que não precisam conter itens colocados diretamente sob elas e você deseja torná-la abstrata.
+         Tornar as Categorias de Itens como abstratas protegerá / impedirá que alguém coloque itens diretamente sob ela.</string>
     <string name="channel_name">nbs_app</string>
-    <string name="channel_description">notifications for nearby shops app</string>
+    <string name="channel_description">notificações para o nearby shops app</string>
 
-    <string name="current_location_custom">Current Location - Set by you</string>
-    <string name="current_location_automated">Current Location - Detected Automatically</string>
+    <string name="current_location_custom">Localização Atual - Definida por você</string>
+    <string name="current_location_automated">Localização Atual - Detectada automaticamente</string>
 
-    <string name="order_id">Order ID</string>
-    <string name="phone">Phone</string>
-    <string name="items">Items</string>
+    <string name="order_id">ID do pedido</string>
+    <string name="phone">Fone</string>
+    <string name="items">Itens</string>
     <string name="total">Total</string>
-    <string name="pick_from_shop">Pick from Shop</string>
-    <string name="delivery">Delivery</string>
-    <string name="current_status">Current Status</string>
-    <string name="home_delivery">Home Delivery</string>
-    <string name="distance">Distance</string>
-    <string name="per_order">per Order</string>
-    <string name="item_id">Item ID</string>
-    <string name="item_quantity">Item Quantity</string>
-    <string name="item_price">Item Price</string>
-    <string name="per">per</string>
-    <string name="item_total">Item Total</string>
-    <string name="ratings">Ratings</string>
+    <string name="pick_from_shop">Pega na loja</string>
+    <string name="delivery">Entrega</string>
+    <string name="current_status">Situação atual</string>
+    <string name="home_delivery">Entrega em domicílio</string>
+    <string name="distance">Distância</string>
+    <string name="per_order">por Pedido</string>
+    <string name="item_id">ID de item</string>
+    <string name="item_quantity">Quantidade do Item</string>
+    <string name="item_price">Preço do Item</string>
+    <string name="per">por</string>
+    <string name="item_total">Total do Item</string>
+    <string name="ratings">Classificações</string>
 
-    <string name="get_shop_details">\"Please wait ... getting shop details !\"</string>
-    <string name="create_shop">\"Create your Shop !\"</string>
-    <string name="become_shop_seller">\"Do you want to Create your Shop and become a seller !\"</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="cancelled">Cancelled</string>
-    <string name="shop_dashboard">Shop Dashboard</string>
-    <string name="access_shop">Press here to access the shop dashboard !</string>
-    <string name="staff_dashboard">Shop Staff Dashboard</string>
-    <string name="access_staff">Press here to access shop dashboard !</string>
-    <string name="access_delivery">Press here to access the Delivery dashboard !</string>
-    <string name="admin_dashboard">Admin Dashboard</string>
-    <string name="access_admin">Press here to access the admin dashboard !</string>
-    <string name="add_country_code">Note : Please add country code when using phone numbers</string>
+    <string name="get_shop_details">\Aguarde... Obtendo detalhes da loja!\</string>
+    <string name="create_shop">\"Cria sua Loja!\"</string>
+    <string name="become_shop_seller">\"Deseja criar sua Loja e se tornar um vendedor?\"</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="cancelled">Cancelado</string>
+    <string name="shop_dashboard">Painel de Controle da Loja</string>
+    <string name="access_shop">Pressione aqui para acessar o painel de controle da Loja!</string>
+    <string name="staff_dashboard">Painel de Controle dos funcionários da Loja</string>
+    <string name="access_staff">Pressione aqui para acessar o painel de controle dos funcionários da Loja!</string>
+    <string name="access_delivery">Pressione aqui para acessar o painel de controle de Entregas!</string>
+    <string name="admin_dashboard">Painel de Controle do Admin</string>
+    <string name="access_admin">Pressione aqui para acessar o painel de controle do admin!</string>
+    <string name="add_country_code">Nota: adicione o código do país ao usar números de telefone</string>
 
 
 </resources>
