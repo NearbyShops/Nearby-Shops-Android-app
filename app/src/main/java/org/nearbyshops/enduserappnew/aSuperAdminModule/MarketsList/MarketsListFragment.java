@@ -197,19 +197,28 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-        adapter.addLoadStateListener(new PagedList.LoadStateListener() {
+//        adapter.addLoadStateListener(new PagedList.LoadStateListener() {
+//            @Override
+//            public void onLoadStateChanged(@NonNull PagedList.LoadType type, @NonNull PagedList.LoadState state, @Nullable Throwable error) {
+//
+////                System.out.println("Load Type : State " + type + " | " + state);
+//
+//                if(state.equals(PagedList.LoadState.DONE))
+//                {
+//                    swipeContainer.setRefreshing(false);
+//                }
+//            }
+//        });
+
+
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
-            public void onLoadStateChanged(@NonNull PagedList.LoadType type, @NonNull PagedList.LoadState state, @Nullable Throwable error) {
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
 
-//                System.out.println("Load Type : State " + type + " | " + state);
-
-                if(state.equals(PagedList.LoadState.DONE))
-                {
-                    swipeContainer.setRefreshing(false);
-                }
+                swipeContainer.setRefreshing(false);
             }
         });
-
 
     }
 

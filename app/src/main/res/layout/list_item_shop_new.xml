@@ -63,7 +63,6 @@
 
             <LinearLayout
                 android:layout_marginTop="5dp"
-                android:weightSum="2"
                 android:id="@+id/labels_delivery"
                 app:layout_constraintTop_toBottomOf="@id/shop_address"
                 app:layout_constraintStart_toStartOf="parent"

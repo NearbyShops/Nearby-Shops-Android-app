@@ -47,7 +47,7 @@
 
 
     <!-- set whether you want to show create shop option in the front screen (shops list) screen of the market-->
-    <bool name="show_create_shop">true</bool>
+    <bool name="show_create_shop">false</bool>
 
     <!-- You may want to disable items screen in the multi-vendor app. You can do it with this setting !-->
     <bool name="show_items_screen_in_multi_vendor">true</bool>
@@ -55,11 +55,8 @@
 
     <!--Enable or Disable Phone or Email for login based on your Preferences -->
     <!--Please ensure at least one mode of registration is Enabled -->
-    <bool name="login_using_email_enabled">true</bool>
+    <bool name="login_using_email_enabled">false</bool>
     <bool name="login_using_phone_enabled">true</bool>
-
-
-
 
 
     <string name="service_url_sds">http://sds.nearbyshops.org</string>

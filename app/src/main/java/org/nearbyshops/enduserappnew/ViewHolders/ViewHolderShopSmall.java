@@ -180,7 +180,9 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
                 }
                 else
                 {
-                    delivery.setText("Delivery : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
+//                    delivery.setText("Delivery : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
+
+                    delivery.setText("Free Delivery above " + PrefGeneral.getCurrencySymbol(context) + " " + shop.getBillAmountForFreeDelivery());
 
                     delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.white));
                     delivery.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));

@@ -311,10 +311,12 @@
                 android:layout_height="match_parent">
 
                 <Button
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                 android:textSize="17sp"
                 android:textColor="@color/white"
                 android:text="@string/fragment_login_login_text"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/blueGrey800"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

@@ -307,18 +307,75 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
 
 
-        adapter.addLoadStateListener(new PagedList.LoadStateListener() {
+//        adapter.addLoadStateListener(new PagedList.LoadStateListener() {
+//            @Override
+//            public void onLoadStateChanged(@NonNull PagedList.LoadType type, @NonNull PagedList.LoadState state, @Nullable Throwable error) {
+//
+////                System.out.println("Load Type : State " + type + " | " + state);
+//
+//                if(state.equals(PagedList.LoadState.DONE))
+//                {
+//                    swipeContainer.setRefreshing(false);
+//                }
+//            }
+//        });
+
+
+
+
+
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+
+
             @Override
-            public void onLoadStateChanged(@NonNull PagedList.LoadType type, @NonNull PagedList.LoadState state, @Nullable Throwable error) {
-
-//                System.out.println("Load Type : State " + type + " | " + state);
-
-                if(state.equals(PagedList.LoadState.DONE))
-                {
-                    swipeContainer.setRefreshing(false);
-                }
+            public void onChanged() {
+                super.onChanged();
+//                swipeContainer.setRefreshing(false);
             }
+
+
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+//                swipeContainer.setRefreshing(false);
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount, @Nullable Object payload) {
+                super.onItemRangeChanged(positionStart, itemCount, payload);
+//                swipeContainer.setRefreshing(false);
+            }
+
+
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                swipeContainer.setRefreshing(false);
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+//                swipeContainer.setRefreshing(false);
+            }
+
+            @Override
+            public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
+//                swipeContainer.setRefreshing(false);
+            }
+
+
         });
+
+
+
+
+
+
+
 
     }
 
