@@ -302,6 +302,8 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
             public void onChanged(PagedList<Object> objects) {
 
                 adapter.submitList(objects);
+
+//                                    swipeContainer.setRefreshing(false);
             }
         });
 
@@ -324,51 +326,26 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
 
 
+
+
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-
-
-            @Override
-            public void onChanged() {
-                super.onChanged();
-//                swipeContainer.setRefreshing(false);
-            }
-
-
-
-            @Override
-            public void onItemRangeChanged(int positionStart, int itemCount) {
-                super.onItemRangeChanged(positionStart, itemCount);
-//                swipeContainer.setRefreshing(false);
-            }
-
-            @Override
-            public void onItemRangeChanged(int positionStart, int itemCount, @Nullable Object payload) {
-                super.onItemRangeChanged(positionStart, itemCount, payload);
-//                swipeContainer.setRefreshing(false);
-            }
-
-
 
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
-                swipeContainer.setRefreshing(false);
+
+//                System.out.println("Position Start " + positionStart + " | Item Count " + itemCount);
+
+                if(itemCount>0)
+                {
+                    swipeContainer.setRefreshing(false);
+                }
             }
 
-            @Override
-            public void onItemRangeRemoved(int positionStart, int itemCount) {
-                super.onItemRangeRemoved(positionStart, itemCount);
-//                swipeContainer.setRefreshing(false);
-            }
-
-            @Override
-            public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
-                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
-//                swipeContainer.setRefreshing(false);
-            }
 
 
         });
+
 
 
 
