@@ -13,7 +13,6 @@
 
 
 
-
     <!-- App name that you see on your front screen ( shops list screen ) -->
     <string name="app_name">Nearby Shops</string>
     <drawable name="custom_icon">@mipmap/blue_icon</drawable>

@@ -1,16 +1,5 @@
-//buildscript {
-//    repositories {
-//        maven { url 'https://plugins.gradle.org/m2/' }
-//    }
-//    dependencies {
-//        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:0.12.1'
-////        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.11.0, 0.99.99]'
-//    }
-//}
-
-
-//apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -40,11 +29,6 @@ android {
 //        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-
-//
-//        manifestPlaceholders = [onesignal_app_id               : "b6fe253c-2a93-4452-8cd7-36555aa046ca",
-//                                // Project number pulled from dashboard, local value is ignored.
-//                                onesignal_google_project_number: "REMOTE"]
     }
 
 
@@ -82,9 +66,9 @@ dependencies {
 
     implementation 'com.google.android.libraries.places:places:2.2.0'
 
+
     implementation 'com.google.firebase:firebase-analytics:17.4.1'
     implementation 'com.google.firebase:firebase-messaging:20.1.7'
-//    implementation 'com.onesignal:OneSignal:3.10.9'
 
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 
@@ -137,4 +121,3 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-apply plugin: 'com.google.gms.google-services'

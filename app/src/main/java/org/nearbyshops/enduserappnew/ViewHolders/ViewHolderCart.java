@@ -139,7 +139,7 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
         }
 
 
-        System.out.println(imagePath);
+//        System.out.println(imagePath);
 
         Drawable placeholder = VectorDrawableCompat
                 .create(context.getResources(),
