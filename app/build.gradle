@@ -24,8 +24,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         multiDexEnabled = true
-        versionCode 32
-        versionName "1.31"
+        versionCode 33
+        versionName "1.32"
 //        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -39,6 +39,12 @@ android {
         }
     }
 
+    allprojects {
+        repositories {
+            jcenter()
+            maven { url "https://jitpack.io" }
+        }
+    }
 
 //    buildToolsVersion = '29.0.2'
 }
@@ -75,7 +81,7 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 
 
-    implementation 'com.yalantis:ucrop:2.2.0'
+    implementation 'com.github.yalantis:ucrop:2.2.5-native'
     implementation 'com.wunderlist:sliding-layer:1.2.5'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.greenrobot:eventbus:3.1.1'

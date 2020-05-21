@@ -91,8 +91,8 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
     private boolean isDestroyed;
 
 
-    @BindView(R.id.slidingLayer)
-    SlidingLayer slidingLayer;
+
+    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
     @BindView(R.id.shop_count_indicator) TextView orderCountIndicator;
 
 
