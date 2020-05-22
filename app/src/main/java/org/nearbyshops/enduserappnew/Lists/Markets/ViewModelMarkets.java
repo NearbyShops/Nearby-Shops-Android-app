@@ -57,6 +57,7 @@ public class ViewModelMarkets extends AndroidViewModel {
     public static int EVENT_LOGGED_IN_TO_LOCAL_SUCCESS = 2;
     public static int EVENT_NETWORK_FAILED = 3;
 
+    public static int EVENT_NO_MARKET_AVAILABLE = 4;
 
 
 
@@ -119,7 +120,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 
 
 
-    public void getNearbyMarketsList(final boolean clearDataset)
+    public void getNearbyMarketsList(final boolean getFavouriteMarkets)
     {
 
             String sortBy = " distance ";
@@ -183,8 +184,7 @@ public class ViewModelMarkets extends AndroidViewModel {
 //                        adapter.setTotalItemsCount(item_count);
 
 
-                        if(clearDataset)
-                        {
+
 
                             dataset.clear();
 //                            savedMarkets.clear();
@@ -285,7 +285,8 @@ public class ViewModelMarkets extends AndroidViewModel {
                                 }
                                 else
                                 {
-                                    dataset.add(EmptyScreenDataListItem.createMarketNoMarketsAvailable());
+                                    dataset.add(EmptyScreenDataListItem.getCreateMarketData());
+//                                    dataset.add(EmptyScreenDataListItem.createMarketNoMarketsAvailable());
                                 }
 
 
@@ -316,39 +317,6 @@ public class ViewModelMarkets extends AndroidViewModel {
                             }
 
 
-
-
-
-
-
-//
-//                            ServiceConfigurationLocal configurationLocal = PrefServiceConfig.getServiceConfigLocal(getApplication());
-//
-//                            if(configurationLocal!=null)
-//                            {
-//                                dataset.add(configurationLocal);
-//                            }
-
-
-
-
-
-
-//                        Log.d(UtilityFunctions.TAG_LOG,UtilityFunctions.provideGson().toJson(response.body().getSavedMarkets()));
-//                        Log.d(UtilityFunctions.TAG_LOG,"Saved Markets List Size : " + String.valueOf(savedMarkets.size()));
-
-
-
-
-
-
-
-
-
-
-
-//
-                        }
 
 
 
@@ -390,6 +358,158 @@ public class ViewModelMarkets extends AndroidViewModel {
             });
 
         }
+
+
+
+
+    public void getNearbyMarketsHorizontal()
+    {
+
+        String sortBy = " distance ";
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+
+        Call<ServiceConfigurationEndPoint> call;
+
+
+        call = retrofit.create(MarketService.class).getMarketsList(
+                PrefLocation.getLatitude(getApplication()), PrefLocation.getLongitude(getApplication()),
+                null,
+                null,
+                sortBy,
+                limit,offset);
+
+
+
+
+
+
+        call.enqueue(new Callback<ServiceConfigurationEndPoint>() {
+            @Override
+            public void onResponse(Call<ServiceConfigurationEndPoint> call, Response<ServiceConfigurationEndPoint> response) {
+
+
+                if(response.code()==200)
+                {
+                    item_count = response.body().getItemCount();
+
+
+                    dataset.clear();
+
+
+                    dataset.add(new MarketsList("Favourites",response.body().getResults()));
+                    datasetLive.postValue(dataset);
+
+
+                }
+                else
+                {
+                    message.setValue("Failed : code : " + response.code());
+
+                }
+
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ServiceConfigurationEndPoint> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+
+
+
+
+    public void getNearestMarket()
+    {
+
+        String sortBy = " distance ";
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+
+        Call<ServiceConfigurationEndPoint> call;
+
+
+        call = retrofit.create(MarketService.class).getMarketsList(
+                PrefLocation.getLatitude(getApplication()), PrefLocation.getLongitude(getApplication()),
+                null,
+                null,
+                sortBy,
+                1,0);
+
+
+
+
+
+
+        call.enqueue(new Callback<ServiceConfigurationEndPoint>() {
+            @Override
+            public void onResponse(Call<ServiceConfigurationEndPoint> call, Response<ServiceConfigurationEndPoint> response) {
+
+
+                if(response.code()==200)
+                {
+//                    item_count = response.body().getItemCount();
+
+
+                    dataset.clear();
+
+                    if(response.body().getResults().size()>0)
+                    {
+                        Market market = response.body().getResults().get(0);
+                        fetchLocalConfiguration(market);
+                    }
+                    else
+                    {
+                        event.postValue(ViewModelMarkets.EVENT_NO_MARKET_AVAILABLE);
+                    }
+
+                }
+                else
+                {
+                    message.setValue("Failed : code : " + response.code());
+
+                }
+
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ServiceConfigurationEndPoint> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+
+
+
+
+
 
 
 

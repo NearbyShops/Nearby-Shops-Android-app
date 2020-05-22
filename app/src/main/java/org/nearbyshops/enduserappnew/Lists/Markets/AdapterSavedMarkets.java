@@ -19,14 +19,16 @@ public class AdapterSavedMarkets extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<Market> dataset;
     private Context context;
     private Fragment subscriber;
+    private int layoutType;
 
 
 
 
-    public AdapterSavedMarkets(List<Market> dataset, Context context, Fragment subscriber) {
+    public AdapterSavedMarkets(List<Market> dataset, Context context, Fragment subscriber, int layoutType) {
         this.dataset = dataset;
         this.context = context;
         this.subscriber = subscriber;
+        this.layoutType= layoutType;
     }
 
 
@@ -37,7 +39,7 @@ public class AdapterSavedMarkets extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        return ViewHolderMarketSmall.create(viewGroup,context,subscriber);
+        return ViewHolderMarketSmall.create(viewGroup,context,subscriber,layoutType);
     }
 
 

@@ -16,6 +16,8 @@ import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Lists.Markets.AdapterSavedMarkets;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.Model.MarketsList;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarketSmall;
 
 import java.util.List;
 
@@ -68,7 +70,7 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 //        this.configurationGlobal = item;
 
 
-        AdapterSavedMarkets adapter=  new AdapterSavedMarkets(item,context, subscriber);
+        AdapterSavedMarkets adapter=  new AdapterSavedMarkets(item,context, subscriber, ViewHolderMarketSmall.LAYOUT_TYPE_SMALL);
         savedMarketList.setAdapter(adapter);
         savedMarketList.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
@@ -90,7 +92,7 @@ public class ViewHolderSavedMarketList extends RecyclerView.ViewHolder {
 
         listTitle.setText(list.getListTitle());
 
-        AdapterSavedMarkets adapter=  new AdapterSavedMarkets(list.getDataset(),context, subscriber);
+        AdapterSavedMarkets adapter=  new AdapterSavedMarkets(list.getDataset(),context, subscriber,ViewHolderMarketSmall.LAYOUT_TYPE_COVERED);
         savedMarketList.setAdapter(adapter);
         savedMarketList.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);

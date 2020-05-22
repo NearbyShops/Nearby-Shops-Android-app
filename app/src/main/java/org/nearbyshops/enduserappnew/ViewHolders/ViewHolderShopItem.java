@@ -925,6 +925,14 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
         int availableItems = shopItem.getAvailableItemQuantity();
 
+
+        if (availableItems==0) {
+            // item out of stock
+            showMessage("Item Out of Stock !");
+            return;
+        }
+
+
         if (!itemQuantityText.getText().toString().equals("")) {
 
 

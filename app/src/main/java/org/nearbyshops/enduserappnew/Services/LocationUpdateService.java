@@ -202,7 +202,9 @@ public class LocationUpdateService extends IntentService {
     {
         Location currentLocation = PrefLocation.getLocation(this);
 
-        if(currentLocation.distanceTo(location)>100)
+//        System.out.println("Distance To : " + currentLocation.distanceTo(location));
+
+        if(currentLocation.distanceTo(location)>300)
         {
             // save location only if there is a significant change in location
 

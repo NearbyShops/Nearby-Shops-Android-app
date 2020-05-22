@@ -39,6 +39,10 @@ import javax.inject.Inject;
 public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
+    public static int LAYOUT_TYPE_SMALL = 1;
+    public static int LAYOUT_TYPE_COVERED = 2;
+
+
     @BindView(R.id.market_photo) ImageView marketPhoto;
     @BindView(R.id.market_name) TextView marketName;
     @BindView(R.id.market_city) TextView marketCity;
@@ -62,11 +66,21 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 
 
-    public static ViewHolderMarketSmall create(ViewGroup parent, Context context, Fragment subscriber)
+    public static ViewHolderMarketSmall create(ViewGroup parent, Context context, Fragment subscriber,int layoutType)
     {
+        View view = null;
 
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_market_type_small,parent,false);
+        if(layoutType==LAYOUT_TYPE_SMALL)
+        {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_market_type_small,parent,false);
+        }
+        else if(layoutType==LAYOUT_TYPE_COVERED)
+        {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_market_small_covered,parent,false);
+        }
+
 
         return new ViewHolderMarketSmall(view,context,subscriber);
     }
@@ -125,6 +139,8 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
                 {
                     ((ViewHolderMarket.ListItemClick) fragment).showMessage(s);
                 }
+
+                showToastMessage(s);
 
             }
         });
