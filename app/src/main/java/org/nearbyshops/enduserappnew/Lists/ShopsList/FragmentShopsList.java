@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -418,35 +419,12 @@ public class FragmentShopsList extends Fragment implements
             final LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
             recyclerView.setLayoutManager(linearlayoutManager);
 
-//            recyclerView.addItemDecoration(new EqualSpaceItemDecoration(1));
+
+//            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+//                    linearlayoutManager.getOrientation());
+//            recyclerView.addItemDecoration(dividerItemDecoration);
 
 
-
-//            recyclerView.addItemDecoration(
-//                    new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL)
-//            );
-
-
-//            recyclerView.addItemDecoration(
-//                    new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL_LIST)
-//            );
-
-//            itemCategoriesList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-
-
-//            DisplayMetrics metrics = new DisplayMetrics();
-//            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//
-//
-//            int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
-//
-//            if(spanCount==0){
-//                spanCount = 1;
-//            }
-//
-//            layoutManager.setSpanCount(spanCount);
-
-//            layoutManager.setSpanCount(metrics.widthPixels/350);
 
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -485,7 +463,6 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-//    int previous_position = -1;
 
 
     public int getItemCount()

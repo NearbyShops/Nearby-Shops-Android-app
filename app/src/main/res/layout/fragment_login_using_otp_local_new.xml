@@ -30,6 +30,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textSize="32sp"
             android:text="Welcome"
@@ -167,11 +168,14 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/login_buttons"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
 
 
 

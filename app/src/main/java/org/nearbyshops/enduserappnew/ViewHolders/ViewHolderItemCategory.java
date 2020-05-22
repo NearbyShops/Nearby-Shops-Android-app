@@ -29,9 +29,9 @@ public class ViewHolderItemCategory extends RecyclerView.ViewHolder{
 
 
     @BindView(R.id.name) TextView categoryName;
-    @BindView(R.id.itemCategoryListItem) ConstraintLayout itemCategoryListItem;
+    @BindView(R.id.list_item) ConstraintLayout itemCategoryListItem;
     @BindView(R.id.categoryImage) ImageView categoryImage;
-    @BindView(R.id.cardview) CardView cardView;
+//    @BindView(R.id.cardview) CardView cardView;
 
 
 
@@ -49,7 +49,7 @@ public class ViewHolderItemCategory extends RecyclerView.ViewHolder{
                                                 RecyclerView.Adapter adapter)
     {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_new,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_card,parent,false);
         return new ViewHolderItemCategory(view,context,fragment,adapter);
     }
 
@@ -75,7 +75,7 @@ public class ViewHolderItemCategory extends RecyclerView.ViewHolder{
 
 
 
-    @OnClick(R.id.itemCategoryListItem)
+    @OnClick(R.id.list_item)
     public void itemCategoryListItemClick()
     {
 
