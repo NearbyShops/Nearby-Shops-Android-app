@@ -1,7 +1,6 @@
 package org.nearbyshops.enduserappnew.DetailScreens.DetailMarket;
 
 import android.app.Dialog;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.Window;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import butterknife.BindView;
@@ -156,15 +154,9 @@ public class RateReviewDialogMarket extends DialogFragment {
                     + review_for_edit.getRt_end_user_profile().getProfileImagePath() + ".jpg";
 
 
-            Drawable placeholder;
-
-            try {
-                placeholder = VectorDrawableCompat
-                        .create(getResources(),
-                                R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
-            } catch (Resources.NotFoundException ex) {
-                placeholder = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
-            }
+            Drawable placeholder = VectorDrawableCompat
+                    .create(getResources(),
+                            R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
             Picasso.get()
                     .load(imagepath)
@@ -317,15 +309,9 @@ public class RateReviewDialogMarket extends DialogFragment {
                     + endUser.getProfileImagePath() + ".jpg";
 
 
-            Drawable placeholder;
-
-            try {
-                placeholder = VectorDrawableCompat
-                        .create(getResources(),
-                                R.drawable.ic_nature_people_white_48px, null);
-            } catch (Resources.NotFoundException ex) {
-                placeholder = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
-            }
+            Drawable placeholder = VectorDrawableCompat
+                    .create(getResources(),
+                            R.drawable.ic_nature_people_white_48px, null);
 
             Picasso.get()
                     .load(imagepath)

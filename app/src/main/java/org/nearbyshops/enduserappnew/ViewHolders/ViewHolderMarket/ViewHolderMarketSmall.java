@@ -1,7 +1,6 @@
 package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
@@ -173,15 +171,9 @@ public class ViewHolderMarketSmall extends RecyclerView.ViewHolder {
 
 //                System.out.println("Service LOGO : " + imagePath);
 
-        Drawable placeholder;
-
-        try {
-            placeholder = VectorDrawableCompat
-                    .create(context.getResources(),
-                            R.drawable.ic_nature_people_white_48px, context.getTheme());
-        } catch (Resources.NotFoundException ex) {
-            placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
-        }
+        Drawable placeholder = VectorDrawableCompat
+                .create(context.getResources(),
+                        R.drawable.ic_nature_people_white_48px, context.getTheme());
 
 
         Picasso.get()

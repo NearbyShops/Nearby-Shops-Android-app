@@ -1,7 +1,6 @@
 package org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,7 +30,6 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
-import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -650,15 +648,10 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
         String imagePath = PrefGeneral.getServiceURL(getActivity())
                 + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
-        Drawable drawable;
 
-        try {
-            drawable = VectorDrawableCompat
-                    .create(getActivity().getResources(),
-                            R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
-        } catch (Resources.NotFoundException ex) {
-            drawable = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
-        }
+        Drawable drawable = VectorDrawableCompat
+                .create(getActivity().getResources(),
+                        R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
 
         Picasso.get()

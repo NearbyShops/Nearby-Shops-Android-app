@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.DetailScreens.DetailMarket;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -43,7 +42,6 @@ import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyReviewUpdate;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -351,15 +349,9 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
                 + "/api/v1/ServiceConfiguration/Image/five_hundred_" + market.getLogoImagePath() + ".jpg";
 
 
-        Drawable placeholder;
-
-        try {
-            placeholder = VectorDrawableCompat
-                    .create(getResources(),
-                            R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
-        } catch (Resources.NotFoundException ex) {
-            placeholder = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
-        }
+        Drawable placeholder = VectorDrawableCompat
+                .create(getResources(),
+                        R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
         Picasso.get()
                 .load(imagePath)
@@ -1040,15 +1032,10 @@ public class MarketDetailFragment extends Fragment implements SwipeRefreshLayout
                                 String imagepath = PrefServiceConfig.getServiceURL_SDS(getContext()) + "/api/v1/User/Image/five_hundred_"
                                         + member.getProfileImagePath() + ".jpg";
 
-                                Drawable placeholder;
 
-                                try {
-                                    placeholder = VectorDrawableCompat
-                                            .create(getResources(),
-                                                    R.drawable.ic_nature_people_white_48px, null);
-                                } catch (Resources.NotFoundException ex) {
-                                    placeholder = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
-                                }
+                                Drawable placeholder = VectorDrawableCompat
+                                        .create(getResources(),
+                                                R.drawable.ic_nature_people_white_48px,null);
 
 
                                 Picasso.get()

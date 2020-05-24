@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.ViewHolders;
 
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -106,15 +104,9 @@ public class ViewHolderItemCategorySmall extends RecyclerView.ViewHolder
         String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/ItemCategory/Image/five_hundred_"
                 + itemCategory.getImagePath() + ".jpg";
 
-        Drawable placeholder;
-
-        try {
-            placeholder = VectorDrawableCompat
-                    .create(context.getResources(),
-                            R.drawable.ic_nature_people_white_48px, context.getTheme());
-        } catch (Resources.NotFoundException ex) {
-            placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
-        }
+        Drawable placeholder = VectorDrawableCompat
+                .create(context.getResources(),
+                        R.drawable.ic_nature_people_white_48px, context.getTheme());
 
 
         Picasso.get()

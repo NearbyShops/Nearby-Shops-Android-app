@@ -1,7 +1,6 @@
 package org.nearbyshops.enduserappnew.EditDataScreens.EditItem;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
@@ -99,15 +97,9 @@ public class AdapterItemImages extends RecyclerView.Adapter<RecyclerView.ViewHol
             String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/ItemImage/Image/five_hundred_"
                     + dataset.get(position-1).getImageFilename() + ".jpg";
 
-            Drawable placeholder;
-
-            try {
-                placeholder = VectorDrawableCompat
-                        .create(context.getResources(),
-                                R.drawable.ic_nature_people_white_48px, context.getTheme());
-            } catch (Resources.NotFoundException ex) {
-                placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
-            }
+            Drawable placeholder = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
 
             Picasso.get()
                     .load(imagePath)

@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.Lists.CartsList.Backups;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
@@ -111,15 +109,9 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
 
         System.out.println(imagePath);
 
-        Drawable placeholder;
-
-        try {
-            placeholder = VectorDrawableCompat
-                    .create(context.getResources(),
-                            R.drawable.ic_nature_people_white_48px, context.getTheme());
-        } catch (Resources.NotFoundException ex) {
-            placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
-        }
+        Drawable placeholder = VectorDrawableCompat
+                .create(context.getResources(),
+                        R.drawable.ic_nature_people_white_48px, context.getTheme());
 
 
 

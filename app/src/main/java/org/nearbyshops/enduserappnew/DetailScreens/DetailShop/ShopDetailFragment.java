@@ -3,7 +3,6 @@ package org.nearbyshops.enduserappnew.DetailScreens.DetailShop;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -439,15 +438,9 @@ public class ShopDetailFragment extends Fragment
 
 //            if (!shop.getBookCoverImageURL().equals("")) {
 
-        Drawable placeholder;
-
-        try {
-            placeholder = VectorDrawableCompat
-                    .create(getResources(),
-                            R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
-        } catch (Resources.NotFoundException ex) {
-            placeholder = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
-        }
+        Drawable placeholder = VectorDrawableCompat
+                .create(getResources(),
+                        R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
         Picasso.get().load(imagePath)
                 .placeholder(placeholder)
@@ -1225,15 +1218,10 @@ public class ShopDetailFragment extends Fragment
                                 String imagepath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/User/Image/five_hundred_"
                                         + member.getProfileImagePath() + ".jpg";
 
-                                Drawable placeholder;
 
-                                try {
-                                    placeholder = VectorDrawableCompat
-                                            .create(getResources(),
-                                                    R.drawable.ic_nature_people_white_48px, null);
-                                } catch (Resources.NotFoundException ex) {
-                                    placeholder = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
-                                }
+                                Drawable placeholder = VectorDrawableCompat
+                                        .create(getResources(),
+                                                R.drawable.ic_nature_people_white_48px,null);
 
 
                                 Picasso.get()

@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.DetailScreens.DetailItem;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -45,7 +44,6 @@ import org.nearbyshops.enduserappnew.Model.ModelReviewItem.FavouriteItem;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForItem.ItemImageList;
 import org.nearbyshops.enduserappnew.Login.Login;
-import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -202,15 +200,9 @@ public class ItemDetailFragment extends Fragment implements Target {
                 + item.getItemImageURL() + ".jpg";
 
 
-        Drawable placeholder;
-
-        try {
-            placeholder = VectorDrawableCompat
-                    .create(getResources(),
-                            R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
-        } catch (Resources.NotFoundException ex) {
-            placeholder = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
-        }
+        Drawable placeholder = VectorDrawableCompat
+                .create(getResources(),
+                        R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
 
         Picasso.get().load(imagePath)
