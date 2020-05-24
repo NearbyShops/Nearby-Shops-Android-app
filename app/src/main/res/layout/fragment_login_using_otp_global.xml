@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.core.widget.NestedScrollView
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+<!--<androidx.core.widget.NestedScrollView-->
+<!--    app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:padding="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:animateLayoutChanges="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
-
-
-
         <LinearLayout
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="0dp"
             android:id="@+id/text_welcome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,11 +30,11 @@
             android:layout_height="wrap_content">
 
 
-            <TextView
 
+            <TextView
                 android:textStyle="bold"
                 android:textSize="30sp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textColor="@color/mapbox_blue"
@@ -42,9 +44,9 @@
 
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:text="Discover local markets in your area and shop locally !"
                 android:layout_width="wrap_content"/>
 
@@ -67,6 +69,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/border_one"
             android:layout_marginTop="20dp"
             android:background="@color/blueGrey800"
@@ -78,6 +81,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/header_login"
             android:layout_marginTop="5dp"
             android:textSize="24sp"
@@ -93,6 +97,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/border_two"
             android:layout_marginTop="5dp"
             app:layout_constraintTop_toBottomOf="@+id/header_login"
@@ -293,6 +298,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/login_using_password"
             android:layout_marginTop="25dp"
             android:textSize="20sp"
@@ -307,4 +313,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+<!--</androidx.core.widget.NestedScrollView>-->

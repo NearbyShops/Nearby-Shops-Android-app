@@ -27,15 +27,15 @@ public class MessagingService extends FirebaseMessagingService
         super.onMessageReceived(remoteMessage);
 
 
-//        System.out.println("OnMessageReceived()");
+        System.out.println("OnMessageReceived()");
 
 
-//        if(remoteMessage.getNotification()!=null)
-//        {
-//            System.out.println("Message : " + remoteMessage.getNotification().getBody());
-//            System.out.println("Data : " + remoteMessage.getData());
-//            System.out.println("Notification Type :" + remoteMessage.getData().get("notification_type"));
-//        }
+        if(remoteMessage.getNotification()!=null)
+        {
+            System.out.println("Message : " + remoteMessage.getNotification().getBody());
+            System.out.println("Data : " + remoteMessage.getData());
+            System.out.println("Notification Type :" + remoteMessage.getData().get("notification_type"));
+        }
 
 
 

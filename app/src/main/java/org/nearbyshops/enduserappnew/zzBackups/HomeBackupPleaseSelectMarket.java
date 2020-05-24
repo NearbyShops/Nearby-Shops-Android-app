@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew;
+package org.nearbyshops.enduserappnew.zzBackups;
 
 
 import android.Manifest;
@@ -58,7 +58,7 @@ import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 
-public class Home extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketSelected {
+public class HomeBackupPleaseSelectMarket extends AppCompatActivity implements ShowFragment, NotifyAboutLogin, MarketSelected {
 
 
 
@@ -85,11 +85,11 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
-    public Home() {
-
-        DaggerComponentBuilder.getInstance()
-                .getNetComponent()
-                .Inject(this);
+    public HomeBackupPleaseSelectMarket() {
+//
+//        DaggerComponentBuilder.getInstance()
+//                .getNetComponent()
+//                .Inject(this);
     }
 
 
@@ -193,11 +193,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         {
 //            showToast("Home : OnSaveInstanceState");
             initialFragmentSetup();
-//            showShopsFragment();
         }
-
-//        initialFragmentSetup();
-
 
 
 
@@ -215,7 +211,7 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 && PrefOneSignal.getToken(this) != null
                 && PrefLogin.getUser(this)!=null) {
 
-            startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
+                startService(new Intent(getApplicationContext(), UpdateOneSignalID.class));
         }
 
 
@@ -226,6 +222,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             // get service configuration when its null ... fetches config at first install or changing service
             startService(new Intent(getApplicationContext(), UpdateServiceConfiguration.class));
         }
+
+
 
 
 
@@ -399,9 +397,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
             // permission denied, boo! Disable the
             // functionality that depends on this permission.
             showToastMessage("Permission Rejected");
-
-            viewModel.getNearestMarket();
         }
+
 
     }
 
@@ -649,23 +646,42 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
     void initialFragmentSetup()
     {
-        boolean singleVendorEnabled = getResources().getBoolean(R.bool.single_vendor_mode_enabled);
+        if (PrefGeneral.getMultiMarketMode(this) && PrefGeneral.getServiceURL(this) == null) {
+            // no market selected therefore show available markets in users area
 
-        if(singleVendorEnabled)
-        {
+
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, ItemsInShopByCatFragment.newInstance(true), TAG_ITEMS_FRAGMENT)
+                    .replace(R.id.fragment_container, new MarketsFragmentNew(), TAG_MARKET_FRAGMENT)
                     .commitNow();
+
+
         }
-        else
-        {
+        else {
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
-                    .commitNow();
+
+
+            boolean singleVendorEnabled = getResources().getBoolean(R.bool.single_vendor_mode_enabled);
+
+            if(singleVendorEnabled)
+            {
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, ItemsInShopByCatFragment.newInstance(true), TAG_ITEMS_FRAGMENT)
+                        .commitNow();
+            }
+            else
+            {
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, FragmentShopsList.newInstance(false), TAG_SHOPS_FRAGMENT)
+                        .commitNow();
+            }
+
+
         }
     }
 
@@ -882,13 +898,6 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                 {
                     initialFragmentSetup();
                 }
-                else if(integer==ViewModelMarkets.EVENT_NO_MARKET_AVAILABLE)
-                {
-                    showShopsFragment();
-                }
-
-
-//                System.out.println("Event Value : " + integer);
 
             }
         });
@@ -922,9 +931,9 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
                     @Override
                     public void run() {
 
-                        if(PrefGeneral.getServiceURL(Home.this)==null)
+                        if(PrefGeneral.getServiceURL(HomeBackupPleaseSelectMarket.this)==null)
                         {
-                            viewModel.getNearestMarket();
+//                            viewModel.getNearestMarket();
                         }
 
                     }

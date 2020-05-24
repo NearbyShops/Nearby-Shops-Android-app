@@ -18,7 +18,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -30,7 +32,10 @@ import com.google.android.gms.location.LocationServices;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
+import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
+import org.nearbyshops.enduserappnew.Lists.Markets.ViewModelMarkets;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Services.LocationUpdateService;
@@ -51,6 +56,7 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PickLocation;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderCreateShop;
@@ -59,6 +65,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyS
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -66,8 +73,7 @@ import retrofit2.Response;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-
-
+import java.util.List;
 
 
 //import icepick.State;
@@ -78,7 +84,8 @@ import java.util.ArrayList;
 public class FragmentShopsList extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch ,
         ViewHolderShopSmall.ListItemClick , ViewHolderSetLocationManually.ListItemClick,
-        ViewHolderEmptyScreenListItem.ListItemClick , ViewHolderCreateShop.ListItemClick {
+        ViewHolderEmptyScreenListItem.ListItemClick , ViewHolderCreateShop.ListItemClick ,
+        ViewHolderMarket.ListItemClick {
 
 
     private static final String TAG_SLIDING = "tag_sliding_layer_sort_shops";
@@ -109,9 +116,14 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+    private ViewModelMarkets viewModel;
 
 
-//    @BindView(R.id.icon_list) ImageView mapIcon;
+
+
+
+
+    //    @BindView(R.id.icon_list) ImageView mapIcon;
     @BindView(R.id.shop_count_indicator) TextView shopCountIndicator;
     @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
 
@@ -200,6 +212,9 @@ public class FragmentShopsList extends Fragment implements
             ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 
+            setupViewModel();
+
+
 //            toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 //            toolbar.setTitle(getString(R.string.app_name));
 
@@ -243,6 +258,7 @@ public class FragmentShopsList extends Fragment implements
 
             setupRecyclerView();
             setupSwipeContainer();
+
 //            notifyDataset();
 
 
@@ -291,8 +307,10 @@ public class FragmentShopsList extends Fragment implements
                                 serviceName.setVisibility(View.VISIBLE);
                                 serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
 
-                                makeRefreshNetworkCall();
-
+                                if(intent.getAction().equals(LocationUpdateService.INTENT_ACTION_LOCATION_UPDATED))
+                                {
+                                    makeRefreshNetworkCall();
+                                }
                             }
                         });
                     }
@@ -401,35 +419,12 @@ public class FragmentShopsList extends Fragment implements
             final LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
             recyclerView.setLayoutManager(linearlayoutManager);
 
-//            recyclerView.addItemDecoration(new EqualSpaceItemDecoration(1));
+
+//            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+//                    linearlayoutManager.getOrientation());
+//            recyclerView.addItemDecoration(dividerItemDecoration);
 
 
-
-//            recyclerView.addItemDecoration(
-//                    new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL)
-//            );
-
-
-//            recyclerView.addItemDecoration(
-//                    new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL_LIST)
-//            );
-
-//            itemCategoriesList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-
-
-//            DisplayMetrics metrics = new DisplayMetrics();
-//            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//
-//
-//            int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
-//
-//            if(spanCount==0){
-//                spanCount = 1;
-//            }
-//
-//            layoutManager.setSpanCount(spanCount);
-
-//            layoutManager.setSpanCount(metrics.widthPixels/350);
 
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -468,7 +463,6 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-//    int previous_position = -1;
 
 
     public int getItemCount()
@@ -504,11 +498,22 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+
+
+
+
         @Override
         public void onRefresh() {
 
 
             makeNetworkCall(true,true);
+
+            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            {
+                // multi-market mode enabled
+                viewModel.getNearbyMarketsHorizontal();
+            }
+
         }
 
 
@@ -642,8 +647,7 @@ public class FragmentShopsList extends Fragment implements
                         {
                             if(dataset.size()>=1)
                             {
-                                dataset.add(1, new SetLocationManually());
-
+                                dataset.add(0, new SetLocationManually());
 
 
                                 if(showCreateShop)
@@ -945,4 +949,93 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+
+
+
+
+
+
+
+    private void setupViewModel()
+    {
+
+
+        viewModel = new ViewModelMarkets(MyApplication.application);
+
+
+        viewModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Object>>() {
+            @Override
+            public void onChanged(@Nullable List<Object> objects) {
+
+                if(objects!=null)
+                {
+                    if(!dataset.contains(objects))
+                    {
+                        if(dataset.size()>2 )
+                        {
+                            dataset.addAll(2,objects);
+                        }
+                        else if(dataset.size()>1)
+                        {
+                            dataset.addAll(1,objects);
+                        }
+                        else
+                        {
+                            dataset.addAll(objects);
+                        }
+                    }
+                }
+
+
+                adapter.setLoadMore(false);
+                adapter.notifyDataSetChanged();
+
+
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+
+
+
+
+        viewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+
+                showToastMessage(s);
+
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+    }
+
+
+
+
+
+
+    @Override
+    public void listItemClick(Market configurationGlobal, int position) {
+
+    }
+
+    @Override
+    public void selectMarketSuccessful(Market configurationGlobal, int position) {
+
+        if(getActivity() instanceof MarketSelected)
+        {
+            ((MarketSelected) getActivity()).marketSelected();
+        }
+    }
+
+
+
+
+    @Override
+    public void showMessage(String message) {
+
+        showToastMessage(message);
+    }
 }

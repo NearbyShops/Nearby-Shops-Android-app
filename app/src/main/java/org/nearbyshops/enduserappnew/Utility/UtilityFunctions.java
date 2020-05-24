@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -96,6 +100,10 @@ public class UtilityFunctions {
         }
 
 
+
+        System.out.println("Update FCM Subscription ! ");
+
+
         FirebaseApp.initializeApp(MyApplication.getAppContext());
 
         String topic_name = localConfig.getRt_market_id_for_fcm()  + "end_user_" + user.getUserID();
@@ -108,11 +116,25 @@ public class UtilityFunctions {
                         System.out.println("Subscribed to : " + topic_name);
 
                     }
-                });
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        System.out.println("Failed : " + e.toString());
+                    }
+                })
+        .addOnCanceledListener(new OnCanceledListener() {
+            @Override
+            public void onCanceled() {
+                System.out.println("Cancelled : ");
+            }
+        })
+        ;
+
+
 
     }
-
-
 
 
 
@@ -137,6 +159,8 @@ public class UtilityFunctions {
         String topic_name = localConfig.getRt_market_id_for_fcm() + "shop_" + shop.getShopID();
 
 
+        System.out.println("Update FCM Subscription for Shop ! ");
+
 
         try {
 
@@ -155,7 +179,7 @@ public class UtilityFunctions {
         }
         catch (Exception ignored)
         {
-
+            ignored.printStackTrace();
 
         }
 

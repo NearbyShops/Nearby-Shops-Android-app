@@ -403,15 +403,6 @@
         </activity>
 
 
-        <activity
-            android:name=".EditDataScreens.Deprecated.EditShopForAdmin.EditShopForAdmin"
-            android:label="Edit Shop"
-            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
-        </activity>
-
 
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"

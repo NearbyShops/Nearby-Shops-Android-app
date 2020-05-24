@@ -211,12 +211,18 @@ public class MarketsListFragment extends Fragment implements SwipeRefreshLayout.
 //        });
 
 
+
+
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
 
-                swipeContainer.setRefreshing(false);
+                if(itemCount>0)
+                {
+                    swipeContainer.setRefreshing(false);
+                }
+
             }
         });
 

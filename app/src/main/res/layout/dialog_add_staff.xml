@@ -41,7 +41,7 @@
 
             <TextView
                 android:layout_marginTop="10dp"
-                android:text="Note : The person needs to be already registered. The secret code is available in their Profile Screen."
+                android:text="Note : The person needs to be already registered and selected this market. The secret code is available in their Profile Screen."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -63,6 +63,14 @@
                 android:id="@+id/input_user_id"
                 android:hint="Email, Phone or UserID"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+
+            <TextView
+                android:text="Please add Country Code to Phone Numbers"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
 

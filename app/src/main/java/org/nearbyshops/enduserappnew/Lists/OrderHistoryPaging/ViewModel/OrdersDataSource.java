@@ -32,19 +32,15 @@ public class OrdersDataSource extends PageKeyedDataSource<Long,Object> {
     OrderService orderService;
 
 
-
-
     private int item_count;
-    int offset;
-    int limit;
+
+
 
 
 
     public OrdersDataSource() {
-
         DaggerComponentBuilder.getInstance().getNetComponent()
                 .Inject(this);
-
     }
 
 

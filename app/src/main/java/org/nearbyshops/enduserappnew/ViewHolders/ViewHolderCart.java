@@ -60,6 +60,9 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
     }
 
 
+
+
+
     public ViewHolderCart(@NonNull View itemView, Context context, Fragment fragment) {
         super(itemView);
 
@@ -141,7 +144,7 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
         }
 
 
-        System.out.println(imagePath);
+//        System.out.println(imagePath);
 
         Drawable placeholder;
 

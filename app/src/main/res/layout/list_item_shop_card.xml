@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
-<LinearLayout
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    app:cardCornerRadius="1dp"
     android:layout_margin="5dp"
-    android:weightSum="2"
-    android:orientation="horizontal"
-    android:background="@color/white"
-    android:padding="0dp"
-    android:id="@+id/list_item_shop"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:focusable="true">
+<!--    android:foreground="?android:attr/selectableItemBackground"-->
 
 
+    <LinearLayout
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:padding="0dp"
+        android:layout_margin="0dp"
+        android:id="@+id/list_item_shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
 
@@ -161,7 +168,26 @@
         </LinearLayout>
 
 
-</LinearLayout>
 
 
+
+
+
+        <!--<TextView-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/border_bottom_two"-->
+        <!--android:background="#88000000"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/description"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp" />-->
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
 
