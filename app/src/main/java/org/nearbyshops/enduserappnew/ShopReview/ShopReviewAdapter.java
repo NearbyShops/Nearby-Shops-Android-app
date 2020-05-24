@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.ShopReview;
 
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -108,9 +109,15 @@ public class ShopReviewAdapter extends RecyclerView.Adapter<ShopReviewAdapter.Vi
             holder.member_name.setText(endUser.getName());
             String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/User/Image/" + dataset.get(position).getRt_end_user_profile().getProfileImagePath();
 
-            Drawable placeholder = VectorDrawableCompat
-                    .create(context.getResources(),
-                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+            Drawable placeholder;
+
+            try {
+                placeholder = VectorDrawableCompat
+                        .create(context.getResources(),
+                                R.drawable.ic_nature_people_white_48px, context.getTheme());
+            } catch (Resources.NotFoundException ex) {
+                placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
+            }
 
             Picasso.get()
                     .load(imagePath)

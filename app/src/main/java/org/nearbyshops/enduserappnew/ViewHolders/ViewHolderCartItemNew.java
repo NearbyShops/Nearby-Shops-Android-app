@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -191,9 +193,15 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
                     + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
 
 
-            Drawable placeholder = VectorDrawableCompat
-                    .create(context.getResources(),
-                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+            Drawable placeholder;
+
+            try {
+                placeholder = VectorDrawableCompat
+                        .create(context.getResources(),
+                                R.drawable.ic_nature_people_white_48px, context.getTheme());
+            } catch (Resources.NotFoundException ex) {
+                placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
+            }
 
 
 

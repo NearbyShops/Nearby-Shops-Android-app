@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -219,9 +220,15 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
             String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                     + shop.getLogoImagePath() + ".jpg";
 
-            Drawable placeholder = VectorDrawableCompat
-                    .create(context.getResources(),
-                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+            Drawable placeholder;
+
+            try {
+                placeholder = VectorDrawableCompat
+                        .create(context.getResources(),
+                                R.drawable.ic_nature_people_white_48px, context.getTheme());
+            } catch (Resources.NotFoundException ex) {
+                placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
+            }
 
             Picasso.get()
                     .load(imagePath)

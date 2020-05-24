@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -177,9 +178,16 @@ public class BackupViewHolderMarket extends RecyclerView.ViewHolder implements V
 
 //                System.out.println("Service LOGO : " + imagePath);
 
-        Drawable placeholder = VectorDrawableCompat
-                .create(context.getResources(),
-                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+
+        Drawable placeholder;
+
+        try {
+            placeholder = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+        } catch (Resources.NotFoundException ex) {
+            placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
+        }
 
 
         Picasso.get()

@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -277,9 +279,15 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                 + shop.getLogoImagePath() + ".jpg";
 
 
-        Drawable placeholder = VectorDrawableCompat
-                .create(getResources(),
-                        R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
+        Drawable placeholder;
+
+        try {
+            placeholder = VectorDrawableCompat
+                    .create(getResources(),
+                            R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
+        } catch (Resources.NotFoundException ex) {
+            placeholder = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
+        }
 
 
         Picasso.get().load(imagePath)

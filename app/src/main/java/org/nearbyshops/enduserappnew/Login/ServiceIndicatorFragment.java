@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.Login;
 
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -156,9 +157,15 @@ public class ServiceIndicatorFragment extends Fragment {
 
 //                System.out.println("Service LOGO : " + imagePath);
 
-            Drawable placeholder = VectorDrawableCompat
-                    .create(getResources(),
-                            R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
+            Drawable placeholder;
+
+            try {
+                placeholder = VectorDrawableCompat
+                        .create(getResources(),
+                                R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
+            } catch (Resources.NotFoundException ex) {
+                placeholder = ContextCompat.getDrawable(MyApplication.getAppContext(), R.drawable.ic_nature_people_white_48px);
+            }
 
 
             Picasso.get()

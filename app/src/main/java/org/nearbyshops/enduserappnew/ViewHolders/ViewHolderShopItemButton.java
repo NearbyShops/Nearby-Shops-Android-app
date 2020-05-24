@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -392,9 +393,15 @@ public class ViewHolderShopItemButton extends RecyclerView.ViewHolder{
         }
 
 
-        Drawable placeholder = VectorDrawableCompat
-                .create(context.getResources(),
-                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+        Drawable placeholder;
+
+        try {
+            placeholder = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+        } catch (Resources.NotFoundException ex) {
+            placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
+        }
 
 
         Picasso.get()

@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -9,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import butterknife.BindView;
@@ -310,10 +313,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             System.out.println(imagePath);
 
 
+            Drawable placeholder;
 
-            Drawable placeholder = VectorDrawableCompat
-                    .create(context.getResources(),
-                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+            try {
+                placeholder = VectorDrawableCompat
+                        .create(context.getResources(),
+                                R.drawable.ic_nature_people_white_48px, context.getTheme());
+            } catch (Resources.NotFoundException ex) {
+                placeholder = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
+            }
 
             Picasso.get()
                     .load(imagePath)

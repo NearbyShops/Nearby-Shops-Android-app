@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,10 +147,15 @@ public class ViewHolderItem extends RecyclerView.ViewHolder {
         String imagePath = PrefGeneral.getServiceURL(context)
                 + "/api/v1/Item/Image/five_hundred_" + item.getItemImageURL() + ".jpg";
 
+        Drawable drawable;
 
-        Drawable drawable = VectorDrawableCompat
-                .create(context.getResources(),
-                        R.drawable.ic_nature_people_white_48px, context.getTheme());
+        try {
+            drawable = VectorDrawableCompat
+                    .create(context.getResources(),
+                            R.drawable.ic_nature_people_white_48px, context.getTheme());
+        } catch (Resources.NotFoundException ex) {
+            drawable = ContextCompat.getDrawable(context, R.drawable.ic_nature_people_white_48px);
+        }
 
 
 
