@@ -393,7 +393,7 @@
     <string name="fragment_enter_password_enter_password_hint">Digite a senha</string>
     <string name="fragment_enter_password_confirm_password_hint">Confirme a Senha</string>
     <string name="fragment_profile_app_name_text">Perfil</string>
-    <string name="fragment_profile_header_booked_by_text">Bem-vinda</string>
+    <string name="fragment_profile_header_booked_by_text">Bem-vindo(a)</string>
     <string name="fragment_profile_user_name_text">-</string>
     <string name="fragment_profile_user_id_text">ID do usuário: 123</string>
     <string name="fragment_profile_phone_text">9490523891</string>
