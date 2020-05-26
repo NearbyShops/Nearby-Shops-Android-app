@@ -1,14 +1,18 @@
 package org.nearbyshops.enduserappnew.PushFirebase;
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.media.MediaPlayer;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.R;
 
 
@@ -27,17 +31,10 @@ public class MessagingService extends FirebaseMessagingService
         super.onMessageReceived(remoteMessage);
 
 
+
         System.out.println("OnMessageReceived()");
-
-
-        if(remoteMessage.getNotification()!=null)
-        {
-            System.out.println("Message : " + remoteMessage.getNotification().getBody());
-            System.out.println("Data : " + remoteMessage.getData());
-            System.out.println("Notification Type :" + remoteMessage.getData().get("notification_type"));
-        }
-
-
+        System.out.println("Data : " + remoteMessage.getData());
+        System.out.println("Notification Type :" + remoteMessage.getData().get("notification_type"));
 
 
 
@@ -55,17 +52,28 @@ public class MessagingService extends FirebaseMessagingService
         }
 
 
+        // Create an explicit intent for an Activity in your app
+        Intent intent = new Intent(this, Home.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.default_notification_channel_id))
                 .setSmallIcon(R.drawable.ic_shopping_basket_blue)
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationMessage)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setContentIntent(pendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
 
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(1, builder.build());
+
+
     }
 
 
@@ -77,6 +85,7 @@ public class MessagingService extends FirebaseMessagingService
     @Override
     public void onMessageSent(@NonNull String s) {
         super.onMessageSent(s);
+
     }
 
     @Override

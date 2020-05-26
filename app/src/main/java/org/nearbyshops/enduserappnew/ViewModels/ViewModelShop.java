@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.ViewModels;
 
 import android.app.Application;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -44,6 +45,7 @@ public class ViewModelShop extends AndroidViewModel {
     public static int EVENT_BECOME_A_SELLER_SUCCESSFUL = 1;
     public static int EVENT_SHOP_DETAILS_FETCHED = 2;
     public static int EVENT_SHOP_DELETED = 3;
+    public static int EVENT_SHOP_NOT_CREATED = 4;
     public static int EVENT_ = 20;
     public static int EVENT_NETWORK_FAILED = 21;
 
@@ -195,6 +197,50 @@ public class ViewModelShop extends AndroidViewModel {
 
 
 
+    public void getShopForShopAdmin(boolean getStats)
+    {
+        Call<Shop> call = shopService.getShopForShopAdmin(
+                PrefLogin.getAuthorizationHeaders(getApplication()),
+                getStats
+        );
+
+
+        call.enqueue(new Callback<Shop>() {
+            @Override
+            public void onResponse(Call<Shop> call, Response<Shop> response) {
+
+                if(response.code()==200 && response.body()!=null)
+                {
+                    shopLive.postValue(response.body());
+                    event.postValue(ViewModelShop.EVENT_SHOP_DETAILS_FETCHED);
+
+                }
+                else if(response.code()==204)
+                {
+                    message.postValue("You have not created Shop yet" + response.code());
+                    event.postValue(ViewModelShop.EVENT_SHOP_NOT_CREATED);
+                }
+                else if(response.code()==401||response.code()==403)
+                {
+                    message.postValue("Not Permitted. Your account is not activated !");
+                }
+                else
+                {
+                    event.postValue(ViewModelShop.EVENT_NETWORK_FAILED);
+                    message.postValue("Failed Code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Shop> call, Throwable t) {
+
+                event.postValue(ViewModelShop.EVENT_NETWORK_FAILED);
+            }
+        });
+    }
+
+
+
 
 
     public void makeNetworkCallShop(int shopID)
@@ -234,9 +280,6 @@ public class ViewModelShop extends AndroidViewModel {
             }
         });
     }
-
-
-
 
 
 

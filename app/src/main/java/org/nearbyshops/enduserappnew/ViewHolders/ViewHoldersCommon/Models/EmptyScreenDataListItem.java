@@ -59,11 +59,12 @@ public class EmptyScreenDataListItem {
     public static EmptyScreenDataListItem createMarketNoMarketsAvailable()
     {
         EmptyScreenDataListItem data = new EmptyScreenDataListItem();
+        data.setTitle("Create Market");
         data.setMessage("No markets available in your area. \n\nCreate your own local market using free open-source technology and Help Local Vendors and Local Economy");
         data.setButtonText("Create Market");
         data.setUrlForButtonClick("https://nearbyshops.org/volunteer.html");
 
-        data.setImageResource(R.drawable.ic_local_florist_black_24dp);
+//        data.setImageResource(R.drawable.ic_local_florist_black_24dp);
 
         return data;
     }

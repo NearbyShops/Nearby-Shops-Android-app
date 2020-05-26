@@ -2,7 +2,7 @@ package org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.ChangePhone;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,10 +49,9 @@ import javax.inject.Inject;
 public class FragmentChangePhone extends Fragment {
 
 
-    @BindView(R.id.progress_bar_button)
-    ProgressBar progressBarButton;
-    @BindView(R.id.next)
-    TextView nextButton;
+//    @BindView(R.id.progress_bar_button)
+//    ProgressBar progressBarButton;
+
 
 //    @BindView(R.id.text_input_email) TextInputLayout emailLayout;
 
@@ -70,6 +69,12 @@ public class FragmentChangePhone extends Fragment {
 
 
     @BindView(R.id.progress_bar) ProgressBar progressBar;
+
+
+//    @BindView(R.id.next) TextView nextButton;
+    @BindView(R.id.next) TextView nextButton;
+    @BindView(R.id.progress_bar_next) ProgressBar progressBarNext;
+
 
 
     boolean emailIsAvailable = false;
@@ -206,9 +211,9 @@ public class FragmentChangePhone extends Fragment {
 //        checkUsernameExist();
 
 
-        progressBar.setVisibility(View.VISIBLE);
-        countDownTimer.cancel();  // restart the timer
-        countDownTimer.start();
+//        progressBar.setVisibility(View.VISIBLE);
+//        countDownTimer.cancel();  // restart the timer
+//        countDownTimer.start();
     }
 
 
@@ -289,22 +294,22 @@ public class FragmentChangePhone extends Fragment {
 
 
 
-    CountDownTimer countDownTimer = new CountDownTimer(2000, 1000) {
-
-        public void onTick(long millisUntilFinished) {
-
-        }
-
-        public void onFinish() {
-
-            if(isDestroyed)
-            {
-                return;
-            }
-
-           checkUsernameExist();
-        }
-    };
+//    CountDownTimer countDownTimer = new CountDownTimer(2000, 1000) {
+//
+//        public void onTick(long millisUntilFinished) {
+//
+//        }
+//
+//        public void onFinish() {
+//
+//            if(isDestroyed)
+//            {
+//                return;
+//            }
+//
+//           checkUsernameExist();
+//        }
+//    };
 
 
 
@@ -329,10 +334,25 @@ public class FragmentChangePhone extends Fragment {
 
 
 
+    @OnClick(R.id.next)
+    void nextClick()
+    {
+
+
+        if(!isDataValid(true))
+        {
+            return;
+        }
+
+        checkUsernameExist(true,true);
+    }
 
 
 
-    void checkUsernameExist()
+
+
+
+    void checkUsernameExist(boolean initiateNext, boolean showNextButtonProgress)
     {
         String inputName = "";
 
@@ -370,6 +390,15 @@ public class FragmentChangePhone extends Fragment {
 
         progressBar.setVisibility(View.VISIBLE);
 
+
+
+        if(showNextButtonProgress)
+        {
+            progressBarNext.setVisibility(View.VISIBLE);
+            nextButton.setVisibility(View.INVISIBLE);
+        }
+
+
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -379,6 +408,12 @@ public class FragmentChangePhone extends Fragment {
                     return;
                 }
 
+
+                if(showNextButtonProgress)
+                {
+                    progressBarNext.setVisibility(View.INVISIBLE);
+                    nextButton.setVisibility(View.VISIBLE);
+                }
 
                 progressBar.setVisibility(View.INVISIBLE);
 
@@ -410,6 +445,13 @@ public class FragmentChangePhone extends Fragment {
 
 
                     emailIsAvailable = true;
+
+
+
+                    if(initiateNext)
+                    {
+                        initiateNext();
+                    }
                 }
                 else
                 {
@@ -445,8 +487,8 @@ public class FragmentChangePhone extends Fragment {
 
 
 
-    @OnClick(R.id.next)
-    void nextClick()
+
+    void initiateNext()
     {
         if(!isDataValid(true))
         {
@@ -508,11 +550,15 @@ public class FragmentChangePhone extends Fragment {
 
 
 
+
+
+
+
     void sendEmailVerificationCode()
     {
 
 
-        progressBarButton.setVisibility(View.VISIBLE);
+        progressBarNext.setVisibility(View.VISIBLE);
         nextButton.setVisibility(View.INVISIBLE);
 
 
@@ -561,7 +607,7 @@ public class FragmentChangePhone extends Fragment {
                 }
 
 
-                progressBarButton.setVisibility(View.INVISIBLE);
+                progressBarNext.setVisibility(View.INVISIBLE);
                 nextButton.setVisibility(View.VISIBLE);
 
                 if(response.code()==200)
@@ -594,7 +640,7 @@ public class FragmentChangePhone extends Fragment {
                 }
 
 
-                progressBarButton.setVisibility(View.INVISIBLE);
+                progressBarNext.setVisibility(View.INVISIBLE);
                 nextButton.setVisibility(View.VISIBLE);
 
                 showToastMessage("Failed to send verification code. Please try again !");

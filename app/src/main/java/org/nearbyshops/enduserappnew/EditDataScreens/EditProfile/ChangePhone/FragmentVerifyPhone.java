@@ -456,7 +456,7 @@ public class FragmentVerifyPhone extends Fragment {
                         .client(new OkHttpClient().newBuilder().build())
                         .build();
 
-                user.setPassword(PrefLoginGlobal.getPassword(getActivity()));
+                user.setPassword(PrefLoginGlobal.getToken(getActivity()));
 
                 call = retrofit.create(UserServiceGlobal.class).updatePhone(
                         PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
@@ -467,7 +467,8 @@ public class FragmentVerifyPhone extends Fragment {
             }
             else
             {
-                user.setPassword(PrefLogin.getPassword(getActivity()));
+//                user.setPassword(PrefLogin.getPassword(getActivity()));
+                user.setPassword(PrefLogin.getToken(getActivity()));
 
 
 

@@ -10,10 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -23,6 +25,7 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard;
 import org.nearbyshops.enduserappnew.Lists.TransactionHistory.Transactions;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -114,6 +117,10 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
 
 
+        setupViewModel();
+
+
+
         return rootView;
     }
 
@@ -193,14 +200,6 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
             // if shop exist save it in shop home and open it in edit mode
             // if shop does not exist then open edit shop fragment in ADD mode
 
-            /*if(UtilityLogin.getShopAdmin(this)==null)
-            {
-                return;
-            }
-
-
-            int id = UtilityLogin.getShopAdmin(this).getShopAdminID();*/
-
 
             swipeContainer.post(new Runnable() {
                 @Override
@@ -212,62 +211,8 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-
-            Call<Shop> call = shopService.getShopForShopAdmin(
-                    PrefLogin.getAuthorizationHeaders(getActivity())
-            );
-
-
-
-
-
-            call.enqueue(new Callback<Shop>() {
-                @Override
-                public void onResponse(Call<Shop> call, Response<Shop> response) {
-
-                    if(response.code()==200)
-                    {
-                        PrefShopAdminHome.saveShop(response.body(),getActivity());
-
-
-                        // Open Edit fragment in edit mode
-                        Intent intent = new Intent(getActivity(), EditShop.class);
-                        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_UPDATE);
-                        startActivity(intent);
-
-
-                    }
-                    else if(response.code()==204)
-                    {
-
-                            Intent intent = new Intent(getActivity(), EditShop.class);
-                            intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_ADD);
-                            startActivity(intent);
-                    }
-                    else if(response.code()==401||response.code()==403)
-                    {
-
-                        Toast.makeText(getActivity(),"Not Permitted !",Toast.LENGTH_SHORT)
-                                .show();
-                    }
-
-
-                    swipeContainer.setRefreshing(false);
-
-                }
-
-                @Override
-                public void onFailure(Call<Shop> call, Throwable t) {
-
-
-
-                    swipeContainer.setRefreshing(false);
-
-
-                }
-            });
-
-
+            viewModelShop.getShopForShopAdmin(false);
+            requestCodeGetShop = 4150;
         }
         else
         {
@@ -290,51 +235,14 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     @OnClick(R.id.image_shop_dashboard)
     void shopDashboardClick()
     {
+
+
+
         if(PrefShopAdminHome.getShop(getActivity())==null)
         {
-            Call<Shop> call = shopService.getShopForShopAdmin(
-                    PrefLogin.getAuthorizationHeaders(getActivity())
-            );
 
-
-
-
-            call.enqueue(new Callback<Shop>() {
-                @Override
-                public void onResponse(Call<Shop> call, Response<Shop> response) {
-
-                    if(response.code()==200)
-                    {
-                        PrefShopAdminHome.saveShop(response.body(),getActivity());
-
-//                        Toast.makeText(ShopAdminHome.this,"Shop ID : "  + String.valueOf(response.body().getShopID()),Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), ShopDashboard.class);
-                        startActivity(intent);
-
-                    }
-                    else if(response.code()==204)
-                    {
-                        Toast.makeText(getActivity(),"You have not created Shop yet",Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                    else if(response.code()==401||response.code()==403)
-                    {
-                        Toast.makeText(getActivity(),"Not Permitted. Your account is not activated !",Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                    else
-                    {
-                        showToastMessage("Failed Code : " + response.code());
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<Shop> call, Throwable t) {
-
-                    showToastMessage("Network Failed !");
-                }
-            });
+            viewModelShop.getShopForShopAdmin(false);
+            requestCodeGetShop = 4130;
         }
         else
         {
@@ -516,53 +424,8 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
     private void refreshShop()
     {
-        Call<Shop> call = shopService.getShopForShopAdmin(
-                PrefLogin.getAuthorizationHeaders(getActivity())
-        );
-
-
-        call.enqueue(new Callback<Shop>() {
-            @Override
-            public void onResponse(Call<Shop> call, Response<Shop> response) {
-
-                if(response.code()==200)
-                {
-                    PrefShopAdminHome.saveShop(response.body(),getActivity());
-
-
-                    bindAllFields();
-                    UtilityFunctions.updateFirebaseSubscriptionsForShop();
-
-                }
-                else if(response.code()==204)
-                {
-
-                    showToastMessage("Unable to Refresh !");
-
-                }
-                else if(response.code()==401||response.code()==403)
-                {
-
-                    Toast.makeText(getActivity(),"Not Permitted !",Toast.LENGTH_SHORT)
-                            .show();
-                }
-
-
-                swipeContainer.setRefreshing(false);
-
-            }
-
-            @Override
-            public void onFailure(Call<Shop> call, Throwable t) {
-
-
-                showToastMessage("Failed to refresh. Check your network connection !");
-
-                swipeContainer.setRefreshing(false);
-
-
-            }
-        });
+        viewModelShop.getShopForShopAdmin(false);
+        requestCodeGetShop = 4125;
     }
 
 
@@ -573,6 +436,8 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     {
         UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials-for-shop-owners/",getActivity());
     }
+
+
 
 
 
@@ -711,6 +576,87 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
                 showToastMessage("Failed : Check you Network Connection !");
                 shopOpenSwitch.setChecked(!shopOpenSwitch.isChecked());
                 progressSwitch.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+
+
+
+
+
+    private ViewModelShop viewModelShop;
+    private int requestCodeGetShop = 0;
+
+
+    private void setupViewModel()
+    {
+
+        viewModelShop = new ViewModelShop(MyApplication.application);
+
+
+        viewModelShop.getShopLive().observe(getViewLifecycleOwner(), new Observer<Shop>() {
+            @Override
+            public void onChanged(Shop shop) {
+
+
+                swipeContainer.setRefreshing(false);
+
+
+                PrefShopAdminHome.saveShop(shop,getActivity());
+
+                if(requestCodeGetShop ==4125)
+                {
+                    bindAllFields();
+                    UtilityFunctions.updateFirebaseSubscriptionsForShop();
+                }
+                else if(requestCodeGetShop==4130)
+                {
+                    Intent intent = new Intent(getActivity(), ShopDashboard.class);
+                    startActivity(intent);
+                }
+                else if(requestCodeGetShop==4150)
+                {
+                    // Open Edit fragment in edit mode
+                    Intent intent = new Intent(getActivity(), EditShop.class);
+                    intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_UPDATE);
+                    startActivity(intent);
+                }
+
+
+            }
+        });
+
+
+
+        viewModelShop.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+
+
+                swipeContainer.setRefreshing(false);
+
+                if(integer==ViewModelShop.EVENT_SHOP_NOT_CREATED)
+                {
+                    if(requestCodeGetShop==4150)
+                    {
+                        Intent intent = new Intent(getActivity(), EditShop.class);
+                        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_ADD);
+                        startActivity(intent);
+                    }
+                }
+
+
+            }
+        });
+
+
+        viewModelShop.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                showToastMessage(s);
+
             }
         });
 

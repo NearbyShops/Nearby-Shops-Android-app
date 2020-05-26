@@ -69,6 +69,17 @@ public class ShopDashboard extends AppCompatActivity {
 
 
 
+
+    @OnClick(R.id.option_add_items)
+    void optionItemsByCategory()
+    {
+        startActivity(new Intent(this, ItemsDatabase.class));
+    }
+
+
+
+
+
     @OnClick(R.id.option_orders)
     void ordersClick()
     {
@@ -116,37 +127,12 @@ public class ShopDashboard extends AppCompatActivity {
 
 
 
-
-
-
     @OnClick(R.id.option_edit_stock)
     void editStockClick(View view)
     {
-//        startActivity(new Intent(this, EditStock.class));
         startActivity(new Intent(this, ItemsInShopByCat.class));
     }
 
-//    @OnClick(R.id.option_billing)
-//    void billingClick(View view)
-//    {
-//        showToastMessage("Feature coming soon !");
-//    }
-
-//    @OnClick(R.id.option_shop_stats)
-//    void optionShopStats()
-//    {
-//        showToastMessage("Feature coming soon !");
-//    }
-
-
-
-
-
-    @OnClick(R.id.option_add_items)
-    void optionItemsByCategory()
-    {
-        startActivity(new Intent(this, ItemsDatabase.class));
-    }
 
 
 

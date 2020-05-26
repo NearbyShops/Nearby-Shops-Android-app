@@ -144,25 +144,25 @@ public class FragmentChangePassword extends Fragment {
 //        boolean isGlobalProfile = getActivity().getIntent().getBooleanExtra(EditProfile.TAG_IS_GLOBAL_PROFILE,false);
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
-        {
-            if(!password.getText().toString().equals(PrefLoginGlobal.getPassword(getContext())))
-            {
-                password.requestFocus();
-                password.setError("Wrong Password !");
-                isValid = false;
-            }
-
-        }
-        else
-        {
-            if(!password.getText().toString().equals(PrefLogin.getPassword(getContext())))
-            {
-                password.requestFocus();
-                password.setError("Wrong Password !");
-                isValid = false;
-            }
-        }
+//        if(PrefGeneral.getMultiMarketMode(getActivity()))
+//        {
+//            if(!password.getText().toString().equals(PrefLoginGlobal.getPassword(getContext())))
+//            {
+//                password.requestFocus();
+//                password.setError("Wrong Password !");
+//                isValid = false;
+//            }
+//
+//        }
+//        else
+//        {
+//            if(!password.getText().toString().equals(PrefLogin.getPassword(getContext())))
+//            {
+//                password.requestFocus();
+//                password.setError("Wrong Password !");
+//                isValid = false;
+//            }
+//        }
 
 
 

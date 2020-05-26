@@ -294,11 +294,7 @@
 
 
 
-
-
-
         <TextView
-            android:visibility="gone"
             android:id="@+id/login_using_password"
             android:layout_marginTop="25dp"
             android:textSize="20sp"

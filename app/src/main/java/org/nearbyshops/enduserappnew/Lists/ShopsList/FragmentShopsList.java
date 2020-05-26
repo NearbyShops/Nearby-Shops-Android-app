@@ -59,6 +59,7 @@ import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PickLocati
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.ShopSuggestionsData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderCreateShop;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
@@ -66,6 +67,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLoc
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -617,6 +619,10 @@ public class FragmentShopsList extends Fragment implements
                                     {
                                         dataset.add(new CreateShopData());
                                     }
+                                    else if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+                                    {
+                                        dataset.add(new ShopSuggestionsData());
+                                    }
                                 }
                                 else
                                 {
@@ -659,6 +665,10 @@ public class FragmentShopsList extends Fragment implements
                                         if(user.getRole()==User.ROLE_END_USER_CODE)
                                         {
                                             dataset.add(2, new CreateShopData());
+                                        }
+                                        else if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+                                        {
+                                            dataset.add(2,new ShopSuggestionsData());
                                         }
                                     }
                                     else
@@ -899,6 +909,11 @@ public class FragmentShopsList extends Fragment implements
         else if (requestCode==57121)
         {
             makeRefreshNetworkCall();
+        }
+        else if(requestCode==890)
+        {
+            Intent intent = new Intent(getActivity(), ShopAdminHome.class);
+            startActivity(intent);
         }
     }
 

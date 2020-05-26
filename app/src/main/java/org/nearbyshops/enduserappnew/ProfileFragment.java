@@ -55,11 +55,10 @@ import retrofit2.Response;
 
 import javax.inject.Inject;
 
-//import org.taxireferral.enduserapp.MapzenSDK.MapzenMap;
-
 /**
  * Created by sumeet on 2/4/17.
  */
+
 
 public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -86,24 +85,17 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @BindView(R.id.dashboard_by_role) LinearLayout dashboardByRole;
 
 
-
-
-
     @Inject
     UserService userService;
 
 
 
     private ViewModelShop viewModelShop;
-
-
     private ProgressDialog progressDialog;
 
 
 
     @BindView(R.id.service_name) TextView serviceName;
-
-
 
 
 
@@ -354,12 +346,25 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             //     open edit shop in edit mode
             Intent intent = new Intent(getActivity(), EditShop.class);
             intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_ADD);
-            startActivity(intent);
+            startActivityForResult(intent,2323);
 
         }
 
     }
 
+
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==2323)
+        {
+            Intent intent = new Intent(getActivity(), ShopAdminHome.class);
+            startActivity(intent);
+        }
+    }
 
 
 
@@ -372,6 +377,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         startActivity(intent);
 
     }
+
 
 
 

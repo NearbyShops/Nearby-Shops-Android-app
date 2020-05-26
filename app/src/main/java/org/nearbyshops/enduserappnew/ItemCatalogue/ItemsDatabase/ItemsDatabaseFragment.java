@@ -234,32 +234,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
         });
 
 
-        final DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-//        layoutManager.setSpanCount(metrics.widthPixels/350);
-
-
-//        int spanCount = (int) (metrics.widthPixels/(150 * metrics.density));
-//
-//        if(spanCount==0){
-//            spanCount = 1;
-//        }
-
-//        layoutManager.setSpanCount(spanCount);
-
-
-        /*final DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        int spanCount = (int) (metrics.widthPixels/(180 * metrics.density));
-
-        if(spanCount==0){
-            spanCount = 1;
-        }
-
-        return (3/spanCount);*/
-
 
         itemCategoriesList.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -742,9 +716,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
     // display shop Item Status
 
-
-
-
     private void makeNetworkCallShopItem()
     {
 
@@ -765,15 +736,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
         if(searchQuery!=null)
         {
-            /*call = shopItemService.getShopItemEndpoint(
-                    null,
-                    currentShopID,
-                    null,null,null,null,null,null,null,null,null,null,null,null,
-                    searchQuery,
-                    null,null,null,
-                    false,false
-            );*/
-
             call = shopItemService.getShopItemsForShop(
                     null,
                     currentShopID,null,
@@ -784,15 +746,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
         }
         else
         {
-
-            /*call = shopItemService.getShopItemEndpoint(
-                    currentCategory.getItemCategoryID(),
-                    currentShopID,
-                    null,null,null,null,null,null,null,null,null,null,null,null,
-                    null,
-                    null,null,null,
-                    false,false
-            );*/
 
 
             call = shopItemService.getShopItemsForShop(
@@ -957,9 +910,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-
-
-
     private void removeSeletedShopItemClick(){
 
 
@@ -1066,11 +1016,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-
-
-
-
-
     @Override
     public void addItem() {
 
@@ -1081,10 +1026,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
         intent.putExtra(EditItemFragmentNew.ITEM_CATEGORY_INTENT_KEY, jsonString);
         startActivity(intent);
     }
-
-
-
-
 
 
 
@@ -1102,16 +1043,8 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-
-
-
-
-
     @Override
     public void removeSelectedFromShop() {
-//        showToastMessage("Remove Selected");
-
-//        removeSeletedShopItemClick();
     }
 
 
@@ -1120,8 +1053,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
     @Override
     public void addSelectedToShop() {
 
-//        showToastMessage("Add Selected !");
-//        addSelectedToShopClick();
     }
 
 

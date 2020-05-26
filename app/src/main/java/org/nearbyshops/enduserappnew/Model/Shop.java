@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.Model;
 
 
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
+import org.nearbyshops.enduserappnew.Model.ModelStats.ShopStats;
 
 import java.sql.Timestamp;
 
@@ -72,11 +73,16 @@ public class Shop{
 	private double extendedCreditLimit;
 
 
+	private ShopStats shopStats;
 
 
+	public ShopStats getShopStats() {
+		return shopStats;
+	}
 
-
-
+	public void setShopStats(ShopStats shopStats) {
+		this.shopStats = shopStats;
+	}
 
 	public Timestamp getTimestampCreated() {
 		return timestampCreated;

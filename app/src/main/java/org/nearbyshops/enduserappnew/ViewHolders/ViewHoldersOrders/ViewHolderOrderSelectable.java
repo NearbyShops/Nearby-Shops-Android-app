@@ -32,8 +32,8 @@ public class ViewHolderOrderSelectable extends ViewHolderOrder {
     private Order order;
     private Fragment fragment;
 
-    @BindView(R.id.list_item)
-    ConstraintLayout listItem;
+    @BindView(R.id.list_item) ConstraintLayout listItem;
+
 
     private RecyclerView.Adapter adapter;
     private Map<Integer,Order> selectedOrders;
@@ -41,7 +41,6 @@ public class ViewHolderOrderSelectable extends ViewHolderOrder {
 
     @BindView(R.id.button_single) TextView buttonSingle;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
-
 
 
 

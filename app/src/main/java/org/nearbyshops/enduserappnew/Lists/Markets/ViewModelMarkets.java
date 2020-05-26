@@ -285,8 +285,8 @@ public class ViewModelMarkets extends AndroidViewModel {
                                 }
                                 else
                                 {
-                                    dataset.add(EmptyScreenDataListItem.getCreateMarketData());
-//                                    dataset.add(EmptyScreenDataListItem.createMarketNoMarketsAvailable());
+//                                    dataset.add(EmptyScreenDataListItem.getCreateMarketData());
+                                    dataset.add(EmptyScreenDataListItem.createMarketNoMarketsAvailable());
                                 }
 
 
@@ -474,10 +474,18 @@ public class ViewModelMarkets extends AndroidViewModel {
 
                     dataset.clear();
 
+
+//                    message.postValue("Markets Size : " + response.body().getResults().size());
+//                    System.out.println("Markets Size : " + response.body().getResults().size());
+
+
+
                     if(response.body().getResults().size()>0)
                     {
                         Market market = response.body().getResults().get(0);
                         fetchLocalConfiguration(market);
+
+
                     }
                     else
                     {
@@ -487,7 +495,7 @@ public class ViewModelMarkets extends AndroidViewModel {
                 }
                 else
                 {
-                    message.setValue("Failed : code : " + response.code());
+                    message.postValue("Failed : code : " + response.code());
 
                 }
 
@@ -503,12 +511,6 @@ public class ViewModelMarkets extends AndroidViewModel {
         });
 
     }
-
-
-
-
-
-
 
 
 

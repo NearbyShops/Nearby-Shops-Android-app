@@ -491,6 +491,9 @@ public class LoginGlobalUsingPasswordFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
                 loginButton.setVisibility(View.VISIBLE);
 
+
+//                showToastMessage("Response Code " + response.code());
+
                 if(response.code()==200)
                 {
                     // save username and password

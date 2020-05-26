@@ -48,6 +48,11 @@ public class QuickStockEditor extends AppCompatActivity implements NotifyTitleCh
         mViewPager.setAdapter(mPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
 
+
+
+        int currentPage = getIntent().getIntExtra("current_page",0);
+        mViewPager.setCurrentItem(currentPage,true);
+
     }
 
 

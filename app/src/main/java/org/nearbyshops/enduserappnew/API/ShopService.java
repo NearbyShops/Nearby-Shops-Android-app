@@ -67,9 +67,12 @@ public interface ShopService {
 
 
 
-    @GET("/api/v1/Shop/GetShopForShopAdmin")
-    Call<Shop> getShopForShopAdmin(@Header("Authorization") String headers);
 
+
+    @GET("/api/v1/Shop/GetShopForShopAdmin")
+    Call<Shop> getShopForShopAdmin(@Header("Authorization") String headers,
+                                   @Query("GetStats")boolean getStats
+    );
 
 
 

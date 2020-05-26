@@ -28,6 +28,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 
@@ -136,6 +137,11 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
 
 
 
+//        BadgeDrawable badgeDrawable  = bottomBar.getOrCreateBadge(1);
+//        badgeDrawable.setNumber(2);
+
+
+
         if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
         {
             bottomBar.getMenu().getItem(0).setVisible(false);
@@ -149,6 +155,11 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         }
 
 
+
+        if(PrefGeneral.getServiceURL(Home.this)==null)
+        {
+            viewModel.getNearestMarket();
+        }
 
 
 
@@ -904,6 +915,8 @@ public class Home extends AppCompatActivity implements ShowFragment, NotifyAbout
         });
 
     }
+
+
 
 
     private void setupLocalBroadcastManager()

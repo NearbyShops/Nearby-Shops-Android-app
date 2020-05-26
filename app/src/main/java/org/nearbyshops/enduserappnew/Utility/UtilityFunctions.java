@@ -101,6 +101,9 @@ public class UtilityFunctions {
 
 
 
+
+
+
         System.out.println("Update FCM Subscription ! ");
 
 
@@ -108,7 +111,8 @@ public class UtilityFunctions {
 
         String topic_name = localConfig.getRt_market_id_for_fcm()  + "end_user_" + user.getUserID();
 
-        FirebaseMessaging.getInstance().subscribeToTopic(topic_name)
+        FirebaseMessaging.getInstance()
+                .subscribeToTopic(topic_name)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -116,21 +120,23 @@ public class UtilityFunctions {
                         System.out.println("Subscribed to : " + topic_name);
 
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+                });
 
-                        System.out.println("Failed : " + e.toString());
+
+
+
+        FirebaseMessaging.getInstance()
+                .subscribeToTopic(topic_name)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        System.out.println("Subscribed to : " + topic_name);
+
                     }
-                })
-        .addOnCanceledListener(new OnCanceledListener() {
-            @Override
-            public void onCanceled() {
-                System.out.println("Cancelled : ");
-            }
-        })
-        ;
+                });
+
+
 
 
 
