@@ -157,12 +157,6 @@ Code Review and Architecture
 
 
 
-
-#### Commercial Use Permitted
-
-Commercial Use of this Software is permited. If you like this project please consider supporting it through donations or any other means. 
-
-
 License
 =======
 
