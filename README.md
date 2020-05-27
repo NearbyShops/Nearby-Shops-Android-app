@@ -166,6 +166,13 @@ Commercial Use of this Software is permited. If you like this project please con
 License
 =======
 
+                      GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
 Copyright (c) 2020 Nearby Shops
 
 The above copyright notice and this permission notice shall be included in all
