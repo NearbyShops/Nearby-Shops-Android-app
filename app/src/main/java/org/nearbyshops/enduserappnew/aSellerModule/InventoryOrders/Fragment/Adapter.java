@@ -70,7 +70,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType == VIEW_TYPE_ORDER_WITH_BUTTON)
         {
-            return ViewHolderOrderButtonSingle.create(parent,parent.getContext(),fragment,false);
+            return ViewHolderOrderButtonSingle.create(parent,parent.getContext(),fragment);
         }
         else if(viewType == VIEW_TYPE_ORDER_SELECTABLE)
         {
@@ -184,17 +184,40 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             Order order = (Order) dataset.get(position);
             ((ViewHolderOrderButtonSingle) holder).setItem(order,getButtonTitle(order));
         }
-        else if(holder instanceof ViewHolderOrder)
-        {
-            ((ViewHolderOrder) holder).setItem((Order) dataset.get(position));
-        }
         else if(holder instanceof ViewHolderOrderSelectable)
         {
             ((ViewHolderOrderSelectable)holder).setItem((Order) dataset.get(position));
         }
         else if(holder instanceof ViewHolderOrderWithDeliveryStaff)
         {
-            ((ViewHolderOrderWithDeliveryStaff)holder).setItem((Order) dataset.get(position));
+            Order order = (Order) dataset.get(position);
+
+            String buttonTitle = "";
+            boolean visiblity = false;
+
+            if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.HANDOVER_REQUESTED)
+            {
+                buttonTitle  = " Cancel / Undo Handover";
+                visiblity = true;
+            }
+            else if(order.getStatusHomeDelivery()== OrderStatusHomeDelivery.OUT_FOR_DELIVERY)
+            {
+                visiblity= false;
+            }
+            else if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.RETURN_REQUESTED)
+            {
+                buttonTitle = " Accept Return ";
+                visiblity = true;
+            }
+            else if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.DELIVERED)
+            {
+                buttonTitle = " Payment Received ";
+                visiblity = true;
+            }
+
+            ((ViewHolderOrderWithDeliveryStaff)holder).setItem((Order) dataset.get(position),buttonTitle,visiblity);
+
+
         }
         else if (holder instanceof LoadingViewHolder) {
 
@@ -203,6 +226,10 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holder instanceof ViewHolderEmptyScreenFullScreen)
         {
             ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderOrder)
+        {
+            ((ViewHolderOrder) holder).setItem((Order) dataset.get(position));
         }
 
     }
@@ -270,6 +297,11 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             {
                 return " Unpack Order ";
             }
+            else if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.HANDOVER_REQUESTED)
+            {
+                return " Cancel Handover ";
+            }
+
         }
 
         return " - - - ";

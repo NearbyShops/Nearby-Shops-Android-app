@@ -119,6 +119,7 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
 
 
 
+
     @OnClick(R.id.list_item_shop)
     void listItemClick()
     {
@@ -287,6 +288,8 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
 
 
 
+
+
     @Override
     public boolean onMenuItemClick(MenuItem item) {
 
@@ -337,6 +340,7 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
                 break;
 
         }
+
 
 
 

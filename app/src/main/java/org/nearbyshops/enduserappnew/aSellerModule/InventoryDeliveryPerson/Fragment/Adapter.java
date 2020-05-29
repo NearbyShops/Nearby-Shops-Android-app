@@ -63,7 +63,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType == VIEW_TYPE_ORDER_WITH_BUTTON)
         {
-            return ViewHolderOrderButtonSingle.create(parent,parent.getContext(),fragment,true);
+            return ViewHolderOrderButtonSingle.create(parent,parent.getContext(),fragment);
         }
         else if(viewType == VIEW_TYPE_ORDER_BUTTON_DOUBLE)
         {
@@ -162,11 +162,11 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             ((ViewHolderOrderButtonSingle) holder).setItem(order,getButtonTitle(order));
         }
-        else if(holder instanceof ViewHolderOrder)
-        {
-            ((ViewHolderOrder) holder).setItem((Order) dataset.get(position));
-        }
         else if(holder instanceof ViewHolderOrderButtonDouble)
+        {
+            ((ViewHolderOrderButtonDouble) holder).setItem((Order) dataset.get(position),"Delivered","Return");
+        }
+        else if(holder instanceof ViewHolderOrder)
         {
             ((ViewHolderOrder) holder).setItem((Order) dataset.get(position));
         }
@@ -178,6 +178,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
+
 
     }
 

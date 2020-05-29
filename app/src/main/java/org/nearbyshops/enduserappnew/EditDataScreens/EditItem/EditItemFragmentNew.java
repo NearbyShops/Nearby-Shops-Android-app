@@ -2,10 +2,14 @@ package org.nearbyshops.enduserappnew.EditDataScreens.EditItem;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +33,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
+import com.aminography.choosephotohelper.ChoosePhotoHelper;
+import com.aminography.choosephotohelper.callback.ChoosePhotoCallback;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.squareup.picasso.Picasso;
@@ -65,6 +73,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -236,11 +245,36 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
         }
 
 
+
+
+        // setup image picker
+        choosePhotoHelper = ChoosePhotoHelper.with(this)
+                .asUri()
+                .build(new ChoosePhotoCallback<Uri>() {
+                    @Override
+                    public void onChoose(Uri photo) {
+
+
+                        Picasso.get()
+                                .load(photo)
+                                .into(resultView);
+
+
+                        imageFilePath = photo.getPath();
+
+
+                        isImageChanged = true;
+                        isImageRemoved = false;
+
+                    }
+                });
+
+
         return rootView;
     }
 
 
-
+    ChoosePhotoHelper choosePhotoHelper;
 
 
 
@@ -868,13 +902,39 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
         clearCache(getContext());
 
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+
+
+
+
+//        ImagePicker.Companion.with(this)
+//                .crop()	    			//Crop image(Optional), Check Customization for more option
+//                .compress(1024)			//Final image size will be less than 1 MB(Optional)
+//                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+//                .start();
+
+
+//        choosePhotoHelper.showChooser();
+
+
+
+        Intent intent = new Intent(getActivity(), ImageSelectActivity.class);
+        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+        startActivityForResult(intent, 1213);
 
     }
 
+
+
+
+    File imagePickedFile;
+    String imageFilePath;
 
 
 
@@ -886,65 +946,118 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
         super.onActivityResult(requestCode, resultCode, result);
 
+        if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
 
+            String filePath = result.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+//            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                && result != null
-                && result.getData() != null) {
+            imageFilePath = filePath;
 
-
-            Uri filePath = result.getData();
-
-            //imageUri = filePath;
-
-            if (filePath != null) {
-
-                startCropActivity(result.getData(),getContext());
-            }
-
-        }
-        else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP)
-        {
-
-            resultView.setImageURI(null);
-            resultView.setImageURI(UCrop.getOutput(result));
 
             isImageChanged = true;
             isImageRemoved = false;
 
-
-        } else if (resultCode == UCrop.RESULT_ERROR) {
-
-            final Throwable cropError = UCrop.getError(result);
+            Picasso.get()
+                    .load(filePath)
+                    .into(resultView);
 
         }
-        else
-        {
 
-            IntentResult resultLocal = IntentIntegrator.parseActivityResult(requestCode, resultCode, result);
-            if(result != null) {
-                if(resultLocal.getContents() == null) {
-                    Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
 
-                } else {
 
-                    Toast.makeText(getActivity(), "Scanned: " + resultLocal.getContents(), Toast.LENGTH_LONG).show();
-                    String resultsText = "Barcode : " + resultLocal.getContents();
-                    resultsText = resultsText + "\nFormat : " + resultLocal.getFormatName();
+//        choosePhotoHelper.onActivityResult(requestCode, resultCode, result);
 
-//                    barcodeResults.setText(resultLocal.getContents());
-//                    barcodeResults.setText(resultLocal.getFormatName());
 
-                    item.setBarcode(resultLocal.getContents());
-                    item.setBarcodeFormat(resultLocal.getFormatName());
+//        if (resultCode == Activity.RESULT_OK) {
+//            //Image Uri will not be null for RESULT_OK
+//
+//            resultView.setImageURI(result.getData());
+//
+//
+//            //You can get File object from intent
+//            imagePickedFile = ImagePicker.Companion.getFile(result);
+//            imageFilePath = ImagePicker.Companion.getFilePath(result);
+//
+//
+//
+//            isImageChanged = true;
+//            isImageRemoved = false;
+//
+//
+//
+//        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+//
+//            showToastMessage(ImagePicker.Companion.getError(result));
+//
+//        }
+//        else {
+//            showToastMessage("Task Cancelled !");
+//        }
 
-                    barcodeResults.setText(resultsText);
 
-                }
-            } else {
-                super.onActivityResult(requestCode, resultCode, result);
-            }
-        }
+
+
+//        else
+//        {
+//
+//            IntentResult resultLocal = IntentIntegrator.parseActivityResult(requestCode, resultCode, result);
+//            if(result != null) {
+//                if(resultLocal.getContents() == null) {
+//                    Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
+//
+//                } else {
+//
+//                    Toast.makeText(getActivity(), "Scanned: " + resultLocal.getContents(), Toast.LENGTH_LONG).show();
+//                    String resultsText = "Barcode : " + resultLocal.getContents();
+//                    resultsText = resultsText + "\nFormat : " + resultLocal.getFormatName();
+//
+////                    barcodeResults.setText(resultLocal.getContents());
+////                    barcodeResults.setText(resultLocal.getFormatName());
+//
+//                    item.setBarcode(resultLocal.getContents());
+//                    item.setBarcodeFormat(resultLocal.getFormatName());
+//
+//                    barcodeResults.setText(resultsText);
+//
+//                }
+//            } else {
+//                super.onActivityResult(requestCode, resultCode, result);
+//            }
+//        }
+
+
+
+//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+//                && result != null
+//                && result.getData() != null) {
+//
+//
+//            Uri filePath = result.getData();
+//
+//            //imageUri = filePath;
+//
+//            if (filePath != null) {
+//
+//                startCropActivity(result.getData(),getContext());
+//            }
+//
+//        }
+//        else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP)
+//        {
+//
+//            resultView.setImageURI(null);
+//            resultView.setImageURI(UCrop.getOutput(result));
+//
+//            isImageChanged = true;
+//            isImageRemoved = false;
+//
+//
+//        } else if (resultCode == UCrop.RESULT_ERROR) {
+//
+//            final Throwable cropError = UCrop.getError(result);
+//
+//        }
+
     }
 
 
@@ -956,10 +1069,12 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
+
+
+
+
     // upload image after being picked up
     private void startCropActivity(Uri sourceUri, Context context) {
-
-
 
         final String SAMPLE_CROPPED_IMAGE_NAME = "SampleCropImage.jpeg";
 
@@ -967,9 +1082,13 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
         UCrop.Options options = new UCrop.Options();
         options.setFreeStyleCropEnabled(true);
+        options.setMaxBitmapSize(800);
 
-//        options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
-//        options.setCompressionQuality(100);
+//        options.setMaxScaleMultiplier(0.05f);
+
+//        options.setCompressionFormat(Bitmap.CompressFormat.WEBP);
+//        options.setCompressionQuality(50);
+
 
         options.setToolbarColor(ContextCompat.getColor(getContext(),R.color.blueGrey800));
         options.setStatusBarColor(ContextCompat.getColor(getContext(),R.color.colorPrimary));
@@ -1004,30 +1123,34 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        switch (requestCode) {
-            case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    showToastMessage("Permission Granted !");
-                    pickShopImage();
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
-                } else {
+        choosePhotoHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
 
-                    showToastMessage("Permission Denied for Read External Storage . ");
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                return;
-            }
 
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
+//        switch (requestCode) {
+//            case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//
+//                    showToastMessage("Permission Granted !");
+//                    pickShopImage();
+//                    // permission was granted, yay! Do the
+//                    // contacts-related task you need to do.
+//
+//                } else {
+//
+//
+//                    showToastMessage("Permission Denied for Read External Storage . ");
+//                    // permission denied, boo! Disable the
+//                    // functionality that depends on this permission.
+//                }
+//                return;
+//            }
+//
+//            // other 'case' lines to check for other
+//            // permissions this app might request
+//        }
 
     }
 
@@ -1061,7 +1184,13 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
         }
 
 
-        File file = new File(getContext().getCacheDir().getPath() + "/" + "SampleCropImage.jpeg");
+        File file;
+
+//        file = new File(getContext().getCacheDir().getPath() + "/" + "SampleCropImage.jpeg");
+
+        file = new File(imageFilePath);
+
+
 
 
         // Marker

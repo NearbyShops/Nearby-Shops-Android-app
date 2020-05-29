@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders;
+package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.Backups;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,21 +11,22 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
+public class ViewHolderOrderButtonDouble28May20 extends ViewHolderOrder {
 
 
     @BindView(R.id.button_left) TextView buttonLeft;
-    @BindView(R.id.progress_left) ProgressBar progressLeft;
+    @BindView(R.id.progress_left) ProgressBar progressBar;
 
     @BindView(R.id.button_right) TextView buttonRight;
     @BindView(R.id.progress_right) ProgressBar progressRight;
@@ -42,13 +43,13 @@ public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
 
 
 
-    public static ViewHolderOrderButtonDouble create(ViewGroup parent, Context context, Fragment fragment)
+    public static ViewHolderOrderButtonDouble28May20 create(ViewGroup parent, Context context, Fragment fragment)
     {
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_order_button_double,parent,false);
 
-        return new ViewHolderOrderButtonDouble(view,context,fragment);
+        return new ViewHolderOrderButtonDouble28May20(view,context,fragment);
     }
 
 
@@ -57,7 +58,7 @@ public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
 
 
 
-    public ViewHolderOrderButtonDouble(View itemView, Context context, Fragment fragment) {
+    public ViewHolderOrderButtonDouble28May20(View itemView, Context context, Fragment fragment) {
         super(itemView,context,fragment);
 
         ButterKnife.bind(this, itemView);
@@ -95,22 +96,33 @@ public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
 
 
 
-    public void setItem (Order order, String buttonLeftName, String buttonRightName)
+    public void setItem (Order order)
     {
         super.setItem(order);
         this.order = order;
+//        orderID.append(" - Append from Buttons");
 
 
-        buttonLeft.setText(buttonLeftName);
-        buttonRight.setText(buttonRightName);
-
-
-        if(order.getDeliveryAddress()!=null)
+        if(!order.isPickFromShop())
         {
-            distance.setText(String.format("%.2f Kms",order.getDeliveryAddress().getRt_distance()));
-        }
-    }
 
+            if(order.getStatusHomeDelivery()== OrderStatusHomeDelivery.OUT_FOR_DELIVERY)
+            {
+                buttonLeft.setText(" Delivered ");
+                buttonRight.setText(" Return ");
+
+
+                if(order.getDeliveryAddress()!=null)
+                {
+                    distance.setText(String.format("%.2f Kms",order.getDeliveryAddress().getRt_distance()));
+                }
+
+            }
+
+        }
+
+
+    }
 
 
 
@@ -124,7 +136,14 @@ public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
     {
         if(fragment instanceof ListItemClick)
         {
-            ((ListItemClick) fragment).buttonLeftClick(order,getAdapterPosition(), buttonLeft, progressLeft);
+
+            if(!order.isPickFromShop())
+            {
+                if(order.getStatusHomeDelivery()== OrderStatusHomeDelivery.OUT_FOR_DELIVERY)
+                {
+                    ((ListItemClick) fragment).deliveredHD(order,getAdapterPosition(), buttonLeft,progressBar);
+                }
+            }
         }
     }
 
@@ -136,7 +155,14 @@ public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
     {
         if(fragment instanceof ListItemClick)
         {
-            ((ListItemClick) fragment).buttonRightClick(order,getAdapterPosition(), buttonRight,progressRight);
+
+            if(!order.isPickFromShop())
+            {
+                if(order.getStatusHomeDelivery()== OrderStatusHomeDelivery.OUT_FOR_DELIVERY)
+                {
+                    ((ListItemClick) fragment).returnOrderHD(order,getAdapterPosition(), buttonRight,progressRight);
+                }
+            }
         }
     }
 
@@ -156,6 +182,7 @@ public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
         if(deliveryAddress!=null)
         {
             getDirections(deliveryAddress.getLatitude(),deliveryAddress.getLongitude());
+
         }
     }
 
@@ -194,8 +221,8 @@ public class ViewHolderOrderButtonDouble extends ViewHolderOrder {
         void notifyOrderSelected(Order order);
         void notifyCancelOrder(Order order, int position);
 
-        void buttonLeftClick(Order order, int position, TextView button, ProgressBar progressBar);
-        void buttonRightClick(Order order, int position, TextView button, ProgressBar progressBar);
+        void deliveredHD(Order order, int position, TextView button, ProgressBar progressBar);
+        void returnOrderHD(Order order, int position, TextView button, ProgressBar progressBar);
 
     }
 

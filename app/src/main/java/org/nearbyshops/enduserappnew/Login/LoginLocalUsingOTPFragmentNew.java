@@ -108,7 +108,14 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
     private void setupCountryCodePicker()
     {
 
-        ccp.setCcpClickable(true);
+        if(getResources().getBoolean(R.bool.restrict_phone_login_country))
+        {
+            ccp.setCcpClickable(false);
+        }
+        else
+        {
+            ccp.setCcpClickable(true);
+        }
 
         Market serviceConfig = PrefServiceConfig.getServiceConfigLocal(getActivity());
 

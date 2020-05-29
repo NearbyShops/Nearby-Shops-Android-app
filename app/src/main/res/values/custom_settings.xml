@@ -7,17 +7,27 @@
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://192.168.43.233:5121</string>
+    <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
     <bool name="multi_market_enabled">false</bool>
+
 
 
     <!-- If multi-market mode is disabled then simply ignore this URL. It tells you url to SDS server which enables multi-market mode. -->
     <string name="sds_url">@string/service_url_sds_local_hotspot</string>
 
 
+
     <!-- App name that you see on your front screen ( shops list screen ) -->
     <string name="app_name">Nearby Shops</string>
     <drawable name="custom_icon">@mipmap/blue_icon</drawable>
+
+
+
+
+    <!-- Set your custom app colors here -->
+    <color name="color_primary_custom">@color/mapboxBlue</color>
+    <color name="color_primary_dark_custom">@color/buttonColorDark</color>
+    <color name="color_accent_custom">@color/gplus_color_2</color>
 
 
 
@@ -52,6 +62,13 @@
 
     <!-- You may want to disable items screen in the multi-vendor app. You can do it with this setting !-->
     <bool name="show_items_screen_in_multi_vendor">true</bool>
+
+
+
+    <!-- When enabled login through SMS-OTP will be available only on national phone numbers of the default country set by the market admin  !-->
+    <bool name="restrict_phone_login_country">true</bool>
+
+
 
 
     <!--Enable or Disable Phone or Email for login based on your Preferences -->

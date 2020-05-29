@@ -15,7 +15,6 @@ import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
@@ -100,30 +99,21 @@ public class ViewHolderOrderWithDeliveryStaff extends ViewHolderOrder {
 
 
 
-    public void setItem (Order order)
+    public void setItem (Order order, String buttonTitle,boolean buttonVisible)
     {
         super.setItem(order);
         this.order = order;
 
 
-        if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.HANDOVER_REQUESTED)
+        buttonSingle.setText(buttonTitle);
+
+        if(buttonVisible)
         {
-            buttonSingle.setText(" Cancel / Undo Handover");
             buttonSingle.setVisibility(View.VISIBLE);
         }
-        else if(order.getStatusHomeDelivery()== OrderStatusHomeDelivery.OUT_FOR_DELIVERY)
+        else
         {
             buttonSingle.setVisibility(View.GONE);
-        }
-        else if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.RETURN_REQUESTED)
-        {
-            buttonSingle.setText(" Accept Return ");
-            buttonSingle.setVisibility(View.VISIBLE);
-        }
-        else if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.DELIVERED)
-        {
-            buttonSingle.setText(" Payment Received ");
-            buttonSingle.setVisibility(View.VISIBLE);
         }
 
 
@@ -153,46 +143,25 @@ public class ViewHolderOrderWithDeliveryStaff extends ViewHolderOrder {
 
 
 
-
-
-
     @OnClick(R.id.button_single)
     void buttonClick()
     {
         if(fragment instanceof ListItemClick)
         {
-            if(order.getStatusHomeDelivery()== OrderStatusHomeDelivery.HANDOVER_REQUESTED)
-            {
-                ((ListItemClick) fragment).cancelHandoverHD(order,getAdapterPosition(),buttonSingle,progressBar);
-            }
-            else if(order.getStatusHomeDelivery()== OrderStatusHomeDelivery.RETURN_REQUESTED)
-            {
-                ((ListItemClick) fragment).acceptReturnHD(order,getAdapterPosition(),buttonSingle,progressBar);
-            }
-            else if(order.getStatusHomeDelivery()== OrderStatusHomeDelivery.DELIVERED)
-            {
-                ((ListItemClick) fragment).paymentReceivedHD(order,getAdapterPosition(),buttonSingle,progressBar);
-            }
+            ((ListItemClick) fragment).buttonClickedWithStaff(order,getAdapterPosition(),buttonSingle,progressBar);
         }
-
     }
+
 
 
 
 
     public interface ListItemClick {
 
-
         void notifyOrderSelected(Order order);
         void notifyCancelOrder(Order order, int position);
-
-        void cancelHandoverHD(Order order, int position, TextView button, ProgressBar progressBar);
-        void acceptReturnHD(Order order, int position, TextView button, ProgressBar progressBar);
-        void paymentReceivedHD(Order order, int position, TextView button, ProgressBar progressBar);
+        void buttonClickedWithStaff(Order order, int position, TextView button, ProgressBar progressBar);
     }
-
-
-
 
 
 }

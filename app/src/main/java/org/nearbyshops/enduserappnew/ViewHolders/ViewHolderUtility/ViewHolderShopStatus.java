@@ -32,6 +32,8 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.ShopSu
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopStaff.ShopDashboardForStaff;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.HomeDeliveryInventory.HomeDelivery;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.PickFromShopInventory.PickFromShopInventory;
 import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.QuickStockEditor;
 
 import butterknife.BindView;
@@ -47,7 +49,8 @@ public class ViewHolderShopStatus extends RecyclerView.ViewHolder{
     @BindView(R.id.items_in_shop) TextView itemsInSHop;
     @BindView(R.id.set_prices) TextView setPrices;
     @BindView(R.id.add_stock) TextView addStock;
-    @BindView(R.id.confirm_orders) TextView confirmOrders;
+    @BindView(R.id.confirm_orders) TextView confirmOrdersDelivery;
+    @BindView(R.id.confirm_orders_pfs) TextView confirmOrdersPFS;
 
 
     Shop shop;
@@ -147,13 +150,24 @@ public class ViewHolderShopStatus extends RecyclerView.ViewHolder{
 
 
 
-        if((shopStats.getOrdersNotConfirmedHD()+shopStats.getOrdersNotConfirmedPFS() )>0)
+        if(shopStats.getOrdersNotConfirmedHD()>0)
         {
-            confirmOrders.setVisibility(View.VISIBLE);
+            confirmOrdersDelivery.setVisibility(View.VISIBLE);
         }
         else
         {
-            confirmOrders.setVisibility(View.GONE);
+            confirmOrdersDelivery.setVisibility(View.GONE);
+        }
+
+
+
+        if(shopStats.getOrdersNotConfirmedPFS()>0)
+        {
+            confirmOrdersPFS.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            confirmOrdersPFS.setVisibility(View.GONE);
         }
 
 
@@ -165,13 +179,19 @@ public class ViewHolderShopStatus extends RecyclerView.ViewHolder{
     @OnClick(R.id.confirm_orders)
     void confirmOrdersClick()
     {
-        if(PrefShopAdminHome.getShop(context)!=null)
-        {
-            Intent intent = new Intent(context, ShopDashboard.class);
-            context.startActivity(intent);
-        }
+        Intent intent = new Intent(context, HomeDelivery.class);
+        context.startActivity(intent);
     }
 
+
+
+    @OnClick(R.id.confirm_orders_pfs)
+    void confirmOrdersPFSClick()
+    {
+
+        Intent intent = new Intent(context, PickFromShopInventory.class);
+        context.startActivity(intent);
+    }
 
 
 

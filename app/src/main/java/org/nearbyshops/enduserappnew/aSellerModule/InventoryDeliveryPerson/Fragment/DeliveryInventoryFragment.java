@@ -35,6 +35,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChangedNew;
 import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.Backups.ViewHolderOrderButtonSingle28May20;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderButtonDouble;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderButtonSingle;
@@ -463,8 +464,24 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
     }
 
+
+
+
+
+
     @Override
     public void buttonClicked(Order order, int position, TextView button, ProgressBar progressBar) {
+
+
+        if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.HANDOVER_REQUESTED)
+        {
+            acceptHandover(order,position,button,progressBar);
+
+        }
+        else if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.ORDER_PACKED)
+        {
+            pickupOrder(order,position,button,progressBar);
+        }
 
     }
 
@@ -477,21 +494,11 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
 
 
-    @Override
-    public void confirmOrderHD(Order order, int position, TextView button, ProgressBar progressBar) {
-
-    }
-
-    @Override
-    public void setOrderPackedHD(Order order, int position, TextView button, ProgressBar progressBar) {
-
-    }
 
 
 
 
 
-    @Override
     public void acceptHandover(Order order, int position, TextView button, ProgressBar progressBar) {
 
         button.setVisibility(View.INVISIBLE);
@@ -574,8 +581,6 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
 
 
-
-    @Override
     public void pickupOrder(Order order, int position, TextView button, ProgressBar progressBar) {
 
 
@@ -662,7 +667,7 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
 
     @Override
-    public void deliveredHD(Order order, int position, TextView button, ProgressBar progressBar) {
+    public void buttonLeftClick(Order order, int position, TextView button, ProgressBar progressBar) {
 
         button.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
@@ -747,7 +752,7 @@ public class DeliveryInventoryFragment extends Fragment implements SwipeRefreshL
 
 
     @Override
-    public void returnOrderHD(Order order, int position, TextView button, ProgressBar progressBar) {
+    public void buttonRightClick(Order order, int position, TextView button, ProgressBar progressBar) {
 
         button.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);

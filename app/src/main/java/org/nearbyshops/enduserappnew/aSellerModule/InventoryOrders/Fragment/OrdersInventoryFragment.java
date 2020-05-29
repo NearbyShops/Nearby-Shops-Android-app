@@ -514,34 +514,75 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
 
 
 
-
-
     @Override
     public void buttonClicked(Order order, int position, TextView button, ProgressBar progressBar) {
 
+        if(order.isPickFromShop())
+        {
+            if(order.getStatusPickFromShop()== OrderStatusPickFromShop.ORDER_PLACED)
+            {
+                confirmOrderPFS(order,position,button,progressBar);
 
-                if(order.getStatusPickFromShop()== OrderStatusPickFromShop.ORDER_PLACED)
-                {
-                    confirmOrderPFS(order,position,button,progressBar);
+            }
+            else if(order.getStatusPickFromShop()==OrderStatusPickFromShop.ORDER_CONFIRMED)
+            {
+                setOrderPackedPFS(order,position,button,progressBar);
+            }
+            else if(order.getStatusPickFromShop()==OrderStatusPickFromShop.ORDER_PACKED)
+            {
 
-                }
-                else if(order.getStatusPickFromShop()==OrderStatusPickFromShop.ORDER_CONFIRMED)
-                {
-                    setOrderPackedPFS(order,position,button,progressBar);
-                }
-                else if(order.getStatusPickFromShop()==OrderStatusPickFromShop.ORDER_PACKED)
-                {
+                readyForPickupPFS(order,position,button,progressBar);
 
-                    readyForPickupPFS(order,position,button,progressBar);
+            }
+            else if(order.getStatusPickFromShop()==OrderStatusPickFromShop.ORDER_READY_FOR_PICKUP)
+            {
+                paymentReceivedPFS(order,position,button,progressBar);
+            }
 
-                }
-                else if(order.getStatusPickFromShop()==OrderStatusPickFromShop.ORDER_READY_FOR_PICKUP)
-                {
-                    paymentReceivedPFS(order,position,button,progressBar);
-                }
+        } else {
 
+
+            if(order.getStatusHomeDelivery()== OrderStatusHomeDelivery.ORDER_PLACED)
+            {
+                confirmOrderHD(order,position,button,progressBar);
+            }
+            else if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.ORDER_CONFIRMED)
+            {
+                setOrderPackedHD(order,position,button,progressBar);
+            }
+        }
 
     }
+
+
+
+
+
+
+
+
+    @Override
+    public void buttonClickedWithStaff(Order order, int position, TextView button, ProgressBar progressBar) {
+
+
+        if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.HANDOVER_REQUESTED)
+        {
+            cancelHandoverHD(order,position,button,progressBar);
+        }
+        else if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.RETURN_REQUESTED)
+        {
+            acceptReturnHD(order,position,button,progressBar);
+        }
+        else if(order.getStatusHomeDelivery()==OrderStatusHomeDelivery.DELIVERED)
+        {
+            paymentReceivedHD(order,position,button,progressBar);
+        }
+
+    }
+
+
+
+
 
 
     @Override
@@ -894,7 +935,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
     }
 
 
-    @Override
+
     public void confirmOrderHD(Order order, int position, TextView button, ProgressBar progressBar) {
 
         button.setVisibility(View.INVISIBLE);
@@ -977,7 +1018,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
     }
 
 
-    @Override
+
     public void setOrderPackedHD(Order order, int position, TextView button, ProgressBar progressBar) {
 
 
@@ -1061,18 +1102,6 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
 
 
 
-    @Override
-    public void acceptHandover(Order order, int position, TextView button, ProgressBar progressBar) {
-
-    }
-
-    @Override
-    public void pickupOrder(Order order, int position, TextView button, ProgressBar progressBar) {
-
-    }
-
-
-    @Override
     public void cancelHandoverHD(Order order, int position, TextView button, ProgressBar progressBar) {
 
         button.setVisibility(View.INVISIBLE);
@@ -1154,7 +1183,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
     }
 
 
-    @Override
+
     public void acceptReturnHD(Order order, int position, TextView button, ProgressBar progressBar) {
 
         button.setVisibility(View.INVISIBLE);
@@ -1320,7 +1349,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
     }
 
 
-    @Override
+
     public void paymentReceivedHD(Order order, int position, TextView button, ProgressBar progressBar) {
 
         button.setVisibility(View.INVISIBLE);

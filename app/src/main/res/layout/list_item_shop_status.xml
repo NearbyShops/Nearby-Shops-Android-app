@@ -92,6 +92,7 @@
 
 
 
+
             <TextView
                 android:visibility="gone"
                 android:gravity="center"
@@ -99,7 +100,7 @@
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:background="@drawable/white_circle_drawable"
-                android:text="Confirm Orders"
+                android:text="Confirm Delivery"
                 android:id="@+id/confirm_orders"
                 android:textSize="15sp"
                 android:textColor="@color/white"
@@ -108,7 +109,28 @@
 
 
 
-        </LinearLayout>
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:background="@drawable/white_circle_drawable"
+                    android:text="Confirm Pickup"
+                    android:id="@+id/confirm_orders_pfs"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp" />
+
+
+
+
+
+
+            </LinearLayout>
 
 
         </HorizontalScrollView>

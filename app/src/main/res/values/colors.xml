@@ -2,34 +2,9 @@
 <resources>
 
 
-        <color name="colorPrimary">@color/mapboxBlue</color>
-        <color name="colorPrimaryDark">@color/buttonColorDark</color>
-        <color name="colorAccent">@color/gplus_color_2</color>
-
-
-
-<!--    <color name="colorPrimary">#1e8cab</color>-->
-
-
-
-    <!--    <color name="colorPrimary">#607D8B</color>-->
-<!--    <color name="colorPrimaryDark">#455A64</color>-->
-<!--    <color name="colorAccent">#FF9800</color>-->
-
-
-
-    <!--    <color name="colorPrimary">#FF9800</color>-->
-<!--    <color name="colorPrimaryDark">#455A64</color>-->
-<!--    <color name="colorAccent">#FF9800</color>-->
-
-
-
-
-
-    <!--<color name="colorPrimary">#008577</color>-->
-    <!--<color name="colorPrimaryDark">#00574B</color>-->
-    <!--<color name="colorAccent">#D81B60</color>-->
-
+        <color name="colorPrimary">@color/color_primary_custom</color>
+        <color name="colorPrimaryDark">@color/color_primary_dark_custom</color>
+        <color name="colorAccent">@color/color_accent_custom</color>
 
 
 
