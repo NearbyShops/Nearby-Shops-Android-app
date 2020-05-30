@@ -2,6 +2,7 @@ package org.nearbyshops.enduserappnew.EditDataScreens.EditMarket;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -27,14 +28,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.UCropActivity;
 
 
 import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
@@ -985,14 +984,19 @@ public class EditMarketFragment extends Fragment {
 
 
 
-        clearCache(getContext());
 
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-
+        ImagePicker.Companion.with(this)
+                .crop()	    			//Crop image(Optional), Check Customization for more option
+                .compress(2024)			//Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1500, 1500)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
     }
+
+
+
+    File imagePickedFile;
+    String imageFilePath;
+
 
 
 
@@ -1015,76 +1019,39 @@ public class EditMarketFragment extends Fragment {
             latitude.setText(String.valueOf(result.getDoubleExtra("lat_dest",0.0)));
             longitude.setText(String.valueOf(result.getDoubleExtra("lon_dest",0.0)));
             serviceCoverage.setText(String.valueOf(result.getDoubleExtra("radius",0.0)));
-        }
-        else if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                && result != null
-                && result.getData() != null) {
 
-
-            Uri filePath = result.getData();
-
-            //imageUri = filePath;
-
-            if (filePath != null) {
-
-                startCropActivity(result.getData(),getContext());
-            }
 
         }
-        else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+        else if (resultCode == Activity.RESULT_OK) {
+            //Image Uri will not be null for RESULT_OK
 
-            resultView.setImageURI(null);
-            resultView.setImageURI(UCrop.getOutput(result));
+            resultView.setImageURI(result.getData());
+
+
+            //You can get File object from intent
+            imagePickedFile = ImagePicker.Companion.getFile(result);
+            imageFilePath = ImagePicker.Companion.getFilePath(result);
+
+
 
             isImageChanged = true;
             isImageRemoved = false;
 
 
+
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+
+            showToastMessage(ImagePicker.Companion.getError(result));
+
         }
-        else if (resultCode == UCrop.RESULT_ERROR) {
-
-            final Throwable cropError = UCrop.getError(result);
-
+        else {
+            showToastMessage("Task Cancelled !");
         }
 
 
 
     }
 
-
-
-
-
-    // upload image after being picked up
-    private void startCropActivity(Uri sourceUri, Context context) {
-
-
-
-        final String SAMPLE_CROPPED_IMAGE_NAME = "SampleCropImage.jpeg";
-
-        Uri destinationUri = Uri.fromFile(new File(getContext().getCacheDir(), SAMPLE_CROPPED_IMAGE_NAME));
-
-        UCrop.Options options = new UCrop.Options();
-        options.setFreeStyleCropEnabled(true);
-
-//        options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
-//        options.setCompressionQuality(100);
-
-        options.setToolbarColor(ContextCompat.getColor(getContext(),R.color.blueGrey800));
-        options.setStatusBarColor(ContextCompat.getColor(getContext(),R.color.colorPrimary));
-        options.setAllowedGestures(UCropActivity.ALL, UCropActivity.ALL, UCropActivity.ALL);
-
-
-        // this function takes the file from the source URI and saves in into the destination URI location.
-        UCrop.of(sourceUri, destinationUri)
-                .withOptions(options)
-                .withMaxResultSize(1200, 1200)
-                .start(context,this);
-
-        //.withMaxResultSize(400,300)
-        //.withMaxResultSize(500, 400)
-        //.withAspectRatio(16, 9)
-    }
 
 
 
@@ -1164,7 +1131,11 @@ public class EditMarketFragment extends Fragment {
         }
 
 
-        File file = new File(getContext().getCacheDir().getPath() + "/" + "SampleCropImage.jpeg");
+//        File file = new File(getContext().getCacheDir().getPath() + "/" + "SampleCropImage.jpeg");
+
+
+        File file;
+        file = new File(imageFilePath);
 
 
         // Marker

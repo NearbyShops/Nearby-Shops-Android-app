@@ -81,10 +81,11 @@ dependencies {
 
 
 
-    implementation 'com.github.yalantis:ucrop:2.2.5'
     implementation 'com.github.dhaval2404:imagepicker:1.7.1'
-    implementation 'com.aminography:choosephotohelper:1.1.0'
-    implementation 'com.github.maayyaannkk:ImagePicker:1.0.4'
+//    implementation 'com.github.yalantis:ucrop:2.2.5'
+//    implementation 'com.aminography:choosephotohelper:1.1.0'
+//    implementation 'com.github.maayyaannkk:ImagePicker:1.0.4'
+
 
     implementation 'com.wunderlist:sliding-layer:1.2.5'
     implementation 'com.squareup.picasso:picasso:2.71828'

@@ -7,9 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,27 +24,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
-import com.aminography.choosephotohelper.ChoosePhotoHelper;
-import com.aminography.choosephotohelper.callback.ChoosePhotoCallback;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 import com.squareup.picasso.Picasso;
-import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.UCropActivity;
 
 import org.nearbyshops.enduserappnew.API.ItemImageService;
 import org.nearbyshops.enduserappnew.API.ItemService;
 import org.nearbyshops.enduserappnew.API.ItemSpecNameService;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemImage.EditItemImage;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditItemImage.EditItemImageFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditItemImage.PrefItemImage;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.Item;
@@ -58,7 +49,6 @@ import org.nearbyshops.enduserappnew.Model.ModelItemSpecs.ItemSpecificationName;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditItemImage.EditItemImageFragment;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
@@ -73,15 +63,12 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class EditItemFragmentNew extends Fragment implements AdapterItemImages.notificationsFromAdapter, AdapterItemSpecifications.NotifyItemSpecs {
@@ -247,34 +234,10 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-        // setup image picker
-        choosePhotoHelper = ChoosePhotoHelper.with(this)
-                .asUri()
-                .build(new ChoosePhotoCallback<Uri>() {
-                    @Override
-                    public void onChoose(Uri photo) {
-
-
-                        Picasso.get()
-                                .load(photo)
-                                .into(resultView);
-
-
-                        imageFilePath = photo.getPath();
-
-
-                        isImageChanged = true;
-                        isImageRemoved = false;
-
-                    }
-                });
-
 
         return rootView;
     }
 
-
-    ChoosePhotoHelper choosePhotoHelper;
 
 
 
@@ -873,7 +836,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
     @OnClick({R.id.textChangePicture,R.id.uploadImage})
-    void pickShopImage() {
+    void pickImage() {
 
 //        ImageCropUtility.showFileChooser(()getActivity());
 
@@ -911,22 +874,20 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-//        ImagePicker.Companion.with(this)
-//                .crop()	    			//Crop image(Optional), Check Customization for more option
-//                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-//                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-//                .start();
-
-
-//        choosePhotoHelper.showChooser();
+        ImagePicker.Companion.with(this)
+                .crop()	    			//Crop image(Optional), Check Customization for more option
+                .compress(2024)			//Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1500, 1500)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
 
 
 
-        Intent intent = new Intent(getActivity(), ImageSelectActivity.class);
-        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
-        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
-        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
-        startActivityForResult(intent, 1213);
+
+//        Intent intent = new Intent(getActivity(), ImageSelectActivity.class);
+//        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
+//        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+//        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+//        startActivityForResult(intent, 1213);
 
     }
 
@@ -946,53 +907,53 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
         super.onActivityResult(requestCode, resultCode, result);
 
-        if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
-
-            String filePath = result.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
-//            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
-
-            imageFilePath = filePath;
-
-
-            isImageChanged = true;
-            isImageRemoved = false;
-
-            Picasso.get()
-                    .load(filePath)
-                    .into(resultView);
-
-        }
+//        if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
+//
+//            String filePath = result.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+////            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+//
+//            imageFilePath = filePath;
+//
+//
+//            isImageChanged = true;
+//            isImageRemoved = false;
+//
+//            Picasso.get()
+//                    .load(filePath)
+//                    .into(resultView);
+//
+//        }
 
 
 
 //        choosePhotoHelper.onActivityResult(requestCode, resultCode, result);
 
 
-//        if (resultCode == Activity.RESULT_OK) {
-//            //Image Uri will not be null for RESULT_OK
-//
-//            resultView.setImageURI(result.getData());
-//
-//
-//            //You can get File object from intent
-//            imagePickedFile = ImagePicker.Companion.getFile(result);
-//            imageFilePath = ImagePicker.Companion.getFilePath(result);
-//
-//
-//
-//            isImageChanged = true;
-//            isImageRemoved = false;
-//
-//
-//
-//        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-//
-//            showToastMessage(ImagePicker.Companion.getError(result));
-//
-//        }
-//        else {
-//            showToastMessage("Task Cancelled !");
-//        }
+        if (resultCode == Activity.RESULT_OK) {
+            //Image Uri will not be null for RESULT_OK
+
+            resultView.setImageURI(result.getData());
+
+
+            //You can get File object from intent
+            imagePickedFile = ImagePicker.Companion.getFile(result);
+            imageFilePath = ImagePicker.Companion.getFilePath(result);
+
+
+
+            isImageChanged = true;
+            isImageRemoved = false;
+
+
+
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+
+            showToastMessage(ImagePicker.Companion.getError(result));
+
+        }
+        else {
+            showToastMessage("Task Cancelled !");
+        }
 
 
 
@@ -1073,44 +1034,6 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-    // upload image after being picked up
-    private void startCropActivity(Uri sourceUri, Context context) {
-
-        final String SAMPLE_CROPPED_IMAGE_NAME = "SampleCropImage.jpeg";
-
-        Uri destinationUri = Uri.fromFile(new File(getContext().getCacheDir(), SAMPLE_CROPPED_IMAGE_NAME));
-
-        UCrop.Options options = new UCrop.Options();
-        options.setFreeStyleCropEnabled(true);
-        options.setMaxBitmapSize(800);
-
-//        options.setMaxScaleMultiplier(0.05f);
-
-//        options.setCompressionFormat(Bitmap.CompressFormat.WEBP);
-//        options.setCompressionQuality(50);
-
-
-        options.setToolbarColor(ContextCompat.getColor(getContext(),R.color.blueGrey800));
-        options.setStatusBarColor(ContextCompat.getColor(getContext(),R.color.colorPrimary));
-        options.setAllowedGestures(UCropActivity.ALL, UCropActivity.ALL, UCropActivity.ALL);
-
-
-        // this function takes the file from the source URI and saves in into the destination URI location.
-        UCrop.of(sourceUri, destinationUri)
-                .withOptions(options)
-                .withMaxResultSize(1500,1500)
-                .start(context,this);
-
-
-        //.withMaxResultSize(400,300)
-        //.withMaxResultSize(500, 400)
-        //.withAspectRatio(16, 9)
-    }
-
-
-
-
-
 
 
     /*
@@ -1123,34 +1046,34 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        choosePhotoHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        choosePhotoHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
 
 
-//        switch (requestCode) {
-//            case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
-//                // If request is cancelled, the result arrays are empty.
-//                if (grantResults.length > 0
-//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//
-//                    showToastMessage("Permission Granted !");
-//                    pickShopImage();
-//                    // permission was granted, yay! Do the
-//                    // contacts-related task you need to do.
-//
-//                } else {
-//
-//
-//                    showToastMessage("Permission Denied for Read External Storage . ");
-//                    // permission denied, boo! Disable the
-//                    // functionality that depends on this permission.
-//                }
-//                return;
-//            }
-//
-//            // other 'case' lines to check for other
-//            // permissions this app might request
-//        }
+        switch (requestCode) {
+            case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    showToastMessage("Permission Granted !");
+                    pickImage();
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+
+
+                    showToastMessage("Permission Denied for Read External Storage . ");
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
 
     }
 
@@ -1184,10 +1107,10 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
         }
 
 
-        File file;
 
 //        file = new File(getContext().getCacheDir().getPath() + "/" + "SampleCropImage.jpeg");
 
+        File file;
         file = new File(imageFilePath);
 
 
@@ -1298,8 +1221,6 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-
-
     private void deleteImage(String filename)
     {
         Call<ResponseBody> call = itemService.deleteImage(
@@ -1335,6 +1256,9 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
+
+
+
     @Override
     public void addItemImage() {
 
@@ -1350,13 +1274,14 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     public void editItemImage(ItemImage itemImage, int position) {
 
         Intent intent = new Intent(getActivity(), EditItemImage.class);
-
         intent.putExtra(EditItemImageFragment.EDIT_MODE_INTENT_KEY,EditItemImageFragment.MODE_UPDATE);
         intent.putExtra(EditItemImageFragment.ITEM_ID_INTENT_KEY,item.getItemID());
         PrefItemImage.saveItemImage(itemImage,getActivity());
-
         startActivity(intent);
     }
+
+
+
 
 
     @OnClick(R.id.sync_refresh)
