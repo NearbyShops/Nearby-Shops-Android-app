@@ -20,6 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.nearbyshops.enduserappnew.API.OrderService;
 import org.nearbyshops.enduserappnew.API.OrderServiceShopStaff;
+import org.nearbyshops.enduserappnew.Interfaces.RefreshAdjacentFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderEndPoint;
@@ -45,6 +46,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrd
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderSelectable;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderWithDeliveryStaff;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.PickFromShopInventory.PickFromShopInventory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -446,24 +448,19 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
 
 
 
-    // Refresh the Confirmed PlaceholderFragment
-
-    private static String makeFragmentName(int viewId, int index) {
-        return "android:switcher:" + viewId + ":" + index;
-    }
 
 
-
-    private void refreshConfirmedFragment()
+    private void refreshNeighboringFragment()
     {
-        Fragment fragment = getActivity().getSupportFragmentManager()
-                .findFragmentByTag(makeFragmentName(R.id.container,2));
-//
-//        if(fragment instanceof RefreshFragment)
-//        {
-//            ((RefreshFragment)fragment).refreshFragment();
-//        }
+
+        if(getActivity() instanceof RefreshAdjacentFragment)
+        {
+            ((RefreshAdjacentFragment) getActivity()).refreshAdjacentFragment();
+        }
     }
+
+
+
 
 
 
@@ -636,7 +633,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Successful !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);
@@ -718,7 +715,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Successful !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);
@@ -802,7 +799,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Successful !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);
@@ -886,7 +883,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Successful !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);
@@ -964,7 +961,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Confirmed !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);
@@ -1048,7 +1045,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Packed !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);
@@ -1131,7 +1128,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Handover reversed !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);
@@ -1213,7 +1210,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Return Accepted !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);
@@ -1297,7 +1294,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Order Deleted !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);
@@ -1379,7 +1376,7 @@ public class OrdersInventoryFragment extends Fragment implements SwipeRefreshLay
                 {
                     showToastMessage("Done !");
 
-                    refreshConfirmedFragment();
+                    refreshNeighboringFragment();
                     dataset.remove(order);
                     item_count = item_count - 1;
                     adapter.notifyItemRemoved(position);

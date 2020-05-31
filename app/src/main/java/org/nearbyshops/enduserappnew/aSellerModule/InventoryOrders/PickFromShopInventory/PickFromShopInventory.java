@@ -20,6 +20,8 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChangedNew;
+import org.nearbyshops.enduserappnew.Interfaces.RefreshAdjacentFragment;
+import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
 import org.nearbyshops.enduserappnew.R;
 
@@ -27,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PickFromShopInventory extends AppCompatActivity implements NotifyTitleChangedNew, NotifySort {
+public class PickFromShopInventory extends AppCompatActivity implements NotifyTitleChangedNew, NotifySort, RefreshAdjacentFragment {
 
 
     private PagerAdapter mPagerAdapter;
@@ -248,6 +250,25 @@ public class PickFromShopInventory extends AppCompatActivity implements NotifyTi
         }
     }
 
+
+
+
+    @Override
+    public void refreshAdjacentFragment()
+    {
+
+        Fragment fragment = getSupportFragmentManager()
+                .findFragmentByTag(
+                        makeFragmentName(mViewPager.getId(),mViewPager.getCurrentItem()+1)
+                );
+
+
+        if(fragment instanceof RefreshFragment)
+        {
+            ((RefreshFragment) fragment).refreshFragment();
+        }
+
+    }
 
 
 

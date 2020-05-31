@@ -18,7 +18,7 @@
 
 
     <!-- App name that you see on your front screen ( shops list screen ) -->
-    <string name="app_name">Nearby Shops</string>
+    <string name="app_name">Farmers Market</string>
     <drawable name="custom_icon">@mipmap/blue_icon</drawable>
 
 
@@ -28,6 +28,7 @@
     <color name="color_primary_custom">@color/mapboxBlue</color>
     <color name="color_primary_dark_custom">@color/buttonColorDark</color>
     <color name="color_accent_custom">@color/gplus_color_2</color>
+
 
 
 
