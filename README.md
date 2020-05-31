@@ -160,14 +160,9 @@ Code Review and Architecture
 License
 =======
 
-                      GNU GENERAL PUBLIC LICENSE
-                       Version 3, 29 June 2007
+Copyright (c) 2020 Nearby Shops Commercial License 
 
- Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
-
-Copyright (c) 2020 Nearby Shops
+Commercial or Non-Commercial Use of the Source Code must require our Permission. 
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
