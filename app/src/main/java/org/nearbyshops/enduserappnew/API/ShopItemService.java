@@ -125,14 +125,15 @@ public interface ShopItemService {
 
 
 
+
     // bulk update methods
 
 
-    @POST("/api/v1/ShopItem/CreateBulk")
+    @POST("/api/v1/ShopItem/CreateBulkItem")
     Call<ResponseBody> createShopItemBulk(@Header("Authorization") String headers,
                                           @Body List<ShopItem> itemList);
 
-    @POST("/api/v1/ShopItem/DeleteBulk")
+    @POST("/api/v1/ShopItem/DeleteBulkItem")
     Call<ResponseBody> deleteShopItemBulk(@Header("Authorization") String headers,
                                           @Body List<ShopItem> itemList);
 

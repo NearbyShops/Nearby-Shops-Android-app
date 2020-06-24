@@ -839,6 +839,11 @@ public class EditShopFragment extends Fragment {
 
 
 
+
+
+
+
+
     @OnClick(R.id.textChangePicture)
     void pickShopImage() {
 
@@ -919,9 +924,11 @@ public class EditShopFragment extends Fragment {
         }
         else if(requestCode==3 && resultCode==3)
         {
+
             latitude.setText(String.valueOf(result.getDoubleExtra("lat_dest",0.0)));
             longitude.setText(String.valueOf(result.getDoubleExtra("lon_dest",0.0)));
             rangeOfDelivery.setText(String.valueOf(result.getDoubleExtra("radius",0.0)));
+
         }
         else {
             showToastMessage("Task Cancelled !");
