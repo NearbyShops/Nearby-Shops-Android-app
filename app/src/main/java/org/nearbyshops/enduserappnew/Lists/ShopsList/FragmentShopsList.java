@@ -543,11 +543,12 @@ public class FragmentShopsList extends Fragment implements
             String current_sort = "";
             current_sort = PrefSortShopsByCategory.getSort(getActivity()) + " " + PrefSortShopsByCategory.getAscending(getActivity());
 
+
             Call<ShopEndPoint> callEndpoint = shopService.getShops(
                     null,
                     null,
-                    PrefLocation.getLatitude(getActivity()),
                     PrefLocation.getLongitude(getActivity()),
+                    PrefLocation.getLatitude(getActivity()),
                     null, null, null,
                     searchQuery,current_sort,limit,offset,false
             );
