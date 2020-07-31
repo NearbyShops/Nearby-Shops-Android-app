@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   nbs_api:
-    image: nearbyshops/nearbyshops
+    image: nbscontainer/nbscontainer:production
     ports:
       - "80:80"
     container_name: nbs_api_container
