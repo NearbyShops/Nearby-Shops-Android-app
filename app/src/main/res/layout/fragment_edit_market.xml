@@ -495,11 +495,11 @@
                             android:layout_height="wrap_content">
 
                             <EditText
-                                android:inputType="numberDecimal"
                                 android:id="@+id/latitude"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Enter Latitude"/>
+                                android:hint="Enter Latitude"
+                                android:inputType="numberSigned|numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -508,11 +508,11 @@
                             android:layout_height="wrap_content">
 
                             <EditText
-                                android:inputType="numberDecimal"
                                 android:id="@+id/longitude"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Enter Longitude"/>
+                                android:hint="Enter Longitude"
+                                android:inputType="numberSigned|numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 

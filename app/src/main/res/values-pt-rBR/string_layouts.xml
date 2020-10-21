@@ -6,7 +6,7 @@
     <string name="content_shop_home_for_staff_header_stock_items_text">Etapa 2: definir preços e disponibilidade</string>
     <string name="content_shop_home_for_staff_text_add_stock_text">Itens na categoria Shop \nby</string>
     <string name="content_shop_home_for_staff_text_stock_items_text">Itens na Loja</string>
-    <string name="content_shop_home_for_staff_text_quick_stock_editor_text">Quick Stock Editor</string>
+    <string name="content_shop_home_for_staff_text_quick_stock_editor_text">Editor de Estoque Rápido</string>
     <string name="content_shop_home_for_staff_header_delivery_text">Etapa 3: gerenciar pedidos e entrega</string>
     <string name="content_shop_home_for_staff_text_cancel_text">Inventário de entrega em domicílio</string>
     <string name="content_shop_home_for_staff_text_pick_from_shop_text">Escolha do inventário da loja</string>
@@ -248,7 +248,7 @@
     <string name="activity_items_by_category_simple_text_sub_text">-</string>
     <string name="activity_items_by_category_simple_text_sort_text">Filtrar / Classificar</string>
     <string name="list_item_user_profile_log_out_button_text">| Sair</string>
-    <string name="list_item_user_profile_header_booked_by_text">Bem-vinda</string>
+    <string name="list_item_user_profile_header_booked_by_text">Bem-vindo(a)</string>
     <string name="list_item_user_profile_user_name_text">-</string>
     <string name="list_item_user_profile_user_id_text">ID do usuário: 123</string>
     <string name="content_place_order_step_one_text">Etapa 1: selecione o tipo de entrega</string>
@@ -393,7 +393,7 @@
     <string name="fragment_enter_password_enter_password_hint">Digite a senha</string>
     <string name="fragment_enter_password_confirm_password_hint">Confirme a Senha</string>
     <string name="fragment_profile_app_name_text">Perfil</string>
-    <string name="fragment_profile_header_booked_by_text">Bem-vinda</string>
+    <string name="fragment_profile_header_booked_by_text">Bem-vindo(a)</string>
     <string name="fragment_profile_user_name_text">-</string>
     <string name="fragment_profile_user_id_text">ID do usuário: 123</string>
     <string name="fragment_profile_phone_text">9490523891</string>
@@ -497,8 +497,8 @@
     <string name="dialog_rate_review_shop_cancel_button_text">Cancelar</string>
     <string name="dialog_rate_review_shop_submit_button_text">Enviar</string>
     <string name="list_item_item_itemName_text">Nome do item</string>
-    <string name="list_item_item_price_range_text">Faixa de preços: R $ 305,00</string>
-    <string name="list_item_item_price_average_text">Média de preço: R $ 485,00</string>
+    <string name="list_item_item_price_range_text">Faixa de preços: R$ 305,00</string>
+    <string name="list_item_item_price_average_text">Média de preço: R$ 485,00</string>
     <string name="list_item_item_shop_count_text">Disponível em 23 lojas</string>
     <string name="list_item_item_item_rating_text">4.3</string>
     <string name="list_item_item_rating_count_text">(3421 Classificações)</string>
@@ -537,8 +537,8 @@
     <string name="fragment_change_email_header_password_text">Digite sua senha atual para verificar se você</string>
     <string name="fragment_change_email_password_hint">Digite a senha atual</string>
     <string name="list_item_item_for_admin_itemName_text">Nome do item em formato longo</string>
-    <string name="list_item_item_for_admin_price_range_text">Faixa de preços: R $ 305,00</string>
-    <string name="list_item_item_for_admin_price_average_text">Média de preço: R $ 485,00</string>
+    <string name="list_item_item_for_admin_price_range_text">Faixa de preços: R$ 305,00</string>
+    <string name="list_item_item_for_admin_price_average_text">Média de preço: R$ 485,00</string>
     <string name="list_item_item_for_admin_shop_count_text">Disponível em 23 lojas</string>
     <string name="list_item_item_for_admin_item_rating_text">4.3</string>
     <string name="list_item_item_for_admin_rating_count_text">(3421 Classificações)</string>

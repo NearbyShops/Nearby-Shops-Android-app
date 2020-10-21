@@ -578,12 +578,12 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:text="@string/fragment_edit_shop_fragment_latitude_text"
                 android:id="@+id/latitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:hint="Enter Latitude"/>
+                android:hint="Enter Latitude"
+                android:inputType="numberSigned|numberDecimal"
+                android:text="@string/fragment_edit_shop_fragment_latitude_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -593,12 +593,12 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:text="@string/fragment_edit_shop_fragment_latitude_text"
                 android:id="@+id/longitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:hint="Enter Longitude"/>
+                android:hint="Enter Longitude"
+                android:inputType="numberSigned|numberDecimal"
+                android:text="@string/fragment_edit_shop_fragment_latitude_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
