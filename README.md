@@ -162,7 +162,7 @@ License
 
 Copyright (c) 2020 Nearby Shops Commercial License 
 
-Commercial or Non-Commercial Use of the Source Code must require our Permission. 
+Commercial Use of our Source Code Must Comply with our Commercial License
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
