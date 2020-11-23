@@ -160,9 +160,7 @@ Code Review and Architecture
 License
 =======
 
-Copyright (c) 2020 Nearby Shops Commercial License 
-
-Commercial Use of our Source Code Must Comply with our Commercial License
+Copyright (c) 2020 Nearby Shops Community License 
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
