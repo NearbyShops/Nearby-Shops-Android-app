@@ -8,6 +8,16 @@ width="120">
 </a>
 
 
+Deprecation Notice 	
+--------------------	
+
+We have discontinued Support for our Free and Open-Source offering. If you want to use this project for commercial Use then please consider buying a Paid version
+of this app. 	
+
+If you like this project then please support this project by buying a paid version. 	
+Thank You !
+
+
 
 About Nearby Shops
 --------------------
