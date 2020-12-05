@@ -21,7 +21,6 @@ import com.squareup.picasso.Picasso;
 
 
 import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemList;
-import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -109,10 +108,13 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
         if (shop != null) {
 
 
-            deliveryCharge.setText("Delivery " + PrefGeneral.getCurrencySymbol(context) + " " + shop.getDeliveryCharges() + " Per Order");
-            distance.setText(String.format("%.2f", shop.getRt_distance()) + " Km");
+//            deliveryCharge.setText("Delivery " + PrefGeneral.getCurrencySymbol(context) + " " + shop.getDeliveryCharges() + " Per Order");
+
+
 
             shopName.setText(shop.getShopName());
+            distance.setText(String.format("%.2f", shop.getRt_distance()) + " Km - " + shop.getShopAddress());
+//            deliveryCharge.setText(shop.getShopAddress());
 
 
             if (shop.getPickFromShopAvailable()) {
@@ -129,20 +131,10 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
                 homeDeliveryIndicator.setVisibility(View.GONE);
             }
 
-
-//            imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
-//                    + dataset.get(position).getShopDetails().getLogoImagePath();
-
-//            imagePath = UtilityGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
-//                    + shop.getLogoImagePath() + ".jpg";
-
             imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                     + shop.getLogoImagePath() + ".jpg";
 
         }
-
-
-//        System.out.println(imagePath);
 
         Drawable placeholder = VectorDrawableCompat
                 .create(context.getResources(),
@@ -157,6 +149,9 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
 
 
 
+
+
+
     @Override
     public void onClick(View v) {
 
@@ -166,17 +161,16 @@ public class ViewHolderCart extends RecyclerView.ViewHolder implements View.OnCl
             case R.id.carts_list_item:
 
                 Intent intent = new Intent(context, CartItemList.class);
-
-//                    intent.putExtra(CartItemListFragment.SHOP_INTENT_KEY,dataset.get(getLayoutPosition()).getShopDetails());
-//                    intent.putExtra(CartItemListFragment.CART_STATS_INTENT_KEY,dataset.get(getLayoutPosition()));
-
-
-                String shopJson = UtilityFunctions.provideGson().toJson(cartStats.getShop());
-                intent.putExtra(CartItemListFragment.SHOP_INTENT_KEY,shopJson);
+                intent.putExtra("shop_id",cartStats.getShop().getShopID());
+                intent.putExtra("shop_name",cartStats.getShop().getShopName());
 
 
-                String cartStatsJson = UtilityFunctions.provideGson().toJson(cartStats);
-                intent.putExtra(CartItemListFragment.CART_STATS_INTENT_KEY,cartStatsJson);
+//                String shopJson = UtilityFunctions.provideGson().toJson(cartStats.getShop());
+//                intent.putExtra(CartItemListFragment.SHOP_INTENT_KEY,shopJson);
+
+
+//                String cartStatsJson = UtilityFunctions.provideGson().toJson(cartStats);
+//                intent.putExtra(CartItemListFragment.CART_STATS_INTENT_KEY,cartStatsJson);
 
 
                 context.startActivity(intent);

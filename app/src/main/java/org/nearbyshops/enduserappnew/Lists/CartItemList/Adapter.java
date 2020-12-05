@@ -8,12 +8,13 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItemNew;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.ButtonData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderButton;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 
@@ -39,6 +40,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static final int VIEW_TYPE_HEADER = 4;
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
+
+    public static final int VIEW_TYPE_BUTTON = 7;
 
 
     private boolean loadMore;
@@ -69,6 +72,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(viewType == VIEW_TYPE_HEADER)
         {
             return ViewHolderHeader.create(parent,context);
+        }
+        else if(viewType == VIEW_TYPE_BUTTON)
+        {
+            return ViewHolderButton.create(parent,context,fragment,ViewHolderButton.LAYOUT_TYPE_CLEAR_ALL);
         }
         else if(viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR)
         {
@@ -116,6 +123,13 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 ((ViewHolderHeader) holder).setItem((HeaderTitle) dataset.get(position));
             }
         }
+        else if (holder instanceof ViewHolderButton) {
+
+            if (dataset.get(position) instanceof ButtonData) {
+
+                ((ViewHolderButton) holder).setItem((ButtonData) dataset.get(position));
+            }
+        }
         else if (holder instanceof LoadingViewHolder) {
 
             ((LoadingViewHolder) holder).setLoading(loadMore);
@@ -138,6 +152,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
 
+
+
     @Override
     public int getItemViewType(int position) {
         super.getItemViewType(position);
@@ -153,6 +169,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(dataset.get(position) instanceof HeaderTitle)
         {
             return VIEW_TYPE_HEADER;
+        }
+        else if(dataset.get(position) instanceof ButtonData)
+        {
+            return VIEW_TYPE_BUTTON;
         }
         else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
         {

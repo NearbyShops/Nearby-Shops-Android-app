@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.Lists.OrderHistory;
 
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
 
 
@@ -32,23 +34,38 @@ public class OrderHistory extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
+//
+//        boolean filterByUserID = false;
+//        boolean filterByShopID = false;
+//
+//
+//        if(getIntent().getBooleanExtra(OrderHistory.IS_FILTER_BY_SHOP,false))
+//        {
+//            filterByShopID = true;
+//        }
 
-        boolean filterByUserID = false;
-        boolean filterByShopID = false;
 
 
-        if(getIntent().getBooleanExtra(OrderHistory.IS_FILTER_BY_SHOP,false))
+        int shopID = 0;
+
+        if(PrefShopAdminHome.getShop(this)!=null)
         {
-            filterByShopID = true;
+            shopID = PrefShopAdminHome.getShop(this).getShopID();
         }
 
+
+
+
+
+//
+        int currentMode = getIntent().getIntExtra(OrdersHistoryFragment.USER_MODE_INTENT_KEY,OrdersHistoryFragment.MODE_END_USER);
 
 
         if (getSupportFragmentManager().findFragmentByTag("order_history_fragment") == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container,
-                            OrdersHistoryFragment.newInstance(false,filterByShopID,false),
+                            OrdersHistoryFragment.newInstance(0,shopID,currentMode),
                             "order_history_fragment")
                     .commit();
         }
@@ -128,6 +145,16 @@ public class OrderHistory extends AppCompatActivity {
                 ((NotifySearch) fragment).search(query);
             }
         }
+    }
+
+
+
+
+    public static Intent getLaunchIntent(int screenMode, Context context)
+    {
+        Intent intent = new Intent(context, OrderHistory.class);
+        intent.putExtra(OrdersHistoryFragment.USER_MODE_INTENT_KEY,screenMode);
+        return intent;
     }
 
 

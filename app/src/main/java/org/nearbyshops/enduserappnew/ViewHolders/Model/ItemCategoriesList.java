@@ -10,6 +10,28 @@ public class ItemCategoriesList {
 
     private List<ItemCategory> itemCategories;
 
+    private Integer selectedCategoryID;
+    private int scrollPositionForSelected;
+
+
+
+
+    public int getScrollPositionForSelected() {
+        return scrollPositionForSelected;
+    }
+
+    public void setScrollPositionForSelected(int scrollPositionForSelected) {
+        this.scrollPositionForSelected = scrollPositionForSelected;
+    }
+
+    public Integer getSelectedCategoryID() {
+        return selectedCategoryID;
+    }
+
+    public void setSelectedCategoryID(Integer selectedCategoryID) {
+        this.selectedCategoryID = selectedCategoryID;
+    }
+
     public List<ItemCategory> getItemCategories() {
         return itemCategories;
     }

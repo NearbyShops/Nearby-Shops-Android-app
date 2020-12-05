@@ -5,7 +5,6 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -26,8 +25,8 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
 import java.util.ArrayList;
@@ -69,13 +68,15 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
     boolean resetOffsetVehicle = false;
 
 
-    private int limit_vehicle = 30;
-    int offset_vehicle = 0;
-    public int item_count_vehicle = 0;
+    private int limit = 30;
+    int offset = 0;
+    public int item_count = 0;
 
 
-//    @BindView(R.id.drivers_count) TextView driversCount;
-//    int i = 1;
+
+
+
+
 
     public TransactionFragment() {
 
@@ -172,7 +173,7 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
                 if(layoutManager.findLastVisibleItemPosition()==dataset.size())
                 {
 
-                    if(offset_vehicle + limit_vehicle > layoutManager.findLastVisibleItemPosition())
+                    if(offset + limit > layoutManager.findLastVisibleItemPosition())
                     {
                         return;
                     }
@@ -180,9 +181,9 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
 
                     // trigger fetch next page
 
-                    if((offset_vehicle + limit_vehicle)<= item_count_vehicle)
+                    if((offset + limit)<= item_count)
                     {
-                        offset_vehicle = offset_vehicle + limit_vehicle;
+                        offset = offset + limit;
 
                         getTransactions();
                     }
@@ -247,7 +248,7 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
 
         if(resetOffsetVehicle)
         {
-            offset_vehicle = 0;
+            offset = 0;
             resetOffsetVehicle = false;
         }
 
@@ -263,10 +264,32 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-        Call<TransactionEndpoint> call = service.getTransactions(
-                PrefLogin.getAuthorizationHeaders(getActivity()),null,null,
-                Transaction.TIMESTAMP_OCCURRED + " desc",limit_vehicle,offset_vehicle,getRowCountVehicle,false
-        );
+        Call<TransactionEndpoint> call = null;
+
+        int userID = getActivity().getIntent().getIntExtra("user_id",0);
+
+        if(userID==0)
+        {
+            call = service.getTransactions(
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
+                    null,null,
+                    Transaction.TIMESTAMP_OCCURRED + " desc", limit, offset,getRowCountVehicle,false
+            );
+
+        }
+        else
+        {
+
+            call = service.getUserTransactions(
+                    PrefLogin.getAuthorizationHeaders(getActivity()),
+                    userID,
+                    null,null,
+                    Transaction.TIMESTAMP_OCCURRED + " desc",
+                    limit, offset,
+                    getRowCountVehicle,false
+            );
+        }
+
 
 
 
@@ -293,7 +316,7 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
 
                     if (getRowCountVehicle) {
 
-                        item_count_vehicle = response.body().getItemCount();
+                        item_count = response.body().getItemCount();
                         getRowCountVehicle = false;
 
                         dataset.add(new HeaderTitle("Transactions"));
@@ -317,7 +340,7 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
                 }
 
 
-                if(item_count_vehicle==0)
+                if(item_count ==0)
                 {
 
                     dataset.add(EmptyScreenDataFullScreen.getNoTransactions());
@@ -357,7 +380,7 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
 
     void showToastMessage(String message)
     {
-        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 

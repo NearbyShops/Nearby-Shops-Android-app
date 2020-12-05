@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -30,7 +29,7 @@ public class ViewHolderItemCategorySmall extends RecyclerView.ViewHolder
     @BindView(R.id.name) TextView categoryName;
 //    @BindView(R.id.itemCategoryListItem) ConstraintLayout itemCategoryListItem;
     @BindView(R.id.categoryImage) ImageView categoryImage;
-    @BindView(R.id.list_item) ConstraintLayout listItem;
+    @BindView(R.id.list_item) CardView listItem;
 
 
 
@@ -48,7 +47,8 @@ public class ViewHolderItemCategorySmall extends RecyclerView.ViewHolder
                                                      RecyclerView.Adapter adapter)
     {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_small_card,parent,false);
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_small_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_category_wide,parent,false);
         return new ViewHolderItemCategorySmall(view,context,fragment,adapter);
     }
 
@@ -81,7 +81,8 @@ public class ViewHolderItemCategorySmall extends RecyclerView.ViewHolder
 
         if(fragment instanceof ListItemClick)
         {
-            ((ListItemClick) fragment).notifyRequestSubCategory(itemCategory);
+//            itemCategory.setRt_scroll_position(getLayoutPosition());
+            ((ListItemClick) fragment).notifyRequestSubCategory(itemCategory,getLayoutPosition());
         }
 
 
@@ -123,7 +124,7 @@ public class ViewHolderItemCategorySmall extends RecyclerView.ViewHolder
 
     public interface ListItemClick
     {
-        void notifyRequestSubCategory(ItemCategory itemCategory);
+        void notifyRequestSubCategory(ItemCategory itemCategory,int scrollPosition);
     }
 
 

@@ -10,6 +10,8 @@ import java.sql.Timestamp;
 public class Shop{
 
 
+	public static final String TIMESTAMP_CREATED = "TIMESTAMP_CREATED";
+
 
 
 
@@ -34,7 +36,7 @@ public class Shop{
 
 	private boolean shopEnabled;
 	private boolean shopWaitlisted;
-
+	private boolean itemUpdatePermitted;
 
 	
 	private String logoImagePath;
@@ -69,12 +71,36 @@ public class Shop{
 	private double rt_min_balance;
 
 
+	private int rt_order_count;
+
+
+
 	private User shopAdminProfile;
 	private double extendedCreditLimit;
 
 
 	private ShopStats shopStats;
 
+
+
+
+
+
+	public boolean isItemUpdatePermitted() {
+		return itemUpdatePermitted;
+	}
+
+	public void setItemUpdatePermitted(boolean itemUpdatePermitted) {
+		this.itemUpdatePermitted = itemUpdatePermitted;
+	}
+
+	public int getRt_order_count() {
+		return rt_order_count;
+	}
+
+	public void setRt_order_count(int rt_order_count) {
+		this.rt_order_count = rt_order_count;
+	}
 
 	public ShopStats getShopStats() {
 		return shopStats;

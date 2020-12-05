@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.Model.ModelStats;
 
+import org.nearbyshops.enduserappnew.Model.ModelUtility.DeliveryConfig;
 import org.nearbyshops.enduserappnew.Model.Shop;
 
 /**
@@ -14,6 +15,9 @@ public class CartStats{
     private double savingsOverMRP;
     private int shopID;
     private Shop shop;
+
+    private DeliveryConfig deliveryConfig;
+
 
 
     public CartStats(int itemsInCart, double cart_Total, int shopID) {
@@ -30,8 +34,18 @@ public class CartStats{
     public CartStats() {
     }
 
+
+
+
     // Getter and Setter Methods
 
+    public DeliveryConfig getDeliveryConfig() {
+        return deliveryConfig;
+    }
+
+    public void setDeliveryConfig(DeliveryConfig deliveryConfig) {
+        this.deliveryConfig = deliveryConfig;
+    }
 
     public double getSavingsOverMRP() {
         return savingsOverMRP;

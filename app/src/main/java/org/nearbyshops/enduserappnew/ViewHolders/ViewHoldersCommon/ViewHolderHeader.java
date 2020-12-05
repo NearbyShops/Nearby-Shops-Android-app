@@ -23,6 +23,9 @@ public class ViewHolderHeader extends RecyclerView.ViewHolder{
     private Context context;
     private HeaderTitle item;
 
+    public static int LAYOUT_TYPE_SIMPLE = 1;
+    public static int LAYOUT_TYPE_MARGIN_10 = 2;
+
 
 
 
@@ -31,6 +34,43 @@ public class ViewHolderHeader extends RecyclerView.ViewHolder{
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_header_type_simple, parent, false);
+
+
+        return new ViewHolderHeader(view,context);
+    }
+
+
+
+
+
+    public static ViewHolderHeader create(ViewGroup parent, Context context, int layoutType)
+    {
+
+        View view = null;
+
+        if(layoutType==LAYOUT_TYPE_SIMPLE)
+        {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_header_type_simple, parent, false);
+        }
+        else if(layoutType== LAYOUT_TYPE_MARGIN_10)
+        {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item_header_margin_10, parent, false);
+        }
+
+
+        return new ViewHolderHeader(view,context);
+    }
+
+
+
+
+    public static ViewHolderHeader createWhite(ViewGroup parent, Context context)
+    {
+
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_header_white, parent, false);
 
 
         return new ViewHolderHeader(view,context);
@@ -62,6 +102,19 @@ public class ViewHolderHeader extends RecyclerView.ViewHolder{
 
 
 
+    public static ViewHolderHeader createHeaderExtraMargin(ViewGroup parent, Context context)
+    {
+
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_header_extra_margin, parent, false);
+
+
+        return new ViewHolderHeader(view,context);
+    }
+
+
+
+
 
 
 
@@ -78,6 +131,9 @@ public class ViewHolderHeader extends RecyclerView.ViewHolder{
     {
         header.setText(data.getHeading());
     }
+
+
+
 
 
 }

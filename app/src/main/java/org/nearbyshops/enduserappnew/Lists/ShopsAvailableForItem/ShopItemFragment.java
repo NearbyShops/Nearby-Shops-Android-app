@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -36,7 +36,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetailFragment;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetail;
+import org.nearbyshops.enduserappnew.DetailScreens.DetailItemNew.ItemDetail;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
@@ -204,6 +204,9 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
         recyclerView.setLayoutManager(layoutManager);
 
 
+
+
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
 
@@ -274,10 +277,6 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-
-
-
-
     private void fetchNewCartItems()
     {
         // fetch shop items from shops with carts not filled
@@ -318,13 +317,11 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
                 + " " + PrefSortShopItems.getAscending(getActivity());
 
 
+
         // Network Available
-        Call<ShopItemEndPoint> call = shopItemService.getShopItemEndpoint(
-                null,null,item.getItemID(),
-                PrefLocation.getLatitude(getActivity()),
-                PrefLocation.getLongitude(getActivity()),
-                null, null,
-                null,
+        Call<ShopItemEndPoint> call = shopItemService.getShopItemsByItem(
+                null,false,null,item.getItemID(),
+                PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                 endUserID,
                 false,
                 null,null,null,null,
@@ -395,12 +392,16 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-
-
     @Override
     public void onRefresh() {
         clearDataset = true;
-        fetchFilledCartItems();
+
+        if(PrefLogin.getUser(getActivity())!=null)
+        {
+            // fetch only when logged in
+            fetchFilledCartItems();
+        }
+
         fetchNewCartItems();
     }
 
@@ -418,11 +419,6 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
             User endUser = PrefLogin.getUser(getActivity());
 
 
-            if(endUser == null)
-            {
-                swipeContainer.setRefreshing(false);
-                return;
-            }
 
             if(item==null)
             {
@@ -440,15 +436,13 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-        Call<ShopItemEndPoint> callEndpoint = shopItemService.getShopItemEndpoint(
-                    null,null,item.getItemID(),
-                    PrefLocation.getLatitude(getActivity()),
-                    PrefLocation.getLongitude(getActivity()),
-                    null, null,
-                    null,
+        Call<ShopItemEndPoint> callEndpoint = shopItemService.getShopItemsByItem(
+                    null,false,null,item.getItemID(),
+                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                     endUser.getUserID(),
                     true,
-                    null,null,null,null,
+                    null,null,
+                null,null,
                     null,
                     true, current_sort,
                     100,0,
@@ -519,10 +513,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     private void showToastMessage(String message)
     {
-        if(getActivity()!=null)
-        {
-            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
-        }
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
@@ -563,7 +554,7 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        isDestroyed = true;
+//        isDestroyed = true;
     }
 
 
@@ -581,14 +572,11 @@ public class ShopItemFragment extends Fragment implements SwipeRefreshLayout.OnR
     {
 
         Intent intent = new Intent(getActivity(), ItemDetail.class);
-//        intent.putExtra(ItemDetail.ITEM_DETAIL_INTENT_KEY,item);
+        intent.putExtra("item_id",item.getItemID());
 
         String itemJson = UtilityFunctions.provideGson().toJson(item);
         intent.putExtra(ItemDetailFragment.TAG_JSON_STRING,itemJson);
-
-        getActivity().startActivity(intent);
-
-
+//        startActivity(intent);
     }
 
 

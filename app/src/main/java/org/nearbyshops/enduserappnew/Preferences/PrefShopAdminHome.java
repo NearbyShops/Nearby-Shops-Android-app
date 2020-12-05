@@ -40,6 +40,12 @@ public class PrefShopAdminHome {
         prefsEditor.putString("shop_profile_for_shop_admin", json);
 
         prefsEditor.apply();
+
+
+
+        // update firebase subscriptions whenever shop information is updated
+        UtilityFunctions.updateFirebaseSubscriptionsForShop();
+
     }
 
 
@@ -55,6 +61,7 @@ public class PrefShopAdminHome {
         String json = sharedPref.getString("shop_profile_for_shop_admin", null);
 
         return gson.fromJson(json, Shop.class);
-
     }
+
+
 }

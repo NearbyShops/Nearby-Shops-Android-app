@@ -11,13 +11,11 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,8 @@ public class ImageSlider extends AppCompatActivity {
     ViewPager viewPager;
     FragmentPagerAdapter pagerAdapter;
 
-    List<Object> listImages;
+    List<Object> listImages = new ArrayList<>();
+    ItemImageEndPoint endPoint;
 
 
     @Override
@@ -46,12 +45,21 @@ public class ImageSlider extends AppCompatActivity {
 
         Gson gson = UtilityFunctions.provideGson();
         String itemJson = getIntent().getStringExtra("images_list");
-        Type listType = new TypeToken<ArrayList<ItemImage>>(){}.getType();
-        listImages = gson.fromJson(itemJson, listType);
+//        Type listType = new TypeToken<ArrayList<ItemImage>>(){}.getType();
+//        listImages = gson.fromJson(itemJson, listType);
+
+
+        endPoint = gson.fromJson(itemJson,ItemImageEndPoint.class);
+
+
 
         int position = getIntent().getIntExtra("position",0);
 
-        showLogMessage(itemJson);
+//        showLogMessage(itemJson);
+
+
+        listImages.add(endPoint.getItemDetails());
+        listImages.addAll(endPoint.getResults());
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(),listImages);
         viewPager.setAdapter(pagerAdapter);

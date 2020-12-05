@@ -1,6 +1,8 @@
 package org.nearbyshops.enduserappnew.Model.ModelReviewShop;
 
 
+import org.nearbyshops.enduserappnew.Model.Shop;
+
 /**
  * Created by sumeet on 8/8/16.
  */
@@ -14,8 +16,19 @@ public class FavouriteShop {
     private Integer endUserID;
     private Integer shopID;
 
+
+    private Shop shopProfile;
+
     // Getter and Setter
 
+
+    public Shop getShopProfile() {
+        return shopProfile;
+    }
+
+    public void setShopProfile(Shop shopProfile) {
+        this.shopProfile = shopProfile;
+    }
 
     public Integer getEndUserID() {
         return endUserID;

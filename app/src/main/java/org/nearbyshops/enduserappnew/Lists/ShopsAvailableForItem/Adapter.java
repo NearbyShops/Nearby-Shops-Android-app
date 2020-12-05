@@ -85,6 +85,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
 
+
+
+
     void getCartStats()
     {
 
@@ -99,9 +102,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         }
 
 
-        Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,item.getItemID(),
-                endUser.getUserID(),null,false,
-                null,null,null,false);
+
+        Call<List<CartItem>> cartItemCall = cartItemService.getCartItemAvailabilityByItem(
+                endUser.getUserID(),
+                item.getItemID()
+        );
 
 
 
@@ -109,8 +114,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             @Override
             public void onResponse(Call<List<CartItem>> call, Response<List<CartItem>> response) {
 
-
-                //Toast.makeText(context,"Response Code: " + response.code(),Toast.LENGTH_SHORT).show();
 
                 if(response.body()!=null)
                 {
@@ -122,15 +125,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
                     notifyDataSetChanged();
 
-                    //showToastMessage("Cart Item Updated !");
 
                 }else
                 {
                     cartItemMap.clear();
-
                     notifyDataSetChanged();
-
-                    //showToastMessage("Cart Item Updated - Null !");
                 }
             }
 
@@ -141,14 +140,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             }
         });
 
+
+
+
+
+
         Call<List<CartStats>> listCall = cartStatsService
-                .getCart(endUser.getUserID(),null, null, false,null,null);
-
-        /*
-
-        UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LAT_CENTER_KEY),
-                        UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.LON_CENTER_KEY)
-        */
+                .getCartStatsList(endUser.getUserID(),null, null, false,
+                        null,null
+                );
 
 
 
@@ -165,8 +165,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
                     {
                         cartStatsMap.put(cartStats.getShopID(),cartStats);
                     }
-
-                    //showToastMessage("Cart Stats Updated !");
 
                 }else
                 {
@@ -243,7 +241,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             if(cartStats!=null)
             {
                 holder.itemsInCart.setText(cartStats.getItemsInCart() + " " + "Items in Cart");
-                holder.cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + cartStats.getCart_Total());
+                holder.cartTotal.setText("Cart Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + UtilityFunctions.refinedStringWithDecimals(cartStats.getCart_Total()));
             }
         //}
 
@@ -307,7 +305,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/"
                     + "five_hundred_" + shop.getLogoImagePath() + ".jpg";
 
-            System.out.println(imagePath);
+//            System.out.println(imagePath);
 
 
 
@@ -538,7 +536,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
 
                     itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
-                    cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " "+ (cartTotalNeutral() + total));
+                    cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " "+ UtilityFunctions.refinedStringWithDecimals(cartTotalNeutral() + total));
+
 
                 }
 
@@ -884,7 +883,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
                 }
 
-                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + (cartTotalNeutral() + total));
+                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + UtilityFunctions.refinedStringWithDecimals(cartTotalNeutral() + total));
                 itemTotal.setText("Total : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", total));
 
             }else
@@ -954,7 +953,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
                 itemTotal.setText("Total : "  + PrefGeneral.getCurrencySymbol(context) + " " + String.format("%.2f", total));
 
-                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + (cartTotalNeutral() + total));
+                cartTotal.setText("Cart Total : " + PrefGeneral.getCurrencySymbol(context) + " " + UtilityFunctions.refinedStringWithDecimals(cartTotalNeutral() + total));
 
 
             }

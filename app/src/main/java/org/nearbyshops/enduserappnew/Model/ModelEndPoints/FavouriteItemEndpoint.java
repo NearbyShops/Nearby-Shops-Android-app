@@ -10,20 +10,21 @@ import java.util.List;
  */
 public class FavouriteItemEndpoint {
 
-    private Integer itemCount;
+    private int itemCount;
     private Integer offset;
     private Integer limit;
     private Integer max_limit;
     private List<FavouriteItem> results;
 
 
-    public Integer getItemCount() {
+    public int getItemCount() {
         return itemCount;
     }
 
-    public void setItemCount(Integer itemCount) {
+    public void setItemCount(int itemCount) {
         this.itemCount = itemCount;
     }
+
 
     public Integer getOffset() {
         return offset;

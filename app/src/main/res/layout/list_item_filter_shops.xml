@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout
+    android:padding="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<!--    Nearest-->
+<!--    Popular-->
+<!--    Highest Rated-->
+<!--    New-->
+
+
+<!--    Bestsellers-->
+<!--    This week, month, year , all time-->
+
+<!--    Highest Discount-->
+    <!--    New-->
+<!--    Lowest Price-->
+<!--    Highest Price-->
+<!--    Highest Rated-->
+
+
+
+    <Button
+        android:visibility="gone"
+        android:gravity="start"
+        android:textAllCaps="false"
+        android:drawableLeft="@drawable/ic_business_24"
+        android:drawablePadding="10dp"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:background="@color/orange_new"
+        android:id="@+id/show_hide_filters"
+        android:text="Filter Shops"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/filters_block"
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/white"
+            android:background="@color/orange_new"
+            android:text="Reset"
+            android:id="@+id/clear_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:textSize="15sp"
+            android:text="Sort By"
+            app:layout_constraintTop_toTopOf="@id/clear_sort"
+            app:layout_constraintBottom_toBottomOf="@id/clear_sort"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/clear_sort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+
+        <HorizontalScrollView
+            android:scrollbars="none"
+            android:id="@+id/sort_block"
+            app:layout_constraintTop_toBottomOf="@id/clear_sort"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:padding="5dp"
+                    android:id="@+id/sort_by_distance"
+                    android:gravity="center"
+                    android:text="Nearest"
+                    android:layout_marginEnd="5dp"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:padding="5dp"
+                    android:id="@+id/sort_by_popularity"
+                    android:gravity="center"
+                    android:text="Popular"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/sort_by_rating"
+                    android:gravity="center"
+                    android:text="Highest Rated"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+
+
+                <TextView
+                    android:minWidth="130dp"
+                    android:padding="5dp"
+                    android:id="@+id/sort_by_new"
+                    android:gravity="center"
+                    android:text="New"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/sort_block"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/white"
+            android:background="@color/orange_new"
+            android:text="Reset"
+            android:id="@+id/clear_sort_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:visibility="gone"
+            android:textSize="15sp"
+            android:text="Sort Order"
+            app:layout_constraintTop_toTopOf="@id/clear_sort_order"
+            app:layout_constraintBottom_toBottomOf="@id/clear_sort_order"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/clear_sort_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/sort_order_block"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/clear_sort_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:id="@+id/sort_low_to_high"
+                android:gravity="center"
+                android:padding="7dp"
+                android:text="Low to High"
+                android:layout_marginEnd="5dp"
+                android:background="@color/light_grey"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/sort_high_to_low"
+                android:gravity="center"
+                android:padding="7dp"
+                android:text="High to Low"
+                android:background="@color/light_grey"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/sort_order_block"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/white"
+            android:background="@color/orange_new"
+            android:text="Clear"
+            android:id="@+id/clear_delivery_or_pickup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:visibility="gone"
+            android:textSize="15sp"
+            android:text="Delivery or Pickup"
+            app:layout_constraintTop_toTopOf="@id/clear_delivery_or_pickup"
+            app:layout_constraintBottom_toBottomOf="@id/clear_delivery_or_pickup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/clear_delivery_or_pickup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/delivery_or_pickup"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clear_delivery_or_pickup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:id="@+id/option_delivery"
+                android:gravity="center"
+                android:padding="7dp"
+                android:text="Home Delivery"
+                android:layout_marginEnd="5dp"
+                android:background="@color/light_grey"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/option_pickup"
+                android:gravity="center"
+                android:padding="7dp"
+                android:text="Pickup"
+                android:background="@color/light_grey"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+
+
+<!--        <TextView-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:textSize="15sp"-->
+<!--            android:text="End of filter Shops"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/delivery_or_pickup"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>
+
+
+
+

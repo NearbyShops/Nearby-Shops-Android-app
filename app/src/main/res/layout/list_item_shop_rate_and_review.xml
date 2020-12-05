@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    android:layout_marginTop="10dp"
+    android:background="@color/white"
+    android:padding="0dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <TextView
+        android:id="@+id/rating_title"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_rate_review_black"
+        android:textSize="20sp"
+        android:text="Provide a Rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <com.hsalf.smilerating.SmileRating
+        android:layout_marginTop="10dp"
+        android:id="@+id/smile_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:id="@+id/submit_feedback_title"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_rate_review_black"
+        android:textSize="20sp"
+        android:text="Provide a Review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <EditText
+        android:id="@+id/review_title"
+        android:layout_marginTop="10dp"
+        android:maxLines="1"
+        android:hint="Review Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:id="@+id/full_review"
+        android:lines="3"
+        android:hint="Full Review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+
+    <Button
+        android:layout_margin="5dp"
+        android:id="@+id/submit_review"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:gravity="start|center_vertical"
+        android:text="Submit Review"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:background="@color/instacart_green"
+        android:drawableStart="@drawable/ic_rate_review_black_24px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

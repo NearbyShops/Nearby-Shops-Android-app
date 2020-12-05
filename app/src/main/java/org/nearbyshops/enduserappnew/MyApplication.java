@@ -5,7 +5,6 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 
-import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 

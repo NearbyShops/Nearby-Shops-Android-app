@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -29,7 +28,9 @@ import org.nearbyshops.enduserappnew.Model.ShopItem;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import java.util.List;
 
@@ -98,6 +99,8 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
 
     @BindView(R.id.updateButton) TextView updateButton;
     @BindView(R.id.progress_bar) ProgressBar progressBarUpdate;
+
+    @BindView(R.id.discount_indicator) TextView discountIndicator;
 
 
 
@@ -294,34 +297,34 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            if(!itemPrice.getText().toString().equals(""))
-            {
-
-                String priceLocal = String.valueOf(Double.parseDouble(itemPrice.getText().toString()));
-
-                if(item!=null)
-                {
-                    priceText.setText("Price : " + priceLocal + " per " + item.getQuantityUnit());
-
-                }else
-                {
-                    priceText.setText("Price : " + priceLocal + " per Item ");
-                }
-
-
-            }else
-            {
-
-                if(item!=null)
-                {
-                    priceText.setText("Price : " + "0" + " per " + item.getQuantityUnit());
-
-                }else
-                {
-                    priceText.setText("Price : " + "0" + " per Item ");
-                }
-
-            }
+//            if(!itemPrice.getText().toString().equals(""))
+//            {
+//
+//                String priceLocal = String.valueOf(Double.parseDouble(itemPrice.getText().toString()));
+//
+//                if(item!=null)
+//                {
+//                    priceText.setText("Price : " + priceLocal + " per " + item.getQuantityUnit());
+//
+//                }else
+//                {
+//                    priceText.setText("Price : " + priceLocal + " per Item ");
+//                }
+//
+//
+//            }else
+//            {
+//
+//                if(item!=null)
+//                {
+//                    priceText.setText("Price : " + "0" + " per " + item.getQuantityUnit());
+//
+//                }else
+//                {
+//                    priceText.setText("Price : " + "0" + " per Item ");
+//                }
+//
+//            }
 
 
 
@@ -352,16 +355,17 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
 
             itemPrice.setText(priceLocal);
 
+            bindDiscount();
 
 
-            if(item!=null)
-            {
-                priceText.setText("Price : " + priceLocal + " per " + item.getQuantityUnit());
-
-            }else
-            {
-                priceText.setText("Price : " + priceLocal + " per Item ");
-            }
+//            if(item!=null)
+//            {
+//                priceText.setText("Price : " + priceLocal + " per " + item.getQuantityUnit());
+//
+//            }else
+//            {
+//                priceText.setText("Price : " + priceLocal + " per Item ");
+//            }
 
 
 
@@ -375,6 +379,10 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
 
 
 
+
+
+
+
     @OnClick(R.id.increasePrice)
     void increasePriceClick(View view)
     {
@@ -384,18 +392,26 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
 
             String priceLocal = String.valueOf(Double.parseDouble(itemPrice.getText().toString())+1);
 
+            if(Double.parseDouble(priceLocal)>item.getListPrice()  && item.getListPrice()>0)
+            {
+                showToastMessage("Price cannot be greater then MRP");
+                return;
+            }
+
             itemPrice.setText(priceLocal);
 
+            bindDiscount();
 
 
-            if(item!=null)
-            {
-                priceText.setText("Price : " + priceLocal + " per " + item.getQuantityUnit());
 
-            }else
-            {
-                priceText.setText("Price : " + priceLocal + " per Item ");
-            }
+//            if(item!=null)
+//            {
+//                priceText.setText("Price : " + priceLocal + " per " + item.getQuantityUnit());
+//
+//            }else
+//            {
+//                priceText.setText("Price : " + priceLocal + " per Item ");
+//            }
 
 
         }else
@@ -434,10 +450,19 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
             shopItem.setAvailableItemQuantity(quantityLocal);
             shopItem.setItemPrice(priceLocal);
 
+            bindDiscount();
+
+
+
+            int shopID = PrefShopAdminHome.getShop(context).getShopID();
+
+
+
 
 
             Call<ResponseBody> call = shopItemService.putShopItem(
                     PrefLogin.getAuthorizationHeaders(context),
+                    shopID,
                     shopItem
             );
 
@@ -694,21 +719,62 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
             //holder.itemPrice.setText(String.format( "%.0f", shopItem.getItemPrice()));
             //holder.itemQuantity.setText(String.format( "%.0f", shopItem.getAvailableItemQuantity()));
 
+
+
             if(item!=null)
             {
                 availableText.setText("Available : " + shopItem.getAvailableItemQuantity() + " " + item.getQuantityUnit());
-                priceText.setText("Price : " + shopItem.getItemPrice() + " per " + item.getQuantityUnit());
+//                priceText.setText("Price : " + shopItem.getItemPrice() + " per " + item.getQuantityUnit());
+
+                if(item.getListPrice()>0)
+                {
+                    priceText.setText("MRP : " + UtilityFunctions.refinedStringWithDecimals(item.getListPrice()) + " per " + item.getQuantityUnit());
+                }
+                else
+                {
+                    priceText.setText("MRP not set");
+                }
+
 
             }else
             {
                 availableText.setText("Available : " + shopItem.getAvailableItemQuantity() + " Items");
-                priceText.setText("Price : " + shopItem.getItemPrice() + " per Item");
+//                priceText.setText("Price : " + shopItem.getItemPrice() + " per Item");
+                priceText.setText("MRP : " + UtilityFunctions.refinedStringWithDecimals(item.getListPrice()) + " per " + item.getQuantityUnit());
             }
 
 
 
-            bindQuarterQuantity();
+
+
+
+
+            bindDiscount();
+        bindQuarterQuantity();
             bindHalfQuantity();
+    }
+
+
+
+
+    void bindDiscount()
+    {
+
+        double priceLocal = Double.parseDouble(itemPrice.getText().toString());
+        shopItem.setItemPrice(priceLocal);
+
+
+        if(item.getListPrice()>0.0 && item.getListPrice()>shopItem.getItemPrice())
+        {
+            double discountPercent = ((item.getListPrice() - shopItem.getItemPrice())/item.getListPrice())*100;
+            discountIndicator.setText(String.format("%.0f ",discountPercent) + " %\nOff");
+
+            discountIndicator.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            discountIndicator.setVisibility(View.GONE);
+        }
     }
 
 
@@ -779,9 +845,11 @@ public class ViewHolderShopItemSeller extends RecyclerView.ViewHolder{
 
 
 
+
+
     private void showToastMessage(String message)
     {
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(context,message);
     }
 
 

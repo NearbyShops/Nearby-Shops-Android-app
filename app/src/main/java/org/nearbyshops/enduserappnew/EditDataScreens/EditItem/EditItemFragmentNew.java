@@ -3,11 +3,11 @@ package org.nearbyshops.enduserappnew.EditDataScreens.EditItem;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.API.ItemImageService;
@@ -51,6 +52,8 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.AddItemData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderAddItem;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -64,6 +67,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -71,7 +75,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class EditItemFragmentNew extends Fragment implements AdapterItemImages.notificationsFromAdapter, AdapterItemSpecifications.NotifyItemSpecs {
+public class EditItemFragmentNew extends Fragment implements
+        ViewHolderItemImage.ListItemClick,
+        ViewHolderAddItem.ListItemClick,
+        AdapterItemSpecifications.NotifyItemSpecs {
 
 
 
@@ -111,7 +118,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-    @BindView(R.id.itemID) EditText itemID;
+    @BindView(R.id.itemID) EditText itemIDView;
     @BindView(R.id.itemName) EditText itemName;
     @BindView(R.id.itemDescription) EditText itemDescription;
     @BindView(R.id.itemDescriptionLong) EditText itemDescriptionLong;
@@ -137,9 +144,15 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
     int current_mode = MODE_ADD;
 
-//    DeliveryGuySelf deliveryGuySelf = new DeliveryGuySelf();
-//    ShopAdmin shopAdmin = new ShopAdmin();
-        Item item = new Item();
+
+    Item item ;
+    int itemID;
+
+
+
+
+
+
 
     public EditItemFragmentNew() {
 
@@ -182,6 +195,9 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
             if(current_mode == MODE_UPDATE)
             {
                 item = PrefItem.getItem(getContext());
+
+                getItemDetails();
+
             }
             else if (current_mode == MODE_ADD)
             {
@@ -190,52 +206,63 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
             }
 
 
-
-
             if(item !=null) {
                 bindDataToViews();
             }
-
-
-            showLogMessage("Inside OnCreateView - Saved Instance State !");
         }
 
-
-
-//        if(validator==null)
-//        {
-//            validator = new Validator(this);
-//            validator.setValidationListener(this);
-//        }
 
         updateFieldVisibility();
-
-
-        if(item !=null) {
-            loadImage(item.getItemImageURL());
-            showLogMessage("Inside OnCreateView : DeliveryGUySelf : Not Null !");
-        }
-
-
-        showLogMessage("Inside On Create View !");
-
-        setupRecyclerView();
-        setupRecyclerViewSpecs();
-
-
-        // bind barcodes
-//        barcodeResults.setText("Barcode : " + item.getBarcode() + "\nFormat : " + item.getBarcodeFormat());
-
-        if(item.getBarcode()!=null && item.getBarcodeFormat()!=null)
-        {
-            barcodeResults.setText("Barcode : " + item.getBarcode() + "\nFormat : " + item.getBarcodeFormat());
-        }
-
 
 
 
 
         return rootView;
+    }
+
+
+
+
+
+
+
+    private void getItemDetails() {
+
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.setMessage("Please with ... Getting Item details !");
+        pd.show();
+
+
+
+        Call<Item> call = itemService.getItemDetails(
+                item.getItemID()
+        );
+
+
+        call.enqueue(new Callback<Item>() {
+            @Override
+            public void onResponse(Call<Item> call, Response<Item> response) {
+
+
+                pd.dismiss();
+
+                if (response.code() == 200) {
+                    item = response.body();
+                    bindDataToViews();
+
+                } else {
+                    showToastMessage("Failed : Code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Item> call, Throwable t) {
+
+                showToastMessage("Failed !");
+            }
+        });
+
+
     }
 
 
@@ -254,7 +281,9 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-    ArrayList<ItemImage> dataset = new ArrayList<>();
+
+
+    ArrayList<Object> dataset = new ArrayList<>();
     @BindView(R.id.recyclerview_item_images) RecyclerView itemImagesList;
     AdapterItemImages adapterItemImages;
     GridLayoutManager layoutManager;
@@ -269,6 +298,10 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
         makeNetworkCallItemImages(true);
     }
+
+
+
+
 
 
 
@@ -333,6 +366,9 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     }
 
 
+
+
+
     @OnClick(R.id.sync_refresh_item_spec)
     void syncRefreshItemSpecs()
     {
@@ -347,8 +383,9 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
         {
 
             Call<ItemImageEndPoint> call = itemImageService.getItemImages(
-                    item.getItemID(),ItemImage.IMAGE_ORDER,null,null,null
+                    item.getItemID(),ItemImage.IMAGE_ORDER,null,null
             );
+
 
 
             call.enqueue(new Callback<ItemImageEndPoint>() {
@@ -367,7 +404,14 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
                             if(clearDataset)
                             {
                                 dataset.clear();
+
+
                             }
+
+
+
+
+                            dataset.add(new AddItemData());
 
                             dataset.addAll(response.body().getResults());
                             adapterItemImages.notifyDataSetChanged();
@@ -398,6 +442,10 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
         }
     }
 
+
+
+
+
     boolean isDestroyed = false;
 
     @Override
@@ -426,17 +474,20 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
         if(current_mode==MODE_ADD)
         {
             buttonUpdateItem.setText("Add Item");
-            itemID.setVisibility(View.GONE);
+            itemIDView.setVisibility(View.GONE);
+            itemImagesList.setVisibility(View.GONE);
 
             if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
             {
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add Item");
             }
+
         }
         else if(current_mode== MODE_UPDATE)
         {
-            itemID.setVisibility(View.VISIBLE);
+            itemIDView.setVisibility(View.VISIBLE);
             buttonUpdateItem.setText("Save");
+            itemImagesList.setVisibility(View.VISIBLE);
 
 
             if(((AppCompatActivity)getActivity()).getSupportActionBar()!=null)
@@ -447,25 +498,15 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     }
 
 
+
+
+
     public static final String TAG_LOG = "TAG_LOG";
 
     void showLogMessage(String message)
     {
         Log.i(TAG_LOG,message);
         System.out.println(message);
-    }
-
-
-
-    void loadImage(String imagePath) {
-
-        String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/Item/Image/" + imagePath;
-
-        System.out.println(iamgepath);
-
-        Picasso.get()
-                .load(iamgepath)
-                .into(resultView);
     }
 
 
@@ -587,7 +628,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
     {
         if(item !=null) {
 
-            itemID.setText(String.valueOf(item.getItemID()));
+            itemIDView.setText(String.valueOf(item.getItemID()));
             itemName.setText(item.getItemName());
             itemDescription.setText(item.getItemDescription());
 
@@ -614,7 +655,24 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
             }
 
 
+
+
+
+            String imagePath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/Item/Image/" + item.getItemImageURL();
+
+//            System.out.println(iamgepath);
+
+            Picasso.get()
+                    .load(imagePath)
+                    .into(resultView);
+
+
+
+            setupRecyclerView();
+//            setupRecyclerViewSpecs();
         }
+
+
     }
 
 
@@ -665,6 +723,9 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 //        item.setBarcode();
 //        item.setBarcodeFormat(barcodeFormat);
     }
+
+
+
 
 
 
@@ -727,14 +788,14 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
     private void retrofitPOSTRequest()
     {
+
         getDataFromViews();
         item.setItemCategoryID(itemCategory.getItemCategoryID());
-
 
         buttonUpdateItem.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
-        System.out.println("Item Category ID (POST) : " + item.getItemCategoryID());
+//        System.out.println("Item Category ID (POST) : " + item.getItemCategoryID());
 
         Call<Item> call = itemService.insertItem(PrefLogin.getAuthorizationHeaders(getContext()), item);
 
@@ -797,9 +858,10 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
+
     void showToastMessage(String message)
     {
-        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
@@ -929,7 +991,41 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 //        choosePhotoHelper.onActivityResult(requestCode, resultCode, result);
 
 
-        if (resultCode == Activity.RESULT_OK) {
+//        showToastMessage("Request Code : " + requestCode);
+
+
+
+        if(requestCode==49374 && resultCode ==Activity.RESULT_OK)
+        {
+
+            IntentResult resultLocal = IntentIntegrator.parseActivityResult(requestCode, resultCode, result);
+            if(result != null) {
+                if(resultLocal.getContents() == null) {
+                    Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
+
+                } else {
+
+
+                    UtilityFunctions.showToastMessage(getActivity(), "Scanned: " + resultLocal.getContents());
+                    String resultsText = "Barcode : " + resultLocal.getContents();
+                    resultsText = resultsText + "\nFormat : " + resultLocal.getFormatName();
+
+//                    barcodeResults.setText(resultLocal.getContents());
+//                    barcodeResults.setText(resultLocal.getFormatName());
+
+                    item.setBarcode(resultLocal.getContents());
+                    item.setBarcodeFormat(resultLocal.getFormatName());
+
+                    barcodeResults.setText(resultsText);
+
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, result);
+            }
+
+
+        }
+        else if (resultCode == Activity.RESULT_OK) {
             //Image Uri will not be null for RESULT_OK
 
             resultView.setImageURI(result.getData());
@@ -954,37 +1050,6 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
         else {
             showToastMessage("Task Cancelled !");
         }
-
-
-
-
-//        else
-//        {
-//
-//            IntentResult resultLocal = IntentIntegrator.parseActivityResult(requestCode, resultCode, result);
-//            if(result != null) {
-//                if(resultLocal.getContents() == null) {
-//                    Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
-//
-//                } else {
-//
-//                    Toast.makeText(getActivity(), "Scanned: " + resultLocal.getContents(), Toast.LENGTH_LONG).show();
-//                    String resultsText = "Barcode : " + resultLocal.getContents();
-//                    resultsText = resultsText + "\nFormat : " + resultLocal.getFormatName();
-//
-////                    barcodeResults.setText(resultLocal.getContents());
-////                    barcodeResults.setText(resultLocal.getFormatName());
-//
-//                    item.setBarcode(resultLocal.getContents());
-//                    item.setBarcodeFormat(resultLocal.getFormatName());
-//
-//                    barcodeResults.setText(resultsText);
-//
-//                }
-//            } else {
-//                super.onActivityResult(requestCode, resultCode, result);
-//            }
-//        }
 
 
 
@@ -1115,6 +1180,9 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
+        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
+
 
         // Marker
 
@@ -1145,7 +1213,7 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
         Call<Image> imageCall = itemService.uploadImage(PrefLogin.getAuthorizationHeaders(getContext()),
-                requestBodyBinary);
+                fileToUpload);
 
 
         imageCall.enqueue(new Callback<Image>() {
@@ -1258,9 +1326,8 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
 
 
 
-
     @Override
-    public void addItemImage() {
+    public void addItemClick() {
 
         Intent intent = new Intent(getActivity(), EditItemImage.class);
         intent.putExtra(EditItemImageFragment.EDIT_MODE_INTENT_KEY,EditItemImageFragment.MODE_ADD);
@@ -1396,12 +1463,14 @@ public class EditItemFragmentNew extends Fragment implements AdapterItemImages.n
                 .setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
                 .setPrompt("Scan a barcode")
                 .setCameraId(0)
-                .setBeepEnabled(false)
+                .setBeepEnabled(true)
                 .setBarcodeImageEnabled(true)
-                .setOrientationLocked(false)
+                .setOrientationLocked(true)
                 .initiateScan();
 
     }
+
+
 
 
 

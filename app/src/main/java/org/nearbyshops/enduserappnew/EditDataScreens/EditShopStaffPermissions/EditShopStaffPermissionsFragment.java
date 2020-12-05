@@ -9,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -22,6 +21,7 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.ShopStaffPermissions;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import javax.inject.Inject;
 
@@ -410,7 +410,7 @@ public class EditShopStaffPermissionsFragment extends Fragment {
 
     private void showToastMessage(String message)
     {
-        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 

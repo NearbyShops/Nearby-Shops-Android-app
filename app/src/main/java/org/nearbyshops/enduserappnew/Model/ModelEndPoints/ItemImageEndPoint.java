@@ -3,6 +3,8 @@ package org.nearbyshops.enduserappnew.Model.ModelEndPoints;
 
 
 
+import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 
 import java.util.List;
@@ -19,8 +21,38 @@ public class ItemImageEndPoint {
     private List<ItemImage> results;
 
 
+    // check whether this item is a favourite for the given user
+    private boolean isFavourite;
+    private Item itemDetails;
+    private CartItem cartItem;
 
 
+
+
+
+    public CartItem getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(CartItem cartItem) {
+        this.cartItem = cartItem;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+    }
+
+    public Item getItemDetails() {
+        return itemDetails;
+    }
+
+    public void setItemDetails(Item itemDetails) {
+        this.itemDetails = itemDetails;
+    }
 
     public int getItemCount() {
         return itemCount;

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -303,9 +302,10 @@ public class ItemCategoriesParent extends AppCompatActivity
 
 
 
+
     private void showToastMessage(String message)
     {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(this,message);
     }
 
 

@@ -6,10 +6,8 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -31,6 +29,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import javax.inject.Inject;
 
@@ -132,7 +131,7 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
 
     private void showToastMessage(String message)
     {
-        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
@@ -414,6 +413,7 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
                                 getActivity()
                         );
 
+                        UtilityFunctions.updateFirebaseSubscriptions();
                     }
 
 
@@ -529,6 +529,8 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
 
 
         textInputPassword.setVisibility(View.VISIBLE);
+        textInputPassword.requestFocus();
+
         loginButton.setText("Login");
 
 
@@ -659,7 +661,7 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
         if(registrationMode==User.REGISTRATION_MODE_EMAIL)
         {
             selectEmail.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-            selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_1));
+            selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.mapbox_blue));
 
             selectPhone.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
             selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
@@ -676,7 +678,7 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
             selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
 
             selectPhone.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-            selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.gplus_color_1));
+            selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.mapbox_blue));
 
             ccp.setVisibility(View.VISIBLE);
 
@@ -689,14 +691,5 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
 
 
 
-
-    @OnClick(R.id.login_using_password)
-    void loginUsingPasswordClick()
-    {
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container,new LoginGlobalUsingPasswordFragment())
-                .commitNow();
-    }
 
 }

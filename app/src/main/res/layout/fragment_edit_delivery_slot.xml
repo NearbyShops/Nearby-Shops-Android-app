@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.appcompat.widget.Toolbar
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:paddingBottom="70dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <LinearLayout
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:text="Enabled / Disabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+                <Switch
+                    android:id="@+id/is_enabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+
+
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Delivery Slot Type"
+                android:padding="5dp"
+                android:background="@color/light_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:id="@+id/slot_type_block"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:gravity="center_vertical"
+                    android:id="@+id/radio_delivery_slot"
+                    android:layout_weight="1"
+                    android:text="Delivery Slot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <CheckBox
+                    android:gravity="center_vertical"
+                    android:id="@+id/radio_pickup_slot"
+                    android:layout_weight="1"
+                    android:text="Pickup Slot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+
+<!--            <RadioGroup-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/radio_delivery_slot"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Delivery Slot"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
+
+
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/radio_pickup_slot"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Pickup Slot"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
+<!--            </RadioGroup>-->
+
+
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Delivery Slot Information"
+                android:padding="5dp"
+                android:background="@color/light_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:enabled="false"
+                    android:inputType="textPersonName"
+                    android:id="@+id/delivery_slot_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Slot ID"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:inputType="textPersonName"
+                    android:id="@+id/delivery_slot_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Morning Slot"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/set_delivery_time"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:background="@color/colorPrimary"
+                    android:text="Set Delivery time "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+
+                <TextView
+                    android:textSize="20sp"
+                    android:id="@+id/delivery_time"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:text="6 AM for 2 Hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Select Slot Duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/slot_duration_block"
+                android:layout_marginTop="10dp"
+                android:weightSum="3"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/duration_one"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="2 Hour"
+                    android:textColor="@color/blueGrey800"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/duration_two"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="3 Hour"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:id="@+id/duration_three"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="4 hour"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+
+
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <EditText-->
+<!--                    android:inputType="number"-->
+<!--                    android:id="@+id/slot_duration_in_hours"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="3 hours"/>-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/delivery_slot_timings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Delivery / Pickup from 8 AM to 10 AM"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/max_orders_per_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Max Orders per Day"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <EditText-->
+<!--                    android:inputType="number"-->
+<!--                    android:id="@+id/slot_sort_order"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Sort Order"/>-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+        </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="63dp">
+
+
+
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/blueGrey800"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="center"
+            android:paddingEnd="2dp"
+            android:paddingStart="2dp"
+            android:textColor="@color/white"
+            android:background="@color/phonographyBlue"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:id="@+id/saveButton"
+            android:text="@string/fragment_edit_address_saveButton_text"
+            android:layout_width="@dimen/request_button_width"
+            android:layout_height="0dp" />
+
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:layout_marginEnd="0dp"
+            app:layout_constraintRight_toRightOf="@id/saveButton"
+            app:layout_constraintLeft_toLeftOf="@id/saveButton"
+            app:layout_constraintTop_toTopOf="@id/saveButton"
+            app:layout_constraintBottom_toBottomOf="@id/saveButton"
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -85,8 +85,22 @@ public class ViewHolderEmptyScreenListItem extends RecyclerView.ViewHolder{
         this.data = data;
 
         message.setText(data.getMessage());
-        button.setText(data.getButtonText());
+
         title.setText(data.getTitle());
+
+        if(data.getButtonText()==null)
+        {
+            button.setVisibility(View.GONE);
+        }
+        else
+        {
+            button.setVisibility(View.VISIBLE);
+            button.setText(data.getButtonText());
+        }
+
+
+
+
 
         if(data.getImageResource()==0)
         {

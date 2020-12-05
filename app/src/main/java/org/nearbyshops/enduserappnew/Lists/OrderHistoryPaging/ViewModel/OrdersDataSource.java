@@ -94,19 +94,21 @@ public class OrdersDataSource extends PageKeyedDataSource<Long,Object> {
         }
 
 
+
         Call<OrderEndPoint> call = orderService.getOrders(
                 PrefLogin.getAuthorizationHeaders(MyApplication.getAppContext()),
-                false,
-                false,
                 null,
-                pickFromShop,
+                null,
+                null,
                 null, null,
-                null, null,
-                ordersPendingStatus, null,
+                ordersPendingStatus,
+                false,false, false,
+                null,
                 current_sort,
                 params.requestedLoadSize, 0,
                 true,false
         );
+
 
 
 
@@ -216,14 +218,15 @@ public class OrdersDataSource extends PageKeyedDataSource<Long,Object> {
 
         Call<OrderEndPoint> call = orderService.getOrders(
                 PrefLogin.getAuthorizationHeaders(MyApplication.getAppContext()),
-                false,
-                false,
                 null,
-                pickFromShop,
+                null,
+                null,
                 null, null,
-                null, null,
-                ordersPendingStatus, null,
-                current_sort, params.requestedLoadSize, params.key.intValue(),
+                null,
+                false,false,false,
+                null,
+                current_sort,
+                params.requestedLoadSize, params.key.intValue(),
                 false,false);
 
 

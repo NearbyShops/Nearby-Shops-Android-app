@@ -15,6 +15,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            app:titleTextColor="@color/header_text_color"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -33,12 +34,13 @@
                 android:id="@+id/icon_sort"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:tint="@color/header_text_color"
                 app:srcCompat="@drawable/ic_sort_black_24px"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
 
             <TextView
-                android:textColor="@color/white"
+                android:textColor="@color/header_text_color"
                 android:id="@+id/text_sort"
                 android:padding="5dp"
                 android:text="@string/activity_shop_approals_text_sort_text"
