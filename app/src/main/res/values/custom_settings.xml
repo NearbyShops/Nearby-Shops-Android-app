@@ -31,7 +31,7 @@
 
 
     <!-- Enable maps and Places API and Mapbox map here -->
-    <string name="google_maps_api_key">AIzaSyDkHkcLBsbIptnnDktiuEKWxlqdLSCuNKY</string>
+    <string name="google_maps_api_key">abcde</string>
     <string name="custom_mapbox_url">https://example.com</string>
 
 
