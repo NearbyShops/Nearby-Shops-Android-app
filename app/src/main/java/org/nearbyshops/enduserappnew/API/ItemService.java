@@ -3,9 +3,8 @@ package org.nearbyshops.enduserappnew.API;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemEndPoint;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemImageEndPoint;
 
-import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -17,25 +16,6 @@ import java.util.List;
  */
 public interface ItemService
 {
-
-
-
-    @GET ("/api/v1/Item/ItemDetailsForItemDetailScreen")
-    Call<ItemImageEndPoint> getItemDetailsForEndUser(
-            @Header("Authorization")String headerParam,
-            @Query("GetItemDetails")boolean getItemDetails,
-            @Query("ItemID")Integer itemID,
-            @Query("SortBy") String sortBy,
-            @Query("Limit")Integer limit, @Query("Offset")int offset);
-
-
-
-
-    @GET ("/api/v1/Item/GetItemDetails")
-    Call<Item> getItemDetails(@Query("ItemID")Integer itemID);
-
-
-
 
 
 
@@ -55,6 +35,7 @@ public interface ItemService
             @Query("GetRowCount") boolean getRowCount,
             @Query("MetadataOnly") boolean getOnlyMetaData
     );
+
 
 
 
@@ -137,17 +118,9 @@ public interface ItemService
 
     // Image Calls
 
-//    @POST("/api/v1/Item/Image")
-//    Call<Image> uploadImage(@Header("Authorization") String headers,
-//                            @Body RequestBody image);
-
-
-
-    @Multipart
     @POST("/api/v1/Item/Image")
     Call<Image> uploadImage(@Header("Authorization") String headers,
-                            @Part MultipartBody.Part img);
-
+                            @Body RequestBody image);
 
 
     @DELETE("/api/v1/Item/Image/{name}")

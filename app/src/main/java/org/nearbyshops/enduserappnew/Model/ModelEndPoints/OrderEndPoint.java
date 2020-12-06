@@ -1,10 +1,7 @@
 package org.nearbyshops.enduserappnew.Model.ModelEndPoints;
 
 
-import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.Model.DeliverySlot;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.Model.Shop;
 
 import java.util.List;
 
@@ -19,68 +16,6 @@ public class OrderEndPoint {
     Integer max_limit;
     List<Order> results;
 
-
-    private List<DeliverySlot> deliverySlotList;
-    private List<Shop> shopList;
-    private List<User> deliveryPersonList;
-
-    private int deliverySlotCount;
-    private int shopCount;
-    private int deliveryPersonCount;
-
-
-
-
-
-    // getter and setter methods
-
-    public List<DeliverySlot> getDeliverySlotList() {
-        return deliverySlotList;
-    }
-
-    public void setDeliverySlotList(List<DeliverySlot> deliverySlotList) {
-        this.deliverySlotList = deliverySlotList;
-    }
-
-    public List<Shop> getShopList() {
-        return shopList;
-    }
-
-    public void setShopList(List<Shop> shopList) {
-        this.shopList = shopList;
-    }
-
-    public List<User> getDeliveryPersonList() {
-        return deliveryPersonList;
-    }
-
-    public void setDeliveryPersonList(List<User> deliveryPersonList) {
-        this.deliveryPersonList = deliveryPersonList;
-    }
-
-    public int getDeliverySlotCount() {
-        return deliverySlotCount;
-    }
-
-    public void setDeliverySlotCount(int deliverySlotCount) {
-        this.deliverySlotCount = deliverySlotCount;
-    }
-
-    public int getShopCount() {
-        return shopCount;
-    }
-
-    public void setShopCount(int shopCount) {
-        this.shopCount = shopCount;
-    }
-
-    public int getDeliveryPersonCount() {
-        return deliveryPersonCount;
-    }
-
-    public void setDeliveryPersonCount(int deliveryPersonCount) {
-        this.deliveryPersonCount = deliveryPersonCount;
-    }
 
     public Integer getItemCount() {
         return itemCount;

@@ -110,7 +110,7 @@ public class User {
     private String name;
     private int secretCode;
 
-    private boolean gender;
+    private Boolean gender;
     private String profileImagePath;
     private int role;
 

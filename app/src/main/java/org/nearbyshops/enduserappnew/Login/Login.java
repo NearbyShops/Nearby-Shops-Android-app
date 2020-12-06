@@ -51,8 +51,15 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
 
 
 
-        if(PrefGeneral.isMultiMarketEnabled(this))
+        if(PrefGeneral.getMultiMarketMode(this))
         {
+            if(savedInstanceState==null)
+            {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container,new LoginGlobalUsingOTPFragment(),TAG_STEP_ONE)
+                        .commitNow();
+            }
 
         }
         else
@@ -163,9 +170,6 @@ public class Login extends AppCompatActivity implements ShowFragmentSelectServic
         setResult(RESULT_OK);
         finish();
     }
-
-
-
 
     @Override
     public void loggedOut() {

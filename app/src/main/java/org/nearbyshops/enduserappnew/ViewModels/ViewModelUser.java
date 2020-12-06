@@ -9,22 +9,21 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
 
+import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
-import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ViewModelUser extends AndroidViewModel {
 
@@ -35,7 +34,6 @@ public class ViewModelUser extends AndroidViewModel {
 
 
     public static int EVENT_profile_fetched = 1;
-    public static int EVENT_delete_success = 2;
     public static int EVENT_NETWORK_FAILED = 3;
 
 
@@ -115,17 +113,12 @@ public class ViewModelUser extends AndroidViewModel {
 
 
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
-                .client(new OkHttpClient().newBuilder().build())
-                .build();
 
-
-
-        Call<User> call = retrofit.create(UserService.class).getProfile(
+        Call<User> call = userService.getProfile(
                 PrefLogin.getAuthorizationHeaders(getApplication())
         );
+
+
 
 
 
@@ -147,11 +140,9 @@ public class ViewModelUser extends AndroidViewModel {
                 }
                 else
                 {
-                    message.postValue("GetUserProfile : Failed code : " + response.code());
+                    message.postValue("Failed code : " + response.code());
                 }
 
-
-//                System.out.println("Username : " + PrefLogin.getUsername(getApplication()) + " | Token : " + PrefLogin.getToken(getApplication()));
 
 
             }
@@ -167,53 +158,6 @@ public class ViewModelUser extends AndroidViewModel {
 
     }
 
-
-    public void deleteUser(int userId)
-    {
-
-        User endUser = PrefLogin.getUser(getApplication());
-
-        if(endUser==null)
-        {
-            return;
-        }
-
-
-        Call<ResponseBody> call = userService.deleteUser(
-                PrefLogin.getAuthorizationHeaders(getApplication()),
-                userId
-        );
-
-
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if(response.code()==200)
-                {
-                    event.postValue(EVENT_delete_success);
-                    message.postValue("User Deleted !");
-                }
-                else
-                {
-
-                    event.postValue(EVENT_NETWORK_FAILED);
-                    message.postValue("Failed Code : " + response.code());
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-
-                event.postValue(EVENT_NETWORK_FAILED);
-                message.postValue("Failed ! ");
-            }
-        });
-
-    }
 
 }
 

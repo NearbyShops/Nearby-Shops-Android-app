@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.nearbyshops.enduserappnew">
 
-
     <dist:module dist:instant="true" /> <!-- To auto-complete the email text field in the loginActivity form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
@@ -14,9 +13,8 @@
 
 
 
-
     <application
-        android:name="org.nearbyshops.enduserappnew.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/custom_icon"
         android:label="@string/app_name"
@@ -26,15 +24,71 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
+        <!--
+     Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_shopping_basket_blue" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+<!--        <service-->
+<!--            android:name=".Firebase.MessagingService"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+
+
+        <service
+            android:name=".PushFirebase.MessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
 
 
         <activity
-            android:name="org.nearbyshops.enduserappnew.HomeSingleMarket"
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <service
+            android:name=".PushOneSignal.UpdateOneSignalID"
+            android:exported="false" />
+
+
+        <service
+            android:name=".Services.UpdateServiceConfiguration"
+            android:exported="false" />
+
+
+
+        <service
+            android:name=".Services.LocationUpdateService"
+            android:exported="false" />
+
+
+
+        <activity
+            android:name=".Home"
             android:label="@string/app_name"
             android:launchMode="singleTop">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,200 +106,96 @@
 
 
 
+        <activity android:name=".UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker"/>
 
-        <!--
-     Set custom default icon. This is used when no icon is set for incoming notification messages.
-     See README(https://goo.gl/l4GJaQ) for more.
-        -->
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/custom_icon" />
-        <!--
- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more.
-        -->
-
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="@string/default_notification_channel_id" />
+        <activity android:name=".aSellerModule.DashboardDeliveryGuy.DeliveryHome"/>
 
 
-        <service
-            android:name="org.nearbyshops.enduserappnew.PushFirebase.MessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+        <activity android:name=".aSuperAdminModule.MarketsList.MarketsList"/>
+        <activity android:name=".aSuperAdminModule.DashboardAdmin.SDSAdminDashboard"/>
 
+        <activity android:name=".adminModule.DashboardAdmin.AdminDashboard"/>
+        <activity android:name=".adminModule.DashboardStaff.StaffDashboard"/>
+        <activity android:name=".aSellerModule.DashboardShopStaff.ShopDashboardForStaff"/>
 
-        <service
-            android:name="org.nearbyshops.enduserappnew.PushOneSignal.UpdateOneSignalID"
-            android:exported="false" />
+        <activity android:name=".aSellerModule.DashboardShopAdmin.ShopAdminHome"/>
+        <activity android:name=".Lists.ShopsAvailableForItem.ShopItemByItem" />
 
-
-        <service
-            android:name="org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration"
-            android:exported="false" />
-
-
-        <service
-            android:name="org.nearbyshops.enduserappnew.Services.LocationService"
-            android:exported="false" />
-
-
-
-        <service
-            android:name="org.nearbyshops.enduserappnew.Services.LocationServiceBackup"
-            android:exported="false" />
-
-
-
-        <activity android:name="org.nearbyshops.enduserappnew.Lists.ShopsList.ShopsList"/>
-
-        <activity android:name="org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker" />
-
-        <activity android:name="org.nearbyshops.enduserappnew.aSellerModule.DashboardDeliveryGuy.DeliveryHome" />
-
-
-
-        <activity android:name="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard" />
-        <activity android:name="org.nearbyshops.enduserappnew.adminModule.DashboardStaff.StaffDashboard" />
-        <activity android:name="org.nearbyshops.enduserappnew.aSellerModule.DashboardShopStaff.ShopDashboardForStaff" />
-
-        <activity android:name="org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome" />
-        <activity android:name="org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.ShopItemByItem" />
-
-        <activity
-            android:name="org.nearbyshops.enduserappnew.Login.Login"
+        <activity android:name=".Login.Login"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name="org.nearbyshops.enduserappnew.DetailScreens.DetailItemNew.ItemDetail" />
-        <activity android:name="org.nearbyshops.enduserappnew.DetailScreens.DetailShopItem.ShopItemDetail" />
+        <activity android:name=".DetailScreens.DetailItem.ItemDetail" />
+        <activity android:name=".DetailScreens.DetailShop.ShopDetail" />
+        <activity android:name=".ImageList.ImageListForShop.ShopImageList" />
+        <activity android:name=".ImageSlider.ImageSliderForShop.ImageSliderShop" />
+        <activity android:name=".ImageList.ImageListForItem.ItemImageList" />
+        <activity android:name=".ImageSlider.ImageSliderForItem.ImageSlider" />
+        <activity android:name=".EditDataScreens.EditProfile.EditProfile" />
 
-
-        <activity
-            android:theme="@style/AppTheme"
-            android:name="org.nearbyshops.enduserappnew.DetailScreens.DetailShopNew.ShopDetail"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
-
-
-
-        <activity android:name="org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageList" />
-        <activity android:name="org.nearbyshops.enduserappnew.ImageSlider.ImageSliderForShop.ImageSliderShop" />
-        <activity android:name="org.nearbyshops.enduserappnew.ImageList.ImageListForItem.ItemImageList" />
-
-        <activity android:name="org.nearbyshops.enduserappnew.ImageSlider.ImageSliderForItem.ImageSlider" />
-        <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile" />
-
-
-        <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditBannerImage.EditBannerImage" />
-        <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditMarketSettings.EditMarketSettings" />
-        <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarket" />
 
 
         <activity
-            android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.ChangeEmail.ChangeEmail"
+            android:name=".EditDataScreens.EditProfile.ChangeEmail.ChangeEmail"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.ChangePhone.ChangePhone"
+            android:name=".EditDataScreens.EditProfile.ChangePhone.ChangePhone"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
 
 
-        <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissions" />
-        <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissions" />
+        <activity android:name=".EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissions" />
+        <activity android:name=".EditDataScreens.EditStaffPermissions.EditStaffPermissions" />
+
+
+
+        <activity android:name=".Lists.UsersList.UsersList" />
+        <activity android:name=".Lists.DeliveryAddress.DeliveryAddressActivity" />
+        <activity android:name=".EditDataScreens.EditDeliveryAddress.EditDeliveryAddress" />
+        <activity android:name=".UtilityScreens.PlacePickerMapbox.PickLocation" />
+        <activity android:name=".Lists.CartItemList.CartItemList" />
+        <activity android:name=".Checkout.PlaceOrderActivity" />
+        <activity android:name=".DetailScreens.DetailMarket.MarketDetail" />
+        <activity android:name=".DetailScreens.DetailOrder.OrderDetail" />
+
+
+
+
+        <activity android:name=".ShopReview.ShopReviews" />
+        <activity android:name=".Lists.CartsList.CartsList" />
+        <activity android:name=".EditDataScreens.EditItem.EditItem" />
+        <activity android:name=".EditDataScreens.EditItemImage.EditItemImage" />
+
+
+
+
+        <activity android:name=".EditDataScreens.EditShop.EditShop" android:label="Edit Shop"/>
+        <activity android:name=".EditDataScreens.EditShopImage.EditShopImage" android:label="Edit Shop Image"/>
+
+
+<!--        <activity android:name=".aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat" />-->
+<!--        <activity android:name=".aSellerModule.ItemsInShopSeller.ItemsInShop" />-->
+        <activity android:name=".UtilityScreens.PlacePickerMapbox.PlacePickerWithRadius.PickDeliveryRange" />
+<!--        <activity android:name=".aSellerModule.OrdersInventory.HomeDeliveryInventory.HomeDelivery" />-->
+<!--        <activity android:name=".aSellerModule.OrdersInventory.PickFromShopInventory.PickFromShopInventory" />-->
+<!--        <activity android:name=".aSellerModule.QuickStockEditor.QuickStockEditor" />-->
+        <activity android:name=".aSellerModule.FilterDeliveryGuy.FilterDeliveryGuy" />
+
+        <activity android:name=".aSellerModule.DashboardShop.ShopDashboard" />
+        <activity android:name=".Lists.TransactionHistory.Transactions" />
 
 
 
 
         <activity
             android:launchMode="singleTop"
-            android:name="org.nearbyshops.enduserappnew.Lists.UsersList.UsersList">
-
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-
-        </activity>
-
-
-        <activity android:name="org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity" />
-
-        <activity android:name="org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.EditDeliverySlot.EditDeliverySlot" />
-
-
-
-
-
-
-
-        <activity
-            android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditDeliveryAddress"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait" />
-
-
-        <activity android:name="org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PickLocation" />
-        <activity android:name="org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemList" />
-
-        <activity android:name="org.nearbyshops.enduserappnew.Checkout.PlaceOrder" />
-        <activity android:name="org.nearbyshops.enduserappnew.Checkout.SelectPayment" />
-
-        <activity android:name="org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.OrderDetail" />
-
-
-        <activity android:name="org.nearbyshops.enduserappnew.ShopReview.ShopReviews" />
-        <activity android:name="org.nearbyshops.enduserappnew.Lists.CartsList.CartsList" />
-        <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditItem.EditItem" />
-        <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditItemImage.EditItemImage" />
-
-        <activity android:name="org.nearbyshops.enduserappnew.Lists.ShopsAvailableNew.ShopsAvailable" />
-
-
-
-        <activity
-            android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditShop.AddShop"
-            android:label="Add Shop" />
-
-
-
-        <activity
-            android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop"
-            android:label="Edit Shop" />
-
-
-        <activity
-            android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditShopImage.EditShopImage"
-            android:label="Edit Shop Image" />
-
-
-        <activity android:name="org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PlacePickerWithRadius.PickDeliveryRange" />
-        <activity android:name="org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy.FilterDeliveryGuy" />
-
-        <activity android:name="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard" />
-        <activity android:name="org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionHistory" />
-
-
-        <activity
-            android:launchMode="singleTop"
-            android:name="org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory"
+            android:name=".Lists.OrderHistory.OrderHistory"
             android:label="Order History"
-            android:parentActivityName="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -258,15 +208,17 @@
         </activity>
 
 
+
+
         <activity
             android:launchMode="singleTop"
-            android:name="org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrderHistoryPaging"
+            android:name=".Lists.OrderHistoryPaging.OrderHistoryPaging"
             android:label="Order History"
-            android:parentActivityName="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -281,15 +233,14 @@
 
 
 
-
         <activity
             android:launchMode="singleTop"
-            android:name="org.nearbyshops.enduserappnew.InventoryOrders.InventoryPickFromShop.PickFromShopInventory"
+            android:name=".aSellerModule.InventoryOrders.PickFromShopInventory.PickFromShopInventory"
             android:label="Pick From Shop Inventory"
-            android:parentActivityName="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -299,16 +250,18 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
+
+
 
 
         <activity
             android:launchMode="singleTop"
-            android:name="org.nearbyshops.enduserappnew.InventoryOrders.InventoryHomeDelivery.HomeDelivery"
+            android:name=".aSellerModule.InventoryOrders.HomeDeliveryInventory.HomeDelivery"
             android:label="Home Delivery Inventory"
-            android:parentActivityName="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -320,25 +273,30 @@
         </activity>
 
 
+
+
+
         <activity
-            android:name="org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.QuickStockEditor"
+            android:name=".aSellerModule.QuickStockEditor.QuickStockEditor"
             android:label="Quick Stock Editor"
-            android:parentActivityName="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
         </activity>
 
 
+
+
         <activity
-            android:name="org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabase.ItemsDatabase"
+            android:name=".ItemCatalogue.ItemsDatabase.ItemsDatabase"
             android:label="Items Database"
             android:launchMode="singleTop"
-            android:parentActivityName="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -349,14 +307,15 @@
         </activity>
 
 
+
         <activity
-            android:name="org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat"
+            android:name=".aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat"
             android:label="Items In Shop"
             android:launchMode="singleTop"
-            android:parentActivityName="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -367,14 +326,16 @@
         </activity>
 
 
+
+
         <activity
-            android:name="org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShop"
+            android:name=".aSellerModule.ItemsInShopSeller.ItemsInShop"
             android:label="Items In Shop"
             android:launchMode="singleTop"
-            android:parentActivityName="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard">
+            android:parentActivityName=".aSellerModule.DashboardShop.ShopDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard" />
+                android:value=".aSellerModule.DashboardShop.ShopDashboard" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -385,27 +346,30 @@
         </activity>
 
 
+
+
         <activity
-            android:name="org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword.ForgotPassword"
+            android:name=".Login.SignUp.ForgotPassword.ForgotPassword"
             android:label="Forgot Password"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
-
         <activity
-            android:name="org.nearbyshops.enduserappnew.Login.SignUp.SignUp"
+            android:name=".Login.SignUp.SignUp"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
 
 
+
+
         <activity
-            android:name="org.nearbyshops.enduserappnew.adminModule.ShopsList.ShopsDatabase"
+            android:name=".adminModule.ShopsList.ShopsDatabase"
             android:label="Shops"
             android:launchMode="singleTop"
-            android:parentActivityName="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard" />
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -418,34 +382,27 @@
 
 
         <activity
-            android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory.EditItemCategory"
+            android:name=".EditDataScreens.EditItemCategory.EditItemCategory"
             android:label="Edit Item Category"
-            android:parentActivityName="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard" />
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
         </activity>
+
 
 
         <activity
-            android:name="org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ItemsDatabaseAdmin"
+            android:name=".ItemCatalogue.ItemsDatabaseForAdmin.ItemsDatabaseAdmin"
             android:label="Items by Category"
-            android:launchMode="singleTop"
-            android:parentActivityName="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard" />
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
 
         </activity>
+
 
 
         <activity
@@ -455,31 +412,44 @@
 
 
         <activity
-            android:name="org.nearbyshops.enduserappnew.adminModule.ChangeParent.ItemCategoriesParent"
+            android:name=".adminModule.ChangeParent.ItemCategoriesParent"
             android:label="Select Parent Category"
-            android:parentActivityName="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard">
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard" />
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
 
         </activity>
 
 
         <activity
-            android:name="org.nearbyshops.enduserappnew.adminModule.AddCredit.AddCredit"
+            android:name=".adminModule.AddCredit.AddCredit"
             android:windowSoftInputMode="adjustPan" />
 
 
 
         <activity
+            android:name=".EditDataScreens.EditMarket.EditMarket"
+            android:label="Edit Configuration"
+            android:parentActivityName=".adminModule.DashboardAdmin.AdminDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".adminModule.DashboardAdmin.AdminDashboard" />
+        </activity>
+
+
+
+
+
+        <activity
             android:launchMode="singleTop"
-            android:name="org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.DeliveryPersonInventory"
+            android:name=".aSellerModule.InventoryDeliveryPerson.DeliveryGuyDashboard"
             android:label="Delivery Inventory"
-            android:parentActivityName="org.nearbyshops.enduserappnew.HomeSingleMarket">
+            android:parentActivityName=".Home">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.HomeSingleMarket" />
+                android:value=".Home" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -489,16 +459,12 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
+
 
 
         <activity
             android:launchMode="singleTop"
-            android:name="org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryByVendor.DeliveryByVendorInventory"
-            android:label="Delivery by Vendor"
-            android:parentActivityName="org.nearbyshops.enduserappnew.HomeSingleMarket">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.HomeSingleMarket" />
+            android:name=".Lists.ItemsInShopByCategory.ItemsInShopByCat">
 
             <meta-data
                 android:name="android.app.searchable"
@@ -510,24 +476,12 @@
         </activity>
 
 
-        <activity
-            android:launchMode="singleTop"
-            android:name="org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat">
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-        </activity>
 
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_api_key" />
+
 
 
     </application>

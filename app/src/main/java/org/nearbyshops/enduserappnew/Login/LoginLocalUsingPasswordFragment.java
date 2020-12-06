@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
@@ -30,8 +30,6 @@ import org.nearbyshops.enduserappnew.Login.SignUp.ForgotPassword.ForgotPassword;
 import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceForgotPassword;
 import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceSignUp;
 import org.nearbyshops.enduserappnew.Login.SignUp.SignUp;
-import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -99,10 +97,9 @@ public class LoginLocalUsingPasswordFragment extends Fragment {
 
 
 
-
     private void showToastMessage(String message)
     {
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -310,7 +307,7 @@ public class LoginLocalUsingPasswordFragment extends Fragment {
 
 
 
-                    UtilityFunctions.updateFirebaseSubscriptions();
+
 
 
 

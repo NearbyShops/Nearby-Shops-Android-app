@@ -267,7 +267,7 @@
                     android:textSize="17sp"
                     android:textColor="@color/white"
                     android:text="@string/fragment_login_using_otp_global_login_text"
-                    android:background="@drawable/button_green"
+                    android:background="@color/blueGrey800"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -295,7 +295,6 @@
 
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/login_using_password"
             android:layout_marginTop="25dp"
             android:textSize="20sp"

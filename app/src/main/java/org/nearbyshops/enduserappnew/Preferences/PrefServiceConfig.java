@@ -30,14 +30,19 @@ public class PrefServiceConfig {
     public static final int SERVICE_SELECT_MODE_ADVANCED = 2;
 
 
+    public static final String SDS_URL_NEARBY_SHOPS = "http://sds.nearbyshops.org";
     public static final String SDS_URL_LOCAL_HOTSPOT = "http://192.168.43.233:5125";
 
-    public static final String SERVICE_URL_SDS = SDS_URL_LOCAL_HOTSPOT;
+    public static final String SERVICE_URL_SDS = MyApplication.getAppContext().getResources().getString(
+            R.string.sds_url);;
 
 
 
     private static final String TAG_PREF_CONFIG = "configuration";
     private static final String TAG_SDS_URL = "url_for_sds";
+
+
+
 
 
 
@@ -65,6 +70,7 @@ public class PrefServiceConfig {
     }
 
 
+
     public static Market getServiceConfigLocal(Context context)
     {
         context = MyApplication.getAppContext();
@@ -83,6 +89,7 @@ public class PrefServiceConfig {
     }
 
 
+
     public static String getServiceName(Context context)
     {
         context = MyApplication.getAppContext();
@@ -99,6 +106,7 @@ public class PrefServiceConfig {
             return serviceConfigurationLocal.getServiceName() + " | " + serviceConfigurationLocal.getCity();
         }
     }
+
 
 
     public static String getServiceURL_SDS(Context context) {

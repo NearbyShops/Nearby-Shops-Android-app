@@ -41,9 +41,7 @@ public class ItemsInShopByCat extends AppCompatActivity{
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container,ItemsInShopByCatFragment.newInstance(false,
-                            ItemsInShopByCatFragment.MODE_ITEMS_IN_SHOP_MULTI_VENDOR),
-                            TAG_FRAGMENT)
+                    .add(R.id.fragment_container,ItemsInShopByCatFragment.newInstance(false),TAG_FRAGMENT)
                     .commit();
         }
     }
@@ -85,6 +83,7 @@ public class ItemsInShopByCat extends AppCompatActivity{
 
 
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -96,8 +95,6 @@ public class ItemsInShopByCat extends AppCompatActivity{
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-        searchView.setQueryHint("Enter Item Name ...");
 
 
         MenuItem item = menu.findItem(R.id.action_search);

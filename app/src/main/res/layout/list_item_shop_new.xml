@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<androidx.cardview.widget.CardView
-    android:clickable="true"
-    android:id="@+id/list_item_shop"
+
+<LinearLayout
     android:layout_margin="5dp"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:weightSum="2"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:padding="0dp"
+    android:id="@+id/list_item_shop"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:padding="0dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 
 
 
         <ImageView
             android:layout_weight="0.7"
             app:srcCompat="@drawable/ic_nature_people_white_48px"
-            android:background="@color/mapbox_blue"
             android:scaleType="centerCrop"
             android:id="@+id/shop_logo"
             android:minHeight="100dp"
+            android:background="@color/backgroundTinted"
             app:layout_constraintBottom_toBottomOf="@+id/rating"
             app:layout_constraintTop_toTopOf="@+id/shop_name"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -47,7 +45,7 @@
 
 
             <TextView
-                android:maxLines="1"
+                android:textColor="@color/mapboxBlue"
                 android:textSize="17sp"
                 android:id="@+id/shop_name"
                 android:textStyle="bold"
@@ -66,30 +64,26 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
+                    android:layout_weight="1"
                     android:id="@+id/indicator_pick_from_shop"
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:background="@drawable/tag_pickup"
+                    android:background="@color/orangeDark"
                     android:text="@string/list_item_shop_new_indicator_pick_from_shop_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content" />
 
 
-
-
                 <TextView
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
+                    android:layout_weight="1"
                     android:id="@+id/indicator_home_delivery"
                     android:layout_marginStart="0dp"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:background="@drawable/tag_delivery"
+                    android:background="@color/buttonColorDark"
                     android:text="@string/list_item_shop_new_indicator_home_delivery_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content" />
 
 
@@ -109,10 +103,7 @@
 
 
 
-
             <TextView
-                android:maxLines="1"
-                android:visibility="gone"
                 android:id="@+id/delivery"
                 android:layout_marginTop="5dp"
                 android:text="@string/list_item_shop_new_delivery_text"
@@ -170,11 +161,7 @@
         </LinearLayout>
 
 
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
-
-
+</LinearLayout>
 
 
 

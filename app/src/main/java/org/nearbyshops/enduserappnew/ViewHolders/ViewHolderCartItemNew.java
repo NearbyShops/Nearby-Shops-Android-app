@@ -1,19 +1,23 @@
 package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -28,6 +32,7 @@ import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import java.util.List;
 
@@ -185,12 +190,6 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
             String imagePath = PrefGeneral.getServiceURL(context)
                     + "/api/v1/Item/Image/three_hundred_" + item.getItemImageURL() + ".jpg";
 
-
-
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                itemImage.setClipToOutline(true);
-            }
 
             Drawable placeholder = VectorDrawableCompat
                     .create(context.getResources(),
@@ -522,7 +521,6 @@ public class ViewHolderCartItemNew extends RecyclerView.ViewHolder {
             ((ListItemClick) fragment).notifyTotal(cartTotal);
         }
     }
-
 
 
 

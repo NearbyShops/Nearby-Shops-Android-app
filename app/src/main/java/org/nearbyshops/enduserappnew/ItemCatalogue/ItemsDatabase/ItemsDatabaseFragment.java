@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -80,8 +81,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
     private  boolean show;
 
 
-
-    private int limit_item = 30;
+    private int limit_item = 10;
     private int offset_item = 0;
     private int item_count_item;
     private int fetched_items_count = 0;
@@ -99,7 +99,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
     @BindView(R.id.add_remove_buttons) LinearLayout addRemoveButtons;
-    @BindView(R.id.select_buttons) LinearLayout selectButtons;
 
 
 
@@ -333,13 +332,10 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
     private void showToastMessage(String message)
     {
-//        if(getActivity()!=null)
-//        {
-//            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
-//        }
-
-
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        if(getActivity()!=null)
+        {
+            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -445,10 +441,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
                         item_count_item = response.body().getItemCount();
                         fetched_items_count = dataset.size();
 
-                        int i = 0;
-
-//                         dataset.add(i, TutorialStep.getCabBookingTutorial());
-
 
 
                         if(response.body().getSubcategories()!=null && response.body().getSubcategories().size()>0)
@@ -511,9 +503,10 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
                                 if(currentCategory.getItemCategoryID()!=1)
                                 {
-//                                    EmptyScreenDataFullScreen data = EmptyScreenDataFullScreen.noItemsAndCategories();
-//                                    data.setTitle("No items in " + currentCategory.getCategoryName());
-//                                    dataset.add(data);
+                                    EmptyScreenDataFullScreen data = EmptyScreenDataFullScreen.noItemsAndCategories();
+                                    data.setTitle("No items in " + currentCategory.getCategoryName());
+
+                                    dataset.add(data);
                                 }
 
                             }
@@ -606,7 +599,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
     @Override
-    public void notifyRequestSubCategory(ItemCategory itemCategory,int scrollPosition) {
+    public void notifyRequestSubCategory(ItemCategory itemCategory) {
 
         ItemCategory temp = currentCategory;
         currentCategory = itemCategory;
@@ -644,7 +637,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
         if(!listAdapter.getSelectedItems().isEmpty())
         {
             addRemoveButtons.setVisibility(View.VISIBLE);
-            selectButtons.setVisibility(View.VISIBLE);
         }
     }
 
@@ -659,7 +651,6 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
         if(listAdapter.getSelectedItems().isEmpty())
         {
             addRemoveButtons.setVisibility(View.GONE);
-            selectButtons.setVisibility(View.GONE);
         }
     }
 
@@ -854,14 +845,11 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
     private void makeShopItemCreateBulkRequest(List<ShopItem> tempShopItemList) {
 
-        int shopID = PrefShopAdminHome.getShop(getActivity()).getShopID();
-
 
         Call<ResponseBody> call = shopItemService.createShopItemBulk(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
-                shopID, tempShopItemList
+                tempShopItemList
         );
-
 
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -882,9 +870,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
                 }else if (response.code() == 206)
                 {
-//                    showToastMessage("Partially Updated. Check data changes !");
-
-                    showToastMessage("Update Successful !");
+                    showToastMessage("Partially Updated. Check data changes !");
 
                     clearSelectedItems();
 
@@ -954,16 +940,11 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
 
 
 
+
     private void makeShopItemDeleteBulkRequest(List<ShopItem> tempShopItemList) {
-
-
-        int shopID = PrefShopAdminHome.getShop(getActivity()).getShopID();
-
-
 
         Call<ResponseBody> call = shopItemService.deleteShopItemBulk(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
-                shopID,
                 tempShopItemList
         );
 
@@ -1082,9 +1063,7 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
     void addToShopButtonClick()
     {
         addSelectedToShopClick();
-
         addRemoveButtons.setVisibility(View.GONE);
-        selectButtons.setVisibility(View.GONE);
     }
 
 
@@ -1094,44 +1073,8 @@ public class ItemsDatabaseFragment extends Fragment implements SwipeRefreshLayou
     void removeFromShopClick()
     {
         removeSeletedShopItemClick();
-
         addRemoveButtons.setVisibility(View.GONE);
-        selectButtons.setVisibility(View.GONE);
     }
 
-
-
-    @OnClick(R.id.select_all)
-    void selectAllClick()
-    {
-        for(Object object : dataset)
-        {
-            if(object instanceof Item)
-            {
-                listAdapter.selectedItems.put(((Item)object).getItemID(),((Item) object));
-                listAdapter.notifyDataSetChanged();
-            }
-        }
-
-    }
-
-
-
-
-    @OnClick(R.id.unselect_all)
-    void unselectAllClick()
-    {
-        for(Object object : dataset)
-        {
-            if(object instanceof Item)
-            {
-                listAdapter.selectedItems.remove(((Item)object).getItemID());
-                listAdapter.notifyDataSetChanged();
-
-                addRemoveButtons.setVisibility(View.GONE);
-                selectButtons.setVisibility(View.GONE);
-            }
-        }
-    }
 
 }

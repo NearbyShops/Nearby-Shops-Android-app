@@ -59,6 +59,4 @@ public class PrefShopHome {
         return gson.fromJson(json, Shop.class);
 
     }
-
-
 }

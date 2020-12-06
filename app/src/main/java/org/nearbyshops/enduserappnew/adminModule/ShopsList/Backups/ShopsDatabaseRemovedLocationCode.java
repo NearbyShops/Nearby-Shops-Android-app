@@ -44,7 +44,7 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.PagerAdapter;
-import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShopsAdmin;
+import org.nearbyshops.enduserappnew.adminModule.ShopsList.SlidingLayerSort.SlidingLayerSortShops;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -147,7 +147,7 @@ public class ShopsDatabaseRemovedLocationCode extends AppCompatActivity implemen
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShopsAdmin(),TAG_SLIDING_LAYER)
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShops(),TAG_SLIDING_LAYER)
                         .commit();
             }
 

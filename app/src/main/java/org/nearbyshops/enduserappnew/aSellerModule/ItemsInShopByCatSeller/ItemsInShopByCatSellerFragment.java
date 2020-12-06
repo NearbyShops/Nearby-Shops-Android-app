@@ -515,44 +515,31 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
 
 
-            endPointCall = shopItemService.getShopItemsByShop(
-                    currentCategory.getItemCategoryID(),false,
-                    false,
-                    currentShop.getShopID(),null,
-                    null,null,null,
+            endPointCall = shopItemService.getShopItemEndpoint(
+                    currentCategory.getItemCategoryID(),
+                    currentShop.getShopID(),
+                    null,null,null,null,null,null,null,
                     null,null,
                     null,null,null,
-                    null,false,current_sort,
+                    null,current_sort,
                     limit_item,offset_item,
                     clearDataset, false
             );
-
 
         }
         else
         {
 
 
-            endPointCall = shopItemService.getShopItemsByShop(
-                    null,false,false,
-                    currentShop.getShopID(),
+            endPointCall = shopItemService.getShopItemEndpoint(
                     null,
-                    null,null,null,null,null,null,null,null,
-                    searchQuery,false,current_sort,
+                    currentShop.getShopID(),
+                    null,null,null,null,null,null,null,null,null,
+                    null,null,null,
+                    searchQuery,current_sort,
                     limit_item,offset_item,
                     clearDataset, false
             );
-
-//
-//            endPointCall = shopItemService.getShopItemEndpoint(
-//                    null,false,
-//                    currentShop.getShopID(),
-//                    null,null,null,null,null,null,null,null,null,
-//                    null,null,null,
-//                    searchQuery,current_sort,
-//                    limit_item,offset_item,
-//                    clearDataset, false
-//            );
         }
 
 
@@ -676,7 +663,7 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
 
     @Override
-    public void notifyRequestSubCategory(ItemCategory itemCategory, int scrollPosition) {
+    public void notifyRequestSubCategory(ItemCategory itemCategory) {
 
         ItemCategory temp = currentCategory;
         currentCategory = itemCategory;

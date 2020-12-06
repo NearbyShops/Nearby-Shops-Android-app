@@ -23,6 +23,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/colorPrimaryDark"
         android:id="@+id/list_item"
         android:padding="0dp"
         android:orientation="vertical"
@@ -55,8 +56,8 @@
             android:minHeight="25dp"
             android:textSize="20sp"
             android:gravity="start"
-            android:textColor="@color/mapbox_blue"
-            android:background="@color/white"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
             app:layout_constraintTop_toBottomOf="@id/categoryImage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/categoryImage"

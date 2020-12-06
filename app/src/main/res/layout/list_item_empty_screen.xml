@@ -59,7 +59,7 @@
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
         android:textColor="@color/white"
-        android:background="@color/mapbox_blue"
+        android:background="@color/colorPrimary"
         android:text="@string/list_item_empty_screen_button_text"
         android:id="@+id/button"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -28,6 +28,7 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopStaff.ShopDashboardForStaff;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.DeliveryGuyDashboard;
 import org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard;
 import org.nearbyshops.enduserappnew.adminModule.DashboardStaff.StaffDashboard;
 
@@ -37,6 +38,8 @@ import butterknife.OnClick;
 
 
 public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
+
+
 
 
 
@@ -181,21 +184,12 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         }
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
         {
-//            Intent deliveryGuyDashboard = new Intent(context, DeliveryByVendorInventory.class);
-//            context.startActivity(deliveryGuyDashboard);
-
-            showToastMessage("Feature available in Paid Version !");
+//            Intent intent = new Intent(context, DeliveryHome.class);
+//            context.startActivity(intent);
 
 
-//            DeliveryPersonInventory.start(DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_VENDOR,context);
-
-        }
-        else if(user.getRole()==User.ROLE_DELIVERY_GUY_CODE)
-        {
-            showToastMessage("Feature available in Paid Version !");
-
-//            DeliveryPersonInventory.start(DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_MARKET,context);
-
+            Intent deliveryGuyDashboard = new Intent(context, DeliveryGuyDashboard.class);
+            context.startActivity(deliveryGuyDashboard);
         }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {
@@ -215,12 +209,12 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 //                            progressDialog.show();
 
 
-
-
                             //     open edit shop in edit mode
                             Intent intent = new Intent(context, EditShop.class);
                             intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_ADD);
+//                            context.startActivity(intent);
                             fragment.startActivityForResult(intent,890);
+
 
                         }
                     })
@@ -238,9 +232,6 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         }
 
     }
-
-
-
 
 
 
@@ -276,14 +267,6 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
             marketName.setText(marketNameString);
             dashboardName.setText(context.getString(R.string.delivery_dashboard));
             dashboardDescription.setText(context.getString(R.string.access_delivery));
-
-        }
-        else if(user.getRole()==User.ROLE_DELIVERY_GUY_CODE)
-        {
-            marketName.setText(marketNameString);
-            dashboardName.setText("Delivery Dashboard");
-            dashboardDescription.setText("Press here to access the delivery by market Dashboard !");
-
         }
         else if(user.getRole()==User.ROLE_ADMIN_CODE)
         {

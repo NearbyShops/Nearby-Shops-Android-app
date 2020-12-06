@@ -25,11 +25,6 @@ package org.nearbyshops.enduserappnew.Model.ModelStatusCodes;
 
 public class OrderStatusHomeDelivery {
 
-
-    public static final int DELIVERY_BOY_UNASSIGNED = 123; // Start Pickup (Delivery)
-    public static final int DELIVERY_BOY_ASSIGNED = 124; // Pickup Order (Delivery)
-
-
     public static final int ORDER_PLACED = 1; // Confirm (Staff)
     public static final int ORDER_CONFIRMED = 2; // Pack (Staff)
     public static final int ORDER_PACKED = 3; // handover to delivery (Staff)

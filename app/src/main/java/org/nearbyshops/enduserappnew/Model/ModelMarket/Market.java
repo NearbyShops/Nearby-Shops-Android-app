@@ -77,8 +77,6 @@ public class Market {
     // getter and setters
 
 
-
-
     public String getRt_styleURL() {
         return rt_styleURL;
     }
@@ -135,7 +133,21 @@ public class Market {
         this.descriptionLong = descriptionLong;
     }
 
+    public Boolean getOfficial() {
+        return isOfficial;
+    }
 
+    public void setOfficial(Boolean official) {
+        isOfficial = official;
+    }
+
+    public Boolean getVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(Boolean verified) {
+        isVerified = verified;
+    }
 
     public String getServiceURL() {
         return serviceURL;
@@ -337,20 +349,19 @@ public class Market {
         this.serviceRange = serviceRange;
     }
 
-
-    public Boolean getOfficial() {
+    public boolean isOfficial() {
         return isOfficial;
     }
 
-    public void setOfficial(Boolean official) {
+    public void setOfficial(boolean official) {
         isOfficial = official;
     }
 
-    public Boolean getVerified() {
+    public boolean isVerified() {
         return isVerified;
     }
 
-    public void setVerified(Boolean verified) {
+    public void setVerified(boolean verified) {
         isVerified = verified;
     }
 

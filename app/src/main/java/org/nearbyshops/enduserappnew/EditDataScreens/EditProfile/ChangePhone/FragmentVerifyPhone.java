@@ -303,7 +303,7 @@ public class FragmentVerifyPhone extends Fragment {
 
         Call<ResponseBody> call;
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity())) {
+        if(PrefGeneral.getMultiMarketMode(getActivity())) {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -448,7 +448,7 @@ public class FragmentVerifyPhone extends Fragment {
 
             Call<ResponseBody> call;
 
-            if(PrefGeneral.isMultiMarketEnabled(getActivity())) {
+            if(PrefGeneral.getMultiMarketMode(getActivity())) {
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .addConverterFactory(GsonConverterFactory.create(gson))
@@ -502,7 +502,7 @@ public class FragmentVerifyPhone extends Fragment {
                     if(response.code()==200)
                     {
 
-                        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+                        if(PrefGeneral.getMultiMarketMode(getActivity()))
                         {
                             User userDetails = PrefLoginGlobal.getUser(getActivity());
                             userDetails.setPhone(user.getPhoneWithCountryCode());
@@ -590,7 +590,7 @@ public class FragmentVerifyPhone extends Fragment {
 
 
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity())) {
+        if(PrefGeneral.getMultiMarketMode(getActivity())) {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))

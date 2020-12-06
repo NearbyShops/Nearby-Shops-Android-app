@@ -6,10 +6,12 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -25,7 +27,6 @@ import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissions;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
-import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToShopStaffDialog;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.UserEndpoint;
@@ -66,7 +67,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class UsersListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        ViewHolderUserProfileItem.ListItemClick, ViewHolderFilterUsers.ListItemClick, NotifySearch
+        ViewHolderUserProfileItem.ListItemClick, ViewHolderFilterUsers.ListItemClick
 {
 
 
@@ -75,16 +76,11 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
     public static final int MODE_SUPER_ADMIN_USER_LIST = 50;
-
     public static final int MODE_ADMIN_USER_LIST = 51;
     public static final int MODE_ADMIN_STAFF_LIST = 52;
-    public static final int MODE_ADMIN_DELIVERY_STAFF_LIST = 53;
-
-    public static final int MODE_SHOP_ADMIN_SHOP_STAFF_LIST = 54;
-    public static final int MODE_SHOP_ADMIN_DELIVERY_STAFF_LIST = 55;
-    public static final int MODE_SELECT_DELIVERY_PERSON = 56;
-
-
+    public static final int MODE_SHOP_ADMIN_SHOP_STAFF_LIST = 53;
+    public static final int MODE_SHOP_ADMIN_DELIVERY_STAFF_LIST = 54;
+    public static final int MODE_SELECT_DELIVERY_PERSON = 55;
 
     private int current_mode;
 
@@ -143,7 +139,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
-//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(),R.color.white));
         toolbar.setTitle("Users List");
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
@@ -170,10 +166,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
         {
             ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_STAFF_CODE);
         }
-        else if(current_mode==MODE_ADMIN_DELIVERY_STAFF_LIST)
-        {
-            ViewHolderFilterUsers.saveFilterByRole(getActivity(),User.ROLE_DELIVERY_GUY_CODE);
-        }
         else if(current_mode==MODE_ADMIN_USER_LIST)
         {
             // clear filter
@@ -186,7 +178,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
             ViewHolderFilterUsers.saveFilterByRole(getActivity(),0);
             fab.setVisibility(View.GONE);
         }
-
 
 
 
@@ -235,7 +226,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
     private void setupRecyclerView()
     {
 
-        listAdapter = new Adapter(dataset,getActivity(),this,current_mode);
+        listAdapter = new Adapter(dataset,getActivity(),this);
         recyclerView.setAdapter(listAdapter);
 
         layoutManager = new GridLayoutManager(getActivity(),1, LinearLayoutManager.VERTICAL,false);
@@ -419,9 +410,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
             call = userService.getUsers(
                     PrefLogin.getAuthorizationHeaders(getActivity()),
                     userRole,
-                    null,
-                    searchQuery,
-                    ViewHolderFilterUsers.getSortString(getActivity()),
+                    null, ViewHolderFilterUsers.getSortString(getActivity()),
                     limit, offset,
                     clearDataset,false
             );
@@ -451,7 +440,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-                        if(current_mode==MODE_ADMIN_USER_LIST || current_mode==MODE_SUPER_ADMIN_USER_LIST)
+                        if(current_mode==MODE_ADMIN_USER_LIST)
                         {
                             dataset.add(new FilterUsers());
                         }
@@ -470,6 +459,8 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
                     {
                         dataset.addAll(response.body().getResults());
                     }
+
+
 
 
 
@@ -561,11 +552,9 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-
-
     private void showToastMessage(String message)
     {
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -573,11 +562,8 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
-    @Override
-    public void userDeleted(User user, int position) {
 
-        listAdapter.notifyItemRemoved(position);
-    }
+
 
 
     @Override
@@ -593,7 +579,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
             getActivity().finish();
         }
-        else if(current_mode==MODE_ADMIN_USER_LIST || current_mode==MODE_ADMIN_DELIVERY_STAFF_LIST)
+        else if(current_mode==MODE_ADMIN_USER_LIST)
         {
 
             Gson gson = UtilityFunctions.provideGson();
@@ -604,7 +590,6 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
             intent.putExtra("user_profile",jsonString);
             intent.putExtra(FragmentEditProfile.EDIT_MODE_INTENT_KEY, FragmentEditProfile.MODE_UPDATE_BY_ADMIN);
             startActivity(intent);
-
         }
         else if(current_mode==MODE_SUPER_ADMIN_USER_LIST)
         {
@@ -648,6 +633,7 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
 
 
 
+
     @OnClick(R.id.fab)
     void fabClick()
     {
@@ -675,39 +661,14 @@ public class UsersListFragment extends Fragment implements SwipeRefreshLayout.On
             AddUserToStaffDialog dialog = new AddUserToStaffDialog();
 
             dialog.show(fm, "add_user_to_staff");
-            dialog.setRole(User.ROLE_STAFF_CODE);
-        }
-        else if(current_mode==MODE_ADMIN_DELIVERY_STAFF_LIST)
-        {
-            FragmentManager fm = getChildFragmentManager();
-            AddUserToStaffDialog dialog = new AddUserToStaffDialog();
-
-            dialog.show(fm, "add_user_to_staff");
-            dialog.setRole(User.ROLE_DELIVERY_GUY_CODE);
         }
     }
-
 
 
 
 
     @Override
     public void filtersUpdated() {
-        makeRefreshNetworkCall();
-    }
-
-
-
-    private String searchQuery = null;
-    @Override
-    public void search(String searchString) {
-        searchQuery = searchString;
-        makeRefreshNetworkCall();
-    }
-
-    @Override
-    public void endSearchMode() {
-        searchQuery = null;
         makeRefreshNetworkCall();
     }
 }

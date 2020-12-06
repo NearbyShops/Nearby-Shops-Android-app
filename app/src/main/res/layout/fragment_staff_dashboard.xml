@@ -33,7 +33,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
                     android:text="@string/fragment_staff_dashboard_app_name_text"
-                    android:textColor="@color/header_text_color"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <!--                android:text="@string/app_name"-->
@@ -45,7 +45,7 @@
                     app:layout_constraintTop_toBottomOf="@id/app_name"
                     android:paddingTop="5dp"
                     android:paddingBottom="0dp"
-                    android:textColor="@color/header_text_color"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

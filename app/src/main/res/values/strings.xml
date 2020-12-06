@@ -40,11 +40,9 @@
 
 
     <!--Delivery Type Description-->
-    <string name="delivery_type_description_pick_from_shop">Pick from Shop</string>
-    <string name="delivery_type_description_home_delivery">Home Delivery</string>
+    <string name="delivery_type_description_pick_from_shop">Pick from Shop - You need to pick this order from the shop when its ready for pickup. This order will not be delivered to your home.</string>
+    <string name="delivery_type_description_home_delivery">Home Delivery - This order will be delivered to your home by the shop owner.</string>
 
-<!--    - Your Delivery will be delivered to your home.-->
-<!--    - You need to pick this order from the shop when its ready for pickup. This order will not be delivered to your home.-->
 
     <!--API Response Messages-->
 
@@ -108,11 +106,10 @@
     <string name="fragment_sds_admin_text_markets_list">Markets</string>
     <string name="title_delivery_address_list">Delivery Address</string>
     <string name="change_address">Change Delivery Address</string>
-    <string name="pick_address">Pick Delivery Address</string>
 
 
-    <string name="current_location_custom">Set by you</string>
-    <string name="current_location_automated">Detected Automatically</string>
+    <string name="current_location_custom">Current Location - Set by you</string>
+    <string name="current_location_automated">Current Location - Detected Automatically</string>
 
     <string name="order_id">Order ID</string>
     <string name="phone">Phone</string>

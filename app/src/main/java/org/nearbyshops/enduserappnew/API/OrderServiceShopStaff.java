@@ -33,24 +33,6 @@ public interface OrderServiceShopStaff {
 
 
 
-    @PUT("/api/Order/ShopStaff/SetOutForDelivery/{OrderID}")
-    Call<ResponseBody> setOutForDelivery(@Header("Authorization") String headers,
-                                         @Path("OrderID") int orderID);
-
-
-
-    @PUT("/api/Order/ShopStaff/DeliverOrder/{OrderID}")
-    Call<ResponseBody> deliverOrder(@Header("Authorization") String headers,
-                                     @Path("OrderID") int orderID);
-
-
-
-
-    @PUT("/api/Order/ShopStaff/ReturnOrder/{OrderID}")
-    Call<ResponseBody> returnOrder(@Header("Authorization") String headers,
-                                     @Path("OrderID") int orderID);
-
-
 //    @PUT("/api/Order/ShopStaffAccounts/HandoverToDelivery/{OrderID}")
 //    Call<ResponseBody> handoverToDelivery(@Path("OrderID")int orderID,@Body Order order);
 
@@ -174,6 +156,15 @@ public interface OrderServiceShopStaff {
     @PUT("/api/Order/ShopStaff/MarkDelivered/{OrderID}")
     Call<ResponseBody> markDelivered(@Header("Authorization") String headers,
                                      @Path("OrderID") int orderID);
+
+
+
+    @PUT("/api/Order/ShopStaff/CancelByShop/{OrderID}")
+    Call<ResponseBody> cancelledByShop(@Header("Authorization") String headers,
+                                       @Path("OrderID") int orderID);
+
+
+
 
 
 

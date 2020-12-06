@@ -194,8 +194,8 @@
     <string name="fragment_edit_shop_for_admin_fragment_home_delivery_available_text">Home Delivery Available</string>
     <string name="fragment_edit_shop_for_admin_fragment_saveButton_text">Save</string>
     <string name="list_item_shop_new_shop_name_text">Shop name</string>
-    <string name="list_item_shop_new_indicator_pick_from_shop_text">Pickup</string>
-    <string name="list_item_shop_new_indicator_home_delivery_text">Delivery</string>
+    <string name="list_item_shop_new_indicator_pick_from_shop_text">Self Pickup</string>
+    <string name="list_item_shop_new_indicator_home_delivery_text">Home Delivery</string>
     <string name="list_item_shop_new_shop_address_text"> - </string>
     <string name="list_item_shop_new_delivery_text"> - </string>
     <string name="list_item_shop_new_rating_text"> - </string>
@@ -560,7 +560,7 @@
     <string name="fragment_verify_email_resend_code_text">Resend code</string>
     <string name="fragment_verify_email_message_resend_text">Sending Verification Code ...</string>
     <string name="fragment_add_credit_next_text">Add Credit</string>
-    <string name="fragment_add_credit_header_text">Add or Withdraw Credit</string>
+    <string name="fragment_add_credit_header_text">Add Credit</string>
     <string name="fragment_add_credit_header_amount_text">Please Enter Amount</string>
     <string name="fragment_add_credit_amount_to_add_hint">Enter Amount</string>
     <string name="fragment_edit_item_category_textChangePicture_text">Change Picture</string>
@@ -803,7 +803,7 @@
     <string name="activity_items_in_stock_by_cat_text_sub_text">4 out of 46 Grocery Items</string>
     <string name="activity_items_in_stock_by_cat_text_sort_text">Filter / Sort</string>
     <string name="list_item_set_location_manually_locationAddress_text">Current Location ( Detected Automatically )</string>
-    <string name="list_item_set_location_manually_changeLocation_text">Switch Location</string>
+    <string name="list_item_set_location_manually_changeLocation_text">Change Location</string>
     <string name="content_admin_dashboard_header_items_text">Shops and Items</string>
     <string name="content_admin_dashboard_text_shop_approvals_text">Shops Database</string>
     <string name="content_admin_dashboard_text_add_items_text">Items Database</string>

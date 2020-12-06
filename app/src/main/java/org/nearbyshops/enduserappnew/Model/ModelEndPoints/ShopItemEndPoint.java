@@ -1,6 +1,5 @@
 package org.nearbyshops.enduserappnew.Model.ModelEndPoints;
 
-import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
 
@@ -23,19 +22,10 @@ public class ShopItemEndPoint {
     private List<ItemCategory> subcategories;
 
 
-    private Item itemDetails;
 
 
 
 
-
-    public Item getItemDetails() {
-        return itemDetails;
-    }
-
-    public void setItemDetails(Item itemDetails) {
-        this.itemDetails = itemDetails;
-    }
 
     public List<ItemCategory> getSubcategories() {
         return subcategories;

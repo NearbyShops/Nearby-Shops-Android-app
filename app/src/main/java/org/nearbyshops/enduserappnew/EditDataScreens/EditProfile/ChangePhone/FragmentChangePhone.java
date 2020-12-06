@@ -125,7 +125,7 @@ public class FragmentChangePhone extends Fragment {
 
 
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             ccp.setCountryForNameCode("IN");
 //            ccp.setCcpClickable(false);
@@ -366,7 +366,7 @@ public class FragmentChangePhone extends Fragment {
         Call<ResponseBody> call;
 
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -573,7 +573,7 @@ public class FragmentChangePhone extends Fragment {
 
 
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity())) {
+        if(PrefGeneral.getMultiMarketMode(getActivity())) {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))

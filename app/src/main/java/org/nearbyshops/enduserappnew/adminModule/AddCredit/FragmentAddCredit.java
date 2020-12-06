@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,7 +17,6 @@ import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import javax.inject.Inject;
 
@@ -189,12 +189,8 @@ public class FragmentAddCredit extends Fragment {
 
     private void showToast(String message)
     {
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
-
-
-
-
 
     @Override
     public void onResume() {

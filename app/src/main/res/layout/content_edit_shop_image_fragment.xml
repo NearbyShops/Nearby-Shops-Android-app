@@ -19,7 +19,6 @@
         <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
         <androidx.appcompat.widget.Toolbar
-            app:titleTextColor="@color/header_text_color"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:layout_scrollFlags="scroll|enterAlways"
             android:id="@+id/toolbar"

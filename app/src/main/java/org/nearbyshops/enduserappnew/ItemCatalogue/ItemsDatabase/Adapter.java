@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
-import org.nearbyshops.enduserappnew.UtilityScreens.BannerSlider.AdapterBannerImages;
-import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model.Highlights;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.aSellerModule.ViewHolders.ViewHolderItemInShop;
@@ -50,9 +48,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final static int VIEW_TYPE_PROGRESS_BAR = 6;
 
 
-    public static final int VIEW_TYPE_HIGHLIGHTS = 10;
-
-
     private boolean loadMore;
 
 
@@ -87,10 +82,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             return ViewHolderItemCategory.create(parent,context,fragment,this);
         }
         else if(viewType == VIEW_TYPE_ITEM_CATEGORY_LIST)
-        {
-            return ViewHolderHorizontalList.create(parent,context,fragment);
-        }
-        else if(viewType == VIEW_TYPE_HIGHLIGHTS)
         {
             return ViewHolderHorizontalList.create(parent,context,fragment);
         }
@@ -136,21 +127,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holder instanceof ViewHolderHorizontalList)
         {
 
-            if(getItemViewType(position)==VIEW_TYPE_HIGHLIGHTS)
-            {
-                Highlights highlights = ((Highlights)dataset.get(position));
+            List<ItemCategory> list = ((ItemCategoriesList)dataset.get(position)).getItemCategories();
 
-                List<Object> list = highlights.getHighlightList();
-                AdapterBannerImages adapterBannerImages = new AdapterBannerImages(list,context,fragment);
-                ((ViewHolderHorizontalList) holder).setItem(adapterBannerImages, highlights.getListTitle());
-            }
-            else if(getItemViewType(position)==VIEW_TYPE_ITEM_CATEGORY_LIST)
-            {
-
-                List<ItemCategory> list = ((ItemCategoriesList)dataset.get(position)).getItemCategories();
-                ((ViewHolderHorizontalList) holder).setItem(new AdapterHorizontalList(list,context,fragment),null);
-
-            }
+            ((ViewHolderHorizontalList) holder).setItem(new AdapterHorizontalList(list,context,fragment),null);
 
         }
         else if (holder instanceof ViewHolderHeader) {
@@ -195,10 +174,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(dataset.get(position) instanceof ItemCategoriesList)
         {
             return VIEW_TYPE_ITEM_CATEGORY_LIST;
-        }
-        else if(dataset.get(position) instanceof Highlights)
-        {
-            return VIEW_TYPE_HIGHLIGHTS;
         }
         else if (dataset.get(position) instanceof Item)
         {

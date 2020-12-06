@@ -88,11 +88,11 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:textColor="@color/header_text_color"
                     android:id="@+id/header_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
+                    android:textColor="@color/white"
                     android:text="@string/fragment_cart_item_list_header_title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -100,14 +100,13 @@
 
 
                 <TextView
-                    android:visibility="gone"
                     android:text="@string/fragment_cart_item_list_shop_name_text"
                     android:id="@+id/shop_name"
                     app:layout_constraintStart_toStartOf="@id/header_title"
                     app:layout_constraintTop_toBottomOf="@id/header_title"
                     android:paddingTop="5dp"
                     android:paddingBottom="0dp"
-                    android:textColor="@color/header_text_color"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -236,7 +235,6 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="gone"
         android:background="@color/white"
         android:layout_gravity="bottom|center"
         android:layout_marginTop="3dp"
@@ -254,13 +252,7 @@
 
 
 
-
-
-
-        <Button
-            android:drawableLeft="@drawable/ic_shopping_basket_white_24px"
-            android:drawablePadding="10dp"
-            android:textAllCaps="false"
+        <TextView
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -271,26 +263,10 @@
             android:padding="10dp"
             android:gravity="center"
             android:textColor="@color/white"
-            android:background="@color/mapbox_blue"
+            android:background="@color/colorPrimaryDark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-
-
-<!--        <TextView-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            android:id="@+id/confirm"-->
-<!--            android:text="@string/fragment_cart_item_list_confirm_text"-->
-<!--            android:textSize="20sp"-->
-<!--            android:layout_margin="10sp"-->
-<!--            android:padding="10dp"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:background="@color/colorPrimaryDark"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content" />-->
 
 
 
@@ -300,10 +276,10 @@
             android:textColor="@color/white"
             android:paddingEnd="5dp"
             android:paddingStart="5dp"
-            android:background="@color/mapbox_blue"
+            android:background="@color/colorPrimary"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
-            android:text=" - "
+            android:text="Savings Over MRP : 345"
             app:layout_constraintStart_toStartOf="@id/totalValue"
             app:layout_constraintBottom_toTopOf="@id/totalValue"
             app:layout_constraintTop_toTopOf="parent"

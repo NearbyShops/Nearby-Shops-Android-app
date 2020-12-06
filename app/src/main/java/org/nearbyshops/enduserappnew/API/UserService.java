@@ -120,7 +120,6 @@ public interface UserService {
 
 
 
-
     @GET("/api/v1/User/GetProfile")
     Call<User> getProfile(@Header("Authorization") String headers);
 
@@ -133,7 +132,6 @@ public interface UserService {
             @Header("Authorization") String headers,
             @Query("UserRole") Integer userRole,
             @Query("Gender") Boolean gender,
-            @Query("SearchString") String searchString,
             @Query("SortBy") String sortBy,
             @Query("Limit")int limit, @Query("Offset")int offset,
             @Query("GetRowCount")boolean getRowCount,
@@ -187,16 +185,6 @@ public interface UserService {
     Call<ResponseBody> updateProfileByAdmin(
             @Header("Authorization") String headers,
             @Body User user
-    );
-
-
-
-
-
-    @DELETE("/api/v1/User")
-    Call<ResponseBody> deleteUser(
-            @Header("Authorization") String headers,
-            @Query("UserID")int userID
     );
 
 }

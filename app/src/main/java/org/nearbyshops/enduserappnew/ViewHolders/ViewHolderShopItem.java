@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -35,6 +35,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.InputFilterMinMax;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,10 +56,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
     @Inject
     CartItemService cartItemService;
-
-
-    public static int LAYOUT_TYPE_FULL_WIDTH = 1;
-    public static int LAYOUT_TYPE_HALF_WIDTH = 2;
 
 
 
@@ -85,8 +82,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
     @BindView(R.id.out_of_stock_indicator) TextView outOfStockIndicator;
-    @BindView(R.id.list_item)
-    CardView shopItemListItem;
+    @BindView(R.id.list_item) ConstraintLayout shopItemListItem;
 
     @BindView(R.id.add_label) TextView addLabel;
 
@@ -117,24 +113,12 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
     public static ViewHolderShopItem create(ViewGroup parent, Context context, Fragment fragment, RecyclerView.Adapter adapter,
-                                            Map<Integer, CartItem> cartItemMap, CartStats cartStats,  int layoutType)
+                                            Map<Integer, CartItem> cartItemMap, CartStats cartStats)
     {
 
 
-        View view = null;
-
-        if(layoutType==LAYOUT_TYPE_FULL_WIDTH)
-        {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_full_width,parent,false);
-        }
-        else if(layoutType== LAYOUT_TYPE_HALF_WIDTH)
-        {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_half_width,parent,false);
-        }
-
-
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_small,parent,false);
-        return new ViewHolderShopItem(view,context,fragment,adapter,cartItemMap,cartStats, layoutType);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_dual,parent,false);
+        return new ViewHolderShopItem(view,context,fragment,adapter,cartItemMap,cartStats);
     }
 
 
@@ -143,7 +127,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
     private ViewHolderShopItem(@NonNull View itemView, Context context, Fragment fragment, RecyclerView.Adapter listAdapter,
-                               Map<Integer, CartItem> cartItemMap, CartStats cartStats,  int layoutType) {
+                               Map<Integer, CartItem> cartItemMap, CartStats cartStats) {
 
         super(itemView);
         ButterKnife.bind(this,itemView);
@@ -294,15 +278,20 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-
     @OnClick(R.id.quantity_quarter)
     void quarterQuantityClick()
     {
 
+
         if (!itemQuantityText.getText().toString().equals("")){
+
+//            itemQuantityText.setText("0.25");
 
             itemQuantityText.setText(String.valueOf(Double.parseDouble(itemQuantityText.getText().toString()) + 0.25));
         }
+
+
+//        itemQuantityText.setText("0.25");
 
         addToCartTimer();
     }
@@ -320,8 +309,12 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
         if (!itemQuantityText.getText().toString().equals("")){
 
+//            itemQuantityText.setText("0.50");
+
             itemQuantityText.setText(String.valueOf(Double.parseDouble(itemQuantityText.getText().toString()) + 0.50));
         }
+
+//        itemQuantityText.setText("0.50");
 
         addToCartTimer();
     }
@@ -337,6 +330,9 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
         this.shopItem = shopItem;
         Item item = shopItem.getItem();
 
+//        holder.shopName.setText(dataset.get(position).getShopName());
+//        holder.rating.setText(String.format( "%.2f", dataset.get(position).getRt_rating_avg()));
+//        holder.distance.setText(String.format( "%.2f", dataset.get(position).getDistance() )+ " Km");
 
 
         if(shopItem.isAllowQuarterQuantity())
@@ -514,7 +510,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
-    @OnClick(R.id.list_item)
+    @OnClick(R.id.item_image)
     void itemImageClick()
     {
         Item item = shopItem.getItem();
@@ -698,7 +694,22 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
                             cartItemMap.remove(cartItem.getItemID());
+//                            listAdapter.notifyItemChanged(getLayoutPosition());
                             bindShopItems(shopItem);
+
+
+
+
+
+//                            getCartStats(true,getLayoutPosition(),false);
+
+                            //makeNetworkCall();
+
+//                                notifyFilledCart.notifyCartDataChanged();
+
+
+
+
                         }
 
 
@@ -723,9 +734,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
             {
                 // Update from cart
 
-
-
-
+                //UtilityGeneral.getEndUserID(MyApplicationCoreNew.getAppContext())
                 User endUser = PrefLogin.getUser(context);
 
                 if(endUser==null)
@@ -733,6 +742,13 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
                     return;
                 }
 
+//                if(getLayoutPosition() < dataset.size())
+//                {
+
+
+
+
+//                ShopItem shop = (ShopItem) dataset.get(getLayoutPosition());
 
                 Call<ResponseBody> callUpdate = cartItemService.updateCartItem(
                         cartItem,
@@ -752,6 +768,8 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
                         if (response.code() == 200) {
 
+//                            Toast.makeText(context, "Update cart successful !", Toast.LENGTH_SHORT).show();
+//                            getCartStats(false,getLayoutPosition(),false);
 
                             showToastMessage("Update cart successful !");
 
@@ -767,6 +785,7 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
                             cartItemMap.put(cartItem.getItemID(),cartItem);
+//                            listAdapter.notifyItemChanged(getAdapterPosition());
                             bindShopItems(shopItem);
 
                         }
@@ -884,14 +903,20 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
 
 
+
+
+
+
     @OnClick(R.id.increaseQuantity)
     void increaseQuantityClick(View view)
     {
         User endUser = PrefLogin.getUser(context);
-
         if(endUser==null)
         {
+
+//                        Toast.makeText(context, "Please LoginUsingOTP to continue ...", Toast.LENGTH_SHORT).show();
             showLoginDialog();
+
             return;
         }
 
@@ -937,9 +962,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
             addToCartTimer();
         }
     }
-
-
-
 
 
 
@@ -1002,9 +1024,6 @@ public class ViewHolderShopItem extends RecyclerView.ViewHolder{
 
     private void addToCartTimer()
     {
-
-        addLabel.setVisibility(View.GONE);
-
         progressBar.setVisibility(View.VISIBLE);
 
         countDownTimer.cancel();

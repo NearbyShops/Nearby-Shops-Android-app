@@ -33,6 +33,7 @@ import okhttp3.ResponseBody;
 import org.nearbyshops.enduserappnew.API.FavouriteShopService;
 import org.nearbyshops.enduserappnew.API.ShopImageService;
 import org.nearbyshops.enduserappnew.API.ShopReviewService;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.FavouriteShopEndpoint;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopReviewEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
@@ -173,6 +174,32 @@ public class ShopDetailFragment extends Fragment
                 .getNetComponent()
                 .Inject(this);
     }
+
+
+
+//    public static MarketDetailFragment newInstance(String param1, String param2) {
+//        MarketDetailFragment fragment = new MarketDetailFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
+
+
+
+
+
+
+//
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
+//    }
 
 
 
@@ -333,7 +360,7 @@ public class ShopDetailFragment extends Fragment
     @Override
     public void onRefresh() {
 
-        viewModelShop.getShopDetails(shop.getShopID());
+        viewModelShop.makeNetworkCallShop(shop.getShopID());
 
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please wait ... getting Shop Details !");
@@ -557,9 +584,8 @@ public class ShopDetailFragment extends Fragment
 
 
 
-
     private void showToastMessage(String message) {
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -765,6 +791,7 @@ public class ShopDetailFragment extends Fragment
             {
                 insertFavourite();
             }
+//            toggleFavourite();
         }
     }
 
@@ -826,11 +853,16 @@ public class ShopDetailFragment extends Fragment
 
         if (isFavourite) {
 
+
+//            Drawable drawable = VectorDrawableCompat.create(getResources(), R.drawable.ic_favorite_white_24px, getActivity().getTheme());
+//            fab.setImageDrawable(drawable);
+
+
             fab.setImageResource(R.drawable.ic_favorite_white_24px);
 
-        }
-        else
-        {
+        } else {
+//            Drawable drawable2 = VectorDrawableCompat.create(getResources(), R.drawable.ic_favorite_border_white_24px, getActivity().getTheme());
+//            fab.setImageDrawable(drawable2);
 
 
             fab.setImageResource(R.drawable.ic_favorite_border_white_24px);
@@ -847,38 +879,47 @@ public class ShopDetailFragment extends Fragment
 
         if (shop != null && PrefLogin.getUser(getActivity()) != null) {
 
-            Call<ResponseBody> call = favouriteShopService.checkFavourite(shop.getShopID(), PrefLogin.getUser(getActivity()).getUserID());
+            Call<FavouriteShopEndpoint> call = favouriteShopService.getFavouriteShops(shop.getShopID(), PrefLogin.getUser(getActivity()).getUserID()
+                    , null, null, null, null);
 
 
-            call.enqueue(new Callback<ResponseBody>() {
+            call.enqueue(new Callback<FavouriteShopEndpoint>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                public void onResponse(Call<FavouriteShopEndpoint> call, Response<FavouriteShopEndpoint> response) {
+
                     if(isDestroyed)
                     {
                         return;
                     }
 
 
-                    if(response.code()==200)
-                    {
-                        setFavouriteIcon(true);
-                    }
-                    else
-                    {
-                        setFavouriteIcon(false);
-                    }
+                    if (response.body() != null) {
+                        if (response.body().getItemCount() >= 1) {
 
+                            setFavouriteIcon(true);
+//                            isFavourite = true;
+
+                        } else if (response.body().getItemCount() == 0) {
+
+                            setFavouriteIcon(false);
+//                            isFavourite = false;
+                        }
+                    }
 
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                public void onFailure(Call<FavouriteShopEndpoint> call, Throwable t) {
+
+
+                    if(!isVisible())
+                    {
+                        return;
+                    }
 
                     showToastMessage("Network Request failed. Check Network Connection !");
                 }
             });
-
-
 
         }
     }
@@ -903,6 +944,11 @@ public class ShopDetailFragment extends Fragment
                 public void onResponse(Call<FavouriteShop> call, Response<FavouriteShop> response) {
 
 
+                    if(!isDestroyed)
+                    {
+                        return;
+                    }
+
                     if (response.code() == 201) {
                         // created successfully
 
@@ -914,10 +960,10 @@ public class ShopDetailFragment extends Fragment
                 @Override
                 public void onFailure(Call<FavouriteShop> call, Throwable t) {
 
-//                    if(!isVisible())
-//                    {
-//                        return;
-//                    }
+                    if(!isVisible())
+                    {
+                        return;
+                    }
 
                     showToastMessage("Network Request failed !");
 

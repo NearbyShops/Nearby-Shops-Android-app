@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -26,7 +27,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.nearbyshops.enduserappnew.API.ItemCategoryService;
 import org.nearbyshops.enduserappnew.API.ItemService;
-import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemAdmin;
 import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ViewHolders.ViewHolderItemCategoryAdmin;
 import org.nearbyshops.enduserappnew.Model.Item;
@@ -71,7 +71,7 @@ import retrofit2.Response;
 
 public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         ViewHolderItemCategoryAdmin.ListItemClick, ViewHolderItemAdmin.ListItemClick,
-        NotifyBackPressed, NotifySort, NotifyFABClickAdmin, NotifySearch {
+        NotifyBackPressed, NotifySort, NotifyFABClickAdmin {
 
     private boolean isDestroyed = false;
     private boolean show = true;
@@ -434,12 +434,12 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
         isDestroyed=false;
     }
 
-
-
-
     private void showToastMessage(String message)
     {
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        if(getActivity()!=null)
+        {
+            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -464,32 +464,16 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
         String current_sort = "";
         current_sort = PrefSortItemsByCategory.getSort(getContext()) + " " + PrefSortItemsByCategory.getAscending(getContext());
 
-        Call<ItemEndPoint> endPointCall = null;
 
-        if(searchQuery==null)
-        {
-            endPointCall = itemService.getItemsOuterJoin(
-                    currentCategory.getItemCategoryID(),
-                    clearDataset,
-                    null,
-                    current_sort,
-                    limit_item,offset_item,
-                    clearDataset,false
-            );
-        }
-        else
-        {
 
-            endPointCall = itemService.getItemsOuterJoin(
-                    null,
-                    clearDataset,
-                    searchQuery,
-                    current_sort,
-                    limit_item,offset_item,
-                    clearDataset,false
-            );
-
-        }
+        Call<ItemEndPoint> endPointCall = itemService.getItemsOuterJoin(
+                currentCategory.getItemCategoryID(),
+                clearDataset,
+                null,
+                current_sort,
+                limit_item,offset_item,
+                clearDataset,false
+        );
 
 
 
@@ -1666,25 +1650,6 @@ public class ItemsDatabaseForAdminFragment extends Fragment implements SwipeRefr
             mActionMode.setTitle(String.valueOf(listAdapter.selectedItemCategories.size() + listAdapter.selectedItems.size()));
         }
 
-    }
-
-
-
-
-
-
-    private String searchQuery = null;
-
-    @Override
-    public void search(final String searchString) {
-        searchQuery = searchString;
-        makeRefreshNetworkCall();
-    }
-
-    @Override
-    public void endSearchMode() {
-        searchQuery = null;
-        makeRefreshNetworkCall();
     }
 
 
