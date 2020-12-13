@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+<LinearLayout
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:text="@string/fragment_shop_detail_shop_name_text"
+        android:textSize="30sp"
+        android:id="@+id/shop_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="2"
+        android:id="@+id/labels_delivery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/indicator_pick_from_shop"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@color/orangeDark"
+            android:text="@string/fragment_shop_detail_indicator_pick_from_shop_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/indicator_home_delivery"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:layout_marginStart="0dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@color/phonographyBlue"
+            android:text="@string/fragment_shop_detail_indicator_home_delivery_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:id="@+id/rating_block"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/shop_rating_numeric"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textStyle="bold"
+            android:background="@color/gplus_color_2"
+            android:textColor="@color/white"
+            android:text="@string/fragment_shop_detail_delivery_charge_text_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <RatingBar
+            android:id="@+id/shop_rating"
+            android:layout_marginStart="10dp"
+            android:isIndicator="true"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:stepSize="0.1"
+            android:max="5"
+            android:rating="3.2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/rating_count"
+            android:layout_marginStart="10dp"
+            android:text="@string/fragment_shop_detail_delivery_charge_text_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phone_block"
+        android:text="@string/fragment_shop_detail_delivery_charge_text_text"
+        android:id="@+id/shop_description"
+        android:maxLines="5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textColor="@color/buttonColorDark"
+        android:id="@+id/read_full_button"
+        android:text="@string/fragment_shop_detail_read_full_button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>
+

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/coordinatorLayout">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:fitsSystemWindows="true"
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:expandedTitleMarginStart="20dp"
+            app:expandedTitleMarginEnd="0dp"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+
+
+            <ImageView
+                android:maxHeight="300dp"
+                android:adjustViewBounds="true"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.5"
+                android:scaleType="centerCrop"
+                android:id="@+id/item_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <!--android:maxHeight="300dp"-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:layout_collapseMode="pin"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+            <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+
+
+            <!--app:layout_scrollFlags="scroll|enterAlways"-->
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+    <!--Item profile Picture-->
+    <!--More Images : Empty Screen for Extra pics, Profile pic needs to show in extra pics-->
+    <!--Like / Favourite Button-->
+
+    <!--Item Name-->
+    <!--Item Brand with Brand Logo-->
+    <!--Item Rating and Rating Count-->
+    <!--Item Full Description with show more option-->
+    <!--Item Specification : Should not show in case of no specifications-->
+    <!--Share Button-->
+
+    <!--Item Reviews with 5 reviews and show more option | Show empty screen with no reviews message when having zero reviews -->
+    <!--Similar Items / Item Suggestions-->
+    <!--Write Review Button Option-->
+    <!--Show all Reviews-->
+
+
+
+    <!--Item Short Description-->
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/swipeContainer"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        app:layout_anchor="@id/swipeContainer"
+        app:layout_anchorGravity="top|end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_favorite_border_white_24px" />
+
+
+
+
+
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/fullscreen_progress_bar"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

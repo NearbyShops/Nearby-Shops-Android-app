@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/list_item"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@color/colorPrimary"
+            android:padding="0dp"
+            android:orientation="vertical"
+            android:layout_width="110dp"
+            android:layout_height="90dp">
+
+
+
+
+                <ImageView
+                    android:background="#44000000"
+                    android:id="@+id/categoryImage"
+                    android:scaleType="centerCrop"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@id/name"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginStart="0dp"/>
+
+
+                <!--        app:layout_constraintDimensionRatio="W,3:5"-->
+
+
+                <!--        app:layout_constraintTop_toTopOf="@id/categoryImage"-->
+                <!--        app:layout_constraintStart_toStartOf="@id/categoryImage"-->
+
+
+
+                <TextView
+                    android:padding="5dp"
+                    android:id="@+id/name"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="25dp"
+                    android:textSize="15sp"
+                    android:gravity="start"
+                    android:textColor="@color/white"
+                    android:background="@color/mapbox_blue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/categoryImage"
+                    app:layout_constraintEnd_toEndOf="@id/categoryImage"
+                    android:text="Fruits"/>
+
+
+
+                <ImageView
+                    android:layout_margin="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_check_circle_white"
+                    android:id="@+id/check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

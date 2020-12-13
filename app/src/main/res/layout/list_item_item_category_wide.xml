@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:id="@+id/list_item"
+    app:contentPadding="0dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="3dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:focusable="true">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        app:riv_corner_radius="3dp"
+        android:layout_margin="10dp"
+        android:id="@+id/categoryImage"
+        android:scaleType="centerCrop"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="W,1:1"
+        app:srcCompat="@drawable/ic_items_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="0dp"/>
+
+
+
+    <TextView
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:maxWidth="100dp"
+        android:id="@+id/name"
+        app:layout_constraintTop_toTopOf="@id/categoryImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/categoryImage"
+        app:layout_constraintStart_toEndOf="@id/categoryImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="25dp"
+        android:textSize="15sp"
+        android:gravity="start"
+        android:text="@string/list_item_item_category_new_name_text"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>

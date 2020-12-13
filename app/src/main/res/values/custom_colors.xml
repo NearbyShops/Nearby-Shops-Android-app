@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Set your custom app colors here -->
+    <color name="color_primary_custom">@color/mapbox_blue</color>
+    <color name="color_primary_dark_custom">@color/buttonColorDark</color>
+    <color name="color_accent_custom">@color/gplus_color_2</color>
+    <color name="header_text_color">@color/white</color>
+
+    <color name="app_background_color">@color/white</color>
+
+
+    <color name="bottom_nav_item_color">#008081</color>
+    <color name="bottom_nav_item_text_color">@color/blueGrey800</color>
+    <color name="bottom_nav_background">@color/white</color>
+
+    <color name="view_cart_bottom_bar_color">@color/mapbox_blue</color>
+    <color name="view_cart_bottom_bar_text_color">@color/white</color>
+
+    <color name="search_icon_color">@color/white</color>
+
+
+    <color name="edit_text_color">@color/blueGrey800</color>
+    <color name="edit_text_hint_color">@color/colorAccent</color>
+
+    <color name="item_category_base_color">@color/mapbox_blue</color>
+
+    <color name="whatsapp_box_color">@color/darkGreen</color>
+    <color name="location_box_color">@color/darkGreen</color>
+    <color name="header_box_color">@color/blueGrey800</color>
+    <color name="header_box_text_color">@color/white</color>
+
+
+
+
+    <!-- White Theme -->
+    <!-- Set your custom app colors here -->
+    <!--    <color name="color_primary_custom">@color/white</color>-->
+    <!--    <color name="color_primary_dark_custom">@color/buttonColorDark</color>-->
+    <!--    <color name="color_accent_custom">@color/gplus_color_2</color>-->
+    <!--    <color name="header_text_color">@color/blueGrey800</color>-->
+
+    <!--    <color name="app_background_color">@color/white</color>-->
+
+
+    <!--    <color name="bottom_nav_item_color">@color/mapbox_blue</color>-->
+    <!--    <color name="bottom_nav_item_text_color">@color/blueGrey800</color>-->
+    <!--    <color name="bottom_nav_background">@color/white</color>-->
+
+    <!--    <color name="view_cart_bottom_bar_color">@color/mapbox_blue</color>-->
+    <!--    <color name="view_cart_bottom_bar_text_color">@color/white</color>-->
+
+    <!--    <color name="search_icon_color">@color/mapbox_blue</color>-->
+
+
+    <!--    <color name="edit_text_color">@color/mapbox_blue</color>-->
+    <!--    <color name="edit_text_hint_color">@color/mapbox_blue</color>-->
+
+    <!--    <color name="item_category_base_color">@color/mapbox_blue</color>-->
+
+    <!--    <color name="whatsapp_box_color">@color/darkGreen</color>-->
+    <!--    <color name="header_box_color">@color/light_grey</color>-->
+    <!--    <color name="header_box_text_color">@color/blueGrey800</color>-->
+
+
+
+</resources>
