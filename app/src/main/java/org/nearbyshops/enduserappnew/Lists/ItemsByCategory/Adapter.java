@@ -8,9 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
+import org.nearbyshops.enduserappnew.UtilityScreens.BannerSlider.AdapterBannerImages;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model.Highlights;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterItemsInMarket;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterItems;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
@@ -19,6 +24,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 
 import java.util.List;
 
@@ -45,7 +51,16 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
 
     public static final int VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM = 7;
-    
+
+    public static final int VIEW_TYPE_SET_LOCATION_MANUALLY = 9;
+    public static final int VIEW_TYPE_HIGHLIGHTS = 10;
+
+    public static final int VIEW_TYPE_FILTER_ITEMS = 11;
+
+
+    public static final int VIEW_TYPE_SWITCH_MARKET = 16;
+
+
 
     private boolean loadMore;
 
@@ -80,14 +95,22 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return ViewHolderHorizontalList.create(parent,context,fragment);
         }
+        else if(viewType == VIEW_TYPE_HIGHLIGHTS)
+        {
+            return ViewHolderHorizontalList.create(parent,context,fragment,ViewHolderHorizontalList.LAYOUT_TYPE_SLIDER);
+        }
+        else if(viewType==VIEW_TYPE_SET_LOCATION_MANUALLY)
+        {
+            return ViewHolderSetLocationManually.create(parent,context,fragment);
+        }
         else if(viewType == VIEW_TYPE_ITEM)
         {
 
-            return ViewHolderItem.create(parent,context,fragment);
+            return ViewHolderItem.create(parent,context,fragment,ViewHolderItem.LAYOUT_TYPE_GRID);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
-            return ViewHolderHeader.create(parent,context);
+            return ViewHolderHeader.createWhite(parent,context);
         }
         else if(viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR)
         {
@@ -101,10 +124,19 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return ViewHolderEmptyScreenListItem.create(parent,context, fragment);
         }
+        else if(viewType==VIEW_TYPE_FILTER_ITEMS)
+        {
+            return ViewHolderFilterItems.create(parent,context, fragment);
+        }
 
 
         return null;
     }
+
+
+
+
+
 
 
 
@@ -118,11 +150,31 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(holder instanceof ViewHolderHorizontalList)
         {
+            if(getItemViewType(position)==VIEW_TYPE_ITEM_CATEGORY_LIST)
+            {
 
-            List<ItemCategory> list = ((ItemCategoriesList)dataset.get(position)).getItemCategories();
+                ItemCategoriesList categoriesList = ((ItemCategoriesList)dataset.get(position));
+                List<ItemCategory> list = categoriesList.getItemCategories();
+                ((ViewHolderHorizontalList) holder).setItem(new AdapterItemCatHorizontalList(list,context,fragment),null);
+                ((ViewHolderHorizontalList) holder).scrollToPosition(categoriesList.getScrollPositionForSelected());
 
-            ((ViewHolderHorizontalList) holder).setItem(new AdapterItemCatHorizontalList(list,context,fragment),null);
 
+            }
+            else if(getItemViewType(position)==VIEW_TYPE_HIGHLIGHTS)
+            {
+
+                Highlights highlights = ((Highlights)dataset.get(position));
+
+                List<Object> list = highlights.getHighlightList();
+                AdapterBannerImages adapterBannerImages = new AdapterBannerImages(list,context,fragment);
+                ((ViewHolderHorizontalList) holder).setItem(adapterBannerImages, highlights.getListTitle());
+            }
+
+
+        }
+        else if(holder instanceof ViewHolderSetLocationManually)
+        {
+            ((ViewHolderSetLocationManually)holder).bindDashboard();
         }
         else if(holder instanceof ViewHolderItem)
         {
@@ -151,7 +203,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             ((ViewHolderEmptyScreenListItem) holder).setItem((EmptyScreenDataListItem) dataset.get(position));
         }
-
+        else if(holder instanceof ViewHolderFilterItems)
+        {
+            ((ViewHolderFilterItems) holder).setItem((FilterItemsInMarket) dataset.get(position));
+        }
 
     }
 
@@ -194,9 +249,21 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM;
         }
+        else if(dataset.get(position) instanceof Highlights)
+        {
+            return VIEW_TYPE_HIGHLIGHTS;
+        }
+        else if(dataset.get(position) instanceof SetLocationManually)
+        {
+            return VIEW_TYPE_SET_LOCATION_MANUALLY;
+        }
+        else if(dataset.get(position) instanceof FilterItemsInMarket)
+        {
+            return VIEW_TYPE_FILTER_ITEMS;
+        }
 
 
-        return -1;
+        return VIEW_TYPE_HEADER;
     }
 
 

@@ -1,5 +1,9 @@
 package org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model;
 
+import android.content.Context;
+
+import org.nearbyshops.enduserappnew.R;
+
 public class HighlightItem {
 
 
@@ -21,35 +25,49 @@ public class HighlightItem {
     // highlight builders
 
 
-    public static HighlightItem getBookingHelpline()
+    public static HighlightItem slideOneFrontScreen(Context context)
+    {
+
+        HighlightItem highlightItem = new HighlightItem();
+
+        highlightItem.setTitleTop("");
+        highlightItem.setTitle("Get Orders Delivered in 2 hours from your favourite Local Stores");
+        highlightItem.setDescription("");
+        highlightItem.setFooter("");
+        highlightItem.setImageURL(context.getString(R.string.slide_one_front_screen));
+
+        return highlightItem;
+    }
+
+
+
+    public static HighlightItem slideThreeFrontScreen(Context context)
     {
         HighlightItem highlightItem = new HighlightItem();
 
         highlightItem.setSlideID(SLIDE_BOOKING_HELPLINE);
         highlightItem.setTitleTop("");
-        highlightItem.setTitle("Shop Locally and get home delivery !");
+        highlightItem.setTitle("Fully Indian brand ... No Chinese Investment !");
         highlightItem.setDescription("");
         highlightItem.setFooter("");
-        highlightItem.setImageURL("https://images.unsplash.com/photo-1568158879083-c42860933ed7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+        highlightItem.setImageURL(context.getString(R.string.slide_three_front_screen));
 
         return highlightItem;
     }
 
 
 
-
-
-    public static HighlightItem getNegotiatePrices()
+    public static HighlightItem slideTwoFrontScreen(Context context)
     {
+
         HighlightItem highlightItem = new HighlightItem();
 
-
+        highlightItem.setSlideID(SLIDE_BOOKING_HELPLINE);
         highlightItem.setTitleTop("");
-        highlightItem.setTitle("Daily Essentials and Grocery");
-        highlightItem.setDescription("Get daily essentials and grocery");
+        highlightItem.setTitle("Order from your favourite local store !");
+        highlightItem.setDescription("");
         highlightItem.setFooter("");
-        highlightItem.setImageURL("https://images.unsplash.com/photo-1471113082645-fde63c139087?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=358&q=80");
-
+        highlightItem.setImageURL(context.getString(R.string.slide_two_front_screen));
 
         return highlightItem;
     }
@@ -57,6 +75,57 @@ public class HighlightItem {
 
 
 
+
+    public static HighlightItem slideOne(Context context)
+    {
+
+        HighlightItem highlightItem = new HighlightItem();
+
+        highlightItem.setSlideID(SLIDE_BOOKING_HELPLINE);
+        highlightItem.setTitleTop("");
+        highlightItem.setTitle("Order from your favourite local store !");
+        highlightItem.setDescription("");
+        highlightItem.setFooter("");
+        highlightItem.setImageURL(context.getString(R.string.slide_one_item_screen));
+
+        return highlightItem;
+    }
+
+
+
+
+    public static HighlightItem slideTwo(Context context)
+    {
+
+        HighlightItem highlightItem = new HighlightItem();
+
+        highlightItem.setSlideID(SLIDE_BOOKING_HELPLINE);
+        highlightItem.setTitleTop("");
+        highlightItem.setTitle("Order from your favourite local store !");
+        highlightItem.setDescription("");
+        highlightItem.setFooter("");
+        highlightItem.setImageURL(context.getString(R.string.slide_two_item_screen));
+
+
+        return highlightItem;
+    }
+
+
+
+    public static HighlightItem slideThree(Context context)
+    {
+
+        HighlightItem highlightItem = new HighlightItem();
+
+        highlightItem.setSlideID(SLIDE_BOOKING_HELPLINE);
+        highlightItem.setTitleTop("");
+        highlightItem.setTitle("Order from your favourite local store !");
+        highlightItem.setDescription("");
+        highlightItem.setFooter("");
+        highlightItem.setImageURL(context.getString(R.string.slide_three_item_screen));
+
+        return highlightItem;
+    }
 
 
 

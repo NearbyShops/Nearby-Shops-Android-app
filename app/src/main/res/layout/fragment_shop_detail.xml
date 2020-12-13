@@ -72,6 +72,8 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+
+
 <!--
     Profile Photo
     Extra Pics
@@ -80,19 +82,17 @@
     Shop Rating with Rating Count
     Shop Description
 
+    Shop Address
+    Get Directions | See on Map
+
     Phone
     Delivery Helpline
 
-    Delivery Charges
-    Bill amount for Free Delivery
 
     Shop Description Long
-
     Rate Review Option
 
     Share Button
-    Shop Address
-    Get Directions | See on Map
 
 
     Similar Shop Recommendations
@@ -101,6 +101,9 @@
     See all Reviews
 -->
 
+
+<!--    Delivery Charges-->
+<!--    Bill amount for Free Delivery-->
 
 
 

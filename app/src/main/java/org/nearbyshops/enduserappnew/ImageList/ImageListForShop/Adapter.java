@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ViewHolder.ViewHolderShopImage;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderImages.ViewHolderShopImage;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
@@ -68,12 +69,12 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (viewType == VIEW_TYPE_ITEM_IMAGE) {
 
-            return ViewHolderShopImage.create(parent,context,fragment);
+            return ViewHolderShopImage.create(parent,context,fragment,ViewHolderShopImage.LAYOUT_TYPE_NORMAL);
         }
         else if (viewType == VIEW_TYPE_HEADER) {
 
-            return ViewHolderHeader.create(parent,context);
 
+            return ViewHolderHeader.create(parent,context);
         }
         else if (viewType == VIEW_TYPE_PROGRESS_BAR) {
 
@@ -98,8 +99,16 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (holder instanceof ViewHolderShopImage) {
 
+            if(dataset.get(position) instanceof ShopImage)
+            {
+                ((ViewHolderShopImage) holder).setShopImage((ShopImage) dataset.get(position),isAdminMode);
+            }
+            else if(dataset.get(position) instanceof Shop)
+            {
+                ((ViewHolderShopImage) holder).setShop((Shop) dataset.get(position));
+            }
 
-            ((ViewHolderShopImage) holder).setItem((ShopImage) dataset.get(position),isAdminMode);
+
 
         }
         else if (holder instanceof ViewHolderHeader) {
@@ -137,7 +146,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             return VIEW_TYPE_HEADER;
         }
-        else if (dataset.get(position) instanceof ShopImage) {
+        else if (dataset.get(position) instanceof ShopImage || dataset.get(position) instanceof Shop) {
 
             return VIEW_TYPE_ITEM_IMAGE;
         }

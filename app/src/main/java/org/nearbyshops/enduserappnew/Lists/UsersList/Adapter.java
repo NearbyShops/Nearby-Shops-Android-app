@@ -36,6 +36,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private Fragment fragment;
 
+    int screenMode;
+
 
     public static final int VIEW_TYPE_STAFF_PROFILE = 1;
 
@@ -50,13 +52,13 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-
-    public Adapter(List<Object> dataset, Context context, Fragment fragment) {
-
+    public Adapter(List<Object> dataset, Context context, Fragment fragment, int screenMode) {
         this.dataset = dataset;
         this.context = context;
         this.fragment = fragment;
+        this.screenMode = screenMode;
     }
+
 
 
     @Override
@@ -103,7 +105,18 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (holder instanceof ViewHolderUserProfileItem) {
 
-            ((ViewHolderUserProfileItem) holder).setItem((User) dataset.get(position));
+
+            if(screenMode==UsersListFragment.MODE_ADMIN_STAFF_LIST ||
+                    screenMode==UsersListFragment.MODE_ADMIN_USER_LIST ||
+                    screenMode==UsersListFragment.MODE_ADMIN_DELIVERY_STAFF_LIST)
+            {
+                ((ViewHolderUserProfileItem) holder).setItem((User) dataset.get(position),true);
+            }
+            else
+            {
+                ((ViewHolderUserProfileItem) holder).setItem((User) dataset.get(position),false);
+            }
+
 
         }
         else if (holder instanceof LoadingViewHolder) {

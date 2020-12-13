@@ -29,17 +29,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:background="@drawable/login_icon"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="@dimen/login_icon_width"
+            android:layout_height="@dimen/login_icon_height"/>
+
+
+
         <TextView
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/blueGrey800"
             android:textStyle="bold"
             android:textSize="32sp"
-            android:text="Welcome"
+            android:text="Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:visibility="gone"
             android:textSize="17sp"
-            android:text="Discover Local Markets in your area and Shop Locally"
+            android:text="Discover Local Vendors in your area and Shop Locally"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -56,7 +65,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="3dp"
             android:padding="10dp"
-            android:background="@color/gplus_color_1"
+            android:background="@color/buttonColorDark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/select_email"
             app:layout_constraintBottom_toTopOf="@id/username_text_input"
@@ -179,14 +188,15 @@
 
 
 
-                <TextView
+                <Button
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:padding="10dp"
                     android:textSize="20sp"
                     android:textColor="@color/white"
+                    android:textAllCaps="false"
                     android:text="Next"
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/button_green"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toRightOf="parent"

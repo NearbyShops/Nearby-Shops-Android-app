@@ -8,10 +8,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Login.Login;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 
 /**
@@ -42,8 +47,11 @@ public class FragmentSignInMessage extends Fragment {
     @OnClick(R.id.sign_in_button)
     void signInClick()
     {
+
         Intent intent = new Intent(getActivity(), Login.class);
         startActivityForResult(intent,1);
+
+//        showLogin();
     }
 
 
@@ -66,6 +74,46 @@ public class FragmentSignInMessage extends Fragment {
     }
 
 
+
+
+
+
+    void showLogin()
+    {
+        if(getActivity()==null)
+        {
+            return;
+        }
+
+        Market configurationLocal = PrefServiceConfig.getServiceConfigLocal(getActivity());
+
+
+
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+        {
+            NavHostFragment.findNavController(this).navigate(R.id.loginGlobalUsingOTPFragment);
+        }
+        else
+        {
+            if(configurationLocal!=null)
+            {
+                if(configurationLocal.isRt_login_using_otp_enabled())
+                {
+                    NavHostFragment.findNavController(this).navigate(R.id.loginLocalUsingOTPFragmentNew);
+                }
+                else
+                {
+                    NavHostFragment.findNavController(this).navigate(R.id.loginLocalUsingPasswordFragment);
+                }
+
+            }
+            else
+            {
+                NavHostFragment.findNavController(this).navigate(R.id.loginLocalUsingPasswordFragment);
+            }
+        }
+
+    }
 
 
 

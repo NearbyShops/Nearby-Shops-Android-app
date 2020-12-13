@@ -30,10 +30,11 @@ public interface StaffService {
 
 
 
-    @PUT ("/api/v1/User/StaffLogin/UpgradeUser/{emailorphone}/{SecretCode}")
+    @PUT ("/api/v1/User/StaffLogin/UpgradeUser/{emailorphone}/{Role}/{SecretCode}")
     Call<ResponseBody> upgradeUserToStaff(
             @Header("Authorization") String headers,
             @Path("emailorphone") String emailorphone,
+            @Path("Role")int role,
             @Path("SecretCode") int secretCode
     );
 

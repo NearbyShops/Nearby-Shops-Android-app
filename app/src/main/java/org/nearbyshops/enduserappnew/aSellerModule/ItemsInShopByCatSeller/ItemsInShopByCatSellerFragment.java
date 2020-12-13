@@ -515,31 +515,44 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
 
 
-            endPointCall = shopItemService.getShopItemEndpoint(
-                    currentCategory.getItemCategoryID(),
-                    currentShop.getShopID(),
-                    null,null,null,null,null,null,null,
+            endPointCall = shopItemService.getShopItemsByShop(
+                    currentCategory.getItemCategoryID(),false,
+                    false,
+                    currentShop.getShopID(),null,
+                    null,null,null,
                     null,null,
                     null,null,null,
-                    null,current_sort,
+                    null,false,current_sort,
                     limit_item,offset_item,
                     clearDataset, false
             );
+
 
         }
         else
         {
 
 
-            endPointCall = shopItemService.getShopItemEndpoint(
-                    null,
+            endPointCall = shopItemService.getShopItemsByShop(
+                    null,false,false,
                     currentShop.getShopID(),
-                    null,null,null,null,null,null,null,null,null,
-                    null,null,null,
-                    searchQuery,current_sort,
+                    null,
+                    null,null,null,null,null,null,null,null,
+                    searchQuery,false,current_sort,
                     limit_item,offset_item,
                     clearDataset, false
             );
+
+//
+//            endPointCall = shopItemService.getShopItemEndpoint(
+//                    null,false,
+//                    currentShop.getShopID(),
+//                    null,null,null,null,null,null,null,null,null,
+//                    null,null,null,
+//                    searchQuery,current_sort,
+//                    limit_item,offset_item,
+//                    clearDataset, false
+//            );
         }
 
 
@@ -663,7 +676,7 @@ public class ItemsInShopByCatSellerFragment extends Fragment implements SwipeRef
 
 
     @Override
-    public void notifyRequestSubCategory(ItemCategory itemCategory) {
+    public void notifyRequestSubCategory(ItemCategory itemCategory, int scrollPosition) {
 
         ItemCategory temp = currentCategory;
         currentCategory = itemCategory;

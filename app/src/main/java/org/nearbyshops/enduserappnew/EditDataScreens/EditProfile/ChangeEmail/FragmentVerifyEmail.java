@@ -249,7 +249,7 @@ public class FragmentVerifyEmail extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 
@@ -381,7 +381,7 @@ public class FragmentVerifyEmail extends Fragment {
             Call<ResponseBody> call;
 
 
-            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            if(PrefGeneral.isMultiMarketEnabled(getActivity()))
             {
                 user.setPassword(PrefLoginGlobal.getPassword(getActivity()));
 
@@ -438,7 +438,7 @@ public class FragmentVerifyEmail extends Fragment {
                     {
 
 
-                        if(PrefGeneral.getMultiMarketMode(getActivity()))
+                        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
                         {
                             User userDetails = PrefLoginGlobal.getUser(getActivity());
                             userDetails.setEmail(user.getEmail());
@@ -527,7 +527,7 @@ public class FragmentVerifyEmail extends Fragment {
 
         Call<ResponseBody> call;
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 

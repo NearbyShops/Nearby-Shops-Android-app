@@ -6,8 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
+
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -94,10 +93,11 @@ public class ViewHolderDeliveryAddress extends RecyclerView.ViewHolder implement
         this.item = address;
 
         name.setText(address.getName());
-        String addressString = address.getDeliveryAddress()
-                + ", " + address.getCity()
-                + " - " + address.getPincode();
+//        String addressString = address.getDeliveryAddress()
+//                + ", " + address.getCity()
+//                + " - " + address.getPincode();
 
+        String addressString = address.getDeliveryAddress();
 
         deliveryAddress.setText(addressString);
 

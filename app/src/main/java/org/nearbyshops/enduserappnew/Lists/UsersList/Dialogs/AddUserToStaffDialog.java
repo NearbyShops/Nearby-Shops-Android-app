@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.API.StaffService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 
@@ -49,6 +50,9 @@ public class AddUserToStaffDialog extends DialogFragment {
 
     @Inject Gson gson;
 
+
+
+    private int role=User.ROLE_DELIVERY_GUY_CODE;
 
 
 
@@ -105,6 +109,10 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
+    public void setRole(int role)
+    {
+        this.role= role;
+    }
 
 
 
@@ -172,9 +180,10 @@ public class AddUserToStaffDialog extends DialogFragment {
 
 
 
+
         Call<ResponseBody> call = staffService.upgradeUserToStaff(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
-                userID,
+                userID, role,
                 secretCodeInteger
         );
 

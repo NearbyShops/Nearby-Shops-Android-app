@@ -2,11 +2,9 @@ package org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -22,6 +20,7 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.aSellerModule.ViewHolders.ViewHolderShopItemSeller;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 
@@ -244,18 +243,20 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
         Shop currentShop = PrefShopAdminHome.getShop(getContext());
 
-        Log.d("shop_items","Shop ID : " + currentShop.getShopID());
+
+
 
         Call<ShopItemEndPoint> call = null;
 
 
         if (mode == MODE_OUT_OF_STOCK) {
 
-//            call = shopItemService.getShopItems(currentShop.getShopID(), null, null, true, null);
 
-            call = shopItemService.getShopItemEndpoint(null,
+
+            call = shopItemService.getShopItemsByShop(null,false,false,
                     currentShop.getShopID(),null,null,null,
-                    null,null,null,null,null,true,null,null,null,null,
+                    null,null,
+                    true,null,null,null,null,null,
                     "LAST_UPDATE_DATE_TIME",
                     limit,offset,clearDataset,
                     false
@@ -263,14 +264,18 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
 
 
-        } else if (mode == MODE_LOW_STOCK)
+        }
+        else if (mode == MODE_LOW_STOCK)
         {
 
-//            call = shopItemService.getShopItems(currentShop.getShopID(),null,null,null,null,"available_item_quantity",null,null);
-
-            call = shopItemService.getShopItemEndpoint(null,
-                    currentShop.getShopID(),null,null,null,null,null,null,null,null,null,
-                    null,null,null,null,"available_item_quantity",
+            call = shopItemService.getShopItemsByShop(
+                    null,false,false,
+                    currentShop.getShopID(),null,
+                    null,null,null,
+                    null,null,
+                    null,
+                    null,null,
+                    null,false,"available_item_quantity",
                     limit,offset,
                     clearDataset, false
             );
@@ -278,40 +283,125 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
         }
         else if (mode == MODE_RECENTLY_ADDED)
         {
-//            call = shopItemService.getShopItems(currentShop.getShopID(),null,null,null,null,"date_time_added desc",null,null);
 
 
-            call = shopItemService.getShopItemEndpoint(null,
-                    currentShop.getShopID(),null,null,null,null,null,null,null,null,null,
+            call = shopItemService.getShopItemsByShop(
+                    null,false,false,
+                    currentShop.getShopID(),null,
                     null,null,null,
-                    null,"date_time_added desc",
+                    null,null,
+                    null,
+                    null,null,
+                    null,false,"date_time_added desc",
                     limit,offset,
                     clearDataset, false
             );
+
 
 
         }else if (mode == MODE_RECENTLY_UPDATED)
         {
-//            call = shopItemService.getShopItems(currentShop.getShopID(),null,null,null,null,"last_update_date_time desc",null,null);
 
-            call = shopItemService.getShopItemEndpoint(null,
-                    currentShop.getShopID(),null,null,null,null,null,null,null,null,null,
+            call = shopItemService.getShopItemsByShop(
+                    null,false,false,
+                    currentShop.getShopID(),null,
                     null,null,null,
-                    null,"last_update_date_time desc",
+                    null,null,
+                    null,
+                    null,null,
+                    null,false," last_update_date_time desc ",
                     limit,offset,
-                    clearDataset,false
+                    clearDataset, false
             );
+
+
         }
         else if (mode == MODE_PRICE_NOT_SET)
         {
-            call = shopItemService.getShopItemEndpoint(null,
-                    currentShop.getShopID(),null,null,null,
-                    null,null,null,null,null,null,true,null,null,
-                    null,"LAST_UPDATE_DATE_TIME",
+
+            call = shopItemService.getShopItemsByShop(
+                    null,false,false,
+                    currentShop.getShopID(),null,
+                    null,null,null,
+                    null,null,
+                    true,
+                    null,null,
+                    null,false," LAST_UPDATE_DATE_TIME ",
                     limit,offset,
                     clearDataset, false
             );
         }
+
+
+
+
+
+//        if (mode == MODE_OUT_OF_STOCK) {
+//
+////            call = shopItemService.getShopItems(currentShop.getShopID(), null, null, true, null);
+//
+//            call = shopItemService.getShopItemEndpoint(null,false,
+//                    currentShop.getShopID(),null,null,null,
+//                    null,null,null,null,null,true,null,null,null,null,
+//                    "LAST_UPDATE_DATE_TIME",
+//                    limit,offset,clearDataset,
+//                    false
+//            );
+//
+//
+//
+//
+//
+//
+//        } else if (mode == MODE_LOW_STOCK)
+//        {
+//
+////            call = shopItemService.getShopItems(currentShop.getShopID(),null,null,null,null,"available_item_quantity",null,null);
+//
+//            call = shopItemService.getShopItemEndpoint(null,false,
+//                    currentShop.getShopID(),null,null,null,null,null,null,null,null,null,
+//                    null,null,null,null,"available_item_quantity",
+//                    limit,offset,
+//                    clearDataset, false
+//            );
+//
+//        }
+//        else if (mode == MODE_RECENTLY_ADDED)
+//        {
+////            call = shopItemService.getShopItems(currentShop.getShopID(),null,null,null,null,"date_time_added desc",null,null);
+//
+//
+//            call = shopItemService.getShopItemEndpoint(null,false,
+//                    currentShop.getShopID(),null,null,null,null,null,null,null,null,null,
+//                    null,null,null,
+//                    null,"date_time_added desc",
+//                    limit,offset,
+//                    clearDataset, false
+//            );
+//
+//
+//        }else if (mode == MODE_RECENTLY_UPDATED)
+//        {
+////            call = shopItemService.getShopItems(currentShop.getShopID(),null,null,null,null,"last_update_date_time desc",null,null);
+//
+//            call = shopItemService.getShopItemEndpoint(null,false,
+//                    currentShop.getShopID(),null,null,null,null,null,null,null,null,null,
+//                    null,null,null,
+//                    null,"last_update_date_time desc",
+//                    limit,offset,
+//                    clearDataset,false
+//            );
+//        }
+//        else if (mode == MODE_PRICE_NOT_SET)
+//        {
+//            call = shopItemService.getShopItemEndpoint(null,false,
+//                    currentShop.getShopID(),null,null,null,
+//                    null,null,null,null,null,null,true,null,null,
+//                    null,"LAST_UPDATE_DATE_TIME",
+//                    limit,offset,
+//                    clearDataset, false
+//            );
+//        }
 
 
         if(call == null)
@@ -403,11 +493,13 @@ public class FragmentShopItem extends Fragment implements SwipeRefreshLayout.OnR
 
     private void showToastMessage(String message)
     {
-        if(getActivity()!=null)
-        {
-            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
-        }
+//        if(getActivity()!=null)
+//        {
+//            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+//        }
 
+
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 

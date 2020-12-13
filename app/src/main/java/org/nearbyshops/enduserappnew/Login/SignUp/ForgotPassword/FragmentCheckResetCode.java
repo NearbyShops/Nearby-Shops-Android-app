@@ -379,7 +379,7 @@ public class FragmentCheckResetCode extends Fragment {
         Call<ResponseBody> call;
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 
@@ -644,7 +644,7 @@ public class FragmentCheckResetCode extends Fragment {
         Call<ResponseBody> call;
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 

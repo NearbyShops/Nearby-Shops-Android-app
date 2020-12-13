@@ -1,9 +1,12 @@
 package org.nearbyshops.enduserappnew.Model.ModelCartOrder;
 
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.Model.DeliverySlot;
+import org.nearbyshops.enduserappnew.Model.ModelBilling.RazorPayOrder;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Model.Shop;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 
@@ -14,42 +17,18 @@ public class Order {
 
 
 
-
-    // Table Name for Distributor
-    public static final String TABLE_NAME = "CUSTOMER_ORDER";
-
-    // Column names for Distributor
-    public static final String ORDER_ID = "ORDER_ID";
-
-    public static final String END_USER_ID = "END_USER_ID"; // foreign Key
-    public static final String SHOP_ID = "SHOP_ID"; // foreign Key
-    public static final String DELIVERY_ADDRESS_ID = "DELIVERY_ADDRESS_ID";
-    public static final String DELIVERY_GUY_SELF_ID = "DELIVERY_GUY_SELF_ID";
-
-    public static final String DELIVERY_OTP = "DELIVERY_OTP";
-
-    public static final String ITEM_COUNT = "ITEM_COUNT";
-
-    public static final String ITEM_TOTAL = "ITEM_TOTAL";
-    public static final String APP_SERVICE_CHARGE = "APP_SERVICE_CHARGE";
-    public static final String DELIVERY_CHARGES = "DELIVERY_CHARGES";
-    //    public static final String TAX_AMOUNT = "TAX_AMOUNT";
-    public static final String NET_PAYABLE = "NET_PAYABLE";
-
-    public static final String IS_CANCELLED_BY_END_USER = "CANCELLED_BY";   // true implies the order is cancelled by end-user and false implies the order is cancelled by shop
-    public static final String REASON_FOR_CANCELLED_BY_USER = "REASON_FOR_CANCELLED_BY_USER";
-    public static final String REASON_FOR_CANCELLED_BY_SHOP = "REASON_FOR_CANCELLED_BY_SHOP";
-    public static final String REASON_FOR_ORDER_RETURNED = "REASON_FOR_ORDER_RETURNED";
-
     public static final String DATE_TIME_PLACED = "DATE_TIME_PLACED";
-    public static final String TIMESTAMP_HD_CONFIRMED = "TIMESTAMP_HD_CONFIRMED";
-    public static final String TIMESTAMP_HD_PACKED = "TIMESTAMP_HD_PACKED";
-    public static final String TIMESTAMP_HD_OUT_FOR_DELIVERY = "TIMESTAMP_HD_OUT_FOR_DELIVERY";
-    public static final String TIMESTAMP_HD_DELIVERED = "TIMESTAMP_HD_DELIVERED";
-
-    public static final String PICK_FROM_SHOP = "PICK_FROM_SHOP";
     public static final String STATUS_HOME_DELIVERY = "STATUS_HOME_DELIVERY";
-    public static final String STATUS_PICK_FROM_SHOP = "STATUS_PICK_FROM_SHOP";
+
+
+
+    // Constants
+    public static final int DELIVERY_MODE_HOME_DELIVERY = 1;
+    public static final int DELIVERY_MODE_PICKUP_FROM_SHOP = 2;
+
+    public static final int PAYMENT_MODE_CASH_ON_DELIVERY = 1;
+    public static final int PAYMENT_MODE_PAY_ONLINE_ON_DELIVERY = 2;
+    public static final int PAYMENT_MODE_RAZORPAY = 3;
 
 
 
@@ -92,10 +71,31 @@ public class Order {
 
 
 
+    private Date deliveryDate;
+    private int deliverySlotID;
+    private int deliveryMode;
+    private int paymentMode;
+
+
+
+
+
     private Shop shop;
     private DeliveryAddress deliveryAddress;
     private OrderStats orderStats;
     private User rt_delivery_guy_profile;
+
+
+    private double rt_deliveryDistance;
+    private double rt_pickupDistance;
+
+
+
+    private RazorPayOrder razorPayOrder;
+    private DeliverySlot deliverySlot;
+
+
+
 
 
 
@@ -104,6 +104,70 @@ public class Order {
 
     // getter and setter
 
+
+    public RazorPayOrder getRazorPayOrder() {
+        return razorPayOrder;
+    }
+
+    public void setRazorPayOrder(RazorPayOrder razorPayOrder) {
+        this.razorPayOrder = razorPayOrder;
+    }
+
+    public double getRt_deliveryDistance() {
+        return rt_deliveryDistance;
+    }
+
+    public void setRt_deliveryDistance(double rt_deliveryDistance) {
+        this.rt_deliveryDistance = rt_deliveryDistance;
+    }
+
+    public double getRt_pickupDistance() {
+        return rt_pickupDistance;
+    }
+
+    public void setRt_pickupDistance(double rt_pickupDistance) {
+        this.rt_pickupDistance = rt_pickupDistance;
+    }
+
+    public DeliverySlot getDeliverySlot() {
+        return deliverySlot;
+    }
+
+    public void setDeliverySlot(DeliverySlot deliverySlot) {
+        this.deliverySlot = deliverySlot;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public int getDeliverySlotID() {
+        return deliverySlotID;
+    }
+
+    public void setDeliverySlotID(int deliverySlotID) {
+        this.deliverySlotID = deliverySlotID;
+    }
+
+    public int getDeliveryMode() {
+        return deliveryMode;
+    }
+
+    public void setDeliveryMode(int deliveryMode) {
+        this.deliveryMode = deliveryMode;
+    }
+
+    public int getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(int paymentMode) {
+        this.paymentMode = paymentMode;
+    }
 
     public double getSavingsOverMRP() {
         return savingsOverMRP;

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -176,7 +176,13 @@ public class EditAddressFragment extends Fragment {
             deliveryAddress.setName(receiversName.getText().toString());
             deliveryAddress.setDeliveryAddress(deliveryAddressView.getText().toString());
             deliveryAddress.setCity(city.getText().toString());
-            deliveryAddress.setPincode(Long.parseLong(pincode.getText().toString()));
+
+
+            if(pincode.getText().toString().length()!=0)
+            {
+                deliveryAddress.setPincode(Long.parseLong(pincode.getText().toString()));
+            }
+
             deliveryAddress.setLandmark(landMark.getText().toString());
             deliveryAddress.setPhoneNumber(Long.parseLong(receiversPhoneNumber.getText().toString()));
 
@@ -283,13 +289,13 @@ public class EditAddressFragment extends Fragment {
 
 
 
-
-        if(pincode.getText().toString().length()==0)
-        {
-            pincode.setError("Pincode cannot be empty !");
-            pincode.requestFocus();
-            isValid = false;
-        }
+//
+//        if(pincode.getText().toString().length()==0)
+//        {
+//            pincode.setError("Pincode cannot be empty !");
+//            pincode.requestFocus();
+//            isValid = false;
+//        }
 
         if(receiversPhoneNumber.getText().toString().length()==0)
         {
@@ -428,9 +434,11 @@ public class EditAddressFragment extends Fragment {
     }
 
 
+
+
     private void showToastMessage(String message)
     {
-        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 

@@ -15,6 +15,7 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@color/header_text_color"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -25,47 +26,6 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/icon_sort"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                app:srcCompat="@drawable/ic_sort_black_24px"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-            <TextView
-                android:textColor="@color/white"
-                android:id="@+id/text_sort"
-                android:padding="5dp"
-                android:text="@string/activity_pfs_inventory_text_sort_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"/>
-
-
-        </LinearLayout>
-
-        <!--<android.support.design.widget.TabLayout-->
-            <!--android:id="@+id/tabs"-->
-            <!--android:background="@color/blueGrey800"-->
-            <!--app:tabGravity="fill"-->
-            <!--app:tabMode="scrollable"-->
-            <!--app:tabIndicatorHeight="2dp"-->
-            <!--app:tabIndicatorColor="@color/gplus_color_2"-->
-            <!--app:tabBackground="@color/blueGrey800"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
 
 
         <com.google.android.material.tabs.TabLayout
@@ -88,34 +48,5 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-
-
-    <com.wunderlist.slidinglayer.SlidingLayer
-        android:id="@+id/slidingLayer"
-        android:elevation="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <FrameLayout
-            android:background="@color/white"
-            android:layout_gravity="end"
-            android:layout_marginLeft="@dimen/slidinglayerwidth"
-            android:layout_marginStart="@dimen/slidinglayerwidth"
-            android:id="@+id/slidinglayerfragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-
-    </com.wunderlist.slidinglayer.SlidingLayer>
-
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/fab"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="end|bottom"-->
-        <!--android:layout_margin="@dimen/fab_margin"-->
-        <!--app:srcCompat="@android:drawable/ic_dialog_email" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

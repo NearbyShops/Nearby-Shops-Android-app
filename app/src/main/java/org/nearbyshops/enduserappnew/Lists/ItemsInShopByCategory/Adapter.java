@@ -11,17 +11,27 @@ import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.Model.ShopItem;
+import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.UtilityScreens.BannerSlider.AdapterBannerImages;
+import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model.Highlights;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterItemsInShop;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterItemsInShop;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.AdapterItemCatHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
 
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopMedium;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemInstacart;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.WhatsMessageData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderWhatsApp;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
 
@@ -29,19 +39,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * Created by sumeet on 19/12/15.
  */
 
 
+
 public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-
-
 
 
     public Map<Integer, CartItem> cartItemMap = new HashMap<>();
     public CartStats cartStats = new CartStats();
-
 
 
     private List<Object> dataset;
@@ -50,13 +59,25 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static final int VIEW_TYPE_ITEM_CATEGORY = 1;
     public static final int VIEW_TYPE_ITEM_CATEGORY_LIST = 2;
     public static final int VIEW_TYPE_SHOP_ITEM = 3;
-    public static final int VIEW_TYPE_SHOP = 4;
 
+    public static final int VIEW_TYPE_SHOP = 4;
+    public static final int VIEW_TYPE_MESSAGE_ON_WHATSAPP = 5;
+
+    public static final int VIEW_TYPE_SHOP_ITEM_INSTA = 6;
 
 
     public static final int VIEW_TYPE_HEADER = 10;
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 11;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 12;
+
+
+    public static final int VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM = 13;
+
+    public static final int VIEW_TYPE_FILTER_ITEMS_IN_SHOP = 14;
+
+
+    public static final int VIEW_TYPE_HIGHLIGHTS = 15;
+
 
 
 
@@ -92,6 +113,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return ViewHolderItemCategory.create(parent,context,fragment,this);
         }
+        else if(viewType == VIEW_TYPE_HIGHLIGHTS)
+        {
+            return ViewHolderHorizontalList.create(parent,context,fragment,ViewHolderHorizontalList.LAYOUT_TYPE_SLIDER);
+        }
         else if(viewType == VIEW_TYPE_ITEM_CATEGORY_LIST)
         {
             return ViewHolderHorizontalList.create(parent,context,fragment);
@@ -99,17 +124,39 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(viewType == VIEW_TYPE_SHOP_ITEM)
         {
 
-//            viewHolderShopItem = ;
-            return ViewHolderShopItem.create(parent,context,fragment,this,cartItemMap,cartStats);
+            int layoutType = ViewHolderFilterItemsInShop.getLayoutType(context);
+
+            if(layoutType==ViewHolderFilterItemsInShop.LAYOUT_TYPE_FULL_WIDTH)
+            {
+                return ViewHolderShopItem.create(parent,context,fragment,this,cartItemMap,cartStats,ViewHolderShopItem.LAYOUT_TYPE_FULL_WIDTH);
+//                return ViewHolderShopItemInstacart.create(parent,context,fragment,this,cartItemMap,cartStats,ViewHolderShopItemInstacart.LAYOUT_TYPE_FULL_WIDTH);
+            }
+            else if(layoutType==ViewHolderFilterItemsInShop.LAYOUT_TYPE_HALF_WIDTH)
+            {
+                if(context.getResources().getBoolean(R.bool.use_add_button_layout_for_item_in_shop))
+                {
+                    return ViewHolderShopItem.create(parent,context,fragment,this,cartItemMap,cartStats,ViewHolderShopItem.LAYOUT_TYPE_HALF_WIDTH);
+                }
+                else
+                {
+                    return ViewHolderShopItemInstacart.create(parent,context,fragment,this,cartItemMap,cartStats,ViewHolderShopItemInstacart.LAYOUT_TYPE_GRID);
+                }
+            }
+
+
 
         }
         else if(viewType == VIEW_TYPE_SHOP)
         {
-            return ViewHolderShopMedium.create(parent,context,fragment,this);
+            return ViewHolderShopSmall.create(parent,context,fragment,this);
+        }
+        else if(viewType == VIEW_TYPE_MESSAGE_ON_WHATSAPP)
+        {
+            return ViewHolderWhatsApp.create(parent,context,fragment);
         }
         else if(viewType == VIEW_TYPE_HEADER)
         {
-            return ViewHolderHeader.create(parent,context);
+            return ViewHolderHeader.createWhite(parent,context);
         }
         else if(viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR)
         {
@@ -119,20 +166,29 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return ViewHolderEmptyScreenFullScreen.create(parent,context,fragment);
         }
-
-
+        else if(viewType==VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM)
+        {
+            return ViewHolderEmptyScreenListItem.create(parent,context, fragment);
+        }
+        else if(viewType==VIEW_TYPE_FILTER_ITEMS_IN_SHOP)
+        {
+            return ViewHolderFilterItemsInShop.create(parent,context, fragment);
+        }
 
         return null;
     }
+
+
+
 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
 
-        if(holder instanceof ViewHolderShopMedium)
+        if(holder instanceof ViewHolderShopSmall)
         {
-            ((ViewHolderShopMedium) holder).setItem((Shop) dataset.get(position));
+            ((ViewHolderShopSmall) holder).setItem((Shop) dataset.get(position),false);
         }
         else if(holder instanceof ViewHolderItemCategory)
         {
@@ -141,10 +197,30 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holder instanceof ViewHolderHorizontalList)
         {
 
-            List<ItemCategory> list = ((ItemCategoriesList)dataset.get(position)).getItemCategories();
 
-            ((ViewHolderHorizontalList) holder).setItem(new AdapterItemCatHorizontalList(list,context,fragment),null);
+            if(getItemViewType(position)==VIEW_TYPE_HIGHLIGHTS)
+            {
+                Highlights highlights = ((Highlights)dataset.get(position));
 
+                List<Object> list = highlights.getHighlightList();
+                AdapterBannerImages adapterBannerImages = new AdapterBannerImages(list,context,fragment);
+                ((ViewHolderHorizontalList) holder).setItem(adapterBannerImages, highlights.getListTitle());
+
+            }
+            else if(getItemViewType(position)==VIEW_TYPE_ITEM_CATEGORY_LIST)
+            {
+                ItemCategoriesList categoriesList = (ItemCategoriesList)dataset.get(position);
+
+                List<ItemCategory> list = categoriesList.getItemCategories();
+
+                ((ViewHolderHorizontalList) holder).setItem(new AdapterItemCatHorizontalList(list,context,fragment),null);
+                ((ViewHolderHorizontalList) holder).scrollToPosition(categoriesList.getScrollPositionForSelected());
+            }
+
+        }
+        else if(holder instanceof ViewHolderShopItemInstacart)
+        {
+            ((ViewHolderShopItemInstacart) holder).bindShopItems((ShopItem) dataset.get(position));
         }
         else if(holder instanceof ViewHolderShopItem)
         {
@@ -153,6 +229,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holder instanceof ViewHolderShopItemButton)
         {
             ((ViewHolderShopItemButton) holder).bindShopItems((ShopItem) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderWhatsApp)
+        {
+            ((ViewHolderWhatsApp) holder).setItem((WhatsMessageData) dataset.get(position));
+
         }
         else if (holder instanceof ViewHolderHeader) {
 
@@ -170,6 +251,14 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holder instanceof ViewHolderEmptyScreenFullScreen)
         {
             ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderEmptyScreenListItem)
+        {
+            ((ViewHolderEmptyScreenListItem) holder).setItem((EmptyScreenDataListItem) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderFilterItemsInShop)
+        {
+            ((ViewHolderFilterItemsInShop) holder).setItem((FilterItemsInShop) dataset.get(position));
         }
 
 
@@ -202,7 +291,15 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if (dataset.get(position) instanceof ShopItem)
         {
             return VIEW_TYPE_SHOP_ITEM;
+        }
+        else if (dataset.get(position) instanceof WhatsMessageData)
+        {
+            return VIEW_TYPE_MESSAGE_ON_WHATSAPP;
 
+        }
+        else if(dataset.get(position) instanceof Highlights)
+        {
+            return VIEW_TYPE_HIGHLIGHTS;
         }
         else if(dataset.get(position) instanceof HeaderTitle)
         {
@@ -212,8 +309,14 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return VIEW_TYPE_EMPTY_SCREEN;
         }
-
-
+        else if(dataset.get(position) instanceof EmptyScreenDataListItem)
+        {
+            return VIEW_TYPE_EMPTY_SCREEN_LIST_ITEM;
+        }
+        else if(dataset.get(position) instanceof FilterItemsInShop)
+        {
+            return VIEW_TYPE_FILTER_ITEMS_IN_SHOP;
+        }
 
 
         return -1;
@@ -227,10 +330,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         return (dataset.size()+1);
     }
-
-
-
-
 
 
 

@@ -5,9 +5,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,15 +20,17 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.gson.Gson;
@@ -36,9 +38,17 @@ import com.squareup.picasso.Picasso;
 
 
 import org.nearbyshops.enduserappnew.API.ShopService;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.AdapterDeliverySlot;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.EditDeliverySlot.EditDeliverySlot;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.EditDeliverySlot.EditDeliverySlotFragment;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.Model.DeliverySlot;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.ViewHolderDeliverySlot;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.ViewModelDeliverySlot;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
-import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PlacePickerWithRadius.PickDeliveryRange;
+import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionHistory;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -48,6 +58,8 @@ import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ShopImageList;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.AddItemData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderAddItem;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.AddCredit;
@@ -55,6 +67,8 @@ import org.nearbyshops.enduserappnew.adminModule.AddCredit.AddCredit;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -62,17 +76,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.app.Activity.RESULT_OK;
 import static android.view.View.VISIBLE;
 
 
-public class EditShopFragment extends Fragment {
+public class EditShopFragment extends Fragment implements ViewHolderDeliverySlot.ListItemClick, ViewHolderAddItem.ListItemClick {
 
     public static int PICK_IMAGE_REQUEST = 21;
     // Upload the image after picked up
@@ -97,8 +111,11 @@ public class EditShopFragment extends Fragment {
     @BindView(R.id.shop_admin_phone) TextView shopAdminPhone;
     @BindView(R.id.time_created) TextView timeOfRegistration;
     @BindView(R.id.extended_credit_limit) EditText extendedCreditLimit;
+
     @BindView(R.id.switch_enable) Switch aSwitch;
     @BindView(R.id.switch_waitlist) Switch switchWaitlist;
+    @BindView(R.id.switch_permit_update_items) Switch permitUpdateItems;
+
     @BindView(R.id.account_balance) TextView accountBalance;
 
 
@@ -110,54 +127,39 @@ public class EditShopFragment extends Fragment {
     @BindView(R.id.shopName)
     EditText shopName;
 
-    @BindView(R.id.shopAddress)
-    EditText shopAddress;
-    @BindView(R.id.shopCity)
-    EditText city;
-    @BindView(R.id.shopPincode)
-    EditText pincode;
-    @BindView(R.id.shopLandmark)
-    EditText landmark;
 
-    @BindView(R.id.customerHelplineNumber)
-    EditText customerHelplineNumber;
-    @BindView(R.id.deliveryHelplineNumber)
-    EditText deliveryHelplineNumber;
+    @BindView(R.id.shopAddress) EditText shopAddress;
+    @BindView(R.id.shopCity) EditText city;
+    @BindView(R.id.shopPincode) EditText pincode;
+    @BindView(R.id.shopLandmark) EditText landmark;
 
-    @BindView(R.id.shopShortDescription)
-    EditText shopDescriptionShort;
-    @BindView(R.id.shopLongDescription)
-    EditText shopDescriptionLong;
+    @BindView(R.id.customerHelplineNumber) EditText customerHelplineNumber;
+    @BindView(R.id.deliveryHelplineNumber) EditText deliveryHelplineNumber;
 
-    @BindView(R.id.latitude)
-    EditText latitude;
-    @BindView(R.id.longitude)
-    EditText longitude;
-    @BindView(R.id.pick_location_button)
-    TextView pickLocationButton;
-    @BindView(R.id.rangeOfDelivery)
-    EditText rangeOfDelivery;
+    @BindView(R.id.shopShortDescription) EditText shopDescriptionShort;
+    @BindView(R.id.shopLongDescription) EditText shopDescriptionLong;
 
-    @BindView(R.id.deliveryCharges)
-    EditText deliveryCharge;
-    @BindView(R.id.billAmountForFreeDelivery)
-    EditText billAmountForFreeDelivery;
+    @BindView(R.id.latitude) EditText latitude;
+    @BindView(R.id.longitude) EditText longitude;
+    @BindView(R.id.pick_location_button) TextView pickLocationButton;
+    @BindView(R.id.rangeOfDelivery) EditText rangeOfDelivery;
 
-    @BindView(R.id.pick_from_shop_available)
-    CheckBox pickFromShopAvailable;
-    @BindView(R.id.home_delivery_available)
-    CheckBox homeDeliveryAvailable;
+    @BindView(R.id.deliveryCharges) EditText deliveryCharge;
+    @BindView(R.id.billAmountForFreeDelivery) EditText billAmountForFreeDelivery;
 
-    @BindView(R.id.error_delivery_option)
-    TextView errorDeliveryOption;
-    @BindView(R.id.error_delivery_option_top)
-    TextView errorDeliveryOptionTop;
+    @BindView(R.id.pick_from_shop_available) CheckBox pickFromShopAvailable;
+    @BindView(R.id.home_delivery_available) CheckBox homeDeliveryAvailable;
+
+    @BindView(R.id.error_delivery_option) TextView errorDeliveryOption;
+    @BindView(R.id.error_delivery_option_top) TextView errorDeliveryOptionTop;
 
 
     @BindView(R.id.saveButton)
     TextView saveButton;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+
+
 
 
     @BindView(R.id.admin_options_block)
@@ -167,11 +169,17 @@ public class EditShopFragment extends Fragment {
     public static final String SHOP_INTENT_KEY = "shop_intent_key";
     public static final String EDIT_MODE_INTENT_KEY = "edit_mode";
 
+
+    public static final int MODE_CREATE_SHOP_BY_ADMIN = 56;
     public static final int MODE_UPDATE_BY_ADMIN = 55;
     public static final int MODE_UPDATE = 52;
     public static final int MODE_ADD = 51;
 
+
     private int current_mode = MODE_ADD;
+
+    int shopID;
+    int shopAdminID;
 
 
     private Shop shop = new Shop();
@@ -183,13 +191,16 @@ public class EditShopFragment extends Fragment {
     }
 
 
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_edit_shop_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_edit_shop, container, false);
 
         ButterKnife.bind(this, rootView);
 
@@ -199,24 +210,31 @@ public class EditShopFragment extends Fragment {
 
 
 
+
+
         if (savedInstanceState == null) {
 
             current_mode = getActivity().getIntent().getIntExtra(EDIT_MODE_INTENT_KEY, MODE_ADD);
+            shopID = getActivity().getIntent().getIntExtra("shop_id", 0 );
+            shopAdminID = getActivity().getIntent().getIntExtra("shop_admin_id",0);
+
 
             if (current_mode == MODE_UPDATE) {
 
-                shop = PrefShopAdminHome.getShop(getContext());
+//                shop = PrefShopAdminHome.getShop(getContext());
 
-                if (shop != null) {
-                    bindShopData();
-                }
+//                if (shop != null) {
+//                    bindShopData();
+//                }
 
+                getShopDetails();
             }
             else if (current_mode == MODE_UPDATE_BY_ADMIN) {
 
-                String jsonString = getActivity().getIntent().getStringExtra("shop_profile");
-                shop = UtilityFunctions.provideGson().fromJson(jsonString, Shop.class);
-                bindShopData();
+//                String jsonString = getActivity().getIntent().getStringExtra("shop_profile");
+//                shop = UtilityFunctions.provideGson().fromJson(jsonString, Shop.class);
+//                PrefShopAdminHome.saveShop(shop,getActivity());
+//                bindShopData();
 
                 getShopDetails();
             }
@@ -226,13 +244,23 @@ public class EditShopFragment extends Fragment {
         updateFieldVisibility();
 
 
-        if (shop != null) {
-            loadImage(shop.getLogoImagePath());
-        }
+//        if (shop != null) {
+//            loadImage(shop.getLogoImagePath());
+//        }
+
+
+
+        setupViewModel();
+        setupRecyclerView();
+        getDeliverySlots();
 
 
         return rootView;
     }
+
+
+
+
 
 
     private void getShopDetails() {
@@ -241,18 +269,20 @@ public class EditShopFragment extends Fragment {
         pd.setMessage("Please with ... Getting shop details !");
         pd.show();
 
+
+
         Call<Shop> call = shopService.getShopDetails(
-                shop.getShopID(), 0d, 0d
+                shopID, 0d, 0d
         );
 
 
         call.enqueue(new Callback<Shop>() {
             @Override
             public void onResponse(Call<Shop> call, Response<Shop> response) {
-
-                if (!isVisible()) {
-                    return;
-                }
+//
+//                if (!isVisible()) {
+//                    return;
+//                }
 
                 pd.dismiss();
 
@@ -270,9 +300,9 @@ public class EditShopFragment extends Fragment {
             public void onFailure(Call<Shop> call, Throwable t) {
 
 
-                if (!isVisible()) {
-                    return;
-                }
+//                if (!isVisible()) {
+//                    return;
+//                }
 
                 showToastMessage("Failed !");
 
@@ -281,9 +311,13 @@ public class EditShopFragment extends Fragment {
     }
 
 
+
+
+
+
     private void updateFieldVisibility() {
 
-        if (current_mode == MODE_ADD) {
+        if (current_mode == MODE_ADD || current_mode==MODE_CREATE_SHOP_BY_ADMIN) {
             saveButton.setText("Add Shop");
             shopIDEnter.setVisibility(View.GONE);
             adminOptionsBlock.setVisibility(View.GONE);
@@ -322,6 +356,9 @@ public class EditShopFragment extends Fragment {
     }
 
 
+
+
+
     public static final String TAG_LOG = "TAG_LOG";
 
     private void showLogMessage(String message) {
@@ -330,14 +367,7 @@ public class EditShopFragment extends Fragment {
     }
 
 
-    private void loadImage(String imagePath) {
 
-        String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/Shop/Image/five_hundred_" + imagePath + ".jpg";
-
-        Picasso.get()
-                .load(iamgepath)
-                .into(resultView);
-    }
 
 
 
@@ -363,12 +393,17 @@ public class EditShopFragment extends Fragment {
         }
 
 
-        if (current_mode == MODE_ADD) {
+
+
+        if (current_mode == MODE_ADD || current_mode == MODE_CREATE_SHOP_BY_ADMIN) {
             addAccount();
         } else if (current_mode == MODE_UPDATE || current_mode == MODE_UPDATE_BY_ADMIN) {
             update();
         }
     }
+
+
+
 
 
     private boolean validateData() {
@@ -514,7 +549,6 @@ public class EditShopFragment extends Fragment {
         bindAdminOptions();
 
 
-
         shopOpen.setChecked(shop.isOpen());
         shopIDEnter.setText(String.valueOf(shop.getShopID()));
         shopName.setText(shop.getShopName());
@@ -537,6 +571,13 @@ public class EditShopFragment extends Fragment {
 
         pickFromShopAvailable.setChecked(shop.getPickFromShopAvailable());
         homeDeliveryAvailable.setChecked(shop.getHomeDeliveryAvailable());
+
+
+        String imagePath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/Shop/Image/five_hundred_" + shop.getLogoImagePath() + ".jpg";
+
+        Picasso.get()
+                .load(imagePath)
+                .into(resultView);
     }
 
 
@@ -561,6 +602,7 @@ public class EditShopFragment extends Fragment {
 
         aSwitch.setChecked(shop.getShopEnabled());
         switchWaitlist.setChecked(shop.getShopWaitlisted());
+        permitUpdateItems.setChecked(shop.isItemUpdatePermitted());
 
         extendedCreditLimit.setText(String.valueOf(shop.getExtendedCreditLimit()));
         accountBalance.setText("Balance : " + PrefGeneral.getCurrencySymbol(getActivity()) +  String.format(" %.2f",shop.getAccountBalance()));
@@ -573,16 +615,10 @@ public class EditShopFragment extends Fragment {
 
     private void getDataFromViews()
     {
+
         if(shop==null)
         {
-            if(current_mode == MODE_ADD)
-            {
-                shop = new Shop();
-            }
-            else
-            {
-                return;
-            }
+            shop = new Shop();
         }
 
 
@@ -634,9 +670,11 @@ public class EditShopFragment extends Fragment {
 
 
 
+
         // get data from admin fields
         shop.setShopEnabled(aSwitch.isChecked());
         shop.setShopWaitlisted(switchWaitlist.isChecked());
+        shop.setItemUpdatePermitted(permitUpdateItems.isChecked());
 
         if(extendedCreditLimit.getText().toString().length()>0)
         {
@@ -684,7 +722,7 @@ public class EditShopFragment extends Fragment {
         {
 
 
-            showToastMessage("Current Mode : " + current_mode);
+//            showToastMessage("Current Mode : " + current_mode);
             saveButton.setVisibility(VISIBLE);
             progressBar.setVisibility(View.INVISIBLE);
             return;
@@ -733,11 +771,40 @@ public class EditShopFragment extends Fragment {
 
 
 
+
+
+
     private void retrofitPOSTRequest()
     {
         getDataFromViews();
 
-        Call<Shop> call = shopService.createShop(PrefLogin.getAuthorizationHeaders(getContext()),shop);
+
+        Call<Shop> call = null;
+
+
+        if(current_mode==MODE_ADD)
+        {
+            call = shopService.createShop(
+                    PrefLogin.getAuthorizationHeaders(getContext()),
+                    shop
+            );
+
+        }
+        else if(current_mode==MODE_CREATE_SHOP_BY_ADMIN)
+        {
+
+            call = shopService.createShopByStaff(
+                    PrefLogin.getAuthorizationHeaders(getContext()),
+                    shop, shopAdminID
+            );
+
+        }
+        else
+        {
+            return;
+        }
+
+
 
 
 
@@ -752,20 +819,32 @@ public class EditShopFragment extends Fragment {
                 {
                     showToastMessage("Add successful !");
 
-                    current_mode = MODE_UPDATE;
+                    if(current_mode==MODE_ADD)
+                    {
+                        current_mode = MODE_UPDATE;
+
+
+                        // save user profile
+                        User user  = PrefLogin.getUser(getActivity());
+                        user.setRole(User.ROLE_SHOP_ADMIN_CODE);
+                        PrefLogin.saveUserProfile(user,getActivity());
+
+                        getActivity().setResult(405);
+
+                    }
+                    else if(current_mode==MODE_CREATE_SHOP_BY_ADMIN)
+                    {
+                        current_mode=MODE_UPDATE_BY_ADMIN;
+                    }
+
+
+
                     updateFieldVisibility();
                     shop = response.body();
                     bindShopData();
 
                     PrefShopAdminHome.saveShop(shop,getContext());
 
-
-                    // save user profile
-                    User user  = PrefLogin.getUser(getActivity());
-                    user.setRole(User.ROLE_SHOP_ADMIN_CODE);
-                    PrefLogin.saveUserProfile(user,getActivity());
-
-                    getActivity().setResult(405);
 
                 }
                 else
@@ -802,9 +881,11 @@ public class EditShopFragment extends Fragment {
         Utility Methods
      */
 
+
     private void showToastMessage(String message)
     {
-        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
@@ -836,11 +917,6 @@ public class EditShopFragment extends Fragment {
         File file = new File(context.getCacheDir().getPath() + "/" + "SampleCropImage.jpeg");
         file.delete();
     }
-
-
-
-
-
 
 
 
@@ -922,13 +998,11 @@ public class EditShopFragment extends Fragment {
             showToastMessage(ImagePicker.Companion.getError(result));
 
         }
-        else if(requestCode==3 && resultCode==3)
+        else if(requestCode==3 && resultCode==6)
         {
-
             latitude.setText(String.valueOf(result.getDoubleExtra("lat_dest",0.0)));
             longitude.setText(String.valueOf(result.getDoubleExtra("lon_dest",0.0)));
-            rangeOfDelivery.setText(String.valueOf(result.getDoubleExtra("radius",0.0)));
-
+            rangeOfDelivery.setText(String.valueOf(result.getDoubleExtra("radius",10)));
         }
         else {
             showToastMessage("Task Cancelled !");
@@ -1013,6 +1087,9 @@ public class EditShopFragment extends Fragment {
         file = new File(imageFilePath);
 
 
+        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
+
         // Marker
 
         RequestBody requestBodyBinary = null;
@@ -1034,8 +1111,10 @@ public class EditShopFragment extends Fragment {
 
 
 
+
+
         Call<Image> imageCall = shopService.uploadImage(PrefLogin.getAuthorizationHeaders(getContext()),
-                requestBodyBinary);
+                fileToUpload);
 
 
 
@@ -1070,8 +1149,9 @@ public class EditShopFragment extends Fragment {
                 {
                     showToastMessage("Image Upload failed !");
                     shop.setLogoImagePath(null);
-
                 }
+
+
 
                 if(isModeEdit)
                 {
@@ -1162,15 +1242,18 @@ public class EditShopFragment extends Fragment {
 
 
 
-
-
     // code for picking up location
-
-
     @OnClick(R.id.pick_location_button)
     void pickLocation()
     {
-        Intent intent = new Intent(getActivity(), PickDeliveryRange.class);
+//        Intent intent = new Intent(getActivity(), PickDeliveryRange.class);
+//        intent.putExtra("lat_dest",Double.parseDouble(latitude.getText().toString()));
+//        intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
+//        intent.putExtra("radius",Double.parseDouble(rangeOfDelivery.getText().toString()));
+//        startActivityForResult(intent,3);
+
+
+        Intent intent = new Intent(getActivity(), GooglePlacePicker.class);
         intent.putExtra("lat_dest",Double.parseDouble(latitude.getText().toString()));
         intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
         intent.putExtra("radius",Double.parseDouble(rangeOfDelivery.getText().toString()));
@@ -1214,12 +1297,184 @@ public class EditShopFragment extends Fragment {
 
 
 
+    @OnClick(R.id.transaction_button)
+    void shopTransactionsClick()
+    {
+        Intent intent = new Intent(getActivity(), TransactionHistory.class);
+        intent.putExtra("user_id",shop.getShopAdminID());
+        startActivity(intent);
+    }
+
+
 
     @OnClick(R.id.shop_dashboard)
     void shopDashboardClick()
     {
         PrefShopAdminHome.saveShop(shop,getActivity());
         Intent intent = new Intent(getActivity(), ShopDashboard.class);
+        startActivity(intent);
+    }
+
+
+
+
+
+
+
+
+    ViewModelDeliverySlot viewModelDeliverySlot;
+
+
+    private void setupViewModel()
+    {
+
+        viewModelDeliverySlot = new ViewModelDeliverySlot(MyApplication.application);
+
+
+        viewModelDeliverySlot.getData().observe(getViewLifecycleOwner(), new Observer<List<Object>>() {
+            @Override
+            public void onChanged(List<Object> objects) {
+
+
+                dataset.clear();
+
+                dataset.add(0,new AddItemData());
+                dataset.addAll(objects);
+
+
+                adapterDeliverySlot.notifyDataSetChanged();
+
+            }
+        });
+
+
+
+
+        viewModelDeliverySlot.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+
+            }
+        });
+
+
+
+
+
+        viewModelDeliverySlot.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                showToastMessage(s);
+
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+    ArrayList<Object> dataset = new ArrayList<>();
+    @BindView(R.id.delivery_slot_list) RecyclerView itemImagesList;
+    AdapterDeliverySlot adapterDeliverySlot;
+
+
+
+    private void setupRecyclerView() {
+
+        adapterDeliverySlot = new AdapterDeliverySlot(dataset,getActivity(),this,ViewHolderDeliverySlot.MODE_SHOP_ADMIN);
+        itemImagesList.setAdapter(adapterDeliverySlot);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
+        itemImagesList.setLayoutManager(layoutManager);
+    }
+
+
+
+
+
+
+
+    void getDeliverySlots()
+    {
+        Integer shopID = shop.getShopID();
+
+//        viewModelDeliverySlot.fetchDeliverySlots(shopID,false,
+//                null,DeliverySlot.SLOT_ID
+//        );
+    }
+
+
+
+    @OnClick(R.id.sync_refresh)
+    void syncRefreshClick()
+    {
+        getDeliverySlots();
+    }
+
+
+    @Override
+    public void listItemClick(int deliverySlotID) {
+
+    }
+
+    @Override
+    public void editDeliverySlot(DeliverySlot deliverySlot, int position) {
+
+        Intent intent = new Intent(getActivity(), EditDeliverySlot.class);
+        intent.putExtra(EditDeliverySlotFragment.EDIT_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_UPDATE);
+        intent.putExtra(EditDeliverySlotFragment.ACCESS_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_ACCESS_BY_SHOP_ADMIN);
+
+        String jsonString = UtilityFunctions.provideGson().toJson(deliverySlot,DeliverySlot.class);
+        intent.putExtra("delivery_slot_json",jsonString);
+
+        startActivity(intent);
+    }
+
+
+
+    @Override
+    public void removeDeliverySlot(DeliverySlot deliverySlot, int position) {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setTitle("Confirm Delete !")
+                .setMessage("Are you sure you want to delete this Delivery Slot ?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        viewModelDeliverySlot.deleteDeliverySlot(deliverySlot.getSlotID());
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        showToastMessage("Cancelled !");
+                    }
+                })
+                .show();
+
+
+    }
+
+
+
+
+    @Override
+    public void addItemClick() {
+
+        Intent intent = new Intent(getActivity(), EditDeliverySlot.class);
+        intent.putExtra(EditDeliverySlotFragment.EDIT_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_ADD);
+        intent.putExtra(EditDeliverySlotFragment.ACCESS_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_ACCESS_BY_SHOP_ADMIN);
+
         startActivity(intent);
     }
 

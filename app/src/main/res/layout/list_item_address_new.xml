@@ -26,6 +26,7 @@
 
 
     <TextView
+        android:lines="1"
         android:layout_marginTop="5dp"
         android:id="@+id/deliveryAddress"
         android:layout_width="match_parent"

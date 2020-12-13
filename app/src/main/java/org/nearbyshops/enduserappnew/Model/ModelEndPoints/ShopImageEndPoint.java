@@ -2,6 +2,8 @@ package org.nearbyshops.enduserappnew.Model.ModelEndPoints;
 
 
 import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
+import org.nearbyshops.enduserappnew.Model.ModelReviewShop.ShopReview;
+import org.nearbyshops.enduserappnew.Model.Shop;
 
 import java.util.List;
 
@@ -17,6 +19,34 @@ public class ShopImageEndPoint {
     private List<ShopImage> results;
 
 
+    // check whether this item is a favourite for the given user
+    private boolean isFavourite;
+    private Shop shopDetails;
+    private ShopReview shopReview;
+
+    public ShopReview getShopReview() {
+        return shopReview;
+    }
+
+    public void setShopReview(ShopReview shopReview) {
+        this.shopReview = shopReview;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+    }
+
+    public Shop getShopDetails() {
+        return shopDetails;
+    }
+
+    public void setShopDetails(Shop shopDetails) {
+        this.shopDetails = shopDetails;
+    }
 
     public int getItemCount() {
         return itemCount;

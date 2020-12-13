@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAddress;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.ButtonData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderButton;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 
 import java.util.List;
@@ -29,6 +31,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private final int VIEW_TYPE_EMPTY_SCREEN = 1;
     private final int VIEW_TYPE_DELIVERY_ADDRESS = 2;
+    private final int VIEW_TYPE_BUTTON = 3;
 
 
 
@@ -55,6 +58,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return ViewHolderEmptyScreenFullScreen.create(parent,context,null);
         }
+        else if(viewType==VIEW_TYPE_BUTTON)
+        {
+            return ViewHolderButton.create(parent,context,fragment,ViewHolderButton.LAYOUT_TYPE_ADD_NEW_LOCATION);
+        }
+
 
         return ViewHolderEmptyScreenFullScreen.create(parent,context,null);
     }
@@ -74,6 +82,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holder instanceof ViewHolderEmptyScreenFullScreen)
         {
             ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
+
+        }
+        else if(holder instanceof ViewHolderButton)
+        {
+            ((ViewHolderButton) holder).setItem((ButtonData) dataset.get(position));
         }
 
 
@@ -103,6 +116,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(dataset.get(position) instanceof DeliveryAddress)
         {
             return VIEW_TYPE_DELIVERY_ADDRESS;
+        }
+        else if(dataset.get(position) instanceof ButtonData)
+        {
+            return VIEW_TYPE_BUTTON;
         }
 
 

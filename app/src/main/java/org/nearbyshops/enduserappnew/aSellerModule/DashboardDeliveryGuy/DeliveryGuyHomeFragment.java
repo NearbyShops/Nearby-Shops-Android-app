@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.aSellerModule.DashboardDeliveryGuy;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,15 +9,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 
+import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryPerson.DeliveryGuyDashboard;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,6 +37,14 @@ public class DeliveryGuyHomeFragment extends Fragment {
         setRetainInstance(true);
         View rootView = inflater.inflate(R.layout.activity_delivery_guy_home, container, false);
         ButterKnife.bind(this,rootView);
+
+
+
+        if(getActivity()!=null && getActivity().getActionBar()!=null )
+        {
+            getActivity().getActionBar().setTitle("Delivery Dashboard");
+        }
+
 
 
 //        if(getChildFragmentManager().findFragmentByTag(TAG_SERVICE_INDICATOR)==null)
@@ -63,10 +74,14 @@ public class DeliveryGuyHomeFragment extends Fragment {
     {
         User user = PrefLogin.getUser(getActivity());
 
-        Intent deliveryGuyDashboard = new Intent(getActivity(), DeliveryGuyDashboard.class);
-        deliveryGuyDashboard.putExtra("delivery_guy_id",user.getUserID());
+//        Intent deliveryGuyDashboard = new Intent(getActivity(), DeliveryPersonInventory.class);
+//        deliveryGuyDashboard.putExtra("delivery_guy_id",user.getUserID());
 
-        startActivity(deliveryGuyDashboard);
+//        startActivity(deliveryGuyDashboard);
+
+
+        showToastMessage("This feature is available in paid version !");
+
 
     }
 
@@ -95,6 +110,53 @@ public class DeliveryGuyHomeFragment extends Fragment {
 
 
 
+
+
+    @OnClick({R.id.log_out_button})
+    void loginClick()
+    {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+
+        dialog.setTitle("Confirm Logout !")
+                .setMessage("Do you want to log out !")
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener(){
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        logout();
+
+                    }
+                })
+                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        showToastMessage("Cancelled !");
+                    }
+                })
+                .show();
+    }
+
+
+
+
+
+
+
+    private void logout()
+    {
+
+
+        UtilityFunctions.logout(getActivity());
+
+        if(getActivity() instanceof NotifyAboutLogin)
+        {
+            ((NotifyAboutLogin) getActivity()).loggedOut();
+        }
+
+    }
 
 
 

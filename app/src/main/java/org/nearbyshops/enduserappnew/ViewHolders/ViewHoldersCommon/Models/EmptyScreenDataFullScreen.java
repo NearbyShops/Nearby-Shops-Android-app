@@ -14,6 +14,17 @@ public class EmptyScreenDataFullScreen {
 
 
 
+    public static EmptyScreenDataFullScreen cartEmpty()
+    {
+        EmptyScreenDataFullScreen data = new EmptyScreenDataFullScreen();
+        data.setTitle("Your Cart is Empty");
+        data.setShowCopyrightInfo(false);
+        data.setMessage("When you add items to your cart they will appear here !");
+        data.setDrawableResource(R.drawable.cart_empty);
+
+        return data;
+    }
+
 
     public static EmptyScreenDataFullScreen getOffline()
     {

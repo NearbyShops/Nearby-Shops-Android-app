@@ -85,7 +85,7 @@ public class ViewHolderOrderItem extends RecyclerView.ViewHolder{
         itemID.setText("Item ID : " + orderItem.getItemID());
         itemName.setText(item.getItemName());
         quantity.setText("Item Quantity : " + orderItem.getItemQuantity() + " "  + item.getQuantityUnit());
-        itemPrice.setText("" + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() + " per "  + item.getQuantityUnit());
+        itemPrice.setText("Price : " + PrefGeneral.getCurrencySymbol(context) + " " + orderItem.getItemPriceAtOrder() + " per "  + item.getQuantityUnit());
         itemTotal.setText("Item Total : " + PrefGeneral.getCurrencySymbol(context) + " " + UtilityFunctions.refinedStringWithDecimals(orderItem.getItemPriceAtOrder() * orderItem.getItemQuantity()));
 
 

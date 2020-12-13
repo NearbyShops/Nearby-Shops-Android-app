@@ -228,7 +228,7 @@ public class FragmentEnterPassword extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 
@@ -303,7 +303,7 @@ public class FragmentEnterPassword extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 

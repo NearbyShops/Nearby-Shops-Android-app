@@ -64,7 +64,9 @@ public class ItemsInShop extends AppCompatActivity implements NotifyIndicatorCha
                         .setAction("Action", null).show();
             }
         });
-     */   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//     */
+
+//     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 

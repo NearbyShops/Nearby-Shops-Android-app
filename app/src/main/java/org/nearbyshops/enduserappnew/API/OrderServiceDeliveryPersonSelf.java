@@ -45,9 +45,11 @@ public interface OrderServiceDeliveryPersonSelf {
 
 
 
-    @PUT("/api/Order/DeliveryGuySelf/HandoverToUser/{OrderID}")
+    @PUT("/api/Order/DeliveryGuySelf/HandoverToUser/{OrderID}/{DeliveryOTP}")
     Call<ResponseBody> handoverToUser(@Header("Authorization") String headers,
-                                      @Path("OrderID") int orderID);
+                                      @Path("OrderID") int orderID,
+                                      @Path("DeliveryOTP") int deliveryOTP
+    );
 
 
 

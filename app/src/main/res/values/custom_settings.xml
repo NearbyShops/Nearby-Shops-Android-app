@@ -3,39 +3,36 @@
 
 
 <!--    http://markets-blr.nearbyshops.org:5021-->
+<!--    http://markets-blr.nearbyshops.org:5610-->
 <!--    http://192.168.43.233:5121-->
+<!--    http://159.89.174.8-->
+<!--    http://128.199.28.211-->
+<!--    http://192.168.43.233:8090-->
+
+
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
-    <bool name="multi_market_enabled">false</bool>
-
-
-
-    <!-- If multi-market mode is disabled then simply ignore this URL. It tells you url to SDS server which enables multi-market mode. -->
-    <string name="sds_url">@string/service_url_sds_local_hotspot</string>
-
+    <string name="custom_url">http://markets-blr.nearbyshops.org:5053</string>
 
 
     <!-- App name that you see on your front screen ( shops list screen ) -->
-    <string name="app_name">Farmers Market</string>
-    <drawable name="custom_icon">@mipmap/blue_icon</drawable>
+    <string name="app_name">Nearby Shops</string>
+    <drawable name="custom_icon">@drawable/logo_circle</drawable>
+    <drawable name="login_icon">@drawable/logo_circle</drawable>
+    <drawable name="app_logo">@drawable/logo_circle</drawable>
+    <dimen name="login_icon_width">100dp</dimen>
+    <dimen name="login_icon_height">100dp</dimen>
 
 
 
-
-    <!-- Set your custom app colors here -->
-    <color name="color_primary_custom">@color/mapboxBlue</color>
-    <color name="color_primary_dark_custom">@color/buttonColorDark</color>
-    <color name="color_accent_custom">@color/gplus_color_2</color>
-
-
+    <!-- Please provide the google play link from which user can download the app. This link is required for share you app feature and rate and review.-->
+    <string name="app_download_link">https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew</string>
 
 
     <!-- Enable maps and Places API and Mapbox map here -->
-    <string name="google_maps_api_key">abcde</string>
+    <string name="google_maps_api_key">AIzaSyDkHkcLBsbIptnnDktiuEKWxlqdLSCuNKY</string>
     <string name="custom_mapbox_url">https://example.com</string>
-
 
 
     <!--Switch between Google Maps or Mapbox API by using this setting-->
@@ -44,10 +41,13 @@
 
 
     <!--It is mandatory to provide terms of service and privacy policy link to publish your app on google play-->
-    <string name="tos_link">https://example.com/tos.html</string>
-    <string name="privacy_policy_link">https://example.com/pivacy_policy.html</string>
-    <string name="faqs_link">https://example.com/faq_link.html</string>
+    <string name="tos_link">https://sarthika.com/privacy.html</string>
+    <string name="privacy_policy_link">https://sarthika.com/privacy.html</string>
+    <string name="faqs_link">https://sarthika.com/privacy.html</string>
 
+
+    <!-- Show Login Using Password Option in Login Screen  -->
+    <bool name="show_login_using_password">false</bool>
 
 
     <!-- Other Settings -->
@@ -55,21 +55,39 @@
     <!-- To enable single vendor mode set single vendor mode to true and set shop id to the shop which you want to set as your default
     shop. Please note that the Shop must be enabled to be visible by the customers. -->
     <bool name="single_vendor_mode_enabled">false</bool>
-    <integer name="single_vendor_shop_id">33</integer>
+    <integer name="single_vendor_shop_id">35</integer>
+
 
 
     <!-- set whether you want to show create shop option in the front screen (shops list) screen of the market-->
     <bool name="show_create_shop">true</bool>
 
+    <!-- set whether to show or hide create shop option in the profile screen -->
+    <bool name="show_create_shop_in_profile_screen">true</bool>
+
+
+    <!-- prompt user while pressing back button when the app is about to get closed -->
+    <bool name="prompt_user_back_pressed">false</bool>
+
+
+    <!-- show whatsapp integration on shop catalog-->
+    <bool name="show_whatsapp">false</bool>
+
+
     <!-- You may want to disable items screen in the multi-vendor app. You can do it with this setting !-->
     <bool name="show_items_screen_in_multi_vendor">true</bool>
 
 
+    <!-- set whether to show filter shops by category in shops screen  -->
+    <bool name="show_categories_in_shops_screen">true</bool>
+
+
+    <!--  if set as true then user would see add button layout for items in shop rather than Plus (+) button layout -->
+    <bool name="use_add_button_layout_for_item_in_shop">false</bool>
+
 
     <!-- When enabled login through SMS-OTP will be available only on national phone numbers of the default country set by the market admin  !-->
     <bool name="restrict_phone_login_country">true</bool>
-
-
 
 
     <!--Enable or Disable Phone or Email for login based on your Preferences -->
@@ -79,9 +97,7 @@
 
 
 
-    <!-- Few constants ... you can ignore them -->
-    <string name="service_url_sds">http://sds.nearbyshops.org</string>
-    <string name="service_url_sds_demo">http://sds.nearbyshops.org:5000</string>
-    <string name="service_url_sds_local_hotspot">http://192.168.43.233:5125</string>
+    <!-- Show "Powered by Nearby Shops" in profile screen  -->
+    <bool name="show_powered_by_nbs">true</bool>
 
 </resources>

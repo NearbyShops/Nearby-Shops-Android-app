@@ -1,6 +1,5 @@
 package org.nearbyshops.enduserappnew.Login.Backups;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;

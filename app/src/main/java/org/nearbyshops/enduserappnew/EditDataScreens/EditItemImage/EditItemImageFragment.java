@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,13 +15,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
 
@@ -37,6 +34,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,13 +46,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class EditItemImageFragment extends Fragment {
@@ -309,6 +306,10 @@ public class EditItemImageFragment extends Fragment {
     }
 
 
+
+
+
+
     void update()
     {
 
@@ -336,6 +337,7 @@ public class EditItemImageFragment extends Fragment {
             {
 
                 uploadPickedImage(true);
+//                retrofitPUTRequest();
             }
 
 
@@ -426,10 +428,24 @@ public class EditItemImageFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
 
+
+
         Call<ResponseBody> call = itemImageService.updateItemImage(
                 PrefLogin.getAuthorizationHeaders(getContext()),
-                itemImage,itemImage.getImageID()
+                itemImage,
+                itemImage.getImageID()
         );
+
+
+
+//        Call<ResponseBody> call = itemImageService.updateItemImageNew(
+//                PrefLogin.getAuthorizationHeaders(getContext()),
+//                requestBodyBinary,
+//                itemImage.getImageID(),
+//                UtilityFunctions.provideGson().toJson(itemImage)
+//        );
+
+
 
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -574,7 +590,7 @@ public class EditItemImageFragment extends Fragment {
 
     private void showToastMessage(String message)
     {
-        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
@@ -771,6 +787,9 @@ public class EditItemImageFragment extends Fragment {
         file = new File(imageFilePath);
 
 
+        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
+
 
         // Marker
 
@@ -787,6 +806,8 @@ public class EditItemImageFragment extends Fragment {
 
             requestBodyBinary = RequestBody.create(MediaType.parse("application/octet-stream"), buf);
 
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -799,7 +820,7 @@ public class EditItemImageFragment extends Fragment {
 
 
         Call<Image> imageCall = itemImageService.uploadItemImage(PrefLogin.getAuthorizationHeaders(getContext()),
-                requestBodyBinary);
+                fileToUpload);
 
 
         imageCall.enqueue(new Callback<Image>() {

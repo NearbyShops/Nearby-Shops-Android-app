@@ -37,8 +37,6 @@ import org.nearbyshops.enduserappnew.API.ItemReviewService;
 import org.nearbyshops.enduserappnew.API.ItemSpecNameService;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.FavouriteItemEndpoint;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemImageEndPoint;
-import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.Model.ModelItemSpecs.ItemSpecificationName;
 import org.nearbyshops.enduserappnew.Model.ModelReviewItem.FavouriteItem;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -135,7 +133,7 @@ public class ItemDetailFragment extends Fragment implements Target {
 
         bindViews();
         setupRecyclerViewSpecs();
-        getItemImageCount();
+//        getItemImageCount();
         checkFavourite();
 
 
@@ -619,7 +617,6 @@ public class ItemDetailFragment extends Fragment implements Target {
 
     private void checkFavourite()
     {
-
         // make a network call to check the favourite
 
 //        Log.d("Before Check Favourite", "Item ID : EndUser ID" + String.valueOf(item.getItemID()) + " : " + String.valueOf(UtilityLogin.getEndUser(this).getEndUserID()));
@@ -630,13 +627,14 @@ public class ItemDetailFragment extends Fragment implements Target {
         }
 
 
+
         if(item != null && PrefLogin.getUser(getActivity()) != null)
         {
 
 
             Log.d("After Favourite", "Item ID : EndUser ID" + item.getItemID() + " : " + PrefLogin.getUser(getActivity()).getUserID());
 
-            Call<FavouriteItemEndpoint> call = favouriteItemService.getFavouriteBooks(item.getItemID(),
+            Call<FavouriteItemEndpoint> call = favouriteItemService.getFavouriteItems(item.getItemID(),
                     PrefLogin.getUser(getActivity()).getUserID()
                     ,null,null,null,null);
 
@@ -655,8 +653,6 @@ public class ItemDetailFragment extends Fragment implements Target {
                         if(response.body().getItemCount()>=1)
                         {
                             setFavouriteIcon(true);
-
-
                         }
                         else if(response.body().getItemCount()==0)
                         {
@@ -681,58 +677,57 @@ public class ItemDetailFragment extends Fragment implements Target {
 
 
 
-
-
-    private void getItemImageCount()
-    {
-
-        Call<ItemImageEndPoint> call = itemImageService.getItemImages(
-                item.getItemID(), ItemImage.IMAGE_ORDER,
-                null,null,
-                true
-        );
-
-
-        call.enqueue(new Callback<ItemImageEndPoint>() {
-            @Override
-            public void onResponse(Call<ItemImageEndPoint> call, Response<ItemImageEndPoint> response) {
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-                if(response.body()!=null)
-                {
-                    int count = response.body().getItemCount();
-
-
-                    if(count==0)
-                    {
-                        imagesCount.setVisibility(View.GONE);
-                    }
-                    else
-                    {
-                        imagesCount.setText(count + " Photos");
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ItemImageEndPoint> call, Throwable t) {
-
-
-                if(isDestroyed)
-                {
-                    return;
-                }
-
-
-                showToastMessage("Loading Images Failed !");
-            }
-        });
-    }
+//
+//
+//    private void getItemImageCount()
+//    {
+//
+//        Call<ItemImageEndPoint> call = itemImageService.getItemImages(
+//                item.getItemID(), ItemImage.IMAGE_ORDER,
+//                null,null
+//        );
+//
+//
+//        call.enqueue(new Callback<ItemImageEndPoint>() {
+//            @Override
+//            public void onResponse(Call<ItemImageEndPoint> call, Response<ItemImageEndPoint> response) {
+//
+//                if(isDestroyed)
+//                {
+//                    return;
+//                }
+//
+//                if(response.body()!=null)
+//                {
+//                    int count = response.body().getItemCount();
+//
+//
+//                    if(count==0)
+//                    {
+//                        imagesCount.setVisibility(View.GONE);
+//                    }
+//                    else
+//                    {
+//                        imagesCount.setText(count + " Photos");
+//                    }
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ItemImageEndPoint> call, Throwable t) {
+//
+//
+//                if(isDestroyed)
+//                {
+//                    return;
+//                }
+//
+//
+//                showToastMessage("Loading Images Failed !");
+//            }
+//        });
+//    }
 
 }
 

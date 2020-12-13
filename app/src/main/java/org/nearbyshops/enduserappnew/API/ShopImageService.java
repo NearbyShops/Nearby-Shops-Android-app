@@ -5,7 +5,7 @@ import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
 
-import okhttp3.RequestBody;
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -44,6 +44,7 @@ public interface ShopImageService {
 
 
 
+
     @GET("/api/v1/ShopImage")
     Call<ShopImageEndPoint> getShopImages(
             @Query("ShopID") Integer shopID,
@@ -56,12 +57,34 @@ public interface ShopImageService {
 
 
 
+
+
+    @GET ("/api/v1/ShopImage/ForEndUser")
+    Call<ShopImageEndPoint> getShopImagesForEnduser(
+            @Query("ShopID")Integer shopID,
+            @Query("SortBy") String sortBy,
+            @Query("Limit")Integer limit, @Query("Offset")int offset);
+
+
+
+
+
+
     // Image Calls
 
+//    @POST("/api/v1/ShopImage/Image")
+//    Call<Image> uploadShopImage(
+//            @Header("Authorization") String headers,
+//            @Body RequestBody image
+//    );
+
+
+
+    @Multipart
     @POST("/api/v1/ShopImage/Image")
     Call<Image> uploadShopImage(
             @Header("Authorization") String headers,
-            @Body RequestBody image
+            @Part MultipartBody.Part img
     );
 
 

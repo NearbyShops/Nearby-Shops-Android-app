@@ -3,10 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="#11000000"
-    tools:context="org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
 
     <!--android:theme="@style/AppTheme.AppBarOverlay"-->
 
@@ -38,7 +39,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/header_text_color"
                     android:text="@string/title_delivery_address_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -50,7 +51,7 @@
                     app:layout_constraintTop_toBottomOf="@id/app_name"
                     android:paddingTop="5dp"
                     android:paddingBottom="0dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/header_text_color"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -86,7 +87,6 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:background="#00000000"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

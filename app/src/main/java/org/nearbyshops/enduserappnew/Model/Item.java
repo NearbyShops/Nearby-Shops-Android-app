@@ -13,6 +13,8 @@ public class Item{
 	public static final String ITEM_NAME = "ITEM_NAME";
 	public static final String ITEM_DESC = "ITEM_DESC";
 
+	public static final String LIST_PRICE = "LIST_PRICE";
+
 	public static final String ITEM_IMAGE_URL = "ITEM_IMAGE_URL";
 	public static final String BACKDROP_IMAGE_ID = "BACKDROP_IMAGE_ID";
 	//public static final String ITEM_BRAND_NAME = "ITEM_BRAND_NAME";
@@ -62,7 +64,11 @@ public class Item{
 	private String quantityUnit;
 	private Timestamp dateTimeCreated;
 	private String itemDescriptionLong;
+
 	private ItemCategory itemCategory;
+	private ShopItem shopItem;
+
+
 	private Boolean isEnabled;
 	private Boolean isWaitlisted;
 
@@ -80,6 +86,14 @@ public class Item{
 
 	// getter and setter methods
 
+
+	public ShopItem getShopItem() {
+		return shopItem;
+	}
+
+	public void setShopItem(ShopItem shopItem) {
+		this.shopItem = shopItem;
+	}
 
 	public float getDiscountedPrice() {
 		return discountedPrice;

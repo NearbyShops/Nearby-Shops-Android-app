@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -29,16 +28,14 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.API.OrderService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.OrderDetail;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.PrefOrderDetail;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
-import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.ViewModel.ViewModelOrders;
+import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.ViewModel.ViewModelOrdersPaged;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
@@ -52,10 +49,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class OrdersListPagingFragment extends Fragment implements ViewHolderOrder.ListItemClick, SwipeRefreshLayout.OnRefreshListener,
         NotifySort, NotifySearch, RefreshFragment {
@@ -84,7 +77,7 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
 
 
-    private ViewModelOrders viewModelOrders;
+    private ViewModelOrdersPaged viewModelOrdersPaged;
 
 
 
@@ -156,7 +149,7 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
                 swipeContainer.setRefreshing(true);
 
 
-                viewModelOrders = new ViewModelOrders(MyApplication.application);
+                viewModelOrdersPaged = new ViewModelOrdersPaged(MyApplication.application);
                 setupRecyclerView();
             }
         });
@@ -165,7 +158,7 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
         {
             serviceName.setVisibility(View.VISIBLE);
             serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
@@ -297,7 +290,7 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
 
 
-        viewModelOrders.getArticleLiveData().observe(getViewLifecycleOwner(), new Observer<PagedList<Object>>() {
+        viewModelOrdersPaged.getArticleLiveData().observe(getViewLifecycleOwner(), new Observer<PagedList<Object>>() {
             @Override
             public void onChanged(PagedList<Object> objects) {
 
@@ -364,7 +357,7 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
     public void onRefresh() {
 
 
-        viewModelOrders.refresh();
+        viewModelOrdersPaged.refresh();
     }
 
 
@@ -469,8 +462,10 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
     @Override
     public void notifyOrderSelected(Order order) {
-        PrefOrderDetail.saveOrder(order,getActivity());
-        getActivity().startActivity(new Intent(getActivity(), OrderDetail.class));
+//        PrefOrderDetail.saveOrder(order,getActivity());
+//        getActivity().startActivity(new Intent(getActivity(), OrderDetail.class));
+
+        startActivity(OrderDetail.getLaunchIntent(order.getOrderID(),getActivity()));
     }
 
 
@@ -508,42 +503,7 @@ public class OrdersListPagingFragment extends Fragment implements ViewHolderOrde
 
     private void cancelOrder(Order order) {
 
-        showToastMessage("Cancel Order !");
 
-
-//        Call<ResponseBody> call = orderService.cancelOrderByShop(order.getOrderID());
-
-        Call<ResponseBody> call = orderService.cancelledByEndUser(
-                PrefLogin.getAuthorizationHeaders(getActivity()),
-                order.getOrderID()
-        );
-
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if(response.code() == 200 )
-                {
-                    showToastMessage("Successful");
-                    makeRefreshNetworkCall();
-                }
-                else if(response.code() == 304)
-                {
-                    showToastMessage("Not Cancelled !");
-                }
-                else
-                {
-                    showToastMessage("Server Error");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                showToastMessage("Network Request Failed. Check your internet connection !");
-            }
-        });
 
     }
 

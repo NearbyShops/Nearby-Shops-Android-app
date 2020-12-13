@@ -40,16 +40,38 @@
             android:orientation="vertical">
 
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:paddingEnd="10dp"
-                android:paddingStart="10dp"
-                android:textColor="@color/white"
-                android:background="@color/gplus_color_2"
-                android:id="@+id/user_role_badge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/list_item_user_profile_new_user_role_badge_text" />
+
+
+                <TextView
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/white"
+                    android:background="@color/gplus_color_2"
+                    android:id="@+id/user_role_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_item_user_profile_new_user_role_badge_text" />
+
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+
+                <ImageView
+                    android:id="@+id/more_options"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_more_vert_black_48px"/>
+
+            </LinearLayout>
+
 
 
             <TextView
