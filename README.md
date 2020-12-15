@@ -40,7 +40,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 
 
 
-![Demo](https://nearbyshops.org/app_demo_single_market.html)
+Demo - https://nearbyshops.org/app_demo_single_market.html
 ----------
 
 Checkout our Demo on our website. 
