@@ -23,7 +23,7 @@ The installation guide and app customization guide is provided at http://develop
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-<img src="https://nearbyshops.org/images/screenshots_usa/shops_list_new.png" width="208">   <img src="https://nearbyshops.org/images/multi-categories-3.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe.png" width="208"> 
+<img src="https://nearbyshops.org/images/screenshots_new/items_in_shop.png" width="208">   <img src="https://nearbyshops.org/images/multi-categories-3.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe.png" width="208"> 
 
 
 
@@ -38,6 +38,12 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Development Instructions](#development-instructions)
 - [License](#license)
 
+
+
+![Demo](https://nearbyshops.org/app_demo_single_market.html)
+----------
+
+Checkout our Demo on our website. 
 
 Concept
 ----------
