@@ -26,7 +26,7 @@ import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.API.OrderService;
 import org.nearbyshops.enduserappnew.API.RazorPayService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.HomeSingleMarket;
+import org.nearbyshops.enduserappnew.HomePleaseSelectMarket;
 import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.Model.ModelBilling.RazorPayOrder;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
@@ -763,7 +763,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
                     
 
-                    Intent i = new Intent(getActivity(), HomeSingleMarket.class);
+                    Intent i = new Intent(getActivity(), HomePleaseSelectMarket.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
 

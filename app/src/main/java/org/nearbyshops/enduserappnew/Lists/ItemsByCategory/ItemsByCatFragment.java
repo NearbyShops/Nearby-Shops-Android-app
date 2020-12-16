@@ -25,6 +25,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.nearbyshops.enduserappnew.API.ItemService;
+import org.nearbyshops.enduserappnew.mfiles.Markets.MarketsList;
 import org.nearbyshops.enduserappnew.Lists.ShopsAvailableNew.ShopsAvailable;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
@@ -53,7 +54,9 @@ import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
+import org.nearbyshops.enduserappnew.mfiles.SwitchMarketData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
+import org.nearbyshops.enduserappnew.mfiles.ViewHolderSwitchMarket;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -80,7 +83,8 @@ public class ItemsByCatFragment extends Fragment implements
         ViewHolderItemCategorySmall.ListItemClick,
         ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch ,
         ViewHolderEmptyScreenListItem.ListItemClick ,
-        ViewHolderFilterItems.ListItemClick, ViewHolderItem.ListItemClick{
+        ViewHolderFilterItems.ListItemClick, ViewHolderItem.ListItemClick,
+        ViewHolderSwitchMarket.ListItemClick{
 
 
     private static final String TAG_SLIDING = "tag_sliding_sort";
@@ -658,6 +662,12 @@ public class ItemsByCatFragment extends Fragment implements
 //                        dataset.add(i++, new SetLocationManually());
 
 
+                        if(PrefGeneral.isMultiMarketEnabled(getContext()))
+                        {
+                            dataset.add(i++, new SwitchMarketData());
+                        }
+
+
                         if(Highlights.getHighlightsItemsScreen(getActivity())!=null && getResources().getBoolean(R.bool.slider_item_enabled))
                         {
                             dataset.add(i++, Highlights.getHighlightsItemsScreen(getActivity()));
@@ -1123,6 +1133,14 @@ public class ItemsByCatFragment extends Fragment implements
     }
 
 
+
+
+    @Override
+    public void changeMarketClick() {
+        Intent intent = new Intent(getActivity(), MarketsList.class);
+        intent.putExtra("is_selection_mode",true);
+        startActivityForResult(intent,3262);
+    }
 
 
 

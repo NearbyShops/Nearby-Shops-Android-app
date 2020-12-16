@@ -30,6 +30,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+import org.nearbyshops.enduserappnew.mfiles.LoginGlobalUsingPasswordFragment;
 
 import javax.inject.Inject;
 
@@ -691,5 +692,14 @@ public class LoginLocalUsingOTPFragmentNew extends Fragment {
 
 
 
+
+    @OnClick(R.id.login_using_password)
+    void loginUsingPasswordClick()
+    {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,new LoginGlobalUsingPasswordFragment())
+                .commitNow();
+    }
 
 }

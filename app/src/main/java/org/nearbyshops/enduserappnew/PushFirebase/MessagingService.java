@@ -11,12 +11,13 @@ import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import org.nearbyshops.enduserappnew.HomeSingleMarket;
+import org.nearbyshops.enduserappnew.HomePleaseSelectMarket;
 import org.nearbyshops.enduserappnew.R;
 
 
 public class MessagingService extends FirebaseMessagingService
 {
+
 
     public static final String NOTIFICATION_TYPE_ORDER_RECEIVED = "NOTIFICATION_TYPE_ORDER_RECEIVED";
     public static final String NOTIFICATION_TYPE_ORDER_PACKED = "NOTIFICATION_TYPE_ORDER_PACKED";
@@ -66,7 +67,7 @@ public class MessagingService extends FirebaseMessagingService
 
 
         // Create an explicit intent for an Activity in your app
-        Intent intent = new Intent(this, HomeSingleMarket.class);
+        Intent intent = new Intent(this, HomePleaseSelectMarket.class);
 
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

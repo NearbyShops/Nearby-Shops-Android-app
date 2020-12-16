@@ -31,6 +31,8 @@ import com.squareup.picasso.Picasso;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.DeliveryPersonInventory;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.FragmentDeprecated.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
@@ -329,12 +331,17 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
         {
 
-            showToastMessage("This feature is available in Paid Version !");
+            Intent intent = new Intent(getActivity(), DeliveryPersonInventory.class);
+            intent.putExtra(DeliveryInventoryFragment.SCREEN_MODE_INTENT_KEY,DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_VENDOR);
+            startActivity(intent);
 
         }
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_CODE)
         {
-            showToastMessage("This feature is available in Paid Version !");
+            Intent intent = new Intent(getActivity(), DeliveryPersonInventory.class);
+            intent.putExtra(DeliveryInventoryFragment.SCREEN_MODE_INTENT_KEY,DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_MARKET);
+            startActivity(intent);
+
         }
         else if(user.getRole()==User.ROLE_END_USER_CODE)
         {

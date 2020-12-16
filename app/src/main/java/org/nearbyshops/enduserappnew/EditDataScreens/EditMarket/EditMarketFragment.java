@@ -38,26 +38,28 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.AdapterDeliverySlot;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.EditDeliverySlot.EditDeliverySlot;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.EditDeliverySlot.EditDeliverySlotFragment;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.Model.DeliverySlot;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.ViewHolderDeliverySlot;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.ViewModelDeliverySlot;
-import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
-import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
-import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
-import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
+import org.nearbyshops.enduserappnew.Model.Image;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
+import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.AddItemData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderAddItem;
 
@@ -275,6 +277,29 @@ public class EditMarketFragment extends Fragment implements ViewHolderDeliverySl
         if(current_mode==MODE_UPDATE)
         {
             call = configurationService.getServiceConfiguration(null,null);
+
+
+        }
+        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+            call = retrofit.create(MarketService.class).getMarketDetails(
+                    market.getServiceID(),
+                    PrefLocation.getLatitude(MyApplication.getAppContext()), PrefLocation.getLongitude(MyApplication.getAppContext())
+            );
+
+
+        }
+        else
+        {
+            return;
         }
 
 
@@ -717,6 +742,25 @@ public class EditMarketFragment extends Fragment implements ViewHolderDeliverySl
                     market
             );
         }
+        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        {
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+            System.out.println(UtilityFunctions.provideGson().toJson(market));
+
+            call = retrofit.create(MarketService.class).updateMarket(
+                    PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
+                    market,market.getServiceID()
+            );
+
+
+        }
         else
         {
 
@@ -788,6 +832,59 @@ public class EditMarketFragment extends Fragment implements ViewHolderDeliverySl
     @Inject
     Gson gson;
 
+
+
+    private void updateMarketEntry()
+    {
+
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PrefServiceConfig.getServiceURL_SDS(MyApplication.getAppContext()))
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+        Call<ResponseBody> call = retrofit.create(MarketService.class).saveService(PrefGeneral.getServiceURL(getActivity()));
+
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                if(response.code()==200)
+                {
+                    showToastMessage("SDS Entry Updated Successfully !");
+                }
+                else if(response.code()==201)
+                {
+                    showToastMessage("SDS Entry Added Successfully !");
+                }
+                else
+                {
+                    showToastMessage("SDS Update Failed ... Error Code : " + response.code());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                if(!isVisible())
+                {
+                    return;
+                }
+
+                showToastMessage("SDS Update Failed !");
+            }
+        });
+    }
 
 
 
@@ -1358,10 +1455,10 @@ public class EditMarketFragment extends Fragment implements ViewHolderDeliverySl
     public void editDeliverySlot(DeliverySlot deliverySlot, int position) {
 
         Intent intent = new Intent(getActivity(), EditDeliverySlot.class);
-        intent.putExtra(EditDeliverySlotFragment.EDIT_MODE_INTENT_KEY, EditDeliverySlotFragment.MODE_UPDATE);
-        intent.putExtra(EditDeliverySlotFragment.ACCESS_MODE_INTENT_KEY, EditDeliverySlotFragment.MODE_ACCESS_BY_MARKET_ADMIN);
+        intent.putExtra(EditDeliverySlotFragment.EDIT_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_UPDATE);
+        intent.putExtra(EditDeliverySlotFragment.ACCESS_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_ACCESS_BY_MARKET_ADMIN);
 
-        String jsonString = UtilityFunctions.provideGson().toJson(deliverySlot, DeliverySlot.class);
+        String jsonString = UtilityFunctions.provideGson().toJson(deliverySlot,DeliverySlot.class);
         intent.putExtra("delivery_slot_json",jsonString);
 
         startActivity(intent);
@@ -1406,8 +1503,8 @@ public class EditMarketFragment extends Fragment implements ViewHolderDeliverySl
     public void addItemClick() {
 
         Intent intent = new Intent(getActivity(), EditDeliverySlot.class);
-        intent.putExtra(EditDeliverySlotFragment.EDIT_MODE_INTENT_KEY, EditDeliverySlotFragment.MODE_ADD);
-        intent.putExtra(EditDeliverySlotFragment.ACCESS_MODE_INTENT_KEY, EditDeliverySlotFragment.MODE_ACCESS_BY_MARKET_ADMIN);
+        intent.putExtra(EditDeliverySlotFragment.EDIT_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_ADD);
+        intent.putExtra(EditDeliverySlotFragment.ACCESS_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_ACCESS_BY_MARKET_ADMIN);
 
         startActivity(intent);
     }

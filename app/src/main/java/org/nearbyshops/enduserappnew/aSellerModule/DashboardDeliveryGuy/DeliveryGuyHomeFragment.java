@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.DeliveryPersonInventory;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.FragmentDeprecated.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
@@ -80,7 +82,19 @@ public class DeliveryGuyHomeFragment extends Fragment {
 //        startActivity(deliveryGuyDashboard);
 
 
-        showToastMessage("This feature is available in paid version !");
+        if(user.getRole()==User.ROLE_DELIVERY_GUY_CODE)
+        {
+            Intent intent = new Intent(getActivity(), DeliveryPersonInventory.class);
+            intent.putExtra(DeliveryInventoryFragment.SCREEN_MODE_INTENT_KEY,DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_MARKET);
+            startActivity(intent);
+        }
+        else
+        {
+            Intent intent = new Intent(getActivity(), DeliveryPersonInventory.class);
+            intent.putExtra(DeliveryInventoryFragment.SCREEN_MODE_INTENT_KEY,DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_VENDOR);
+            startActivity(intent);
+
+        }
 
 
     }

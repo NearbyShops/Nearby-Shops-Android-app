@@ -13,7 +13,7 @@
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://markets-blr.nearbyshops.org:5053</string>
+    <string name="custom_url">http://markets-blr.nearbyshops.org:5059</string>
 
 
     <!-- App name that you see on your front screen ( shops list screen ) -->
@@ -94,6 +94,7 @@
     <!--Please ensure at least one mode of registration is Enabled -->
     <bool name="login_using_email_enabled">true</bool>
     <bool name="login_using_phone_enabled">true</bool>
+
 
 
 

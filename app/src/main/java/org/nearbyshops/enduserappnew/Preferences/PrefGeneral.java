@@ -31,7 +31,8 @@ public class PrefGeneral {
     // for multi-market mode set default service url to null and multi market mode to true
     // for single-market mode set multi-market mode false and set default service url to your api server url
 
-    public static final boolean MULTI_MARKET_MODE_ENABLED = false;
+    public static final boolean MULTI_MARKET_MODE_ENABLED = MyApplication.getAppContext().getResources().getBoolean(
+            R.bool.multi_market_enabled);
 
     public static final String DEFAULT_SERVICE_URL = get_default_service_url();
 

@@ -13,6 +13,8 @@ import org.nearbyshops.enduserappnew.UtilityScreens.BannerSlider.Model.BannerIma
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterShopsData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterShops;
+import org.nearbyshops.enduserappnew.mfiles.ViewHolderMarket.Model.MarketsListData;
+import org.nearbyshops.enduserappnew.mfiles.ViewHolderMarket.ViewHolderMarketsList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopMedium;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.AddItemData;
@@ -25,12 +27,14 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyS
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
+import org.nearbyshops.enduserappnew.mfiles.SwitchMarketData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 import org.nearbyshops.enduserappnew.UtilityScreens.BannerSlider.AdapterBannerImages;
+import org.nearbyshops.enduserappnew.mfiles.ViewHolderSwitchMarket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,6 +133,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return ViewHolderSetLocationManually.create(parent,context,fragment);
         }
+        else if(viewType==view_type_nearby_markets_list)
+        {
+            return ViewHolderMarketsList.create(parent,fragment.getActivity(),fragment);
+        }
         else if(viewType==VIEW_TYPE_SHOP_SUGGESTIONS)
         {
             return ViewHolderShopStatus.create(parent,fragment.getActivity(),fragment);
@@ -136,6 +144,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(viewType==VIEW_TYPE_FILTER_SHOPS)
         {
             return ViewHolderFilterShops.create(parent,fragment.getActivity(),fragment);
+        }
+        else if(viewType==VIEW_TYPE_SWITCH_MARKET)
+        {
+            return ViewHolderSwitchMarket.create(parent,fragment.getActivity(),fragment);
         }
 
 
@@ -170,6 +182,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(holder instanceof ViewHolderSetLocationManually)
         {
             ((ViewHolderSetLocationManually)holder).bindDashboard();
+        }
+        else if(holder instanceof ViewHolderSwitchMarket)
+        {
+            ((ViewHolderSwitchMarket) holder).bindDashboard();
+
         }
 
         else if(holder instanceof ViewHolderHorizontalList) {
@@ -227,6 +244,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //                AdapterSavedMarkets adapter = new AdapterSavedMarkets(marketsList.getDataset(),fragment.getActivity(),fragment, ViewHolderMarketSmall.LAYOUT_TYPE_COVERED);
 //                ((ViewHolderHorizontalList) holder).setItem(adapter,"Markets in your Area");
 //            }
+
+        }
+        else if(holder instanceof ViewHolderMarketsList)
+        {
+            ((ViewHolderMarketsList) holder).refreshList();
 
         }
         else if (holder instanceof ViewHolderHeader) {
@@ -312,6 +334,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return VIEW_TYPE_SET_LOCATION_MANUALLY;
         }
+        else if(dataset.get(position) instanceof MarketsListData)
+        {
+            return view_type_nearby_markets_list;
+        }
         else if(dataset.get(position) instanceof ShopSuggestionsData)
         {
             return VIEW_TYPE_SHOP_SUGGESTIONS;
@@ -319,6 +345,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(dataset.get(position) instanceof FilterShopsData)
         {
             return VIEW_TYPE_FILTER_SHOPS;
+        }
+        else if(dataset.get(position) instanceof SwitchMarketData)
+        {
+            return VIEW_TYPE_SWITCH_MARKET;
         }
 
 

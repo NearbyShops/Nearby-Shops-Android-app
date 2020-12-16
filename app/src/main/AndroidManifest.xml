@@ -27,32 +27,6 @@
         android:usesCleartextTraffic="true">
 
 
-
-
-        <activity
-            android:name="org.nearbyshops.enduserappnew.HomeSingleMarket"
-            android:label="@string/app_name"
-            android:launchMode="singleTop">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-        </activity>
-
-
-
-
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
      See README(https://goo.gl/l4GJaQ) for more.
@@ -104,6 +78,34 @@
 
 
 
+
+        <activity
+            android:name="org.nearbyshops.enduserappnew.HomePleaseSelectMarket"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity android:name="org.nearbyshops.enduserappnew.mfiles.Markets.MarketsList"/>
+
+
         <activity android:name="org.nearbyshops.enduserappnew.Lists.ShopsList.ShopsList"/>
 
         <activity android:name="org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker" />
@@ -111,6 +113,8 @@
         <activity android:name="org.nearbyshops.enduserappnew.aSellerModule.DashboardDeliveryGuy.DeliveryHome" />
 
 
+        <activity android:name="org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.MarketsList" />
+        <activity android:name="org.nearbyshops.enduserappnew.aSuperAdminModule.DashboardAdmin.SDSAdminDashboard" />
 
         <activity android:name="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard" />
         <activity android:name="org.nearbyshops.enduserappnew.adminModule.DashboardStaff.StaffDashboard" />
@@ -144,7 +148,6 @@
 
         <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditBannerImage.EditBannerImage" />
         <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditMarketSettings.EditMarketSettings" />
-        <activity android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarket" />
 
 
         <activity
@@ -202,6 +205,7 @@
         <activity android:name="org.nearbyshops.enduserappnew.Checkout.PlaceOrder" />
         <activity android:name="org.nearbyshops.enduserappnew.Checkout.SelectPayment" />
 
+        <activity android:name="org.nearbyshops.enduserappnew.mfiles.DetailMarket.MarketDetail" />
         <activity android:name="org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.OrderDetail" />
 
 
@@ -471,15 +475,24 @@
             android:windowSoftInputMode="adjustPan" />
 
 
+        <activity
+            android:name="org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarket"
+            android:label="Edit Configuration"
+            android:parentActivityName="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard" />
+        </activity>
+
 
         <activity
             android:launchMode="singleTop"
             android:name="org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.DeliveryPersonInventory"
             android:label="Delivery Inventory"
-            android:parentActivityName="org.nearbyshops.enduserappnew.HomeSingleMarket">
+            android:parentActivityName="org.nearbyshops.enduserappnew.Home">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.HomeSingleMarket" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
 
             <meta-data
                 android:name="android.app.searchable"
@@ -495,10 +508,10 @@
             android:launchMode="singleTop"
             android:name="org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryByVendor.DeliveryByVendorInventory"
             android:label="Delivery by Vendor"
-            android:parentActivityName="org.nearbyshops.enduserappnew.HomeSingleMarket">
+            android:parentActivityName="org.nearbyshops.enduserappnew.Home">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.nearbyshops.enduserappnew.HomeSingleMarket" />
+                android:value="org.nearbyshops.enduserappnew.Home" />
 
             <meta-data
                 android:name="android.app.searchable"

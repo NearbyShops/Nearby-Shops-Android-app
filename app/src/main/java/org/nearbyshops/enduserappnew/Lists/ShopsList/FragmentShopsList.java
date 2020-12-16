@@ -32,6 +32,8 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditBannerImage.EditBannerI
 import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
+import org.nearbyshops.enduserappnew.mfiles.Markets.MarketsList;
+import org.nearbyshops.enduserappnew.mfiles.Markets.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
@@ -58,6 +60,7 @@ import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PickLocati
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterShopsData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterShops;
+import org.nearbyshops.enduserappnew.mfiles.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.ShopSuggestionsData;
@@ -66,8 +69,10 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderCre
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
+import org.nearbyshops.enduserappnew.mfiles.SwitchMarketData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
+import org.nearbyshops.enduserappnew.mfiles.ViewHolderSwitchMarket;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -88,8 +93,8 @@ public class FragmentShopsList extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch ,
         ViewHolderShopSmall.ListItemClick , ViewHolderSetLocationManually.ListItemClick,
         AdapterFilterItemCategory.ListItemClick,
-        ViewHolderEmptyScreenListItem.ListItemClick , ViewHolderCreateShop.ListItemClick,
-        ViewHolderFilterShops.ListItemClick,
+        ViewHolderEmptyScreenListItem.ListItemClick , ViewHolderCreateShop.ListItemClick ,
+        ViewHolderMarket.ListItemClick , ViewHolderFilterShops.ListItemClick, ViewHolderSwitchMarket.ListItemClick,
         ViewHolderAddItem.ListItemClick {
 
 
@@ -119,6 +124,13 @@ public class FragmentShopsList extends Fragment implements
 
         private boolean switchMade = false;
         private boolean isDestroyed;
+
+
+
+
+
+
+    private ViewModelMarkets viewModel;
 
 
 
@@ -220,6 +232,9 @@ public class FragmentShopsList extends Fragment implements
                 ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
             }
 
+
+
+            setupViewModel();
 
 
 
@@ -681,7 +696,16 @@ public class FragmentShopsList extends Fragment implements
                             {
 
 
-                                dataset.add(i++, new SetLocationManually());
+
+                                if(PrefGeneral.isMultiMarketEnabled(getContext()))
+                                {
+                                    dataset.add(i++, new SwitchMarketData());
+                                }
+                                else
+                                {
+                                    dataset.add(i++, new SetLocationManually());
+                                }
+
 
 
 //                                if(Highlights.getHighlightsFrontScreen(getActivity())!=null && getResources().getBoolean(R.bool.slider_front_enabled))
@@ -1107,6 +1131,88 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+    private void setupViewModel()
+    {
+
+
+        viewModel = new ViewModelMarkets(MyApplication.application);
+
+
+        viewModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Object>>() {
+            @Override
+            public void onChanged(@Nullable List<Object> objects) {
+
+                if(objects!=null)
+                {
+                    if(dataset.size()>2 )
+                    {
+                        dataset.addAll(2,objects);
+                    }
+                    else if(dataset.size()>1)
+                    {
+                        dataset.addAll(1,objects);
+                    }
+                    else
+                    {
+                        dataset.addAll(objects);
+                    }
+                }
+
+
+                adapter.setLoadMore(false);
+                adapter.notifyDataSetChanged();
+
+
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+
+
+
+
+        viewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+
+                showToastMessage(s);
+
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+    }
+
+
+
+
+
+
+    @Override
+    public void listItemClick(Market configurationGlobal, int position) {
+
+    }
+
+    @Override
+    public void selectMarketSuccessful(Market configurationGlobal, int position) {
+
+        if(getActivity() instanceof MarketSelected)
+        {
+            ((MarketSelected) getActivity()).marketSelected();
+        }
+    }
+
+
+
+
+    @Override
+    public void showMessage(String message) {
+
+        showToastMessage(message);
+    }
+
+
+
 
 
 
@@ -1148,6 +1254,15 @@ public class FragmentShopsList extends Fragment implements
     }
 
 
+
+    @Override
+    public void changeMarketClick() {
+
+
+        Intent intent = new Intent(getActivity(), MarketsList.class);
+        intent.putExtra("is_selection_mode",true);
+        startActivityForResult(intent,3262);
+    }
 
 
 

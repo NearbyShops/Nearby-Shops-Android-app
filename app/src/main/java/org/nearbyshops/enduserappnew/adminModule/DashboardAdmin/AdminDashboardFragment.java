@@ -15,14 +15,16 @@ import androidx.fragment.app.FragmentManager;
 
 
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarket;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditMarketSettings.EditMarketSettings;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditMarketSettings.EditMarketSettingsFragment;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.DeliveryPersonInventory;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.Fragment.DeliveryFragmentNew;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarket;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -346,7 +348,9 @@ public class AdminDashboardFragment extends Fragment {
     @OnClick(R.id.delivery_inventory)
     void deliveryInventoryClick()
     {
-        showToastMessage("This feature is available in paid version !");
+        Intent intent = new Intent(getActivity(), DeliveryPersonInventory.class);
+        intent.putExtra(DeliveryFragmentNew.SCREEN_MODE_INTENT_KEY, DeliveryFragmentNew.SCREEN_MODE_MARKET_ADMIN);
+        startActivity(intent);
     }
 
 
