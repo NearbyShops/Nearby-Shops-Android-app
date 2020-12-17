@@ -33,6 +33,7 @@ import org.nearbyshops.enduserappnew.ViewModels.ViewModelItemDetail;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShopDetail;
 import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryByVendor.Fragment.DeliveryByVendorFragment;
 import org.nearbyshops.enduserappnew.adminModule.PushNotificationComposer;
+import org.nearbyshops.enduserappnew.adminModule.SalesReport.SalesReportFragment;
 import org.nearbyshops.enduserappnew.mfiles.zzBackups.HomeBackup;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
 import org.nearbyshops.enduserappnew.mfiles.LoginGlobalUsingPasswordFragment;
@@ -391,4 +392,6 @@ public interface NetComponent {
     void Inject(ViewHolderBannerListItem viewHolderBannerListItem);
 
     void Inject(AddShopFragment addShopFragment);
+
+    void Inject(SalesReportFragment salesReportFragment);
 }

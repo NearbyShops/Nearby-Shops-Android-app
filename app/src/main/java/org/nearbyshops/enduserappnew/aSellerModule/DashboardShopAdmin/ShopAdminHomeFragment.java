@@ -439,7 +439,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     @OnClick(R.id.header_tutorials)
     void headerTutorialsClick()
     {
-        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials-for-shop-owners/",getActivity());
+        UtilityFunctions.openURL(getString(R.string.tutorial_shop_dashboard),getActivity());
     }
 
 

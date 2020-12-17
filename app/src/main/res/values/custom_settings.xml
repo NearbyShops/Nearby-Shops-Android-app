@@ -13,7 +13,7 @@
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://markets-blr.nearbyshops.org:5059</string>
+    <string name="custom_url">http://192.168.43.233:8090</string>
 
 
     <!-- App name that you see on your front screen ( shops list screen ) -->
@@ -44,6 +44,11 @@
     <string name="tos_link">https://sarthika.com/privacy.html</string>
     <string name="privacy_policy_link">https://sarthika.com/privacy.html</string>
     <string name="faqs_link">https://sarthika.com/privacy.html</string>
+
+
+    <string name="tutorial_admin_dashboard">"https://blog.nearbyshops.org/tag/admin-tutorials/"</string>
+    <string name="tutorial_shop_dashboard">"https://blog.nearbyshops.org/tag/tutorials-for-shop-owners/"</string>
+
 
 
     <!-- Show Login Using Password Option in Login Screen  -->
@@ -94,6 +99,7 @@
     <!--Please ensure at least one mode of registration is Enabled -->
     <bool name="login_using_email_enabled">true</bool>
     <bool name="login_using_phone_enabled">true</bool>
+
 
 
 

@@ -169,7 +169,17 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
 
 
             deliveryAddress.setText(deliveryAddressLocal.getDeliveryAddress());
-            deliveryAddressPhone.setText("Phone : " + deliveryAddressLocal.getPhoneNumber());
+
+
+            if(context.getResources().getBoolean(R.bool.hide_customer_phone_from_vendors))
+            {
+                deliveryAddressPhone.setVisibility(View.GONE);
+            }
+            else
+            {
+                deliveryAddressPhone.setText("Phone : " + deliveryAddressLocal.getPhoneNumber());
+            }
+
         }
 
 
@@ -183,6 +193,9 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
         bindCancelButton();
         bindPaymentMode();
     }
+
+
+
 
 
 
