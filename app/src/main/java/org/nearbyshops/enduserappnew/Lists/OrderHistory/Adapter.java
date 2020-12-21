@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.mfiles.SwitchMarketData;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderSwitchMarket;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
@@ -102,10 +100,6 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return ViewHolderEmptyScreenFullScreen.create(parent,context,fragment);
         }
-        else if(viewType==VIEW_TYPE_SWITCH_MARKET)
-        {
-            return ViewHolderSwitchMarket.create(parent,fragment.getActivity(),fragment);
-        }
 
 
         return null;
@@ -151,11 +145,6 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
         }
-        else if(dataset.get(position) instanceof SwitchMarketData)
-        {
-
-            return VIEW_TYPE_SWITCH_MARKET;
-        }
         else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
         {
             return VIEW_TYPE_EMPTY_SCREEN;
@@ -186,11 +175,6 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holderVH instanceof ViewHolderOrder)
         {
             ((ViewHolderOrder) holderVH).setItem((Order) dataset.get(position));
-        }
-        else if(holderVH instanceof ViewHolderSwitchMarket)
-        {
-            ((ViewHolderSwitchMarket) holderVH).bindDashboard();
-
         }
         else if (holderVH instanceof LoadingViewHolder) {
 

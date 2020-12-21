@@ -32,7 +32,7 @@
         android:label="OrdersHistoryFragment" />
     <fragment
         android:id="@+id/marketsFragmentNew"
-        android:name="org.nearbyshops.enduserappnew.mfiles.Markets.MarketsFragmentNew"
+        android:name="org.nearbyshops.enduserappnew.multimarketfiles.Markets.MarketsFragmentNew"
         android:label="MarketsFragmentNew" />
     <fragment
         android:id="@+id/itemsInShopByCatFragment"
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginGlobalUsingOTPFragment"
-        android:name="org.nearbyshops.enduserappnew.mfiles.LoginGlobalUsingOTPFragment"
+        android:name="org.nearbyshops.enduserappnew.multimarketfiles.LoginGlobalUsingOTPFragment"
         android:label="LoginGlobalUsingOTPFragment" >
         <action
             android:id="@+id/action_loginGlobalUsingOTPFragment_to_loginGlobalUsingPasswordFragment"
@@ -83,7 +83,7 @@
         android:label="LoginLocalUsingPasswordFragment" />
     <fragment
         android:id="@+id/loginGlobalUsingPasswordFragment"
-        android:name="org.nearbyshops.enduserappnew.mfiles.LoginGlobalUsingPasswordFragment"
+        android:name="org.nearbyshops.enduserappnew.multimarketfiles.LoginGlobalUsingPasswordFragment"
         android:label="LoginGlobalUsingPasswordFragment" />
 
 

@@ -29,7 +29,6 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.MarketHelplineData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.PoweredByData;
-import org.nearbyshops.enduserappnew.mfiles.Markets.MarketsList;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.FavouriteShopEndpoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
@@ -48,12 +47,10 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.Create
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.ButtonData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
-import org.nearbyshops.enduserappnew.mfiles.SwitchMarketData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderButton;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderSwitchMarket;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 
 import java.util.ArrayList;
@@ -67,7 +64,7 @@ public class ProfileFragmentNew extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener,
         NotifySort, NotifySearch, LocationUpdated, ViewHolderSignIn.VHSignIn,
         ViewHolderEmptyScreenListItem.ListItemClick, ViewHolderSetLocationManually.ListItemClick ,
-        NotifyAboutLogin, ViewHolderButton.ListItemClick, ViewHolderSwitchMarket.ListItemClick {
+        NotifyAboutLogin, ViewHolderButton.ListItemClick{
 
 
 
@@ -305,12 +302,6 @@ public class ProfileFragmentNew extends Fragment implements
         dataset.clear();
 
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
-        {
-            dataset.add(new SwitchMarketData());
-        }
-
-
         dataset.add(new MarketHelplineData());
 
 
@@ -355,11 +346,6 @@ public class ProfileFragmentNew extends Fragment implements
             dataset.add(new FavouriteShopEndpoint());
 
         }
-
-
-
-        dataset.add(new SetLocationManually());
-
 
 
         if(PrefLogin.getUser(getActivity())!=null)
@@ -626,18 +612,6 @@ public class ProfileFragmentNew extends Fragment implements
         }
     }
 
-
-
-
-
-
-    @Override
-    public void changeMarketClick() {
-
-        Intent intent = new Intent(getActivity(), MarketsList.class);
-        intent.putExtra("is_selection_mode",true);
-        startActivityForResult(intent,3262);
-    }
 
 
 

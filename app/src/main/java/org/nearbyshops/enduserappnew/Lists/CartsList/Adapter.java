@@ -12,10 +12,8 @@ import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartNew;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
-import org.nearbyshops.enduserappnew.mfiles.SwitchMarketData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderSwitchMarket;
 
 import java.util.List;
 
@@ -68,10 +66,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return ViewHolderEmptyScreenFullScreen.create(parent,context,fragment);
         }
-        else if(viewType==VIEW_TYPE_SWITCH_MARKET)
-        {
-            return ViewHolderSwitchMarket.create(parent,fragment.getActivity(),fragment);
-        }
 
 
         return null;
@@ -105,10 +99,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((ViewHolderHeader) holder).setItem((HeaderTitle) dataset.get(position));
             }
         }
-        else if(holder instanceof ViewHolderSwitchMarket)
-        {
-            ((ViewHolderSwitchMarket) holder).bindDashboard();
-        }
+
 
     }
 
@@ -131,11 +122,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
         {
             return VIEW_TYPE_EMPTY_SCREEN;
-        }
-        else if(dataset.get(position) instanceof SwitchMarketData)
-        {
-
-            return VIEW_TYPE_SWITCH_MARKET;
         }
 
 

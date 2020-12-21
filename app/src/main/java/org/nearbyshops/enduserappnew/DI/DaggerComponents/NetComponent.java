@@ -12,10 +12,9 @@ import org.nearbyshops.enduserappnew.DetailScreens.DetailShopItem.ShopItemDetail
 import org.nearbyshops.enduserappnew.DetailScreens.DetailShopNew.ShopDetailFragmentNew;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditBannerImage.EditBannerImageFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditAddressWithMapFragment;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarketFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditMarketSettings.EditMarketSettingsFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.AddShopFragment;
-import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.FragmentDeprecated.DeliveryInventoryFragment;
-import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.Fragment.DeliveryFragmentNew;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.ViewHolderDeliverySlot;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.ViewModelDeliverySlot;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditAddressFragment;
@@ -33,35 +32,24 @@ import org.nearbyshops.enduserappnew.ViewModels.ViewModelItemDetail;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShopDetail;
 import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryByVendor.Fragment.DeliveryByVendorFragment;
 import org.nearbyshops.enduserappnew.adminModule.PushNotificationComposer;
-import org.nearbyshops.enduserappnew.mfiles.zzBackups.HomeBackup;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToStaffDialog;
-import org.nearbyshops.enduserappnew.mfiles.LoginGlobalUsingPasswordFragment;
 import org.nearbyshops.enduserappnew.Login.LoginLocalUsingOTPFragmentNew;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.PlacePickerWithMapFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItemNew;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderMarket.BackupViewHolderMarketSmall1Mar20;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.ViewModel.OrdersDataSource;
 import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrdersListPagingFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.Dialogs.AddUserToShopStaffDialog;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissionsFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions.EditStaffPermissionsFragment;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderMarket.BackupViewHolderMarket;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderMarket.BackupViewHolderMarketSmall;
-import org.nearbyshops.enduserappnew.mfiles.LoginGlobalUsingOTPFragment;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemBackup;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
-import org.nearbyshops.enduserappnew.mfiles.Markets.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
-import org.nearbyshops.enduserappnew.aSuperAdminModule.DashboardAdmin.SDSAdminDashboardFragment;
-import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewModel.MarketsDataSource;
-import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.MarketsListFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy.FilterDeliveryFragment;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
 import org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboardFragment;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarketFragment;
 import org.nearbyshops.enduserappnew.Lists.CartItemList.CartItemListFragment;
 import org.nearbyshops.enduserappnew.Lists.CartsList.CartsListFragment;
 import org.nearbyshops.enduserappnew.Checkout.backups.PlaceOrderActivity;
@@ -77,7 +65,6 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.ChangePhone.Fra
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.FragmentEditProfile;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopImage.EditShopImageFragment;
-import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetailFragment;
 import org.nearbyshops.enduserappnew.ImageList.ImageListForItem.ItemImageListFragment;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.ItemsByCatFragment;
@@ -93,14 +80,6 @@ import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCa
 import org.nearbyshops.enduserappnew.Login.LoginLocalUsingPasswordFragment;
 import org.nearbyshops.enduserappnew.Login.Backups.LoginLocalUsingOTPFragment;
 import org.nearbyshops.enduserappnew.Login.ServiceIndicatorFragment;
-import org.nearbyshops.enduserappnew.mfiles.DetailMarket.MarketDetailFragment;
-import org.nearbyshops.enduserappnew.mfiles.DetailMarket.RateReviewDialogMarket;
-import org.nearbyshops.enduserappnew.mfiles.Markets.MarketsFragment;
-import org.nearbyshops.enduserappnew.mfiles.Markets.MarketsFragmentNew;
-import org.nearbyshops.enduserappnew.mfiles.Markets.SubmitURLDialog;
-import org.nearbyshops.enduserappnew.mfiles.Markets.AdapterMarkets;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderMarket.ViewHolderMarket;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderMarket.ViewHolderMarketSmall;
 import org.nearbyshops.enduserappnew.PushOneSignal.UpdateOneSignalID;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.FragmentOrderDetail;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
@@ -145,15 +124,11 @@ public interface NetComponent {
 
     void Inject(ShopItemFragment shopItemFragment);
 
-    void Inject(Home home);
-
     void Inject(UpdateServiceConfiguration updateServiceConfiguration);
 
     void Inject(ItemDetailFragment itemDetailFragment);
 
     void Inject(ItemImageListFragment itemImageListFragment);
-
-    void Inject(LoginGlobalUsingPasswordFragment loginGlobalUsingPasswordFragment);
 
     void Inject(LoginLocalUsingOTPFragment loginLocalUsingOTPFragment);
 
@@ -185,23 +160,6 @@ public interface NetComponent {
 
     void Inject(DeliveryAddressActivity deliveryAddressActivity);
 
-    void Inject(RateReviewDialogMarket rateReviewDialogMarket);
-
-    void Inject(MarketDetailFragment marketDetailFragment);
-
-    void Inject(AdapterMarkets adapterMarkets);
-
-    void Inject(ViewHolderMarketSmall viewHolderMarketSmall);
-
-    void Inject(ViewHolderMarket viewHolderMarket);
-
-    void Inject(ViewModelMarkets viewModelMarkets);
-
-    void Inject(MarketsFragment marketsFragment);
-
-    void Inject(SubmitURLDialog submitURLDialog);
-
-    void Inject(MarketsFragmentNew marketsFragmentNew);
 
     void Inject(FragmentChangePassword fragmentChangePassword);
 
@@ -281,8 +239,6 @@ public interface NetComponent {
 
     void Inject(AdminDashboardFragment adminDashboardFragment);
 
-    void Inject(EditMarketFragment editMarketFragment);
-
     void Inject(ItemsDatabaseForAdminFragment itemsDatabaseForAdminFragment);
 
     void Inject(EditItemCategoryFragment editItemCategoryFragment);
@@ -302,10 +258,6 @@ public interface NetComponent {
 
     void Inject(DeliveryByVendorFragment deliveryByVendorFragment);
 
-    void Inject(BackupViewHolderMarket backupViewHolderMarket);
-
-    void Inject(BackupViewHolderMarketSmall backupViewHolderMarketSmall);
-
     void Inject(ViewModelShop viewModelShop);
 
     void Inject(OrdersListPagingFragment ordersListPagingFragment);
@@ -318,12 +270,6 @@ public interface NetComponent {
 
     void Inject(ViewHolderCartItem viewHolderCartItem);
 
-    void Inject(HomeBackup homeBackup);
-
-    void Inject(BackupViewHolderMarketSmall1Mar20 backupViewHolderMarketSmall1Mar20);
-
-    void Inject(LoginGlobalUsingOTPFragment loginGlobalUsingOTPFragment);
-
     void Inject(AddUserToStaffDialog addUserToStaffDialog);
 
     void Inject(StaffDashboardFragment staffDashboardFragment);
@@ -333,12 +279,6 @@ public interface NetComponent {
     void Inject(LoginLocalUsingOTPFragmentNew loginLocalUsingOTPFragmentNew);
 
 
-    void Inject(SDSAdminDashboardFragment SDSAdminDashboardFragment);
-
-    void Inject(MarketsDataSource marketsDataSource);
-
-    void Inject(MarketsListFragment marketsListFragment);
-
     void Inject(ViewHolderCartItemNew viewHolderCartItemNew);
 
     void Inject(ViewModelDeliverySlot viewModelDeliverySlot);
@@ -347,7 +287,7 @@ public interface NetComponent {
 
     void Inject(PlaceOrderFragment placeOrderFragment);
 
-    void Inject(DeliveryInventoryFragment deliveryInventoryFragment);
+
 
     void Inject(InventoryPFSFragment inventoryPFSFragment);
 
@@ -357,7 +297,7 @@ public interface NetComponent {
 
     void Inject(ViewModelOrders viewModelOrders);
 
-    void Inject(DeliveryFragmentNew deliveryFragmentNew);
+
 
 
     void Inject(InventoryPFSFragmentNew inventoryPFSFragmentNew);
@@ -391,4 +331,6 @@ public interface NetComponent {
     void Inject(ViewHolderBannerListItem viewHolderBannerListItem);
 
     void Inject(AddShopFragment addShopFragment);
+
+    void Inject(EditMarketFragment editMarketFragment);
 }

@@ -31,7 +31,6 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import okhttp3.OkHttpClient;
 
 import org.nearbyshops.enduserappnew.API.OrderService;
-import org.nearbyshops.enduserappnew.mfiles.Markets.MarketsList;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
@@ -48,8 +47,6 @@ import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOr
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.mfiles.SwitchMarketData;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderSwitchMarket;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -65,8 +62,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.ListItemClick, SwipeRefreshLayout.OnRefreshListener,
-        NotifySort, NotifySearch, RefreshFragment,
-        ViewHolderSwitchMarket.ListItemClick{
+        NotifySort, NotifySearch, RefreshFragment{
 
 
 
@@ -608,10 +604,6 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
                                 int i = 0;
 
-                                if(PrefGeneral.isMultiMarketEnabled(getContext())&& currentMode==OrdersHistoryFragment.MODE_END_USER)
-                                {
-                                    dataset.add(i++, new SwitchMarketData());
-                                }
                             }
 
                             if(response.body().getResults()!=null)
@@ -820,14 +812,6 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
     }
 
 
-
-    @Override
-    public void changeMarketClick() {
-
-        Intent intent = new Intent(getActivity(), MarketsList.class);
-        intent.putExtra("is_selection_mode",true);
-        startActivityForResult(intent,3262);
-    }
 
 
 

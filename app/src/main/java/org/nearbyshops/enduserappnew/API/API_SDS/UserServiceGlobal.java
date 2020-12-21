@@ -125,24 +125,6 @@ public interface UserServiceGlobal {
 
 
 
-    @GET ("/api/v1/User/LoginGlobal/VerifyCredentials")
-    Call<User> verifyCredentials(
-            @Header("Authorization")String headerParam,
-            @Query("VerifyUsingPassword")boolean verifyUsingPassword // you either supply a password or a token
-    );
-
-
-
-
-    @GET ("/api/v1/User/LoginGlobal/VerifyCredentialsUsingOTP")
-    Call<User> verifyCredentialsUsingOTP(
-            @Header("Authorization")String headerParam,
-            @Query("RegistrationMode")int registrationMode // 1 for email and 2 for phone
-    );
-
-
-
-
 
     // Image Calls
 

@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
-import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.FragmentDeprecated.DeliveryInventoryFragment;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -31,7 +30,6 @@ import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopStaff.ShopDashbo
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome;
 import org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard;
 import org.nearbyshops.enduserappnew.adminModule.DashboardStaff.StaffDashboard;
-import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.DeliveryPersonInventory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -187,9 +185,7 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
 //            context.startActivity(deliveryGuyDashboard);
 
 
-            Intent intent = new Intent(context, DeliveryPersonInventory.class);
-            intent.putExtra(DeliveryInventoryFragment.SCREEN_MODE_INTENT_KEY,DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_VENDOR);
-            context.startActivity(intent);
+            showToastMessage("This feature is available in the paid version !");
 
 
 //            DeliveryPersonInventory.start(DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_VENDOR,context);
@@ -197,9 +193,7 @@ public class ViewHolderRoleDashboard extends RecyclerView.ViewHolder{
         }
         else if(user.getRole()==User.ROLE_DELIVERY_GUY_CODE)
         {
-            Intent intent = new Intent(context, DeliveryPersonInventory.class);
-            intent.putExtra(DeliveryInventoryFragment.SCREEN_MODE_INTENT_KEY,DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_MARKET);
-            context.startActivity(intent);
+            showToastMessage("This feature is available in the paid version !");
 
 
 //            DeliveryPersonInventory.start(DeliveryInventoryFragment.SCREEN_MODE_DELIVERY_PERSON_MARKET,context);

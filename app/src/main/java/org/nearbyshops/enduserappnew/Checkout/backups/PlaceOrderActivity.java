@@ -17,13 +17,13 @@ import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.API.OrderService;
+import org.nearbyshops.enduserappnew.HomeSingleMarket;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity;
-import org.nearbyshops.enduserappnew.Home;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -473,7 +473,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                     showToastMessage("Successful !");
 
 
-                    Intent i = new Intent(PlaceOrderActivity.this, Home.class);
+                    Intent i = new Intent(PlaceOrderActivity.this, HomeSingleMarket.class);
 
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

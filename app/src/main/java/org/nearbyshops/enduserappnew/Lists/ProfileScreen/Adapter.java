@@ -13,7 +13,6 @@ import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarker;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarkerSDS;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderRoleDashboard;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderRoleDashboardSDS;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.ViewHolderUserProfile;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.MarketHelplineData;
@@ -28,14 +27,12 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.Powere
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SignInMarker;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderPoweredBy;
-import org.nearbyshops.enduserappnew.mfiles.SwitchMarketData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderButton;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSignIn;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderSwitchMarket;
 
 import java.util.List;
 
@@ -119,10 +116,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return ViewHolderRoleDashboard.create(parent,fragment.getActivity(),fragment);
         }
-        else if(viewType ==view_type_role_dashboard_SDS)
-        {
-            return ViewHolderRoleDashboardSDS.create(parent,fragment.getActivity(),fragment);
-        }
         else if(viewType==VIEW_TYPE_SET_LOCATION_MANUALLY)
         {
             return ViewHolderSetLocationManually.create(parent,fragment.getActivity(),fragment);
@@ -138,11 +131,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(viewType==VIEW_TYPE_BUTTON)
         {
             return ViewHolderButton.create(parent,fragment.getActivity(),fragment,ViewHolderButton.LAYOUT_TYPE_MENU_ITEM);
-        }
-        else if(viewType==VIEW_TYPE_SWITCH_MARKET)
-        {
-            return ViewHolderSwitchMarket.create(parent,fragment.getActivity(),fragment);
-            
         }
         else if(viewType==VIEW_TYPE_POWERED_BY)
         {
@@ -208,10 +196,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return VIEW_TYPE_BUTTON;
         }
-        else if(dataset.get(position) instanceof SwitchMarketData)
-        {
-            return VIEW_TYPE_SWITCH_MARKET;
-        }
         else if(dataset.get(position) instanceof PoweredByData)
         {
             return VIEW_TYPE_POWERED_BY;
@@ -236,18 +220,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             ((ViewHolderRoleDashboard) holderVH).bindDashboard();
         }
-        else if(holderVH instanceof ViewHolderRoleDashboardSDS)
-        {
-            ((ViewHolderRoleDashboardSDS) holderVH).bindDashboard();
-        }
         else if(holderVH instanceof ViewHolderCreateShop)
         {
             ((ViewHolderCreateShop) holderVH).setItem((CreateShopData) dataset.get(position));
 
-        }
-        else if(holderVH instanceof ViewHolderSwitchMarket)
-        {
-            ((ViewHolderSwitchMarket) holderVH).bindDashboard();
         }
         else if(holderVH instanceof ViewHolderUserProfile)
         {

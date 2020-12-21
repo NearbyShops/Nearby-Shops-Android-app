@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import org.nearbyshops.enduserappnew.API.CartStatsService;
-import org.nearbyshops.enduserappnew.mfiles.Markets.MarketsList;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -36,8 +35,6 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.mfiles.SwitchMarketData;
-import org.nearbyshops.enduserappnew.mfiles.ViewHolderSwitchMarket;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -51,7 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartsListFragment extends Fragment implements
-        SwipeRefreshLayout.OnRefreshListener, ViewHolderSwitchMarket.ListItemClick{
+        SwipeRefreshLayout.OnRefreshListener{
 
 
 //    @Inject
@@ -225,11 +222,6 @@ public class CartsListFragment extends Fragment implements
                 dataset.clear();
 
 
-                if(PrefGeneral.isMultiMarketEnabled(getContext()))
-                {
-                    dataset.add(new SwitchMarketData());
-                }
-
 
 
                 if(response.body()!=null)
@@ -351,13 +343,6 @@ public class CartsListFragment extends Fragment implements
 
 
 
-    @Override
-    public void changeMarketClick() {
-
-        Intent intent = new Intent(getActivity(), MarketsList.class);
-        intent.putExtra("is_selection_mode",true);
-        startActivityForResult(intent,3262);
-    }
 
 
     @Override
