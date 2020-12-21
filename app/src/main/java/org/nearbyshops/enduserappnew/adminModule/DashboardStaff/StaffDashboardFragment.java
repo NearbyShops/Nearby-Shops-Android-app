@@ -134,8 +134,9 @@ public class StaffDashboardFragment extends Fragment {
     @OnClick(R.id.header_tutorials)
     void headerTutorialsClick()
     {
-        UtilityFunctions.openURL(getString(R.string.tutorial_admin_dashboard),getActivity());
+        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/admin-tutorials/",getActivity());
     }
+    
 
 
 }

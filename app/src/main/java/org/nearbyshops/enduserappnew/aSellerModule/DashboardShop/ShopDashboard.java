@@ -208,7 +208,7 @@ public class ShopDashboard extends AppCompatActivity {
     @OnClick(R.id.header_tutorials)
     void headerTutorialsClick()
     {
-        UtilityFunctions.openURL(getString(R.string.tutorial_shop_dashboard),this);
+        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials-for-shop-owners/",this);
     }
 
 }

@@ -4,7 +4,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:gravity="center"
-    android:background="@drawable/button_green_dark"
+    android:background="@color/gplus_color_1"
     android:id="@+id/list_item"
     android:padding="5dp"
     android:layout_marginTop="10dp"
