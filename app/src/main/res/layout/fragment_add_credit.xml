@@ -16,7 +16,7 @@
         android:textColor="@color/white"
         android:background="@color/buttonColorDark"
         android:id="@+id/next"
-        android:text="Add Credit"
+        android:text="@string/fragment_add_credit_header_text"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="0dp"
@@ -141,24 +141,12 @@
 
 
 
-
-
-            <TextView
-                android:textSize="15sp"
-                android:layout_marginTop="10dp"
-                android:text="Instructions : To deposit money use a positive amount. To withdraw money use a negative amount."
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/border_header"
-                android:id="@+id/instructions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
             <TextView
                 android:id="@+id/header_amount"
                 android:textSize="17sp"
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/instructions"
+                app:layout_constraintTop_toBottomOf="@id/border_header"
                 android:text="@string/fragment_add_credit_header_amount_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -203,7 +191,6 @@
 
 
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/username_text_input"
                 android:layout_marginTop="10dp"
@@ -214,7 +201,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:inputType="numberSigned"
+                    android:inputType="numberDecimal"
                     android:hint="Enter Amount"
                     android:id="@+id/amount_to_add"
                     android:layout_width="match_parent"

@@ -1,28 +1,50 @@
 package org.nearbyshops.enduserappnew.adminModule.ShopsList;
 
+import android.Manifest;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStates;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.material.tabs.TabLayout;
 import com.wunderlist.slidinglayer.SlidingLayer;
 
 
+import org.nearbyshops.enduserappnew.Interfaces.GetLocation;
+import org.nearbyshops.enduserappnew.Interfaces.NotifyLocation;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShopsAdmin;
+import org.nearbyshops.enduserappnew.adminModule.ShopsList.SlidingLayerSort.SlidingLayerSortShops;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,7 +72,7 @@ public class ShopsDatabase extends AppCompatActivity implements NotifyTitleChang
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new PagerAdapter(getSupportFragmentManager());
@@ -105,7 +127,7 @@ public class ShopsDatabase extends AppCompatActivity implements NotifyTitleChang
             {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShopsAdmin(),TAG_SLIDING_LAYER)
+                        .add(R.id.slidinglayerfragment,new SlidingLayerSortShops(),TAG_SLIDING_LAYER)
                         .commit();
             }
 
@@ -156,7 +178,6 @@ public class ShopsDatabase extends AppCompatActivity implements NotifyTitleChang
     private static String makeFragmentName(int viewId, int index) {
         return "android:switcher:" + viewId + ":" + index;
     }
-
 
 
 

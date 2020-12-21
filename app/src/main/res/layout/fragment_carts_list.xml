@@ -34,11 +34,11 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:textColor="@color/header_text_color"
                     android:id="@+id/app_name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
+                    android:textColor="@color/white"
                     android:text="@string/fragment_carts_list_app_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -52,7 +52,7 @@
                     app:layout_constraintTop_toBottomOf="@id/app_name"
                     android:paddingTop="5dp"
                     android:paddingBottom="0dp"
-                    android:textColor="@color/header_text_color"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -70,7 +70,6 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:padding="5dp"
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

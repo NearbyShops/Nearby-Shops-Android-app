@@ -13,24 +13,14 @@ import retrofit2.http.*;
 
 public interface FavouriteShopService {
 
-
-
     @GET("/api/v1/FavouriteShop")
     Call<FavouriteShopEndpoint> getFavouriteShops(
-            @Query("EndUserID") Integer userID,
+            @Query("ShopID") Integer bookID,
+            @Query("EndUserID") Integer memberID,
             @Query("SortBy") String sortBy,
-            @Query("Limit") Integer limit, @Query("Offset") Integer offset
+            @Query("Limit") Integer limit, @Query("Offset") Integer offset,
+            @Query("metadata_only") Boolean metaonly
     );
-
-
-
-
-    @GET ("/api/v1/FavouriteShop/CheckFavourite")
-    Call<ResponseBody> checkFavourite(
-            @Query("ShopID")Integer shopID,
-            @Query("EndUserID")Integer endUserID
-    );
-
 
 
     @POST("/api/v1/FavouriteShop")

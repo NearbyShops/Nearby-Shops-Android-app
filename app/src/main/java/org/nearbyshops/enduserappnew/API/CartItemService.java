@@ -15,37 +15,15 @@ import java.util.List;
 public interface CartItemService {
 
 
-//    @Query("CartID") Integer cartID,
-//    @Query("ItemID") Integer itemID,
-//@Query("GetItems") Boolean getItems,
-
-
-
     @GET("/api/CartItem")
-    Call<List<CartItem>> getCartItem(
-            @Query("EndUserID") int endUserID,
-            @Query("ShopID") int shopID,
-            @Query("SortBy") String sortBy,
-            @Query("Limit")Integer limit, @Query("Offset")Integer offset
-    );
-
-
-
-
-    @GET ("/api/CartItem/GetAvailability/{ShopID}/{EndUserID}")
-    Call<List<CartItem>> getCartItemAvailability(
-            @Path("EndUserID") Integer endUserID,
-            @Path("ShopID") Integer shopID
-    );
-
-
-
-
-
-    @GET ("/api/CartItem/GetAvailabilityByItem/{ItemID}/{EndUserID}")
-    Call<List<CartItem>> getCartItemAvailabilityByItem(
-            @Path("EndUserID") int endUserID,
-            @Path("ItemID") int itemID
+    Call<List<CartItem>> getCartItem(@Query("CartID") Integer cartID,
+                                     @Query("ItemID") Integer itemID,
+                                     @Query("EndUserID") Integer endUserID,
+                                     @Query("ShopID") Integer shopID,
+                                     @Query("GetItems") Boolean getItems,
+                                     @Query("SortBy") String sortBy,
+                                     @Query("Limit")Integer limit, @Query("Offset")Integer offset,
+                                     @Query("metadata_only")Boolean metaonly
     );
 
 
@@ -53,7 +31,7 @@ public interface CartItemService {
 
 
     @DELETE("/api/CartItem")
-    Call<ResponseBody> deleteCartItem(@Query("CartID") int cartID, @Query("ItemID") Integer itemID,
+    Call<ResponseBody> deleteCartItem(@Query("CartID") int cartID, @Query("ItemID") int itemID,
                                       @Query("EndUserID") int endUserID,
                                       @Query("ShopID") int shopID);
 

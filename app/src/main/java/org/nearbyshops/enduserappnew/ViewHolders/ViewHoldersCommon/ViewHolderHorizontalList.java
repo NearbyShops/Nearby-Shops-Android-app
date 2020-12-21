@@ -28,8 +28,6 @@ public class ViewHolderHorizontalList extends RecyclerView.ViewHolder {
     private Context context;
     private Fragment fragment;
 
-    public static int LAYOUT_TYPE_SLIDER = 1;
-    public static int LAYOUT_TYPE_NORMAL = 2;
 
 
 
@@ -41,26 +39,6 @@ public class ViewHolderHorizontalList extends RecyclerView.ViewHolder {
         return new ViewHolderHorizontalList(view,context,fragment);
     }
 
-
-
-    public static ViewHolderHorizontalList create(ViewGroup parent, Context context, Fragment fragment, int layoutType)
-    {
-        View view = null;
-
-        if(layoutType==LAYOUT_TYPE_NORMAL)
-        {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_horizontal_list,parent,false);
-        }
-        else if(layoutType==LAYOUT_TYPE_SLIDER)
-        {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item_slider,parent,false);
-        }
-
-
-        return new ViewHolderHorizontalList(view,context,fragment);
-    }
 
 
 
@@ -92,26 +70,6 @@ public class ViewHolderHorizontalList extends RecyclerView.ViewHolder {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
-    }
-
-
-
-
-
-    public void scrollToPosition(int scrollToPosition)
-    {
-        if(scrollToPosition>0 && recyclerView!=null)
-        {
-            recyclerView.scrollToPosition(scrollToPosition);
-        }
-    }
-
-
-
-
-    public void setTextSize(float size)
-    {
-        listTitle.setTextSize(size);
     }
 
 }

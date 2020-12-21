@@ -6,17 +6,15 @@ import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemCategoryEndPoint;
 
 import java.util.List;
 
-import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -73,11 +71,6 @@ public interface ItemCategoryService {
 
 
 
-    @GET ("/api/v1/ItemCategory/GetItemCategoryDetails")
-    Call<ItemCategory> getItemCategoryDetails(
-            @Query("ItemCategoryID")Integer itemCategoryID
-    );
-
 
 
 
@@ -100,21 +93,11 @@ public interface ItemCategoryService {
 
 
 
-//
-//    @PUT("/api/v1/ItemCategory/{id}")
-//    Call<ResponseBody> updateItemCategory(@Header("Authorization") String headers,
-//                                          @Body ItemCategory itemCategory,
-//                                          @Path("id") int id);
-
-
 
     @PUT("/api/v1/ItemCategory/{id}")
     Call<ResponseBody> updateItemCategory(@Header("Authorization") String headers,
-                                          @Path("id") int id,
-                                          @Body ItemCategory itemCategory
-    );
-
-
+                                          @Body ItemCategory itemCategory,
+                                          @Path("id") int id);
 
 
     @PUT("/api/v1/ItemCategory/")
@@ -125,9 +108,9 @@ public interface ItemCategoryService {
 
 
 
-    @DELETE("/api/v1/ItemCategory/{ItemCategoryID}")
+    @DELETE("/api/v1/ItemCategory/{id}")
     Call<ResponseBody> deleteItemCategory(@Header("Authorization") String headers,
-                                          @Path("ItemCategoryID") int id);
+                                          @Path("id") int id);
 
 
 
@@ -136,23 +119,16 @@ public interface ItemCategoryService {
 
     // Image Calls
 
-//    @POST("/api/v1/ItemCategory/Image")
-//    Call<Image> uploadImage(@Header("Authorization") String headers,
-//                            @Body RequestBody image);
-
-
-
-    @Multipart
     @POST("/api/v1/ItemCategory/Image")
     Call<Image> uploadImage(@Header("Authorization") String headers,
-                            @Part MultipartBody.Part img
-    );
-
+                            @Body RequestBody image);
 
 
     @DELETE("/api/v1/ItemCategory/Image/{name}")
     Call<ResponseBody> deleteImage(@Header("Authorization") String headers,
                                    @Path("name") String fileName);
+
+
 
 
 }

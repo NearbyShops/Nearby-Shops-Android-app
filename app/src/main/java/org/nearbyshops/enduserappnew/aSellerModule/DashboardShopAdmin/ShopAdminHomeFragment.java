@@ -27,7 +27,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard;
-import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionHistory;
+import org.nearbyshops.enduserappnew.Lists.TransactionHistory.Transactions;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import butterknife.BindView;
@@ -63,8 +63,6 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
     @BindView(R.id.shop_name) TextView shopName;
 
-    @BindView(R.id.header_tutorials) LinearLayout headerTutorial;
-
 
     @BindView(R.id.swipe_container) SwipeRefreshLayout swipeContainer;
 
@@ -99,9 +97,6 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
         toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 //        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 //
-
-
-
 
 
         bindAllFields();
@@ -169,9 +164,11 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
     @OnClick(R.id.billing_info)
     void billingInfoClick()
     {
-        Intent intent = new Intent(getActivity(), TransactionHistory.class);
+        Intent intent = new Intent(getActivity(), Transactions.class);
         startActivity(intent);
     }
+
+
 
 
 
@@ -185,6 +182,9 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
         intent.putExtra(FragmentEditProfile.EDIT_MODE_INTENT_KEY, FragmentEditProfile.MODE_UPDATE);
         startActivity(intent);
     }
+
+
+
 
 
 
@@ -216,14 +216,10 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
         }
         else
         {
-            Shop shop = PrefShopAdminHome.getShop(getActivity());
-
 
             //     open edit shop in edit mode
             Intent intent = new Intent(getActivity(), EditShop.class);
             intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_UPDATE);
-            intent.putExtra("shop_id",shop.getShopID());
-
             startActivity(intent);
 
             swipeContainer.setRefreshing(false);
@@ -264,7 +260,7 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
     private void showToastMessage(String message)
     {
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
 
 
@@ -431,7 +427,6 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
         viewModelShop.getShopForShopAdmin(false);
         requestCodeGetShop = 4125;
     }
-
 
 
 
@@ -611,10 +606,10 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
 
                 PrefShopAdminHome.saveShop(shop,getActivity());
 
-
                 if(requestCodeGetShop ==4125)
                 {
                     bindAllFields();
+                    UtilityFunctions.updateFirebaseSubscriptionsForShop();
                 }
                 else if(requestCodeGetShop==4130)
                 {
@@ -623,11 +618,8 @@ public class ShopAdminHomeFragment extends Fragment implements SwipeRefreshLayou
                 }
                 else if(requestCodeGetShop==4150)
                 {
-
                     // Open Edit fragment in edit mode
                     Intent intent = new Intent(getActivity(), EditShop.class);
-                    intent.putExtra("shop_id",shop.getShopID());
-
                     intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_UPDATE);
                     startActivity(intent);
                 }

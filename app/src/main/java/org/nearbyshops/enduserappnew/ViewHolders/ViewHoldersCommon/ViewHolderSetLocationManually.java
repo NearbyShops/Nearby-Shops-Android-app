@@ -10,9 +10,8 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
+import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 
 import butterknife.BindView;
@@ -67,26 +66,14 @@ public class ViewHolderSetLocationManually extends RecyclerView.ViewHolder{
     {
         boolean isLocationSetByUser = PrefLocation.isLocationSetByUser(context);
 
-
-        DeliveryAddress deliveryAddress  = PrefLocation.getDeliveryAddress(context);
-
-        if(PrefLogin.getUser(context)!=null && deliveryAddress !=null)
+        if(isLocationSetByUser)
         {
-            locationAddress.setText(deliveryAddress.getDeliveryAddress());
+            locationAddress.setText(context.getString(R.string.current_location_custom));
         }
         else
         {
-            if(isLocationSetByUser)
-            {
-                locationAddress.setText(context.getString(R.string.current_location_custom));
-            }
-            else
-            {
-                locationAddress.setText(context.getString(R.string.current_location_automated));
-            }
+            locationAddress.setText(context.getString(R.string.current_location_automated));
         }
-
-
     }
 
 

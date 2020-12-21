@@ -1,6 +1,5 @@
 package org.nearbyshops.enduserappnew.Lists.CartItemList;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,11 +25,13 @@ import butterknife.OnClick;
 
 import org.nearbyshops.enduserappnew.API.CartItemService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
-import org.nearbyshops.enduserappnew.Checkout.PlaceOrder;
 import org.nearbyshops.enduserappnew.Model.Item;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItem;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.CartItem;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
+import org.nearbyshops.enduserappnew.Model.Shop;
+import org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -38,11 +39,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderCartItemNew;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.ButtonData;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderButton;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,10 +49,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartItemListFragment extends Fragment
-        implements SwipeRefreshLayout.OnRefreshListener, ViewHolderCartItemNew.ListItemClick , ViewHolderButton.ListItemClick {
+        implements SwipeRefreshLayout.OnRefreshListener, ViewHolderCartItemNew.ListItemClick {
 
 
-
+//    TextView confirmItems;
 
     @Inject
     CartItemService cartItemService;
@@ -69,9 +66,7 @@ public class CartItemListFragment extends Fragment
 
 
     private List<Object> dataset = new ArrayList<>();
-//    private Shop shop = null;
-
-    private int shopID;
+    private Shop shop = null;
     private CartStats cartStats = null;
 
 
@@ -84,16 +79,26 @@ public class CartItemListFragment extends Fragment
     private double cartTotal = 0;
 
 
-
     @BindView(R.id.savings_over_mrp) TextView savingsOverMRP;
+
+
     @BindView(R.id.progress_bar) ProgressBar progressBar;
+
     @BindView(R.id.empty_screen) LinearLayout emptyScreen;
     @BindView(R.id.bottom_bar) ConstraintLayout bottomBar;
+
     @BindView(R.id.shop_name) TextView shopName;
 
 
-
-
+    // header views
+//    ImageView shopImage;
+//    TextView shopName;
+//    TextView rating;
+//    TextView distance;
+//    TextView deliveryCharge;
+//    TextView itemsInCart;
+//    TextView cartTotalHeader;
+//    LinearLayout cartsListItem;
 
 
     public CartItemListFragment() {
@@ -118,7 +123,12 @@ public class CartItemListFragment extends Fragment
         View rootView = inflater.inflate(R.layout.fragment_cart_item_list, container, false);
         ButterKnife.bind(this, rootView);
 
-//        shopName.setText(shop.getShopName());
+
+        String shopJson = getActivity().getIntent().getStringExtra(SHOP_INTENT_KEY);
+        shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
+
+
+        shopName.setText(shop.getShopName());
 
 
 
@@ -137,42 +147,66 @@ public class CartItemListFragment extends Fragment
 //        confirmItems = (TextView) findViewById(R.id.confirm);
 
 
+//        shopImage = (ImageView) findViewById(R.id.shopImage);
+//        shopName = (TextView) findViewById(R.id.shopName);
+//        rating = (TextView) findViewById(R.id.rating);
+//        distance = (TextView) findViewById(R.id.distance);
+//        deliveryCharge = (TextView) findViewById(R.id.deliveryCharge);
+//        itemsInCart = (TextView) findViewById(R.id.itemsInCart);
+//        cartTotalHeader = (TextView) findViewById(R.id.cartTotal);
+//        cartsListItem = (LinearLayout)findViewById(R.id.carts_list_item);
 
-//        String shopJson = getActivity().getIntent().getStringExtra(SHOP_INTENT_KEY);
-//        shop = UtilityFunctions.provideGson().fromJson(shopJson, Shop.class);
-
-//        String cartStatsJson = getActivity().getIntent().getStringExtra(CART_STATS_INTENT_KEY);
-//        cartStats = UtilityFunctions.provideGson().fromJson(cartStatsJson, CartStats.class);
 
 
 
+        // get shop from intent
 
-        if(!getResources().getBoolean(R.bool.single_vendor_mode_enabled))
+//        shop = getIntent().getParcelableExtra(SHOP_INTENT_KEY);
+//        cartStats = getIntent().getParcelableExtra(CART_STATS_INTENT_KEY);
+
+
+
+        String cartStatsJson = getActivity().getIntent().getStringExtra(CART_STATS_INTENT_KEY);
+        cartStats = UtilityFunctions.provideGson().fromJson(cartStatsJson, CartStats.class);
+
+
+
+
+
+
+
+        if(cartStats==null)
         {
-
-            shopID = getActivity().getIntent().getIntExtra("shop_id",0);
-            String shopNameText = getActivity().getIntent().getStringExtra("shop_name");
-
-
-            if(shopNameText!=null)
-            {
-                shopName.setVisibility(View.VISIBLE);
-                shopName.setText(shopNameText);
-            }
+            fetchCartStats();
         }
 
 
 
-
-
+//        setupHeader();
         setupSwipeContainer();
         setupRecyclerView();
 
 
+
+//        if(((AppCompatActivity) getActivity()).getSupportActionBar()!=null)
+//        {
+//            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        }
+
+
+
         if(savedInstanceState==null)
         {
-            makeRefreshNetworkCall();
+            swipeRefresh();
         }
+
+
+
+
+        displayCartStats();
+
+
+        fetchCartStats();
 
 
         return rootView;
@@ -180,10 +214,6 @@ public class CartItemListFragment extends Fragment
 
 
 
-
-    public void setShopID(int shopID) {
-        this.shopID = shopID;
-    }
 
 
 
@@ -196,7 +226,7 @@ public class CartItemListFragment extends Fragment
 
         User endUser = PrefLogin.getUser(getActivity());
 
-        if(endUser==null || shopID==0)
+        if(endUser==null || shop==null)
         {
 //            showLogin();
             return;
@@ -205,35 +235,38 @@ public class CartItemListFragment extends Fragment
         progressBar.setVisibility(View.VISIBLE);
         totalValue.setVisibility(View.INVISIBLE);
 
-        Call<CartStats> call = cartStatsService.getCartStats(endUser.getUserID(),shopID,false,false);
+        Call<List<CartStats>> call = cartStatsService.getCart(endUser.getUserID(),null,shop.getShopID(),false,null,null);
 
-        call.enqueue(new Callback<CartStats>() {
+        call.enqueue(new Callback<List<CartStats>>() {
+
             @Override
-            public void onResponse(Call<CartStats> call, Response<CartStats> response) {
+            public void onResponse(Call<List<CartStats>> call, Response<List<CartStats>> response) {
+
 
                 progressBar.setVisibility(View.GONE);
                 totalValue.setVisibility(View.VISIBLE);
 
-
                 if(response.code()==200 && response.body()!=null)
                 {
-                    cartStats = response.body();
-                    displayCartStats();
+                    if(response.body().size()>0)
+                    {
+                        cartStats = response.body().get(0);
+                        cartStats.setShop(shop);
+                        displayCartStats();
+                    }
                 }
 
 
             }
 
             @Override
-            public void onFailure(Call<CartStats> call, Throwable t) {
+            public void onFailure(Call<List<CartStats>> call, Throwable t) {
 
                 progressBar.setVisibility(View.GONE);
                 totalValue.setVisibility(View.VISIBLE);
 
             }
         });
-
-
 
     }
 
@@ -271,12 +304,53 @@ public class CartItemListFragment extends Fragment
 
 
 
+
     @OnClick(R.id.confirm)
     void confirmItemsClick()
     {
-        startActivity(PlaceOrder.getLaunchIntent(shopID,getActivity()));
+        Intent intent = new Intent(getActivity(),PlaceOrderActivity.class);
+        //        intent.putExtra(PlaceOrderActivity.CART_STATS_INTENT_KEY,cartStats);
+
+        String cartStatsJson = UtilityFunctions.provideGson().toJson(cartStats);
+        intent.putExtra(PlaceOrderActivity.CART_STATS_INTENT_KEY,cartStatsJson);
+
+
+        startActivity(intent);
     }
 
+
+
+
+
+    /*void setupHeader()
+    {
+
+        if(cartStats!=null)
+        {
+            itemsInCart.setText(cartStats.getItemsInCart() + " Items in Cart");
+            cartTotalHeader.setText("Cart Total : Rs " + cartStats.getCart_Total());
+        }
+
+        if(shop!=null)
+        {
+            deliveryCharge.setText("Delivery\nRs " + shop.getDeliveryCharges() + "\nPer Order");
+            distance.setText(String.format( "%.2f", shop.getDistance())
+                    + " Km");
+
+            shopName.setText(shop.getShopName());
+
+
+            String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
+                    + shop.getImagePath();
+
+            Picasso.with(this)
+                    .load(imagePath)
+                    .placeholder(R.drawable.nature_people)
+                    .into(shopImage);
+        }
+
+    }
+*/
 
 
 
@@ -298,11 +372,6 @@ public class CartItemListFragment extends Fragment
 
     private void setupRecyclerView()
     {
-        if(getActivity()==null)
-        {
-            return;
-        }
-
         adapter = new Adapter(dataset,getActivity(),this);
         recyclerView.setAdapter(adapter);
 
@@ -319,17 +388,13 @@ public class CartItemListFragment extends Fragment
 
     private void showToastMessage(String message)
     {
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
-
-
-
 
     @Override
     public void onRefresh() {
 
         makeNetworkCall();
-        fetchCartStats();
     }
 
 
@@ -352,10 +417,10 @@ public class CartItemListFragment extends Fragment
 
 
 
-        if(shopID==0)
+        if(shop==null)
         {
             swipeContainer.setRefreshing(false);
-            showToastMessage("Shop Id not provided !");
+            showToastMessage("Shop null !");
             return;
         }
 
@@ -364,14 +429,11 @@ public class CartItemListFragment extends Fragment
         bottomBar.setVisibility(View.VISIBLE);
 
 
-
-
-        Call<List<CartItem>> call = cartItemService.getCartItem(
-                endUser.getUserID(),shopID,
+        Call<List<CartItem>> call = cartItemService.getCartItem(null,null,
+                endUser.getUserID(),shop.getShopID(),true,
                 Item.TABLE_NAME + "." + Item.ITEM_NAME,
-                null,null
+                null,null,false
         );
-
 
 
         call.enqueue(new Callback<List<CartItem>>() {
@@ -381,32 +443,22 @@ public class CartItemListFragment extends Fragment
                 if(response.body()!=null)
                 {
                     dataset.clear();
-                    dataset.add(new ButtonData("Clear all Items"));
                     dataset.addAll(response.body());
-
-
-
-                    if(dataset.size()==0)
-                    {
-//                        emptyScreen.setVisibility(View.VISIBLE);
-
-                        dataset.add(EmptyScreenDataFullScreen.cartEmpty());
-                        bottomBar.setVisibility(View.GONE);
-                    }
-
 
                     adapter.notifyDataSetChanged();
 
+                    if(dataset.size()==0)
+                    {
+                        emptyScreen.setVisibility(View.VISIBLE);
+                        bottomBar.setVisibility(View.GONE);
+                    }
 
                 }else
                 {
-//                    emptyScreen.setVisibility(View.VISIBLE);
-
-
+                    emptyScreen.setVisibility(View.VISIBLE);
                     bottomBar.setVisibility(View.GONE);
 
                     dataset.clear();
-                    dataset.add(EmptyScreenDataFullScreen.cartEmpty());
                     adapter.notifyDataSetChanged();
                 }
 
@@ -420,22 +472,29 @@ public class CartItemListFragment extends Fragment
             public void onFailure(Call<List<CartItem>> call, Throwable t) {
 
 
-//                showToastMessage("Network Request failed !");
+                showToastMessage("Network Request failed !");
                 swipeContainer.setRefreshing(false);
 
-//                emptyScreen.setVisibility(View.VISIBLE);
-
-
-                dataset.clear();
-                dataset.add(EmptyScreenDataFullScreen.getOffline());
-                adapter.notifyDataSetChanged();
-
+                emptyScreen.setVisibility(View.VISIBLE);
                 bottomBar.setVisibility(View.GONE);
 
             }
         });
 
 
+
+
+//        if(UtilityGeneral.isNetworkAvailable(this))
+//        {
+//
+//
+//
+//        }
+//        else
+//        {
+//            showToastMessage("No network. Application is Offline !");
+//            swipeContainer.setRefreshing(false);
+//        }
 
     }
 
@@ -455,7 +514,7 @@ public class CartItemListFragment extends Fragment
 
 
 
-    private void makeRefreshNetworkCall()
+    private void swipeRefresh()
     {
 
         swipeContainer.post(new Runnable() {
@@ -472,6 +531,33 @@ public class CartItemListFragment extends Fragment
     @Override
     public void notifyUpdate(CartItem cartItem) {
 
+//        Call<ResponseBody> call = cartItemService.updateCartItem(cartItem,0,0);
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                if(response.code() == 200)
+//                {
+//                    showToastMessage("Item Updated !");
+//
+//                    totalValue.setText(" : Rs " + String.format("%.2f", cartTotal));
+//                    cartStats.setCart_Total(cartTotal);
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//                showToastMessage("Update failed. Try again !");
+//            }
+//        });
+
+
+
+
+
         fetchCartStats();
     }
 
@@ -481,10 +567,32 @@ public class CartItemListFragment extends Fragment
     @Override
     public void notifyRemove(CartItem cartItem) {
 
+//        Call<ResponseBody> call = cartItemService.deleteCartItem(cartItem.getCartID(),cartItem.getItemID(),0,0);
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                if(response.code() == 200)
+//                {
+//                    showToastMessage("Item Deleted");
+//
+//                    // refresh the list
+//                    makeNetworkCall();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//                showToastMessage("Remove failed. Try again !");
+//
+//            }
+//        });
+
+
         fetchCartStats();
     }
-
-
 
 
 
@@ -494,8 +602,8 @@ public class CartItemListFragment extends Fragment
     @Override
     public void notifyTotal(double total) {
 
-//        cartTotal = total;
-//        estimatedTotal.setText("Estimated Total (Before Update) : "  + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
+        cartTotal = total;
+        estimatedTotal.setText("Estimated Total (Before Update) : "  + PrefGeneral.getCurrencySymbol(getActivity()) + " " + String.format("%.2f", cartTotal));
     }
 
 
@@ -511,74 +619,4 @@ public class CartItemListFragment extends Fragment
         startActivity(intent);
     }
 
-
-
-    private void removeItems()
-    {
-        progressBar.setVisibility(View.VISIBLE);
-
-
-        Call<ResponseBody> call = cartItemService.deleteCartItem(cartStats.getCartID(),null,0,0);
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                progressBar.setVisibility(View.GONE);
-
-
-                if(response.code() == 200)
-                {
-                    makeRefreshNetworkCall();
-                    showToastMessage("Item Removed");
-                }
-
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                showToastMessage("Remove failed. Please Try again !");
-
-            }
-        });
-    }
-
-
-
-
-
-    @Override
-    public void buttonClick(ButtonData data) {
-
-
-        if(getActivity()==null)
-        {
-            return;
-        }
-
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-
-        dialog.setTitle("Remove all Items ?")
-                .setMessage("Do you want to remove all items from your cart")
-                .setPositiveButton("Yes",new DialogInterface.OnClickListener(){
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        removeItems();
-
-                    }
-                })
-                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        showToastMessage("Cancelled !");
-                    }
-                })
-                .show();
-    }
 }

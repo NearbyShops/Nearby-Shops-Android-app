@@ -406,7 +406,7 @@ TextInputEditText phone;
 
         Call<ResponseBody> call;
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 
@@ -624,7 +624,7 @@ TextInputEditText phone;
 
         Call<ResponseBody> call;
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 

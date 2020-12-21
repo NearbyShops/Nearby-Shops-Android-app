@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,11 +16,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
 
@@ -33,7 +36,6 @@ import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -45,12 +47,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class EditShopImageFragment extends Fragment {
@@ -133,7 +136,7 @@ public class EditShopImageFragment extends Fragment {
 
             if(current_mode == MODE_UPDATE)
             {
-                itemImage = PrefShopImage.getItemImage(getContext());
+                itemImage = UtilityShopImage.getItemImage(getContext());
 
                 if(itemImage !=null) {
                     bindDataToViews();
@@ -439,7 +442,7 @@ public class EditShopImageFragment extends Fragment {
                 if(response.code()==200)
                 {
                     showToastMessage("Update Successful !");
-                    PrefShopImage.saveItemImage(itemImage,getContext());
+                    UtilityShopImage.saveItemImage(itemImage,getContext());
                 }
                 else if(response.code()== 403 || response.code() ==401)
                 {
@@ -487,7 +490,6 @@ public class EditShopImageFragment extends Fragment {
         getDataFromViews();
         itemImage.setShopID(getActivity().getIntent().getIntExtra(SHOP_ID_INTENT_KEY,0));
 
-//        showToastMessage("Shop ID : "  + itemImage.getShopID());
 
 
         buttonUpdateItem.setVisibility(View.INVISIBLE);
@@ -519,7 +521,7 @@ public class EditShopImageFragment extends Fragment {
                     itemImage = response.body();
                     bindDataToViews();
 
-                    PrefShopImage.saveItemImage(itemImage,getContext());
+                    UtilityShopImage.saveItemImage(itemImage,getContext());
 
                 }
                 else if(response.code()== 403 || response.code() ==401)
@@ -575,8 +577,7 @@ public class EditShopImageFragment extends Fragment {
 
     private void showToastMessage(String message)
     {
-        UtilityFunctions.showToastMessage(getActivity(),message);
-//        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
     }
 
 
@@ -771,12 +772,6 @@ public class EditShopImageFragment extends Fragment {
         file = new File(imageFilePath);
 
 
-
-        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
-
-
-
         // Marker
 
         RequestBody requestBodyBinary = null;
@@ -804,7 +799,7 @@ public class EditShopImageFragment extends Fragment {
 
 
         Call<Image> imageCall = itemImageService.uploadShopImage(PrefLogin.getAuthorizationHeaders(getContext()),
-                fileToUpload);
+                requestBodyBinary);
 
 
         imageCall.enqueue(new Callback<Image>() {

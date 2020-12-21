@@ -270,7 +270,7 @@ public class FragmentChangeEmail extends Fragment {
         Call<ResponseBody> call;
 
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 
@@ -449,7 +449,7 @@ public class FragmentChangeEmail extends Fragment {
 
         Call<ResponseBody> call;
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 

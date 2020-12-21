@@ -1,17 +1,11 @@
 package org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin;
 
-import android.app.SearchManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -24,7 +18,6 @@ import com.wunderlist.slidinglayer.SlidingLayer;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyFABClickAdmin;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyHeaderChanged;
-import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ToggleFab;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -104,7 +97,7 @@ public class ItemsDatabaseAdmin extends AppCompatActivity implements NotifyHeade
 
 
 
-        if(PrefGeneral.isMultiMarketEnabled(this) && PrefServiceConfig.getServiceName(this)!=null)
+        if(PrefGeneral.getMultiMarketMode(this) && PrefServiceConfig.getServiceName(this)!=null)
         {
             serviceName.setVisibility(View.VISIBLE);
             serviceName.setText(PrefServiceConfig.getServiceName(this));
@@ -306,92 +299,16 @@ public class ItemsDatabaseAdmin extends AppCompatActivity implements NotifyHeade
 
 
 
-
-
-
-
-
-    
-
-    // Add Search Feature to the activity
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_items_by_cat_simple, menu);
-
-
-        // Associate searchable configuration with the SearchView
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-
-        if (searchManager != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        }
-
-
-        MenuItem item = menu.findItem(R.id.action_search);
-
-        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
-
-                return true;
-            }
-
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
-
-                Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT);
-
-                if(fragment instanceof NotifySearch)
-                {
-                    ((NotifySearch) fragment).endSearchMode();
-                }
-
-
-                return true;
-            }
-        });
-
-
-
-
-
-        return true;
-    }
-
-
-
-
-
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-
-        handleIntent(intent);
-    }
-
-
-
-
-
-
-    private void handleIntent(Intent intent) {
-
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-
-            Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT);
-
-            if(fragment instanceof NotifySearch)
-            {
-                ((NotifySearch) fragment).search(query);
-            }
-        }
-    }
-
+//    @OnClick(R.id.fab_add_from_global)
+//    void setFab_add_from_global()
+//    {
+//        Fragment fragment = getSupportFragmentManager()
+//                .findFragmentByTag(TAG_FRAGMENT);
+//
+//        if(fragment instanceof NotifyFABClick)
+//        {
+//            ((NotifyFABClick) fragment).addfromGlobal();
+//        }
+//    }
 
 }

@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.Model.Item;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderImages.ViewHolderItemImage;
+import org.nearbyshops.enduserappnew.ImageList.ImageListForItem.ViewHolders.ViewHolderItemImage;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
@@ -64,7 +63,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (viewType == VIEW_TYPE_ITEM_IMAGE) {
 
-            return ViewHolderItemImage.create(parent,context,fragment,ViewHolderItemImage.LAYOUT_TYPE_NORMAL);
+            return ViewHolderItemImage.create(parent,context,fragment);
         }
         else if (viewType == VIEW_TYPE_HEADER) {
 
@@ -94,16 +93,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (holder instanceof ViewHolderItemImage) {
 
-            if(dataset.get(position) instanceof ItemImage)
-            {
-                ((ViewHolderItemImage) holder).setItemImage((ItemImage) dataset.get(position));
-            }
-            else if(dataset.get(position) instanceof Item)
-            {
-                ((ViewHolderItemImage) holder).setItem((Item) dataset.get(position));
-            }
 
-
+            ((ViewHolderItemImage) holder).setItem((ItemImage) dataset.get(position));
 
         }
         else if (holder instanceof ViewHolderHeader) {
@@ -141,7 +132,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             return VIEW_TYPE_HEADER;
         }
-        else if (dataset.get(position) instanceof ItemImage || dataset.get(position) instanceof Item) {
+        else if (dataset.get(position) instanceof ItemImage) {
 
             return VIEW_TYPE_ITEM_IMAGE;
         }

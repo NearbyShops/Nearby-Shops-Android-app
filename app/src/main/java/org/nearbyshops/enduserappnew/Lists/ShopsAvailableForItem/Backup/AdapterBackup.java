@@ -106,11 +106,10 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
         }
 
 
-        Call<List<CartItem>> cartItemCall = cartItemService.getCartItemAvailabilityByItem(
-                endUser.getUserID(),item.getItemID()
+        Call<List<CartItem>> cartItemCall = cartItemService.getCartItem(null,item.getItemID(),
+                endUser.getUserID(),null,false,
+                null,null,null,false
         );
-
-
 
         cartItemCall.enqueue(new Callback<List<CartItem>>() {
             @Override
@@ -149,7 +148,7 @@ public class AdapterBackup extends RecyclerView.Adapter<AdapterBackup.ViewHolder
         });
 
         Call<List<CartStats>> listCall = cartStatsService
-                .getCartStatsList(endUser.getUserID(),null, null, false,null,null);
+                .getCart(endUser.getUserID(),null, null, false,null,null);
 
         /*
 

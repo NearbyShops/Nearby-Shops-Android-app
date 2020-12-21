@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +43,7 @@ public class ViewHolderHighlight extends RecyclerView.ViewHolder{
 
 
     @BindView(R.id.list_item)
-    ConstraintLayout listItem;
+    CardView listItem;
 
     @BindView(R.id.image) ImageView image;
 

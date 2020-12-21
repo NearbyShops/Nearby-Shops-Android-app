@@ -13,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="org.nearbyshops.enduserappnew.Checkout.backups.PlaceOrderActivity"
+        tools:context="org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity"
         tools:showIn="@layout/activity_place_order">
 
         <!--

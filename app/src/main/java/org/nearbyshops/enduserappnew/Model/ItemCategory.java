@@ -54,22 +54,12 @@ public class ItemCategory{
 	private String rt_gidb_service_url;
 	private ItemCategory parentCategory = null;
 
-	private int rt_scroll_position;
-
 
 
 
 
 	// getter and setter
 
-
-	public int getRt_scroll_position() {
-		return rt_scroll_position;
-	}
-
-	public void setRt_scroll_position(int rt_scroll_position) {
-		this.rt_scroll_position = rt_scroll_position;
-	}
 
 	public int getItemCategoryID() {
 		return itemCategoryID;

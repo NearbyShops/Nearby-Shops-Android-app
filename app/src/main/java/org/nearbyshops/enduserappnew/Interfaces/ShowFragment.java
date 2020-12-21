@@ -8,7 +8,7 @@ public interface ShowFragment {
 
     void showLoginFragment();
 
-    void showProfileFragment();
+    void showProfileFragment(boolean refreshFragment);
 
     void showOrdersFragment();
 

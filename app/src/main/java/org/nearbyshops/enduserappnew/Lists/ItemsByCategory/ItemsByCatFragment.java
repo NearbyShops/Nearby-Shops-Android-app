@@ -1,13 +1,12 @@
 package org.nearbyshops.enduserappnew.Lists.ItemsByCategory;
 
-import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.*;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,14 +17,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import com.google.gson.Gson;
 import com.wunderlist.slidinglayer.SlidingLayer;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.nearbyshops.enduserappnew.API.ItemService;
-import org.nearbyshops.enduserappnew.Lists.ShopsAvailableNew.ShopsAvailable;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemEndPoint;
@@ -35,32 +31,25 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyBackPressed;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySearch;
 import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.ShowFragment;
-import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model.Highlights;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterItemsInMarket;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterItems;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategorySmall;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyHeaderChanged;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortItems_;
+import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortItemsByCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -79,15 +68,14 @@ public class ItemsByCatFragment extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener,
         ViewHolderItemCategorySmall.ListItemClick,
         ViewHolderItemCategory.ListItemClick, NotifyBackPressed, NotifySort, NotifySearch ,
-        ViewHolderEmptyScreenListItem.ListItemClick ,
-        ViewHolderFilterItems.ListItemClick, ViewHolderItem.ListItemClick{
+        ViewHolderEmptyScreenListItem.ListItemClick {
 
 
     private static final String TAG_SLIDING = "tag_sliding_sort";
     private boolean isDestroyed = false;
 
 
-    private int limit_item = 30;
+    private int limit_item = 10;
     private int offset_item = 0;
     private int item_count_item;
 //    private int fetched_items_count;
@@ -107,13 +95,9 @@ public class ItemsByCatFragment extends Fragment implements
 
 
 
-//
-//    @Inject
-//    ItemService itemService;
-
 
     @Inject
-    Gson gson;
+    ItemService itemService;
 
     @BindView(R.id.shop_count_indicator) TextView itemHeader;
     @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
@@ -140,14 +124,6 @@ public class ItemsByCatFragment extends Fragment implements
         DaggerComponentBuilder.getInstance()
                 .getNetComponent().Inject(this);
 
-        resetCurrentCategory();
-    }
-
-
-
-
-    void resetCurrentCategory()
-    {
         currentCategory = new ItemCategory();
         currentCategory.setItemCategoryID(1);
         currentCategory.setCategoryName("");
@@ -167,8 +143,36 @@ public class ItemsByCatFragment extends Fragment implements
         ButterKnife.bind(this,rootView);
 
 
+//        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+
+//        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+//        toolbar.setTitle("Nearby Shops");
+//        toolbar.setTitle(getString(R.string.app_name));
+
+
+
+        serviceName.setVisibility(View.VISIBLE);
+        serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+
+
+
+
+//        if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
+//        {
+//            serviceName.setVisibility(View.VISIBLE);
+//            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+//        }
+//        else
+//        {
+//            serviceName.setVisibility(View.VISIBLE);
+//        }
+
 
 
 
@@ -182,8 +186,13 @@ public class ItemsByCatFragment extends Fragment implements
         setupSwipeContainer();
         notifyItemHeaderChanged();
 
-        setMarketName();
 
+        setupSlidingLayer();
+
+
+
+//        getActivity().startService(new Intent(getActivity(),LocationUpdateServiceLocal.class));
+//        requestLocationUpdates();
 
         return rootView;
     }
@@ -191,22 +200,6 @@ public class ItemsByCatFragment extends Fragment implements
 
 
 
-
-
-
-    void setMarketName()
-    {
-        if(PrefServiceConfig.getServiceName(getActivity())!=null)
-        {
-            serviceName.setVisibility(View.VISIBLE);
-            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
-        }
-        else
-        {
-            serviceName.setVisibility(View.GONE);
-        }
-
-    }
 
 
 
@@ -218,7 +211,7 @@ public class ItemsByCatFragment extends Fragment implements
 
         if(getActivity() instanceof ShowFragment)
         {
-            ((ShowFragment) getActivity()).showProfileFragment();
+            ((ShowFragment) getActivity()).showProfileFragment(false);
         }
     }
 
@@ -357,7 +350,7 @@ public class ItemsByCatFragment extends Fragment implements
                 else if(dataset.get(position) instanceof Item)
                 {
 
-                    return 3;
+                    return 6;
                 }
                 else if(dataset.get(position) instanceof HeaderTitle)
                 {
@@ -522,7 +515,7 @@ public class ItemsByCatFragment extends Fragment implements
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        isDestroyed = true;
+        isDestroyed = true;
     }
 
 
@@ -540,7 +533,10 @@ public class ItemsByCatFragment extends Fragment implements
 
     private void showToastMessage(String message)
     {
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        if(getActivity()!=null)
+        {
+            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -578,52 +574,36 @@ public class ItemsByCatFragment extends Fragment implements
 
         String current_sort = "";
 
-//        current_sort = PrefSortItemsByCategory.getSort(getActivity()) + " " + PrefSortItemsByCategory.getAscending(getActivity());
-
-        current_sort= ViewHolderFilterItems.getSortString(getActivity());
+        current_sort = PrefSortItemsByCategory.getSort(getActivity()) + " " + PrefSortItemsByCategory.getAscending(getActivity());
 
         Call<ItemEndPoint> endPointCall = null;
 
 
 
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
-                .client(new OkHttpClient().newBuilder().build())
-                .build();
 
 
+        if(searchQuery==null)
+        {
+            endPointCall = itemService.getItemsEndpoint(currentCategory.getItemCategoryID(),
+                    null,clearDataset,
+                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
+                    null,
+                    null,null, null, searchQuery,
+                    current_sort, limit_item,offset_item,clearDataset,false);
 
-        endPointCall = retrofit.create(ItemService.class).getItemsEndpoint(currentCategory.getItemCategoryID(),
-                null,clearDataset,
-                PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
-                null,
-                null,null, null, searchQuery,
-                current_sort, limit_item,offset_item,clearDataset,false);
+        }
+        else
+        {
 
+            endPointCall = itemService.getItemsEndpoint(null,
+                    null,false,
+                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
+                    null,
+                    null,null, null, searchQuery,
+                    current_sort, limit_item,offset_item,clearDataset,false);
 
-//        if(searchQuery==null)
-//        {
-//            endPointCall = itemService.getItemsEndpoint(currentCategory.getItemCategoryID(),
-//                    null,clearDataset,
-//                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
-//                    null,
-//                    null,null, null, searchQuery,
-//                    current_sort, limit_item,offset_item,clearDataset,false);
-//
-//        }
-//        else
-//        {
-//
-//            endPointCall = itemService.getItemsEndpoint(null,
-//                    null,false,
-//                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
-//                    null,
-//                    null,null, null, searchQuery,
-//                    current_sort, limit_item,offset_item,clearDataset,false);
-//
-//        }
+        }
 
 
 
@@ -635,34 +615,19 @@ public class ItemsByCatFragment extends Fragment implements
             public void onResponse(Call<ItemEndPoint> call, Response<ItemEndPoint> response) {
 
 
-
                 if(isDestroyed)
                 {
                     return;
                 }
 
 
-                if(response.code()==200 && response.body()!=null && response.body().getResults()!=null)
+                if(response.code()==200)
                 {
 
                     if(clearDataset)
                     {
                         dataset.clear();
                         item_count_item = response.body().getItemCount();
-
-
-
-
-                        int i = 0;
-
-//                        dataset.add(i++, new SetLocationManually());
-
-
-                        if(Highlights.getHighlightsItemsScreen(getActivity())!=null && getResources().getBoolean(R.bool.slider_item_enabled))
-                        {
-                            dataset.add(i++, Highlights.getHighlightsItemsScreen(getActivity()));
-                        }
-
 
 
 
@@ -686,54 +651,36 @@ public class ItemsByCatFragment extends Fragment implements
 
 
 
-//                            if(currentCategory.getParentCategoryID()==-1 || response.body().getResults().size()==0)
-//                            {
-//                                dataset.addAll(response.body().getSubcategories());
-//                            }
-//                            else
-//                            {
-//
-//                                ItemCategoriesList list = new ItemCategoriesList();
-//                                list.setItemCategories(response.body().getSubcategories());
-//
-//                                dataset.add(list);
-//
-//                            }
+                            if(currentCategory.getParentCategoryID()==-1 || response.body().getResults().size()==0)
+                            {
+                                dataset.addAll(response.body().getSubcategories());
+                            }
+                            else
+                            {
 
+                                ItemCategoriesList list = new ItemCategoriesList();
+                                list.setItemCategories(response.body().getSubcategories());
 
+                                dataset.add(list);
 
-                            ItemCategoriesList list = new ItemCategoriesList();
-                            list.setItemCategories(response.body().getSubcategories());
-                            list.setScrollPositionForSelected(currentCategory.getRt_scroll_position());
-
-
-                            dataset.add(list);
+                            }
 
 
                         }
                         else if(item_count_item==0)
                         {
 
-                            if(searchQuery==null)
+
+                            if(PrefGeneral.getMultiMarketMode(getActivity()))
                             {
-
-                                if(PrefGeneral.isMultiMarketEnabled(getActivity()))
-                                {
 //                                    dataset.add(new CreateShopData());
-                                    dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListMultiMarket());
-                                }
-                                else
-                                {
-//                                    dataset.add(new CreateShopData());
-                                    dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListSingleMarket());
-                                }
-
+                                dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListMultiMarket());
                             }
                             else
                             {
-                                dataset.add(EmptyScreenDataListItem.noSearchResults());
+//                                    dataset.add(new CreateShopData());
+                                dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListSingleMarket());
                             }
-
                         }
 
 
@@ -742,26 +689,24 @@ public class ItemsByCatFragment extends Fragment implements
 
 
                         HeaderTitle headerItem = new HeaderTitle();
-                        FilterItemsInMarket filterItems = new FilterItemsInMarket();
-
 
 
 
                         if(searchQuery==null)
                         {
-                            if(response.body().getResults()!=null && response.body().getResults().size()>0)
+                            if(response.body().getResults().size()>0)
                             {
-                                headerItem.setHeading(currentCategory.getCategoryName() + " Items : " + item_count_item);
-//                                filterItems.setHeaderText(currentCategory.getCategoryName() + " Items : " + item_count_item);
+                                headerItem.setHeading(currentCategory.getCategoryName() + " Items");
 
-                                filterItems.setHeaderText(item_count_item + " " + currentCategory.getCategoryName() + " Items");
+                                dataset.add(headerItem);
                             }
                             else
                             {
                                 if(response.body().getSubcategories()!=null && response.body().getSubcategories().size()>0)
                                 {
                                     headerItem.setHeading("No Items in this category");
-                                    filterItems.setHeaderText("No Items in this category");
+
+                                    dataset.add(headerItem);
                                 }
                             }
 
@@ -772,20 +717,18 @@ public class ItemsByCatFragment extends Fragment implements
                             if(response.body().getResults().size()>0)
                             {
                                 headerItem.setHeading("Search Results");
-                                filterItems.setHeaderText("Search Results");
                             }
                             else
                             {
                                 headerItem.setHeading("No items for the given search !");
-                                filterItems.setHeaderText("No items for the given search !");
                             }
+
+
+                            dataset.add(headerItem);
                         }
 
 
 
-
-//                        dataset.add(headerItem);
-                        dataset.add(filterItems);
 
                     }
 
@@ -819,17 +762,8 @@ public class ItemsByCatFragment extends Fragment implements
 
             }
 
-
-
-
             @Override
             public void onFailure(Call<ItemEndPoint> call, Throwable t) {
-
-
-                if (isDetached()) {
-                    return;
-                }
-
 
                 if(isDestroyed)
                 {
@@ -860,20 +794,14 @@ public class ItemsByCatFragment extends Fragment implements
 
 
     @Override
-    public void notifyRequestSubCategory(ItemCategory itemCategory,int scrollPosition) {
+    public void notifyRequestSubCategory(ItemCategory itemCategory) {
 
         ItemCategory temp = currentCategory;
-        temp.setRt_scroll_position(scrollPosition);
-
         currentCategory = itemCategory;
         currentCategory.setParentCategory(temp);
 
         makeRefreshNetworkCall();
         resetPreviousPosition();
-
-
-        // End Search Mode
-        searchQuery = null;
     }
 
 
@@ -1084,12 +1012,12 @@ public class ItemsByCatFragment extends Fragment implements
     @Override
     public void buttonClick(String url) {
 
-        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+        if(PrefGeneral.getMultiMarketMode(getActivity()))
         {
 
             if(getActivity() instanceof ShowFragment)
             {
-                ((ShowFragment) getActivity()).showProfileFragment();
+                ((ShowFragment) getActivity()).showProfileFragment(false);
             }
         }
         else
@@ -1098,47 +1026,4 @@ public class ItemsByCatFragment extends Fragment implements
             makeRefreshNetworkCall();
         }
     }
-
-
-
-    @Override
-    public void filterShopUpdated() {
-
-        makeRefreshNetworkCall();
-    }
-
-
-
-
-
-
-    @Override
-    public void listItemClick(Item item, int position) {
-
-        Intent intent = new Intent(getActivity(), ShopsAvailable.class);
-        intent.putExtra("item_id",item.getItemID());
-        intent.putExtra("item_json",UtilityFunctions.provideGson().toJson(item));
-
-        startActivity(intent);
-    }
-
-
-
-
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==3262 && resultCode ==3121)
-        {
-            resetCurrentCategory();
-            setMarketName();
-            makeRefreshNetworkCall();
-
-        }
-    }
-
-
 }

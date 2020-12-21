@@ -28,7 +28,7 @@ public class PrefSortShopsByCategory {
 
         // write to the shared preference
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("shop_sort_by_category", sort_by);
+        editor.putString("sort_shops_by_category", sort_by);
         editor.apply();
     }
 
@@ -43,7 +43,7 @@ public class PrefSortShopsByCategory {
         }
 
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getString("shop_sort_by_category", SlidingLayerSortShops.SORT_BY_DISTANCE);
+        return sharedPref.getString("sort_shops_by_category", SlidingLayerSortShops.SORT_BY_DISTANCE);
     }
 
 

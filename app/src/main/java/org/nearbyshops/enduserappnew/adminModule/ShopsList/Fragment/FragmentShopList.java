@@ -7,12 +7,15 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+
+import com.google.gson.Gson;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
@@ -27,10 +30,9 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifyTitleChanged;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterShopsAdminData;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterShopsAdmin;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.adminModule.ShopsList.SlidingLayerSort.PrefSortShops;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +44,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        NotifySearch, NotifySort, NotifyLocation,
-        ViewHolderFilterShopsAdmin.ListItemClick,
+public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnRefreshListener , NotifySearch, NotifySort, NotifyLocation ,
         ViewHolderShopSmall.ListItemClick {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -64,7 +64,7 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
     private SwipeRefreshLayout swipeContainer;
 
 
-    final private int limit = 10;
+    final private int limit = 5;
     private int offset = 0;
     private int item_count = 0;
 
@@ -92,9 +92,6 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
         fragment.setArguments(args);
         return fragment;
     }
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -236,8 +233,7 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
         Call<ShopEndPoint> call = null;
 
         String current_sort = "";
-//        current_sort = PrefSortShopsAdmin.getSort(getContext()) + " " + PrefSortShopsAdmin.getAscending(getContext());
-        current_sort = ViewHolderFilterShopsAdmin.getSortString(getActivity());
+        current_sort = PrefSortShops.getSort(getContext()) + " " + PrefSortShops.getAscending(getContext());
 
 
         Double latitude = null;
@@ -327,22 +323,16 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
                     if(clearDataset)
                     {
                         dataset.clear();
-
-                        if (response.body() != null) {
-
-                            item_count = response.body().getItemCount();
-                        }
-
-                        dataset.add(new FilterShopsAdminData());
+                        item_count = response.body().getItemCount();
                     }
 
 
-                    if (response.body() != null && response.body().getResults() != null) {
 
+                    if(response.body().getResults()!=null)
+                    {
                         dataset.addAll(response.body().getResults());
                         adapter.notifyDataSetChanged();
                         notifyTitleChanged();
-
                     }
 
 
@@ -414,13 +404,11 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
     private void showToastMessage(String message)
     {
-//        if(getActivity()!=null)
-//        {
-//            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
-//        }
+        if(getActivity()!=null)
+        {
+            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        }
 
-
-        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
@@ -443,14 +431,14 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "New (" + (dataset.size()-1)
+                                "New (" + dataset.size()
                                         + "/" + item_count + ")",0);
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)==MODE_ENABLED)
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Enabled (" + (dataset.size()-1)
+                                "Enabled (" + dataset.size()
                                         + "/" + item_count + ")",1);
 
             }
@@ -458,14 +446,14 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Disabled (" + (dataset.size()-1)
+                                "Disabled (" + dataset.size()
                                         + "/" + item_count + ")",2);
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)==MODE_WAITLISTED)
             {
                 ((NotifyTitleChanged)getActivity())
                         .NotifyTitleChanged(
-                                "Waitlisted (" + (dataset.size()-1)
+                                "Waitlisted (" + dataset.size()
                                         + "/" + item_count + ")",3);
 
             }
@@ -538,26 +526,14 @@ public class FragmentShopList extends Fragment implements SwipeRefreshLayout.OnR
 
     private void openEditShopScreen(Shop shop)
     {
-
-//        Gson gson = UtilityFunctions.provideGson();
-//        String jsonString = gson.toJson(shop);
+        Gson gson = UtilityFunctions.provideGson();
+        String jsonString = gson.toJson(shop);
 
         Intent intent = new Intent(getActivity(), EditShop.class);
-//        intent.putExtra("shop_profile",jsonString);
+        intent.putExtra("shop_profile",jsonString);
         intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_UPDATE_BY_ADMIN);
-        intent.putExtra("shop_id",shop.getShopID());
         startActivity(intent);
     }
-
-
-
-
-    @Override
-    public void filterShopUpdated() {
-
-        makeRefreshNetworkCall();
-    }
-
 
 
 }

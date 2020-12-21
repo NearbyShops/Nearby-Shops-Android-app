@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,8 +26,8 @@ import org.nearbyshops.enduserappnew.API.ShopImageService;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopImage.EditShopImage;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShopImage.EditShopImageFragment;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditShopImage.PrefShopImage;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderImages.ViewHolderShopImage;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShopImage.UtilityShopImage;
+import org.nearbyshops.enduserappnew.ImageList.ImageListForShop.ViewHolder.ViewHolderShopImage;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ShopImage;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -36,6 +36,7 @@ import org.nearbyshops.enduserappnew.Interfaces.OnFilterChanged;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 
 import butterknife.OnClick;
@@ -284,6 +285,10 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
     @Override
     public void onRefresh() {
 
+        clearDataset = true;
+//        getRowCountVehicle = true;
+//        resetOffsetVehicle = true;
+
         getShopImages();
     }
 
@@ -293,6 +298,17 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
     private void getShopImages()
     {
 
+//        if(resetOffsetVehicle)
+//        {
+//            offset = 0;
+//            resetOffsetVehicle = false;
+//        }
+
+
+        if(clearDataset)
+        {
+            offset=0;
+        }
 
 
 
@@ -300,11 +316,13 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-        Call<ShopImageEndPoint> call = service.getShopImagesForEnduser(
+        Call<ShopImageEndPoint> call = service.getShopImages(
                 shopID,
                 ShopImage.IMAGE_ORDER,
-                limit, offset
+                limit, offset,
+                clearDataset,false
         );
+
 
 
         call.enqueue(new Callback<ShopImageEndPoint>() {
@@ -320,38 +338,42 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
                 if(response.code() == 200 && response.body()!=null) {
 
-                    dataset.clear();
+                    if (clearDataset) {
+                        dataset.clear();
+                        clearDataset = false;
 
+                        item_count = response.body().getItemCount();
 
+//                        listAdapter.setItemCount(item_count);
 
-                    dataset.add(new HeaderTitle("Shop Images"));
-
-
-//                    if(response.body().getResults().size()==0 && response.body().getShopDetails()==null)
-//                    {
-//                        dataset.add(EmptyScreenDataFullScreen.emptyScreenShopImages());
-//                    }
-
-
-
-                    if(response.body().getShopDetails()!=null)
-                    {
-                        dataset.add(response.body().getShopDetails());
+                        if(item_count>0)
+                        {
+                            dataset.add(new HeaderTitle("Shop Images"));
+                        }
                     }
+
+
+                    if(item_count==0)
+                    {
+//                        emptyScreen.setVisibility(View.VISIBLE);
+
+                        dataset.add(EmptyScreenDataFullScreen.emptyScreenShopImages());
+                    }
+                    else
+                    {
+//                        emptyScreen.setVisibility(View.GONE);
+                    }
+
+
+
 
 
 
                     if(response.body().getResults()!=null)
                     {
                         dataset.addAll(response.body().getResults());
+//                        shopListData = response.body().getResults();
                     }
-
-
-                    shopImageEndPoint = response.body();
-
-
-
-
 
                     listAdapter.notifyDataSetChanged();
                 }
@@ -386,7 +408,7 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
     private void showToastMessage(String message)
     {
-        UtilityFunctions.showToastMessage(getActivity(),message);
+        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -402,8 +424,6 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-    ShopImageEndPoint shopImageEndPoint;
-
 
 
     @Override
@@ -411,25 +431,16 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
         Intent intent = new Intent(getActivity(), ImageSliderShop.class);
-//        List<Object> list = new ArrayList<>();
-//        list.addAll(dataset);
-//        list.remove(0);
+        List<Object> list = new ArrayList<>();
+        list.addAll(dataset);
+        list.remove(0);
+
+        String json = UtilityFunctions.provideGson().toJson(list);
+        intent.putExtra("images_list",json);
+        intent.putExtra("position",position-1);
 
 
-//        String json = UtilityFunctions.provideGson().toJson(list);
-//        intent.putExtra("images_list",json);
-//        intent.putExtra("position",position-1);
-//        startActivity(intent);
-
-
-
-        if(shopImageEndPoint!=null)
-        {
-            String json = UtilityFunctions.provideGson().toJson(shopImageEndPoint);
-            intent.putExtra("images_list",json);
-            intent.putExtra("position",position-1);
-            startActivity(intent);
-        }
+        startActivity(intent);
     }
 
 
@@ -548,7 +559,7 @@ public class ShopImageListFragment extends Fragment implements SwipeRefreshLayou
         intent.putExtra(EditShopImageFragment.EDIT_MODE_INTENT_KEY, EditShopImageFragment.MODE_UPDATE);
         intent.putExtra(EditShopImageFragment.SHOP_ID_INTENT_KEY,shopId);
 
-        PrefShopImage.saveItemImage(shopImage,getActivity());
+        UtilityShopImage.saveItemImage(shopImage,getActivity());
         startActivity(intent);
     }
 

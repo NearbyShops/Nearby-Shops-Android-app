@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    tools:context="org.nearbyshops.enduserappnew.Checkout.backups.PlaceOrderActivity">
+    tools:context="org.nearbyshops.enduserappnew.Checkout.PlaceOrderActivity">
 
     <!--android:theme="@style/AppTheme.AppBarOverlay"-->
     <com.google.android.material.appbar.AppBarLayout

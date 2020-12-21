@@ -30,22 +30,6 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:padding="10dp"
-            android:gravity="center"
-            android:background="@drawable/button_green"
-            android:textAllCaps="false"
-            android:layout_marginTop="10dp"
-            android:id="@+id/send_notification"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Send Notification"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
 
 
 
@@ -53,7 +37,7 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
             android:layout_marginTop="10dp"
             android:id="@+id/border_top"
             android:background="#44000000"
-            app:layout_constraintTop_toBottomOf="@id/send_notification"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="0dp"
@@ -366,40 +350,6 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
 
-<!--        <LinearLayout-->
-<!--            android:visibility="gone"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:id="@+id/shop_dashboard"-->
-<!--            android:padding="20dp"-->
-<!--            android:background="@color/mapbox_blue"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintRight_toRightOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/header_tutorials"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content">-->
-
-
-
-
-<!--            <TextView-->
-<!--                android:textSize="24sp"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:text="Shop Dashboard"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content" />-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="match_parent"/>-->
-
-
-<!--        </LinearLayout>-->
-
-
-
-
 
 
         <TextView
@@ -428,6 +378,38 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
         <ImageView
+            android:layout_marginEnd="5dp"
+            android:paddingBottom="40dp"
+            android:paddingTop="10dp"
+            app:srcCompat="@drawable/ic_search_white_24px"
+            android:layout_marginTop="10dp"
+            android:background="@color/darkGreen"
+            android:id="@+id/orders_database"
+            app:layout_constraintEnd_toStartOf="@id/service_config"
+            app:layout_constraintTop_toBottomOf="@+id/header_orders"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="150dp" />
+
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@+id/orders_database"
+            app:layout_constraintRight_toRightOf="@+id/orders_database"
+            app:layout_constraintBottom_toBottomOf="@+id/orders_database"
+            android:padding="10dp"
+            android:id="@+id/text_orders_history"
+            android:textSize="@dimen/menu_item_text_size"
+            android:textColor="#ffffff"
+            android:text="@string/content_admin_dashboard_text_orders_history_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+        <ImageView
             android:layout_marginStart="5dp"
             android:paddingBottom="40dp"
             android:paddingTop="10dp"
@@ -438,10 +420,9 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
             android:id="@+id/service_config"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_orders"
-            app:layout_constraintStart_toEndOf="@id/vertical_guide"
+            app:layout_constraintStart_toEndOf="@id/orders_database"
             android:layout_width="0dp"
             android:layout_height="150dp" />
-
 
 
 
@@ -456,42 +437,6 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
             android:text="@string/content_admin_dashboard_text_service_config_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
-
-
-
-
-
-
-        <ImageView
-            android:layout_marginEnd="5dp"
-            android:paddingBottom="40dp"
-            android:paddingTop="10dp"
-            android:tint="@color/white"
-            app:srcCompat="@drawable/ic_settings"
-            android:layout_marginTop="10dp"
-            android:background="@color/grey800"
-            android:id="@+id/market_settings"
-            app:layout_constraintTop_toBottomOf="@id/header_orders"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/vertical_guide"
-            android:layout_width="0dp"
-            android:layout_height="150dp" />
-
-
-
-        <TextView
-            app:layout_constraintLeft_toLeftOf="@+id/market_settings"
-            app:layout_constraintRight_toRightOf="@+id/market_settings"
-            app:layout_constraintBottom_toBottomOf="@+id/market_settings"
-            android:padding="10dp"
-            android:textSize="@dimen/menu_item_text_size"
-            android:textColor="#ffffff"
-            android:text="Market Settings"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-
-
 
 
 
@@ -530,12 +475,22 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
         <TextView
-            app:layout_constraintTop_toBottomOf="@+id/service_config"
+            android:id="@+id/border_accounts"
+            android:layout_marginTop="10dp"
+            android:background="#44000000"
+            app:layout_constraintTop_toBottomOf="@+id/orders_database"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/border_accounts"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:padding="5dp"
-            android:id="@+id/header_delivery"
-            android:text="Delivery"
+            android:id="@+id/header_accounts"
+            android:text="@string/content_admin_dashboard_header_accounts_text"
             android:textSize="17sp"
             android:background="@color/light_grey"
             android:layout_width="0dp"
@@ -545,100 +500,51 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
 
+
+
+<!--
+        <ImageView
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:paddingBottom="50dp"
+            android:paddingTop="10dp"
+            android:background="@color/cyan900"
+            android:id="@+id/edit_profile"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_face_black_24px"
+            app:layout_constraintTop_toBottomOf="@+id/header_accounts"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            app:layout_constraintLeft_toLeftOf="@+id/vertical_guide" />
+
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@+id/edit_profile"
+            app:layout_constraintRight_toRightOf="@+id/edit_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_profile"
+            android:padding="10dp"
+            android:id="@+id/text_edit_profile"
+            android:textSize="@dimen/menu_item_text_size"
+            android:textColor="#ffffff"
+            android:text="Edit Profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />-->
+
+
+
+
         <ImageView
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             android:paddingTop="10dp"
             android:paddingBottom="40dp"
-            android:background="@color/buttonColor"
-            android:id="@+id/delivery_inventory"
-            android:layout_marginTop="10dp"
-            app:layout_constraintRight_toLeftOf="@+id/vertical_guide"
-            app:layout_constraintTop_toBottomOf="@+id/header_delivery"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:srcCompat="@drawable/ic_dashboard_white_24px"
-            android:layout_width="0dp"
-            android:layout_height="150dp" />
-
-
-
-        <TextView
-            app:layout_constraintLeft_toLeftOf="@+id/delivery_inventory"
-            app:layout_constraintRight_toRightOf="@+id/delivery_inventory"
-            app:layout_constraintBottom_toBottomOf="@+id/delivery_inventory"
-            android:padding="10dp"
-            android:textSize="@dimen/menu_item_text_size"
-            android:textColor="#ffffff"
-            android:text="Delivery Inventory"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-
-
-
-        <ImageView
-            android:layout_marginStart="5dp"
-            android:paddingBottom="40dp"
-            app:srcCompat="@drawable/ic_search_white_24px"
-            android:background="@color/darkGreen"
-            android:id="@+id/orders_database"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/delivery_inventory"
-            app:layout_constraintStart_toEndOf="@id/vertical_guide"
-            android:layout_width="0dp"
-            android:layout_height="150dp" />
-
-
-        <TextView
-            app:layout_constraintLeft_toLeftOf="@+id/orders_database"
-            app:layout_constraintRight_toRightOf="@+id/orders_database"
-            app:layout_constraintBottom_toBottomOf="@+id/orders_database"
-            android:padding="10dp"
-            android:id="@+id/text_orders_history"
-            android:textSize="@dimen/menu_item_text_size"
-            android:textColor="#ffffff"
-            android:text="@string/content_admin_dashboard_text_orders_history_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-
-
-
-
-        <TextView
-            android:id="@+id/border_accounts"
-            android:layout_marginTop="10dp"
-            android:background="#44000000"
-            app:layout_constraintTop_toBottomOf="@id/delivery_inventory"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="1dp" />
-
-
-        <TextView
-            android:id="@+id/header_accounts"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/light_grey"
-            android:padding="5dp"
-            android:text="@string/content_admin_dashboard_header_accounts_text"
-            android:textSize="17sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/border_accounts" />
-
-        <ImageView
-            android:paddingTop="10dp"
-            android:paddingBottom="40dp"
             android:background="@color/orange"
             android:id="@+id/user_accounts"
             android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/vertical_guide"
             app:layout_constraintTop_toBottomOf="@+id/header_accounts"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:srcCompat="@drawable/ic_supervisor_account_black_24px"
             android:layout_width="0dp"
             android:layout_height="150dp" />
@@ -666,7 +572,7 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
             android:background="@color/gplus_color_2"
             android:id="@+id/staff_accounts"
             android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/user_accounts"
+            app:layout_constraintTop_toBottomOf="@+id/header_accounts"
             app:layout_constraintStart_toStartOf="@id/vertical_guide"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_supervisor_account_black_24px"
@@ -688,50 +594,19 @@ android:paddingTop="@dimen/activity_vertical_margin"   -->
 
 
 
-        <ImageView
-            android:layout_marginEnd="5dp"
-            android:paddingBottom="40dp"
-            android:background="@color/orange_new"
-            android:id="@+id/delivery_accounts"
-            app:layout_constraintTop_toTopOf="@id/staff_accounts"
-            app:layout_constraintEnd_toStartOf="@id/vertical_guide"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_supervisor_account_black_24px"
-            android:layout_width="0dp"
-            android:layout_height="150dp" />
-
-
-        <TextView
-            app:layout_constraintLeft_toLeftOf="@+id/delivery_accounts"
-            app:layout_constraintRight_toRightOf="@+id/delivery_accounts"
-            app:layout_constraintBottom_toBottomOf="@+id/delivery_accounts"
-            android:padding="10dp"
-            android:textSize="@dimen/menu_item_text_size"
-            android:textColor="#ffffff"
-            android:text="Delivery Staff Accounts"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-
-
-
-
-
-
-
-
 
         <TextView
             android:id="@+id/border_bottom"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:background="#88000000"
-            app:layout_constraintTop_toBottomOf="@id/delivery_accounts"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/staff_accounts"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="0dp"
             android:layout_height="1dp" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,5 @@
 package org.nearbyshops.enduserappnew.UtilityScreens.zHighlightSlider.Model;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,56 +20,23 @@ public class Highlights {
 
 
 
-    public static Highlights getHighlightsFrontScreen(Context context)
+    public static Highlights getHighlightsCabRental()
     {
-
-        if(context==null)
-        {
-            return null;
-        }
-
 
         List<Object> list = new ArrayList<>();
 
 
-        list.add(HighlightItem.slideOneFrontScreen(context));
-        list.add(HighlightItem.slideTwoFrontScreen(context));
-        list.add(HighlightItem.slideThreeFrontScreen(context));
+        list.add(HighlightItem.getNegotiatePrices());
+        list.add(HighlightItem.getBookingHelpline());
 
         Highlights highlights = new Highlights();
         highlights.setHighlightList(list);
-        highlights.setListTitle("Shop Locally and Get Home Delivery");
+        highlights.setListTitle(null);
 
 
         return highlights;
     }
 
-
-
-
-    public static Highlights getHighlightsItemsScreen(Context context)
-    {
-
-        if(context==null)
-        {
-            return null;
-        }
-
-
-        List<Object> list = new ArrayList<>();
-
-
-        list.add(HighlightItem.slideOne(context));
-        list.add(HighlightItem.slideTwo(context));
-        list.add(HighlightItem.slideThree(context));
-
-        Highlights highlights = new Highlights();
-        highlights.setHighlightList(list);
-        highlights.setListTitle("Find Items in your Market");
-
-
-        return highlights;
-    }
 
 
 

@@ -371,62 +371,33 @@ public class ItemsInShopFragment extends Fragment implements
 
 
 
-            endPointCall = shopItemService.getShopItemsByShop(
-                    null,false,
-                    true,
+            endPointCall = shopItemService.getShopItemEndpoint(
+                    null,
                     currentShop.getShopID(),
                     null,null,null,null,null,null,null,
                     null,null,
-                    null,false,current_sort,
+                    null,null,null,
+                    null,current_sort,
                     limit_item,offset_item,
                     clearDataset, false);
-
-
-
-//            endPointCall = shopItemService.getShopItemEndpoint(
-//                    null,false,
-//                    currentShop.getShopID(),
-//                    null,null,null,null,null,null,null,
-//                    null,null,
-//                    null,null,null,
-//                    null,current_sort,
-//                    limit_item,offset_item,
-//                    clearDataset, false);
 
         }
         else
         {
 
 
-            endPointCall = shopItemService.getShopItemsByShop(
-                    null,false,
-                    false,
+            endPointCall = shopItemService.getShopItemEndpoint(
+                    null,
                     currentShop.getShopID(),
                     null,
                     null,null,
                     null,null,
                     null,null,
                     null,null,
-                    searchQuery,false,current_sort,
+                    null,null,null,
+                    searchQuery,current_sort,
                     limit_item,offset_item,
-                    clearDataset, false
-            );
-
-
-
-
-//            endPointCall = shopItemService.getShopItemEndpoint(
-//                    null,false,
-//                    currentShop.getShopID(),
-//                    null,
-//                    null,null,
-//                    null,null,
-//                    null,null,
-//                    null,null,
-//                    null,null,null,
-//                    searchQuery,current_sort,
-//                    limit_item,offset_item,
-//                    clearDataset, false);
+                    clearDataset, false);
         }
 
 
@@ -535,14 +506,8 @@ public class ItemsInShopFragment extends Fragment implements
 //        shopItem.setDateTimeAdded(null);
 //        shopItem.setLastUpdateDateTime(null);
 
-
-        int shopID = PrefShopAdminHome.getShop(getActivity()).getShopID();
-
-
-
         Call<ResponseBody> call = shopItemService.putShopItem(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
-                shopID,
                 shopItem
         );
 

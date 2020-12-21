@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.nearbyshops.enduserappnew.Model.Shop;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterShopsAdminData;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterShopsAdmin;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopMedium;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
@@ -37,8 +35,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int VIEW_TYPE_HEADER = 4;
     public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 5;
     public static final int VIEW_TYPE_EMPTY_SCREEN = 6;
-
-    public static final int VIEW_TYPE_FILTER_SHOPS = 7;
 
 
 
@@ -78,10 +74,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             return ViewHolderEmptyScreenFullScreen.create(parent,context,fragment);
         }
-        else if(viewType==VIEW_TYPE_FILTER_SHOPS)
-        {
-            return ViewHolderFilterShopsAdmin.create(parent,context,fragment);
-        }
+
 
 
         return null;
@@ -120,11 +113,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
             ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
         }
-        else if(holder instanceof ViewHolderFilterShopsAdmin)
-        {
-            ((ViewHolderFilterShopsAdmin) holder).setItem((FilterShopsAdminData) dataset.get(position));
-        }
-
 
     }
 
@@ -158,10 +146,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
         {
             return VIEW_TYPE_EMPTY_SCREEN;
-        }
-        else if(dataset.get(position) instanceof FilterShopsAdminData)
-        {
-            return VIEW_TYPE_FILTER_SHOPS;
         }
 
         return -1;

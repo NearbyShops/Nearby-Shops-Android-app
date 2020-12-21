@@ -4,16 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
 
 
@@ -23,9 +18,6 @@ public class ViewHolderSignIn extends RecyclerView.ViewHolder{
 
     private Context context;
     private Fragment fragment;
-
-    @BindView(R.id.message)
-    TextView message;
 
 
 
@@ -49,17 +41,6 @@ public class ViewHolderSignIn extends RecyclerView.ViewHolder{
         ButterKnife.bind(this,itemView);
         this.context = context;
         this.fragment = fragment;
-
-
-
-        if(!PrefGeneral.isMultiMarketEnabled(context))
-        {
-            message.setText("Sign In to view, rate and review your favourite Shops !");
-        }
-        else
-        {
-            message.setText("Sign In to view, rate and review your favourite Markets !");
-        }
     }
 
 

@@ -2,20 +2,17 @@ package org.nearbyshops.enduserappnew.API;
 
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
-import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
 
-import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -28,13 +25,6 @@ public interface ShopService {
     @POST("/api/v1/Shop")
     Call<Shop> createShop(@Header("Authorization") String headers,
                           @Body Shop shop);
-
-
-
-    @POST ("/api/v1/Shop/CreateShopByAdmin/{UserID}")
-    Call<Shop> createShopByStaff(@Header("Authorization") String headers,
-                                 @Body Shop shop, @Path("UserID")int userID
-    );
 
 
 
@@ -78,31 +68,11 @@ public interface ShopService {
 
 
 
-    @GET ("/api/v1/Shop/GetShopDetailsForDetailScreen")
-    Call<ShopImageEndPoint> getShopDetailsForDetailScreen(
-            @Header("Authorization")String headerParam,
-            @Query("GetShopDetails")boolean getShopDetails,
-            @Query("ShopID")Integer shopID,
-            @Query("SortBy") String sortBy,
-            @Query("Limit")Integer limit, @Query("Offset")int offset
-    );
-
-
-
-
 
     @GET("/api/v1/Shop/GetShopForShopAdmin")
     Call<Shop> getShopForShopAdmin(@Header("Authorization") String headers,
                                    @Query("GetStats")boolean getStats
     );
-
-
-
-    @GET ("/api/v1/Shop/GetShopIDForShopAdmin/{ShopAdminID}")
-    Call<Shop> getShopIDForShopAdmin(@Header("Authorization") String headers,
-                                     @Path("ShopAdminID") int shopAdminID
-    );
-
 
 
 
@@ -139,6 +109,7 @@ public interface ShopService {
 
     @GET ("/api/v1/Shop")
     Call<ShopEndPoint> getShops(
+            @Query("DistributorID") Integer distributorID,
             @Query("LeafNodeItemCategoryID") Integer itemCategoryID,
             @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
             @Query("deliveryRangeMax") Double deliveryRangeMax,
@@ -147,8 +118,7 @@ public interface ShopService {
             @Query("SearchString") String searchString,
             @Query("SortBy") String sortBy,
             @Query("Limit") Integer limit, @Query("Offset") Integer offset,
-            @Query("GetRowCount")boolean getRowCount,
-            @Query("MetadataOnly")boolean getOnlyMetaData
+            @Query("metadata_only") Boolean metaonly
     );
 
 
@@ -170,20 +140,19 @@ public interface ShopService {
 
 
 
-
-
-    @GET("/api/v1/Shop/FilterByItemCat")
+    @GET("/api/v1/Shop/FilterByItemCat/{ItemCategoryID}")
     Call<ShopEndPoint> filterShopsByItemCategory(
-            @Query("ItemCategoryID") Integer itemCategoryID,
+            @Path("ItemCategoryID") Integer itemCategoryID,
+            @Query("DistributorID") Integer distributorID,
             @Query("latCenter") Double latCenter, @Query("lonCenter") Double lonCenter,
+            @Query("deliveryRangeMax") Double deliveryRangeMax,
+            @Query("deliveryRangeMin") Double deliveryRangeMin,
             @Query("proximity") Double proximity,
-            @Query("GetSubcategories")boolean getSubcategories,
-            @Query("GetBannerImages")boolean getBannerImages,
-            @Query("SearchString") String searchString,
             @Query("SortBy") String sortBy,
             @Query("Limit") Integer limit, @Query("Offset") Integer offset,
-            @Query("GetRowCount")boolean getRowCount,
-            @Query("MetadataOnly")boolean getOnlyMetaData);
+            @Query("metadata_only") Boolean metaonly);
+
+
 
 
 
@@ -213,15 +182,9 @@ public interface ShopService {
 
     // Image Calls
 
-
-//    @POST("/api/v1/Shop/Image")
-//    Call<Image> uploadImage(@Header("Authorization") String headers,
-//                            @Body RequestBody image);
-
-    @Multipart
     @POST("/api/v1/Shop/Image")
     Call<Image> uploadImage(@Header("Authorization") String headers,
-                            @Part MultipartBody.Part img);
+                            @Body RequestBody image);
 
 
     @DELETE("/api/v1/Shop/Image/{name}")

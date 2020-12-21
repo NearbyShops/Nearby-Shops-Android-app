@@ -71,7 +71,8 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             return ViewHolderHeader.createBoldAndBig(parent,context);
         }
 
-        return ViewHolderHeader.createBoldAndBig(parent,context);
+
+        return null;
     }
 
 

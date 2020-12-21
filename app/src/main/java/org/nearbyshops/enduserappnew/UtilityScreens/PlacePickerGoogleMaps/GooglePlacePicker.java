@@ -29,7 +29,7 @@ public class GooglePlacePicker extends AppCompatActivity {
             // show pickup
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container,new AddressPickerFragment(),TAG_PICKUP)
+                    .replace(R.id.fragment_container,new PlacePickerWithMapFragment(),TAG_PICKUP)
                     .commitNow();
         }
 

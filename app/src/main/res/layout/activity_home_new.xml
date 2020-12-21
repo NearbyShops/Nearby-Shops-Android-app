@@ -32,12 +32,6 @@
 
 
 
-<!--    app:backgroundTint="@color/bottom_nav_background"-->
-<!--    app:itemIconTint="@color/bottom_nav_item_color"-->
-<!--    app:itemTextColor="@color/bottom_nav_item_text_color"-->
-
-
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -53,7 +47,6 @@
 
 
     <FrameLayout
-        android:background="@color/app_background_color"
         android:id="@+id/fragment_container"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintTop_toTopOf="parent"

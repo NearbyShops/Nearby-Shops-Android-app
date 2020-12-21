@@ -1,6 +1,7 @@
 package org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,20 +9,31 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabase.ItemsDatabase;
+import org.nearbyshops.enduserappnew.Login.Login;
+import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Model.ModelStats.ShopStats;
 import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
+import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.ShopSuggestionsData;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
-import org.nearbyshops.enduserappnew.InventoryOrders.InventoryHomeDelivery.HomeDelivery;
-import org.nearbyshops.enduserappnew.InventoryOrders.InventoryPickFromShop.PickFromShopInventory;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShop.ShopDashboard;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopStaff.ShopDashboardForStaff;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.HomeDeliveryInventory.HomeDelivery;
+import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.PickFromShopInventory.PickFromShopInventory;
 import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.QuickStockEditor;
 
 import butterknife.BindView;

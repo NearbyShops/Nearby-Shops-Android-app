@@ -120,11 +120,6 @@ public class ViewHolderFilterUsers extends RecyclerView.ViewHolder {
 
         User user = PrefLogin.getUser(context);
 
-        if(user==null)
-        {
-            return;
-        }
-
         if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
         {
             bottomStrip.setVisibility(View.GONE);

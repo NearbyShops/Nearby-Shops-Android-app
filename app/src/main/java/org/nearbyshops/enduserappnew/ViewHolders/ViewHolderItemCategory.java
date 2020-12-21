@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -81,7 +81,7 @@ public class ViewHolderItemCategory extends RecyclerView.ViewHolder{
 
         if(fragment instanceof ListItemClick)
         {
-            ((ListItemClick) fragment).notifyRequestSubCategory(itemCategory,getLayoutPosition());
+            ((ListItemClick) fragment).notifyRequestSubCategory(itemCategory);
         }
 
 
@@ -123,7 +123,7 @@ public class ViewHolderItemCategory extends RecyclerView.ViewHolder{
 
     public interface ListItemClick
     {
-        void notifyRequestSubCategory(ItemCategory itemCategory, int scrollPosition);
+        void notifyRequestSubCategory(ItemCategory itemCategory);
     }
 
 

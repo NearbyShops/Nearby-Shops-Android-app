@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -21,21 +22,18 @@ import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditAddressFragment;
-import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditDeliveryAddress;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
-import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditAddressFragment;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditDeliveryAddress.EditDeliveryAddress;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeliveryAddress;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.ButtonData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderButton;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
 
 import retrofit2.Call;
@@ -49,7 +47,7 @@ import java.util.List;
 
 public class DeliveryAddressActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener,
         ViewHolderDeliveryAddress.ListItemClick, View.OnClickListener,
-        ViewHolderEmptyScreenFullScreen.ListItemClick, ViewHolderButton.ListItemClick {
+        ViewHolderEmptyScreenFullScreen.ListItemClick {
 
 
 
@@ -179,11 +177,8 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
     void showToastMessage(String message)
     {
-        UtilityFunctions.showToastMessage(this,message);
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
-
-
-
 
     @Override
     public void onRefresh() {
@@ -231,9 +226,6 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
             @Override
             public void onResponse(Call<List<DeliveryAddress>> call, Response<List<DeliveryAddress>> response) {
 
-
-
-
                 if(isDestroyed())
                 {
                     return;
@@ -245,7 +237,6 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
                 {
                     if(response.body()!=null)
                     {
-                        dataset.add(new ButtonData("Add new address"));
                         dataset.addAll(response.body());
 
                         if(response.body().size()==0)
@@ -322,11 +313,15 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     public void notifyEdit(DeliveryAddress deliveryAddress) {
 
 
+//        Intent intent = new Intent(this,EditAddressActivity.class);
+//        intent.putExtra(EditAddressActivity.DELIVERY_ADDRESS_INTENT_KEY,deliveryAddress);
+//        startActivity(intent);
+
+
         String json = UtilityFunctions.provideGson().toJson(deliveryAddress);
 
 
-
-        Intent intent = new Intent(this, EditDeliveryAddress.class);
+        Intent intent = new Intent(this,EditDeliveryAddress.class);
         intent.putExtra(EditAddressFragment.EDIT_MODE_INTENT_KEY, EditAddressFragment.MODE_UPDATE);
         intent.putExtra(EditAddressFragment.DELIVERY_ADDRESS_INTENT_KEY,json);
         startActivity(intent);
@@ -372,12 +367,6 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-
-                if (isDestroyed()) {
-                    return;
-                }
-
-
                 if(response.code()==200)
                 {
                     showToastMessage("Successful !");
@@ -410,10 +399,6 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
     @Override
     public void notifyListItemClick(DeliveryAddress deliveryAddress) {
 
-
-        PrefLocation.saveDeliveryAddress(deliveryAddress,this);
-        PrefLocation.saveLatLon(deliveryAddress.getLatitude(),deliveryAddress.getLongitude(),this);
-        PrefLocation.locationSetByUser(true,this);
 
         String json = UtilityFunctions.provideGson().toJson(deliveryAddress);
 
@@ -480,17 +465,10 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 //        startActivity(intent);
 
 
-        addNewAddress();
-
-    }
-
-
-
-    void addNewAddress()
-    {
-        Intent intent = new Intent(this, EditDeliveryAddress.class);
+        Intent intent = new Intent(this,EditDeliveryAddress.class);
         intent.putExtra(EditAddressFragment.EDIT_MODE_INTENT_KEY, EditAddressFragment.MODE_ADD);
         startActivityForResult(intent,21);
+
     }
 
 
@@ -516,10 +494,4 @@ public class DeliveryAddressActivity extends AppCompatActivity implements SwipeR
 
 
 
-
-
-    @Override
-    public void buttonClick(ButtonData data) {
-        addNewAddress();
-    }
 }

@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.Model.ModelImages;
 
 import org.nearbyshops.enduserappnew.Model.Item;
 
-import java.io.InputStream;
 import java.sql.Timestamp;
 
 /**
@@ -74,29 +73,6 @@ public class ItemImage {
     private int imageOrder;
 
 
-    private InputStream inputStream;
-
-    private byte[] picBytes;
-
-
-
-
-
-    public byte[] getPicBytes() {
-        return picBytes;
-    }
-
-    public void setPicBytes(byte[] picBytes) {
-        this.picBytes = picBytes;
-    }
-
-    public InputStream getInputStream() {
-        return inputStream;
-    }
-
-    public void setInputStream(InputStream inputStream) {
-        this.inputStream = inputStream;
-    }
 
     public Timestamp getTimestampUpdated() {
         return timestampUpdated;

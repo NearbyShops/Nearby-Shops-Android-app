@@ -16,7 +16,6 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            app:titleTextColor="@color/header_text_color"
             android:id="@+id/toolbar"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
@@ -295,44 +294,6 @@
                         <!--
                             android:textColor="#ffffff"
                             android:background="@color/blueGrey800"-->
-
-
-
-
-
-                <LinearLayout
-                    android:visibility="gone"
-                    android:background="@color/light_grey"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:textSize="15sp"
-                        android:padding="5dp"
-                        android:text="Delivery Slots"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content" />
-
-                    <ImageView
-                        android:id="@+id/sync_refresh"
-                        android:background="@color/gplus_color_2"
-                        app:srcCompat="@drawable/ic_sync_black_24dp"
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
-
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:visibility="gone"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/delivery_slot_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp" />
 
 
 
