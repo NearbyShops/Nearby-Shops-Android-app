@@ -15,12 +15,10 @@ import butterknife.OnClick;
 
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.Model.DeliverySlot;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusPickFromShop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 
@@ -172,11 +170,8 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
 
             deliveryAddress.setText(deliveryAddressLocal.getDeliveryAddress());
 
-            User user = PrefLogin.getUser(context);
 
-
-            if(context.getResources().getBoolean(R.bool.hide_customer_phone_from_vendors) &&
-                    (user.getRole()==User.ROLE_SHOP_ADMIN_CODE || user.getRole()==User.ROLE_SHOP_STAFF_CODE || user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE))
+            if(context.getResources().getBoolean(R.bool.hide_customer_phone_from_vendors))
             {
                 deliveryAddressPhone.setVisibility(View.GONE);
             }
