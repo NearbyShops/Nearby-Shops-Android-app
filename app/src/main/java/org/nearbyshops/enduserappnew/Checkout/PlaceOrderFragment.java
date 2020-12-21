@@ -66,8 +66,6 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
 
 
-
-
     @Inject
     CartStatsService cartStatsService;
 
