@@ -8,27 +8,17 @@ width="120">
 </a>
 
 
-Deprecation Notice 	
---------------------	
-
-We have discontinued Support for our Free and Open-Source offering. If you want to use this project for commercial Use then please consider buying a Paid version
-of this app. 	
-
-If you like this project then please support this project by buying a paid version. 	
-Thank You !
-
 
 
 About Nearby Shops
 --------------------
 
-Nearby Shops is a **Open-Source** food delivery, grocery and hyperlocal app platform. Get your grocery or food delivery market up and running in just 10 Minutes with our Managed Hosting Service.
+Now you can start your own food delivery business similar to Swiggy, Zomato, Doordash, Grubhub, Uber Eats.
+Save comission on food delivery and increase the income of local businesses. 
 
-
-Nearby Shops implements Alibaba's new Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
+Nearby Shops is a **Open-Source** food delivery, grocery and Local Shopping platform. Get your grocery or food delivery market up and running in just 10 Minutes.
 
 The installation guide and app customization guide is provided at http://developer.nearbyshops.org
-
 
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
@@ -50,7 +40,7 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 
 
 
-![Demo](https://nearbyshops.org/app_demo_single_market.html)
+[Demo](https://nearbyshops.org/app_demo_single_market.html)
 ----------
 
 Checkout our Demo on our website. 
