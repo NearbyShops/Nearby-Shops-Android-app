@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.ViewHolders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -27,6 +27,7 @@ import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 
 import butterknife.BindView;
@@ -166,56 +167,23 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
 
 
 
-
-
             if(shop.getHomeDeliveryAvailable())
             {
                 homeDeliveryIndicator.setVisibility(View.VISIBLE);
-                delivery.setVisibility(View.VISIBLE);
-
-                if(shop.getDeliveryCharges()==0)
-                {
-                    delivery.setText(" Free home delivery ");
-                    delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.darkGreen));
-                    delivery.setTextColor(ContextCompat.getColor(context,R.color.white));
-                }
-                else
-                {
-//                    delivery.setText("Delivery : " + PrefGeneral.getCurrencySymbol(context) + " " + String.format( "%.2f", shop.getDeliveryCharges()) + " per order");
-
-                    delivery.setText("Free Delivery above " + PrefGeneral.getCurrencySymbol(context) + " " + shop.getBillAmountForFreeDelivery());
-
-                    delivery.setBackgroundColor(ContextCompat.getColor(context,R.color.white));
-                    delivery.setTextColor(ContextCompat.getColor(context,R.color.blueGrey800));
-                }
-
-
-
-                if(shop.getShopAddress()!=null)
-                {
-                    shopAddress.setText(String.format( "%.2f", shop.getRt_distance()) + " Km - " + shop.getShopAddress());
-                }
 
             }
             else
             {
                 homeDeliveryIndicator.setVisibility(View.GONE);
-                delivery.setVisibility(View.VISIBLE);
-
-                if(shop.getShopAddress()!=null)
-                {
-                    shopAddress.setText(String.format( "%.2f", shop.getRt_distance()) + " Km");
-                    delivery.setText(shop.getShopAddress());
-                }
-
             }
 
 
+//            delivery.setVisibility(View.VISIBLE);
+            shopAddress.setText(String.format( "%.2f", shop.getRt_distance()) + " Km - " + shop.getShopAddress());
+//            delivery.setText(shop.getShopAddress());
 
 
 
-//                String imagePath = UtilityGeneral.getImageEndpointURL(MyApplicationCoreNew.getAppContext())
-//                        + shop.getLogoImagePath();
 
             String imagePath = PrefGeneral.getServiceURL(context) + "/api/v1/Shop/Image/three_hundred_"
                     + shop.getLogoImagePath() + ".jpg";
@@ -224,20 +192,18 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
                     .create(context.getResources(),
                             R.drawable.ic_nature_people_white_48px, context.getTheme());
 
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                shopLogo.setClipToOutline(true);
+            }
+
+
+
             Picasso.get()
                     .load(imagePath)
                     .placeholder(placeholder)
                     .into(shopLogo);
 
-
-
-
-//            String currency = "";
-//            currency = PrefGeneral.getCurrencySymbol(context);
-
-
-
-//            distance.setText("Distance : " + String.format( "%.2f", shop.getRt_distance()) + " Km");
 
 
             if(shop.getRt_rating_count()==0)
@@ -256,12 +222,6 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
                 rating.setText(String.format("%.2f",shop.getRt_rating_avg()));
                 rating_count.setText("( " + String.format( "%.0f", shop.getRt_rating_count()) + " Ratings )");
             }
-
-
-//            if(shop.getShortDescription()!=null)
-//            {
-//                description.setText(shop.getShortDescription());
-//            }
 
         }
 
@@ -356,9 +316,10 @@ public class ViewHolderShopSmall extends RecyclerView.ViewHolder implements Popu
 
 
 
+
     private void showToastMessage(String message)
     {
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(context,message);
     }
 
 

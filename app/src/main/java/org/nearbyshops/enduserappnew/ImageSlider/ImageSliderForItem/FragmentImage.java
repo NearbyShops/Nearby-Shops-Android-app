@@ -1,6 +1,5 @@
 package org.nearbyshops.enduserappnew.ImageSlider.ImageSliderForItem;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,13 +10,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
@@ -32,7 +31,9 @@ public class FragmentImage extends Fragment {
 
 
     ItemImage itemImageData;
-    @BindView(R.id.taxi_image) ImageView taxiImage;
+    Item itemData;
+
+    @BindView(R.id.taxi_image) ImageView itemImage;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
 
     @BindView(R.id.title) TextView titleText;
@@ -56,53 +57,72 @@ public class FragmentImage extends Fragment {
 
         // decoding the object passed to the activity
         String jsonString = getArguments().getString("item_image");
-
-
         Gson gson = UtilityFunctions.provideGson();
         itemImageData = gson.fromJson(jsonString, ItemImage.class);
 
 
-        Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.ic_nature_people_white_48px);
 
-//        String imagePath = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/TaxiImages/Image/" + "nine_hundred_"+ itemImageData.getImageFilename() + ".jpg";
-//        String image_url = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/TaxiImages/Image/" + itemImageData.getImageFilename();
-
-        String imagePathSmall = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/ItemImage/Image/five_hundred_"
-                + itemImageData.getImageFilename() + ".jpg";
+        String jsonStringItem = getArguments().getString("item");
+        itemData = UtilityFunctions.provideGson().fromJson(jsonStringItem, Item.class);
 
 
-        String imagePathFullSize = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/ItemImage/Image/"
-                + itemImageData.getImageFilename();
 
 
-        titleText.setText(itemImageData.getCaptionTitle());
-        descriptionText.setText(itemImageData.getCaption());
-        copyrightText.setText(itemImageData.getImageCopyrights());
+//        Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.ic_nature_people_white_48px);
+
+//        String imagePathSmall = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/ItemImage/Image/five_hundred_"
+//                + itemImageData.getImageFilename() + ".jpg";
+
+        String imagePathFullSize = null;
+
+
+        if(itemImageData!=null)
+        {
+            imagePathFullSize = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/ItemImage/Image/"
+                    + itemImageData.getImageFilename();
+
+
+
+            titleText.setText(itemImageData.getCaptionTitle());
+            descriptionText.setText(itemImageData.getCaption());
+            copyrightText.setText(itemImageData.getImageCopyrights());
+
+        }
+        else if(itemData!=null)
+        {
+            imagePathFullSize  = PrefGeneral.getServiceURL(getActivity()) + "/api/v1/Item/Image/"
+                + itemData.getItemImageURL();
+
+            titleText.setText(itemData.getItemName());
+            copyrightText.setText(itemData.getImageCopyrights());
+        }
 
 
         progressBar.setVisibility(View.VISIBLE);
 
 
+        if(imagePathFullSize!=null)
+        {
+            Picasso.get()
+                    .load(imagePathFullSize)
+                    .into(itemImage, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
 
-        Picasso.get()
-                .load(imagePathFullSize)
-                .into(taxiImage, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
+                            progressBar.setVisibility(View.GONE);
 
-                        progressBar.setVisibility(View.GONE);
-
-                    }
-
-
-
-                    @Override
-                    public void onError(Exception e) {
-
-                    }
+                        }
 
 
-                });
+
+                        @Override
+                        public void onError(Exception e) {
+
+                        }
+
+
+                    });
+        }
 
 
 

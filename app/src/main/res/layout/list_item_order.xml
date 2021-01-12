@@ -41,6 +41,7 @@
             android:layout_width="1dp"
             android:layout_height="match_parent" />
 
+
         <ImageView
             android:visibility="gone"
             android:id="@+id/close_button"
@@ -83,22 +84,74 @@
 
 
 
-
-    <TextView
+    <LinearLayout
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
-        android:padding="2dp"
-        android:textColor="@color/white"
-        android:background="@color/phonographyBlue"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
+        android:id="@+id/delivery_mode_block"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dateTimePlaced"
-        android:id="@+id/is_pick_from_shop"
-        android:text="Pick from Shop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+
+        <TextView
+            android:padding="2dp"
+            android:textColor="@color/white"
+            android:background="@color/buttonColorDark"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:id="@+id/delivery_mode"
+            android:text=" - "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:layout_marginStart="5dp"
+            android:padding="2dp"
+            android:textColor="@color/white"
+            android:background="@color/buttonColor"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:lines="1"
+            android:id="@+id/delivery_slot_name"
+            android:text="Morning Slot | 12 June 20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:layout_marginStart="5dp"
+            android:padding="2dp"
+            android:textColor="@color/white"
+            android:background="@color/buttonColorDark"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            app:layout_constraintStart_toStartOf="@id/delivery_mode_block"
+            app:layout_constraintTop_toBottomOf="@id/delivery_mode_block"
+            android:id="@+id/payment_mode"
+            android:text="COD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <!--        <TextView-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:padding="2dp"-->
+<!--            android:paddingStart="5dp"-->
+<!--            android:paddingEnd="5dp"-->
+<!--            android:id="@+id/delivery_date"-->
+<!--            android:text="12 June 20"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+
+
+    </LinearLayout>
 
 
 
@@ -106,7 +159,7 @@
     <TextView
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="@id/dateTimePlaced"
-        app:layout_constraintTop_toBottomOf="@id/is_pick_from_shop"
+        app:layout_constraintTop_toBottomOf="@id/delivery_mode_block"
         android:id="@+id/deliveryAddressName"
         android:paddingRight="5dp"
         android:paddingLeft="5dp"
@@ -117,14 +170,35 @@
 
 
 
+
+        <TextView
+            app:layout_constraintStart_toStartOf="@id/deliveryAddressName"
+            app:layout_constraintTop_toBottomOf="@id/deliveryAddressName"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_below="@id/deliveryAddressPhone"
+            android:id="@+id/deliveryAddress"
+            android:paddingLeft="5dp"
+            android:textSize="15dp"
+            android:text="K-53, ABCD Colony, PQRS Area, XYZ City"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
+
     <TextView
+        android:layout_marginTop="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/deliveryAddressName"
-        android:layout_below="@id/deliveryAddressName"
+        app:layout_constraintTop_toBottomOf="@id/deliveryAddress"
         android:id="@+id/deliveryAddressPhone"
         android:paddingRight="5dp"
         android:paddingLeft="5dp"
-        android:textSize="15dp"
+        android:textSize="17dp"
         android:text="Phone: 1234567891"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -132,24 +206,10 @@
 
 
 
-    <TextView
-
-        app:layout_constraintTop_toBottomOf="@id/deliveryAddressPhone"
-        android:layout_below="@id/deliveryAddressPhone"
-        android:id="@+id/deliveryAddress"
-        android:paddingLeft="5dp"
-        android:textSize="15dp"
-        android:text="K-53, ABCD Colony, PQRS Area, XYZ City"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-
     <LinearLayout
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/deliveryAddress"
-        android:layout_below="@id/deliveryAddress"
+        app:layout_constraintTop_toBottomOf="@id/deliveryAddressPhone"
         android:orientation="horizontal"
         android:id="@+id/borderFour"
         android:layout_marginTop="5dp"
@@ -194,7 +254,6 @@
         android:layout_below="@id/numberOfItems"
         android:orientation="horizontal"
         android:id="@+id/borderTwo"
-        android:layout_marginTop="5dp"
         android:background="#88000000"
         android:layout_width="0dp"
         android:layout_height="1dp"/>

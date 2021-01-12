@@ -5,6 +5,7 @@ import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,6 +31,18 @@ public interface ItemImageService
                                        @Body ItemImage itemImage, @Path("ImageID") int imageID);
 
 
+
+
+    @PUT ("/api/v1/ItemImage/{ImageID}/{ImageJSON}")
+    Call<ResponseBody> updateItemImageNew(@Header("Authorization") String headers,
+                                          @Body RequestBody image,
+                                           @Path("ImageID")int imageID,
+                                           @Path("ImageJSON") String itemImageJson);
+
+
+
+
+
     @DELETE("/api/v1/ItemImage/{ImageID}")
     Call<ResponseBody> deleteItemImageData(@Header("Authorization") String headers,
                                            @Path("ImageID") int imageID);
@@ -41,17 +54,35 @@ public interface ItemImageService
     Call<ItemImageEndPoint> getItemImages(
             @Query("ItemID") Integer itemID,
             @Query("SortBy") String sortBy,
-            @Query("Limit") Integer limit, @Query("Offset") Integer offset,
-            @Query("metadata_only") Boolean metaonly);
+            @Query("Limit") Integer limit, @Query("Offset") Integer offset
+    );
+
+
+
+
+    @GET ("/api/v1/ItemImage/ForEndUser")
+    Call<ItemImageEndPoint> getItemImagesForEnduser(
+            @Query("ItemID")Integer itemID,
+            @Query("SortBy") String sortBy,
+            @Query("Limit")Integer limit, @Query("Offset")int offset);
+
+
+
 
 
 
 
     // Image Calls
 
+
+//    @POST("/api/v1/ItemImage/Image")
+//    Call<Image> uploadItemImage(@Header("Authorization") String headers,
+//                                @Body RequestBody image);
+
+    @Multipart
     @POST("/api/v1/ItemImage/Image")
     Call<Image> uploadItemImage(@Header("Authorization") String headers,
-                                @Body RequestBody image);
+                                @Part MultipartBody.Part img);
 
 
     @DELETE("/api/v1/ItemImage/Image/{name}")

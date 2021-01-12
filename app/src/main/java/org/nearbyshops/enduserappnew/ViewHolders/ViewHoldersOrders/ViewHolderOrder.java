@@ -13,16 +13,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.Model.DeliverySlot;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusHomeDelivery;
 import org.nearbyshops.enduserappnew.Model.ModelStatusCodes.OrderStatusPickFromShop;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+
+
 
 
 public class ViewHolderOrder extends RecyclerView.ViewHolder {
-
 
 
     @BindView(R.id.order_id)
@@ -31,8 +36,12 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
     @BindView(R.id.dateTimePlaced)
     public TextView dateTimePlaced;
 
-    @BindView(R.id.is_pick_from_shop)
-    public TextView isPickFromShop;
+    @BindView(R.id.delivery_mode)
+    public TextView deliveryMode;
+
+    @BindView(R.id.delivery_slot_name)
+    TextView deliverySlotName;
+
 
     @BindView(R.id.deliveryAddressName)
     public TextView deliveryAddressName;
@@ -61,6 +70,9 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.cancelled_image)
     public ImageView cancelledImage;
+
+    @BindView(R.id.payment_mode)
+    TextView paymentMode;
 
 
     private Context context;
@@ -94,6 +106,12 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
 
 
 
+    @OnClick(R.id.deliveryAddressPhone)
+    void phoneClick()
+    {
+        UtilityFunctions.dialPhoneNumber(String.valueOf(order.getDeliveryAddress().getPhoneNumber()),context);
+    }
+
 
 
 
@@ -126,17 +144,13 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
 
     public void setItem (Order order)
     {
-
         this.order = order;
 
-
         DeliveryAddress deliveryAddressLocal = order.getDeliveryAddress();
-        //                OrderStats orderStats = order.getOrderStats();
-
 
 
         orderID.setText("Order ID : " + order.getOrderID());
-        dateTimePlaced.setText("" + order.getDateTimePlaced().toLocaleString());
+        dateTimePlaced.setText("Placed : " + order.getDateTimePlaced().toLocaleString());
 
 
 
@@ -149,37 +163,117 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
         }
         else
         {
+
             deliveryAddressName.setText(deliveryAddressLocal.getName());
 
-            deliveryAddress.setText(deliveryAddressLocal.getDeliveryAddress() + ",\n"
-                    + deliveryAddressLocal.getCity() + " - " + deliveryAddressLocal.getPincode());
+//            deliveryAddress.setText(deliveryAddressLocal.getDeliveryAddress() + ", "
+//                    + deliveryAddressLocal.getCity() + " - " + deliveryAddressLocal.getPincode());
 
-            deliveryAddressPhone.setText("Phone : " + deliveryAddressLocal.getPhoneNumber());
 
-            //                holder.numberOfItems.setText(orderStats.getItemCount() + " Items");
+            deliveryAddress.setText(deliveryAddressLocal.getDeliveryAddress());
+
+            User user = PrefLogin.getUser(context);
+
+
+            if(context.getResources().getBoolean(R.bool.hide_customer_phone_from_vendors) &&
+                    (user.getRole()==User.ROLE_SHOP_ADMIN_CODE || user.getRole()==User.ROLE_SHOP_STAFF_CODE || user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE))
+            {
+                deliveryAddressPhone.setVisibility(View.GONE);
+            }
+            else
+            {
+                deliveryAddressPhone.setText("Phone : " + deliveryAddressLocal.getPhoneNumber());
+            }
+
         }
 
 
 
         numberOfItems.setText(order.getItemCount() + " Items");
-        //               holder.orderTotal.setText("| Total : " +String.valueOf(PrefGeneral.getCurrencySymbol(context)) + " " + (orderStats.getItemTotal() + order.getDeliveryCharges()));
         orderTotal.setText("| Total : " + PrefGeneral.getCurrencySymbol(context) + String.format(" %.2f", order.getNetPayable()));
-        //holder.currentStatus.setText();
 
 
-        //                String status = UtilityOrderStatus.getEvent(order.getStatusHomeDelivery(),order.getDeliveryReceived(),order.getPaymentReceived());
+        bindStatusNew();
+        bindDeliveryMode();
+        bindCancelButton();
+        bindPaymentMode();
+    }
+
+
+
+
+
+
+    void bindPaymentMode()
+    {
+        if(order.getPaymentMode()==Order.PAYMENT_MODE_CASH_ON_DELIVERY)
+        {
+            paymentMode.setText(" COD ");
+        }
+        else if(order.getPaymentMode()==Order.PAYMENT_MODE_PAY_ONLINE_ON_DELIVERY)
+        {
+            paymentMode.setText(" POD ");
+        }
+        else if(order.getPaymentMode()==Order.PAYMENT_MODE_RAZORPAY)
+        {
+            paymentMode.setText(" Paid ");
+        }
+    }
+
+
+
+
+    void bindDeliveryMode()
+    {
+
+
+        if(order.getDeliveryMode()==Order.DELIVERY_MODE_HOME_DELIVERY)
+        {
+            deliveryMode.setBackgroundColor(ContextCompat.getColor(context, R.color.mapbox_blue));
+            deliveryMode.setText("Home Delivery");
+        }
+        else if(order.getDeliveryMode()==Order.DELIVERY_MODE_PICKUP_FROM_SHOP)
+        {
+            deliveryMode.setBackgroundColor(ContextCompat.getColor(context, R.color.orange));
+            deliveryMode.setText("Pick From Shop");
+        }
+
+
+
+        String deliveySlotString = "";
+
+        DeliverySlot deliverySlot = order.getDeliverySlot();
+
+        if(deliverySlot!=null && deliverySlot.getSlotName()!=null)
+        {
+            deliveySlotString  = deliverySlot.getSlotName();
+
+            if(order.getDeliveryDate()!=null)
+            {
+                deliveySlotString = deliveySlotString + " | " + order.getDeliveryDate().toLocaleString();
+            }
+        }
+        else
+        {
+            deliveySlotString = " ASAP ";
+        }
+
+
+        deliverySlotName.setText(deliveySlotString);
+
+    }
+
+
+
+    void bindStatus()
+    {
         String status = "";
-
-
-        //                showLog("Order PickfromShop : " + String.valueOf(order.getPickFromShop()));
-        //                showLog("Order Status Home Delivery : "  + String.valueOf(order.getStatusHomeDelivery()));
-        //                showLog("Order Status Pick from Shop : " + String.valueOf(order.getStatusPickFromShop()));
 
 
         if (order.isPickFromShop()) {
 
-            isPickFromShop.setBackgroundColor(ContextCompat.getColor(context, R.color.orangeDark));
-            isPickFromShop.setText("Pick from Shop");
+            deliveryMode.setBackgroundColor(ContextCompat.getColor(context, R.color.orangeDark));
+            deliveryMode.setText("Pick from Shop");
 
 
             status = OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop());
@@ -205,8 +299,8 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
 
 
         } else {
-            isPickFromShop.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
-            isPickFromShop.setText("Home Delivery");
+            deliveryMode.setBackgroundColor(ContextCompat.getColor(context, R.color.phonographyBlue));
+            deliveryMode.setText("Home Delivery");
 
             status = OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery());
 
@@ -232,9 +326,89 @@ public class ViewHolderOrder extends RecyclerView.ViewHolder {
 
         }
 
+
         currentStatus.setText("Current Status : " + status);
     }
 
+
+
+
+    void bindStatusNew()
+    {
+        String status = "";
+
+
+        if(order.getDeliveryMode()==Order.DELIVERY_MODE_HOME_DELIVERY) {
+
+
+            status = OrderStatusHomeDelivery.getStatusString(order.getStatusHomeDelivery());
+
+        }
+        else if(order.getDeliveryMode()==Order.DELIVERY_MODE_PICKUP_FROM_SHOP)
+        {
+
+            status = OrderStatusPickFromShop.getStatusString(order.getStatusPickFromShop());
+        }
+
+
+        currentStatus.setText("Current Status : " + status);
+    }
+
+
+
+
+    void bindCancelButton()
+    {
+
+
+        if (order.getDeliveryMode()==Order.DELIVERY_MODE_PICKUP_FROM_SHOP) {
+
+
+            int statusCode = order.getStatusPickFromShop();
+
+            if (statusCode == OrderStatusPickFromShop.ORDER_PLACED ||
+                    statusCode == OrderStatusPickFromShop.ORDER_CONFIRMED ||
+                    statusCode == OrderStatusPickFromShop.ORDER_PACKED) {
+//                closeButton.setVisibility(View.VISIBLE);
+            } else {
+                closeButton.setVisibility(View.GONE);
+            }
+
+
+            if (statusCode == OrderStatusPickFromShop.CANCELLED) {
+                cancelledImage.setVisibility(View.VISIBLE);
+            } else {
+                cancelledImage.setVisibility(View.GONE);
+            }
+
+
+        }
+        else if (order.getDeliveryMode()==Order.DELIVERY_MODE_HOME_DELIVERY)
+        {
+
+
+            int statusCode = order.getStatusHomeDelivery();
+
+            if (statusCode == OrderStatusHomeDelivery.ORDER_PLACED ||
+                    statusCode == OrderStatusHomeDelivery.ORDER_CONFIRMED ||
+                    statusCode == OrderStatusHomeDelivery.ORDER_PACKED) {
+//                closeButton.setVisibility(View.VISIBLE);
+            } else {
+                closeButton.setVisibility(View.GONE);
+            }
+
+
+            if (statusCode == OrderStatusHomeDelivery.CANCELLED_WITH_DELIVERY_GUY ||
+                    statusCode == OrderStatusHomeDelivery.CANCELLED) {
+                cancelledImage.setVisibility(View.VISIBLE);
+            } else {
+                cancelledImage.setVisibility(View.GONE);
+            }
+
+        }
+
+
+    }
 
 
 

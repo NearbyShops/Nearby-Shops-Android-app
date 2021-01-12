@@ -26,7 +26,7 @@ public interface DeliveryGuyLoginService {
 
 
 
-    @PUT ("/api/v1/User/DeliveryGuy/UpdateStaffLocation")
+    @PUT ("/api/v1/User/DeliveryGuy/UpdateLocation")
     Call<ResponseBody> updateLocation(
             @Header("Authorization") String headers,
             @Body DeliveryGuyData deliveryGuyData

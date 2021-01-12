@@ -11,17 +11,26 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.Lists.OrderHistoryPaging.OrderHistoryPaging;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditMarketSettings.EditMarketSettings;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditMarketSettings.EditMarketSettingsFragment;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.DeliveryPersonInventory;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryDeliveryPerson.Fragment.DeliveryFragmentNew;
+import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
+import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditMarket.EditMarket;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabaseForAdmin.ItemsDatabaseAdmin;
+import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome;
+import org.nearbyshops.enduserappnew.adminModule.PushNotificationComposer;
 import org.nearbyshops.enduserappnew.adminModule.ShopsList.ShopsDatabase;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.EditProfile;
@@ -55,6 +64,9 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
+//    @BindView(R.id.shop_dashboard) LinearLayout shopDashboard;
+
+
 
     public AdminDashboardFragment() {
         DaggerComponentBuilder.getInstance()
@@ -83,10 +95,34 @@ public class AdminDashboardFragment extends Fragment {
         }
 
 
+
+
+//        if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
+//        {
+////            shopDashboard.setVisibility(View.VISIBLE);
+//        }
+//        else
+//        {
+////            shopDashboard.setVisibility(View.GONE);
+//        }
+
+
         return rootView;
     }
 
 
+
+
+
+
+
+    @OnClick(R.id.send_notification)
+    void sendNotification()
+    {
+        FragmentManager fm = getChildFragmentManager();
+        PushNotificationComposer dialog = new PushNotificationComposer();
+        dialog.show(fm, "push_notification_composer");
+    }
 
 
 
@@ -111,6 +147,17 @@ public class AdminDashboardFragment extends Fragment {
     }
 
 
+
+
+
+
+    @OnClick(R.id.market_settings)
+    void openSettings(View view)
+    {
+        Intent intent = new Intent(getActivity(), EditMarketSettings.class);
+        intent.putExtra(EditMarketSettingsFragment.EDIT_MODE_INTENT_KEY, EditMarketSettingsFragment.MODE_UPDATE);
+        startActivity(intent);
+    }
 
 
 
@@ -197,6 +244,14 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
+//    @OnClick(R.id.shop_dashboard)
+    void shopDashboardClick()
+    {
+        PrefShopAdminHome.saveShop(null,getActivity());
+        Intent intent = new Intent(getActivity(), ShopAdminHome.class);
+        startActivity(intent);
+    }
+
 
 
     @OnClick(R.id.shops_database)
@@ -231,6 +286,28 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
+    @OnClick(R.id.delivery_inventory)
+    void optionDeliveryInventory(View view)
+    {
+//        Intent intent = new Intent(getActivity(), UsersList.class);
+//        intent.putExtra(UsersListFragment.USER_MODE_INTENT_KEY,UsersListFragment.MODE_ADMIN_STAFF_LIST);
+//        startActivity(intent);
+    }
+
+
+
+
+    @OnClick(R.id.delivery_accounts)
+    void optionDeliveryStaff(View view)
+    {
+        Intent intent = new Intent(getActivity(), UsersList.class);
+        intent.putExtra(UsersListFragment.USER_MODE_INTENT_KEY,UsersListFragment.MODE_ADMIN_DELIVERY_STAFF_LIST);
+        startActivity(intent);
+    }
+
+
+
+
 
     //    @OnClick(R.id.edit_profile)
     void editProfileClick()
@@ -249,18 +326,34 @@ public class AdminDashboardFragment extends Fragment {
     @OnClick(R.id.orders_database)
     void ordersClick()
     {
-        Intent intent = new Intent(getActivity(), OrderHistoryPaging.class);
-        startActivity(intent);
+
+        Intent intent = new Intent(getActivity(), OrderHistory.class);
+
+        startActivity(OrderHistory.getLaunchIntent(OrdersHistoryFragment.MODE_MARKET_ADMIN_,getActivity()));
     }
+
+
 
 
 
     @OnClick(R.id.header_tutorials)
     void headerTutorialsClick()
     {
-        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/admin-tutorials/",getActivity());
+        UtilityFunctions.openURL(getString(R.string.tutorial_admin_dashboard),getActivity());
     }
-    
+
+
+
+
+
+
+    @OnClick(R.id.delivery_inventory)
+    void deliveryInventoryClick()
+    {
+        Intent intent = new Intent(getActivity(), DeliveryPersonInventory.class);
+        intent.putExtra(DeliveryFragmentNew.SCREEN_MODE_INTENT_KEY, DeliveryFragmentNew.SCREEN_MODE_MARKET_ADMIN);
+        startActivity(intent);
+    }
 
 
 }

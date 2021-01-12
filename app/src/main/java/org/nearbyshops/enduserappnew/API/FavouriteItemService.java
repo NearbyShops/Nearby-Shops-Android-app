@@ -13,8 +13,9 @@ import retrofit2.http.*;
 
 public interface FavouriteItemService {
 
+
     @GET("/api/v1/FavouriteItem")
-    Call<FavouriteItemEndpoint> getFavouriteBooks(
+    Call<FavouriteItemEndpoint> getFavouriteItems(
             @Query("ItemID") Integer itemID,
             @Query("EndUserID") Integer endUserID,
             @Query("SortBy") String sortBy,

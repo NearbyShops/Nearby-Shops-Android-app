@@ -10,8 +10,8 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
 
+import org.nearbyshops.enduserappnew.API.BannerImageService;
 import org.nearbyshops.enduserappnew.API.CartItemService;
-import org.nearbyshops.enduserappnew.API.CartService;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
 import org.nearbyshops.enduserappnew.API.DeliveryGuyLoginService;
@@ -26,6 +26,7 @@ import org.nearbyshops.enduserappnew.API.OrderItemService;
 import org.nearbyshops.enduserappnew.API.OrderService;
 import org.nearbyshops.enduserappnew.API.OrderServiceDeliveryPersonSelf;
 import org.nearbyshops.enduserappnew.API.OrderServiceShopStaff;
+import org.nearbyshops.enduserappnew.API.RazorPayService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.ShopImageService;
 import org.nearbyshops.enduserappnew.API.ShopItemService;
@@ -36,6 +37,7 @@ import org.nearbyshops.enduserappnew.API.ShopStaffService;
 import org.nearbyshops.enduserappnew.API.StaffService;
 import org.nearbyshops.enduserappnew.API.TransactionService;
 import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.API.DeliverySlotService;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import retrofit2.Retrofit;
@@ -94,8 +96,15 @@ public class NetModule {
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
 
+
+
 //        .setDateFormat("yyyy-MM-dd hh:mm:ss.S")
+
+
     }
+
+
+
 
     @Provides
     @Singleton
@@ -121,6 +130,8 @@ public class NetModule {
 //        Log.d("applog","Retrofit: " + PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext()));
 
 
+//        .addConverterFactory(GsonConverterFactory.create(gson))
+
         if(PrefGeneral.getServiceURL(MyApplication.getAppContext())!=null)
         {
             return new Retrofit.Builder()
@@ -128,6 +139,7 @@ public class NetModule {
                     .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
                     .client(okHttpClient)
                     .build();
+
 
         }
         else
@@ -153,15 +165,6 @@ public class NetModule {
         return retrofit.create(ShopItemService.class);
     }
 
-
-    @Provides
-    CartService provideCartService(Retrofit retrofit)
-    {
-
-//        Log.d("applog","CartService : " + PrefGeneral.getServiceURL(MyApplicationCoreNew.getAppContext()));
-
-        return retrofit.create(CartService.class);
-    }
 
 
     @Provides
@@ -247,6 +250,22 @@ public class NetModule {
 
 
     @Provides
+    BannerImageService provideBannerImage(Retrofit retrofit)
+    {
+        return retrofit.create(BannerImageService.class);
+    }
+
+
+
+    @Provides
+    ShopImageService provideShopImage(Retrofit retrofit)
+    {
+        return retrofit.create(ShopImageService.class);
+    }
+
+
+
+    @Provides
     ShopReviewService shopReviewService(Retrofit retrofit)
     {
 
@@ -295,11 +314,6 @@ public class NetModule {
 
 
 
-    @Provides
-    ShopImageService provideShopImage(Retrofit retrofit)
-    {
-        return retrofit.create(ShopImageService.class);
-    }
 
 
     @Provides
@@ -374,5 +388,23 @@ public class NetModule {
     {
         return retrofit.create(OrderServiceDeliveryPersonSelf.class);
     }
+
+
+
+
+    @Provides
+    DeliverySlotService provideDeliverySlot(Retrofit retrofit)
+    {
+        return retrofit.create(DeliverySlotService.class);
+    }
+
+
+
+    @Provides
+    RazorPayService provideRazorPay(Retrofit retrofit)
+    {
+        return retrofit.create(RazorPayService.class);
+    }
+
 
 }

@@ -19,7 +19,7 @@ public class EditDeliveryAddress extends AppCompatActivity {
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container,new EditAddressFragment(),TAG_FRAGMENT_EDIT)
+                    .add(R.id.fragment_container,new EditAddressWithMapFragment(),TAG_FRAGMENT_EDIT)
                     .commit();
         }
 

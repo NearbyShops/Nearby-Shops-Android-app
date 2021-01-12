@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.AddShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
 import org.nearbyshops.enduserappnew.Login.Login;
@@ -71,7 +72,7 @@ public class ViewHolderCreateShop extends RecyclerView.ViewHolder{
 //        header.setText(data.getHeaderString());
 
 
-        if(PrefGeneral.getMultiMarketMode(context))
+        if(PrefGeneral.isMultiMarketEnabled(context))
         {
 
             Market globalConfig = PrefServiceConfig.getServiceConfigLocal(context);
@@ -130,11 +131,12 @@ public class ViewHolderCreateShop extends RecyclerView.ViewHolder{
 
 
                         //     open edit shop in edit mode
-                        Intent intent = new Intent(context, EditShop.class);
-                        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_ADD);
-//                            context.startActivity(intent);
-                        fragment.startActivityForResult(intent,890);
+//                        Intent intent = new Intent(context, EditShop.class);
+//                        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_ADD);
+//                        fragment.startActivityForResult(intent,890);
 
+                        Intent intent = new Intent(context, AddShop.class);
+                        fragment.startActivityForResult(intent,890);
 
                     }
                 })
@@ -148,6 +150,8 @@ public class ViewHolderCreateShop extends RecyclerView.ViewHolder{
                 .show();
 
     }
+
+
 
 
 

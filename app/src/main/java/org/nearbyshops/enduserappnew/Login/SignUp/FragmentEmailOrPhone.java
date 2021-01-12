@@ -28,7 +28,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Login.SignUp.Interfaces.ShowFragmentSignUp;
 import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceSignUp;
@@ -156,7 +156,7 @@ public class FragmentEmailOrPhone extends Fragment {
         {
             ccp.setCountryForPhoneCode(Integer.parseInt(user.getRt_phone_country_code()));
 
-            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            if(PrefGeneral.isMultiMarketEnabled(getActivity()))
             {
                 ccp.setCcpClickable(false);
             }
@@ -166,7 +166,7 @@ public class FragmentEmailOrPhone extends Fragment {
             }
 
         }
-        else if(PrefGeneral.getMultiMarketMode(getActivity()))
+        else if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             ccp.setCountryForNameCode("IN");
             ccp.setCcpClickable(false);
@@ -317,7 +317,7 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             phoneRegistrationMessage.setVisibility(View.VISIBLE);
         }
@@ -613,7 +613,7 @@ public class FragmentEmailOrPhone extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 

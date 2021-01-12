@@ -127,7 +127,7 @@ public class EditMarketSettingsFragment extends Fragment {
 
 
 
-        applyFiledVisibility();
+//        applyFiledVisibility();
         setActionBarTitle();
 
         return rootView;

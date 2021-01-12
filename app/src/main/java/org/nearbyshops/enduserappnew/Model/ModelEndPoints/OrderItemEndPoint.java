@@ -3,6 +3,7 @@ package org.nearbyshops.enduserappnew.Model.ModelEndPoints;
 
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.OrderItem;
+import org.nearbyshops.enduserappnew.Model.ModelRoles.DeliveryGuyData;
 import org.nearbyshops.enduserappnew.Model.Shop;
 
 import java.util.List;
@@ -19,7 +20,18 @@ public class OrderItemEndPoint {
     List<OrderItem> results;
     private Shop shopDetails;
     private Order orderDetails;
+    private DeliveryGuyData deliveryData;
 
+
+
+
+    public DeliveryGuyData getDeliveryData() {
+        return deliveryData;
+    }
+
+    public void setDeliveryData(DeliveryGuyData deliveryData) {
+        this.deliveryData = deliveryData;
+    }
 
     public Order getOrderDetails() {
         return orderDetails;

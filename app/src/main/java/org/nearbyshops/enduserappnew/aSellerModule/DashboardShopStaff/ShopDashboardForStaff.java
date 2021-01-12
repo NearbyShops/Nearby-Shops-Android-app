@@ -18,8 +18,8 @@ import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ItemCatalogue.ItemsDatabase.ItemsDatabase;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsInShopByCat;
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShop;
-import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.HomeDeliveryInventory.HomeDelivery;
-import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.PickFromShopInventory.PickFromShopInventory;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryHomeDelivery.HomeDelivery;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryPickFromShop.PickFromShopInventory;
 import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.QuickStockEditor;
 
 import butterknife.BindView;
@@ -178,10 +178,12 @@ public class ShopDashboardForStaff extends AppCompatActivity {
 
 
 
+
+
     @OnClick(R.id.header_tutorials)
     void headerTutorialsClick()
     {
-        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials-for-shop-owners/",this);
+        UtilityFunctions.openURL(getString(R.string.tutorial_shop_dashboard),getApplication());
     }
 
 

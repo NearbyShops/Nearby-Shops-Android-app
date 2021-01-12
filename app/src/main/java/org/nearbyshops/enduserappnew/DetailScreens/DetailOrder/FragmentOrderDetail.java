@@ -17,10 +17,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import org.nearbyshops.enduserappnew.API.OrderItemService;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderItem;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderDeprecated.ViewHoldersOrderDetails.ViewHolderOrderWithBillDeprecated;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailItem.ItemDetail;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetail;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailShop.ShopDetailFragment;
+import org.nearbyshops.enduserappnew.DetailScreens.DetailItemNew.ItemDetail;
+import org.nearbyshops.enduserappnew.DetailScreens.DetailShopNew.ShopDetail;
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderItemEndPoint;
@@ -47,9 +45,17 @@ import java.util.List;
  * Created by sumeet on 15/11/16.
  */
 
+
+
+
 public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         ViewHolderOrderItem.ListItemClick, ViewHolderShopSmall.ListItemClick
-        {
+{
+
+
+
+
+
 
     private Order order;
 
@@ -63,6 +69,9 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
 
     private SwipeRefreshLayout swipeContainer;
+
+
+    int orderID;
 
 
 
@@ -99,7 +108,14 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         recyclerView = rootView.findViewById(R.id.recyclerView);
         swipeContainer = rootView.findViewById(R.id.swipeContainer);
 
-        order = PrefOrderDetail.getOrder(getActivity());
+//        order = PrefOrderDetail.getOrder(getActivity());
+
+
+
+        if(getActivity()!=null)
+        {
+            orderID = getActivity().getIntent().getIntExtra("order_id",0);
+        }
 
 
 
@@ -107,13 +123,6 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         {
             makeRefreshNetworkCall();
         }
-
-
-
-
-        serviceName.setVisibility(View.VISIBLE);
-        serviceName.setText("Order ID : " + order.getOrderID());
-
 
 
         setupRecyclerView();
@@ -140,6 +149,12 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     }
 
 
+
+    void bindOrder()
+    {
+        serviceName.setVisibility(View.VISIBLE);
+        serviceName.setText("Order ID : " + order.getOrderID());
+    }
 
 
 
@@ -191,16 +206,11 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
 
         Call<OrderItemEndPoint> call = orderItemService.getOrderItem(
                 PrefLogin.getAuthorizationHeaders(getActivity()),
-                order.getOrderID(),
+                orderID,
                 null,
-                order.getShopID(),
                 PrefLocation.getLatitude(getActivity()),PrefLocation.getLongitude(getActivity()),
                 null,null,
                 null,null);
-
-
-
-
 
 
 
@@ -220,21 +230,41 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
                     dataset.clear();
 
                     // fetch extra order details
-                    Order extraDetails = response.body().getOrderDetails();
+                    order = response.body().getOrderDetails();
 
-                    if(extraDetails!=null)
+
+                    bindOrder();
+
+
+
+//                    if(extraDetails!=null)
+//                    {
+//                        order.setItemTotal(extraDetails.getItemTotal());
+//                        order.setAppServiceCharge(extraDetails.getAppServiceCharge());
+//                        order.setDeliveryCharges(extraDetails.getDeliveryCharges());
+//                        order.setSavingsOverMRP(extraDetails.getSavingsOverMRP());
+//                    }
+
+
+
+
+                    dataset.add(response.body());
+
+
+
+                    Shop shopProfile = response.body().getShopDetails();
+
+
+                    if(shopProfile!=null)
                     {
-                        order.setItemTotal(extraDetails.getItemTotal());
-                        order.setAppServiceCharge(extraDetails.getAppServiceCharge());
-                        order.setDeliveryCharges(extraDetails.getDeliveryCharges());
-                        order.setSavingsOverMRP(extraDetails.getSavingsOverMRP());
+                        dataset.add(shopProfile);
                     }
 
 
-                    dataset.add(0,order);
-                    dataset.add(response.body().getShopDetails());
-                    dataset.add(new HeaderTitle("Items in this Order"));
+                    dataset.add(new HeaderTitle("Items in this Order : " + String.valueOf(order.getItemCount())));
                     dataset.addAll(response.body().getResults());
+
+
 
                     adapter.notifyDataSetChanged();
 
@@ -311,6 +341,8 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
     public void listItemClick(Item item, int position) {
 
         Intent intent = new Intent(getActivity(), ItemDetail.class);
+
+        intent.putExtra("item_id",item.getItemID());
         String itemJson = UtilityFunctions.provideGson().toJson(item);
         intent.putExtra(ItemDetailFragment.TAG_JSON_STRING,itemJson);
 
@@ -326,8 +358,10 @@ public class FragmentOrderDetail extends Fragment implements SwipeRefreshLayout.
         public void listItemClick(Shop shop, int position) {
 
             Intent intent = new Intent(getActivity(), ShopDetail.class);
-            String shopJson = UtilityFunctions.provideGson().toJson(shop);
-            intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,shopJson);
+            intent.putExtra("shop_id",shop.getShopID());
+
+//            String shopJson = UtilityFunctions.provideGson().toJson(shop);
+//            intent.putExtra(ShopDetailFragment.TAG_JSON_STRING,shopJson);
             startActivity(intent);
         }
 

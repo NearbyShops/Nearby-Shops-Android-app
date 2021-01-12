@@ -5,9 +5,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,28 +22,37 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 
-import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
+import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.UserService;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.AdapterDeliverySlot;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.EditDeliverySlot.EditDeliverySlot;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.EditDeliverySlot.EditDeliverySlotFragment;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.Model.DeliverySlot;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.ViewHolderDeliverySlot;
+import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.ViewModelDeliverySlot;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Preferences.PrefLocation;
 import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PlacePickerWithRadius.PickDeliveryRange;
+import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
@@ -51,11 +60,14 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.AddItemData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderAddItem;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -64,6 +76,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -77,7 +90,7 @@ import static android.app.Activity.RESULT_OK;
 import static android.view.View.VISIBLE;
 
 
-public class EditMarketFragment extends Fragment {
+public class EditMarketFragment extends Fragment implements ViewHolderDeliverySlot.ListItemClick, ViewHolderAddItem.ListItemClick {
 
 
 
@@ -225,6 +238,12 @@ public class EditMarketFragment extends Fragment {
         }
 
 
+
+
+
+        setupViewModel();
+        setupRecyclerView();
+        getDeliverySlots();
 
 
         updateIDFieldVisibility();
@@ -426,7 +445,7 @@ public class EditMarketFragment extends Fragment {
         {
 
             iamgepath = PrefServiceConfig.getServiceURL_SDS(getActivity())
-                    + "/api/v1/ServiceConfiguration/Image/three_hundred_" + market.getLogoImagePath() + ".jpg";
+                    + "/api/v1/Markets/Image/three_hundred_" + market.getLogoImagePath() + ".jpg";
         }
 
 
@@ -649,6 +668,10 @@ public class EditMarketFragment extends Fragment {
 
 
         market.setVerified(marketENable.isChecked());
+        market.setOfficial(marketENable.isChecked());
+
+
+        System.out.println("Is Enabled : " + market.getVerified());
 
 
 
@@ -729,6 +752,7 @@ public class EditMarketFragment extends Fragment {
                     .build();
 
 
+            System.out.println(UtilityFunctions.provideGson().toJson(market));
 
             call = retrofit.create(MarketService.class).updateMarket(
                     PrefLoginGlobal.getAuthorizationHeaders(getActivity()),
@@ -923,7 +947,7 @@ public class EditMarketFragment extends Fragment {
 
     private void showToastMessage(String message)
     {
-        Toast.makeText(getContext(),message, Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
@@ -1014,11 +1038,12 @@ public class EditMarketFragment extends Fragment {
             longitude.setText(String.valueOf(result.getDoubleExtra("longitude",0)));
             serviceCoverage.setText(String.valueOf((int)result.getDoubleExtra("delivery_range_kms",0)));
         }
-        else if(requestCode==3 && resultCode==3)
+        else if(requestCode==3 && resultCode==6)
         {
+//            else if(requestCode==3 && resultCode==3)
             latitude.setText(String.valueOf(result.getDoubleExtra("lat_dest",0.0)));
             longitude.setText(String.valueOf(result.getDoubleExtra("lon_dest",0.0)));
-            serviceCoverage.setText(String.valueOf(result.getDoubleExtra("radius",0.0)));
+            serviceCoverage.setText(String.valueOf(result.getDoubleExtra("radius",10)));
 
 
         }
@@ -1138,6 +1163,11 @@ public class EditMarketFragment extends Fragment {
         file = new File(imageFilePath);
 
 
+        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
+
+
+
         // Marker
 
         RequestBody requestBodyBinary = null;
@@ -1161,8 +1191,9 @@ public class EditMarketFragment extends Fragment {
 
         Call<Image> imageCall = configurationService.uploadImage(
                 PrefLogin.getAuthorizationHeaders(getContext()),
-                requestBodyBinary
+                fileToUpload
         );
+
 
 
         imageCall.enqueue(new Callback<Image>() {
@@ -1294,10 +1325,18 @@ public class EditMarketFragment extends Fragment {
     void pickLocationClick()
     {
 
-        Intent intent = new Intent(getActivity(), PickDeliveryRange.class);
+//        Intent intent = new Intent(getActivity(), PickDeliveryRange.class);
+//        intent.putExtra("lat_dest",Double.parseDouble(latitude.getText().toString()));
+//        intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
+//        intent.putExtra("radius",Double.parseDouble(serviceCoverage.getText().toString()));
+//        startActivityForResult(intent,3);
+
+
+        Intent intent = new Intent(getActivity(), GooglePlacePicker.class);
         intent.putExtra("lat_dest",Double.parseDouble(latitude.getText().toString()));
         intent.putExtra("lon_dest",Double.parseDouble(longitude.getText().toString()));
         intent.putExtra("radius",Double.parseDouble(serviceCoverage.getText().toString()));
+
         startActivityForResult(intent,3);
     }
 
@@ -1305,6 +1344,172 @@ public class EditMarketFragment extends Fragment {
 
 
     boolean isDestroyed = false;
+
+
+
+
+
+
+
+
+
+
+    ViewModelDeliverySlot viewModelDeliverySlot;
+
+
+    private void setupViewModel()
+    {
+
+        viewModelDeliverySlot = new ViewModelDeliverySlot(MyApplication.application);
+
+
+        viewModelDeliverySlot.getData().observe(getViewLifecycleOwner(), new Observer<List<Object>>() {
+            @Override
+            public void onChanged(List<Object> objects) {
+
+
+                dataset.clear();
+
+                dataset.add(0,new AddItemData());
+                dataset.addAll(objects);
+
+
+                adapterDeliverySlot.notifyDataSetChanged();
+
+            }
+        });
+
+
+
+
+        viewModelDeliverySlot.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+
+            }
+        });
+
+
+
+
+
+        viewModelDeliverySlot.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                showToastMessage(s);
+
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+    ArrayList<Object> dataset = new ArrayList<>();
+    @BindView(R.id.delivery_slot_list)
+    RecyclerView itemImagesList;
+    AdapterDeliverySlot adapterDeliverySlot;
+
+
+
+    private void setupRecyclerView() {
+
+        adapterDeliverySlot = new AdapterDeliverySlot(dataset,getActivity(),this, ViewHolderDeliverySlot.MODE_SHOP_ADMIN);
+        itemImagesList.setAdapter(adapterDeliverySlot);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
+        itemImagesList.setLayoutManager(layoutManager);
+    }
+
+
+
+
+
+
+
+    void getDeliverySlots()
+    {
+//        viewModelDeliverySlot.fetchDeliverySlots(null,true,
+//                null, DeliverySlot.SLOT_ID
+//        );
+    }
+
+
+
+    @OnClick(R.id.sync_refresh)
+    void syncRefreshClick()
+    {
+        getDeliverySlots();
+    }
+
+
+    @Override
+    public void listItemClick(int deliverySlotID) {
+
+    }
+
+    @Override
+    public void editDeliverySlot(DeliverySlot deliverySlot, int position) {
+
+        Intent intent = new Intent(getActivity(), EditDeliverySlot.class);
+        intent.putExtra(EditDeliverySlotFragment.EDIT_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_UPDATE);
+        intent.putExtra(EditDeliverySlotFragment.ACCESS_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_ACCESS_BY_MARKET_ADMIN);
+
+        String jsonString = UtilityFunctions.provideGson().toJson(deliverySlot,DeliverySlot.class);
+        intent.putExtra("delivery_slot_json",jsonString);
+
+        startActivity(intent);
+    }
+
+
+
+    @Override
+    public void removeDeliverySlot(DeliverySlot deliverySlot, int position) {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setTitle("Confirm Delete !")
+                .setMessage("Are you sure you want to delete this Delivery Slot ?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        viewModelDeliverySlot.deleteDeliverySlot(deliverySlot.getSlotID());
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        showToastMessage("Cancelled !");
+                    }
+                })
+                .show();
+
+
+    }
+
+
+
+
+    @Override
+    public void addItemClick() {
+
+        Intent intent = new Intent(getActivity(), EditDeliverySlot.class);
+        intent.putExtra(EditDeliverySlotFragment.EDIT_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_ADD);
+        intent.putExtra(EditDeliverySlotFragment.ACCESS_MODE_INTENT_KEY,EditDeliverySlotFragment.MODE_ACCESS_BY_MARKET_ADMIN);
+
+        startActivity(intent);
+    }
+
+
 
 
 }

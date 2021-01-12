@@ -113,7 +113,7 @@ public class ViewHolderShopItemBackup extends RecyclerView.ViewHolder{
     {
 
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_small,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shop_item_full_width,parent,false);
         return new ViewHolderShopItemBackup(view,context,fragment,adapter,cartItemMap,cartStats);
     }
 

@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs"
 
 
 
@@ -15,6 +16,7 @@ android {
     }
 
 
+
     compileSdkVersion 29
 
     defaultConfig {
@@ -22,12 +24,15 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         multiDexEnabled = true
-        versionCode 36
-        versionName "1.35"
+        versionCode 56
+        versionName "1.55"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
+
+
+
 
 
     buildTypes {
@@ -42,6 +47,7 @@ android {
         repositories {
             jcenter()
             maven { url "https://jitpack.io" }
+
         }
     }
 
@@ -60,22 +66,35 @@ dependencies {
 
     def paging_version = "2.1.1"
 
-    implementation "androidx.paging:paging-runtime:2.1.2" // For Kotlin use paging-runtime-ktx
-    testImplementation "androidx.paging:paging-common:2.1.2" // For Kotlin use paging-common-ktx
+    implementation "androidx.paging:paging-runtime-ktx:2.1.2" // For Kotlin use paging-runtime-ktx
+    testImplementation "androidx.paging:paging-common-ktx:2.1.2" // For Kotlin use paging-common-ktx
 
+    implementation 'com.github.smarteist:autoimageslider:1.3.9'
+
+
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.2"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.2"
+
+
+//    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.5.0'
 
 //    implementation "com.android.support:support-compat:28.0.0"
 
+//    implementation project(name: "razorpay-android-3.8.10", ext: 'aar')
     implementation 'com.roughike:bottom-bar:2.3.1'
+    implementation 'com.razorpay:checkout:1.5.16'
+    implementation 'com.shreyaspatil:EasyUpiPayment:2.2'
+
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    implementation 'com.google.android.libraries.places:places:2.4.0'
 
 
-    implementation 'com.google.android.libraries.places:places:2.3.0'
+    implementation 'com.google.firebase:firebase-analytics:18.0.0'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
 
-
-    implementation 'com.google.firebase:firebase-analytics:17.4.2'
-    implementation 'com.google.firebase:firebase-messaging:20.2.0'
-
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
 
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 
@@ -99,25 +118,28 @@ dependencies {
     implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
 
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.palette:palette:1.0.0'
+    implementation 'androidx.palette:palette-ktx:1.0.0'
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.3.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     implementation 'com.github.clans:fab:1.6.4'
 
 
+
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.7.0'
+
+    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
 
 
     implementation 'com.google.dagger:dagger:2.27'
@@ -126,9 +148,9 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.1'
 
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 

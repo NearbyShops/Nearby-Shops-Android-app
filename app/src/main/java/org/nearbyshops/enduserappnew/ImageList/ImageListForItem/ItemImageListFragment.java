@@ -2,7 +2,6 @@ package org.nearbyshops.enduserappnew.ImageList.ImageListForItem;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import org.nearbyshops.enduserappnew.API.ItemImageService;
-import org.nearbyshops.enduserappnew.ImageList.ImageListForItem.ViewHolders.ViewHolderItemImage;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderImages.ViewHolderItemImage;
 import org.nearbyshops.enduserappnew.ImageSlider.ImageSliderForItem.ImageSlider;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ItemImageEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelImages.ItemImage;
@@ -154,8 +153,8 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 //        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
 
-        final DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//        final DisplayMetrics metrics = new DisplayMetrics();
+//        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -226,22 +225,14 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
+
+
     @Override
     public void onRefresh() {
 
         clearDataset = true;
-//        getRowCountVehicle = true;
-//        resetOffsetVehicle = true;
-
         getItemImages();
     }
-
-
-
-
-
-
-
 
 
 
@@ -251,29 +242,11 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
     private void getItemImages()
     {
 
-//        if(resetOffsetVehicle)
-//        {
-//            offset = 0;
-//            resetOffsetVehicle = false;
-//        }
 
-
-            if(clearDataset)
-            {
-                offset=0;
-            }
-
-
-//        User user = PrefLogin.getUser(getActivity());
-//
-//        if(user ==null)
-//        {
-//            swipeContainer.setRefreshing(false);
-//            progressBar.setVisibility(View.INVISIBLE);
-//            return;
-//        }
-
-
+        if(clearDataset)
+        {
+            offset=0;
+        }
 
 
         int itemID = getActivity().getIntent().getIntExtra("item_id",0);
@@ -281,11 +254,10 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
-
-        Call<ItemImageEndPoint> call = service.getItemImages(
+        Call<ItemImageEndPoint> call = service.getItemImagesForEnduser(
                 itemID,
                 ItemImage.IMAGE_ORDER,
-                limit, offset,false
+                limit, offset
         );
 
 
@@ -295,6 +267,8 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
             @Override
             public void onResponse(Call<ItemImageEndPoint> call, Response<ItemImageEndPoint> response) {
+
+
                 if(isDestroyed)
                 {
                     return;
@@ -307,42 +281,36 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
                     if (clearDataset) {
 
                         clearDataset = false;
-
-
                         dataset.clear();
-                        item_count = response.body().getItemCount();
 
-                        if(item_count>0)
+                        if(response.body().getResults().size()>0 || response.body().getItemDetails()!=null)
                         {
                             dataset.add(new HeaderTitle("Images"));
                         }
                     }
 
 
-//                    if (getRowCountVehicle) {
-//
-//                        item_count = response.body().getItemCount();
-//                        getRowCountVehicle = false;
-//                        dataset.add(new HeaderTitle("Images"));
-//                    }
+
+                    itemImageResponse = response.body();
 
 
-                    if(item_count==0)
+
+                    if(response.body().getResults().size()==0 && response.body().getItemDetails()==null)
                     {
 //                        emptyScreen.setVisibility(View.VISIBLE);
                         dataset.add(EmptyScreenDataFullScreen.emptyScreenItemImages());
                     }
-                    else
+
+
+                    if(response.body().getItemDetails()!=null)
                     {
-//                        emptyScreen.setVisibility(View.GONE);
+                        dataset.add(response.body().getItemDetails());
                     }
 
 
                     if(response.body().getResults()!=null)
                     {
                         dataset.addAll(response.body().getResults());
-
-//                        imageListData = response.body().getResults();
                     }
 
                     listAdapter.notifyDataSetChanged();
@@ -367,10 +335,6 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
                 swipeContainer.setRefreshing(false);
             }
         });
-
-
-
-
 
     }
 
@@ -397,6 +361,7 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
 
+    ItemImageEndPoint itemImageResponse;
 
 
     @Override
@@ -404,16 +369,25 @@ public class ItemImageListFragment extends Fragment implements SwipeRefreshLayou
 
 
         Intent intent = new Intent(getActivity(), ImageSlider.class);
-        List<Object> list = new ArrayList<>();
-        list.addAll(dataset);
-        list.remove(0);
 
-        String json = UtilityFunctions.provideGson().toJson(list);
-        intent.putExtra("images_list",json);
-        intent.putExtra("position",position-1);
+//        List<Object> list = new ArrayList<>();
+//        list.addAll(dataset);
+//        list.remove(0);
+
+//        String json = UtilityFunctions.provideGson().toJson(list);
+//        intent.putExtra("images_list",json);
+//        intent.putExtra("position",position-1);
 
 
-        startActivity(intent);
+
+        if(itemImageResponse!=null)
+        {
+            String json = UtilityFunctions.provideGson().toJson(itemImageResponse);
+            intent.putExtra("images_list",json);
+            intent.putExtra("position",position-1);
+            startActivity(intent);
+        }
+
     }
 
 

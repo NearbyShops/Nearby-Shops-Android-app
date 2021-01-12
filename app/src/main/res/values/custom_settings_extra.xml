@@ -6,8 +6,15 @@
     <!-- hide tutorials in vendor dashboard so that vendor does not know the origin of this software -->
 <!--    <bool name="hide_tutorials_for_vendor">false</bool>-->
 
-    <!-- hide customers phone number from vendors so vendor does not avoid paying commission -->
-<!--    <bool name="hide_customer_phone_from_vendors">false</bool>-->
+
+<!--     hide customers phone number from vendors so vendor does not avoid paying commission -->
+    <bool name="hide_customer_phone_from_vendors">true</bool>
+
+
+<!--    hide cancel button from customers -->
+    <bool name="hide_cancel_button_from_customers">true</bool>
+
+
 
     <!-- Show new option in item filters -->
 <!--    <bool name="show_new_in_item_filters">true</bool>-->

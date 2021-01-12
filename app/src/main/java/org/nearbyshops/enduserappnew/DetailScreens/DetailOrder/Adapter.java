@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderEndPoint;
+import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderItemEndPoint;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrderWithBill;
@@ -71,8 +73,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             return ViewHolderHeader.createBoldAndBig(parent,context);
         }
 
-
-        return null;
+        return ViewHolderHeader.createBoldAndBig(parent,context);
     }
 
 
@@ -84,7 +85,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         if(holder instanceof ViewHolderOrderWithBill)
         {
-            ((ViewHolderOrderWithBill) holder).setItem((Order) dataset.get(position));
+            ((ViewHolderOrderWithBill) holder).setItem((OrderItemEndPoint) dataset.get(position));
         }
         else if(holder instanceof ViewHolderOrderItem)
         {
@@ -113,7 +114,7 @@ class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         super.getItemViewType(position);
 
-        if(dataset.get(position) instanceof Order)
+        if(dataset.get(position) instanceof OrderItemEndPoint)
         {
             return TAG_VIEW_HOLDER_ORDER;
         }

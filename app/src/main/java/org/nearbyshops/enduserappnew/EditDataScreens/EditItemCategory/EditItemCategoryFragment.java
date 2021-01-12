@@ -3,10 +3,10 @@ package org.nearbyshops.enduserappnew.EditDataScreens.EditItemCategory;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,13 +17,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
 
@@ -51,13 +49,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class EditItemCategoryFragment extends Fragment {
@@ -148,8 +145,14 @@ public class EditItemCategoryFragment extends Fragment {
 
 
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        if(getActivity()!=null)
+        {
+            ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        }
+
+//        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -168,6 +171,7 @@ public class EditItemCategoryFragment extends Fragment {
             if(current_mode == MODE_UPDATE)
             {
                 itemCategory = PrefItemCategory.getItemCategory(getContext());
+                getItemCategoryDetails();
             }
             else if (current_mode == MODE_ADD)
             {
@@ -175,13 +179,6 @@ public class EditItemCategoryFragment extends Fragment {
 //                System.out.println("Item Category ID : " + item.getItemCategoryID());
             }
 
-
-            if(itemCategory !=null) {
-                bindDataToViews();
-            }
-
-
-            showLogMessage("Inside OnCreateView - Saved Instance State !");
         }
 
 
@@ -195,16 +192,13 @@ public class EditItemCategoryFragment extends Fragment {
         updateIDFieldVisibility();
 
 
-        if(itemCategory !=null) {
-            loadImage(itemCategory.getImagePath());
-            showLogMessage("Inside OnCreateView : DeliveryGUySelf : Not Null !");
-        }
-
-
-        showLogMessage("Inside On Create View !");
-
         return rootView;
     }
+
+
+
+
+
 
     private void updateIDFieldVisibility()
     {
@@ -233,6 +227,52 @@ public class EditItemCategoryFragment extends Fragment {
     }
 
 
+
+
+
+
+
+
+    private void getItemCategoryDetails() {
+
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.setMessage("Please with ... Getting Item Category details !");
+        pd.show();
+
+
+
+        Call<ItemCategory> call = itemCategoryService.getItemCategoryDetails(
+                itemCategory.getItemCategoryID()
+        );
+
+
+        call.enqueue(new Callback<ItemCategory>() {
+            @Override
+            public void onResponse(Call<ItemCategory> call, Response<ItemCategory> response) {
+
+                pd.dismiss();
+
+                if (response.code() == 200) {
+                    itemCategory = response.body();
+                    bindDataToViews();
+
+                } else {
+                    showToastMessage("Failed : Code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemCategory> call, Throwable t) {
+                showToastMessage("Failed !");
+            }
+        });
+
+    }
+
+
+
+
+
     public static final String TAG_LOG = "TAG_LOG";
 
 
@@ -244,19 +284,6 @@ public class EditItemCategoryFragment extends Fragment {
         System.out.println(message);
     }
 
-
-
-
-    private void loadImage(String imagePath) {
-
-        String iamgepath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/ItemCategory/Image/" + imagePath;
-
-        System.out.println(iamgepath);
-
-        Picasso.get()
-                .load(iamgepath)
-                .into(resultView);
-    }
 
 
 
@@ -362,6 +389,7 @@ public class EditItemCategoryFragment extends Fragment {
             {
 
                 uploadPickedImage(true);
+//                retrofitPUTRequest();
             }
 
 
@@ -389,6 +417,15 @@ public class EditItemCategoryFragment extends Fragment {
             isAbstractNode.setChecked(itemCategory.isAbstractNode());
             descriptionShort.setText(itemCategory.getDescriptionShort());
             itemCategoryOrder.setText(String.valueOf(itemCategory.getCategoryOrder()));
+
+
+            String imagePath = PrefGeneral.getServiceURL(getContext()) + "/api/v1/ItemCategory/Image/" + itemCategory.getImagePath();
+
+            System.out.println(imagePath);
+
+            Picasso.get()
+                    .load(imagePath)
+                    .into(resultView);
         }
     }
 
@@ -416,8 +453,11 @@ public class EditItemCategoryFragment extends Fragment {
         itemCategory.setDescriptionShort(descriptionShort.getText().toString());
         itemCategory.setLeafNode(isLeafNode.isChecked());
         itemCategory.setAbstractNode(isAbstractNode.isChecked());
-        itemCategory.setCategoryOrder(Integer.parseInt(itemCategoryOrder.getText().toString()));
 
+        if(itemCategoryOrder.getText().toString().length()>0)
+        {
+            itemCategory.setCategoryOrder(Integer.parseInt(itemCategoryOrder.getText().toString()));
+        }
     }
 
 
@@ -445,10 +485,26 @@ public class EditItemCategoryFragment extends Fragment {
 //        saveButtonNew.setVisibility(View.INVISIBLE);
 //        progressBarNew.setVisibility(View.VISIBLE);
 
+        MultipartBody.Part fileToUpload = null;
+
+
+        if(isImageChanged && !isImageRemoved)
+        {
+            File file;
+            file = new File(imageFilePath);
+
+            RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+            fileToUpload = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
+        }
+
+
+
+
 
         Call<ResponseBody> call = itemCategoryService.updateItemCategory(
                 PrefLogin.getAuthorizationHeaders(getContext()),
-                itemCategory,itemCategory.getItemCategoryID()
+                itemCategory.getItemCategoryID(),
+                itemCategory
         );
 
 
@@ -494,6 +550,9 @@ public class EditItemCategoryFragment extends Fragment {
                     return;
                 }
 
+
+
+                showToastMessage("Update Failed ! ");
 
                 saveButton.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.INVISIBLE);
@@ -605,9 +664,10 @@ public class EditItemCategoryFragment extends Fragment {
 
 
 
+
     void showToastMessage(String message)
     {
-        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
@@ -803,6 +863,8 @@ public class EditItemCategoryFragment extends Fragment {
         File file;
         file = new File(imageFilePath);
 
+        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
 
 
         // Marker
@@ -820,9 +882,15 @@ public class EditItemCategoryFragment extends Fragment {
 
             requestBodyBinary = RequestBody.create(MediaType.parse("application/octet-stream"), buf);
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+
+//        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//        MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
 
 
 
@@ -838,7 +906,10 @@ public class EditItemCategoryFragment extends Fragment {
 
 
         Call<Image> imageCall = itemCategoryService.uploadImage(PrefLogin.getAuthorizationHeaders(getContext()),
-                requestBodyBinary);
+                fileToUpload
+        );
+
+
 
 
         imageCall.enqueue(new Callback<Image>() {

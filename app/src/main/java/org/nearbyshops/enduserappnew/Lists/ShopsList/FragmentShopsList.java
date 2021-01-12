@@ -5,14 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,26 +17,31 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.gson.Gson;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-import com.google.android.gms.location.LocationServices;
-import com.wunderlist.slidinglayer.SlidingLayer;
 
 import org.nearbyshops.enduserappnew.API.ShopService;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditBannerImage.EditBannerImage;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditBannerImage.EditBannerImageFragment;
 import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
+import org.nearbyshops.enduserappnew.Lists.DeliveryAddress.DeliveryAddressActivity;
 import org.nearbyshops.enduserappnew.Lists.ItemsInShopByCategory.ItemsInShopByCat;
-import org.nearbyshops.enduserappnew.Lists.Markets.ViewModelMarkets;
+import org.nearbyshops.enduserappnew.multimarketfiles.Markets.MarketsList;
+import org.nearbyshops.enduserappnew.multimarketfiles.Markets.ViewModelMarkets;
+import org.nearbyshops.enduserappnew.Model.ItemCategory;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
-import org.nearbyshops.enduserappnew.Services.LocationUpdateService;
+import org.nearbyshops.enduserappnew.Services.LocationService;
 import org.nearbyshops.enduserappnew.Services.UpdateServiceConfiguration;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+import org.nearbyshops.enduserappnew.UtilityScreens.BannerSlider.Model.BannerImageList;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerGoogleMaps.GooglePlacePicker;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ShopEndPoint;
 import org.nearbyshops.enduserappnew.Model.Shop;
@@ -54,55 +56,65 @@ import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.Preferences.PrefShopHome;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortShopsByCategory;
-import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortShops;
 import org.nearbyshops.enduserappnew.UtilityScreens.PlacePickerMapbox.PickLocation;
-import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderMarket.ViewHolderMarket;
+import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterShopsData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterShops;
+import org.nearbyshops.enduserappnew.multimarketfiles.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopSmall;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.ShopSuggestionsData;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderAddItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.ViewHolderCreateShop;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.SetLocationManually;
+import org.nearbyshops.enduserappnew.multimarketfiles.SwitchMarketData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenListItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderSetLocationManually;
-import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
-import org.nearbyshops.enduserappnew.aSellerModule.DashboardShopAdmin.ShopAdminHome;
+import org.nearbyshops.enduserappnew.multimarketfiles.ViewHolderSwitchMarket;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 
-//import icepick.State;
 
-/**
- * Created by sumeet on 25/5/16.
- */
+
+
 public class FragmentShopsList extends Fragment implements
         SwipeRefreshLayout.OnRefreshListener, NotifySort, NotifySearch ,
         ViewHolderShopSmall.ListItemClick , ViewHolderSetLocationManually.ListItemClick,
+        AdapterFilterItemCategory.ListItemClick,
         ViewHolderEmptyScreenListItem.ListItemClick , ViewHolderCreateShop.ListItemClick ,
-        ViewHolderMarket.ListItemClick {
+        ViewHolderMarket.ListItemClick , ViewHolderFilterShops.ListItemClick, ViewHolderSwitchMarket.ListItemClick,
+        ViewHolderAddItem.ListItemClick {
 
 
-    private static final String TAG_SLIDING = "tag_sliding_layer_sort_shops";
+//    private static final String TAG_SLIDING = "tag_sliding_layer_sort_shops";
     private ArrayList<Object> dataset = new ArrayList<>();
 
         boolean isSaved;
 
 
+
         @Inject
-        ShopService shopService;
+        Gson gson;
+
+
+//        @Inject
+//        ShopService shopService;
 
 
         private RecyclerView recyclerView;
         private Adapter adapter;
-//        GridLayoutManager layoutManager;
 
         SwipeRefreshLayout swipeContainer;
 
@@ -126,33 +138,31 @@ public class FragmentShopsList extends Fragment implements
 
 
     //    @BindView(R.id.icon_list) ImageView mapIcon;
-    @BindView(R.id.shop_count_indicator) TextView shopCountIndicator;
-    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
+//    @BindView(R.id.shop_count_indicator) TextView shopCountIndicator;
+//    @BindView(R.id.slidingLayer) SlidingLayer slidingLayer;
+
+//    @BindView(R.id.empty_screen) LinearLayout emptyScreen;
+//    @BindView(R.id.progress_bar_fetching_location) LinearLayout progressBarFetchingLocation;
+
+//    @BindView(R.id.empty_screen_message) TextView emptyScreenMessage;
+    //    @BindView(R.id.button_try_again) TextView buttonTryAgain;
 
 
-
-    @BindView(R.id.empty_screen) LinearLayout emptyScreen;
-    @BindView(R.id.progress_bar_fetching_location) LinearLayout progressBarFetchingLocation;
-
-    @BindView(R.id.empty_screen_message) TextView emptyScreenMessage;
-
-
+    @BindView(R.id.app_name) TextView toolbarHeader;
     @BindView(R.id.service_name) TextView serviceName;
 
 
-    @BindView(R.id.button_try_again) TextView buttonTryAgain;
 
 
 
 
 
-    public FragmentShopsList() {
+
+        public FragmentShopsList() {
             // inject dependencies through dagger
             DaggerComponentBuilder.getInstance()
                     .getNetComponent()
                     .Inject(this);
-
-            Log.d("applog","Shop Fragment Constructor");
 
         }
 
@@ -207,41 +217,36 @@ public class FragmentShopsList extends Fragment implements
 
             recyclerView = rootView.findViewById(R.id.recyclerView);
             swipeContainer = rootView.findViewById(R.id.swipeContainer);
-            switchMade = getArguments().getBoolean("switch");
+
+            if(getArguments()!=null)
+            {
+                switchMade = getArguments().getBoolean("switch",false);
+            }
+
 
 
             Toolbar toolbar = rootView.findViewById(R.id.toolbar);
-            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+            if(getActivity()!=null)
+            {
+                ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+            }
+
 
 
             setupViewModel();
 
 
-//            toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-//            toolbar.setTitle(getString(R.string.app_name));
+
+            boolean filterShopsByCategory = getActivity().getIntent().getBooleanExtra("filter_shops_by_category",false);
+            String categoryName = getActivity().getIntent().getStringExtra("item_category_name");
 
 
 
-
-    //
-
-            serviceName.setVisibility(View.VISIBLE);
-            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
-
-
-
-            if(PrefGeneral.getMultiMarketMode(getActivity()) && PrefServiceConfig.getServiceName(getActivity())!=null)
+            if(filterShopsByCategory)
             {
-
-                buttonTryAgain.setText("Change Market");
-                emptyScreenMessage.setText("" +
-                        "Uh .. oh .. no shops available at your location .. change your market ... and explore other markets !");
-            }
-            else
-            {
-
-                emptyScreenMessage.setText("Uh .. oh .. no shops available at your location .. change your location ... and try again");
-                buttonTryAgain.setText("Try Again");
+                serviceName.setVisibility(View.GONE);
+                toolbarHeader.setText(categoryName + " Shops");
             }
 
 
@@ -261,20 +266,21 @@ public class FragmentShopsList extends Fragment implements
             setupRecyclerView();
             setupSwipeContainer();
 
-//            notifyDataset();
+
+            setMarketName();
 
 
-            setupSlidingLayer();
+//            setupSlidingLayer();
 
 
 
 
 
 
-            if(!PrefLocation.isLocationSetByUser(getActivity()))
-            {
-                getActivity().startService(new Intent(getActivity(), LocationUpdateService.class));
-            }
+//            if(!PrefLocation.isLocationSetByUser(getActivity()))
+//            {
+//                getActivity().startService(new Intent(getActivity(), LocationService.class));
+//            }
 
 
             setupLocalBroadcastManager();
@@ -286,6 +292,26 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+
+
+        void setMarketName()
+        {
+            if(PrefServiceConfig.getServiceName(getActivity())!=null)
+            {
+                serviceName.setVisibility(View.VISIBLE);
+                serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+            }
+            else
+            {
+                serviceName.setVisibility(View.GONE);
+            }
+
+        }
+
+
+
+
+
         private void setupLocalBroadcastManager()
         {
 
@@ -293,7 +319,7 @@ public class FragmentShopsList extends Fragment implements
             IntentFilter filter = new IntentFilter();
 
             filter.addAction(UpdateServiceConfiguration.INTENT_ACTION_MARKET_CONFIG_FETCHED);
-            filter.addAction(LocationUpdateService.INTENT_ACTION_LOCATION_UPDATED);
+            filter.addAction(LocationService.INTENT_ACTION_LOCATION_UPDATED);
 
             LocalBroadcastManager.getInstance(getActivity()).registerReceiver(new BroadcastReceiver() {
                 @Override
@@ -309,13 +335,16 @@ public class FragmentShopsList extends Fragment implements
                                 serviceName.setVisibility(View.VISIBLE);
                                 serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
 
-                                if(intent.getAction().equals(LocationUpdateService.INTENT_ACTION_LOCATION_UPDATED))
+                                if(intent.getAction().equals(LocationService.INTENT_ACTION_LOCATION_UPDATED))
                                 {
-                                    makeRefreshNetworkCall();
+                                    countDownTimer.cancel();
+                                    countDownTimer.start();
                                 }
                             }
                         });
                     }
+
+
 
 
                 }
@@ -327,7 +356,30 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-        private void setupSwipeContainer()
+
+        
+
+
+        private CountDownTimer countDownTimer = new CountDownTimer(1000, 500) {
+
+            public void onTick(long millisUntilFinished) {
+
+    //            logMessage("Timer onTick()");
+            }
+
+
+            public void onFinish() {
+
+                makeRefreshNetworkCall();
+            }
+        };
+
+
+
+
+
+
+    private void setupSwipeContainer()
         {
             if(swipeContainer!=null) {
 
@@ -345,54 +397,56 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-            @OnClick({R.id.icon_sort, R.id.text_sort})
-            void sortClick()
-            {
-                slidingLayer.openLayer(true);
-        //        showToastMessage("Sort Clicked");
-            }
+//            @OnClick({R.id.icon_sort, R.id.text_sort})
+//            void sortClick()
+//            {
+//                slidingLayer.openLayer(true);
+//        //        showToastMessage("Sort Clicked");
+//            }
 
 
 
 
 
+//
+//    private void setupSlidingLayer()
+//    {
+//
+//        ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
+//        //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
+//
+//        if(slidingLayer!=null)
+//        {
+//            slidingLayer.setChangeStateOnTap(true);
+//            slidingLayer.setSlidingEnabled(true);
+////            slidingLayer.setPreviewOffsetDistance(15);
+//            slidingLayer.setOffsetDistance(30);
+//            slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
+//
+//            DisplayMetrics metrics = new DisplayMetrics();
+//            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//
+//            //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
+//
+//            //slidingContents.setLayoutParams(layoutParams);
+//
+//            //slidingContents.setMinimumWidth(metrics.widthPixels-50);
+//
+//
+//
+//            if(getChildFragmentManager().findFragmentByTag(TAG_SLIDING)==null)
+//            {
+////                System.out.println("Item Cat Simple : New Sliding Layer Loaded !");
+//                getChildFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.slidinglayerfragment,new SlidingLayerSortShops(),TAG_SLIDING)
+//                        .commit();
+//            }
+//        }
+//
+//    }
+//
 
-    private void setupSlidingLayer()
-    {
-
-        ////slidingLayer.setShadowDrawable(R.drawable.sidebar_shadow);
-        //slidingLayer.setShadowSizeRes(R.dimen.shadow_size);
-
-        if(slidingLayer!=null)
-        {
-            slidingLayer.setChangeStateOnTap(true);
-            slidingLayer.setSlidingEnabled(true);
-//            slidingLayer.setPreviewOffsetDistance(15);
-            slidingLayer.setOffsetDistance(30);
-            slidingLayer.setStickTo(SlidingLayer.STICK_TO_RIGHT);
-
-            DisplayMetrics metrics = new DisplayMetrics();
-            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-            //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, ViewGroup.LayoutParams.MATCH_PARENT);
-
-            //slidingContents.setLayoutParams(layoutParams);
-
-            //slidingContents.setMinimumWidth(metrics.widthPixels-50);
-
-
-
-            if(getChildFragmentManager().findFragmentByTag(TAG_SLIDING)==null)
-            {
-//                System.out.println("Item Cat Simple : New Sliding Layer Loaded !");
-                getChildFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.slidinglayerfragment,new SlidingLayerSortShops(),TAG_SLIDING)
-                        .commit();
-            }
-        }
-
-    }
 
 
 
@@ -401,66 +455,56 @@ public class FragmentShopsList extends Fragment implements
 
 
     private void setupRecyclerView()
+    {
+
+        if(recyclerView == null)
         {
-            if(recyclerView == null)
-            {
-                return;
-            }
+            return;
+        }
 
 
 
+        adapter = new Adapter(dataset,getActivity(),this);
+        recyclerView.setAdapter(adapter);
 
 
-            adapter = new Adapter(dataset,getActivity(),this);
-
-            recyclerView.setAdapter(adapter);
-
-//            layoutManager = new GridLayoutManager(getActivity(),1);
-
-
-            final LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
-            recyclerView.setLayoutManager(linearlayoutManager);
-
-
-//            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-//                    linearlayoutManager.getOrientation());
-//            recyclerView.addItemDecoration(dividerItemDecoration);
+        final LinearLayoutManager linearlayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+        recyclerView.setLayoutManager(linearlayoutManager);
 
 
 
-            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                    super.onScrollStateChanged(recyclerView, newState);
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearlayoutManager.getOrientation());
+//        recyclerView.addItemDecoration(dividerItemDecoration);
 
-                    if(linearlayoutManager.findLastVisibleItemPosition()==dataset.size())
+
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if(linearlayoutManager.findLastVisibleItemPosition()==dataset.size())
+                {
+                    // trigger fetch next page
+
+
+                    if(offset + limit > linearlayoutManager.findLastVisibleItemPosition())
                     {
-                        // trigger fetch next page
-
-//                        if(dataset.size()== previous_position)
-//                        {
-//                            return;
-//                        }
+                        return;
+                    }
 
 
-                        if(offset + limit > linearlayoutManager.findLastVisibleItemPosition())
-                        {
-                            return;
-                        }
-
-
-                        if((offset+limit)<=item_count)
-                        {
-                            offset = offset + limit;
-                            makeNetworkCall(false,false);
-                        }
-
-//                        previous_position = dataset.size();
-
+                    if((offset+limit)<=item_count)
+                    {
+                        offset = offset + limit;
+                        makeNetworkCall();
                     }
                 }
-            });
-        }
+            }
+        });
+
+
+    }
 
 
 
@@ -507,13 +551,14 @@ public class FragmentShopsList extends Fragment implements
         @Override
         public void onRefresh() {
 
+            clearDataset=true;
 
-            makeNetworkCall(true,true);
+            makeNetworkCall();
 
-            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            if(PrefGeneral.isMultiMarketEnabled(getActivity()))
             {
                 // multi-market mode enabled
-                viewModel.getNearbyMarketsHorizontal();
+//                viewModel.getNearbyMarketsHorizontal();
             }
 
         }
@@ -524,19 +569,32 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-        private void makeNetworkCall(final boolean clearDataset, boolean resetOffset)
+        Integer itemCategoryID;
+        int layoutPositionSelected = 0;
+
+
+
+        boolean clearDataset = false;
+
+
+
+        private void makeNetworkCall()
         {
 
-            if(resetOffset)
+            if(clearDataset)
             {
                 offset = 0;
             }
 
 
 
-//            (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MAX_KEY)
-//            (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.DELIVERY_RANGE_MIN_KEY),
-//                    (double)UtilityGeneral.getFromSharedPrefFloat(UtilityGeneral.PROXIMITY_KEY),
+
+            boolean filterShopsByCategory = getActivity().getIntent().getBooleanExtra("filter_shops_by_category",false);
+
+            if(filterShopsByCategory)
+            {
+                itemCategoryID = getActivity().getIntent().getIntExtra("category_id",123);
+            }
 
 
 
@@ -544,28 +602,45 @@ public class FragmentShopsList extends Fragment implements
             current_sort = PrefSortShopsByCategory.getSort(getActivity()) + " " + PrefSortShopsByCategory.getAscending(getActivity());
 
 
-            Call<ShopEndPoint> callEndpoint = shopService.getShops(
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
+                    .client(new OkHttpClient().newBuilder().build())
+                    .build();
+
+
+
+
+            Call<ShopEndPoint> callEndpoint;
+
+
+            callEndpoint = retrofit.create(ShopService.class).filterShopsByItemCategory(
+                    itemCategoryID,
+                    PrefLocation.getLatitude(getActivity()), PrefLocation.getLongitude(getActivity()),
                     null,
-                    null,
-                    PrefLocation.getLongitude(getActivity()),
-                    PrefLocation.getLatitude(getActivity()),
-                    null, null, null,
-                    searchQuery,current_sort,limit,offset,false
+                    clearDataset,
+                    clearDataset && !filterShopsByCategory,
+                    searchQuery,
+                    ViewHolderFilterShops.getSortString(getActivity()),
+                    limit,offset,
+                    clearDataset,false
             );
 
 
+//            Call<ShopEndPoint> callEndpoint = shopService.getShops(
+//                    null,
+//                    PrefLocation.getLatitude(getActivity()),
+//                    PrefLocation.getLongitude(getActivity()),
+//                    null, null, null,
+//                    searchQuery,current_sort,
+//                    limit,offset,
+//                    clearDataset,false
+//            );
 
 
 
-            emptyScreen.setVisibility(View.GONE);
 
-
-
-
-//            System.out.println("Lat : " + PrefLocation.getLatitude(getActivity())
-//                                + "\nLon : " + PrefLocation.getLongitude(getActivity()));
-
-
+//            emptyScreen.setVisibility(View.GONE);
 
 
 
@@ -578,86 +653,165 @@ public class FragmentShopsList extends Fragment implements
                         return;
                     }
 
-    //                dataset.clear();
 
-                    if(response.body()!=null)
+                    if(getActivity()==null)
+                    {
+                        return;
+                    }
+
+
+                    if(response.code()==200)
                     {
 
                         if(clearDataset)
                         {
                             dataset.clear();
-//                            dataset.add(0, Highlights.getHighlightsCabRental());
-                        }
-
-                        dataset.addAll(response.body().getResults());
 
 
-                        if(response.body().getItemCount()!=null)
-                        {
-                            item_count = response.body().getItemCount();
-                        }
-
-
-
-                        boolean showCreateShop = MyApplication.getAppContext().getResources().getBoolean(R.bool.show_create_shop);
-
-
-
-                        if(response.body().getResults().size()==0)
-                        {
-                            dataset.add(0, new SetLocationManually());
-//                            emptyScreen.setVisibility(View.VISIBLE);
-
-
-
-                            User user = PrefLogin.getUser(getActivity());
-
-                            if(showCreateShop)
+                            if(response.body().getItemCount()!=null)
                             {
-                                if(user!=null)
+                                item_count = response.body().getItemCount();
+                            }
+
+
+                            clearDataset=false;
+
+
+                            boolean showCreateShop = MyApplication.getAppContext().getResources().getBoolean(R.bool.show_create_shop);
+
+
+
+                            dataset.addAll(response.body().getResults());
+
+
+                            int i = 0;
+
+
+
+
+
+
+
+                            if(!filterShopsByCategory)
+                            {
+
+
+
+                                if(PrefGeneral.isMultiMarketEnabled(getContext()))
                                 {
-                                    if(user.getRole()==User.ROLE_END_USER_CODE)
-                                    {
-                                        dataset.add(new CreateShopData());
-                                    }
-                                    else if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
-                                    {
-                                        dataset.add(new ShopSuggestionsData());
-                                    }
+                                    dataset.add(i++, new SwitchMarketData());
                                 }
                                 else
                                 {
-                                    dataset.add(new CreateShopData());
+                                    dataset.add(i++, new SetLocationManually());
                                 }
+
+
+
+//                                if(Highlights.getHighlightsFrontScreen(getActivity())!=null && getResources().getBoolean(R.bool.slider_front_enabled))
+//                                {
+//                                    dataset.add(i++,Highlights.getHighlightsFrontScreen(getActivity()));
+//                                }
+
+                                if(response.body().getBannerImages()!=null && getResources().getBoolean(R.bool.slider_front_enabled))
+                                {
+                                    BannerImageList bannerImageList = new BannerImageList();
+                                    bannerImageList.setBannerImageList(response.body().getBannerImages());
+                                    dataset.add(i++,bannerImageList);
+                                }
+
+
+
+
                             }
 
 
 
 
-                            if(PrefGeneral.getMultiMarketMode(getActivity()))
+
+
+                            if(PrefGeneral.isMultiMarketEnabled(getContext()))
+                            {
+//                                    i++;
+//                                dataset.add(i++,new MarketsListData());
+                            }
+
+
+
+
+                            if(item_count==0)
                             {
 
-                                dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListMultiMarket());
+
+                                User user = PrefLogin.getUser(getActivity());
+
+
+                                    if(user!=null)
+                                    {
+                                        if(user.getRole()==User.ROLE_END_USER_CODE)
+                                        {
+                                            if(showCreateShop) {
+                                                dataset.add(new CreateShopData());
+                                            }
+                                        }
+                                        else if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+                                        {
+                                            dataset.add(new ShopSuggestionsData());
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if(showCreateShop) {
+                                            dataset.add(new CreateShopData());
+                                        }
+                                    }
+
+
+
+
+
+                                if(PrefGeneral.isMultiMarketEnabled(getActivity()))
+                                {
+
+                                    dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListMultiMarket());
+                                }
+                                else
+                                {
+
+
+                                    dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListSingleMarket());
+                                }
+
                             }
                             else
                             {
 
 
-                                dataset.add(EmptyScreenDataListItem.getEmptyScreenShopsListSingleMarket());
-                            }
+                                if(!filterShopsByCategory)
+                                {
+                                    ItemCategoriesList list = new ItemCategoriesList();
+                                    list.setItemCategories(response.body().getSubcategories());
+                                    list.setSelectedCategoryID(itemCategoryID);
+                                    list.setScrollPositionForSelected(layoutPositionSelected);
+
+
+//                                i++;
+
+                                    if(getResources().getBoolean(R.bool.show_categories_in_shops_screen))
+                                    {
+
+                                        dataset.add(i++,list);
+                                    }
+                                }
 
 
 
 
-                        }
-                        else
-                        {
-                            if(dataset.size()>=1)
-                            {
-                                dataset.add(0, new SetLocationManually());
+                                dataset.add(i++,new FilterShopsData());
 
 
-                                if(showCreateShop)
+
+                                if(!filterShopsByCategory)
                                 {
                                     User user = PrefLogin.getUser(getActivity());
 
@@ -665,27 +819,44 @@ public class FragmentShopsList extends Fragment implements
                                     {
                                         if(user.getRole()==User.ROLE_END_USER_CODE)
                                         {
-                                            dataset.add(2, new CreateShopData());
+
+                                            if(showCreateShop) {
+                                                dataset.add(i++,new CreateShopData());
+                                            }
+
                                         }
                                         else if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
                                         {
-                                            dataset.add(2,new ShopSuggestionsData());
+                                            dataset.add(i++,new ShopSuggestionsData());
                                         }
                                     }
                                     else
                                     {
-                                        dataset.add(2, new CreateShopData());
+
+                                        if(showCreateShop) {
+                                            dataset.add(i++, new CreateShopData());
+                                        }
                                     }
+
+
                                 }
+
 
 
                             }
                         }
+                        else
+                        {
+                            dataset.addAll(response.body().getResults());
+                        }
 
-
-                        shopCountIndicator.setText(dataset.size() + " out of " + item_count + " Shops");
 
                     }
+                    else
+                    {
+                        showToastMessage("Failed Code : " + response.code());
+                    }
+
 
 
 
@@ -714,6 +885,13 @@ public class FragmentShopsList extends Fragment implements
                         return;
                     }
 
+                    if(getActivity()==null)
+                    {
+                        return;
+                    }
+
+
+
                     dataset.clear();
 
                     dataset.add(EmptyScreenDataFullScreen.getOffline());
@@ -735,18 +913,15 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-
-
-//        @OnClick(R.id.button_try_again)
         private void tryAgainClick()
         {
 
-            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            if(PrefGeneral.isMultiMarketEnabled(getActivity()))
             {
 
                 if(getActivity() instanceof ShowFragment)
                 {
-                    ((ShowFragment) getActivity()).showProfileFragment(false);
+                    ((ShowFragment) getActivity()).showProfileFragment();
                 }
             }
             else
@@ -759,12 +934,10 @@ public class FragmentShopsList extends Fragment implements
 
 
 
-    @Override
-    public void buttonClick(String url) {
-            tryAgainClick();
-    }
-
-
+        @Override
+        public void buttonClick(String url) {
+                tryAgainClick();
+        }
 
 
 
@@ -772,8 +945,10 @@ public class FragmentShopsList extends Fragment implements
 
         private void showToastMessage(String message)
         {
-            Toast.makeText(MyApplication.getAppContext(),message,Toast.LENGTH_SHORT).show();
+            UtilityFunctions.showToastMessage(getActivity(),message);
         }
+
+
 
 
 
@@ -790,7 +965,7 @@ public class FragmentShopsList extends Fragment implements
     @Override
     public void onDestroy() {
         super.onDestroy();
-        isDestroyed = true;
+//        isDestroyed = true;
     }
 
 
@@ -860,26 +1035,46 @@ public class FragmentShopsList extends Fragment implements
 
 
 
+
+
+
     @Override
     public void changeLocationClick() {
 
         Intent intent = null;
 
 
-        if(getResources().getBoolean(R.bool.use_google_maps))
+        User user = PrefLogin.getUser(getActivity());
+
+        if(user==null)
         {
-            intent = new Intent(getActivity(), GooglePlacePicker.class);
+            if(getResources().getBoolean(R.bool.use_google_maps))
+            {
+                intent = new Intent(getActivity(), GooglePlacePicker.class);
+            }
+            else
+            {
+                intent = new Intent(getActivity(), PickLocation.class);
+            }
+
+
+            intent.putExtra("lat_dest",PrefLocation.getLatitude(getActivity()));
+            intent.putExtra("lon_dest",PrefLocation.getLongitude(getActivity()));
+            startActivityForResult(intent,3);
+
         }
         else
         {
-            intent = new Intent(getActivity(), PickLocation.class);
+            intent = new Intent(getActivity(), DeliveryAddressActivity.class);
+            startActivityForResult(intent,3);
         }
 
-
-        intent.putExtra("lat_dest",PrefLocation.getLatitude(getActivity()));
-        intent.putExtra("lon_dest",PrefLocation.getLongitude(getActivity()));
-        startActivityForResult(intent,3);
     }
+
+
+
+
+
 
 
 
@@ -893,16 +1088,20 @@ public class FragmentShopsList extends Fragment implements
 
         if(requestCode==3 && resultCode==6)
         {
-            if(data!=null)
-            {
-            }
+
+            PrefLocation.saveLatLon(data.getDoubleExtra("lat_dest",0.0),
+                    data.getDoubleExtra("lon_dest",0.0),
+                    getActivity()
+            );
 
 
+            PrefLocation.locationSetByUser(true,getActivity());
+            makeRefreshNetworkCall();
 
-            PrefLocation.saveLatLonCurrent(data.getDoubleExtra("lat_dest",0.0),data.getDoubleExtra("lon_dest",0.0),
-                    getActivity());
 
-            PrefLocation.setLocationSetByUser(true,getActivity());
+        }
+        else if(requestCode==3 && resultCode==2)
+        {
 
             makeRefreshNetworkCall();
 
@@ -911,11 +1110,12 @@ public class FragmentShopsList extends Fragment implements
         {
             makeRefreshNetworkCall();
         }
-        else if(requestCode==890)
+        else if(requestCode==3262 && resultCode ==3121)
         {
-            Intent intent = new Intent(getActivity(), ShopAdminHome.class);
-            startActivity(intent);
+            makeRefreshNetworkCall();
+            setMarketName();
         }
+
     }
 
 
@@ -925,47 +1125,6 @@ public class FragmentShopsList extends Fragment implements
     public void listItemClick() {
 
     }
-
-
-    //    @Override
-//    public void onPause() {
-//        super.onPause();
-//
-//        // Unregister the listener when the application is paused
-//
-////        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(testReceiver);
-//
-//    }
-
-
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//
-////        getActivity().stopService(new Intent(getActivity(), LocationUpdateService.class));
-//
-//    }
-
-
-//
-//    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            int resultCode = intent.getIntExtra("resultCode", RESULT_CANCELED);
-//
-//            if (resultCode == RESULT_OK) {
-//
-////                String resultValue = intent.getStringExtra("resultValue");
-////                Toast.makeText(getActivity(), resultValue, Toast.LENGTH_SHORT).show();
-//
-//                showToastMessage("Broadcast Received !");
-//            }
-//        }
-//    };
-
-
-
-
 
 
 
@@ -985,20 +1144,17 @@ public class FragmentShopsList extends Fragment implements
 
                 if(objects!=null)
                 {
-                    if(!dataset.contains(objects))
+                    if(dataset.size()>2 )
                     {
-                        if(dataset.size()>2 )
-                        {
-                            dataset.addAll(2,objects);
-                        }
-                        else if(dataset.size()>1)
-                        {
-                            dataset.addAll(1,objects);
-                        }
-                        else
-                        {
-                            dataset.addAll(objects);
-                        }
+                        dataset.addAll(2,objects);
+                    }
+                    else if(dataset.size()>1)
+                    {
+                        dataset.addAll(1,objects);
+                    }
+                    else
+                    {
+                        dataset.addAll(objects);
                     }
                 }
 
@@ -1053,5 +1209,69 @@ public class FragmentShopsList extends Fragment implements
     public void showMessage(String message) {
 
         showToastMessage(message);
+    }
+
+
+
+
+
+
+    @Override
+    public void listItemFilterShopClick(int itemCategoryID, ItemCategory itemCategory, int layoutPosition) {
+
+
+//        this.layoutPositionSelected = layoutPosition;
+//
+//        if(this.itemCategoryID!=null && this.itemCategoryID==itemCategoryID)
+//        {
+//            this.itemCategoryID=null;
+//        }
+//        else
+//        {
+//            this.itemCategoryID=itemCategoryID;
+//        }
+//
+//
+//        makeRefreshNetworkCall();
+
+
+        Intent intent = new Intent(getActivity(),ShopsList.class);
+        intent.putExtra("filter_shops_by_category",true);
+        intent.putExtra("category_id",itemCategoryID);
+        intent.putExtra("item_category_name",itemCategory.getCategoryName());
+
+        startActivity(intent);
+
+    }
+
+
+
+
+    @Override
+    public void filterShopUpdated() {
+
+        makeRefreshNetworkCall();
+    }
+
+
+
+    @Override
+    public void changeMarketClick() {
+
+
+        Intent intent = new Intent(getActivity(), MarketsList.class);
+        intent.putExtra("is_selection_mode",true);
+        startActivityForResult(intent,3262);
+    }
+
+
+
+
+    @Override
+    public void addItemClick() {
+
+        Intent intent = new Intent(getActivity(), EditBannerImage.class);
+        intent.putExtra(EditBannerImageFragment.EDIT_MODE_INTENT_KEY,EditBannerImageFragment.MODE_ADD);
+        startActivity(intent);
     }
 }

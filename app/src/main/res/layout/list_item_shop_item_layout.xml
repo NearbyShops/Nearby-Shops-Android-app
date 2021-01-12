@@ -47,37 +47,38 @@
         android:layout_height="1dp"/>
 
 
-    <RelativeLayout
-        android:padding="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="0dp">
 
         <ImageView
-            android:background="#44000000"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/shopImage"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="#44000000"
             android:scaleType="centerCrop"
-            android:id="@+id/shopImage" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        <!--android:textColor="@color/colorWhite"
-            android:background="#99424242"-->
+
 
         <TextView
             android:layout_marginTop="0dp"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:textSize="20sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/shopImage"
+            android:id="@+id/shopName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/list_item_shop_item_layout_shopName_text"
-            android:id="@+id/shopName"
-            android:layout_toRightOf="@id/shopImage"
-            android:layout_alignParentTop="true" />
+            android:textSize="20sp" />
 
 
         <!--
@@ -106,133 +107,111 @@
 
 
 
-
-
         <LinearLayout
-            android:layout_alignBottom="@id/shopImage"
-            android:layout_toEndOf="@id/shopImage"
+            android:id="@+id/labels_delivery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="3dp"
             android:weightSum="2"
-            android:id="@+id/labels_delivery"
+            app:layout_constraintBottom_toBottomOf="@id/shopImage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:layout_constraintStart_toEndOf="@id/shopImage">
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/indicator_pick_from_shop"
-                android:layout_marginEnd="5dp"
-                android:padding="2dp"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:background="@color/orangeDark"
-                android:text="@string/list_item_shop_item_layout_indicator_pick_from_shop_text"
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/orangeDark"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/list_item_shop_item_layout_indicator_pick_from_shop_text"
+                android:textColor="@color/white" />
 
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/indicator_home_delivery"
-                android:layout_marginStart="0dp"
-                android:padding="2dp"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:background="@color/phonographyBlue"
-                android:text="@string/list_item_shop_item_layout_indicator_home_delivery_text"
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_weight="1"
+                android:background="@color/phonographyBlue"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/list_item_shop_item_layout_indicator_home_delivery_text"
+                android:textColor="@color/white" />
 
 
         </LinearLayout>
 
 
-
-
-
         <TextView
-            android:layout_toEndOf="@id/shopImage"
-            android:layout_above="@id/labels_delivery"
+            android:visibility="gone"
+            android:id="@+id/deliveryCharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/list_item_shop_item_layout_deliveryCharge_text"
-            android:id="@+id/deliveryCharge"
-            android:layout_marginRight="0dp"
-            android:layout_marginLeft="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp" />
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="3dp"
+            android:text="@string/list_item_shop_item_layout_deliveryCharge_text"
+            app:layout_constraintBottom_toTopOf="@id/labels_delivery"
+            app:layout_constraintStart_toEndOf="@id/shopImage" />
 
 
         <TextView
-            android:paddingLeft="5dp"
-            android:paddingStart="5dp"
-            android:paddingRight="5dp"
-            android:paddingEnd="5dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_toEndOf="@id/shopImage"
-            android:layout_toRightOf="@id/shopImage"
-            android:layout_above="@id/deliveryCharge"
+            android:id="@+id/distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/blueGrey800"
-            android:textColor="@color/white"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="2dp"
             android:text="@string/list_item_shop_item_layout_distance_text"
-            android:id="@+id/distance" />
+            android:textColor="@color/white"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintStart_toStartOf="@id/labels_delivery"
+            app:layout_constraintBottom_toTopOf="@id/deliveryCharge" />
 
 
         <TextView
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@id/shopImage"
-            android:layout_toRightOf="@id/shopImage"
-            android:layout_above="@id/distance"
+            android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/gplus_color_2"
-            android:textColor="@color/white"
-            android:padding="2dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/list_item_shop_item_layout_rating_text"
-            android:id="@+id/rating"/>
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/distance"
+            app:layout_constraintStart_toStartOf="@id/labels_delivery"/>
 
         <TextView
             android:id="@+id/ratings_count"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:text="@string/list_item_shop_item_layout_ratings_count_text"
-            android:layout_toRightOf="@id/rating"
-            android:layout_toEndOf="@id/rating"
-            android:layout_alignBottom="@id/rating"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/list_item_shop_item_layout_ratings_count_text"
+            app:layout_constraintBottom_toBottomOf="@id/rating"
+            app:layout_constraintLeft_toRightOf="@id/rating"
+            app:layout_constraintStart_toEndOf="@id/rating" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-
-        <!--
-
-                <ImageView
-                    app:srcCompat="@drawable/ic_favorite_border_white_24px"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/favourite"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_alignBottom="@+id/imageView"
-                    android:layout_alignParentLeft="true"
-
-                    android:layout_marginTop="10dp"/>
-        -->
-
-</RelativeLayout>
 
 
     <LinearLayout
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="5dp"
         android:background="#88000000"
         android:orientation="horizontal"
         android:layout_width="match_parent"

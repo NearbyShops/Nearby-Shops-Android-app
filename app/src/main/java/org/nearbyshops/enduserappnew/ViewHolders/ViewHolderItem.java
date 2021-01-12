@@ -1,7 +1,6 @@
 package org.nearbyshops.enduserappnew.ViewHolders;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,18 +15,13 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.google.gson.Gson;
+
 import com.squareup.picasso.Picasso;
 
 import org.nearbyshops.enduserappnew.Model.Item;
 import org.nearbyshops.enduserappnew.Model.ModelStats.ItemStats;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
-import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.R;
-import org.nearbyshops.enduserappnew.Lists.ShopsAvailableForItem.ShopItemByItem;
-
-
-
 
 
 public class ViewHolderItem extends RecyclerView.ViewHolder {
@@ -43,6 +37,11 @@ public class ViewHolderItem extends RecyclerView.ViewHolder {
     @BindView(R.id.shop_count) TextView shopCount;
     @BindView(R.id.item_rating) TextView itemRating;
     @BindView(R.id.rating_count) TextView ratingCount;
+    @BindView(R.id.discount_indicator) TextView discountIndicator;
+
+
+    public static int LAYOUT_TYPE_FULL_WIDTH = 1;
+    public static int LAYOUT_TYPE_GRID = 2;
 
 
 
@@ -56,6 +55,27 @@ public class ViewHolderItem extends RecyclerView.ViewHolder {
     {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item,parent,false);
+        return new ViewHolderItem(view,context,fragment);
+    }
+
+
+
+
+
+    public static ViewHolderItem create(ViewGroup parent, Context context, Fragment fragment, int layoutType)
+    {
+        View view = null;
+
+        if(layoutType==LAYOUT_TYPE_FULL_WIDTH)
+        {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item,parent,false);
+        }
+        else if(layoutType==LAYOUT_TYPE_GRID)
+        {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_item_new,parent,false);
+        }
+
+
         return new ViewHolderItem(view,context,fragment);
     }
 
@@ -77,14 +97,24 @@ public class ViewHolderItem extends RecyclerView.ViewHolder {
     @OnClick(R.id.items_list_item)
     public void listItemClick()
     {
+//
+//        Intent intent = new Intent(context, ShopItemByItem.class);
+//
+//        Gson gson = UtilityFunctions.provideGson();
+//        String jsonString = gson.toJson(item);
+//        intent.putExtra("item_json",jsonString);
+//
+//        context.startActivity(intent);
 
-        Intent intent = new Intent(context, ShopItemByItem.class);
+//
+//        Intent intent = new Intent(context, ShopsAvailable.class);
+//        intent.putExtra("item_id",item.getItemID());
+//        context.startActivity(intent);
 
-        Gson gson = UtilityFunctions.provideGson();
-        String jsonString = gson.toJson(item);
-        intent.putExtra("item_json",jsonString);
-
-        context.startActivity(intent);
+        if(fragment instanceof ListItemClick)
+        {
+            ((ListItemClick) fragment).listItemClick(item,getLayoutPosition());
+        }
     }
 
 
@@ -106,17 +136,30 @@ public class ViewHolderItem extends RecyclerView.ViewHolder {
             String currency = "";
             currency = PrefGeneral.getCurrencySymbol(context);
 
-            priceRange.setText("Price Range :\n" + currency + " " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+
+//            priceRange.setText("Price Range :\n" + currency + " " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
+            priceRange.setText(currency + " " + itemStats.getMin_price() + " - " + itemStats.getMax_price() + " per " + item.getQuantityUnit());
             priceAverage.setText("Price Average :\n" + currency + " " + String.format("%.2f",itemStats.getAvg_price()) + " per " + item.getQuantityUnit());
             shopCount.setText("Available in " + itemStats.getShopCount() + " Shops");
 //            System.out.println("Rating : " + itemStats.getRating_avg() + " : Ratings Count " + itemStats.getRatingCount());
+
+
+
+
+            if(item.getListPrice()>0.0 && item.getListPrice() > itemStats.getAvg_price())
+            {
+
+                double discountPercent = ((item.getListPrice() - itemStats.getAvg_price())/item.getListPrice())*100;
+
+                discountIndicator.setText(String.format("%.0f ",discountPercent) + " %\nOff");
+                discountIndicator.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                discountIndicator.setVisibility(View.GONE);
+            }
         }
 
-
-
-
-//        holder.itemRating.setText(String.format("%.2f",item.getRt_rating_avg()));
-//        holder.ratingCount.setText("( " + String.valueOf((int)item.getRt_rating_count()) + " Ratings )");
 
 
 
@@ -157,6 +200,16 @@ public class ViewHolderItem extends RecyclerView.ViewHolder {
                 .load(imagePath)
                 .placeholder(drawable)
                 .into(categoryImage);
+    }
+
+
+
+
+
+
+    public interface ListItemClick {
+
+        void listItemClick(Item item, int position);
     }
 
 

@@ -44,6 +44,12 @@ public class ViewHolderOrderDeliveryGuy extends ViewHolderOrder {
     @BindView(R.id.input_box) EditText inputBox;
 
 
+//
+//    int minutes = (int) ((distance/30)*60);
+//
+//
+//        minutesRemaining.setText(String.valueOf(minutes) + " Minutes ");
+//        minutesRemaining.append("\nDistance : " + String.format("%.2f Km",distance));
 
 
     private Context context;

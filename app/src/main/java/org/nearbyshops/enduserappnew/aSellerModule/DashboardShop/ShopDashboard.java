@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +19,8 @@ import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopByCatSeller.ItemsI
 import org.nearbyshops.enduserappnew.aSellerModule.ItemsInShopSeller.ItemsInShop;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrderHistory;
 import org.nearbyshops.enduserappnew.Lists.OrderHistory.OrdersHistoryFragment;
-import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.HomeDeliveryInventory.HomeDelivery;
-import org.nearbyshops.enduserappnew.aSellerModule.InventoryOrders.PickFromShopInventory.PickFromShopInventory;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryHomeDelivery.HomeDelivery;
+import org.nearbyshops.enduserappnew.InventoryOrders.InventoryPickFromShop.PickFromShopInventory;
 import org.nearbyshops.enduserappnew.aSellerModule.QuickStockEditor.QuickStockEditor;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
@@ -36,6 +37,9 @@ public class ShopDashboard extends AppCompatActivity {
     public static final String SHOP_ID_INTENT_KEY = "shop_id_key";
     @BindView(R.id.shop_name) TextView shopName;
 
+
+    @BindView(R.id.header_tutorials)
+    LinearLayout headerTutorial;
 
 
     @Override
@@ -105,10 +109,10 @@ public class ShopDashboard extends AppCompatActivity {
     void orderHistory()
     {
 
-        Intent intent = new Intent(this, OrderHistory.class);
-        intent.putExtra(OrdersHistoryFragment.IS_FILTER_BY_SHOP,true);
+//        Intent intent = new Intent(this, OrderHistory.class);
+//        intent.putExtra(OrdersHistoryFragment.IS_FILTER_BY_SHOP,true);
 
-        startActivity(intent);
+        startActivity(OrderHistory.getLaunchIntent(OrdersHistoryFragment.MODE_SHOP_ADMIN,this));
     }
 
 
@@ -204,7 +208,7 @@ public class ShopDashboard extends AppCompatActivity {
     @OnClick(R.id.header_tutorials)
     void headerTutorialsClick()
     {
-        UtilityFunctions.openURL("https://blog.nearbyshops.org/tag/tutorials-for-shop-owners/",this);
+        UtilityFunctions.openURL(getString(R.string.tutorial_shop_dashboard),this);
     }
 
 }

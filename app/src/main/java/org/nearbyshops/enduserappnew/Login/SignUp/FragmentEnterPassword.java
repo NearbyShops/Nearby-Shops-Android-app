@@ -21,7 +21,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Login.SignUp.Interfaces.ShowFragmentSignUp;
 import org.nearbyshops.enduserappnew.Login.SignUp.PrefSignUp.PrefrenceSignUp;
@@ -228,7 +228,7 @@ public class FragmentEnterPassword extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 
@@ -303,7 +303,7 @@ public class FragmentEnterPassword extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 

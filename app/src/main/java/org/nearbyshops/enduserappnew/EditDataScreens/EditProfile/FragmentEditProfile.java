@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,11 +18,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -37,8 +36,11 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.Interfaces.NotifyChangePassword;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
+import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;
+import org.nearbyshops.enduserappnew.Lists.TransactionHistory.TransactionHistory;
 import org.nearbyshops.enduserappnew.Model.Image;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
@@ -46,6 +48,7 @@ import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.ChangeEmail.Cha
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.ChangeEmail.PrefChangeEmail;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.ChangePhone.ChangePhone;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.ChangePhone.PrefChangePhone;
+import org.nearbyshops.enduserappnew.Model.Shop;
 import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
@@ -53,6 +56,7 @@ import org.nearbyshops.enduserappnew.Preferences.PrefLoginGlobal;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
+import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,9 +68,7 @@ import javax.inject.Inject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.List;
 
-import static android.app.Activity.RESULT_OK;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -91,7 +93,14 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-
+    @BindView(R.id.account_balance) TextView balance;
+    @BindView(R.id.radio_end_user) RadioButton radioEndUser;
+    @BindView(R.id.radio_shop_admin) RadioButton radioShopAdmin;
+    @BindView(R.id.radio_shop_staff) RadioButton radioShopStaff;
+    @BindView(R.id.radio_delivery_vendor) RadioButton radioDeliveryVendor;
+    @BindView(R.id.radio_admin) RadioButton radioAdmin;
+    @BindView(R.id.radio_staff) RadioButton radioStaff;
+    @BindView(R.id.radio_delivery_market) RadioButton radioDeliveryMarket;
 
     // bind views
     @BindView(R.id.uploadImage) ImageView resultView;
@@ -110,6 +119,8 @@ public class FragmentEditProfile extends Fragment {
     @BindView(R.id.about) EditText about;
     @BindView(R.id.saveButton) TextView saveButton;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
+
+    @BindView(R.id.make_account_private) CheckBox isAccountPrivate;
 
     @BindView(R.id.local_user_id_block) TextInputLayout localUserIDBlock;
 
@@ -133,6 +144,9 @@ public class FragmentEditProfile extends Fragment {
     public static final int MODE_ADD = 51;
 
     private int current_mode;
+
+    @BindView(R.id.admin_options_block)
+    LinearLayout adminOptionsBlock;
 
 
 
@@ -179,7 +193,7 @@ public class FragmentEditProfile extends Fragment {
             if(current_mode == MODE_UPDATE)
             {
 
-                if(PrefGeneral.getMultiMarketMode(getActivity()))
+                if(PrefGeneral.isMultiMarketEnabled(getActivity()))
                 {
                     user = PrefLoginGlobal.getUser(getContext());
                 }
@@ -226,6 +240,7 @@ public class FragmentEditProfile extends Fragment {
 
 
         setActionBarTitle();
+        setupViewModel();
 
         return rootView;
     }
@@ -238,7 +253,7 @@ public class FragmentEditProfile extends Fragment {
     {
 
         final ProgressDialog pd = new ProgressDialog(getActivity());
-        pd.setMessage("Please with ... Getting user details !");
+        pd.setMessage("Please wait ... Getting user details !");
         pd.show();
 
 
@@ -391,6 +406,17 @@ public class FragmentEditProfile extends Fragment {
             labelChangePhone.setVisibility(GONE);
             labelChangeEmail.setVisibility(GONE);
             labelChangePassword.setVisibility(GONE);
+
+            email.setEnabled(true);
+            phone.setEnabled(true);
+
+            password.setVisibility(View.GONE);
+//            password.setEnabled(true);
+//            password.setText("Enter text to set Password");
+//            password.setInputType(InputType.TYPE_CLASS_TEXT);
+
+            adminOptionsBlock.setVisibility(View.VISIBLE);
+
         }
         else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
         {
@@ -400,9 +426,11 @@ public class FragmentEditProfile extends Fragment {
             labelChangeEmail.setVisibility(GONE);
             labelChangePassword.setVisibility(GONE);
 
+            adminOptionsBlock.setVisibility(GONE);
         }
         else
         {
+            adminOptionsBlock.setVisibility(GONE);
 
             labelChangePhone.setVisibility(VISIBLE);
             labelChangeEmail.setVisibility(VISIBLE);
@@ -435,7 +463,7 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi-market mode enabled
 
@@ -449,12 +477,13 @@ public class FragmentEditProfile extends Fragment {
             }
 
 
-            globalUserID.setHint("Global User ID");
+//            globalUserID.setHint("Global User ID");
         }
         else
         {
-            localUserIDBlock.setVisibility(GONE);
-            globalUserID.setHint("User ID");
+//            localUserIDBlock.setVisibility(GONE);
+            globalUserID.setVisibility(GONE);
+            localUserIDBlock.setHint("User ID");
         }
 
 
@@ -486,7 +515,7 @@ public class FragmentEditProfile extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             imagePathLocal = PrefServiceConfig.getServiceURL_SDS(getContext()) + "/api/v1/User/Image/five_hundred_" + imagePath + ".jpg";
         }
@@ -705,14 +734,52 @@ public class FragmentEditProfile extends Fragment {
 
 
 
+    void bindAdministrativeOptions()
+    {
+
+        balance.setText("Balance : " + UtilityFunctions.refinedStringWithDecimals(user.getServiceAccountBalance()));
+
+        if(user.getRole()==User.ROLE_END_USER_CODE)
+        {
+            radioEndUser.setChecked(true);
+        }
+        else if(user.getRole()==User.ROLE_SHOP_STAFF_CODE)
+        {
+            radioShopStaff.setChecked(true);
+        }
+        else if(user.getRole()==User.ROLE_SHOP_ADMIN_CODE)
+        {
+            radioShopAdmin.setChecked(true);
+        }
+        else if(user.getRole()==User.ROLE_DELIVERY_GUY_SELF_CODE)
+        {
+            radioDeliveryVendor.setChecked(true);
+        }
+        else if(user.getRole()==User.ROLE_STAFF_CODE)
+        {
+            radioStaff.setChecked(true);
+        }
+        else if(user.getRole()==User.ROLE_ADMIN_CODE)
+        {
+            radioAdmin.setChecked(true);
+        }
+        else if(user.getRole()==User.ROLE_DELIVERY_GUY_CODE)
+        {
+            radioDeliveryMarket.setChecked(true);
+        }
+
+    }
+
+
 
 
     private void bindUserData()
     {
+
+
         if(user !=null) {
 
-
-            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            if(PrefGeneral.isMultiMarketEnabled(getActivity()))
             {
                 User localUserProfile = PrefLogin.getUser(getActivity());
                 if(localUserProfile!=null)
@@ -722,7 +789,8 @@ public class FragmentEditProfile extends Fragment {
             }
 
 
-            globalUserID.setText(String.valueOf(user.getUserID()));
+
+            localUserID.setText(String.valueOf(user.getUserID()));
             name.setText(user.getName());
             secretCode.setText(String.valueOf(user.getSecretCode()));
 
@@ -731,6 +799,7 @@ public class FragmentEditProfile extends Fragment {
             email.setText(user.getEmail());
             about.setText(user.getAbout());
             phone.setText(user.getPhone());
+            isAccountPrivate.setChecked(user.isAccountPrivate());
 
 
 
@@ -746,9 +815,10 @@ public class FragmentEditProfile extends Fragment {
                 }
             }
 
-
+            bindAdministrativeOptions();
         }
     }
+
 
 
 
@@ -764,6 +834,7 @@ public class FragmentEditProfile extends Fragment {
         user.setUsername(username.getText().toString());
         user.setAbout(about.getText().toString());
         user.setGender(choiceMale.isChecked());
+        user.setAccountPrivate(isAccountPrivate.isChecked());
 
 
         if(username.getText().toString().length()==0)
@@ -797,6 +868,15 @@ public class FragmentEditProfile extends Fragment {
 
 
 
+        if(password.getText().toString().length()==0)
+        {
+            user.setPassword(null);
+        }
+        else
+        {
+            user.setPassword(password.getText().toString());
+        }
+
     }
 
 
@@ -825,7 +905,7 @@ public class FragmentEditProfile extends Fragment {
         if(current_mode==MODE_UPDATE)
         {
 
-            if(PrefGeneral.getMultiMarketMode(getActivity()))
+            if(PrefGeneral.isMultiMarketEnabled(getActivity()))
             {
                 Retrofit retrofit = new Retrofit.Builder()
                         .addConverterFactory(GsonConverterFactory.create(gson))
@@ -926,7 +1006,7 @@ public class FragmentEditProfile extends Fragment {
                     {
 
 
-                        if(PrefGeneral.getMultiMarketMode(getActivity()))
+                        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
                         {
                             PrefLoginGlobal.saveUserProfile(user,getContext());
                         }
@@ -1076,9 +1156,15 @@ public class FragmentEditProfile extends Fragment {
 
 
 
+
     private void showToastMessage(String message)
     {
-        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+//        if(getActivity()!=null)
+//        {
+//            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+//        }
+
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
@@ -1215,9 +1301,6 @@ public class FragmentEditProfile extends Fragment {
         else {
             showToastMessage("Task Cancelled !");
         }
-
-
-
     }
 
 
@@ -1334,7 +1417,7 @@ public class FragmentEditProfile extends Fragment {
         Call<Image> imageCall;
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -1470,7 +1553,7 @@ public class FragmentEditProfile extends Fragment {
         Call<ResponseBody> call;
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -1562,7 +1645,7 @@ public class FragmentEditProfile extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        isDestroyed = true;
+//        isDestroyed = true;
     }
 
 
@@ -1574,5 +1657,158 @@ public class FragmentEditProfile extends Fragment {
     }
 
 
+
+
+
+    @OnClick(R.id.add_credit)
+    void addCreditClick()
+    {
+        showToastMessage("Add Credit !");
+    }
+
+
+    @OnClick(R.id.radio_end_user)
+    void radioEndUserClick()
+    {
+        user.setRole(User.ROLE_END_USER_CODE);
+    }
+
+
+
+    @OnClick(R.id.radio_shop_admin)
+    void radioShopAdminClick()
+    {
+        user.setRole(User.ROLE_SHOP_ADMIN_CODE);
+    }
+
+
+    @OnClick(R.id.radio_shop_staff)
+    void radioShopStaffClick()
+    {
+        user.setRole(User.ROLE_SHOP_STAFF_CODE);
+    }
+
+
+    @OnClick(R.id.radio_delivery_vendor)
+    void radioDeliveryVendorClick()
+    {
+        user.setRole(User.ROLE_DELIVERY_GUY_SELF_CODE);
+    }
+
+
+    @OnClick(R.id.radio_admin)
+    void radioAdminClick()
+    {
+        user.setRole(User.ROLE_ADMIN_CODE);
+    }
+
+
+    @OnClick(R.id.radio_staff)
+    void radioStaffClick()
+    {
+        user.setRole(User.ROLE_STAFF_CODE);
+    }
+
+
+    @OnClick(R.id.radio_delivery_market)
+    void radioDeliveryMarketClick()
+    {
+        user.setRole(User.ROLE_DELIVERY_GUY_CODE);
+    }
+
+
+
+
+
+
+    @OnClick(R.id.account_transaction_history)
+    void shopTransactionsClick()
+    {
+        Intent intent = new Intent(getActivity(), TransactionHistory.class);
+        intent.putExtra("user_id",user.getUserID());
+        startActivity(intent);
+    }
+
+
+
+
+
+
+
+    @OnClick(R.id.shop_dashboard)
+    void shopDashboardClick()
+    {
+        viewModelShop.getShopIDForShopAdmin(user.getUserID());
+        requestCodeGetShop = 4150;
+    }
+
+
+
+
+
+
+    private ViewModelShop viewModelShop;
+    private int requestCodeGetShop = 0;
+
+
+    private void setupViewModel()
+    {
+
+        viewModelShop = new ViewModelShop(MyApplication.application);
+
+
+        viewModelShop.getShopLive().observe(getViewLifecycleOwner(), new Observer<Shop>() {
+            @Override
+            public void onChanged(Shop shop) {
+
+
+                if(requestCodeGetShop==4150)
+                {
+
+                    // Open Edit fragment in edit mode
+                    Intent intent = new Intent(getActivity(), EditShop.class);
+                    intent.putExtra("shop_id",shop.getShopID());
+                    intent.putExtra("shop_admin_id",user.getUserID());
+
+                    intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_UPDATE_BY_ADMIN);
+                    startActivity(intent);
+                }
+
+
+            }
+        });
+
+
+
+        viewModelShop.getEvent().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+
+
+                if(integer==ViewModelShop.EVENT_SHOP_NOT_CREATED)
+                {
+                    if(requestCodeGetShop==4150)
+                    {
+                        Intent intent = new Intent(getActivity(), EditShop.class);
+                        intent.putExtra(EditShopFragment.EDIT_MODE_INTENT_KEY, EditShopFragment.MODE_CREATE_SHOP_BY_ADMIN);
+                        intent.putExtra("shop_admin_id",user.getUserID());
+                        startActivity(intent);
+                    }
+                }
+
+
+            }
+        });
+
+
+        viewModelShop.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                showToastMessage(s);
+
+            }
+        });
+
+    }
 
 }

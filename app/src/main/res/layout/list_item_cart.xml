@@ -2,7 +2,7 @@
 
 
 <LinearLayout
-    android:background="#22000000"
+    android:background="@color/light_grey"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/carts_list_item"
@@ -63,16 +63,11 @@
 
 
 
-
         <TextView
-            android:textColor="@color/white"
-            android:background="@color/colorPrimaryDark"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
-            android:paddingEnd="3dp"
             android:text="@string/list_item_cart_distance_text"
             app:layout_constraintStart_toStartOf="@id/shopName"
             app:layout_constraintTop_toBottomOf="@id/shopName"
@@ -81,19 +76,14 @@
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/deliveryCharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="2dp"
             android:text="@string/list_item_cart_deliveryCharge_text"
             android:textSize="15sp"
-            app:layout_constraintTop_toBottomOf="@id/distance"
-            app:layout_constraintStart_toEndOf="@id/shopImage" />
-
+            app:layout_constraintStart_toStartOf="@id/shopName"
+            app:layout_constraintTop_toBottomOf="@id/distance" />
 
 
 
@@ -114,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:background="@color/orangeDark"
+                android:background="@color/orange_new"
                 android:gravity="center"
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"
@@ -127,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
-                android:background="@color/phonographyBlue"
+                android:background="@color/mapbox_blue"
                 android:gravity="center"
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"

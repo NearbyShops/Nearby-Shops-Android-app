@@ -26,7 +26,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.MyApplication;
@@ -406,7 +406,7 @@ TextInputEditText phone;
 
         Call<ResponseBody> call;
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 
@@ -624,7 +624,7 @@ TextInputEditText phone;
 
         Call<ResponseBody> call;
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             // multi market mode enabled ... so use a global endpoint
 

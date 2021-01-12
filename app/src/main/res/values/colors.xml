@@ -8,14 +8,21 @@
 
 
 
+
     <!--Other colors for the project -->
 
+    <color name="instacart_green">#60ab59</color>
 
-    <color name="light_grey">#22000000</color>
+    <color name="orange_new">#ff9800</color>
+
+    <color name="light_grey">#11000000</color>
 
     <color name="colorWhite">#FFffff</color>
 
     <color name="mapboxBlue">#1e8cab</color>
+
+    <color name="twitter_blue">#1DA1F2</color>
+
 
 
     <color name="teal">#00796B</color>
@@ -48,6 +55,9 @@
     <color name="buttonColor">#037BA3</color>
     <color name="buttonColorDark">#036a8c</color>
 
+    <color name="sky_blue">#87ceeb</color>
+
+
     <color name="transparent">#00ffffff</color>
 
     <color name="orange">#ff6600</color>
@@ -70,4 +80,6 @@
     <color name="gplus_color_3">#427fed</color>
     <color name="gplus_color_4">#b23424</color>
     <color name="mapbox_blue">#1e8cab</color>
+
+    <color name="blue_color">#468284</color>
 </resources>

@@ -186,9 +186,14 @@ public class ViewHolderOrderEndUser extends RecyclerView.ViewHolder {
 
 
 
+
+
+
+
     void setupCancelButton()
     {
         cancelOrder.setVisibility(View.GONE);
+
 
         if(order.getDeliveryMode()==Order.DELIVERY_MODE_PICKUP_FROM_SHOP)
         {
@@ -215,7 +220,16 @@ public class ViewHolderOrderEndUser extends RecyclerView.ViewHolder {
 
         }
 
+
+
+        if(context.getResources().getBoolean(R.bool.hide_cancel_button_from_customers))
+        {
+            cancelOrder.setVisibility(View.GONE);
+        }
+
     }
+
+
 
 
 

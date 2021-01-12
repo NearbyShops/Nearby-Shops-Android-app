@@ -64,7 +64,9 @@ public class ItemsInShopByCat extends AppCompatActivity implements NotifyIndicat
                         .setAction("Action", null).show();
             }
         });
-//     */   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+     */
+
+//     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 

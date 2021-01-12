@@ -19,6 +19,7 @@ public interface DeliveryAddressService {
     @GET("/api/DeliveryAddress/{id}")
     Call<DeliveryAddress> getAddress(@Path("id") int address_id);
 
+
     @POST("/api/DeliveryAddress")
     Call<DeliveryAddress> postAddress(@Body DeliveryAddress address);
 

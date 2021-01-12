@@ -1,8 +1,6 @@
 package org.nearbyshops.enduserappnew.EditDataScreens.EditStaffPermissions;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -19,12 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import org.nearbyshops.enduserappnew.API.DeliveryAddressService;
-import org.nearbyshops.enduserappnew.API.ShopStaffService;
 import org.nearbyshops.enduserappnew.API.StaffService;
-import org.nearbyshops.enduserappnew.Model.ModelRoles.ShopStaffPermissions;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.StaffPermissions;
-import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.R;
@@ -39,8 +32,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class EditStaffPermissionsFragment extends Fragment {
@@ -399,9 +390,12 @@ public class EditStaffPermissionsFragment extends Fragment {
     }
 
 
+
+
+
     private void showToastMessage(String message)
     {
-        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 

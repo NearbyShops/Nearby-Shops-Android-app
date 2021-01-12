@@ -18,6 +18,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            app:titleTextColor="@color/header_text_color"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +39,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="21sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/header_text_color"
                     android:text="@string/activity_shop_home_app_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -49,7 +50,7 @@
                     app:layout_constraintTop_toBottomOf="@id/app_name"
                     android:paddingTop="5dp"
                     android:paddingBottom="0dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/header_text_color"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

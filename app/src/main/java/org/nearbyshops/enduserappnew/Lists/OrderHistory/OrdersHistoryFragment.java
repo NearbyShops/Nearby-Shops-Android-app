@@ -3,7 +3,6 @@ package org.nearbyshops.enduserappnew.Lists.OrderHistory;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,23 +10,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import com.google.gson.Gson;
 import com.wunderlist.slidinglayer.SlidingLayer;
-import okhttp3.ResponseBody;
+
+import okhttp3.OkHttpClient;
 
 import org.nearbyshops.enduserappnew.API.OrderService;
+import org.nearbyshops.enduserappnew.multimarketfiles.Markets.MarketsList;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.OrderEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
@@ -37,10 +41,15 @@ import org.nearbyshops.enduserappnew.Interfaces.NotifySort;
 import org.nearbyshops.enduserappnew.Interfaces.RefreshFragment;
 import org.nearbyshops.enduserappnew.Login.Login;
 import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.OrderDetail;
-import org.nearbyshops.enduserappnew.DetailScreens.DetailOrder.PrefOrderDetail;
+import org.nearbyshops.enduserappnew.MyApplication;
+import org.nearbyshops.enduserappnew.Preferences.PrefGeneral;
+import org.nearbyshops.enduserappnew.Preferences.PrefShopAdminHome;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.PreferencesSort.PrefSortOrders;
 import org.nearbyshops.enduserappnew.SlidingLayerSort.SlidingLayerSortOrders;
+import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.multimarketfiles.SwitchMarketData;
+import org.nearbyshops.enduserappnew.multimarketfiles.ViewHolderSwitchMarket;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersOrders.ViewHolderOrder;
 import org.nearbyshops.enduserappnew.Preferences.PrefLogin;
 import org.nearbyshops.enduserappnew.Preferences.PrefServiceConfig;
@@ -48,23 +57,43 @@ import org.nearbyshops.enduserappnew.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.ListItemClick, SwipeRefreshLayout.OnRefreshListener,
-        NotifySort, NotifySearch, RefreshFragment {
+        NotifySort, NotifySearch, RefreshFragment,
+        ViewHolderSwitchMarket.ListItemClick{
 
 
 
-    
+
+
+    public static final String USER_MODE_INTENT_KEY = "order_history_mode_key";
+
+
+
+
+    public static final int MODE_MARKET_ADMIN_ = 51;
+    public static final int MODE_SHOP_ADMIN = 52;
+    public static final int MODE_END_USER = 53;
+
+    int currentMode ;
+
 
     public static final String TAG_SLIDING_LAYER = "sliding_layer_orders";
     public static final String IS_FILTER_BY_SHOP = "IS_FILTER_BY_SHOP";
 
+//    @Inject
+//    OrderService orderService;
+
+
     @Inject
-    OrderService orderService;
+    Gson gson;
+
 
     private RecyclerView recyclerView;
     private Adapter adapter;
@@ -138,20 +167,19 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 //
+//        currentMode = getActivity().getIntent().getIntExtra(OrdersHistoryFragment.USER_MODE_INTENT_KEY,MODE_END_USER);
 
 
 
 
-
-        if(PrefServiceConfig.getServiceName(getActivity())!=null)
+        if(getArguments()!=null)
         {
-            serviceName.setVisibility(View.VISIBLE);
-            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+            currentMode = getArguments().getInt("current_mode", MODE_END_USER);
         }
-        else
-        {
-            serviceName.setVisibility(View.GONE);
-        }
+
+
+
+
 
 
         setupRecyclerView();
@@ -159,49 +187,12 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
         setupSlidingLayer();
 
+        setMarketName();
+
 
         return rootView;
     }
 
-
-
-//    int AUTOCOMPLETE_REQUEST_CODE = 1;
-//
-//    @OnClick(R.id.toolbar)
-//    void toolbarClick()
-//    {
-//
-//        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
-//
-//// Start the autocomplete intent.
-//        Intent intent = new Autocomplete.IntentBuilder(
-//                AutocompleteActivityMode.FULLSCREEN, fields)
-//                .build(getActivity());
-//        startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
-//
-//    }
-
-
-
-
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
-//            if (resultCode == RESULT_OK) {
-//                Place place = Autocomplete.getPlaceFromIntent(data);
-//                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
-//
-//
-//            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-//                // TODO: Handle the error.
-//                Status status = Autocomplete.getStatusFromIntent(data);
-//                Log.i(TAG, status.getStatusMessage());
-//            } else if (resultCode == RESULT_CANCELED) {
-//                // The user canceled the operation.
-//            }
-//        }
-//    }
 
 
 
@@ -214,6 +205,21 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
     }
 
 
+
+
+    void setMarketName()
+    {
+        if(PrefServiceConfig.getServiceName(getActivity())!=null)
+        {
+            serviceName.setVisibility(View.VISIBLE);
+            serviceName.setText(PrefServiceConfig.getServiceName(getActivity()));
+        }
+        else
+        {
+            serviceName.setVisibility(View.GONE);
+        }
+
+    }
 
 
 
@@ -290,30 +296,40 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
+
     private void setupRecyclerView()
     {
 
-        adapter = new Adapter(dataset,this,getActivity());
+        adapter = new Adapter(dataset,this,getActivity(),currentMode);
 
         recyclerView.setAdapter(adapter);
 
-        layoutManager = new GridLayoutManager(getActivity(),1);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//        if(currentMode==MODE_END_USER)
+//        {
+//            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+//                    layoutManager.getOrientation());
+//            recyclerView.addItemDecoration(dividerItemDecoration);
+//        }
+
+
+
+//        DisplayMetrics metrics = new DisplayMetrics();
+//        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
 //        layoutManager.setSpanCount(metrics.widthPixels/400);
 
-
-
-        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
-
-        if(spanCount==0){
-            spanCount = 1;
-        }
-
-        layoutManager.setSpanCount(spanCount);
+//
+//
+//        int spanCount = (int) (metrics.widthPixels/(230 * metrics.density));
+//
+//        if(spanCount==0){
+//            spanCount = 1;
+//        }
+//
+//        layoutManager.setSpanCount(spanCount);
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -333,11 +349,6 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
                 {
                     // trigger fetch next page
 
-//                    if(layoutManager.findLastVisibleItemPosition() == previous_position)
-//                    {
-//                        return;
-//                    }
-
 
                     if((offset+limit)<=item_count)
                     {
@@ -345,9 +356,6 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
                         makeNetworkCall(false);
                     }
 
-
-
-//                    previous_position = layoutManager.findLastVisibleItemPosition();
 
                 }
 
@@ -399,13 +407,14 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
-    public static OrdersHistoryFragment newInstance(boolean filterOrdersByUser, boolean filterOrdersByShop, boolean filterOrdersByDeliveryID) {
+
+    public static OrdersHistoryFragment newInstance(int endUserID, int shopID, int currentMode) {
         OrdersHistoryFragment fragment = new OrdersHistoryFragment();
         Bundle args = new Bundle();
 
-        args.putBoolean("filter_orders_by_user",filterOrdersByUser);
-        args.putBoolean("filter_orders_by_shop",filterOrdersByShop);
-        args.putBoolean("filter_orders_by_delivery",filterOrdersByDeliveryID);
+        args.putInt("end_user_id", endUserID);
+        args.putInt("shop_id", shopID);
+        args.putInt("current_mode",currentMode);
 
         fragment.setArguments(args);
         return fragment;
@@ -414,13 +423,15 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
+
+
+
+
     private void makeNetworkCall(final boolean clearDataset)
     {
 
-//            Shop currentShop = UtilityShopHome.getShopDetails(getContext());
 
             User endUser = null;
-
 
 
             if(getActivity()!=null)
@@ -447,10 +458,41 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
+//            Integer shopID = getArguments().getInt("shop_id",0);
 
-            boolean filterOrdersByUser = getArguments().getBoolean("filter_orders_by_user",false);
-            boolean filterOrdersByShop = getArguments().getBoolean("filter_orders_by_shop", false);
-            boolean filterOrdersByDelivery = getArguments().getBoolean("filter_orders_by_delivery",false);
+            Integer endUserID = null;
+            Integer deliveryMode = null;
+
+
+            if(getArguments()!=null)
+            {
+                endUserID = getArguments().getInt("end_user_id", 0);
+                deliveryMode = getArguments().getInt("delivery_mode",0);
+
+
+
+                if(endUserID==0)
+                {
+                    endUserID=null;
+                }
+
+                if(deliveryMode==0)
+                {
+                    deliveryMode=null;
+                }
+
+            }
+
+
+            Integer shopID = null;
+
+
+            if(currentMode==OrdersHistoryFragment.MODE_SHOP_ADMIN)
+            {
+                shopID = PrefShopAdminHome.getShop(getActivity()).getShopID();
+            }
+
+
 
 
 
@@ -470,15 +512,15 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
-            Boolean ordersPendingStatus = null;
+            Boolean ordersPending = null;
 
             if(getActivity()!=null && PrefSortOrders.getFilterByOrderStatus(getActivity())==SlidingLayerSortOrders.FILTER_BY_STATUS_PENDING)
             {
-                ordersPendingStatus = true;
+                ordersPending = true;
             }
             else if(getActivity()!=null && PrefSortOrders.getFilterByOrderStatus(getActivity())==SlidingLayerSortOrders.FILTER_BY_STATUS_COMPLETE)
             {
-                ordersPendingStatus = false;
+                ordersPending = false;
             }
 
 
@@ -486,18 +528,58 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
-            Call<OrderEndPoint> call = orderService.getOrders(
+            Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PrefGeneral.getServiceURL(MyApplication.getAppContext()))
+                .client(new OkHttpClient().newBuilder().build())
+                .build();
+
+
+
+        Call<OrderEndPoint> call;
+
+            if(currentMode==MODE_END_USER)
+            {
+
+                call = retrofit.create(OrderService.class).getOrdersForEndUser(
                         PrefLogin.getAuthorizationHeaders(getActivity()),
-                        filterOrdersByShop,
-                        filterOrdersByUser,
-                        null,
-                        pickFromShop,
+                        shopID,
+                        endUserID,
+                        deliveryMode,
                         null,null,
-                    null, null,
-                        ordersPendingStatus,searchQuery,
-                        current_sort,limit,offset,clearDataset,false);
+                        null,null,
+                        ordersPending,
+
+                        false,false,false,
+
+                        searchQuery,
+                        current_sort,
+                        limit,offset,
+                        clearDataset,false
+                );
 
 
+            }
+            else
+            {
+
+                call = retrofit.create(OrderService.class).getOrders(
+                        PrefLogin.getAuthorizationHeaders(getActivity()),
+                        shopID,
+                        endUserID,
+                        deliveryMode,
+                        null,null,
+                        ordersPending,
+
+                        false,false,false,
+
+                        searchQuery,
+                        current_sort,
+                        limit,offset,
+                        clearDataset,false
+                );
+
+            }
 
 
 
@@ -521,17 +603,24 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
                             {
                                 dataset.clear();
                                 item_count = response.body().getItemCount();
+
+
+
+                                int i = 0;
+
+                                if(PrefGeneral.isMultiMarketEnabled(getContext())&& currentMode==OrdersHistoryFragment.MODE_END_USER)
+                                {
+                                    dataset.add(i++, new SwitchMarketData());
+                                }
                             }
 
                             if(response.body().getResults()!=null)
                             {
                                 dataset.addAll(response.body().getResults());
-
-                                if(response.body().getResults().size()==0)
-                                {
-                                    emptyScreen.setVisibility(View.VISIBLE);
-                                }
                             }
+
+
+
 
 
                             adapter.notifyDataSetChanged();
@@ -550,6 +639,12 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
                     }
 
+
+
+                    if(item_count==0)
+                    {
+                        emptyScreen.setVisibility(View.VISIBLE);
+                    }
 
 
 
@@ -609,17 +704,18 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
+
+
     @Override
     public void onResume() {
         super.onResume();
-//        notifyTitleChanged();
         isDestroyed=false;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        isDestroyed=true;
+//        isDestroyed=true;
     }
 
 
@@ -628,52 +724,10 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
     private void showToastMessage(String message)
     {
-        if(getActivity()!=null)
-        {
-            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
-        }
-
+        UtilityFunctions.showToastMessage(getActivity(),message);
     }
 
 
-
-//
-//    void notifyTitleChanged()
-//    {
-//
-//        if(getActivity() instanceof NotifyTitleChanged)
-//        {
-//            ((NotifyTitleChanged)getActivity())
-//                    .NotifyTitleChanged(
-//                            "Pending (" + String.valueOf(dataset.size())
-//                                    + "/" + String.valueOf(item_count) + ")",0);
-//
-//
-//        }
-//    }
-
-
-
-
-
-    // Refresh the Confirmed PlaceholderFragment
-
-    private static String makeFragmentName(int viewId, int index) {
-        return "android:switcher:" + viewId + ":" + index;
-    }
-
-
-
-//    void refreshConfirmedFragment()
-//    {
-//        Fragment fragment = getActivity().getSupportFragmentManager()
-//                .findFragmentByTag(makeFragmentName(R.id.container,1));
-//
-//        if(fragment instanceof RefreshFragment)
-//        {
-//            ((RefreshFragment)fragment).refreshFragment();
-//        }
-//    }
 
 
 
@@ -682,8 +736,9 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
     @Override
     public void notifyOrderSelected(Order order) {
-        PrefOrderDetail.saveOrder(order,getActivity());
-        getActivity().startActivity(new Intent(getActivity(), OrderDetail.class));
+
+//        PrefOrderDetail.saveOrder(order,getActivity());
+        startActivity(OrderDetail.getLaunchIntent(order.getOrderID(),getActivity()));
     }
 
 
@@ -702,7 +757,7 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        cancelOrder(order);
+//                        cancelOrder(order);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -714,52 +769,6 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
                 })
                 .show();
     }
-
-
-
-
-
-    private void cancelOrder(Order order) {
-
-        showToastMessage("Cancel Order !");
-
-
-//        Call<ResponseBody> call = orderService.cancelOrderByShop(order.getOrderID());
-
-        Call<ResponseBody> call = orderService.cancelledByEndUser(
-                PrefLogin.getAuthorizationHeaders(getActivity()),
-                order.getOrderID()
-        );
-
-
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if(response.code() == 200 )
-                {
-                    showToastMessage("Successful");
-                    makeRefreshNetworkCall();
-                }
-                else if(response.code() == 304)
-                {
-                    showToastMessage("Not Cancelled !");
-                }
-                else
-                {
-                    showToastMessage("Server Error");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                showToastMessage("Network Request Failed. Check your internet connection !");
-            }
-        });
-
-    }
-
 
 
 
@@ -793,23 +802,12 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
 
 
 
+
+
     public static final String TAG_LOGIN_DIALOG = "tag_login_dialog";
 
     private void showLoginDialog()
     {
-
-//        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG);
-//
-//        if(getActivity().getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_DIALOG)==null)
-//        {
-//            FragmentManager fm = getActivity().getSupportFragmentManager();
-//            LoginDialog loginDialog = new LoginDialog();
-//            loginDialog.show(fm,TAG_LOGIN_DIALOG);
-//        }
-
-
-
-
         Intent intent = new Intent(getActivity(), Login.class);
         startActivity(intent);
     }
@@ -821,4 +819,28 @@ public class OrdersHistoryFragment extends Fragment implements ViewHolderOrder.L
         makeRefreshNetworkCall();
     }
 
+
+
+    @Override
+    public void changeMarketClick() {
+
+        Intent intent = new Intent(getActivity(), MarketsList.class);
+        intent.putExtra("is_selection_mode",true);
+        startActivityForResult(intent,3262);
+    }
+
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==3262 && resultCode ==3121)
+        {
+           makeRefreshNetworkCall();
+            setMarketName();
+        }
+
+    }
 }

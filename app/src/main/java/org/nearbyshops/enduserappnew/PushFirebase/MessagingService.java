@@ -8,11 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import org.nearbyshops.enduserappnew.Home;
+import org.nearbyshops.enduserappnew.HomePleaseSelectMarket;
 import org.nearbyshops.enduserappnew.R;
 
 
@@ -20,9 +19,24 @@ public class MessagingService extends FirebaseMessagingService
 {
 
 
+    public static final String NOTIFICATION_TYPE_ORDER_RECEIVED = "NOTIFICATION_TYPE_ORDER_RECEIVED";
+    public static final String NOTIFICATION_TYPE_ORDER_PACKED = "NOTIFICATION_TYPE_ORDER_PACKED";
+    public static final String NOTIFICATION_TYPE_ORDER_UPDATES = "NOTIFICATION_TYPE_ORDER_UPDATES";
+    public static final String NOTIFICATION_TYPE_GENERAL = "NOTIFICATION_TYPE_GENERAL";
 
-    public static final String NOTIFICATION_ORDER_RECIEVED = "NOTIFICATION_ORDER_RECIEVED";
-    public static final String NOTIFICATION_ORDER_PACKED = "NOTIFICATION_ORDER_PACKED";
+
+    // public notification channels for firebase push notifications
+    public static final String CHANNEL_END_USER = "_end_user";
+    public static final String CHANNEL_SHOP_STAFF = "_shop_staff";
+    public static final String CHANNEL_MARKET_STAFF = "market_staff";
+    public static final String CHANNEL_DELIVERY_STAFF = "delivery_staff";
+
+
+    public static final String CHANNEL_SHOP_WITH_SHOP_ID = "shop_";
+    public static final String CHANNEL_END_USER_WITH_USER_ID = "end_user_";
+
+
+
 
 
 
@@ -32,9 +46,9 @@ public class MessagingService extends FirebaseMessagingService
 
 
 
-        System.out.println("OnMessageReceived()");
-        System.out.println("Data : " + remoteMessage.getData());
-        System.out.println("Notification Type :" + remoteMessage.getData().get("notification_type"));
+//        System.out.println("OnMessageReceived()");
+//        System.out.println("Data : " + remoteMessage.getData());
+//        System.out.println("Notification Type :" + remoteMessage.getData().get("notification_type"));
 
 
 
@@ -45,7 +59,7 @@ public class MessagingService extends FirebaseMessagingService
 
 
 
-        if(notificationType!=null && notificationType.equals(NOTIFICATION_ORDER_RECIEVED))
+        if(notificationType!=null && notificationType.equals(NOTIFICATION_TYPE_ORDER_RECEIVED))
         {
             MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.attention_please_order_received);
             mp.start();
@@ -53,7 +67,9 @@ public class MessagingService extends FirebaseMessagingService
 
 
         // Create an explicit intent for an Activity in your app
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(this, HomePleaseSelectMarket.class);
+
+
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
@@ -63,6 +79,7 @@ public class MessagingService extends FirebaseMessagingService
                 .setSmallIcon(R.drawable.ic_shopping_basket_blue)
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationMessage)
+
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true);
@@ -72,9 +89,8 @@ public class MessagingService extends FirebaseMessagingService
 
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(1, builder.build());
-
-
     }
+
 
 
     @Override

@@ -105,9 +105,9 @@ public class ViewHolderPoweredBy extends RecyclerView.ViewHolder{
     @OnClick({R.id.list_item})
     void changeLocation()
     {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse("https://nearbyshops.org"));
-        context.startActivity(i);
+//        Intent i = new Intent(Intent.ACTION_VIEW);
+//        i.setData(Uri.parse("#"));
+//        context.startActivity(i);
     }
 
 

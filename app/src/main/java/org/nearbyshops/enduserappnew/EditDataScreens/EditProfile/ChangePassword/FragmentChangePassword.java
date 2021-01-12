@@ -19,7 +19,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;
@@ -213,7 +213,7 @@ public class FragmentChangePassword extends Fragment {
 
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
             user.setUsername(PrefLoginGlobal.getUsername(getContext()));
             user.setPhone(PrefLoginGlobal.getUsername(getContext()));
@@ -239,7 +239,7 @@ public class FragmentChangePassword extends Fragment {
         Call<ResponseBody> call;
 
 
-        if(PrefGeneral.getMultiMarketMode(getActivity()))
+        if(PrefGeneral.isMultiMarketEnabled(getActivity()))
         {
 
             Retrofit retrofit = new Retrofit.Builder()
@@ -287,7 +287,7 @@ public class FragmentChangePassword extends Fragment {
 //                    UtilityLoginOld.saveCredentials(getContext(),UtilityLoginOld.getUsername(getContext()),passwordNew.getText().toString());
 
 
-                    if(PrefGeneral.getMultiMarketMode(getActivity()))
+                    if(PrefGeneral.isMultiMarketEnabled(getActivity()))
                     {
 
                         PrefLoginGlobal.savePassword(getActivity(),passwordNew.getText().toString());

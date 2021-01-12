@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.API.OrderService;
 import org.nearbyshops.enduserappnew.Checkout.SelectPayment;
-import org.nearbyshops.enduserappnew.HomeSingleMarket;
+import org.nearbyshops.enduserappnew.HomePleaseSelectMarket;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.AdapterDeliverySlot;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.Model.DeliverySlot;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.ViewHolderDeliverySlot;
@@ -782,7 +782,7 @@ public class PlaceOrderFragmentWithDeliverySlot9July20 extends Fragment implemen
                     showToastMessage("Successful !");
 
 
-                    Intent i = new Intent(getActivity(), HomeSingleMarket.class);
+                    Intent i = new Intent(getActivity(), HomePleaseSelectMarket.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     startActivity(i);

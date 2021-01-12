@@ -2,28 +2,28 @@ Nearby Shops
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Nearby%20Shops%20Open%20Source%20Food%20Delivery%20and%20Hyperlocal%20app&url=https://github.com/NearbyShops/Nearby-Shops-End-User-Android-app&via=moraysumeet&hashtags=opensource,androiddev,fooddelivery,android,ecommerce)
 =============
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="80">    <a href="https://nearbyshops.org/app_demo_single_market.html"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="150" height="50" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
+<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="80">    <a href="https://nearbyshops.org/app_demo.html"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
 <img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
 width="120">
 </a>
 
 
 
-
 About Nearby Shops
 --------------------
 
-Now you can start your own food delivery business similar to Swiggy, Zomato, Doordash, Grubhub, Uber Eats.
-Save comission on food delivery and increase the income of local businesses. 
+Nearby Shops is a **Free and Open-Source** food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 10 Minutes.
 
-Nearby Shops is a **Open-Source** food delivery, grocery and Local Shopping platform. Get your grocery or food delivery market up and running in just 10 Minutes.
+
+Nearby Shops implements Alibaba's new Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
 
 The installation guide and app customization guide is provided at http://developer.nearbyshops.org
+
 
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-<img src="https://nearbyshops.org/images/screenshots_new/items_in_shop.png" width="208">   <img src="https://nearbyshops.org/images/multi-categories-3.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe.png" width="208"> 
+<img src="https://nearbyshops.org/images/screenshots_new/items_in_shop.png" width="208">   <img src="https://nearbyshops.org/images/multi-categories-3.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe_.png" width="208"> 
 
 
 
@@ -38,12 +38,6 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 - [Development Instructions](#development-instructions)
 - [License](#license)
 
-
-
-[Demo](https://nearbyshops.org/app_demo_single_market.html)
-----------
-
-Checkout our Demo on our website. 
 
 Concept
 ----------
@@ -166,7 +160,9 @@ Code Review and Architecture
 License
 =======
 
-Copyright (c) 2020 Nearby Shops Community License 
+Nearby Shops Commercial License - Commercial Use Requires Our Permission
+
+Copyright (c) 2020 Nearby Shops
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.

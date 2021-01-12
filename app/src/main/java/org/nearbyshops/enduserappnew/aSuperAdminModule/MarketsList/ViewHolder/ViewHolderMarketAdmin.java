@@ -140,7 +140,7 @@ public class ViewHolderMarketAdmin extends RecyclerView.ViewHolder{
 
 
         String imagePath = PrefServiceConfig.getServiceURL_SDS(context)
-                + "/api/v1/ServiceConfiguration/Image/three_hundred_" + configurationGlobal.getLogoImagePath() + ".jpg";
+                + "/api/v1/Markets/Image/three_hundred_" + configurationGlobal.getLogoImagePath() + ".jpg";
 
 //                System.out.println("Service LOGO : " + imagePath);
 
