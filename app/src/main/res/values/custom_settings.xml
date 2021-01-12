@@ -3,7 +3,7 @@
 
 
 <!--    http://markets-blr.nearbyshops.org:5021-->
-<!--    http://markets-blr.nearbyshops.org:5610-->
+<!--    http://markets-blr.nearbyshops.org:5053-->
 <!--    http://192.168.43.233:5121-->
 <!--    http://159.89.174.8-->
 <!--    http://128.199.28.211-->
@@ -13,7 +13,7 @@
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://192.168.43.233:8125</string>
+    <string name="custom_url">http://markets-blr.nearbyshops.org:5053</string>
 
 
     <!-- App name that you see on your front screen ( shops list screen ) -->
