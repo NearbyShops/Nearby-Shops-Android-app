@@ -39,6 +39,7 @@ public class ViewHolderShopInfo extends RecyclerView.ViewHolder
     @BindView(R.id.rating_numeric) TextView ratingNumeric;
     @BindView(R.id.rating) RatingBar rating;
     @BindView(R.id.description) TextView shopDescription;
+    @BindView(R.id.distance) TextView distance;
 
 
 
@@ -115,14 +116,16 @@ public class ViewHolderShopInfo extends RecyclerView.ViewHolder
             rating.setRating(shop.getRt_rating_avg());
         }
 
-        shopDescription.setText(shop.getLongDescription());
 
 
+        shopDescription.setText(shop.getShopAddress());
+        distance.setText("|  " + String.format("%.2f Km",shop.getRt_distance()));
 
-        if(shop.getLongDescription()==null || shop.getLongDescription().equals(""))
-        {
-            shopDescription.setVisibility(View.GONE);
-        }
+
+//        if(shop.getLongDescription()==null || shop.getLongDescription().equals(""))
+//        {
+//            shopDescription.setVisibility(View.GONE);
+//        }
 
 
 
