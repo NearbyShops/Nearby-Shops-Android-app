@@ -101,7 +101,10 @@ public class ViewHolderFilterMarkets extends RecyclerView.ViewHolder {
 
     private void notifyFiltersUpdated()
     {
-        ((ListItemClick)fragment).filtersUpdated();
+        if(fragment instanceof ListItemClick)
+        {
+            ((ListItemClick)fragment).filtersUpdated();
+        }
     }
 
 

@@ -218,6 +218,8 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
         bindPaymentMode();
 
+        bindPlaceOrderButton();
+
 
 
 
@@ -267,6 +269,7 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 //            selectedAddress = UtilityFunctions.provideGson().fromJson(jsonString,DeliveryAddress.class);
 
             bindDeliveryAddress();
+            bindPlaceOrderButton();
 
         }
         else if(requestCode==7896 && resultCode == 2 && data!=null)
@@ -283,6 +286,8 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
             }
 
             bindPaymentMode();
+
+            bindPlaceOrderButton();
         }
     }
 
@@ -658,6 +663,25 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
 
 
+    void bindPlaceOrderButton()
+    {
+        if(selectedAddress==null)
+        {
+            placeOrder.setText("Select Address");
+        }
+        else if(order.getPaymentMode()==0)
+        {
+            placeOrder.setText("Select Payment Method");
+        }
+        else if(order.getPaymentMode()==Order.PAYMENT_MODE_RAZORPAY)
+        {
+            placeOrder.setText("Make Payment");
+        }
+        else if(order.getPaymentMode()==Order.PAYMENT_MODE_PAY_ONLINE_ON_DELIVERY || order.getPaymentMode()==Order.PAYMENT_MODE_CASH_ON_DELIVERY)
+        {
+            placeOrder.setText("Place Order");
+        }
+    }
 
 
 
@@ -677,12 +701,21 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
         if(selectedAddress==null)
         {
             showToastMessage("Please add/select Delivery Address !");
+
+            Intent intent = new Intent(getActivity(), DeliveryAddressActivity.class);
+            startActivityForResult(intent,1);
+
             return;
         }
 
         if(order.getPaymentMode()==0)
         {
             showToastMessage("Please select payment method");
+
+
+            Intent intent = new Intent(getActivity(),SelectPayment.class);
+            startActivityForResult(intent,7896);
+
             return;
         }
 
@@ -833,9 +866,9 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
 
 
 
+
+
     RazorPayOrder razorPayOrder;
-
-
 
     public void createOrderRazorPay()
     {
@@ -879,9 +912,6 @@ public class PlaceOrderFragment extends Fragment implements View.OnClickListener
             }
         });
     }
-
-
-
 
 
 

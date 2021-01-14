@@ -116,6 +116,7 @@
 
 
         <activity android:name="org.nearbyshops.enduserappnew.multimarketfiles.Markets.MarketsList"/>
+        <activity android:name=".aSuperAdminModule.MarketsList.Markets"/>
 
 
         <activity android:name="org.nearbyshops.enduserappnew.Lists.ShopsList.ShopsList"/>
@@ -125,7 +126,7 @@
         <activity android:name="org.nearbyshops.enduserappnew.aSellerModule.DashboardDeliveryGuy.DeliveryHome" />
 
 
-        <activity android:name="org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.MarketsList" />
+        <activity android:name="org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib.MarketsList" />
         <activity android:name="org.nearbyshops.enduserappnew.aSuperAdminModule.DashboardAdmin.SDSAdminDashboard" />
 
         <activity android:name="org.nearbyshops.enduserappnew.adminModule.DashboardAdmin.AdminDashboard" />

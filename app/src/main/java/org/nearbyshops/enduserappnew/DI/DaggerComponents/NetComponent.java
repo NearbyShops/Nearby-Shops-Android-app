@@ -34,6 +34,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemInstacart;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelItemDetail;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShopDetail;
 import org.nearbyshops.enduserappnew.aSellerModule.InventoryDeliveryByVendor.Fragment.DeliveryByVendorFragment;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.MarketFragmentList;
 import org.nearbyshops.enduserappnew.adminModule.PushNotificationComposer;
 import org.nearbyshops.enduserappnew.adminModule.SalesReport.SalesReportFragment;
 import org.nearbyshops.enduserappnew.multimarketfiles.zzBackups.HomeBackup;
@@ -58,8 +59,8 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
 import org.nearbyshops.enduserappnew.multimarketfiles.Markets.ViewModelMarkets;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelShop;
 import org.nearbyshops.enduserappnew.aSuperAdminModule.DashboardAdmin.SDSAdminDashboardFragment;
-import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewModel.MarketsDataSource;
-import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.MarketsListFragment;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib.ViewModel.MarketsDataSource;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib.MarketsListFragment;
 import org.nearbyshops.enduserappnew.aSellerModule.FilterDeliveryGuy.FilterDeliveryFragment;
 import org.nearbyshops.enduserappnew.ViewModels.ViewModelUser;
 import org.nearbyshops.enduserappnew.adminModule.AddCredit.FragmentAddCredit;
@@ -400,4 +401,6 @@ public interface NetComponent {
     void Inject(AddUserToStaffDialog addUserToStaffDialog);
 
     void Inject(CallSupportDialog callSupportDialog);
+
+    void Inject(MarketFragmentList marketFragmentList);
 }

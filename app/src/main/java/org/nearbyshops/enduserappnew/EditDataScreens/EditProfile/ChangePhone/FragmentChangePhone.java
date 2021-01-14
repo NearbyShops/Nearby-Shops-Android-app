@@ -27,7 +27,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.MyApplication;

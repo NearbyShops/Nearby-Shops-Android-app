@@ -14,7 +14,8 @@ import org.nearbyshops.enduserappnew.Lists.UsersList.UsersList;
 import org.nearbyshops.enduserappnew.Lists.UsersList.UsersListFragment;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
-import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.MarketsList;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.Markets;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib.MarketsList;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -61,7 +62,7 @@ public class SDSAdminDashboardFragment extends Fragment {
     @OnClick(R.id.markets_list)
     void optionAdminClick(View view)
     {
-        Intent intent = new Intent(getActivity(), MarketsList.class);
+        Intent intent = new Intent(getActivity(), Markets.class);
         startActivity(intent);
     }
 

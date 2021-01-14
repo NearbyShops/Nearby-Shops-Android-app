@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewModel;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib.ViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;

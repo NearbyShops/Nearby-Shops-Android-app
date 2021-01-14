@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 
 import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
-import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.Model.ModelRoles.User;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Interfaces.NotifyAboutLogin;

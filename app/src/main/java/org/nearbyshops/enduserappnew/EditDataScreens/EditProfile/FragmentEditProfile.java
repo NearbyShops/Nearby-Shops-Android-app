@@ -36,7 +36,7 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.UserService;
-import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.UserServiceGlobal;
+import org.nearbyshops.enduserappnew.API.API_SDS.UserServiceGlobal;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditProfile.Interfaces.NotifyChangePassword;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShop;
 import org.nearbyshops.enduserappnew.EditDataScreens.EditShop.EditShopFragment;

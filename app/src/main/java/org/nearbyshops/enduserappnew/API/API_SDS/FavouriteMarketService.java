@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.multimarketfiles.API_SDS;
+package org.nearbyshops.enduserappnew.API.API_SDS;
 
 
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.FavouriteMarketEndpoint;

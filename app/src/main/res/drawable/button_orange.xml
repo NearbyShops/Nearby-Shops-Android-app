@@ -7,7 +7,7 @@
     <solid android:color="@color/orange_new"/>
     <corners android:radius="4dp"/>
     <stroke android:width="0dp" android:color="@color/orangeDark" />
-    <size android:width="78dp" android:height="78dp"/>
+    <size android:width="35dp" android:height="5dp"/>
 
     <!--        <corners android:radius="10dip" />-->
     <!--        <stroke-->

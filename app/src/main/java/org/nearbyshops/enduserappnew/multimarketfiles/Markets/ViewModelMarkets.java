@@ -11,7 +11,7 @@ import okhttp3.OkHttpClient;
 
 import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
-import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.MarketService;
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.multimarketfiles.ViewHolderMarket.Model.MarketsListData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarkerSDS;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;

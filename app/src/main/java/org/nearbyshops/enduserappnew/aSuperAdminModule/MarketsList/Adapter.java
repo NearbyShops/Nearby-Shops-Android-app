@@ -1,60 +1,61 @@
 package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.paging.PagedListAdapter;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelMarket.Market;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.Models.FilterMarkets;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterMarkets;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.LoadingViewHolder;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.EmptyScreenDataFullScreen;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models.HeaderTitle;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderEmptyScreenFullScreen;
-import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewHolder.ViewHolderMarketAdmin;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.ViewHolderHeader;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib.ViewHolder.ViewHolderMarketAdmin;
+
+import java.util.List;
 
 /**
- * Created by sumeet on 13/6/16.
+ * Created by sumeet on 19/12/15.
  */
-class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
 
 
-
-    public static final int VIEW_TYPE_MARKET = 1;
-    public static final int VIEW_TYPE_FILTER_MARKETS = 2;
-    public static final int VIEW_TYPE_EMPTY_SCREEN = 3;
-    private final static int VIEW_TYPE_PROGRESS_BAR = 6;
+public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
+    // keeping track of selections
+//    Map<Integer, Vehicle> selectedVehicleTypes = new HashMap<>();
+
+
+    private List<Object> dataset;
+    private Context context;
+    private Fragment fragment;
+
+    int screenMode;
+
+
+    public static final int VIEW_TYPE_Market = 1;
+
+    public static final int VIEW_TYPE_HEADER = 2;
+    public static final int VIEW_TYPE_SCROLL_PROGRESS_BAR = 3;
+    public static final int VIEW_TYPE_EMPTY_SCREEN = 4;
+    public static final int VIEW_TYPE_FILTER_Markets = 5;
 
 
     private boolean loadMore;
 
-    private Context context;
-    private Fragment fragment;
 
 
 
-
-
-    public Adapter(Context context, Fragment fragment) {
-
-        super(DIFF_CALLBACK_OBJECT);
-
-//        this.dataset = dataset;
+    public Adapter(List<Object> dataset, Context context, Fragment fragment) {
+        this.dataset = dataset;
         this.context = context;
         this.fragment = fragment;
     }
-
-
-
 
 
 
@@ -63,23 +64,25 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
 
         View view = null;
 
+        if (viewType == VIEW_TYPE_Market) {
 
-        if(viewType==VIEW_TYPE_MARKET)
-        {
             return ViewHolderMarketAdmin.create(parent,context,fragment);
         }
-        else if(viewType == VIEW_TYPE_FILTER_MARKETS)
-        {
-            return ViewHolderFilterMarkets.create(parent,context,fragment);
+        else if (viewType == VIEW_TYPE_HEADER) {
 
+            return ViewHolderHeader.create(parent,context);
         }
-        else if (viewType == VIEW_TYPE_PROGRESS_BAR) {
-
+        else if(viewType == VIEW_TYPE_SCROLL_PROGRESS_BAR)
+        {
             return LoadingViewHolder.create(parent,context);
         }
         else if(viewType==VIEW_TYPE_EMPTY_SCREEN)
         {
             return ViewHolderEmptyScreenFullScreen.create(parent,context,fragment);
+        }
+        else if(viewType== VIEW_TYPE_FILTER_Markets)
+        {
+            return ViewHolderFilterMarkets.create(parent,context,fragment);
         }
 
 
@@ -92,30 +95,65 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
 
 
 
+
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+
+
+        if (holder instanceof LoadingViewHolder) {
+
+            ((LoadingViewHolder) holder).setLoading(loadMore);
+        }
+        else if(holder instanceof ViewHolderEmptyScreenFullScreen)
+        {
+            ((ViewHolderEmptyScreenFullScreen) holder).setItem((EmptyScreenDataFullScreen) dataset.get(position));
+        }
+        else if (holder instanceof ViewHolderHeader) {
+
+            if (dataset.get(position) instanceof HeaderTitle) {
+
+                ((ViewHolderHeader) holder).setItem((HeaderTitle) dataset.get(position));
+            }
+
+        }
+        else if(holder instanceof ViewHolderMarketAdmin)
+        {
+            ((ViewHolderMarketAdmin) holder).setItem((Market) dataset.get(position));
+        }
+    }
+
+
+
+
+
+
     @Override
     public int getItemViewType(int position) {
+
         super.getItemViewType(position);
 
-        Object item = getItem(position);
 
+        if (position == dataset.size()) {
 
-        if(position == getCurrentList().size())
-        {
-            return VIEW_TYPE_PROGRESS_BAR;
+            return VIEW_TYPE_SCROLL_PROGRESS_BAR;
         }
-        else if(item instanceof Market)
+        else if(dataset.get(position) instanceof FilterMarkets)
         {
-            return VIEW_TYPE_MARKET;
+            return VIEW_TYPE_FILTER_Markets;
         }
-        else if(item instanceof FilterMarkets)
-        {
-            return VIEW_TYPE_FILTER_MARKETS;
+        else if (dataset.get(position) instanceof HeaderTitle) {
+
+            return VIEW_TYPE_HEADER;
         }
-        else if(item instanceof EmptyScreenDataFullScreen)
+        else if (dataset.get(position) instanceof Market) {
+
+            return VIEW_TYPE_Market;
+        }
+        else if(dataset.get(position) instanceof EmptyScreenDataFullScreen)
         {
             return VIEW_TYPE_EMPTY_SCREEN;
         }
-
 
 
         return -1;
@@ -123,38 +161,12 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
 
 
 
+
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holderVH, int position) {
+    public int getItemCount() {
 
-
-        if(holderVH instanceof ViewHolderMarketAdmin)
-        {
-            if(getItem(position) instanceof Market)
-            {
-                ((ViewHolderMarketAdmin) holderVH).setItem((Market) getItem(position));
-            }
-
-        }
-        else if (holderVH instanceof LoadingViewHolder) {
-
-
-            ((LoadingViewHolder) holderVH).setLoading(true);
-
-        }
-        else if(holderVH instanceof ViewHolderEmptyScreenFullScreen)
-        {
-            ((ViewHolderEmptyScreenFullScreen) holderVH).setItem((EmptyScreenDataFullScreen) getItem(position));
-        }
-
+        return (dataset.size() + 1);
     }
-
-
-
-    void showLog(String message)
-    {
-        Log.d("order_status",message);
-    }
-
 
 
 
@@ -163,54 +175,4 @@ class Adapter extends PagedListAdapter<Object,RecyclerView.ViewHolder> {
         this.loadMore = loadMore;
     }
 
-
-
-
-
-
-    public static DiffUtil.ItemCallback<Order> DIFF_CALLBACK = new DiffUtil.ItemCallback<Order>() {
-
-
-        @Override
-        public boolean areItemsTheSame(@NonNull Order oldItem, @NonNull Order newItem) {
-            return oldItem.getOrderID()== newItem.getOrderID();
-        }
-
-
-
-        @Override
-        public boolean areContentsTheSame(@NonNull Order oldItem, @NonNull Order newItem) {
-            return false;
-        }
-
-
-    };
-
-
-
-    public static DiffUtil.ItemCallback<Object> DIFF_CALLBACK_OBJECT = new DiffUtil.ItemCallback<Object>() {
-
-
-        @Override
-        public boolean areItemsTheSame(@NonNull Object oldItem, @NonNull Object newItem) {
-
-            if(oldItem instanceof Order && newItem instanceof Order)
-            {
-                return ((Order)oldItem).getOrderID()== ((Order)newItem).getOrderID();
-            }
-            else
-            {
-
-                return false;
-            }
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull Object oldItem, @NonNull Object newItem) {
-            return false;
-        }
-
-
-
-    };
 }

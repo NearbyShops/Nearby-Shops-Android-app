@@ -31,8 +31,8 @@ import com.squareup.picasso.Target;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
-import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.FavouriteMarketService;
-import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.MarketReviewService;
+import org.nearbyshops.enduserappnew.API.API_SDS.FavouriteMarketService;
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketReviewService;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.FavouriteMarketEndpoint;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.MarketReviewEndPoint;
 import org.nearbyshops.enduserappnew.Model.ModelReviewMarket.FavouriteMarket;

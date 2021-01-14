@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,8 +29,8 @@ import org.nearbyshops.enduserappnew.MyApplication;
 import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.Utility.UtilityFunctions;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFilterMarkets;
-import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewHolder.ViewHolderMarketAdmin;
-import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewModel.ViewModelMarkets;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib.ViewHolder.ViewHolderMarketAdmin;
+import org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib.ViewModel.ViewModelMarkets;
 
 import java.util.ArrayList;
 import java.util.List;

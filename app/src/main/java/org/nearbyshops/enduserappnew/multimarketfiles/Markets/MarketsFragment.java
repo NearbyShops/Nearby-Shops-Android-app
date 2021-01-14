@@ -19,7 +19,7 @@ import butterknife.OnClick;
 import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 
-import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.MarketService;
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.Interfaces.MarketSelected;
 import org.nearbyshops.enduserappnew.multimarketfiles.ViewHolderMarket.ViewHolderMarket;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;

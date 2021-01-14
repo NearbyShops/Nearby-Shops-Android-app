@@ -1,4 +1,4 @@
-package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsList.ViewModel;
+package org.nearbyshops.enduserappnew.aSuperAdminModule.MarketsListPagingLib.ViewModel;
 
 
 
@@ -8,7 +8,7 @@ import androidx.paging.PageKeyedDataSource;
 
 import com.google.gson.Gson;
 
-import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.MarketService;
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.DaggerComponentBuilder;
 import org.nearbyshops.enduserappnew.Model.ModelEndPoints.ServiceConfigurationEndPoint;
 import org.nearbyshops.enduserappnew.MyApplication;

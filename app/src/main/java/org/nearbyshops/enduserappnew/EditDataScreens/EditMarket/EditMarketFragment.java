@@ -39,7 +39,7 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 
-import org.nearbyshops.enduserappnew.multimarketfiles.API_SDS.MarketService;
+import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.UserService;
 import org.nearbyshops.enduserappnew.InventoryOrders.DeliverySlot.AdapterDeliverySlot;
