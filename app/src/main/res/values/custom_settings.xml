@@ -89,7 +89,7 @@
 
 
     <!--  if set as true then user would see add button layout for items in shop rather than Plus (+) button layout -->
-    <bool name="use_add_button_layout_for_item_in_shop">true</bool>
+    <bool name="use_add_button_layout_for_item_in_shop">false</bool>
 
 
     <!-- When enabled login through SMS-OTP will be available only on national phone numbers of the default country set by the market admin  !-->

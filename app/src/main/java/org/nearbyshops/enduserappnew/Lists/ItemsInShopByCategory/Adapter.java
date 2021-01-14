@@ -19,6 +19,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFil
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.Lists.ItemsByCategory.AdapterItemCatHorizontalList;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopInfo;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
 
@@ -77,6 +78,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     public static final int VIEW_TYPE_HIGHLIGHTS = 15;
+
+
+    public static final int VIEW_TYPE_SHOP_INFO = 16;
 
 
 
@@ -148,7 +152,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
         else if(viewType == VIEW_TYPE_SHOP)
         {
-            return ViewHolderShopSmall.create(parent,context,fragment,this);
+            return ViewHolderShopInfo.create(parent,context,fragment,this);
         }
         else if(viewType == VIEW_TYPE_MESSAGE_ON_WHATSAPP)
         {
@@ -173,6 +177,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(viewType==VIEW_TYPE_FILTER_ITEMS_IN_SHOP)
         {
             return ViewHolderFilterItemsInShop.create(parent,context, fragment);
+        }
+        else if(viewType==VIEW_TYPE_SHOP_INFO)
+        {
+            return ViewHolderShopInfo.create(parent,context,fragment,this);
         }
 
         return null;
@@ -221,6 +229,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         else if(holder instanceof ViewHolderShopItemInstacart)
         {
             ((ViewHolderShopItemInstacart) holder).bindShopItems((ShopItem) dataset.get(position));
+        }
+        else if(holder instanceof ViewHolderShopInfo)
+        {
+            ((ViewHolderShopInfo) holder).bindShop((Shop) dataset.get(position));
         }
         else if(holder instanceof ViewHolderShopItem)
         {
@@ -332,13 +344,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
 
-
-
     public void setLoadMore(boolean loadMore)
     {
         this.loadMore = loadMore;
     }
-
 
 
 }

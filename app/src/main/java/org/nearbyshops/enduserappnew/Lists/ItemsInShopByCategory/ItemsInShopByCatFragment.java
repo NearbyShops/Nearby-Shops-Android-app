@@ -53,6 +53,7 @@ import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderFilters.ViewHolderFil
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategory;
 import org.nearbyshops.enduserappnew.ViewHolders.Model.ItemCategoriesList;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderItemCategorySmall;
+import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopInfo;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItem;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderShopItemButton;
 import org.nearbyshops.enduserappnew.Login.Login;
@@ -91,7 +92,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         ViewHolderShopItem.ListItemClick,
         NotifyBackPressed, NotifySort, NotifySearch,
         ViewHolderShopMedium.ListItemClick,  ViewHolderShopSmall.ListItemClick,
-        ViewHolderFilterItemsInShop.ListItemClick {
+        ViewHolderFilterItemsInShop.ListItemClick , ViewHolderShopInfo.ListItemClick {
 
 
 
@@ -108,8 +109,14 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-    @BindView(R.id.shop_profile_photo) ImageView itemImage;
-    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
+//    @BindView(R.id.shop_profile_photo) ImageView itemImage;
+//    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
+
+//    @BindView(R.id.shop_name) TextView shopName;
+//    @BindView(R.id.shop_address) TextView shopAddress;
+
+    @BindView(R.id.toolbar) Toolbar toolbar;
+
 
 
 
@@ -146,9 +153,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     private ViewModelShop viewModelShop;
     private ProgressDialog progressDialog;
 
-
-    @BindView(R.id.shop_name) TextView shopName;
-    @BindView(R.id.shop_address) TextView shopAddress;
 
 
 
@@ -207,12 +211,25 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 
+        Shop shop = PrefShopHome.getShop(getActivity());
+
+
+        if(((AppCompatActivity) getActivity()).getSupportActionBar()!=null)
+        {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(shop.getShopName());
+        }
+
+
+
+
+
+
         setupRecyclerView();
         setupSwipeContainer();
         setupShop();
 
 
-        Shop shop = PrefShopHome.getShop(getActivity());
+
 
 
         if(savedInstanceState ==null)
@@ -222,11 +239,11 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-        if(shop==null)
-        {
+//        if(shop==null)
+//        {
             setupViewModel();
             getShopDetails();
-        }
+//        }
 
 
 
@@ -297,18 +314,18 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         }
 
 
-
-        shopName.setText(shop.getShopName());
-
-        if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
-        {
-            shopAddress.setVisibility(View.GONE);
-            itemImage.setVisibility(View.GONE);
-        }
-        else
-        {
-            shopAddress.setText(String.format("%.2f Km",shop.getRt_distance()) + " | " + shop.getShopAddress());
-        }
+//
+//        shopName.setText(shop.getShopName());
+//
+//        if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
+//        {
+//            shopAddress.setVisibility(View.GONE);
+//            itemImage.setVisibility(View.GONE);
+//        }
+//        else
+//        {
+//            shopAddress.setText(String.format("%.2f Km",shop.getRt_distance()) + " | " + shop.getShopAddress());
+//        }
 
 
 
@@ -321,20 +338,20 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                         R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
 
-        Picasso.get().load(imagePath)
-                .placeholder(placeholder)
-                .into(itemImage);
-
-
-
-        if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
-        {
-            itemImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        }
-        else
-        {
-            itemImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        }
+//        Picasso.get().load(imagePath)
+//                .placeholder(placeholder)
+//                .into(itemImage);
+//
+//
+//
+//        if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
+//        {
+//            itemImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//        }
+//        else
+//        {
+//            itemImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//        }
 
 
     }
@@ -711,8 +728,10 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 //                        if(!getResources().getBoolean(R.bool.single_vendor_mode_enabled))
 //                        {
-//                            dataset.add(PrefShopHome.getShop(getActivity()));
+
 //                        }
+
+                        dataset.add(PrefShopHome.getShop(getActivity()));
 
 
 
@@ -1130,7 +1149,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
     }
 
 
-    @OnClick({R.id.app_bar,R.id.collapsing_toolbar,R.id.toolbar})
+//    @OnClick({R.id.app_bar,R.id.collapsing_toolbar,R.id.toolbar})
     void shopClick()
     {
 
@@ -1143,6 +1162,14 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
         startActivity(intent);
 
+    }
+
+
+
+
+    @Override
+    public void shopInfoClick() {
+        shopClick();
     }
 
 
@@ -1483,7 +1510,6 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         makeRefreshNetworkCall();
 
     }
-
 
 
 }

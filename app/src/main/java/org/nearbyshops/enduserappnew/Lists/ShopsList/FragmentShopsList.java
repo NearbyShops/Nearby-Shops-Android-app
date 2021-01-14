@@ -1021,6 +1021,7 @@ public class FragmentShopsList extends Fragment implements
 
         PrefShopHome.saveShop(shop,getActivity());
         Intent intent = new Intent(getActivity(), ItemsInShopByCat.class);
+        intent.putExtra("shop_id",shop.getShopID());
         startActivity(intent);
     }
 
