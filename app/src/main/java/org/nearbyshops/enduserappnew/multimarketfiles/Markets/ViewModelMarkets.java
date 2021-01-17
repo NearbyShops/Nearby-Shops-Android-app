@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient;
 import org.nearbyshops.enduserappnew.API.LoginUsingOTPService;
 import org.nearbyshops.enduserappnew.API.ServiceConfigurationService;
 import org.nearbyshops.enduserappnew.API.API_SDS.MarketService;
+import org.nearbyshops.enduserappnew.R;
 import org.nearbyshops.enduserappnew.multimarketfiles.ViewHolderMarket.Model.MarketsListData;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUserProfile.Model.RoleDashboardMarkerSDS;
 import org.nearbyshops.enduserappnew.ViewHolders.ViewHolderUtility.Models.CreateShopData;
@@ -292,17 +293,23 @@ public class ViewModelMarkets extends AndroidViewModel {
                                     dataset.addAll(response.body().getResults());
 
 
-//                                    if(isProfileScreen)
-//                                    {
-                                        dataset.add(EmptyScreenDataListItem.getCreateMarketData());
-//                                    }
+
+                                    if(getApplication().getResources().getBoolean(R.bool.show_create_market))
+                                    {
+                                        dataset.add(EmptyScreenDataListItem.getCreateMarketData(getApplication()));
+                                    }
 
 
                                 }
                                 else
                                 {
 //                                    dataset.add(EmptyScreenDataListItem.getCreateMarketData());
-                                    dataset.add(EmptyScreenDataListItem.createMarketNoMarketsAvailable());
+
+                                    if(getApplication().getResources().getBoolean(R.bool.show_create_market))
+                                    {
+                                        dataset.add(EmptyScreenDataListItem.createMarketNoMarketsAvailable(getApplication()));
+                                    }
+
                                 }
 
 

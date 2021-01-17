@@ -1,5 +1,7 @@
 package org.nearbyshops.enduserappnew.ViewHolders.ViewHoldersCommon.Models;
 
+import android.content.Context;
+
 import org.nearbyshops.enduserappnew.R;
 
 public class EmptyScreenDataListItem {
@@ -56,13 +58,13 @@ public class EmptyScreenDataListItem {
 
 
 
-    public static EmptyScreenDataListItem getCreateMarketData()
+    public static EmptyScreenDataListItem getCreateMarketData(Context context)
     {
         EmptyScreenDataListItem data = new EmptyScreenDataListItem();
         data.setTitle("Create Market");
         data.setMessage("Create your own Market ... help local Economy ... !");
         data.setButtonText("Create Market");
-        data.setUrlForButtonClick("https://nearbyshops.org");
+        data.setUrlForButtonClick(context.getResources().getString(R.string.franchiser_website));
 
         return data;
     }
@@ -70,13 +72,13 @@ public class EmptyScreenDataListItem {
 
 
 
-    public static EmptyScreenDataListItem createMarketNoMarketsAvailable()
+    public static EmptyScreenDataListItem createMarketNoMarketsAvailable(Context context)
     {
         EmptyScreenDataListItem data = new EmptyScreenDataListItem();
         data.setTitle("Create Market");
         data.setMessage("No markets available in your area. \n\nCreate your own local market using free open-source technology and Help Local Vendors and Local Economy");
         data.setButtonText("Create Market");
-        data.setUrlForButtonClick("https://nearbyshops.org");
+        data.setUrlForButtonClick(context.getResources().getString(R.string.franchiser_website));
 
 //        data.setImageResource(R.drawable.ic_local_florist_black_24dp);
 

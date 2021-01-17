@@ -109,11 +109,11 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
 
 
 
-//    @BindView(R.id.shop_profile_photo) ImageView itemImage;
-//    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.shop_profile_photo) ImageView itemImage;
+    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
 
-//    @BindView(R.id.shop_name) TextView shopName;
-//    @BindView(R.id.shop_address) TextView shopAddress;
+    @BindView(R.id.shop_name) TextView shopName;
+    @BindView(R.id.shop_address) TextView shopAddress;
 
     @BindView(R.id.toolbar) Toolbar toolbar;
 
@@ -192,7 +192,7 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         super.onCreateView(inflater, container, savedInstanceState);
 
         setRetainInstance(true);
-        View rootView = inflater.inflate(R.layout.fragment_items_in_shop_by_cat, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_items_in_shop_by_cat_backup, container, false);
 
         ButterKnife.bind(this,rootView);
 
@@ -314,18 +314,18 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
         }
 
 
-//
-//        shopName.setText(shop.getShopName());
-//
-//        if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
-//        {
-//            shopAddress.setVisibility(View.GONE);
-//            itemImage.setVisibility(View.GONE);
-//        }
-//        else
-//        {
-//            shopAddress.setText(String.format("%.2f Km",shop.getRt_distance()) + " | " + shop.getShopAddress());
-//        }
+
+        shopName.setText(shop.getShopName());
+
+        if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
+        {
+            shopAddress.setVisibility(View.GONE);
+            itemImage.setVisibility(View.GONE);
+        }
+        else
+        {
+            shopAddress.setText(String.format("%.2f Km",shop.getRt_distance()) + " | " + shop.getShopAddress());
+        }
 
 
 
@@ -338,20 +338,20 @@ public class ItemsInShopByCatFragment extends Fragment implements SwipeRefreshLa
                         R.drawable.ic_nature_people_white_48px, getActivity().getTheme());
 
 
-//        Picasso.get().load(imagePath)
-//                .placeholder(placeholder)
-//                .into(itemImage);
-//
-//
-//
-//        if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
-//        {
-//            itemImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//        }
-//        else
-//        {
-//            itemImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        }
+        Picasso.get().load(imagePath)
+                .placeholder(placeholder)
+                .into(itemImage);
+
+
+
+        if(getResources().getBoolean(R.bool.single_vendor_mode_enabled))
+        {
+            itemImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        }
+        else
+        {
+            itemImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        }
 
 
     }

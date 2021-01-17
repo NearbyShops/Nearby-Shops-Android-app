@@ -27,7 +27,7 @@
     <color name="item_category_base_color">@color/mapbox_blue</color>
 
     <color name="whatsapp_box_color">@color/darkGreen</color>
-    <color name="location_box_color">@color/darkGreen</color>
+    <color name="location_box_color">@color/instacart_green</color>
     <color name="header_box_color">@color/blueGrey800</color>
     <color name="header_box_text_color">@color/white</color>
 

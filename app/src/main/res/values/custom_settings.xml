@@ -103,9 +103,12 @@
 
 
 
+    <!--  if someone wants a franchise he will contact a franchiser ... franchisers website contains information for those who wants a franchises  -->
+    <string name="franchiser_website">https://nearbyshops.org</string>
 
+    <bool name="show_create_market">true</bool>
 
     <!-- Show "Powered by Nearby Shops" in profile screen  -->
-    <bool name="show_powered_by_nbs">true</bool>
+    <bool name="show_powered_by_nbs">false</bool>
 
 </resources>

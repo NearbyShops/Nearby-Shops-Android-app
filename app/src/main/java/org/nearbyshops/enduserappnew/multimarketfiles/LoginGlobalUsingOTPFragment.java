@@ -821,7 +821,9 @@ public class LoginGlobalUsingOTPFragment extends Fragment {
         if(registrationMode==User.REGISTRATION_MODE_EMAIL)
         {
             selectEmail.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-            selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
+//            selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
+            selectEmail.setBackgroundResource(R.drawable.button_orange);
+
 
             selectPhone.setTextColor(ContextCompat.getColor(getActivity(),R.color.blueGrey800));
             selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
@@ -838,7 +840,10 @@ public class LoginGlobalUsingOTPFragment extends Fragment {
             selectEmail.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.light_grey));
 
             selectPhone.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-            selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
+//            selectPhone.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.buttonColor));
+            selectPhone.setBackgroundResource(R.drawable.button_orange);
+
+
 
             ccp.setVisibility(View.VISIBLE);
 

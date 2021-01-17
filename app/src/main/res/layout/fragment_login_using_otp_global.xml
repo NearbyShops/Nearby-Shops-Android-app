@@ -78,7 +78,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="3dp"
                     android:padding="10dp"
-                    android:background="@color/phonographyBlue"
+                    android:background="@drawable/button_orange"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/border_two"
                     app:layout_constraintStart_toEndOf="@id/select_email"

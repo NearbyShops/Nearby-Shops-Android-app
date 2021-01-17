@@ -61,10 +61,6 @@ public class ViewHolderEmptyScreenListItem extends RecyclerView.ViewHolder{
 
 
 
-
-
-
-
     @OnClick(R.id.button)
     void selectMarket()
     {
@@ -73,10 +69,6 @@ public class ViewHolderEmptyScreenListItem extends RecyclerView.ViewHolder{
             ((ListItemClick) fragment).buttonClick(data.getUrlForButtonClick());
         }
     }
-
-
-
-
 
 
 
@@ -113,7 +105,6 @@ public class ViewHolderEmptyScreenListItem extends RecyclerView.ViewHolder{
         }
 
     }
-
 
 
 

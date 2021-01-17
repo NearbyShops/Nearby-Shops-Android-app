@@ -50,7 +50,6 @@
                 android:maxLines="1"
                 android:textSize="17sp"
                 android:id="@+id/shop_name"
-                android:textStyle="bold"
                 android:text="@string/list_item_shop_new_shop_name_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
