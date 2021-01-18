@@ -91,7 +91,7 @@ dependencies {
     implementation 'com.google.android.libraries.places:places:2.4.0'
 
 
-    implementation 'com.google.firebase:firebase-analytics:18.0.0'
+    implementation 'com.google.firebase:firebase-analytics:18.0.1'
     implementation 'com.google.firebase:firebase-messaging:21.0.1'
 
     implementation 'com.google.android.gms:play-services-location:17.1.0'

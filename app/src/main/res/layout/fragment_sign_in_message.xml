@@ -98,7 +98,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textColor="@color/white"
-        android:background="@color/buttonColorDark"
+        android:background="@drawable/button_green"
         android:id="@+id/sign_in_button"
         android:text="@string/fragment_sign_in_message_sign_in_button_text"
         android:layout_width="wrap_content"

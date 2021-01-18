@@ -236,8 +236,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
 
+
                 <Button
-                    android:textSize="17sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textAllCaps="false"
+                    android:textSize="20sp"
                     android:textColor="@color/white"
                     android:text="@string/fragment_login_using_otp_global_login_text"
                     android:background="@drawable/button_green"

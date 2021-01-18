@@ -2,10 +2,11 @@
 <resources>
 
 
+
     <bool name="multi_market_enabled">true</bool>
 
     <!-- If multi-market mode is disabled then simply ignore this URL. It tells you url to SDS server which enables multi-market mode. -->
-    <string name="sds_url">@string/service_url_sds_proyas</string>
+    <string name="sds_url">@string/service_url_sds</string>
 
     <!-- Few constants for development purposes ... you can just ignore them -->
     <string name="service_url_sds">http://sds.nearbyshops.org</string>

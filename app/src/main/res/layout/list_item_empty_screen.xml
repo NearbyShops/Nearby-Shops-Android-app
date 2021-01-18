@@ -48,9 +48,8 @@
 
 
 
-
-
     <TextView
+        android:textAllCaps="false"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
         android:textSize="17sp"
