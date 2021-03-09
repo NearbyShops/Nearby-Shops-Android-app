@@ -156,9 +156,14 @@ Code Review and Architecture
 License
 =======
 
-Nearby Shops Commercial License - Commercial Use Requires Our Permission
-
 Copyright (c) 2020 Nearby Shops
+
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
