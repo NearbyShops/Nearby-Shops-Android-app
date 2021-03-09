@@ -9,7 +9,7 @@ Nearby Shops
 width="120">
 </a>
 
-<img src="https://i.ibb.co/mHp1Zt5/Open-Source.png" alt="Open-Source">
+<img src="https://i.ibb.co/8xpkXtP/Open-Source-1.png" alt="Open-Source">
 
 About Nearby Shops
 --------------------
