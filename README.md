@@ -60,7 +60,7 @@ Uses Android Jetpack and Google’s Recommended Architecture Patterns - Migratio
 
 Written in both Java and Kotlin : Migration to kotlin is planned and will be coming in near future
 
-Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, and the Mapbox Android SDK
+Built using Retrofit, Ok-HTTP, Picasso, Dagger, and the Mapbox Android SDK
 
 User-Interface is made using the modular View-Holder Pattern which makes the UI blocks modular, easy to reuse, modify and understand.
 
