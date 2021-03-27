@@ -3,8 +3,7 @@ Nearby Shops
 =============
 
 
-
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="80">    <a href="https://nearbyshops.org/app_demo_single_market.html"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
+<a href="https://nearbyshops.org/app_demo_single_market.html"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
 <img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
 width="120">
 </a>
@@ -14,14 +13,14 @@ width="120">
 About Nearby Shops
 --------------------
 
-Nearby Shops is a **Free and Open-Source** food delivery, grocery and local shopping platform. Follow our installation guide to get your grocery or food delivery market up and running in just 10 Minutes.
+Nearby Shops is a **Free and Open-Source** food delivery and local shopping platform. Follow our installation guide to get your grocery or food delivery market up and running in just 10 Minutes.
 
 The installation guide and app customization guide is provided at http://developer.nearbyshops.org
 
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-<img src="https://nearbyshops.org/images/screenshots_new/items_in_shop.png" width="208">   <img src="https://nearbyshops.org/images/multi-categories-3.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe_.png" width="208"> 
+<img src="https://media.socastsrm.com/wordpress/wp-content/blogs.dir/2345/files/2020/03/Love.png" alt="Open-Source">
 
 
 
@@ -39,17 +38,15 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 
 Concept
 ----------
-Nearby Shops is a Hyperlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get their orders delivered to their home or just pick the order up from the shop. 
+Nearby Shops is an easy to use local e-commerce platform. Create your local market ... deliver fruits & Vegetables, food, flowers or anything else from your local stores.
+
+You no longer need million dollar investment to start your local e-commerce business. Nearby Shops helps you start your local e-commerce business in extremely low budget. 
 
 In the new emerging world, customers are getting tired of going outside the home to shop every day. They would much prefer to simply place an order and have the products delivered to their home the same day. 
 
-Conventional e-commerce has issues ... the delivery takes a long time and it's more difficult to trust unknown vendors whom you cannot see and meet. Hyperlocal e-commerce solves these issues because delivery is faster and customers can reach out to the vendors easily. 
+Conventional e-commerce has issues ... the delivery takes a long time and it's more difficult to trust unknown vendors whom you cannot see and meet. Local e-commerce solves these issues because delivery is faster and customers can reach out to the vendors easily. 
 
-Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food. 
-
-Nearby Shops implements Alibaba's New Offline-to-Online Concept, where customers discover products online and then pick those products up from physical stores. 
-
-![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
+<img src="https://nearbyshops.org/images/screenshots_new/items_in_shop.png" width="208">   <img src="https://nearbyshops.org/images/multi-categories-3.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe_.png" width="208"> 
 
 
 
@@ -158,7 +155,7 @@ Code Review and Architecture
 License
 =======
 
-Copyright (c) 2020 Nearby Shops
+Copyright (c) 2021 Nearby Shops
 
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
