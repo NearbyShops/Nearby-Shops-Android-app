@@ -1,7 +1,13 @@
+
+Deprecation Notice
+=========================
+
+Thank you for your support ... We are deprecating this project. If you still love this project ... please check our website for more options !
+
+
 Nearby Shops 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Nearby%20Shops%20Open%20Source%20Food%20Delivery%20and%20Hyperlocal%20app&url=https://github.com/NearbyShops/Nearby-Shops-End-User-Android-app&via=moraysumeet&hashtags=opensource,androiddev,fooddelivery,android,ecommerce)
 =============
-
 
 <a href="https://nearbyshops.org/app_demo_single_market.html"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
 <img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
