@@ -2,7 +2,7 @@
 Deprecation Notice
 =========================
 
-Thank you for your support ... We are deprecating this project to make way for another good project. If you still love this project ... please check our website for more options !
+Thank you for your support ... This project is now deprecated. Please check our website for better options !
 
 
 Nearby Shops 
