@@ -9,8 +9,8 @@ width="120">
 
 
 
-About Nearby Shops
---------------------
+About Nearby Shops - MultiVendor Food Delivery and Ecommerce App
+--------------------------------------------------------------------
 
 Nearby Shops is a **Free and Open-Source** food delivery, grocery and local shopping platform. Follow our installation guide to get your grocery or food delivery market up and running in just 10 Minutes.
 
