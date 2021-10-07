@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_item"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:padding="10dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@drawable/button_grey_dark"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+
+    <ImageView
+        app:srcCompat="@drawable/ic_add_circle_outline_black_24dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:tint="@color/white" />
+
+
+
+
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Create your Shop"
+            android:id="@+id/header"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:text="in Daily Essentials India"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

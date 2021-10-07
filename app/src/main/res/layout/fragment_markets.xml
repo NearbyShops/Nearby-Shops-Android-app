@@ -1,0 +1,126 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--
+
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    -->
+
+    <!--<TextView-->
+        <!--android:visibility="gone"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@color/cyan900"-->
+        <!--android:padding="5dp"-->
+        <!--android:id="@+id/banner"-->
+        <!--android:text="Become a Service Provider and Start Service In your city. Visit http://nearbyshops.org for more Information."-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+
+
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+        <androidx.appcompat.widget.Toolbar
+            app:layout_scrollFlags = "scroll|enterAlways"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="?attr/colorPrimary">
+<!--            android:minHeight="?attr/actionBarSize"-->
+
+
+<!--            android:paddingBottom="3dp"-->
+<!--            android:paddingTop="0dp"-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/app_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="21sp"
+                    android:text="@string/fragment_markets_app_name_text"
+                    android:textColor="@color/header_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+<!--                android:text="@string/app_name"-->
+
+<!--                <TextView-->
+<!--                    android:visibility="gone"-->
+<!--                    android:id="@+id/service_name"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/app_name"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/app_name"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:paddingBottom="0dp"-->
+<!--                    android:textColor="@color/header_text_color"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/swipeContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="5dp"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <!--android:layout_margin="@dimen/fab_margin"-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        app:srcCompat="@drawable/ic_add_white_24px" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,177 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.firebase.firebase-perf' // plugin for firebase performance monitoring
+apply plugin: 'com.google.firebase.crashlytics' // for firebase crash analytics
+
+
+android {
+
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+
+    compileSdkVersion 30
+
+    defaultConfig {
+        applicationId "org.nearbyshops.whitelabelapp"
+        minSdkVersion 21
+        targetSdkVersion 30
+        multiDexEnabled = true
+        versionCode 74
+        versionName "1.73"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+
+//    sourceSets {
+//        main {
+//            res.srcDirs =
+//                    [
+//                            'src/main/res/layouts/multimarket',
+//                            'src/main/res/layouts',
+//                            'src/main/res'
+//                    ]
+//        }
+//    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    allprojects {
+        repositories {
+            jcenter()
+            maven { url "https://jitpack.io" }
+            google()
+
+        }
+    }
+
+//    buildToolsVersion = '29.0.2'
+}
+
+
+
+
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:28.2.0')
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-perf-ktx' // for performance monitoring
+    implementation 'com.google.firebase:firebase-crashlytics-ktx' // for crash analytics
+
+
+    implementation 'com.google.android.libraries.places:places:2.4.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+    // lottie animations library
+    implementation 'com.airbnb.android:lottie:3.7.1'
+
+
+    // ktx libraries
+    implementation "androidx.core:core-ktx:1.6.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+
+//    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    implementation "androidx.paging:paging-runtime-ktx:3.0.1" // For Kotlin use paging-runtime-ktx
+    testImplementation "androidx.paging:paging-common-ktx:3.0.1" // For Kotlin use paging-common-ktx
+
+    implementation 'com.github.smarteist:autoimageslider:1.3.9'
+
+
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
+    implementation 'com.roughike:bottom-bar:2.3.1'
+    implementation 'com.razorpay:checkout:1.5.16'
+    implementation 'com.shreyaspatil:EasyUpiPayment:2.2'
+
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+
+    implementation 'com.github.dhaval2404:imagepicker:1.7.1'
+    implementation 'com.wunderlist:sliding-layer:1.2.5'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    implementation 'com.hbb20:ccp:2.5.3'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.27'
+    implementation 'com.github.sujithkanna:smileyrating:1.6.8'
+    implementation 'com.alexvasilkov:gesture-views:2.8.1'
+    implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.palette:palette-ktx:1.0.0'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+
+    implementation 'com.github.clans:fab:1.6.4'
+
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+//    def okhttp_version="3.12.0"
+//    implementation("com.squareup.okhttp3:okhttp") {
+//        version { strictly "$okhttp_version" }
+//    }
+
+    //    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+
+
+    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+
+
+    implementation 'com.google.dagger:dagger:2.37'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.28.3'
+    kapt "com.google.dagger:dagger-compiler:2.28.3"
+
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.3'
+
+    testImplementation 'junit:junit:4.13.2'
+
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+

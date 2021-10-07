@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    android:background="@color/light_grey"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/carts_list_item"
+    android:paddingBottom="2dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
+    android:paddingTop="2dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:background="#88000000"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp">
+
+
+
+
+        <ImageView
+            android:id="@+id/shopImage"
+            android:layout_width="110dp"
+            android:layout_height="0dp"
+            android:background="#44000000"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/labels_delivery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <TextView
+            android:id="@+id/shopName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="0dp"
+            android:text="Daily Needs, Green Hills road"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/shopImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_item_cart_distance_text"
+            app:layout_constraintStart_toStartOf="@id/shopName"
+            app:layout_constraintTop_toBottomOf="@id/shopName"
+            app:layout_constraintLeft_toRightOf="@id/shopImage" />
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/deliveryCharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_item_cart_deliveryCharge_text"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/shopName"
+            app:layout_constraintTop_toBottomOf="@id/distance" />
+
+
+
+        <LinearLayout
+            android:id="@+id/labels_delivery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:weightSum="2"
+            app:layout_constraintTop_toBottomOf="@id/deliveryCharge"
+            app:layout_constraintStart_toEndOf="@id/shopImage"
+            app:layout_constraintBottom_toBottomOf="@id/shopImage"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/indicator_pick_from_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:background="@color/orange_new"
+                android:gravity="center"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                android:text="@string/list_item_cart_indicator_pick_from_shop_text"
+                android:textColor="@color/white" />
+
+
+            <TextView
+                android:id="@+id/indicator_home_delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:background="@color/mapbox_blue"
+                android:gravity="center"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                android:text="@string/list_item_cart_indicator_home_delivery_text"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/gplus_color_2"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:text="0.0"
+            android:textColor="@color/colorWhite"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/deliveryCharge"
+            app:layout_constraintStart_toEndOf="@id/shopImage" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:text="(0 Ratings)"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/rating"
+            app:layout_constraintLeft_toRightOf="@id/rating"
+            app:layout_constraintStart_toEndOf="@id/rating" />
+
+
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/shopImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/shopImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="5dp"
+            android:id="@+id/itemsInCart"
+            android:textColor="@color/colorWhite"
+            android:background="@color/teal"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 Items in Cart"/>
+
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/labels_delivery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/labels_delivery"
+            android:id="@+id/cartTotal"
+            android:layout_weight="1"
+            android:textColor="@color/colorWhite"
+            android:background="@color/teal"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/list_item_cart_cartTotal_text"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+<!--    <LinearLayout-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_marginBottom="0dp"-->
+<!--        android:background="#88000000"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"/>-->
+
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginLeft="0dp"-->
+<!--        android:layout_marginRight="0dp"-->
+<!--        android:layout_marginBottom="0dp"-->
+<!--        android:orientation="horizontal">-->
+
+
+<!--        &lt;!&ndash;android:paddingTop="5dp"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:paddingBottom="5dp"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:paddingStart="10dp"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:paddingEnd="10dp"&ndash;&gt;-->
+
+
+<!--    </LinearLayout>-->
+
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:background="#88000000"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</LinearLayout>

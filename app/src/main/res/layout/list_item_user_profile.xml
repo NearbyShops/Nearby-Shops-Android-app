@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/border_profile_top"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="0dp"
+        android:background="#55000000"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="0.4"
+        android:background="@color/backgroundTinted"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,1:1.2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/border_profile_top" />
+
+
+    <TextView
+        android:visibility="gone"
+        android:textSize="17sp"
+        android:id="@+id/log_out_button"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/profile_image"
+        android:text="@string/list_item_user_profile_log_out_button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/user_profile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        android:gravity="start"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"
+        app:layout_constraintStart_toEndOf="@id/profile_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/profile_image">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/header_booked_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_item_user_profile_header_booked_by_text"
+            app:layout_constraintLeft_toRightOf="@id/guideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_image" />
+
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:gravity="start"
+            android:paddingTop="0dp"
+            android:maxLines="1"
+            android:text="Nitesh"
+            android:textColor="@color/blueGrey800"
+            android:textSize="44sp"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_image" />
+
+
+        <TextView
+            android:visibility="gone"
+            android:textColor="@color/orangeDark"
+            android:id="@+id/user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User ID : 123" />
+
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:orientation="horizontal">-->
+
+
+            <!--<ImageView-->
+                <!--android:id="@+id/phone_icon"-->
+                <!--android:layout_width="15dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--android:visibility="gone"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/profile_image"-->
+                <!--app:layout_constraintLeft_toLeftOf="@id/user_name"-->
+                <!--app:srcCompat="@drawable/ic_call_black_24px" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Phone : "-->
+                <!--android:textSize="17sp" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/phone"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginStart="5dp"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#000000"-->
+                <!--android:textSize="17sp"-->
+                <!--android:textStyle="normal"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/phone_icon"-->
+                <!--app:layout_constraintLeft_toRightOf="@+id/phone_icon"-->
+                <!--app:layout_constraintTop_toTopOf="@id/phone_icon" />-->
+
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/border_profile_bottom"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#55000000"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

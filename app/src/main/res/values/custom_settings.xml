@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+<!--    http://192.168.43.146:8081-->
+<!--    http://nbsrestapi.nearbyshops.org-->
+
+
+    <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
+    <string name="custom_url">http://whitelabeldemo.nearbyshops.org</string>
+
+    <!-- Variables to configure for a new build -->
+    <integer name="app_type">@integer/app_type_main_app</integer>
+    <string name="app_name">@string/app_name_main_app</string>
+    <drawable name="custom_icon">@drawable/app_logo_main_app</drawable>
+
+
+    <!--     1 for customer app , 2 for market admin app , 3 for vendor app , 4 for delivery app -->
+    <integer name="app_type_main_app">1</integer>
+    <integer name="app_type_market_admin_app">2</integer>
+    <integer name="app_type_vendor_app">3</integer>
+    <integer name="app_type_delivery_app">4</integer>
+
+
+    <string name="app_name_main_app">Nearby Shops</string>
+    <string name="app_name_delivery_app">Delivery App</string>
+    <string name="app_name_vendor_app">Vendor App</string>
+    <string name="app_name_market_admin_app">Market Admin</string>
+
+    <string name="app_tag_line_for_main_app">Shop Locally and Get Home Delivery</string>
+
+    <drawable name="app_logo_main_app">@drawable/app_icon_main_round</drawable>
+    <drawable name="app_logo_delivery_app">@drawable/app_icon_delivery</drawable>
+    <drawable name="app_logo_vendor_app">@drawable/app_icon_vendor_round</drawable>
+    <drawable name="app_logo_market_admin_app">@drawable/logo_market_builder</drawable>
+
+    <string name="app_helpline">+91-8074516088</string>
+    <string name="app_helpline_delivery_app">+91-8074516088</string>
+    <string name="app_helpline_vendor_app">+91-8074516088</string>
+    <string name="app_helpline_market_admin_app">+91-8074516088</string>
+
+
+    <!-- Please provide the google play link from which user can download the app. This link is required for share you app feature and rate and review.-->
+    <string name="app_download_link">https://play.google.com/store/apps/details?id=org.nearbyshops.whitelabelapp</string>
+    <string name="app_download_link_delivery_app">https://play.google.com/store/apps/details?id=org.nearbyshops.whitelabelapp</string>
+    <string name="app_download_link_vendor_app">https://play.google.com/store/apps/details?id=org.nearbyshops.whitelabelapp</string>
+    <string name="app_download_link_market_admin_app">https://play.google.com/store/apps/details?id=org.nearbyshops.whitelabelapp</string>
+
+
+    <!-- Enable maps and Places API and Mapbox map here -->
+    <string name="google_maps_api_key">AIzaSyAUw9XWcBL6KOcQdVFtDzvIAOdXuWDpnAg</string>
+    <string name="custom_mapbox_style_url">https://example.com</string>
+    <!--    AIzaSyABLR7ogo6ywsgBfCCAJq_vbS9awKpPlfM-->
+
+    <!--Switch between Google Maps or Mapbox API by using this setting-->
+    <bool name="use_google_maps">true</bool>
+
+
+
+    <!--It is mandatory to provide terms of service and privacy policy link to publish your app on google play-->
+    <string name="tos_link">https://nearbyshops.org/Terms-Of-Service.html</string>
+    <string name="privacy_policy_link">https://nearbyshops.org/Privacy-Policy.html</string>
+    <string name="faqs_link">https://nearbyshops.org/Privacy-Policy.html</string>
+
+    <string name="staff_link">https://discord.com/invite/GcKBZ2w</string>
+
+
+    <string name="tutorial_market_admin_link">"https://www.youtube.com/channel/UCz0HmTnOiagEyWeNoiDV3qQ"</string>
+    <string name="tutorial_shop_dashboard">"https://www.youtube.com/channel/UCz0HmTnOiagEyWeNoiDV3qQ"</string>
+
+
+
+    <!-- Show Login Using Password Option in Login Screen  -->
+    <bool name="show_login_using_password">false</bool>
+
+
+    <!-- Other Settings -->
+
+    <!-- To enable single vendor mode set single vendor mode to true and set shop id to the shop which you want to set as your default
+    shop. Please note that the Shop must be enabled to be visible by the customers. -->
+    <bool name="single_vendor_mode_enabled">false</bool>
+    <integer name="single_vendor_shop_id">35</integer>
+
+
+
+    <!-- set whether you want to show create shop option in the front screen (shops list) screen of the market-->
+    <bool name="show_create_shop">false</bool>
+
+    <!-- set whether to show or hide create shop option in the profile screen -->
+    <bool name="show_create_shop_in_profile_screen">true</bool>
+
+
+    <!-- prompt user while pressing back button when the app is about to get closed -->
+    <bool name="prompt_user_back_pressed">false</bool>
+
+
+    <!-- show whatsapp integration on shop catalog-->
+    <bool name="show_whatsapp">false</bool>
+
+
+    <!-- You may want to disable items screen in the multi-vendor app. You can do it with this setting !-->
+    <bool name="show_items_screen_in_multi_vendor">true</bool>
+
+
+    <!-- set whether to show filter shops by category in shops screen  -->
+    <bool name="show_categories_in_shops_screen">true</bool>
+
+
+    <!--  if set as true then user would see add button layout for items in shop rather than Plus (+) button layout -->
+    <bool name="use_add_button_layout_for_item_in_shop">false</bool>
+
+
+    <!-- When enabled login through SMS-OTP will be available only on national phone numbers of the default country set by the market admin  !-->
+    <bool name="restrict_phone_login_country">true</bool>
+
+
+    <!--Enable or Disable Phone or Email for login based on your Preferences -->
+    <!--Please ensure at least one mode of registration is Enabled -->
+    <bool name="login_using_email_enabled">true</bool>
+    <bool name="login_using_phone_enabled">true</bool>
+
+
+    <!-- Show "Powered by Nearby Shops" in profile screen  -->
+    <bool name="show_powered_by_nbs">false</bool>
+
+
+
+    <!-- Show "Enable Demo Mode : Enable this mode when app is used for demo purposes"  -->
+    <bool name="demo_mode_enabled">true</bool>
+
+    <string name="current_location_demo_mode">Pune, India</string>
+
+    <!--    <drawable name="login_icon">@drawable/logo_circle</drawable>-->
+    <!--    <drawable name="app_logo">@drawable/logo_circle</drawable>-->
+    <!--    <dimen name="login_icon_width">100dp</dimen>-->
+    <!--    <dimen name="login_icon_height">100dp</dimen>-->
+</resources>

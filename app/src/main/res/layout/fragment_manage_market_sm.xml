@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.core.widget.NestedScrollView
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".AdminShop.ManageShop">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/market_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <ImageView
+                android:id="@+id/market_profile_photo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_home_black_24dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+
+
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@id/market_profile_photo"
+                app:layout_constraintTop_toTopOf="@id/market_profile_photo"
+                app:layout_constraintBottom_toBottomOf="@id/market_profile_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/market_name"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@id/market_profile_photo"
+                    app:layout_constraintTop_toTopOf="@id/market_profile_photo"
+                    app:layout_constraintBottom_toTopOf="@id/edit_shop_name"
+                    android:text="Market Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+                <TextView
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/market_name"
+                    app:layout_constraintStart_toStartOf="@id/market_name"
+                    app:layout_constraintBottom_toBottomOf="@id/market_profile_photo"
+                    android:text="Edit Market Profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/border_tutorials"
+            app:layout_constraintTop_toBottomOf="@id/market_profile"
+            android:background="@color/border_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+
+
+
+        <TextView
+            android:drawableStart="@drawable/ic_learn"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:text="Tutorials"
+            android:textSize="20sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_grey"
+            android:id="@+id/tutorials"
+            app:layout_constraintEnd_toStartOf="@id/get_support"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_tutorials"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <TextView
+            android:drawableStart="@drawable/ic_support"
+            android:gravity="center_vertical"
+            android:drawablePadding="10dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="Support"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_grey"
+            android:id="@+id/get_support"
+            app:layout_constraintStart_toEndOf="@id/tutorials"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tutorials"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/border_shop_profile"
+            app:layout_constraintTop_toBottomOf="@id/tutorials"
+            android:background="@color/border_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="Delivery Inventory"
+            android:textSize="17sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_color_green"
+            android:id="@+id/delivery_inventory"
+            app:layout_constraintEnd_toStartOf="@id/push_notification_composer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_shop_profile"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_local_shipping_black_24px"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/delivery_inventory"
+            app:layout_constraintTop_toTopOf="@id/delivery_inventory"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="Push Notifications"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_indigo"
+            android:id="@+id/push_notification_composer"
+            app:layout_constraintStart_toEndOf="@id/delivery_inventory"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/delivery_inventory"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_receipt_white"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/push_notification_composer"
+            app:layout_constraintTop_toTopOf="@id/push_notification_composer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="Market Settings"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_yellow"
+            android:id="@+id/market_settings"
+            app:layout_constraintEnd_toStartOf="@id/items_database"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/delivery_inventory"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_settings"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/market_settings"
+            app:layout_constraintTop_toTopOf="@id/market_settings"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="Items Database"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_accent"
+            android:id="@+id/items_database"
+            app:layout_constraintStart_toEndOf="@id/market_settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/market_settings"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_items_white"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/items_database"
+            app:layout_constraintTop_toTopOf="@id/items_database"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="Market Staff"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_orange"
+            android:id="@+id/market_staff"
+            app:layout_constraintEnd_toStartOf="@id/staff_delivery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/market_settings"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_shop_staff_black_24px"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/market_staff"
+            app:layout_constraintTop_toTopOf="@id/market_staff"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+        <TextView
+            android:gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="Delivery Staff"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_violet"
+            android:id="@+id/staff_delivery"
+            app:layout_constraintStart_toEndOf="@id/market_staff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/market_staff"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_shop_staff_black_24px"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/staff_delivery"
+            app:layout_constraintTop_toTopOf="@id/staff_delivery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="Users List"
+            android:textSize="17sp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_color_yellow"
+            android:id="@+id/users_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/market_staff"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_local_shipping_black_24px"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/users_list"
+            app:layout_constraintTop_toTopOf="@id/users_list"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <!--<TextView-->
+            <!--android:id="@+id/header_service"-->
+            <!--android:textSize="17sp"-->
+            <!--android:padding="5dp"-->
+            <!--android:background="@color/light_grey"-->
+            <!--android:text="Service"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+        <!--<include-->
+            <!--android:id="@+id/service_details"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/header_service"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_width="0dp"-->
+            <!--layout="@layout/list_item_service_config"/>-->
+
+
+        <FrameLayout
+            android:id="@+id/service_indicator"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+
+
+
+
+
+
+        <!--<LinearLayout-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:id="@+id/select_service_block"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/service_indicator"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content">-->
+
+
+            <!--<TextView-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:id="@+id/select_service"-->
+                <!--android:textSize="15sp"-->
+                <!--android:padding="7dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="Search Automatic"-->
+                <!--android:background="@color/backgroundTinted"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+
+
+            <!--<TextView-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginStart="5dp"-->
+                <!--android:id="@+id/clear"-->
+                <!--android:textSize="15sp"-->
+                <!--android:padding="7dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="Clear"-->
+                <!--android:background="@color/phonographyBlue"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/service_indicator"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+        <!--</LinearLayout>-->
+
+
+
+
+        <!--<TextView-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:gravity="start"-->
+            <!--android:id="@+id/change_city"-->
+            <!--android:textSize="15sp"-->
+            <!--android:padding="10dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:text="Change Market"-->
+            <!--android:background="@color/phonographyBlue"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/service_indicator"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+
+
+        <TextView
+            android:id="@+id/border_one"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/service_indicator"
+            android:background="@color/blueGrey800"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+            
+            <TextView
+            android:id="@+id/header_login"
+            android:layout_marginTop="5dp"
+            android:textSize="24sp"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:background="@color/gplus_color_2"
+            android:text="@string/fragment_login_login_text"
+            app:layout_constraintTop_toBottomOf="@+id/border_one"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/border_two"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/header_login"
+            android:background="@color/blueGrey800"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+
+
+
+        <!--<TextView-->
+            <!--app:layout_constraintHorizontal_chainStyle="spread_inside"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="15sp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginEnd="3dp"-->
+            <!--android:padding="10dp"-->
+            <!--android:background="@color/phonographyBlue"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/border_two"-->
+            <!--android:text="Phone"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/select_email"-->
+            <!--android:id="@+id/select_phone" />-->
+
+
+
+
+        <!--<TextView-->
+            <!--app:layout_constraintHorizontal_chainStyle="spread_inside"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="15sp"-->
+            <!--android:layout_marginStart="3dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:padding="10dp"-->
+            <!--android:background="@color/light_grey"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/border_two"-->
+            <!--android:text="E-mail"-->
+            <!--android:textColor="@color/blueGrey800"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/select_email"-->
+            <!--app:layout_constraintStart_toEndOf="@id/select_phone" />-->
+
+
+
+
+
+
+
+        <!--<com.hbb20.CountryCodePicker-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/border_two"-->
+            <!--android:paddingTop="2dp"-->
+            <!--android:id="@+id/ccp"-->
+            <!--app:ccp_showFlag="true"-->
+            <!--app:ccp_showNameCode="false"-->
+            <!--app:ccp_showPhoneCode="true"-->
+            <!--app:ccp_defaultPhoneCode="91"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+
+
+        <!--app:layout_constraintStart_toEndOf="@id/ccp"-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username_text_input"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/border_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <!--android:hint="E-mail or Phone"-->
+            <com.google.android.material.textfield.TextInputEditText
+            android:hint="@string/fragment_login_username_hint"
+            android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <!--<TextView-->
+            <!--android:id="@+id/switch_phone_or_email"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/username_text_input"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--android:text="LoginUsingOTP using E-mail"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_password"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_text_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textPassword"     
+            android:hint="@string/fragment_login_password_hint"
+            android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/login_buttons"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_password"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:weightSum="2"
+            android:layout_height="wrap_content">
+
+
+            <!--<Button-->
+                <!--android:layout_marginEnd="5dp"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:elevation="10dp"-->
+                <!--android:textSize="17sp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="Sign Up"-->
+                <!--android:background="@color/buttonColorDark"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/text_input_password"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--android:id="@+id/sign_up"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
+                    android:text="@string/fragment_login_login_text"
+                    android:background="@drawable/button_green"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:id="@+id/login"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <ProgressBar
+                    android:visibility="gone"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toTopOf="@id/login"
+                    app:layout_constraintLeft_toLeftOf="@id/login"
+                    app:layout_constraintRight_toRightOf="@id/login"
+                    app:layout_constraintBottom_toBottomOf="@id/login"
+                    android:id="@+id/progress_bar_login"
+                    android:layout_width="0dp"
+                    android:layout_height= "0dp"
+                    android:indeterminate="true" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+
+
+
+        <TextView
+            android:id="@+id/phone_code_message"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/login_buttons"
+            android:text="@string/add_country_code"
+            app:layout_constraintStart_toStartOf="@id/login_buttons"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <!--<TextView-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:id="@+id/border_login"-->
+            <!--app:layout_constraintBottom_toTopOf="@+id/login"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="1dp" />-->
+
+
+        <!--android:indeterminateTint="@color/gplus_color_1"-->
+
+        <!--<ProgressBar-->
+            <!--android:visibility="gone"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/border_two"-->
+            <!--app:layout_constraintRight_toRightOf="@+id/login_buttons"-->
+            <!--app:layout_constraintLeft_toLeftOf="@+id/login_buttons"-->
+            <!--android:id="@+id/progress_bar_login"-->
+            <!--style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height= "wrap_content"-->
+            <!--android:indeterminate="true"-->
+            <!--android:indeterminateTint="@color/cyan900"/>-->
+
+
+
+
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/phone_code_message"
+            android:text="@string/fragment_login_forgot_password_text"
+            app:layout_constraintRight_toRightOf="@id/login_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+            <TextView
+            android:id="@+id/sign_up"
+            app:layout_constraintEnd_toEndOf="@id/forgot_password"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/forgot_password"
+            android:text="@string/fragment_login_global_sign_up_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+        <TextView
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/forgot_password"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="20dp"
+            android:text="Sign In with Google Account"
+            android:id="@+id/label_google_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <!--<com.google.android.gms.common.SignInButton-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/label_google_login"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:id="@+id/sign_in_button"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

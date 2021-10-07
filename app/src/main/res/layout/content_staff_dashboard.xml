@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/border_top"
+            android:background="#44000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/border_top"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="5dp"
+            android:id="@+id/header_items"
+            android:text="@string/content_staff_dashboard_header_items_text"
+            android:textSize="17sp"
+            android:background="@color/light_grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guide"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+
+
+        <ImageView
+            android:layout_marginEnd="5dp"
+            android:paddingBottom="40dp"
+            android:paddingTop="10dp"
+            android:background="@color/buttonColorDark"
+            android:id="@+id/shops_database"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_shop_approvals"
+            app:layout_constraintTop_toBottomOf="@+id/header_items"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/vertical_guide"
+            android:layout_width="0dp"
+            android:layout_height="150dp" />
+
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@+id/shops_database"
+            app:layout_constraintRight_toRightOf="@+id/shops_database"
+            app:layout_constraintBottom_toBottomOf="@+id/shops_database"
+            android:padding="10dp"
+            android:id="@+id/text_shop_approvals"
+            android:textSize="@dimen/menu_item_text_size"
+            android:textColor="#ffffff"
+            android:text="@string/content_staff_dashboard_text_shop_approvals_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <ImageView
+            android:layout_marginStart="5dp"
+            android:paddingBottom="40dp"
+            android:paddingTop="10dp"
+            app:srcCompat="@drawable/ic_items_white"
+            android:layout_marginTop="10dp"
+            android:background="@color/buttonColor"
+            android:id="@+id/items_database"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_items"
+            app:layout_constraintStart_toEndOf="@id/vertical_guide"
+            android:layout_width="0dp"
+            android:layout_height="150dp" />
+
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@+id/items_database"
+            app:layout_constraintRight_toRightOf="@+id/items_database"
+            app:layout_constraintBottom_toBottomOf="@+id/items_database"
+            android:padding="10dp"
+            android:id="@+id/text_add_items"
+            android:textSize="@dimen/menu_item_text_size"
+            android:textColor="#ffffff"
+            android:text="@string/content_staff_dashboard_text_add_items_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/header_tutorials"
+            android:padding="10dp"
+            android:background="@color/gplus_color_2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shops_database"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:id="@+id/header"
+                android:textSize="20sp"
+                android:textColor="@color/blueGrey800"
+                android:text="@string/content_staff_dashboard_header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+        <TextView
+            android:id="@+id/border_orders"
+            android:layout_marginTop="10dp"
+            android:background="#44000000"
+            app:layout_constraintTop_toBottomOf="@+id/header_tutorials"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/border_orders"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="5dp"
+            android:id="@+id/header_orders"
+            android:text="@string/content_staff_dashboard_header_orders_text"
+            android:textSize="17sp"
+            android:background="@color/light_grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+
+
+        <ImageView
+            android:layout_marginEnd="5dp"
+            android:paddingBottom="40dp"
+            android:paddingTop="10dp"
+            app:srcCompat="@drawable/ic_search_icon"
+            android:layout_marginTop="10dp"
+            android:background="@color/darkGreen"
+            android:id="@+id/orders_database"
+            app:layout_constraintEnd_toStartOf="@id/vertical_guide"
+            app:layout_constraintTop_toBottomOf="@+id/header_orders"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="150dp" />
+
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@+id/orders_database"
+            app:layout_constraintRight_toRightOf="@+id/orders_database"
+            app:layout_constraintBottom_toBottomOf="@+id/orders_database"
+            android:padding="10dp"
+            android:id="@+id/text_orders_history"
+            android:textSize="@dimen/menu_item_text_size"
+            android:textColor="#ffffff"
+            android:text="@string/content_staff_dashboard_text_orders_history_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <ImageView
+            android:layout_marginStart="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="40dp"
+            android:background="@color/orange"
+            android:id="@+id/user_accounts"
+            app:layout_constraintTop_toTopOf="@id/orders_database"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vertical_guide"
+            app:srcCompat="@drawable/ic_supervisor_account_black_24px"
+            android:layout_width="0dp"
+            android:layout_height="150dp" />
+
+
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@+id/user_accounts"
+            app:layout_constraintRight_toRightOf="@+id/user_accounts"
+            app:layout_constraintBottom_toBottomOf="@+id/user_accounts"
+            android:padding="10dp"
+            android:id="@+id/text_item_specs"
+            android:textSize="@dimen/menu_item_text_size"
+            android:textColor="#ffffff"
+            android:text="@string/content_staff_dashboard_text_item_specs_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/border_accounts"
+            android:layout_marginTop="10dp"
+            android:background="#44000000"
+            app:layout_constraintTop_toBottomOf="@+id/orders_database"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

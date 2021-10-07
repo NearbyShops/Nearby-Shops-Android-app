@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:animateLayoutChanges="false"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+
+<!--    -->
+<!--        <androidx.constraintlayout.widget.Guideline-->
+<!--            android:id="@+id/vertical_guide"-->
+<!--            app:layout_constraintGuide_percent="0.45"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp" />-->
+
+
+
+
+
+
+
+
+
+
+
+
+        <ImageView
+            android:layout_marginEnd="30dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/item_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/backgroundTinted"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+
+
+
+
+
+
+    <TextView
+        android:visibility="invisible"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/item_image"
+        app:layout_constraintStart_toEndOf="@id/item_image"
+        android:id="@+id/rating"
+        android:textColor="@color/white"
+        android:background="@color/gplus_color_1"
+        android:paddingStart="7dp"
+        android:paddingEnd="7dp"
+        android:text="@string/list_item_shop_item_linear_rating_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+    <TextView
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/item_image"
+        app:layout_constraintStart_toEndOf="@id/rating"
+        android:layout_marginTop="10dp"
+        android:id="@+id/rating_count"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/list_item_shop_item_linear_rating_count_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <TextView
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_image"
+            android:id="@+id/item_title"
+            android:textSize="20sp"
+            android:text="@string/list_item_shop_item_linear_item_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/item_title"
+            app:layout_constraintEnd_toEndOf="@id/item_title"
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_price"
+            android:text="@string/list_item_shop_item_linear_item_price_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+        <ImageView
+            app:layout_constraintBottom_toBottomOf="@id/item_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/increaseQuantity"
+            android:background="@color/gplus_color_1"
+            app:srcCompat="@drawable/ic_add_white_24px"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+
+
+        <TextView
+            app:layout_constraintBottom_toBottomOf="@id/increaseQuantity"
+            app:layout_constraintTop_toTopOf="@id/increaseQuantity"
+            app:layout_constraintEnd_toStartOf="@id/increaseQuantity"
+            android:id="@+id/itemQuantity"
+            android:gravity="center"
+            android:inputType="number"
+            android:text="@string/list_item_shop_item_linear_itemQuantity_text"
+            android:textSize="15sp"
+            android:layout_width="40dp"
+            android:layout_height="0dp"/>
+
+
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="@id/increaseQuantity"
+            app:layout_constraintBottom_toBottomOf="@id/increaseQuantity"
+            app:layout_constraintEnd_toStartOf="@id/itemQuantity"
+            android:id="@+id/reduceQuantity"
+            android:layout_gravity="center_vertical"
+            android:background="@color/gplus_color_1"
+            app:srcCompat="@drawable/ic_remove_white_24px"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/add_label"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="@string/list_item_shop_item_linear_add_label_text"
+            app:layout_constraintBottom_toBottomOf="@id/increaseQuantity"
+            app:layout_constraintTop_toTopOf="@id/increaseQuantity"
+            app:layout_constraintStart_toStartOf="@id/reduceQuantity"
+            app:layout_constraintEnd_toEndOf="@id/increaseQuantity"
+            android:background="@color/gplus_color_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+
+
+
+
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/progress_bar"
+            android:indeterminate="true"
+            style="?android:attr/progressBarStyleHorizontal"
+            app:layout_constraintBottom_toTopOf="@id/reduceQuantity"
+            app:layout_constraintStart_toStartOf="@id/reduceQuantity"
+            app:layout_constraintEnd_toEndOf="@id/increaseQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toTopOf="@id/item_image"
+            app:layout_constraintStart_toStartOf="@id/item_image"
+            android:id="@+id/out_of_stock_indicator"
+            android:textColor="@color/white"
+            android:background="@color/gplus_color_4"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="center"
+            android:text="@string/list_item_shop_item_linear_out_of_stock_indicator_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

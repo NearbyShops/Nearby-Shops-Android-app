@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--app:layout_scrollFlags="scroll|enterAlways"-->
+
+        <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@color/header_text_color"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:paddingBottom="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    android:background="#7737474F"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/uploadImage"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+
+
+
+<!--                <TextView-->
+<!--                    android:padding="5dp"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:background="#55000000"-->
+<!--                    android:text="Press Here to add Images"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/uploadImage"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/uploadImage"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content" />-->
+
+                <TextView
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:id="@+id/textChangePicture"
+                    android:textSize="25sp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="#88000000"
+                    android:textColor="#ffffff"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/content_edit_item_fragment_new_textChangePicture_text" />
+
+
+                <ImageView
+                    android:paddingBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    android:scaleType="centerCrop"
+                    android:foregroundGravity="right"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    app:srcCompat="@drawable/ic_nature_people_white_48px"
+                    android:id="@+id/changePicture"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="10dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/removePicture"
+                android:textStyle="normal"
+                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
+                android:textSize="20sp"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/content_edit_item_fragment_new_removePicture_text"/>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:enabled="false"
+                    android:id="@+id/itemID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Item ID"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+
+                    android:id="@+id/itemName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Item Name"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/quantityUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Item Unit. Example: Kg, Grams"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/itemDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Item Description Short"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/itemDescriptionLong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Item Description Long"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:id="@+id/list_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="List Price (MRP)"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:id="@+id/discounted_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Discounted Price"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/image_copyrights"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Image Copyrights"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/barcode_image"
+                    android:layout_gravity="start"
+                    app:srcCompat="@drawable/ic_barcode"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+
+                <TextView
+                    android:padding="20dp"
+                    android:id="@+id/barcode_results"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+
+            <!--
+
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="#33000000"
+                        android:text="Shop Address Fields"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />-->
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:background="@color/buttonColorDark"
+                    android:text="Item Images"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/sync_refresh"
+                    android:background="@color/gplus_color_2"
+                    app:srcCompat="@drawable/ic_sync_black_24dp"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="10dp"
+                android:id="@+id/recyclerview_item_images"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/item_specifications"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:background="@color/buttonColorDark"
+                    android:text="@string/content_edit_item_fragment_new_item_specifications_text"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+
+                <ImageView
+                    android:id="@+id/sync_refresh_item_spec"
+                    android:background="@color/gplus_color_2"
+                    app:srcCompat="@drawable/ic_sync_black_24dp"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="10dp"
+                android:id="@+id/recyclerview_item_specifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+
+
+
+            <!--<Button-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:elevation="10dp"-->
+            <!--android:id="@+id/saveButton"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textAllCaps="true"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/blueGrey800"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:text="@string/content_edit_item_fragment_new_saveButton_text"/>-->
+
+
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="63dp">
+
+        <TextView
+            android:background="@color/blueGrey800"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="1dp" />
+
+
+
+        <!--<TextView-->
+            <!--android:padding="10dp"-->
+            <!--android:elevation="10dp"-->
+            <!--android:id="@+id/saveButton"-->
+            <!--android:textSize="17sp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/blueGrey800"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:text="@string/content_edit_item_fragment_new_saveButton_text"/>-->
+
+
+        <TextView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="center"
+            android:paddingEnd="2dp"
+            android:paddingStart="2dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_accent"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:id="@+id/saveButton"
+            android:text="@string/content_edit_item_fragment_new_saveButton_text"
+            android:layout_width="130dp"
+            android:layout_height="0dp" />
+
+
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/progress_bar"
+            app:layout_constraintBottom_toBottomOf="@id/saveButton"
+            app:layout_constraintTop_toTopOf="@id/saveButton"
+            app:layout_constraintEnd_toEndOf="@id/saveButton"
+            app:layout_constraintStart_toStartOf="@id/saveButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

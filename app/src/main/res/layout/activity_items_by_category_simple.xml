@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@color/header_text_color"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary" >
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/app_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="21sp"
+                    android:textColor="@color/header_text_color"
+                    android:text="@string/activity_items_by_category_simple_app_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/service_name"
+                    app:layout_constraintStart_toStartOf="@id/app_name"
+                    app:layout_constraintTop_toBottomOf="@id/app_name"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="@color/header_text_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <LinearLayout
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:background="@color/colorPrimary"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--<ImageView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/icon_sub"-->
+                <!--android:layout_marginStart="5dp"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--app:srcCompat="@drawable/ic_remove_white_24px"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent" />-->
+
+            <TextView
+                android:textColor="@color/header_text_color"
+                android:layout_marginStart="5dp"
+                android:id="@+id/text_sub"
+                android:padding="5dp"
+                android:text="@string/activity_items_by_category_simple_text_sub_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+
+            <ImageView
+                android:id="@+id/icon_sort"
+                app:srcCompat="@drawable/ic_sort_black_24px"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:tint="@color/header_text_color" />
+
+            <TextView
+                android:textColor="@color/header_text_color"
+                android:layout_marginEnd="5dp"
+                android:id="@+id/text_sort"
+                android:padding="5dp"
+                android:text="@string/activity_items_by_category_simple_text_sort_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <FrameLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <!--<android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+-->
+
+
+<!--    app:srcCompat="@android:drawable/ic_dialog_email" />-->
+<!--    &ndash;&gt;-->
+
+
+
+
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        app:srcCompat="@drawable/ic_add_white_24px"
+        android:layout_margin="16dp"
+        android:layout_gravity="end|bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+
+<!--    <com.github.clans.fab.FloatingActionMenu-->
+<!--        android:id="@+id/fab_menu"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="end|bottom"-->
+<!--        android:paddingRight="10dp"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        android:paddingLeft="10dp"-->
+<!--        fab:menu_labels_ellipsize="end"-->
+<!--        fab:menu_labels_singleLine="false"-->
+<!--        app:menu_labels_colorNormal="#ffffff"-->
+<!--        app:menu_labels_textColor="#000000"-->
+<!--        fab:menu_backgroundColor="#aa37474F"-->
+<!--        app:menu_colorNormal="@color/buttonColorDark"-->
+<!--        app:menu_colorPressed="@color/phonographyBlue"-->
+<!--        app:menu_colorRipple="@color/white"-->
+<!--        fab:menu_fab_label="Close">-->
+
+        <!--<com.github.clans.fab.FloatingActionButton-->
+            <!--android:id="@+id/fab_add_item"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--fab:fab_size="mini"-->
+            <!--app:srcCompat="@drawable/fab_add"-->
+            <!--app:fab_colorNormal="@color/gplus_color_1"-->
+            <!--app:fab_colorPressed="@color/blueGrey800"-->
+            <!--fab:fab_label="Add Item" />-->
+
+
+
+
+<!--        <com.github.clans.fab.FloatingActionButton-->
+<!--            android:id="@+id/fab_add_selected_to_shop"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            fab:fab_size="mini"-->
+<!--            app:srcCompat="@drawable/fab_add"-->
+<!--            app:fab_colorNormal="@color/gplus_color_1"-->
+<!--            app:fab_colorPressed="@color/blueGrey800"-->
+<!--            fab:fab_label="Add Selected to Shop" />-->
+
+
+
+<!--        <com.github.clans.fab.FloatingActionButton-->
+<!--            android:id="@+id/fab_remove_selected_from_shop"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            fab:fab_size="mini"-->
+<!--            app:srcCompat="@drawable/fab_add"-->
+<!--            app:fab_colorNormal="@color/phonographyBlue"-->
+<!--            app:fab_colorPressed="@color/blueGrey800"-->
+<!--            fab:fab_label="Remove Selected from Shop" />-->
+
+<!--    </com.github.clans.fab.FloatingActionMenu>-->
+
+
+
+    <com.wunderlist.slidinglayer.SlidingLayer
+        android:id="@+id/slidingLayer"
+        android:elevation="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:background="@color/white"
+            android:layout_gravity="end"
+            android:layout_marginLeft="@dimen/slidinglayerwidth"
+            android:layout_marginStart="@dimen/slidinglayerwidth"
+            android:id="@+id/slidinglayerfragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </com.wunderlist.slidinglayer.SlidingLayer>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

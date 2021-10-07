@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--android:layout_marginBottom="?actionBarSize"-->
+
+
+
+
+    <!--<Button-->
+        <!--android:paddingStart="20dp"-->
+        <!--android:paddingEnd="20dp"-->
+
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@color/buttonColorDark"-->
+        <!--android:id="@+id/create_account"-->
+        <!--android:text="Reset Password"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="40dp" />-->
+
+
+
+    <Button
+        android:layout_marginBottom="0dp"
+        android:elevation="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/white"
+        android:background="@color/buttonColorDark"
+        android:id="@+id/next"
+        android:text="@string/fragment_check_reset_code_next_text"
+        android:layout_marginTop="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+
+
+
+
+
+    <ProgressBar
+        android:visibility="gone"
+        android:padding="5dp"
+        android:elevation="10dp"
+        app:layout_constraintTop_toTopOf="@id/next"
+        app:layout_constraintBottom_toBottomOf="@id/next"
+        app:layout_constraintRight_toRightOf="@id/next"
+        app:layout_constraintLeft_toLeftOf="@id/next"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:id="@+id/progress_bar_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+
+
+    <!--<Button-->
+        <!--android:drawableStart="@drawable/ic_keyboard_arrow_left_black_24px"-->
+        <!--android:elevation="10dp"-->
+        <!--android:paddingStart="10dp"-->
+        <!--android:paddingEnd="10dp"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@color/buttonColorDark"-->
+        <!--android:id="@+id/previous"-->
+        <!--android:text="Previous"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--android:layout_width="120dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--tools:layout_editor_absoluteX="0dp" />-->
+
+
+
+    <TextView
+        android:id="@+id/border_next"
+        android:background="#55000000"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/next"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="1dp" />
+
+
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/border_next"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <TextView
+                android:textStyle="normal"
+                android:id="@+id/header"
+                android:text="@string/fragment_check_reset_code_header_text"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:id="@+id/border_header"
+                android:layout_marginTop="10dp"
+                android:background="#55000000"
+                app:layout_constraintTop_toBottomOf="@+id/header"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="1dp" />
+
+
+
+            <TextView
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/header_title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/border_header"
+                android:text="@string/fragment_check_reset_code_header_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/email_text"
+                android:layout_marginTop="5dp"
+                android:textSize="17sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header_title"
+                android:text="@string/fragment_check_reset_code_email_text_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/message_email"
+                android:layout_marginTop="5dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email_text"
+                android:text="@string/fragment_check_reset_code_message_email_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_email"
+                android:layout_marginTop="10dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="text"
+                    android:hint="Reset Code"
+                    android:id="@+id/verification_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <!--app:layout_constraintTop_toBottomOf="@+id/text_input_email"-->
+            <!--app:layout_constraintLeft_toLeftOf="@+id/text_input_email"-->
+
+
+
+            <ImageView
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:visibility="invisible"
+                app:layout_constraintTop_toTopOf="@id/text_input_email"
+                app:layout_constraintBottom_toBottomOf="@id/text_input_email"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/check_icon"
+                app:srcCompat="@drawable/ic_check_circle_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <ProgressBar
+                android:layout_marginEnd="5dp"
+                android:visibility="invisible"
+                android:id="@+id/progress_bar"
+                app:layout_constraintLeft_toLeftOf="@+id/check_icon"
+                app:layout_constraintTop_toTopOf="@+id/check_icon"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+
+            <!--app:layout_constraintTop_toBottomOf="@+id/text_input_email"-->
+            <!--app:layout_constraintLeft_toLeftOf="@+id/text_input_email"-->
+
+
+            <ImageView
+                android:visibility="invisible"
+                android:id="@+id/cross_icon"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintTop_toTopOf="@id/text_input_email"
+                app:layout_constraintBottom_toBottomOf="@id/text_input_email"
+                app:layout_constraintRight_toRightOf="parent"
+
+                app:srcCompat="@drawable/ic_highlight_off_black_24px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <!--android:visibility="invisible"-->
+
+
+
+            <!--app:layout_constraintTop_toTopOf="@+id/check_icon"-->
+            <!--app:layout_constraintBottom_toBottomOf="@+id/check_icon"-->
+            <!--app:layout_constraintLeft_toRightOf="@+id/check_icon"-->
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintTop_toBottomOf="@id/text_input_email"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/message"
+                android:layout_marginStart="10dp"
+                android:text="@string/fragment_check_reset_code_message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:id="@+id/resend_message"
+                android:text="@string/fragment_check_reset_code_resend_message_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@color/backgroundTinted"
+                android:id="@+id/resend_code"
+                android:text="@string/fragment_check_reset_code_resend_code_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/resend_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintLeft_toRightOf="@id/resend_code"
+                app:layout_constraintTop_toTopOf="@id/resend_code"
+                app:layout_constraintBottom_toBottomOf="@id/resend_code"
+                android:id="@+id/message_resend"
+                android:text="@string/fragment_check_reset_code_message_resend_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <ProgressBar
+                android:visibility="invisible"
+                android:layout_marginStart="0dp"
+                app:layout_constraintRight_toRightOf="@id/resend_code"
+                app:layout_constraintLeft_toLeftOf="@id/resend_code"
+                app:layout_constraintTop_toTopOf="@id/resend_code"
+                app:layout_constraintBottom_toBottomOf="@id/resend_code"
+                android:layout_marginTop="0dp"
+                android:id="@+id/progress_bar_resend"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+
+
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:id="@+id/text_input_password"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/resend_code"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<android.support.design.widget.TextInputEditText-->
+                    <!--android:inputType="textEmailAddress"-->
+                    <!--android:hint="Enter Password"-->
+                    <!--android:id="@+id/password"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+
+
+
+
+
+
+
+
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:id="@+id/text_input_confirm_password"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/text_input_password"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<android.support.design.widget.TextInputEditText-->
+                    <!--android:inputType="textEmailAddress"-->
+                    <!--android:hint="Confirm Password"-->
+                    <!--android:id="@+id/password_confirm"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+
+
+            <LinearLayout
+                android:layout_marginTop="0dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progress_bar_resend"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+
+            </LinearLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

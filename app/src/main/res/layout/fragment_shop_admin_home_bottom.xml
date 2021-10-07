@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0">
+
+
+        <androidx.core.widget.NestedScrollView
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/content_shop_admin_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="0dp"
+                    android:layout_height="375dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="0dp" />
+
+                <LinearLayout
+                    android:id="@+id/header_strip"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <TextView
+                        android:id="@+id/header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shop Home"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+
+                    <ProgressBar
+                        android:visibility="gone"
+                        android:id="@+id/progress_switch"
+                        android:layout_gravity="center"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"/>
+
+
+                    <TextView
+                        android:layout_marginStart="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/blueGrey800" />
+
+
+                    <Switch
+                        android:id="@+id/shop_open_switch"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/notice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="#cd201f"
+                    android:padding="5dp"
+                    android:text="@string/notice_account_deactivated"
+                    android:textColor="@color/white"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/header_strip" />
+
+
+
+
+
+
+                <TextView
+                    android:id="@+id/border_one"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#88000000"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/notice" />
+
+
+
+
+                <ImageView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/image_edit_shop"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button_accent_two"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="35dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/border_one"
+                    app:srcCompat="@drawable/ic_home_white_24px" />
+
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Shop Profile"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_edit_shop"
+                    app:layout_constraintLeft_toLeftOf="@+id/image_edit_shop"
+                    app:layout_constraintRight_toRightOf="@+id/image_edit_shop" />
+
+
+                <ImageView
+                    android:id="@+id/shop_open_status"
+                    app:srcCompat="@drawable/open"
+                    android:layout_marginEnd="60dp"
+                    app:layout_constraintTop_toTopOf="@id/header_strip"
+                    app:layout_constraintEnd_toEndOf="@id/header_strip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/header_tutorials"
+                    android:padding="10dp"
+                    android:background="@drawable/button_accent_two"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_edit_shop"
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:textSize="20sp"
+                        android:textColor="@color/blueGrey800"
+                        android:text="Tutorials and Guides"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:background="@color/light_grey"
+                    android:padding="5dp"
+                    android:id="@+id/billing_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/header_tutorials">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="0dp"
+                        android:background="#33000000" />
+
+
+                    <!--android:textColor="@color/white"-->
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Shop Account Balance" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#33000000" />
+
+
+
+                    <TextView
+                        android:visibility="gone"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:background="@color/deepOrange900"
+                        android:text="@string/low_balance_message"
+                        android:id="@+id/low_balance_message"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:id="@+id/current_dues"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Balance : \u20B9 0"
+                        android:textSize="20sp" />
+
+
+                    <TextView
+                        android:id="@+id/credit_limit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Minimum balance required : \u20B9 0" />
+
+
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:text="Your services will be suspended if your bill exceeds your credit limit. Please pay your bills to avoid suspension of your services."-->
+                    <!--android:visibility="gone" />-->
+
+
+                    <TextView
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Please maintain minimum balance in your account to avoid suspension of your services" />
+
+
+
+
+
+
+                    <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:background="#55000000" />-->
+
+
+                    <!--<LinearLayout-->
+                    <!--android:background="@color/blueGrey800"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<ImageView-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:minWidth="30dp"-->
+                    <!--app:srcCompat="@drawable/ic_credit_card" />-->
+
+                    <!--<TextView-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:id="@+id/add_credit"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="end"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="add credit to service account"-->
+                    <!--android:textSize="15sp" />-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<TextView-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:textSize="15sp"-->
+                    <!--android:id="@+id/add_credit"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:background="@color/blueGrey800"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:text="add credit to service account"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                    <!--<TextView-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:text="Service Charge : \u20B9 3023"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                    <!--<TextView-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:text="Credits : \u20B9 3023"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                    <!--<TextView-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:text="Payments made : \u20B9 3023"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#33000000" />
+
+                </LinearLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:visibility="gone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/phonographyBlue"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/billing_info">
+
+
+                    <TextView
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
+                        android:text="Nearby Shops"
+                        android:id="@+id/label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <!--<TextView-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--app:layout_constraintStart_toStartOf="@id/label"-->
+                    <!--app:layout_constraintTop_toBottomOf="@id/label"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:text="https://nearbyshops.org"-->
+                    <!--android:id="@+id/website_url"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                    <TextView
+                        android:layout_marginTop="0dp"
+                        app:layout_constraintTop_toTopOf="@id/label"
+                        app:layout_constraintBottom_toBottomOf="@id/label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textColor="@color/white"
+                        android:text="https://nearbyshops.org"
+                        android:id="@+id/website_url"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/border_label"
+                        app:layout_constraintTop_toBottomOf="@id/label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:background="#ffffff"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp" />
+
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:id="@+id/faqs_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FAQs"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/border_label" />
+
+
+                    <TextView
+                        android:id="@+id/contact_support_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Contact Support"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/faqs_link" />
+
+
+                    <TextView
+                        android:id="@+id/about_us_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/content_shop_admin_home_about_us_link_text"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/contact_support_link" />
+
+
+
+
+                    <TextView
+                        android:id="@+id/credits_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Credits"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/border_label" />
+
+
+                    <TextView
+                        android:id="@+id/privacy_policy_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Privacy Policy"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/credits_link" />
+
+
+
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:id="@+id/tos_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Terms of Service"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/privacy_policy_link" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

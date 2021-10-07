@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_item"
+    android:layout_marginEnd="10dp"
+    app:cardCornerRadius="2dp"
+    android:layout_height="150dp"
+    android:layout_width="250dp">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="0dp"
+        android:background="@color/mapbox_blue"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:text="@string/list_item_tutorial_step_title_top_text"
+                android:textColor="@color/white"
+                android:id="@+id/title_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"/>
+
+
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:text="@string/list_item_tutorial_step_title_text"
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+            <TextView
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:text="@string/list_item_tutorial_step_description_text"
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+<!--            <TextView-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"/>-->
+<!--            -->
+
+
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

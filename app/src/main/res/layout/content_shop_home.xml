@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <!--tools:showIn="@layout/activity_shop_home"
+    tools:context="org.localareadelivery.distributorapp.ShopHome.ShopHome"-->
+
+    <!--
+    android:id="@+id/addRemoveItemsButton"
+
+    android:id="@+id/addStockButton"
+
+    -->
+
+    <!--
+     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"   -->
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#88000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/header_tutorials"
+            android:padding="10dp"
+            android:background="@color/gplus_color_2"
+            app:layout_constraintTop_toBottomOf="@id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:textSize="20sp"
+                android:textColor="@color/blueGrey800"
+                android:text="Tutorials and Guides"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+        <!--        android:text="Items"-->
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/header_tutorials"
+            android:id="@+id/header_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:padding="5dp"
+            android:text="Step 1 : Add Items to Shop"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/row_zero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_items">
+
+            <RelativeLayout
+                android:id="@+id/option_add_items"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_weight="2"
+                android:background="@color/phonographyBlue">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_add_items"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_items_white"
+                    app:tint="#ffffff" />
+
+
+                <TextView
+                    android:id="@+id/text_add_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Items Database"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/borderOne"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_zero" />
+
+
+        <!--        android:text="Items in Shop"-->
+        <TextView
+            android:id="@+id/header_stock_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:padding="5dp"
+            android:text="Step 2 : Set Prices and Availability"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/borderOne" />
+
+
+        <LinearLayout
+            android:id="@+id/row_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_stock_items">
+
+            <RelativeLayout
+                android:id="@+id/option_edit_stock"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_below="@id/borderOne"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@color/slate_grey">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_add_stock"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_items_white"
+                    app:tint="#ffffff" />
+
+
+                <!--android:text="Edit Stock"-->
+                <TextView
+                    android:id="@+id/text_add_stock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Items in Shop\nby Category"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/option_items_in_stock"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_below="@id/borderOne"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@color/blueGrey800">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_stock_items"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_dns_black_24px"
+                    app:tint="#ffffff" />
+
+
+                <!--android:text="Edit Stock"-->
+                <TextView
+                    android:id="@+id/text_stock_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Items in Shop"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/row_one_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_one">
+
+
+            <RelativeLayout
+                android:id="@+id/shop_home_quick_stock_editor"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_weight="2"
+                android:background="@color/gplus_color_2">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_quick_stock_editor"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_edit_white_36px"
+                    app:tint="#ffffff" />
+
+                <TextView
+                    android:id="@+id/text_quick_stock_editor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Quick Stock Editor"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/border_delivery"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/grey800"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_one_one" />
+
+
+        <TextView
+            android:id="@+id/header_delivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:padding="5dp"
+            android:text="Step 3 : Manage Orders and Delivery"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_delivery" />
+
+
+        <LinearLayout
+            android:id="@+id/row_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_delivery">
+
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:layout_marginEnd="5dp"-->
+
+
+            <RelativeLayout
+                android:id="@+id/option_orders"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/blueGrey800">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_cancel"
+
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_local_shipping_black_24px"
+                    app:tint="#ffffff" />
+
+                <TextView
+                    android:id="@+id/text_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Home Delivery Inventory"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/option_orders_pick_from_shop"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@color/buttonColorDark">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_pick_from_shop"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_home_black_24dp"
+                    app:tint="#ffffff" />
+
+                <TextView
+                    android:id="@+id/text_pick_from_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Pick From Shop Inventory"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/row_order_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_two">
+
+
+            <RelativeLayout
+                android:id="@+id/shop_home_order_history"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_weight="2"
+                android:background="@color/phonographyBlue">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_orders_history"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_receipt_black_24dp"
+                    app:tint="#ffffff" />
+
+                <TextView
+                    android:id="@+id/text_orders_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Order History"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/bordertwo"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_order_history" />
+
+
+        <TextView
+            android:id="@+id/header_accounts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:padding="5dp"
+            android:text="Accounts and Profile"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bordertwo" />
+
+
+        <!--
+        <LinearLayout
+            android:id="@+id/row_three"
+            android:weightSum="2"
+
+            android:layout_below="@id/bordertwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </LinearLayout>
+
+-->
+
+
+        <LinearLayout
+            android:id="@+id/row_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_accounts">
+
+            <!--            android:layout_marginRight="5dp"-->
+            <!--            android:layout_marginEnd="5dp"-->
+
+            <RelativeLayout
+                android:id="@+id/option_staff_accounts"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/phonographyBlue">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_staff"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_account_box_black_24px"
+                    app:tint="#ffffff" />
+
+                <TextView
+                    android:id="@+id/text_staff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Staff Accounts"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/option_delivery_guy_accounts"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/menu_item_width"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="@color/buttonColorDark">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_delivery_guy_account"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_person_pin_circle_black_24px"
+                    app:tint="#ffffff" />
+
+                <TextView
+                    android:id="@+id/text_delivery_guy_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:text="Delivery Accounts"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/menu_item_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/borderthree"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#88000000"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_four" />
+
+
+        <!--<TextView-->
+        <!--android:layout_below="@id/borderthree"-->
+        <!--android:padding="5dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:id="@+id/header_stats_billing"-->
+        <!--android:text="Stats and Billing"-->
+        <!--android:textSize="17sp"-->
+        <!--android:background="@color/light_grey"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+
+        <!--<LinearLayout-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:id="@+id/row_six"-->
+        <!--android:layout_below="@id/header_stats_billing"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<RelativeLayout-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_marginEnd="5dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:id="@+id/option_shop_stats"-->
+        <!--android:background="@color/blueGrey800"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="@dimen/menu_item_width">-->
+
+        <!--<ImageView-->
+        <!--app:srcCompat="@drawable/ic_assessment_black_24px"-->
+        <!--android:padding="10dp"-->
+        <!--android:layout_above="@+id/text_shop_stats"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<TextView-->
+        <!--android:padding="10dp"-->
+        <!--android:id="@+id/text_shop_stats"-->
+        <!--android:textSize="@dimen/menu_item_text_size"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:text="Shop Stats"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+
+
+        <!--<RelativeLayout-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:id="@+id/option_billing"-->
+        <!--android:background="@color/cyan900"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="@dimen/menu_item_width">-->
+
+        <!--<ImageView-->
+        <!--app:srcCompat="@drawable/ic_receipt_black_24px"-->
+        <!--android:scaleType="fitCenter"-->
+        <!--android:tint="#ffffff"-->
+        <!--android:padding="10dp"-->
+        <!--android:layout_above="@+id/text_billing"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<TextView-->
+        <!--android:padding="10dp"-->
+        <!--android:id="@+id/text_billing"-->
+        <!--android:textSize="@dimen/menu_item_text_size"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:text="Billing"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

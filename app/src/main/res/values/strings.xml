@@ -1,0 +1,249 @@
+<resources>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="dialog_dismissed">Dismissed !</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="notice_account_deactivated">Notice :\nYour account is not activated. Please contact Market Support to activate your account.</string>
+    <string name="low_balance_message">Alert : Your service is stopped due to low balance in your account. Please add balance to start your service.</string>
+
+
+    <string name="notice_low_balance">Attention : Your services are paused due to low balance in your account please add balance to resume your services !</string>
+
+
+    <string name="phone_registration_message">Currently registration through phone is available only in India. This will be available in other countries very Soon.</string>
+
+    <string name="rupee_symbol">\u20B9</string>
+    <string name="fake_key">pk.fakekey</string>
+
+    <string name="delivery_coordinates_message">Giving accurate location coordinates will help the delivery person to locate your address easily and deliver your order in less amount of time.</string>
+
+
+
+    <!--Shared Preferences-->
+    <string name="preference_file_name">sharedpreferencefile</string>
+
+
+    <!--Delivery Type Description-->
+    <string name="delivery_type_description_pick_from_shop">Pick from Shop</string>
+    <string name="delivery_type_description_home_delivery">Home Delivery</string>
+
+    <!--    - Your Delivery will be delivered to your home.-->
+    <!--    - You need to pick this order from the shop when its ready for pickup. This order will not be delivered to your home.-->
+
+    <!--API Response Messages-->
+
+    <string name="udate_successful_api_response">Update Successful !</string>
+    <string name="api_response_partially_updated">Partially Updated. Check data changes !</string>
+    <string name="api_response_no_item_updated">No item updated !</string>
+
+
+    <!--Content Description-->
+    <string name="content_description_close_dialog">Close Dialog</string>
+
+
+    <!--Rate Review Dialog Messages-->
+    <string name="market_review_be_the_first_to_review">"Be the first to review and rate this Market. "</string>
+    <string name="shop_review_be_the_first_to_review">"Be the first to review and rate this Shop. "</string>
+    <string name="item_review_be_the_first_to_review">"Be the first to review and rate this Item. "</string>
+
+
+    <!--Sort labels-->
+
+    <string name="sort_by_ascending">Ascending</string>
+    <string name="sort_by_descending">Descending</string>
+
+
+    <string name="network_request_failed">Network request failed. Please check your connection !</string>
+
+    <string name="sign_in_header">Log In to shop around you</string>
+    <string name="default_notification_channel_id">nbs_end_user</string>
+
+
+    <string-array name="service_level">
+        <item>City</item>
+        <item>State</item>
+        <item>Country</item>
+        <item>Global</item>
+    </string-array>
+
+
+    <string name="leaf_node_item_category_usage">
+        You cannot have a sub Item Category Under a leaf node Item Category.
+        But you can have Items placed under a Leaf Node Item Category.
+        Leaf Node Item Category is an Item Category which can have Items placed under them but cannot have Sub Item Category / Item Categories under it.</string>
+
+    <!-- An Abstract Item Category can have only Sub Item Categories and cannot contain items under them. -->
+    <string name="abstract_category_usage">
+        Item Categories Marked as abstract cannot have Items placed under them.
+        But they can have Sub Item Categories Under them.
+        Consider An Example: You have an Item Category : Groceries.
+        You may not want to add / place items directly under Item Category : Groceries.
+        You may want to create sub Item Categories like Dairy\, Shampoo\, Soap under Groceries and then add items under these categories.
+        If i add item \"Milk\" directly under Groceries that will not make sense, but if i add \"Milk\" under Dairy that will make more sense.
+        There are certain Item Categories which doesn\'t need to contain Items placed directly under them and you will want to make it abstract.
+        Making the Item Categories as Abstract will protect / prevent someone from placing items directly under it.</string>
+    <string name="channel_name">nbs_app</string>
+    <string name="channel_description">notifications for nearby shops app</string>
+    <string name="fragment_admin_dashboard_sds_users_string">Users List</string>
+    <string name="fragment_sds_admin_text_markets_list">Markets</string>
+    <string name="title_delivery_address_list">Delivery Address</string>
+    <string name="change_address">Change Delivery Address</string>
+    <string name="pick_address">Pick Delivery Address</string>
+
+
+    <string name="loading_message">Loading ... Please Wait !</string>
+
+    <string name="current_location_custom">Set by you</string>
+    <string name="current_location_automated">Detected Automatically</string>
+
+    <string name="order_id">Order ID</string>
+    <string name="phone">Phone</string>
+    <string name="items">Items</string>
+    <string name="total">Total</string>
+    <string name="pick_from_shop">Pick from Shop</string>
+    <string name="delivery">Delivery</string>
+    <string name="current_status">Current Status</string>
+    <string name="home_delivery">Home Delivery</string>
+    <string name="distance">Distance</string>
+    <string name="per_order">per Order</string>
+    <string name="item_id">Item ID</string>
+    <string name="item_quantity">Item Quantity</string>
+    <string name="item_price">Item Price</string>
+    <string name="per">per</string>
+    <string name="item_total">Item Total</string>
+    <string name="ratings">Ratings</string>
+    <string name="get_shop_details">\Please wait ... getting shop details !\</string>
+    <string name="create_shop">\Create your Shop !\</string>
+    <string name="become_shop_seller">\Do you want to Create your Shop and become a seller !\</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="shop_dashboard">Shop Dashboard</string>
+    <string name="access_shop">Press here to access the shop dashboard !</string>
+    <string name="staff_dashboard">Shop Staff Dashboard</string>
+    <string name="access_staff">Press here to access shop dashboard !</string>
+    <string name="delivery_dashboard">Delivery Dashboard</string>
+    <string name="access_delivery">Press here to access the Delivery dashboard !</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="access_admin">Press here to access the admin dashboard !</string>
+    <string name="field_phone">Phone</string>
+    <string name="enable_disable_market">Enable / Disable Market</string>
+    <string name="admin_options_header">Administrative Options</string>
+    <string name="add_country_code">Note : Please add country code when using phone numbers</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+
+
+    <string name="demo_instructions_title">Demo Mode Enabled</string>
+
+    <string name="demo_instructions">
+        Dear User\n\nYou are running this app in Demo Mode. For the purpose of demo location is set manually to Pune, India.
+    \n\nIn real world the location will be fetched by the GPS.
+    \n\nAlso in Demo Mode some of the features are disabled like You cant modify images.
+    And OTP Verification is disabled and you would be able to login without OTP verification.
+    \n\nIn real world you wont be able to login without OTP Verification !</string>
+
+
+
+
+</resources>

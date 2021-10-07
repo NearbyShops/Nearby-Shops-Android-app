@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="org.nearbyshops.whitelabelapp.CartAndOrder.Checkout.backups.PlaceOrderActivity"
+        tools:showIn="@layout/activity_place_order">
+
+        <!--
+
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+
+        android:textColor="@color/cyan900"
+        -->
+
+
+        <TextView
+            android:id="@+id/step_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Step 1 : Select Delivery Type"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#22000000"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/step_one">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delivery Type" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="#88000000" />
+
+            <RadioButton
+                android:id="@+id/radioPickFromShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Pick Up From Shop"
+                android:textColor="@color/cyan900"
+                android:textSize="17dp" />
+
+            <RadioButton
+                android:id="@+id/radioHomeDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Home Delivery"
+                android:textColor="@color/cyan900"
+                android:textSize="17dp" />
+
+
+
+
+            <TextView
+                android:text="Please select delivery type."
+                android:layout_marginTop="10dp"
+                android:id="@+id/delivery_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/step_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Step 2 : Tell us your Address"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+
+
+        <TextView
+            android:id="@+id/border_step_two"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/blueGrey800"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/step_two" />
+
+
+        <TextView
+            android:id="@+id/pickFromSavedAddresses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/phonographyBlue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Pick Delivery address"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_step_two" />
+
+
+        <!--
+
+        <TextView
+            android:textColor="#ffffff"
+            android:background="@color/gplus_color_1"
+            android:layout_below="@id/pickFromSavedAddresses"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/selectedAddressTitle"
+            android:padding="5dp"
+            android:textSize="20dp"
+            android:text="Selected Address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
+            android:id="@+id/borderSelected"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/selectedAddressTitle"
+            android:background="#88000000"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+
+        -->
+
+        <RelativeLayout
+            android:id="@+id/selectedDeliveryAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#22000000"
+            android:padding="10dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pickFromSavedAddresses">
+
+
+            <TextView
+                android:id="@+id/selectedAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="10dp"
+                android:background="@color/gplus_color_2"
+                android:padding="5dp"
+                android:text="Selected Address"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
+
+
+            <LinearLayout
+                android:id="@+id/borderFour"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/selectedAddress"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="#88000000"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/borderFour"
+                android:padding="5dp"
+                android:text="Sumeet Moray"
+                android:textSize="25dp" />
+
+
+            <LinearLayout
+                android:id="@+id/border"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/name"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#88000000"
+                android:orientation="horizontal" />
+
+
+            <TextView
+
+                android:id="@+id/deliveryAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/border"
+                android:padding="5dp"
+                android:text="B-91, HAL COlony, Balanagar"
+                android:textSize="15dp" />
+
+
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/deliveryAddress"
+                android:padding="5dp"
+                android:text="Hyderabad"
+                android:textSize="15dp" />
+
+
+            <TextView
+                android:id="@+id/pincode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/deliveryAddress"
+                android:layout_toRightOf="@id/city"
+                android:padding="5dp"
+                android:text="- 500042"
+                android:textSize="15dp" />
+
+
+            <TextView
+                android:id="@+id/landmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/city"
+                android:padding="5dp"
+                android:text="Near Vimal Cinema"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:id="@+id/borderTwo"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/landmark"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#88000000"
+                android:orientation="horizontal" />
+
+
+            <TextView
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/borderTwo"
+                android:padding="5dp"
+                android:text="9490523891"
+                android:textSize="15dp" />
+
+
+            <LinearLayout
+                android:id="@+id/borderThree"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/phoneNumber"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#88000000"
+                android:orientation="horizontal" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/totalGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selectedDeliveryAddress">
+
+            <TextView
+                android:id="@+id/free_delivery_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Free delivery is offered above the order of "
+                android:textSize="17sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="#000000" />
+
+
+            <TextView
+                android:id="@+id/subTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Subtotal: "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/deliveryCharges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Delivery Charges : "
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#000000" />
+
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Total : "
+                android:textSize="25dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="#000000" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="All Payments are made at the time of Delivery"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="You pay the bill amount to the delivery Person !"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+        <!--
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_marginTop="54dp"
+            android:layout_below="@id/totalGroup"
+            android:layout_centerHorizontal="true" />
+-->
+
+
+        <TextView
+            android:id="@+id/placeOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/phonographyBlue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Place Order"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/totalGroup" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="#88000000"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/totalGroup" />
+
+
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/placeOrder"
+            app:layout_constraintTop_toTopOf="@id/placeOrder"
+            app:layout_constraintEnd_toStartOf="@id/placeOrder"
+            app:layout_constraintLeft_toRightOf="@id/placeOrder"
+            app:layout_constraintRight_toLeftOf="@id/placeOrder"
+            app:layout_constraintStart_toEndOf="@id/placeOrder" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="10dp"
+        android:minWidth="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:contentDescription="@string/content_description_close_dialog"
+            android:id="@+id/dialog_dismiss_icon"
+            app:srcCompat="@drawable/ic_clear_black_24px"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+
+
+        <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/dialog_dismiss_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_dismiss_icon"
+            android:background="#000000"
+            android:layout_width="1dp"
+            android:layout_height="0dp"/>
+
+
+        <TextView
+            app:layout_constraintTop_toTopOf="@+id/dialog_dismiss_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_dismiss_icon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/dialog_dismiss_icon"
+            android:id="@+id/header_title_submit"
+            android:layout_marginStart="5dp"
+            android:textSize="25dp"
+            android:text="@string/dialog_submit_url_new_header_title_submit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <LinearLayout
+            android:id="@+id/content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_title_submit"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+
+
+
+            <TextView
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:text="Create your own market using free and open-source technology. Then Submit your market here !"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <TextView
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/header_title_submit"
+                android:text="@string/dialog_submit_url_new_create_market_message_text"
+                android:id="@+id/create_market_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/create_market_message"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/text_input_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/service_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Service URL"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:layout_below="@id/text_input_username"-->
+            <!--android:id="@+id/text_input_password"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<EditText-->
+            <!--android:id="@+id/password"-->
+            <!--android:inputType="textPassword"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Enter Password"/>-->
+
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guide"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                tools:layout_editor_absoluteY="0dp"
+                tools:layout_editor_absoluteX="135dp" />
+
+
+
+            <TextView
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_username"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/cancel_button"
+                android:textColor="@color/white"
+                android:background="@color/blueGrey800"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:textSize="17dp"
+                android:text="@string/dialog_submit_url_new_cancel_button_text"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@+id/vertical_guide" />
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+            <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content"
+                android:id="@+id/submit_button"
+                android:textColor="@color/white"
+                android:background="@color/gplus_color_1"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:textSize="17dp"
+                android:text="@string/dialog_submit_url_new_submit_button_text"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+
+        <!--style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"-->
+
+
+        <ProgressBar
+            app:layout_constraintEnd_toEndOf="@id/submit_button"
+            app:layout_constraintStart_toStartOf="@id/submit_button"
+            app:layout_constraintBottom_toBottomOf="@id/submit_button"
+            app:layout_constraintTop_toTopOf="@id/submit_button"
+            android:visibility="invisible"
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/buttonColorDark" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.core.widget.NestedScrollView
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    
+    
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".AdminShop.ManageShop">
+
+
+
+        
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:id="@+id/border_shop_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/border_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="Delivery Inventory"
+            android:textSize="17sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="0dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_color_green"
+            android:id="@+id/delivery_inventory"
+            app:layout_constraintEnd_toStartOf="@id/push_notification_composer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/border_shop_profile"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_local_shipping_black_24px"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/delivery_inventory"
+            app:layout_constraintTop_toTopOf="@id/delivery_inventory"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="Push Notifications"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_indigo"
+            android:id="@+id/push_notification_composer"
+            app:layout_constraintStart_toEndOf="@id/delivery_inventory"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/delivery_inventory"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_receipt_white"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/push_notification_composer"
+            app:layout_constraintTop_toTopOf="@id/push_notification_composer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="Staff"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_orange"
+            android:id="@+id/market_staff"
+            app:layout_constraintEnd_toStartOf="@id/staff_delivery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/delivery_inventory"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_shop_staff_black_24px"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/market_staff"
+            app:layout_constraintTop_toTopOf="@id/market_staff"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+        <TextView
+            android:gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="Users"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_violet"
+            android:id="@+id/staff_delivery"
+            app:layout_constraintStart_toEndOf="@id/market_staff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/market_staff"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_shop_staff_black_24px"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/staff_delivery"
+            app:layout_constraintTop_toTopOf="@id/staff_delivery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="App Settings"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_yellow"
+            android:id="@+id/market_settings"
+            app:layout_constraintEnd_toStartOf="@id/items_database"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/market_staff"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_settings"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/market_settings"
+            app:layout_constraintTop_toTopOf="@id/market_settings"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="Items Database"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_accent"
+            android:id="@+id/items_database"
+            app:layout_constraintStart_toEndOf="@id/market_settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/market_settings"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_items_white"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/items_database"
+            app:layout_constraintTop_toTopOf="@id/items_database"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="App Config"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_indigo"
+            android:id="@+id/app_config"
+            app:layout_constraintEnd_toStartOf="@id/shops_database"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/market_settings"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_settings"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/app_config"
+            app:layout_constraintTop_toTopOf="@id/app_config"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="Shops Database"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_grey"
+            android:id="@+id/shops_database"
+            app:layout_constraintStart_toEndOf="@id/app_config"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/app_config"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_items_white"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/shops_database"
+            app:layout_constraintTop_toTopOf="@id/shops_database"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

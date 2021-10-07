@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:titleTextColor="@color/header_text_color"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+        <!--android:id="@+id/tabs"-->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:tabGravity="fill"
+            app:tabMode="scrollable"
+            app:tabTextAppearance="@style/AppTabTextAppearance"
+            android:background="@color/blueGrey800"
+            app:tabIndicatorHeight="2dp"
+            app:tabSelectedTextColor="@color/gplus_color_2"
+            app:tabIndicatorColor="@color/gplus_color_2"/>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+
+    <TextView
+        android:visibility="gone"
+        android:layout_gravity="bottom|end"
+        android:background="@color/blueGrey800"
+        android:textColor="#ffffff"
+        android:gravity="start"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:id="@+id/handover_button"
+        android:text="@string/activity_home_delivery_handover_button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+<!--    <com.wunderlist.slidinglayer.SlidingLayer-->
+<!--        android:id="@+id/slidingLayer"-->
+<!--        android:elevation="15dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+
+<!--        <FrameLayout-->
+<!--            android:background="@color/white"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:layout_marginLeft="@dimen/slidinglayerwidth"-->
+<!--            android:layout_marginStart="@dimen/slidinglayerwidth"-->
+<!--            android:id="@+id/slidinglayerfragment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+
+
+<!--    </com.wunderlist.slidinglayer.SlidingLayer>-->
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

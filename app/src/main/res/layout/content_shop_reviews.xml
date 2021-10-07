@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_marginEnd="5dp"
+    android:id="@+id/swipeContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <RelativeLayout
+                android:padding="5dp"
+                android:descendantFocusability="blocksDescendants"
+                android:id="@+id/content_book_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--tools:context="com.nearbyshops.android.communitylibrary.BooksActivityBackup.BooksActivityBackup"
+                tools:showIn="@layout/activity_shop_reviews"-->
+
+                <!--
+
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                -->
+    <!--
+                <com.github.mikephil.charting.charts.HorizontalBarChart
+                    android:id="@+id/chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />-->
+
+
+
+
+                <FrameLayout
+                    android:visibility="gone"
+                    android:id="@+id/review_stat_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/review_stat_fragment"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/border"
+                    android:background="@color/light_grey"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_below="@id/border"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+

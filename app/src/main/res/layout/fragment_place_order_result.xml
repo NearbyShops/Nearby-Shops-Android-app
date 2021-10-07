@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--<androidx.core.widget.NestedScrollView-->
+<!--    android:background="@color/white"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:background="@color/white"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_check_circle_green"
+            android:layout_width="90dp"
+            android:layout_height="90dp"/>
+
+
+        <TextView
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:text="Order Placed Successfully !"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:textColor="@color/text_grey"
+            android:maxWidth="300dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Your order is placed successfully. You will receive notifications for status updates. For any assistance feel free to call our delivery staff or our support staff !"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <TextView
+            android:id="@+id/track_order_button"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:padding="15dp"
+            android:layout_marginTop="30dp"
+            android:text="Track Order"
+            android:background="@drawable/border_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <TextView
+            android:id="@+id/continue_shopping_button"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Continue Shopping"
+            android:background="@drawable/button_accent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+<!--</androidx.core.widget.NestedScrollView>-->

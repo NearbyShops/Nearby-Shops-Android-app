@@ -1,0 +1,186 @@
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+        <androidx.appcompat.widget.Toolbar
+            app:layout_scrollFlags = "scroll|enterAlways"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary">
+
+
+<!--            android:paddingBottom="3dp"-->
+<!--            android:paddingTop="0dp"-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/app_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="21sp"
+                    android:textColor="@color/header_text_color"
+                    android:text="@string/fragment_orders_new_app_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+<!--                android:text="@string/app_name"-->
+
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/service_name"
+                    app:layout_constraintStart_toStartOf="@id/app_name"
+                    app:layout_constraintTop_toBottomOf="@id/app_name"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="@color/header_text_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:id="@+id/swipeContainer"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:scrollbars="vertical"
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+
+    <com.wunderlist.slidinglayer.SlidingLayer
+        android:id="@+id/slidingLayer"
+        android:elevation="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:background="@color/white"
+            android:layout_gravity="end"
+            android:layout_marginLeft="@dimen/slidinglayerwidth"
+            android:layout_marginStart="@dimen/slidinglayerwidth"
+            android:id="@+id/slidinglayerfragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </com.wunderlist.slidinglayer.SlidingLayer>
+
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/empty_screen"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--app:srcCompat="@drawable/ic_no_drivers_found"-->
+
+        <ImageView
+            android:id="@+id/empty_screen_image"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_receipt_white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="140dp"
+            android:layout_height="140dp" />
+
+        <TextView
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="10sp"
+            android:text="Designed By Freepik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--app:srcCompat="@drawable/empty_seven"-->
+
+
+        <TextView
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:text="No Orders to show !"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/empty_screen_message"
+            android:text="@string/fragment_orders_new_empty_screen_message_text"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:id="@+id/button_try_again"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:text="@string/fragment_orders_new_button_try_again_text"
+            android:gravity="center"
+            android:background="@drawable/button_accent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

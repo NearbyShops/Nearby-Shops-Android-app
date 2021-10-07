@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "15992738737",
+    "project_id": "nearby-shops-white-label-new",
+    "storage_bucket": "nearby-shops-white-label-new.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15992738737:android:3a281838c606e004dd2390",
+        "android_client_info": {
+          "package_name": "org.nearbyshops.whitelabelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15992738737-l8kha6fm1ephq5anafbqv7hpu83ptb8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJbE-c50oIg0GCZesrBl9KxIiOgAK5tXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15992738737-l8kha6fm1ephq5anafbqv7hpu83ptb8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

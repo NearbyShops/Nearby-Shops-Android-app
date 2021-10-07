@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+        <color name="colorPrimary">@color/color_primary_custom</color>
+        <color name="colorPrimaryDark">@color/color_primary_dark_custom</color>
+        <color name="colorAccent">@color/color_accent_custom</color>
+
+
+
+
+    <!--Other colors for the project -->
+
+    <color name="violet">#EE82EE</color>
+
+    <color name="indigo">#4B0082</color>
+
+    <color name="instacart_green">#60ab59</color>
+
+    <color name="orange_new">#ff9800</color>
+
+    <color name="light_grey">#11000000</color>
+
+    <color name="text_grey">#aa000000</color>
+
+    <color name="border_grey">#33000000</color>
+
+    <color name="grey_inactive">#55000000</color>
+
+    <color name="colorWhite">#FFffff</color>
+
+    <color name="colorLogoBlue">#327EFF</color>
+
+    <color name="mapboxBlue">#1e8cab</color>
+
+    <color name="twitter_blue">#1DA1F2</color>
+
+
+    <color name="blue_sky">#22A7F0</color>
+
+    <color name="teal">#00796B</color>
+    <color name="darkGreen">#2E7D32</color>
+    <color name="orangeDark">#EF6C00</color>
+    <color name="deepOrange900">#BF360C</color>
+    <color name="deepOrange800">#D84315</color>
+    <color name="grey800">#424242</color>
+    <color name="blueGrey800">#37474F</color>
+
+    <color name="blueGrey800Transparent">#aa37474F</color>
+    <color name="cyan900">#006064</color>
+
+    <color name="shopItemColor">#22000000</color>
+
+    <color name="phonographyBlue">#006373</color>
+
+
+    <color name="slate_grey">#2F4F4F</color>
+
+
+    <!-- colors -->
+
+
+    <color name="backgroundClean">#000000</color>
+    <color name="backgroundTinted">#88006064</color>
+    <color name="gplus_color_2Alpha">#88f4b400</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="buttonColor">#037BA3</color>
+    <color name="buttonColorDark">#036a8c</color>
+
+    <color name="blue_green">#0D98BA</color>
+
+    <color name="red">#b23424</color>
+    <color name="sky_blue">#87ceeb</color>
+
+
+    <color name="transparent">#00ffffff</color>
+
+    <color name="orange">#ff6600</color>
+    <color name="itemAvailable">#00897B</color>
+
+
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
+    </integer-array>
+
+
+    <color name="backgroundTinted_backup">#88006064</color>
+
+
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+    <color name="mapbox_blue">#1e8cab</color>
+
+    <color name="blue_color">#468284</color>
+</resources>

@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.nearbyshops.whitelabelapp">
+
+    <dist:module dist:instant="true" /> <!-- To auto-complete the email text field in the loginActivity form with the user's emails -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+
+
+    <application
+        android:name="org.nearbyshops.whitelabelapp.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/custom_icon"
+        android:roundIcon="@drawable/custom_icon"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.LaunchActivity"
+            android:theme="@style/LaunchTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity
+            android:name=".Home"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminShop.ShopDashboardBottom"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminDelivery.DeliveryDashboard"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity
+            android:name=".Admin.AdminDashboardBottom"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.LayoutTestScreen"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+        <!--
+     Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/custom_icon" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <service
+            android:name="org.nearbyshops.whitelabelapp.PushFirebase.MessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="org.nearbyshops.whitelabelapp.PushOneSignal.UpdateOneSignalID"
+            android:exported="false" />
+        <service
+            android:name="org.nearbyshops.whitelabelapp.Services.GetAppSettings"
+            android:exported="false" />
+        <service
+            android:name="org.nearbyshops.whitelabelapp.Services.LocationService"
+            android:exported="false" />
+        <service
+            android:name="org.nearbyshops.whitelabelapp.Services.NonStopServices.PersistentLocationService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+        <service
+            android:name="org.nearbyshops.whitelabelapp.Services.LocationServiceBackup"
+            android:exported="false" />
+
+        <activity android:name="org.nearbyshops.whitelabelapp.Lists.ShopsList.ShopsList" />
+        <activity android:name="org.nearbyshops.whitelabelapp.PlacePickers.PlacePickerGoogleMaps.GooglePlacePicker" />
+        <activity android:name="org.nearbyshops.whitelabelapp.AdminDelivery.ButtonDashboard.DeliveryHome" />
+        <activity android:name="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShopStaff.ShopDashboardForStaff" />
+        <activity android:name="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShopAdmin.ShopAdminHome" />
+        <activity android:name="org.nearbyshops.whitelabelapp.Lists.ShopsAvailableForItem.ShopItemByItem" />
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.Login.Login"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name="org.nearbyshops.whitelabelapp.DetailScreens.DetailItemNew.ItemDetail" />
+        <activity android:name="org.nearbyshops.whitelabelapp.DetailScreens.DetailShopItem.ShopItemDetail" />
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.DetailScreens.DetailShopNew.ShopDetail"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
+
+
+        <activity android:name="org.nearbyshops.whitelabelapp.ImageScreens.ImageList.ImageListForShop.ShopImageList" />
+        <activity android:name="org.nearbyshops.whitelabelapp.ImageScreens.ImageSlider.ImageSliderForShop.ImageSliderShop" />
+        <activity android:name="org.nearbyshops.whitelabelapp.ImageScreens.ImageList.ImageListForItem.ItemImageList" />
+        <activity android:name="org.nearbyshops.whitelabelapp.ImageScreens.ImageSlider.ImageSliderForItem.ImageSlider" />
+        <activity android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditProfile.EditProfile" />
+        <activity android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditBannerImage.EditBannerImage" />
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditProfile.ChangeEmail.ChangeEmail"
+            android:label="Change E-mail"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditProfile.ChangePhone.ChangePhone"
+            android:label="Change Phone"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditShopStaffPermissions.EditShopStaffPermissions" />
+        <activity android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditStaffPermissions.EditStaffPermissions" />
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.Lists.UsersList.UsersList"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity android:name="org.nearbyshops.whitelabelapp.CartAndOrder.DeliveryAddress.DeliveryAddressActivity" />
+        <activity android:name="org.nearbyshops.whitelabelapp.InventoryOrders.DeliverySlot.EditDeliverySlot.EditDeliverySlot" />
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditDeliveryAddress.EditDeliveryAddress"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <activity android:name="org.nearbyshops.whitelabelapp.CartAndOrder.CartItemList.CartItemList"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="org.nearbyshops.whitelabelapp.CartAndOrder.Checkout.PlaceOrder"
+            android:screenOrientation="portrait"/>
+
+
+        <activity android:name="org.nearbyshops.whitelabelapp.CartAndOrder.Checkout.SelectPayment" />
+        <activity android:name="org.nearbyshops.whitelabelapp.CartAndOrder.DetailOrder.OrderDetail" />
+        <activity android:name="org.nearbyshops.whitelabelapp.ShopReview.ShopReviews" />
+        <activity android:name="org.nearbyshops.whitelabelapp.CartAndOrder.CartsList.CartsList" />
+        <activity android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditItem.EditItem" />
+        <activity android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditItemImage.EditItemImage" />
+        <activity android:name="org.nearbyshops.whitelabelapp.Lists.ShopsAvailableNew.ShopsAvailable" />
+
+        <activity android:name="org.nearbyshops.whitelabelapp.Login.InvalidLogin.InvalidLogin" />
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditShop.AddShop"
+            android:label="Add Shop" />
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditShop.EditShop"
+            android:label="Edit Shop" />
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditShopImage.EditShopImage"
+            android:label="Edit Shop Image" />
+
+
+
+        <activity android:name="org.nearbyshops.whitelabelapp.InventoryOrders.FilterDeliveryGuy.FilterDeliveryGuy" />
+        <activity android:name="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard" />
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.Lists.TransactionHistory.TransactionHistory"
+            android:label="Transaction History" />
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.CartAndOrder.OrderHistory.OrderHistory"
+            android:label="Order History"
+            android:launchMode="singleTop"
+            android:parentActivityName="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.zSampleCode.OrderHistoryPaging.OrderHistoryPaging"
+            android:label="Order History"
+            android:launchMode="singleTop"
+            android:parentActivityName="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.InventoryOrders.InventoryPickFromShop.PickFromShopInventory"
+            android:label="Pick From Shop Inventory"
+            android:launchMode="singleTop"
+            android:parentActivityName="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.InventoryOrders.InventoryHomeDelivery.HomeDelivery"
+            android:label="Home Delivery Inventory"
+            android:launchMode="singleTop"
+            android:parentActivityName="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminShop.QuickStockEditor.QuickStockEditor"
+            android:label="Quick Stock Editor"
+            android:parentActivityName="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard" />
+        </activity>
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminCommon.ItemsDatabase.ItemsDatabaseForShop.ItemsDatabase"
+            android:screenOrientation="fullSensor"
+            android:label="Items Database"
+            android:launchMode="singleTop"
+            android:parentActivityName="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminShop.ItemsInShopByCatSeller.ItemsInShopByCat"
+            android:label="Items In Shop"
+            android:launchMode="singleTop"
+            android:parentActivityName="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+        </activity>
+
+
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminShop.ItemsInShopSeller.ItemsInShop"
+            android:label="Items In Shop"
+            android:launchMode="singleTop"
+            android:parentActivityName="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nearbyshops.whitelabelapp.AdminShop.ButtonDashboard.DashboardShop.ShopDashboard" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.Login.SignUp.ForgotPassword.ForgotPassword"
+            android:label="Forgot Password"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.Login.SignUp.SignUp"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <activity
+            android:name=".Admin.ShopsListForAdmin.ShopsDatabase"
+            android:label="Shops Database"
+            android:launchMode="singleTop"
+            android:parentActivityName=".Admin.AdminDashboardBottom">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.EditDataScreens.EditItemCategory.EditItemCategory"
+            android:label="Edit Item Category"
+            android:parentActivityName=".Admin.AdminDashboardBottom">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Admin.AdminDashboardBottom" />
+        </activity>
+
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminCommon.ItemsDatabase.ItemsDatabaseForAdmin.ItemsDatabaseAdmin"
+            android:label="Items by Category"
+            android:launchMode="singleTop"
+            android:parentActivityName=".Admin.AdminDashboardBottom">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Admin.AdminDashboardBottom" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminCommon.ItemsDatabase.ChangeParent.ItemCategoriesParent"
+            android:label="Select Parent Category"
+            android:parentActivityName=".Admin.AdminDashboardBottom">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Admin.AdminDashboardBottom" />
+        </activity>
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminCommon.AddCredit.AddCredit"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity android:name=".EditDataScreens.EditMarketSettings.EditMarketSettings" />
+
+        <activity
+            android:name=".EditDataScreens.EditMarket.EditMarket"
+            android:label="Edit Market"
+            android:parentActivityName=".Admin.AdminDashboardBottom">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Admin.AdminDashboardBottom" />
+        </activity>
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.AdminDelivery.InventoryDeliveryPerson.DeliveryPersonInventory"
+            android:label="Delivery Inventory"
+            android:launchMode="singleTop"
+            android:parentActivityName=".Home">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.InventoryOrders.Deprecated.InventoryDeliveryByVendor.DeliveryByVendorInventory"
+            android:label="Delivery by Vendor"
+            android:launchMode="singleTop"
+            android:parentActivityName=".Home">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:name="org.nearbyshops.whitelabelapp.Lists.ItemsInShopByCategory.ItemsInShopByCat"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+
+        </activity>
+
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_api_key" />
+    </application>
+
+</manifest>

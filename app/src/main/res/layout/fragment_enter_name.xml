@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <Button
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/white"
+        android:background="@color/buttonColorDark"
+        android:id="@+id/next"
+        android:text="@string/fragment_enter_name_next_text"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="40dp" />
+
+
+    <TextView
+        android:id="@+id/border_next"
+        android:background="#55000000"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/next"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="1dp" />
+
+
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_constraintBottom_toTopOf="@id/next"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="0dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/header"
+                android:text="@string/fragment_enter_name_header_text"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:id="@+id/border_header"
+                android:layout_marginTop="10dp"
+                android:background="#55000000"
+                app:layout_constraintTop_toBottomOf="@+id/header"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username_text_input"
+                android:layout_marginTop="30dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="Enter Name"
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <TextView
+                android:visibility="gone"
+                android:textSize="24sp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/header_referral"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/username_text_input"
+                android:text="@string/fragment_enter_name_header_referral_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
+                android:id="@+id/referrar_user_id_text_input"
+                android:layout_marginTop="10dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header_referral"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="number"
+                    android:hint="Enter User ID of Referrer"
+                    android:id="@+id/referrar_user_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/next"-->
+                <!--android:textSize="24sp"-->
+                <!--android:text="@string/fragment_enter_name_next_text"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/username_text_input"-->
+                <!--app:layout_constraintRight_toRightOf="parent"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

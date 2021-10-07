@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:background="@drawable/button_accent"
+    android:id="@+id/list_item"
+    android:padding="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/icon"
+        app:srcCompat="@drawable/ic_add_white_24px"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
+
+
+    <TextView
+        android:drawablePadding="10dp"
+        android:textAllCaps="false"
+        android:layout_marginStart="10dp"
+        android:padding="5dp"
+        android:text="Add new address"
+        android:id="@+id/header"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

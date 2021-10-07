@@ -1,0 +1,34 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.nearbyshops.enduser.ScrollingActivity">
+
+    <item
+        android:id="@+id/action_remove"
+        android:orderInCategory="102"
+        android:title="Remove"
+        app:showAsAction="never"
+        app:srcCompat="@drawable/ic_delete_black_48px"/>
+
+
+    <item
+        android:id="@+id/action_edit"
+        android:orderInCategory="101"
+        android:title="Edit"
+        app:showAsAction="never" />
+
+
+    <!--<item-->
+        <!--android:id="@+id/action_detach"-->
+        <!--android:orderInCategory="101"-->
+        <!--android:title="Detach"-->
+        <!--app:showAsAction="never" />-->
+
+
+    <!--<item-->
+        <!--android:id="@+id/action_change_parent"-->
+        <!--android:orderInCategory="101"-->
+        <!--android:title="Change Parent"-->
+        <!--app:showAsAction="never" />-->
+
+</menu>
