@@ -1,4 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v21/button_accent.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable-v21/button_accent_round_cornors.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable/button_accent.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable/button_accent_round_cornors.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable/button_color_yellow.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable/button_green.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable/dot_selected.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable/launch_background.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layout/activity_fragment_container.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/content_edit_banner_image_fragment.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/content_edit_item_fragment_new.xml" value="0.3153846153846154" />
+        <entry key="app/src/main/res/layout/content_edit_shop_image_fragment.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/content_market_admin_dashboard.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/dialog_add_staff.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/dialog_push_nofication_composer.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_cart_item_list.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_delivery_dashboard_kotlin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_edit_address_with_map.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_edit_market.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_edit_shop.xml" value="0.31490015360983103" />
+        <entry key="app/src/main/res/layout/fragment_items_in_shop_by_cat.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_items_in_shop_by_cat_backup.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_items_in_shop_by_cat_cl.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_items_in_shop_by_cat_constraint.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_login_global.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_login_using_otp_global.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_manage_app_by_admin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_manage_market.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_manage_market_sm.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_market_approval_pending.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_market_dashboard_kotlin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_place_order_kotlin.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_shop_dashboard_kotlin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_add_item.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_banner_image.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_filter_items.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_filter_items_in_shop.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_filter_markets.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_filter_shops.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_helpline.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_horizontal_list.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_item.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_item_category_card.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_item_category_card_round.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_item_category_new.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_item_category_small.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_item_category_small_card.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_item_category_small_filter.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_market_profile.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_set_location_manually.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_card.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_detail.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_image.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_image_slider.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_info.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_item_half_width.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_item_instacart.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_new.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_uber_eats.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_shop_uber_eats_card.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/list_item_slider.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/drawable/dot_default.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layouts/drawable/dot_selected.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layouts/drawable/dot_tab_selector.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layouts/layout/list_item_order_bill.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/layout/view_pager_item_login_photo.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/activity_admin_bottom_nav.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/activity_delivery_dash_bottom_nav.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/activity_home_new.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/activity_market_admin_bottom_nav.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/activity_market_admin_bottom_nav_sm.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/activity_market_home.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/activity_markets_list_admin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/activity_shop_dashboard_bottom_nav.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/content_admin_dashboard.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/content_market_admin_dashboard.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_create_market.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_edit_app_config.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_edit_market_settings.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_list_server_ui.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_market_admin_dashboard.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_market_detail.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_market_home_list.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_market_home_list_sm.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_markets.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_markets_kotlin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_markets_list.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_markets_list_admin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_server_ui.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/fragment_shop_home_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_button_selection.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_market.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_market_current.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_market_for_admin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_market_new.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_market_saved_list.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_market_small_covered.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_market_type_small.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_market_type_small_with_button.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/list_item_shop_for_admin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/layout/settings_activity.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layouts/multimarket/xml/root_preferences.xml" value="0.3203125" />
+        <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.3203125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>
