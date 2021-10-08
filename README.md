@@ -2,15 +2,15 @@ Nearby Shops
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Nearby%20Shops%20Open%20Source%20Food%20Delivery%20and%20Hyperlocal%20app&url=https://github.com/NearbyShops/Nearby-Shops-End-User-Android-app&via=moraysumeet&hashtags=opensource,androiddev,fooddelivery,android,ecommerce)
 =============
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="80">    <a href="https://nearbyshops.org/app_demo.html"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
+<img src="https://nearbyshops.org/images/Roundlogos.png" width="80">  <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.whitelabelapp"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
 <img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
 width="120">
 </a>
 
 
 
-About Nearby Shops
---------------------
+About Nearby Shops - MultiVendor Food Delivery and Ecommerce App
+--------------------------------------------------------------------
 
 Nearby Shops is a **Free and Open-Source** food delivery, grocery and local shopping platform. Follow our installation guide to get your grocery or food delivery market up and running in just 10 Minutes.
 
@@ -19,7 +19,7 @@ The installation guide and app customization guide is provided at http://develop
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-<img src="https://nearbyshops.org/images/screenshots_new/items_in_shop.png" width="208">   <img src="https://nearbyshops.org/images/multi-categories-3.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe_.png" width="208"> 
+<img src="https://nearbyshops.org/images/1.jpg" width="208">   <img src="https://nearbyshops.org/images/3.jpg" width="208">   <img src="https://nearbyshops.org/images/6.jpg" width="208"> 
 
 
 
