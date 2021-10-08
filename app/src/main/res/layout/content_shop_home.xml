@@ -503,7 +503,7 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/text_delivery_guy_account"
                     android:padding="10dp"
-                    app:srcCompat="@drawable/ic_person_pin_circle_black_24px"
+                    app:srcCompat="@drawable/ic_pickup_white"
                     app:tint="#ffffff" />
 
                 <TextView

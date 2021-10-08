@@ -450,7 +450,7 @@ public class ViewHolderEmptyScreenFullScreen extends RecyclerView.ViewHolder{
             data.setTitle("You have not added any Delivery Staff !");
             data.setShowCopyrightInfo(false);
             data.setMessage("To add delivery staff to your shop press the Plus Button ( + ) given below !");
-            data.setDrawableResource(R.drawable.ic_person_pin_circle_black_24px);
+            data.setDrawableResource(R.drawable.ic_pickup_white);
 
             return data;
         }

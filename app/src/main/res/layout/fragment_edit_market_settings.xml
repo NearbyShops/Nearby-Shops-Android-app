@@ -151,6 +151,72 @@
             <TextView
                 android:layout_marginTop="15dp"
                 android:padding="5dp"
+                android:text="Monthly Charge for Vendors"
+                android:background="@color/light_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/monthly_charge"
+                    android:inputType="numberDecimal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Monthly Charge"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_accent"
+                    android:textStyle="normal"
+                    android:textSize="18sp"
+                    android:text="Charge Now"
+                    android:id="@+id/charge_manually"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <ProgressBar
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/charge_manually"
+                    app:layout_constraintEnd_toEndOf="@id/charge_manually"
+                    app:layout_constraintStart_toStartOf="@id/charge_manually"
+                    app:layout_constraintTop_toTopOf="@id/charge_manually"
+                    android:id="@+id/charge_now_progress"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
                 android:text="Delivery Charges"
                 android:background="@color/light_grey"
                 android:layout_width="match_parent"
@@ -160,6 +226,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

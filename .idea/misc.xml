@@ -5,12 +5,16 @@
       <map>
         <entry key="app/src/main/res/drawable-v21/button_accent.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable-v21/button_accent_round_cornors.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable-v21/button_accent_two.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable-v21/button_green.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/button_accent.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/button_accent_round_cornors.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/button_color_yellow.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/button_green.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/dot_selected.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/empty_circle_filled.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable/ic_person_pin_circle_black_24px.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/launch_background.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/activity_fragment_container.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/content_edit_banner_image_fragment.xml" value="0.3203125" />
@@ -18,12 +22,15 @@
         <entry key="app/src/main/res/layout/content_edit_shop_image_fragment.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/content_market_admin_dashboard.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/dialog_add_staff.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/dialog_bill_generator.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/dialog_push_nofication_composer.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_add_credit.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_cart_item_list.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_delivery_dashboard_kotlin.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_edit_address_with_map.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_edit_market.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_edit_market_settings.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_edit_market_settings_kotlin.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_edit_shop.xml" value="0.3064275037369208" />
         <entry key="app/src/main/res/layout/fragment_items_in_shop_by_cat.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_items_in_shop_by_cat_backup.xml" value="0.3203125" />

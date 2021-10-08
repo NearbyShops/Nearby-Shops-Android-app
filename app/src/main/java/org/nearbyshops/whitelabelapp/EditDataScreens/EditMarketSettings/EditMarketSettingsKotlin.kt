@@ -1,6 +1,7 @@
 package org.nearbyshops.whitelabelapp.aaMultimarketFiles.EditDataScreens.EditMarketSettingsMM
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,14 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_edit_market_settings.*
 import okhttp3.ResponseBody
 import org.nearbyshops.whitelabelapp.API.API_Admin.MarketSettingService
+import org.nearbyshops.whitelabelapp.API.ShopAPI.ShopUtilityService
 import org.nearbyshops.whitelabelapp.DaggerComponentBuilder
 import org.nearbyshops.whitelabelapp.Model.ModelMarket.MarketSettings
 import org.nearbyshops.whitelabelapp.Preferences.PrefLogin
 import org.nearbyshops.whitelabelapp.R
 import org.nearbyshops.whitelabelapp.Utility.UtilityFunctions
+import org.nearbyshops.whitelabelapp.databinding.FragmentEditMarketSettingsBinding
+import org.nearbyshops.whitelabelapp.showToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +31,16 @@ class EditMarketSettingsKotlin : Fragment() {
     lateinit var marketService: MarketSettingService
 
 
+    @Inject
+    lateinit var shopUtilityService: ShopUtilityService
+
+
     var marketSettings : MarketSettings = MarketSettings()
+
+
+
+    private lateinit var binding: FragmentEditMarketSettingsBinding
+
 
 
 
@@ -39,7 +52,11 @@ class EditMarketSettingsKotlin : Fragment() {
         }
 
         getSettings()
+        binding.chargeManually.setOnClickListener { chargeNowClick() }
     }
+
+
+
 
 
     override fun onCreateView(
@@ -50,7 +67,12 @@ class EditMarketSettingsKotlin : Fragment() {
         retainInstance = true
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_market_settings, container, false)
+//        return inflater.inflate(R.layout.fragment_edit_market_settings, container, false)
+
+
+        // Inflate the layout for this fragment
+        binding = FragmentEditMarketSettingsBinding.inflate(inflater)
+        return binding.root
     }
 
 
@@ -112,50 +134,57 @@ class EditMarketSettingsKotlin : Fragment() {
 
 
 
+
+
     fun bindViews()
     {
-        cod_enabled.isChecked = marketSettings.isCodEnabled
-        pod_enabled.isChecked = marketSettings.isPodEnabled
-        razorpay_enabled.isChecked = marketSettings.isOnlinePaymentEnabled
+        binding.codEnabled.isChecked = marketSettings.isCodEnabled
+        binding.podEnabled.isChecked = marketSettings.isPodEnabled
+        binding.razorpayEnabled.isChecked = marketSettings.isOnlinePaymentEnabled
 
-        market_fee_fixed.setText(marketSettings.marketFeeFixed.toString())
-        market_fee_commission.setText(marketSettings.marketFeeCommission.toString())
-        market_tax_rate.setText(marketSettings.taxInPercent.toString())
+        binding.marketFeeFixed.setText(marketSettings.marketFeeFixed.toString())
+        binding.marketFeeCommission.setText(marketSettings.marketFeeCommission.toString())
+        binding.marketTaxRate.setText(marketSettings.taxInPercent.toString())
 
-        base_delivery_fee_per_order.setText(marketSettings.baseDeliveryChargePerOrder.toString())
-        base_delivery_fee_max_distance.setText(marketSettings.baseDeliveryFeeMaxDistance.toString())
-        extra_delivery_charge.setText(marketSettings.extraDeliveryChargePerKm.toString())
+        binding.monthlyCharge.setText(marketSettings.monthlyFeeForVendors.toString())
 
-        bill_amount_for_free_delivery.setText(marketSettings.billAmountForFreeDelivery.toString())
-        delivery_by_shop_enabled.isChecked = marketSettings.isDeliveryByShopEnabled
-        minimum_amount_for_delivery.setText(marketSettings.minimumAmountForDelivery.toString())
+        binding.baseDeliveryFeePerOrder.setText(marketSettings.baseDeliveryChargePerOrder.toString())
+        binding.baseDeliveryFeeMaxDistance.setText(marketSettings.baseDeliveryFeeMaxDistance.toString())
+        binding.extraDeliveryCharge.setText(marketSettings.extraDeliveryChargePerKm.toString())
 
-        startup_mode_enabled.isChecked = marketSettings.isStartupModeEnabled
-        demo_mode_enabled.isChecked = marketSettings.isDemoModeEnabled
+        binding.billAmountForFreeDelivery.setText(marketSettings.billAmountForFreeDelivery.toString())
+        binding.deliveryByShopEnabled.isChecked = marketSettings.isDeliveryByShopEnabled
+        binding.minimumAmountForDelivery.setText(marketSettings.minimumAmountForDelivery.toString())
+
+        binding.startupModeEnabled.isChecked = marketSettings.isStartupModeEnabled
+        binding.demoModeEnabled.isChecked = marketSettings.isDemoModeEnabled
 
     }
 
 
+
     fun getDataFromViews()
     {
-        marketSettings.isCodEnabled = cod_enabled.isChecked
-        marketSettings.isPodEnabled = pod_enabled.isChecked
-        marketSettings.isOnlinePaymentEnabled = razorpay_enabled.isChecked
+        marketSettings.isCodEnabled = binding.codEnabled.isChecked
+        marketSettings.isPodEnabled = binding.podEnabled.isChecked
+        marketSettings.isOnlinePaymentEnabled = binding.razorpayEnabled.isChecked
 
-        marketSettings.marketFeeFixed = market_fee_fixed.text.toString().toFloat()
-        marketSettings.marketFeeCommission = market_fee_commission.text.toString().toFloat()
-        marketSettings.taxInPercent = market_tax_rate.text.toString().toFloat()
+        marketSettings.marketFeeFixed = binding.marketFeeFixed.text.toString().toFloat()
+        marketSettings.marketFeeCommission = binding.marketFeeCommission.text.toString().toFloat()
+        marketSettings.taxInPercent = binding.marketTaxRate.text.toString().toFloat()
 
-        marketSettings.baseDeliveryChargePerOrder = base_delivery_fee_per_order.text.toString().toFloat()
-        marketSettings.baseDeliveryFeeMaxDistance = base_delivery_fee_max_distance.text.toString().toFloat()
-        marketSettings.extraDeliveryChargePerKm = extra_delivery_charge.text.toString().toFloat()
+        marketSettings.monthlyFeeForVendors = binding.monthlyCharge.text.toString().toFloat()
 
-        marketSettings.billAmountForFreeDelivery = bill_amount_for_free_delivery.text.toString().toFloat()
-        marketSettings.isDeliveryByShopEnabled = delivery_by_shop_enabled.isChecked
-        marketSettings.minimumAmountForDelivery = minimum_amount_for_delivery.text.toString().toFloat().toDouble()
+        marketSettings.baseDeliveryChargePerOrder = binding.baseDeliveryFeePerOrder.text.toString().toFloat()
+        marketSettings.baseDeliveryFeeMaxDistance = binding.baseDeliveryFeeMaxDistance.text.toString().toFloat()
+        marketSettings.extraDeliveryChargePerKm = binding.extraDeliveryCharge.text.toString().toFloat()
 
-        marketSettings.isStartupModeEnabled = startup_mode_enabled.isChecked
-        marketSettings.isDemoModeEnabled = demo_mode_enabled.isChecked
+        marketSettings.billAmountForFreeDelivery = binding.billAmountForFreeDelivery.text.toString().toFloat()
+        marketSettings.isDeliveryByShopEnabled = binding.deliveryByShopEnabled.isChecked
+        marketSettings.minimumAmountForDelivery = binding.minimumAmountForDelivery.text.toString().toFloat().toDouble()
+
+        marketSettings.isStartupModeEnabled = binding.startupModeEnabled.isChecked
+        marketSettings.isDemoModeEnabled = binding.demoModeEnabled.isChecked
 
     }
 
@@ -215,9 +244,58 @@ class EditMarketSettingsKotlin : Fragment() {
 
 
 
+
+    private fun chargeNowClick()
+    {
+
+
+        var call  = shopUtilityService.generateMonthlyBill(
+            PrefLogin.getAuthorizationHeader(requireContext())
+        )
+
+        binding.chargeManually.visibility = View.INVISIBLE
+        binding.chargeNowProgress.visibility = View.VISIBLE
+
+
+        call.enqueue(object :Callback<ResponseBody>{
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+
+                binding.chargeManually.visibility = View.VISIBLE
+                binding.chargeNowProgress.visibility = View.INVISIBLE
+
+                if(response.isSuccessful)
+                {
+                    context?.showToast("Charge Successful !")
+                }
+                else
+                {
+                    context?.showToast("Failed Code : " + response.code())
+                }
+
+            }
+
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+                binding.chargeManually.visibility = View.VISIBLE
+                binding.chargeNowProgress.visibility = View.INVISIBLE
+
+                context?.showToast("Network Failed ... Please try again !")
+
+            }
+
+        })
+
+
+    }
+
+
+
     init {
         DaggerComponentBuilder.getInstance()
             .netComponent.Inject(this)
+
     }
 
 

@@ -8,6 +8,7 @@ import org.nearbyshops.whitelabelapp.Admin.ShopsListForAdmin.Fragment.FragmentSh
 import org.nearbyshops.whitelabelapp.Admin.ViewModel.ViewModelDeliveryGuy;
 import org.nearbyshops.whitelabelapp.Admin.ViewModel.ViewModelMarketsForAdmin;
 import org.nearbyshops.whitelabelapp.Admin.ViewModel.ViewModelShopForAdmin;
+import org.nearbyshops.whitelabelapp.AdminCommon.BillGenerator;
 import org.nearbyshops.whitelabelapp.AdminShop.zBottomDashboard.Deprecated.ShopDashboardFragment;
 import org.nearbyshops.whitelabelapp.AdminShop.ShopDashboardBottom;
 import org.nearbyshops.whitelabelapp.AdminShop.zBottomDashboard.Deprecated.FragmentItemsInShop;
@@ -373,4 +374,5 @@ public interface NetComponent {
 
     void Inject(ViewModelDeliveryGuy viewModelDeliveryGuy);
 
+    void Inject(BillGenerator billGenerator);
 }

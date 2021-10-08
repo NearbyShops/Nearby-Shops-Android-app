@@ -40,6 +40,25 @@ public interface ShopUtilityService {
 
 
 
+
+    @PUT ("/api/v1/ShopUtility/GenerateMonthlyBill")
+    Call<ResponseBody> generateMonthlyBill(
+            @Header("Authorization") String headers
+    );
+
+
+
+
+    @PUT ("/api/v1/ShopUtility/GenerateBills/{AmountToAdd}/{Title}/{Message}")
+    Call<ResponseBody> generateBills(
+            @Header("Authorization") String headers,
+            @Path("AmountToAdd") double amountToAdd,
+            @Path("Title") String title,
+            @Path("Message") String message
+    );
+
+
+
     @PUT("/api/v1/ShopUtility/SetShopOpen")
     Call<ResponseBody> updateShopOpen(@Header("Authorization") String headers);
 

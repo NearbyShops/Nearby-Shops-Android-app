@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
+import org.nearbyshops.whitelabelapp.AdminCommon.BillGenerator
 import org.nearbyshops.whitelabelapp.AdminCommon.PushNotificationComposer
 import org.nearbyshops.whitelabelapp.AdminDelivery.InventoryDeliveryPerson.DeliveryPersonInventory
 import org.nearbyshops.whitelabelapp.AdminDelivery.InventoryDeliveryPerson.Fragment.DeliveryFragmentNew
@@ -23,14 +24,15 @@ import org.nearbyshops.whitelabelapp.Preferences.PrefGeneral
 import org.nearbyshops.whitelabelapp.Preferences.PrefMarketAdminHome
 import org.nearbyshops.whitelabelapp.R
 import org.nearbyshops.whitelabelapp.Utility.UtilityFunctions
-import org.nearbyshops.whitelabelapp.databinding.FragmentManageMarketSmBinding
+import org.nearbyshops.whitelabelapp.databinding.FragmentManageMarketBinding
+import org.nearbyshops.whitelabelapp.showToast
 import org.nearbyshops.whitelabelapp.zLibraryClasses.RoundedCornersTransformation
 
 
 class ManageMarket : Fragment() {
 
 
-    private lateinit var binding:FragmentManageMarketSmBinding
+    private lateinit var binding:FragmentManageMarketBinding
 
 
     override fun onCreateView(
@@ -40,7 +42,7 @@ class ManageMarket : Fragment() {
 
 
         // Inflate the layout for this fragment
-        binding = FragmentManageMarketSmBinding.inflate(inflater)
+        binding = FragmentManageMarketBinding.inflate(inflater)
         return binding.root
     }
 
@@ -53,8 +55,12 @@ class ManageMarket : Fragment() {
         bindMarketProfile()
 
         binding.marketProfile.setOnClickListener { marketProfileClick() }
+
         binding.pushNotificationComposer.setOnClickListener { pushNotificationsClick() }
+        binding.billGenerator.setOnClickListener { billGenerator() }
+
         binding.deliveryInventory.setOnClickListener { deliveryInventoryClick() }
+        binding.pickupInventory.setOnClickListener { pickupInventoryClick() }
         binding.marketStaff.setOnClickListener { marketStaffClick() }
         binding.staffDelivery.setOnClickListener { deliveryStaffClick() }
         binding.marketSettings.setOnClickListener { marketSettingsClick() }
@@ -106,6 +112,17 @@ class ManageMarket : Fragment() {
 
 
 
+
+    private fun billGenerator()
+    {
+        val fm = childFragmentManager
+        val dialog = BillGenerator()
+        dialog.show(fm, "Bill Generator")
+    }
+
+
+
+
     private fun pushNotificationsClick()
     {
         val fm = childFragmentManager
@@ -120,6 +137,15 @@ class ManageMarket : Fragment() {
         val intent = Intent(requireActivity(), DeliveryPersonInventory::class.java)
         intent.putExtra(DeliveryFragmentNew.SCREEN_MODE_INTENT_KEY, DeliveryFragmentNew.SCREEN_MODE_MARKET_ADMIN)
         startActivity(intent)
+    }
+
+
+    private fun pickupInventoryClick()
+    {
+//        val intent = Intent(requireActivity(), Picku::class.java)
+//        intent.putExtra(DeliveryFragmentNew.SCREEN_MODE_INTENT_KEY, DeliveryFragmentNew.SCREEN_MODE_MARKET_ADMIN)
+//        startActivity(intent)
+        context?.showToast("Feature Coming Soon !")
     }
 
 

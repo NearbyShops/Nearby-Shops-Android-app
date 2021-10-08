@@ -41,34 +41,6 @@ public class MarketSettings {
     private static final String MIN_ACCOUNT_BALANCE_FOR_SHOP_OWNER = "MIN_ACCOUNT_BALANCE_FOR_SHOP_OWNER";
 
 
-    // Create Table Statement
-    public static final String createTablePostgres
-            = "CREATE TABLE IF NOT EXISTS " + MarketSettings.TABLE_NAME + "("
-            + " " + MarketSettings.SETTING_ID + " SERIAL PRIMARY KEY,"
-
-            + " " + MarketSettings.COD_ENABLED + " boolean not null default 't',"
-            + " " + MarketSettings.POD_ENABLED + " boolean not null default 't',"
-            + " " + MarketSettings.ONLINE_PAYMENT_ENABLED + " boolean not null default 'f',"
-
-            + " " + MarketSettings.MARKET_FEE_FIXED + " FLOAT not null default 0,"
-            + " " + MarketSettings.MARKET_FEE_COMMISSION + " FLOAT not null default 0,"
-            + " " + MarketSettings.TAX_IN_PERCENT + " FLOAT not null default 0,"
-            + " " + MarketSettings.ADD_TAXES_TO_BILL + " boolean not null default 'f',"
-
-            + " " + MarketSettings.BASE_DELIVERY_FEE_PER_ORDER + " FLOAT not null default 0,"
-            + " " + MarketSettings.BASE_DELIVERY_FEE_MAX_DISTANCE + " FLOAT not null default 0,"
-            + " " + MarketSettings.EXTRA_DELIVERY_CHARGE_PER_KM + " FLOAT not null default 0,"
-
-            + " " + MarketSettings.BILL_AMOUNT_FOR_FREE_DELIVERY + " FLOAT not null default 0,"
-            + " " + MarketSettings.DELIVERY_BY_SHOP_ENABLED + " boolean not null default 'f',"
-            + " " + MarketSettings.MINIMUM_AMOUNT_FOR_DELIVERY + " FLOAT not null default 0,"
-
-            + " " + MarketSettings.STARTUP_MODE_ENABLED + " boolean not null default 'f',"
-            + " " + MarketSettings.DEMO_MODE_ENABLED + " boolean not null default 'f', "
-            + " " + MarketSettings.MIN_ACCOUNT_BALANCE_FOR_SHOP_OWNER + " FLOAT not null default 0 "
-
-            + ")";
-
 
 
     int settingID;
@@ -81,6 +53,8 @@ public class MarketSettings {
     float marketFeeCommission;
     float taxInPercent;
     boolean addTaxesToBill;
+
+    float monthlyFeeForVendors;
 
     float baseDeliveryChargePerOrder;
     float baseDeliveryFeeMaxDistance;
@@ -101,8 +75,18 @@ public class MarketSettings {
 
 
 
+
+
     // getter and setter methods
 
+
+    public float getMonthlyFeeForVendors() {
+        return monthlyFeeForVendors;
+    }
+
+    public void setMonthlyFeeForVendors(float monthlyFeeForVendors) {
+        this.monthlyFeeForVendors = monthlyFeeForVendors;
+    }
 
     public int getReferralCreditForEndUserRegistration() {
         return referralCreditForEndUserRegistration;

@@ -149,16 +149,71 @@
         <TextView
             android:gravity="bottom"
             android:padding="10dp"
-            android:text="Delivery Inventory"
+            android:text="Bill Generator"
             android:textSize="17sp"
             android:layout_marginEnd="5dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:background="@drawable/button_color_green"
-            android:id="@+id/delivery_inventory"
+            android:id="@+id/bill_generator"
             app:layout_constraintEnd_toStartOf="@id/push_notification_composer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/border_shop_profile"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_receipt_white"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/bill_generator"
+            app:layout_constraintTop_toTopOf="@id/bill_generator"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="Push Notifications"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_indigo"
+            android:id="@+id/push_notification_composer"
+            app:layout_constraintStart_toEndOf="@id/bill_generator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bill_generator"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_notifications_white"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/push_notification_composer"
+            app:layout_constraintTop_toTopOf="@id/push_notification_composer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="Delivery Inventory"
+            android:textSize="17sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_color_orange"
+            android:id="@+id/delivery_inventory"
+            app:layout_constraintEnd_toStartOf="@id/pickup_inventory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bill_generator"
             android:layout_width="0dp"
             android:layout_height="100dp"/>
 
@@ -179,12 +234,12 @@
             android:gravity="bottom"
             android:textColor="@color/white"
             android:textSize="17sp"
-            android:text="Push Notifications"
+            android:text="Pickup Inventory"
             android:layout_marginStart="5dp"
             android:padding="10dp"
             app:srcCompat="@drawable/ic_dashboard_white_24px"
-            android:background="@drawable/button_color_indigo"
-            android:id="@+id/push_notification_composer"
+            android:background="@drawable/button_color_grey"
+            android:id="@+id/pickup_inventory"
             app:layout_constraintStart_toEndOf="@id/delivery_inventory"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/delivery_inventory"
@@ -193,70 +248,15 @@
 
 
         <ImageView
-            app:srcCompat="@drawable/ic_receipt_white"
+            app:srcCompat="@drawable/ic_pickup_white"
             android:layout_margin="10dp"
-            app:layout_constraintStart_toStartOf="@id/push_notification_composer"
-            app:layout_constraintTop_toTopOf="@id/push_notification_composer"
+            app:layout_constraintStart_toStartOf="@id/pickup_inventory"
+            app:layout_constraintTop_toTopOf="@id/pickup_inventory"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
 
 
 
-
-
-        <TextView
-            android:gravity="bottom"
-            android:padding="10dp"
-            android:text="Market Staff"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/ic_dashboard_white_24px"
-            android:background="@drawable/button_color_orange"
-            android:id="@+id/market_staff"
-            app:layout_constraintEnd_toStartOf="@id/staff_delivery"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/delivery_inventory"
-            android:layout_width="0dp"
-            android:layout_height="100dp"/>
-
-
-        <ImageView
-            app:srcCompat="@drawable/ic_shop_staff_black_24px"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:layout_margin="10dp"
-            app:layout_constraintStart_toStartOf="@id/market_staff"
-            app:layout_constraintTop_toTopOf="@id/market_staff"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-
-        <TextView
-            android:gravity="bottom"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            android:text="Delivery Staff"
-            android:layout_marginStart="5dp"
-            android:padding="10dp"
-            app:srcCompat="@drawable/ic_dashboard_white_24px"
-            android:background="@drawable/button_color_violet"
-            android:id="@+id/staff_delivery"
-            app:layout_constraintStart_toEndOf="@id/market_staff"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/market_staff"
-            android:layout_width="0dp"
-            android:layout_height="100dp"/>
-
-
-        <ImageView
-            app:srcCompat="@drawable/ic_shop_staff_black_24px"
-            android:layout_margin="10dp"
-            app:layout_constraintStart_toStartOf="@id/staff_delivery"
-            app:layout_constraintTop_toTopOf="@id/staff_delivery"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
 
 
 
@@ -269,11 +269,11 @@
             android:layout_marginEnd="5dp"
             android:layout_marginTop="10dp"
             app:srcCompat="@drawable/ic_dashboard_white_24px"
-            android:background="@drawable/button_color_yellow"
+            android:background="@drawable/button_color_indigo"
             android:id="@+id/market_settings"
             app:layout_constraintEnd_toStartOf="@id/items_database"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/market_staff"
+            app:layout_constraintTop_toBottomOf="@id/delivery_inventory"
             android:layout_width="0dp"
             android:layout_height="100dp"/>
 
@@ -316,6 +316,91 @@
             android:layout_height="50dp"/>
 
 
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="Market Staff"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_orange"
+            android:id="@+id/market_staff"
+            app:layout_constraintEnd_toStartOf="@id/staff_delivery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/market_settings"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_shop_staff_black_24px"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/market_staff"
+            app:layout_constraintTop_toTopOf="@id/market_staff"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+        <TextView
+            android:gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="Delivery Staff"
+            android:layout_marginStart="5dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            android:background="@drawable/button_color_violet"
+            android:id="@+id/staff_delivery"
+            app:layout_constraintStart_toEndOf="@id/market_staff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/market_staff"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_shop_staff_black_24px"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/staff_delivery"
+            app:layout_constraintTop_toTopOf="@id/staff_delivery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+
+
+
+        <TextView
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="Users List"
+            android:textSize="17sp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_color_yellow"
+            android:id="@+id/users_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/market_staff"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            app:srcCompat="@drawable/ic_local_shipping_black_24px"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@id/users_list"
+            app:layout_constraintTop_toTopOf="@id/users_list"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
 
 
 
