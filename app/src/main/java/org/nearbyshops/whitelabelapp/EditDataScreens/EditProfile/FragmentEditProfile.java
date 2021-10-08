@@ -130,7 +130,7 @@ public class FragmentEditProfile extends Fragment {
     public static final String EDIT_MODE_INTENT_KEY = "edit_mode";
 
     public static final int MODE_UPDATE_BY_ADMIN = 55;
-    public static final int MODE_UPDATE_BY_SUPER_ADMIN = 56;
+//    public static final int MODE_UPDATE_BY_SUPER_ADMIN = 56;
 
     public static final int MODE_UPDATE = 52;
     public static final int MODE_ADD = 51;
@@ -199,15 +199,15 @@ public class FragmentEditProfile extends Fragment {
 
                 getUserDetails();
             }
-            else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
-            {
-
-                String jsonString = getActivity().getIntent().getStringExtra("user_profile");
-                user = UtilityFunctions.provideGson().fromJson(jsonString,User.class);
-                bindUserData();
-
-                getUserDetails();
-            }
+//            else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+//            {
+//
+//                String jsonString = getActivity().getIntent().getStringExtra("user_profile");
+//                user = UtilityFunctions.provideGson().fromJson(jsonString,User.class);
+//                bindUserData();
+//
+//                getUserDetails();
+//            }
         }
 
 
@@ -376,16 +376,16 @@ public class FragmentEditProfile extends Fragment {
             adminOptionsBlock.setVisibility(View.VISIBLE);
 
         }
-        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
-        {
-
-
-            labelChangePhone.setVisibility(GONE);
-            labelChangeEmail.setVisibility(GONE);
-            labelChangePassword.setVisibility(GONE);
-
-            adminOptionsBlock.setVisibility(GONE);
-        }
+//        else if(current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+//        {
+//
+//
+//            labelChangePhone.setVisibility(GONE);
+//            labelChangeEmail.setVisibility(GONE);
+//            labelChangePassword.setVisibility(GONE);
+//
+//            adminOptionsBlock.setVisibility(GONE);
+//        }
         else
         {
             adminOptionsBlock.setVisibility(GONE);
@@ -474,7 +474,7 @@ public class FragmentEditProfile extends Fragment {
         {
             addAccount();
         }
-        else if(current_mode == MODE_UPDATE || current_mode==MODE_UPDATE_BY_ADMIN || current_mode==MODE_UPDATE_BY_SUPER_ADMIN)
+        else if(current_mode == MODE_UPDATE || current_mode==MODE_UPDATE_BY_ADMIN)
         {
             update();
         }

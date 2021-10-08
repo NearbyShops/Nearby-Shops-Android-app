@@ -1275,9 +1275,10 @@ public class EditShopFragment extends Fragment implements ViewHolderDeliverySlot
     {
         User shopAdminProfile = shop.getShopAdminProfile();
 
-
         Gson gson = UtilityFunctions.provideGson();
         String jsonString = gson.toJson(shopAdminProfile);
+
+        System.out.println(jsonString);
 
         Intent intent = new Intent(getActivity(), EditProfile.class);
         intent.putExtra("user_profile",jsonString);

@@ -61,6 +61,7 @@
                 android:background="#7737474F"
                 android:scaleType="centerCrop"
                 android:id="@+id/uploadImage"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="0dp"
@@ -162,7 +163,7 @@
             android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:background="@color/colorAccent"
+            android:background="@drawable/button_accent"
             android:padding="10dp"
             android:text="+ Add Extra Photos"
             android:layout_width="match_parent"
@@ -177,6 +178,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_marginTop="0dp"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/gplus_color_2"
+                android:text="Administrative Options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:visibility="gone"
@@ -251,9 +265,10 @@
                 android:layout_marginTop="15dp"
                 android:padding="10dp"
                 android:text="@string/fragment_edit_shop_fragment_shop_dashboard_text"
-                android:background="@color/darkGreen"
+                android:background="@drawable/button_accent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
 
 
             <TextView
@@ -263,7 +278,7 @@
                 android:layout_marginTop="15dp"
                 android:padding="10dp"
                 android:text="Transactions"
-                android:background="@color/darkGreen"
+                android:background="@drawable/button_accent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -271,29 +286,15 @@
             <TextView
                 android:id="@+id/shop_admin_profile"
                 android:textColor="@color/white"
-                android:textSize="17sp"
-                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:layout_marginTop="15dp"
                 android:padding="10dp"
-                android:text="@string/fragment_edit_shop_fragment_shop_admin_profile_text"
-                android:background="@color/buttonColorDark"
+                android:text="Shop Owner Profile"
+                android:background="@drawable/button_accent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
-
-
-
-            <TextView
-                android:textColor="@color/white"
-                android:layout_marginTop="10dp"
-                android:paddingStart="5dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:background="@color/gplus_color_2"
-                android:text="Administrative Options"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
 
 
@@ -315,14 +316,15 @@
                 android:layout_height="wrap_content" />
 
 
-
             <TextView
                 android:textColor="@color/white"
-                android:textSize="17sp"
                 android:layout_marginTop="10dp"
-                android:padding="10dp"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/gplus_color_2"
                 android:text="Shop Profile"
-                android:background="@color/buttonColorDark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

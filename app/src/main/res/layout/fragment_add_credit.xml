@@ -2,7 +2,6 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
@@ -14,7 +13,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textColor="@color/white"
-        android:background="@color/buttonColorDark"
+        android:background="@drawable/button_accent"
         android:id="@+id/next"
         android:text="Add Credit"
         app:layout_constraintRight_toRightOf="parent"

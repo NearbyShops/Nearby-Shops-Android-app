@@ -3,7 +3,8 @@
 
 
 <!--    http://192.168.43.146:8081-->
-<!--    http://nbsrestapi.nearbyshops.org-->
+<!--    http://whitelabeldemo.nearbyshops.org-->
+<!--    http://192.168.32.146:8082-->
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
@@ -48,7 +49,7 @@
 
 
     <!-- Enable maps and Places API and Mapbox map here -->
-    <string name="google_maps_api_key">AIzaSyAUw9XWcBL6KOcQdVFtDzvIAOdXuWDpnAg</string>
+    <string name="google_maps_api_key">abcde</string>
     <string name="custom_mapbox_style_url">https://example.com</string>
     <!--    AIzaSyABLR7ogo6ywsgBfCCAJq_vbS9awKpPlfM-->
 
@@ -125,9 +126,9 @@
 
 
 
-    <!-- Show "Enable Demo Mode : Enable this mode when app is used for demo purposes"  -->
-    <bool name="demo_mode_enabled">true</bool>
 
+    <!-- Show "Enable Demo Mode : Enable this mode when app is used for demo purposes"  -->
+    <bool name="demo_mode_enabled">false</bool>
     <string name="current_location_demo_mode">Pune, India</string>
 
     <!--    <drawable name="login_icon">@drawable/logo_circle</drawable>-->

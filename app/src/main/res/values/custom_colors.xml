@@ -13,7 +13,7 @@
 <!--   Royal blue #4169E1-->
 
 
-    <color name="logo_green_color">#39AB00</color>
+<!--    <color name="logo_green_color">#39AB00</color>-->
 <!--    <color name="logo_green_color">#59B928</color>-->
 
     <color name="header_text_color">@color/blueGrey800</color>

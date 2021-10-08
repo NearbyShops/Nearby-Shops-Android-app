@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -79,13 +80,16 @@ public class ViewHolderTransactionDetail extends RecyclerView.ViewHolder{
 
         String creditOrDebit = "";
 
-        if(transaction.isCredit())
+        if(transaction.getTransactionAmount()>0)
         {
             creditOrDebit = "\n[Credit]";
+
+            transactionAmount.setTextColor(ContextCompat.getColor(context,R.color.darkGreen));
         }
         else
         {
             creditOrDebit = "\n[Debit]";
+            transactionAmount.setTextColor(ContextCompat.getColor(context,R.color.orangeDark));
         }
 
 
@@ -94,6 +98,8 @@ public class ViewHolderTransactionDetail extends RecyclerView.ViewHolder{
                     "" + context.getString(R.string.rupee_symbol)
                             + String.format(" %.2f ", transaction.getTransactionAmount()) + creditOrDebit
         );
+
+
 
 
 

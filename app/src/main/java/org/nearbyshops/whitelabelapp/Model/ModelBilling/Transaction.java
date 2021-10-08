@@ -69,7 +69,6 @@ public class Transaction {
 
     private double taxAmount;
     private double transactionAmount;
-    private boolean isCredit;
 
     private Timestamp timestampOccurred;
 
@@ -148,13 +147,6 @@ public class Transaction {
         this.transactionAmount = transactionAmount;
     }
 
-    public boolean isCredit() {
-        return isCredit;
-    }
-
-    public void setCredit(boolean credit) {
-        isCredit = credit;
-    }
 
     public Timestamp getTimestampOccurred() {
         return timestampOccurred;

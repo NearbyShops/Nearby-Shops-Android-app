@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/button_color_yellow.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/button_green.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/dot_selected.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/drawable/empty_circle_filled.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/drawable/launch_background.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/activity_fragment_container.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/content_edit_banner_image_fragment.xml" value="0.3203125" />
@@ -18,11 +19,12 @@
         <entry key="app/src/main/res/layout/content_market_admin_dashboard.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/dialog_add_staff.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/dialog_push_nofication_composer.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_add_credit.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_cart_item_list.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_delivery_dashboard_kotlin.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_edit_address_with_map.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_edit_market.xml" value="0.3203125" />
-        <entry key="app/src/main/res/layout/fragment_edit_shop.xml" value="0.31490015360983103" />
+        <entry key="app/src/main/res/layout/fragment_edit_shop.xml" value="0.3064275037369208" />
         <entry key="app/src/main/res/layout/fragment_items_in_shop_by_cat.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_items_in_shop_by_cat_backup.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_items_in_shop_by_cat_cl.xml" value="0.3203125" />
@@ -36,6 +38,7 @@
         <entry key="app/src/main/res/layout/fragment_market_dashboard_kotlin.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/fragment_place_order_kotlin.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_shop_dashboard_kotlin.xml" value="0.3203125" />
+        <entry key="app/src/main/res/layout/fragment_shop_item_detail.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/list_item_add_item.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/list_item_banner_image.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/list_item_filter_items.xml" value="0.3203125" />

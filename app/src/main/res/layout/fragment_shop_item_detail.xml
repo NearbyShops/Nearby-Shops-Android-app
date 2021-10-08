@@ -208,7 +208,7 @@
                     android:id="@+id/add_to_cart_button"
                     android:textSize="17sp"
                     android:textColor="@color/white"
-                    android:background="@drawable/button_green"
+                    android:background="@drawable/button_accent_round_cornors"
                     android:textAllCaps="false"
                     android:text="Add to Cart"
                     android:padding="10dp"
