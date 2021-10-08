@@ -4,10 +4,11 @@
 
 <!--    http://192.168.43.146:8081-->
 <!--    http://whitelabeldemo.nearbyshops.org-->
+<!--    http://192.168.32.146:8082-->
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://192.168.32.146:8082</string>
+    <string name="custom_url">http://whitelabeldemo.nearbyshops.org</string>
 
     <!-- Variables to configure for a new build -->
     <integer name="app_type">@integer/app_type_main_app</integer>
@@ -127,7 +128,7 @@
 
 
     <!-- Show "Enable Demo Mode : Enable this mode when app is used for demo purposes"  -->
-    <bool name="demo_mode_enabled">false</bool>
+    <bool name="demo_mode_enabled">true</bool>
     <string name="current_location_demo_mode">Pune, India</string>
 
     <!--    <drawable name="login_icon">@drawable/logo_circle</drawable>-->
