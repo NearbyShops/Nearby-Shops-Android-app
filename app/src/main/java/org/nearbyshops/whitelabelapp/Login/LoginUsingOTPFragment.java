@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.text.InputType;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,8 @@ import org.nearbyshops.whitelabelapp.API.LoginUsingOTPService;
 import org.nearbyshops.whitelabelapp.API.UserService;
 import org.nearbyshops.whitelabelapp.DaggerComponentBuilder;
 import org.nearbyshops.whitelabelapp.Interfaces.NotifyAboutLogin;
+import org.nearbyshops.whitelabelapp.Model.ModelMarket.Market;
+import org.nearbyshops.whitelabelapp.Preferences.PrefAppSettings;
 import org.nearbyshops.whitelabelapp.Preferences.PrefCurrency;
 import org.nearbyshops.whitelabelapp.UtilityScreens.PhotoSliderViewPager.Model.PhotoSliderData;
 import org.nearbyshops.whitelabelapp.UtilityScreens.PhotoSliderViewPager.PhotosAdapter;
@@ -204,6 +207,16 @@ public class LoginUsingOTPFragment extends Fragment {
     private void setupCountryCodePicker()
     {
 
+        TelephonyManager tm = (TelephonyManager)requireActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        String countryCodeValue = tm.getNetworkCountryIso();
+//        countryCodeValue  = requireActivity().getResources().getConfiguration().locale.getCountry();
+
+        ccp.setCountryForNameCode(countryCodeValue);
+
+//        System.out.println("Country Code : " + countryCodeValue);
+//        Log.d("country_code","Country Code : " + countryCodeValue);
+
+
         if(getResources().getBoolean(R.bool.restrict_phone_login_country))
         {
             ccp.setCcpClickable(false);
@@ -219,7 +232,6 @@ public class LoginUsingOTPFragment extends Fragment {
 //        {
 //            ccp.setCountryForNameCode(serviceConfig.getISOCountryCode());
 //        }
-
     }
 
 

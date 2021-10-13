@@ -16,13 +16,14 @@
     <drawable name="custom_icon">@drawable/app_logo_main_app</drawable>
 
 
-    <!--     1 for customer app , 2 for market admin app , 3 for vendor app , 4 for delivery app -->
+    <!--   Please Do not change this to customize your app : Value 1 for customer app , 2 for market admin app , 3 for vendor app , 4 for delivery app -->
     <integer name="app_type_main_app">1</integer>
     <integer name="app_type_market_admin_app">2</integer>
     <integer name="app_type_vendor_app">3</integer>
     <integer name="app_type_delivery_app">4</integer>
 
 
+    <!-- Update your app name here -->
     <string name="app_name_main_app">Nearby Shops</string>
     <string name="app_name_delivery_app">Delivery App</string>
     <string name="app_name_vendor_app">Vendor App</string>
@@ -30,18 +31,22 @@
 
     <string name="app_tag_line_for_main_app">Shop Locally and Get Home Delivery</string>
 
+    <!-- Update your app logo here -->
     <drawable name="app_logo_main_app">@drawable/app_icon_main_round</drawable>
     <drawable name="app_logo_delivery_app">@drawable/app_icon_delivery</drawable>
     <drawable name="app_logo_vendor_app">@drawable/app_icon_vendor_round</drawable>
     <drawable name="app_logo_market_admin_app">@drawable/logo_market_builder</drawable>
 
+    <!-- Update your app helpline number here -->
     <string name="app_helpline">+91-8074516088</string>
     <string name="app_helpline_delivery_app">+91-8074516088</string>
     <string name="app_helpline_vendor_app">+91-8074516088</string>
     <string name="app_helpline_market_admin_app">+91-8074516088</string>
 
 
-    <!-- Please provide the google play link from which user can download the app. This link is required for share you app feature and rate and review.-->
+
+    <!-- Please provide the google play link from which user can download the app. -->
+    <!-- This link is required for share you app by the customer and also to rate and review your app by the customer.-->
     <string name="app_download_link">https://play.google.com/store/apps/details?id=org.nearbyshops.whitelabelapp</string>
     <string name="app_download_link_delivery_app">https://play.google.com/store/apps/details?id=org.nearbyshops.whitelabelapp</string>
     <string name="app_download_link_vendor_app">https://play.google.com/store/apps/details?id=org.nearbyshops.whitelabelapp</string>
@@ -57,15 +62,14 @@
     <bool name="use_google_maps">true</bool>
 
 
-
     <!--It is mandatory to provide terms of service and privacy policy link to publish your app on google play-->
     <string name="tos_link">https://nearbyshops.org/Terms-Of-Service.html</string>
     <string name="privacy_policy_link">https://nearbyshops.org/Privacy-Policy.html</string>
     <string name="faqs_link">https://nearbyshops.org/Privacy-Policy.html</string>
 
+
+
     <string name="staff_link">https://discord.com/invite/GcKBZ2w</string>
-
-
     <string name="tutorial_market_admin_link">"https://www.youtube.com/channel/UCz0HmTnOiagEyWeNoiDV3qQ"</string>
     <string name="tutorial_shop_dashboard">"https://www.youtube.com/channel/UCz0HmTnOiagEyWeNoiDV3qQ"</string>
 
@@ -112,7 +116,7 @@
 
 
     <!-- When enabled login through SMS-OTP will be available only on national phone numbers of the default country set by the market admin  !-->
-    <bool name="restrict_phone_login_country">true</bool>
+    <bool name="restrict_phone_login_country">false</bool>
 
 
     <!--Enable or Disable Phone or Email for login based on your Preferences -->
