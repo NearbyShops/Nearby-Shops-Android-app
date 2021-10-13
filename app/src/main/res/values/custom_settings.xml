@@ -4,11 +4,11 @@
 
 <!--    http://192.168.43.146:8081-->
 <!--    http://whitelabeldemo.nearbyshops.org-->
-<!--    http://192.168.32.146:8082-->
+<!--    http://192.168.99.146:8082-->
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://whitelabeldemo.nearbyshops.org</string>
+    <string name="custom_url">http://whitelabeldemo.nearbyshops.or</string>
 
     <!-- Variables to configure for a new build -->
     <integer name="app_type">@integer/app_type_main_app</integer>
