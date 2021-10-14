@@ -41,11 +41,11 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 Tech Stack and app Architecture
 --------------------------------
 
-Uses Android Jetpack and Google’s Recommended Architecture Patterns - Migration to MVVM is planned
+Uses Android Jetpack and Google’s Recommended Architecture Patterns
 
-Written in both Java and Kotlin : Migration to kotlin is planned and will be coming in near future
+Written in both Java and Kotlin
 
-Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, and the Mapbox Android SDK
+Libraries Used Retrofit, Ok-HTTP, Picasso, Dagger, and the Mapbox Android SDK
 
 User-Interface is made using the modular View-Holder Pattern which makes the UI blocks modular, easy to reuse, modify and understand.
 
