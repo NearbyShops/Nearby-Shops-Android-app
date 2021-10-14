@@ -24,30 +24,17 @@ Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbysh
 
 
 ## 🚩 Table of Contents
-- [Concept](#concept)
 - [Tech Stack and App Architecture](#tech-stack-and-app-architecture)
 - [Features and highlightList](#features-and-highlightList)
 - [Libraries Used](#libraries-used)
 - [Third Party Integrations](#third-party-integrations)
+- [Concept](#concept)
 - [Connect with Us](#community---need-help-)
 - [Contributions Required](#contributions-welcome)
 - [Development Instructions](#development-instructions)
 - [License](#license)
 
 
-Concept
-----------
-Nearby Shops is a Hyperlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get their orders delivered to their home or just pick the order up from the shop.
-
-In the new emerging world, customers are getting tired of going outside the home to shop every day. They would much prefer to simply place an order and have the products delivered to their home the same day.
-
-Conventional e-commerce has issues ... the delivery takes a long time and it's more difficult to trust unknown vendors whom you cannot see and meet. Hyperlocal e-commerce solves these issues because delivery is faster and customers can reach out to the vendors easily. 
-
-Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food. 
-
-Nearby Shops implements Alibaba's New Offline-to-Online Concept, where customers discover products online and then pick those products up from physical stores. 
-
-![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
 
 
 
@@ -115,6 +102,22 @@ Maps using Mapbox Android SDK and Google Maps
 Payment Gateway - Razorpay
 
 For more information please see https://developer.nearbyshops.org/integrations/e-mail-integration.html
+
+
+Concept
+----------
+Nearby Shops is a Hyperlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get their orders delivered to their home or just pick the order up from the shop.
+
+In the new emerging world, customers are getting tired of going outside the home to shop every day. They would much prefer to simply place an order and have the products delivered to their home the same day.
+
+Conventional e-commerce has issues ... the delivery takes a long time and it's more difficult to trust unknown vendors whom you cannot see and meet. Hyperlocal e-commerce solves these issues because delivery is faster and customers can reach out to the vendors easily. 
+
+Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food. 
+
+Nearby Shops implements Alibaba's New Offline-to-Online Concept, where customers discover products online and then pick those products up from physical stores. 
+
+![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
+
 
 
 Connect With us - Need Help ? 
