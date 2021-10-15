@@ -100,7 +100,6 @@ public class UtilityFunctions {
         PrefMarketAdminHome.saveMarket(null,context);
         PrefDeliveryGuyHome.saveDeliveryGuyData(null,context);
 
-        PrefAppSettings.setLaunchScreen(PrefAppSettings.LAUNCH_SCREEN_MAIN,context);
     }
 
 

@@ -374,7 +374,6 @@ class FragmentPlaceOrder : Fragment() , ViewHolderDeliveryAddress.ListItemClick,
     {
         order.endUserID = PrefLogin.getUser(activity).userID
         order.deliveryAddressID = selectedAddress.id
-        order.orderSource = PrefAppSettings.getLaunchScreen(requireActivity())
 
 
         if(!pricingFetched)

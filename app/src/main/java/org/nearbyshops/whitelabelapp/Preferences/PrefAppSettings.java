@@ -27,42 +27,12 @@ public class PrefAppSettings {
     // role selected at login screen
 
 
-    // constants
-    public static final int LAUNCH_SCREEN_MAIN = 1; // customer app interface
-    public static final int LAUNCH_SCREEN_SHOP_ADMIN = 2; // shop admin and shop staff
-    public static final int LAUNCH_SCREEN_DELIVERY = 3; // delivery boy
-    public static final int LAUNCH_SCREEN_ADMIN = 5; // admin and staff
-
-
 
     private static final String TAG_PREF_SETTINGS = "pref_market_settings";
     private static final String TAG_LAUNCH_SCREEN = "launch_screen";
 
 
 
-
-    public static void setLaunchScreen(int launchScreen, Context context)
-    {
-        context = MyApplication.getAppContext();
-
-        //Creating a shared preference
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = sharedPref.edit();
-
-        prefsEditor.putInt(TAG_LAUNCH_SCREEN,launchScreen);
-        prefsEditor.apply();
-    }
-
-
-
-
-    public static int getLaunchScreen(Context context)
-    {
-        context = MyApplication.getAppContext();
-
-        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), MODE_PRIVATE);
-        return sharedPref.getInt(TAG_LAUNCH_SCREEN,LAUNCH_SCREEN_MAIN);
-    }
 
 
 

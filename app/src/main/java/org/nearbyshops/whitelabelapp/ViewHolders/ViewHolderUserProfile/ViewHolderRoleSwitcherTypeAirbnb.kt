@@ -13,6 +13,7 @@ import org.nearbyshops.whitelabelapp.Preferences.PrefAppSettings
 import org.nearbyshops.whitelabelapp.Preferences.PrefLogin
 import org.nearbyshops.whitelabelapp.R
 import org.nearbyshops.whitelabelapp.databinding.ListItemRoleSwitcherBinding
+import org.nearbyshops.whitelabelapp.showToast
 
 class ViewHolderRoleSwitcherTypeAirbnb(
     itemView: View,
@@ -23,68 +24,12 @@ class ViewHolderRoleSwitcherTypeAirbnb(
 
     var binding = ListItemRoleSwitcherBinding.bind(itemView)
 
-    fun dashboardClick() {
-
-        val user = PrefLogin.getUser(context) ?: return
-
-//        if (user.role == User.ROLE_ADMIN_CODE) {
-//
-//            val intent = Intent(context, AdminDashboard::class.java)
-//            context.startActivity(intent)
-//            return
-//
-//        }
-//        else if (user.role == User.ROLE_STAFF_CODE) {
-////            Intent intent = new Intent(context, MarketStaffDashboard.class);
-////            context.startActivity(intent);
-//            context.showToast("Dashboard under development !")
-//            return
-//        }
 
 
 
-        var setLaunchScreen = PrefAppSettings.LAUNCH_SCREEN_MAIN
+    private fun dashboardClick() {
 
-        if (user.role == User.ROLE_ADMIN_CODE || user.role == User.ROLE_STAFF_CODE) {
-
-            setLaunchScreen = PrefAppSettings.LAUNCH_SCREEN_ADMIN
-
-        }
-        else if (user.role == User.ROLE_DELIVERY_GUY_MARKET_CODE || user.role == User.ROLE_DELIVERY_GUY_SHOP_CODE) {
-
-            setLaunchScreen = PrefAppSettings.LAUNCH_SCREEN_DELIVERY
-
-        } else if (user.role == User.ROLE_SHOP_ADMIN_CODE || user.role == User.ROLE_SHOP_STAFF_CODE) {
-
-            setLaunchScreen = PrefAppSettings.LAUNCH_SCREEN_SHOP_ADMIN
-
-        }
-
-
-        val launchScreen = PrefAppSettings.getLaunchScreen(context)
-
-        if (launchScreen == PrefAppSettings.LAUNCH_SCREEN_MAIN) {
-
-//            context.showToast("Launch screen $setLaunchScreen")
-
-            PrefAppSettings.setLaunchScreen(setLaunchScreen, context)
-            startLaunchScreen()
-        }
-        else {
-
-            PrefAppSettings.setLaunchScreen(PrefAppSettings.LAUNCH_SCREEN_MAIN, context)
-            startLaunchScreen()
-        }
-    }
-
-
-
-    private fun startLaunchScreen() {
-
-        val intent = Intent(fragment.requireActivity(), LaunchActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        fragment.requireActivity().finish()
-        fragment.requireActivity().startActivity(intent)
+        context.showToast("Feature available in Paid Version !")
     }
 
 
@@ -95,22 +40,6 @@ class ViewHolderRoleSwitcherTypeAirbnb(
         val user = PrefLogin.getUser(context) ?: return
 
         var switchToString = ""
-
-
-//        if (user.role == User.ROLE_ADMIN_CODE) {
-//
-//            binding.dashboardName.text = context.getString(R.string.admin_dashboard)
-//            binding.dashboardDescription.text = context.getString(R.string.access_admin)
-//
-//            return
-//
-//        } else if (user.role == User.ROLE_STAFF_CODE) {
-//            binding.dashboardName.text = "Staff Dashboard"
-//            binding.dashboardDescription.text = "Press here to access the staff dashboard !"
-//
-//            return
-//        }
-
 
 
         if (user.role == User.ROLE_ADMIN_CODE || user.role == User.ROLE_STAFF_CODE) {
@@ -130,17 +59,8 @@ class ViewHolderRoleSwitcherTypeAirbnb(
         }
 
 
-        val launchScreen = PrefAppSettings.getLaunchScreen(context)
+        binding.dashboardName.text = switchToString
 
-        if (launchScreen == PrefAppSettings.LAUNCH_SCREEN_MAIN) {
-
-            binding.dashboardName.text = switchToString
-
-        } else {
-
-            binding.dashboardName.text = "Switch to Buying"
-            binding.dashboardDescription.text = "Press here to access the Customer App !"
-        }
     }
 
 

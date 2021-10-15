@@ -8,7 +8,7 @@
 
 
     <!-- Your instance url goes here. Connect your app to your instance. In case multi-market mode is enabled this URL will be ignored. -->
-    <string name="custom_url">http://whitelabeldemo.nearbyshops.or</string>
+    <string name="custom_url">http://whitelabeldemo.nearbyshops.org</string>
 
     <!-- Variables to configure for a new build -->
     <integer name="app_type">@integer/app_type_main_app</integer>
@@ -56,7 +56,6 @@
     <!-- Enable maps and Places API and Mapbox map here -->
     <string name="google_maps_api_key">abcde</string>
     <string name="custom_mapbox_style_url">https://example.com</string>
-    <!--    AIzaSyABLR7ogo6ywsgBfCCAJq_vbS9awKpPlfM-->
 
     <!--Switch between Google Maps or Mapbox API by using this setting-->
     <bool name="use_google_maps">true</bool>
@@ -91,8 +90,6 @@
     <!-- set whether you want to show create shop option in the front screen (shops list) screen of the market-->
     <bool name="show_create_shop">false</bool>
 
-    <!-- set whether to show or hide create shop option in the profile screen -->
-    <bool name="show_create_shop_in_profile_screen">true</bool>
 
 
     <!-- prompt user while pressing back button when the app is about to get closed -->
@@ -130,6 +127,11 @@
 
 
 
+    <!-- set whether to show or hide create shop option in the profile screen -->
+    <bool name="show_create_shop_in_profile_screen">true</bool>
+
+    <!-- Show Role Switcher in profile screen -->
+    <bool name="role_switcher_enabled">true</bool>
 
     <!-- Show "Enable Demo Mode : Enable this mode when app is used for demo purposes"  -->
     <bool name="demo_mode_enabled">true</bool>

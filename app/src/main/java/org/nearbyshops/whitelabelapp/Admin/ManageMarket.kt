@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
-import org.nearbyshops.whitelabelapp.AdminCommon.BillGenerator
 import org.nearbyshops.whitelabelapp.AdminCommon.PushNotificationComposer
 import org.nearbyshops.whitelabelapp.AdminDelivery.InventoryDeliveryPerson.DeliveryPersonInventory
 import org.nearbyshops.whitelabelapp.AdminDelivery.InventoryDeliveryPerson.Fragment.DeliveryFragmentNew
@@ -113,11 +112,10 @@ class ManageMarket : Fragment() {
 
 
 
+
     private fun billGenerator()
     {
-        val fm = childFragmentManager
-        val dialog = BillGenerator()
-        dialog.show(fm, "Bill Generator")
+        context?.showToast("Feature available in  Paid Version !")
     }
 
 

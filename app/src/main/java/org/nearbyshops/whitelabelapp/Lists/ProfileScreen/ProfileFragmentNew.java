@@ -291,8 +291,9 @@ public class ProfileFragmentNew extends Fragment implements
                 else
                 {
 
-                    if(requireActivity().getResources().getInteger(R.integer.app_type)
-                            ==requireActivity().getResources().getInteger(R.integer.app_type_main_app))
+                    if((requireActivity().getResources().getInteger(R.integer.app_type)
+                            ==requireActivity().getResources().getInteger(R.integer.app_type_main_app)) &&
+                            getResources().getBoolean(R.bool.role_switcher_enabled))
                     {
                         dataset.add(new RoleDashboardMarker());
                     }
@@ -317,11 +318,9 @@ public class ProfileFragmentNew extends Fragment implements
 
 
 
-        int launchScreen = PrefAppSettings.getLaunchScreen(requireActivity());
 
         // do not show these options except when using the app as customer
-        if(launchScreen==PrefAppSettings.LAUNCH_SCREEN_MAIN &&
-                getResources().getInteger(R.integer.app_type)==getResources().getInteger(R.integer.app_type_main_app))
+        if(getResources().getInteger(R.integer.app_type)==getResources().getInteger(R.integer.app_type_main_app))
         {
             dataset.add(new ViewHolderSetLocationManually.SetLocationManually());
 

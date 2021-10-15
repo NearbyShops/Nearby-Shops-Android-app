@@ -33,24 +33,8 @@ class LaunchActivity : AppCompatActivity() {
         if(appType == resources.getInteger(R.integer.app_type_main_app))
         {
 
-            // customer app
-            if(PrefAppSettings.getLaunchScreen(this)== PrefAppSettings.LAUNCH_SCREEN_ADMIN)
-            {
-                intent = Intent(this, AdminDashboardBottom::class.java)
-            }
-            else if(PrefAppSettings.getLaunchScreen(this)== PrefAppSettings.LAUNCH_SCREEN_SHOP_ADMIN)
-            {
-                intent = Intent(this, ShopDashboardBottom::class.java)
-            }
-            else if(PrefAppSettings.getLaunchScreen(this)== PrefAppSettings.LAUNCH_SCREEN_DELIVERY)
-            {
-                intent = Intent(this, DeliveryDashboard::class.java)
-            }
-            else
-            {
-                // Send user to MainActivity as soon as this activity loads
-                intent = Intent(this, Home::class.java)
-            }
+            // Send user to MainActivity as soon as this activity loads
+            intent = Intent(this, Home::class.java)
 
         }
         else if(appType == resources.getInteger(R.integer.app_type_market_admin_app))
