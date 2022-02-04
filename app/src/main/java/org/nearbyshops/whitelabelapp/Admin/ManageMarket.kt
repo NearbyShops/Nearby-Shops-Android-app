@@ -34,6 +34,7 @@ class ManageMarket : Fragment() {
     private lateinit var binding:FragmentManageMarketBinding
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

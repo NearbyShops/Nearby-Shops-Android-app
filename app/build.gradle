@@ -3,7 +3,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.google.firebase.firebase-perf' // plugin for firebase performance monitoring
+//apply plugin: 'com.google.firebase.firebase-perf' // plugin for firebase performance monitoring
 apply plugin: 'com.google.firebase.crashlytics' // for firebase crash analytics
 
 
