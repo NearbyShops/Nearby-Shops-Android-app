@@ -18,7 +18,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:textColor="@color/white"
-            android:background="@color/buttonColorDark"
+            android:background="@drawable/button_accent"
             android:id="@+id/finish_button"
             android:text="@string/fragment_result_change_phone_finish_button_text"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -72,7 +72,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginEnd="5dp"
                         android:id="@+id/check_icon"
-                        app:srcCompat="@drawable/ic_check_circle_black_24px"
+                        app:srcCompat="@drawable/ic_check_circle_green"
                         android:layout_width="50dp"
                         android:layout_height="50dp" />
 

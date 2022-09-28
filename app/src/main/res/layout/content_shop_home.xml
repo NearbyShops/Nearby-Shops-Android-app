@@ -113,8 +113,8 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/text_add_items"
                     android:padding="10dp"
-                    android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_items_24px" />
+                    app:srcCompat="@drawable/ic_items_white"
+                    app:tint="#ffffff" />
 
 
                 <TextView
@@ -179,8 +179,8 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/text_add_stock"
                     android:padding="10dp"
-                    android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_items_24px" />
+                    app:srcCompat="@drawable/ic_items_white"
+                    app:tint="#ffffff" />
 
 
                 <!--android:text="Edit Stock"-->
@@ -213,8 +213,8 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/text_stock_items"
                     android:padding="10dp"
-                    android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_dns_black_24px" />
+                    app:srcCompat="@drawable/ic_dns_black_24px"
+                    app:tint="#ffffff" />
 
 
                 <!--android:text="Edit Stock"-->
@@ -257,8 +257,8 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/text_quick_stock_editor"
                     android:padding="10dp"
-                    android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_edit_white_36px" />
+                    app:srcCompat="@drawable/ic_edit_white_36px"
+                    app:tint="#ffffff" />
 
                 <TextView
                     android:id="@+id/text_quick_stock_editor"
@@ -323,8 +323,8 @@
                     android:layout_above="@+id/text_cancel"
 
                     android:padding="10dp"
-                    android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_local_shipping_black_24px" />
+                    app:srcCompat="@drawable/ic_local_shipping_black_24px"
+                    app:tint="#ffffff" />
 
                 <TextView
                     android:id="@+id/text_cancel"
@@ -354,8 +354,8 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/text_pick_from_shop"
                     android:padding="10dp"
-                    android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_home_black_24dp" />
+                    app:srcCompat="@drawable/ic_home_black_24dp"
+                    app:tint="#ffffff" />
 
                 <TextView
                     android:id="@+id/text_pick_from_shop"
@@ -393,8 +393,8 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/text_orders_history"
                     android:padding="10dp"
-                    android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_receipt_black_24dp" />
+                    app:srcCompat="@drawable/ic_receipt_black_24dp"
+                    app:tint="#ffffff" />
 
                 <TextView
                     android:id="@+id/text_orders_history"
@@ -475,8 +475,8 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/text_staff"
                     android:padding="10dp"
-                    android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_account_box_black_24px" />
+                    app:srcCompat="@drawable/ic_account_box_black_24px"
+                    app:tint="#ffffff" />
 
                 <TextView
                     android:id="@+id/text_staff"
@@ -503,8 +503,8 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/text_delivery_guy_account"
                     android:padding="10dp"
-                    android:tint="#ffffff"
-                    app:srcCompat="@drawable/ic_person_pin_circle_black_24px" />
+                    app:srcCompat="@drawable/ic_pickup_white"
+                    app:tint="#ffffff" />
 
                 <TextView
                     android:id="@+id/text_delivery_guy_account"

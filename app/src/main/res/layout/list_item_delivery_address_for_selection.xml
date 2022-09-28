@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:padding="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/list_item"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/change_address_button"
+        android:textAllCaps="false"
+        android:padding="10dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:text="Change Address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/check_button"
+        android:padding="0dp"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/ic_check_circle_green" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Nitesh Kumar"
+            android:id="@+id/address_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:textColor="@color/text_color_light"
+            android:layout_marginTop="5dp"
+            android:text="Flat No. 505, Cyber City Apartments,\nGuhawati - 3423353"
+            android:id="@+id/delivery_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:id="@+id/address_phone"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="5dp"
+            android:text="Phone : 9876543210"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

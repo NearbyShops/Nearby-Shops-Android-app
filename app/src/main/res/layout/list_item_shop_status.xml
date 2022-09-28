@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<LinearLayout
+    android:id="@+id/list_item"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+        <TextView
+            android:padding="5dp"
+            android:background="@color/colorAccent"
+            android:text="Please Setup Your Shop"
+            android:id="@+id/header"
+            android:textSize="15sp"
+            android:textColor="@color/text_with_accent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <HorizontalScrollView
+            android:background="@color/blueGrey800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+            <TextView
+                android:visibility="gone"
+                android:gravity="center"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:background="@drawable/white_circle_drawable"
+                android:text="Add Items to Shop"
+                android:id="@+id/items_in_shop"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+
+            <TextView
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:background="@drawable/white_circle_drawable"
+                android:text="Set Prices"
+                android:id="@+id/set_prices"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+
+
+
+            <TextView
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:background="@drawable/white_circle_drawable"
+                android:text="Add Stock"
+                android:id="@+id/add_stock"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+
+
+
+
+            <TextView
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:background="@drawable/white_circle_drawable"
+                android:text="Confirm Delivery"
+                android:id="@+id/confirm_orders"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+
+
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:background="@drawable/white_circle_drawable"
+                    android:text="Confirm Pickup"
+                    android:id="@+id/confirm_orders_pfs"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp" />
+
+
+
+
+
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+
+
+
+
+
+</LinearLayout>
+
+

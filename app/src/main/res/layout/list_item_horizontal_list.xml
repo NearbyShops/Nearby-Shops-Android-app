@@ -2,32 +2,30 @@
 
 
 
+
 <LinearLayout
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
     android:layout_marginStart="0dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-
     <TextView
-        android:textColor="@color/orangeDark"
-        android:paddingStart="5dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:paddingStart="10dp"
         android:id="@+id/list_title"
-        android:textSize="20sp"
-        android:text="@string/list_item_horizontal_list_list_title_text"
+        android:textSize="24dp"
+        android:text="Tutorials"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

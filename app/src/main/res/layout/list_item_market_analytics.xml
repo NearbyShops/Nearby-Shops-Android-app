@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:id="@+id/border_shop_profile"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/border_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:textSize="20sp"
+        android:id="@+id/header_analytics"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/border_shop_profile"
+        android:text="Monitor Your Market"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/header_analytics"
+        app:layout_constraintTop_toTopOf="@id/header_analytics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <TextView
+        android:gravity="bottom"
+        android:padding="10dp"
+        android:text="Earnings"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_color_green"
+        android:id="@+id/earnings_header"
+        app:layout_constraintEnd_toStartOf="@id/sales_total"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_analytics"
+        android:layout_width="0dp"
+        android:layout_height="100dp"/>
+
+
+    <ImageView
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_local_shipping_black_24px"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="@id/earnings_header"
+        app:layout_constraintTop_toTopOf="@id/earnings"
+        app:layout_constraintBottom_toBottomOf="@id/earnings"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/earnings"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:text="0"
+        app:layout_constraintTop_toTopOf="@id/earnings_header"
+        app:layout_constraintStart_toStartOf="@id/earnings_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:gravity="bottom"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:text="Total Sales"
+        android:layout_marginStart="5dp"
+        android:padding="10dp"
+        app:srcCompat="@drawable/ic_dashboard_white_24px"
+        android:background="@drawable/button_color_indigo"
+        android:id="@+id/sales_total"
+        app:layout_constraintStart_toEndOf="@id/earnings_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/earnings_header"
+        android:layout_width="0dp"
+        android:layout_height="100dp"/>
+
+
+    <ImageView
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_receipt_white"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="@id/sales_total"
+        app:layout_constraintTop_toTopOf="@id/pickup_count"
+        app:layout_constraintBottom_toBottomOf="@id/pickup_count"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+
+
+    <TextView
+        android:id="@+id/pickup_count"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="0"
+        app:layout_constraintTop_toTopOf="@id/sales_total"
+        app:layout_constraintStart_toStartOf="@id/sales_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <TextView
+        android:gravity="bottom"
+        android:padding="10dp"
+        android:text="Customers Served"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/ic_dashboard_white_24px"
+        android:background="@drawable/button_accent"
+        android:id="@+id/customers_served_header"
+        app:layout_constraintEnd_toStartOf="@id/orders_delivered_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/earnings_header"
+        android:layout_width="0dp"
+        android:layout_height="100dp"/>
+
+
+    <TextView
+        android:id="@+id/customers_served"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:text="0"
+        app:layout_constraintTop_toTopOf="@id/customers_served_header"
+        app:layout_constraintStart_toStartOf="@id/customers_served_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <ImageView
+
+        app:srcCompat="@drawable/ic_shop_staff_black_24px"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="@id/customers_served_header"
+        app:layout_constraintTop_toTopOf="@id/customers_served_header"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+
+
+    <TextView
+        android:gravity="bottom"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:text="Orders Delivered"
+        android:layout_marginStart="5dp"
+        android:padding="10dp"
+        app:srcCompat="@drawable/ic_dashboard_white_24px"
+        android:background="@drawable/button_color_orange"
+        android:id="@+id/orders_delivered_header"
+        app:layout_constraintStart_toEndOf="@id/customers_served_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/customers_served_header"
+        android:layout_width="0dp"
+        android:layout_height="100dp"/>
+
+
+    <TextView
+        android:id="@+id/orders_delivered"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:text="0"
+        app:layout_constraintTop_toTopOf="@id/orders_delivered_header"
+        app:layout_constraintStart_toStartOf="@id/orders_delivered_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        app:srcCompat="@drawable/ic_local_shipping_black_24px"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="@id/orders_delivered_header"
+        app:layout_constraintTop_toTopOf="@id/orders_delivered_header"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textColor="@color/white"
-        android:background="@color/buttonColorDark"
+        android:background="@drawable/button_accent"
         android:id="@+id/next"
         android:text="@string/fragment_change_phone_next_text"
         android:layout_marginTop="10dp"
@@ -30,21 +30,34 @@
 
 
 
-
-
     <ProgressBar
-        android:visibility="gone"
-        android:padding="5dp"
-        android:elevation="10dp"
-        app:layout_constraintTop_toTopOf="@id/next"
         app:layout_constraintBottom_toBottomOf="@id/next"
-        app:layout_constraintRight_toRightOf="@id/next"
-        app:layout_constraintLeft_toLeftOf="@id/next"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:id="@+id/progress_bar_button"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
+        app:layout_constraintTop_toTopOf="@id/next"
+        app:layout_constraintEnd_toEndOf="@id/next"
+        app:layout_constraintStart_toStartOf="@id/next"
+        android:id="@+id/progress_bar_next"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+
+
+
+
+
+
+<!--    <ProgressBar-->
+<!--        android:visibility="gone"-->
+<!--        android:padding="5dp"-->
+<!--        android:elevation="10dp"-->
+<!--        app:layout_constraintTop_toTopOf="@id/next"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/next"-->
+<!--        app:layout_constraintRight_toRightOf="@id/next"-->
+<!--        app:layout_constraintLeft_toLeftOf="@id/next"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:id="@+id/progress_bar_button"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp" />-->
 
 
 
@@ -217,7 +230,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/text_input_phone"
                 app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/check_icon"
-                app:srcCompat="@drawable/ic_check_circle_black_24px"
+                app:srcCompat="@drawable/ic_check_circle_green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

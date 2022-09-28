@@ -1,0 +1,214 @@
+
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="5dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+
+    <TextView
+        android:visibility="gone"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_business_white"
+        android:id="@+id/delivery_type"
+        android:layout_marginTop="0dp"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@color/phonographyBlue"
+        android:text="Home Delivery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+
+    <TextView
+        android:layout_marginTop="0dp"
+        android:padding="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@color/orange_new"
+        android:text="Delivery Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:id="@+id/customer_name"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:text="Customer Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <TextView
+        android:id="@+id/customer_address"
+        android:layout_marginTop="3dp"
+        android:text="Flat No 123, ABC Colony, New Delhi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <TextView
+        android:id="@+id/customer_phone"
+        android:layout_marginTop="3dp"
+        android:text="Phone : 987654321"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/payment_mode"
+        android:layout_marginTop="10dp"
+        android:text="Payment Mode : COD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:drawablePadding="10dp"
+        android:textColor="@color/white"
+        android:background="@color/darkGreen"
+        android:padding="5dp"
+        android:textSize="20sp"
+        android:id="@+id/delivery_otp"
+        android:text="Delivery OTP :"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="Delivery Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/name_header"
+            app:layout_constraintStart_toStartOf="@id/header"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            android:textStyle="bold"
+            android:text="Name :"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:id="@+id/name_value"
+            android:textStyle="bold"
+            android:layout_marginStart="50dp"
+            android:text="Customers Name"
+            app:layout_constraintTop_toTopOf="@id/name_header"
+            app:layout_constraintStart_toEndOf="@id/name_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/mobile_header"
+            app:layout_constraintStart_toStartOf="@id/name_header"
+            app:layout_constraintTop_toBottomOf="@id/name_header"
+            android:textStyle="bold"
+            android:text="Mobile :"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:id="@+id/mobile_value"
+            android:textStyle="bold"
+            android:text="987654321"
+            app:layout_constraintTop_toTopOf="@id/mobile_header"
+            app:layout_constraintStart_toStartOf="@id/name_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/address_header"
+            app:layout_constraintStart_toStartOf="@id/name_header"
+            app:layout_constraintTop_toBottomOf="@id/mobile_header"
+            android:text="Address :"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:id="@+id/address_value"
+            android:text="Flat No. 123, ABC Colony, New Delhi"
+            app:layout_constraintTop_toTopOf="@id/address_header"
+            app:layout_constraintStart_toStartOf="@id/name_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/payment_mode_key"
+            app:layout_constraintStart_toStartOf="@id/name_header"
+            app:layout_constraintTop_toBottomOf="@id/address_header"
+            android:text="Payment :"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:id="@+id/payment_mode_value"
+            android:text="COD"
+            app:layout_constraintTop_toTopOf="@id/payment_mode_key"
+            app:layout_constraintStart_toStartOf="@id/name_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@color/cyan900"
+        android:text="Order fulfilled by"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
+
+<!--</ScrollView>-->

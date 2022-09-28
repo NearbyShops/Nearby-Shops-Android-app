@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textSize="20sp"
+            android:text="Generate Bills for Vendors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:background="@color/mapbox_blue"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="Generate Bills for Vendors with Message for billing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <EditText
+            android:inputType="numberDecimal"
+            android:layout_marginTop="10dp"
+            android:id="@+id/bill_amount"
+            android:hint="Bill Amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+        <EditText
+            android:inputType="text"
+            android:id="@+id/input_title"
+            android:hint="Enter Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <EditText
+            android:inputType="textMultiLine"
+            android:id="@+id/input_description"
+            android:hint="Enter Message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:text="Vendor Registration Status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <RadioGroup
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RadioButton
+                android:text="Enabled"
+                android:id="@+id/status_enabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <RadioButton
+                android:layout_marginStart="10dp"
+                android:text="Disabled"
+                android:id="@+id/status_disabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
+
+
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:background="@color/mapbox_blue"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+
+
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/send_button"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_green"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:text="Generate Bill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/progress_bar"
+                    app:layout_constraintTop_toTopOf="@id/send_button"
+                    app:layout_constraintBottom_toBottomOf="@id/send_button"
+                    app:layout_constraintEnd_toEndOf="@id/send_button"
+                    app:layout_constraintStart_toStartOf="@id/send_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,63 +1,33 @@
 {
   "project_info": {
-    "project_number": "462976306421",
-    "firebase_url": "https://nearbyshops-f7b77.firebaseio.com",
-    "project_id": "nearbyshops-f7b77",
-    "storage_bucket": "nearbyshops-f7b77.appspot.com"
+    "project_number": "15992738737",
+    "project_id": "nearby-shops-white-label-new",
+    "storage_bucket": "nearby-shops-white-label-new.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:462976306421:android:a4c6e07f8dfca3156bc9bc",
+        "mobilesdk_app_id": "1:15992738737:android:3a281838c606e004dd2390",
         "android_client_info": {
-          "package_name": "org.nearbyshops.enduserappnew"
+          "package_name": "org.nearbyshops.whitelabelapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
+          "client_id": "15992738737-l8kha6fm1ephq5anafbqv7hpu83ptb8o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCeYzoOQCI66drZP15UMPgNrCfHgCNWM34"
+          "current_key": "AIzaSyBJbE-c50oIg0GCZesrBl9KxIiOgAK5tXY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:462976306421:android:b1b47867ce56e0e76bc9bc",
-        "android_client_info": {
-          "package_name": "org.nearbyshops.shopkeeperappnew"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCeYzoOQCI66drZP15UMPgNrCfHgCNWM34"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "462976306421-jfsh02p29n5v1imlve72e82v30mmvk8i.apps.googleusercontent.com",
+              "client_id": "15992738737-l8kha6fm1ephq5anafbqv7hpu83ptb8o.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

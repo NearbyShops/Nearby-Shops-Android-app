@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <!-- hide tutorials in vendor dashboard so that vendor does not know the origin of this software -->
+<!--    <bool name="hide_tutorials_for_vendor">false</bool>-->
+
+<!--     hide customers phone number from vendors so vendor does not avoid paying commission -->
+    <bool name="hide_customer_phone_from_vendors">false</bool>
+
+<!--    hide cancel button from customers -->
+    <bool name="hide_cancel_button_from_customers">false</bool>
+
+    <!-- Set whether the banner slider in the shops screen is enabled or not   -->
+    <bool name="banner_enabled">true</bool>
+
+    <!-- Show new option in item filters -->
+<!--    <bool name="show_new_in_item_filters">true</bool>-->
+
+
+    <!-- Deprecated Settings : These settings are no longer in use -->
+
+    <!--  Payment Gateway Settings  -->
+    <!--    UPI Payment Settings-->
+    <string name="vpa_for_upi_payment">abcde@oksbi</string>
+
+
+
+</resources>

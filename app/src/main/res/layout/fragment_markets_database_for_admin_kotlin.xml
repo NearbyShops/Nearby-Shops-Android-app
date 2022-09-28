@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_item"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.tabs.TabLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:tabGravity="fill"
+        app:tabMode="scrollable"
+        app:tabTextAppearance="@style/AppTabTextAppearance"
+        app:tabTextColor="@color/colorWhite"
+        android:background="@color/blueGrey800"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="@color/gplus_color_2"
+        app:tabIndicatorColor="@color/gplus_color_2"/>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

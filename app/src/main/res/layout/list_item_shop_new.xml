@@ -2,24 +2,19 @@
 
 
 <androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
-    app:cardCornerRadius="1dp"
+    android:id="@+id/list_item_shop"
     android:layout_margin="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:focusable="true">
-<!--    android:foreground="?android:attr/selectableItemBackground"-->
-
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:weightSum="2"
         android:orientation="horizontal"
         android:background="@color/white"
         android:padding="0dp"
-        android:layout_margin="0dp"
-        android:id="@+id/list_item_shop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -28,10 +23,10 @@
         <ImageView
             android:layout_weight="0.7"
             app:srcCompat="@drawable/ic_nature_people_white_48px"
+            android:background="@color/mapbox_blue"
             android:scaleType="centerCrop"
             android:id="@+id/shop_logo"
             android:minHeight="100dp"
-            android:background="@color/backgroundTinted"
             app:layout_constraintBottom_toBottomOf="@+id/rating"
             app:layout_constraintTop_toTopOf="@+id/shop_name"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -52,18 +47,17 @@
 
 
             <TextView
-                android:textColor="@color/mapboxBlue"
+                android:maxLines="1"
                 android:textSize="17sp"
                 android:id="@+id/shop_name"
-                android:textStyle="bold"
                 android:text="@string/list_item_shop_new_shop_name_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
             <LinearLayout
-                android:layout_marginTop="5dp"
                 android:weightSum="2"
+                android:layout_marginTop="5dp"
                 android:id="@+id/labels_delivery"
                 app:layout_constraintTop_toBottomOf="@id/shop_address"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,26 +65,30 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
                     android:id="@+id/indicator_pick_from_shop"
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:background="@color/orangeDark"
+                    android:background="@drawable/tag_pickup"
                     android:text="@string/list_item_shop_new_indicator_pick_from_shop_text"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
 
+
+
                 <TextView
-                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
                     android:id="@+id/indicator_home_delivery"
                     android:layout_marginStart="0dp"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:background="@color/buttonColorDark"
+                    android:background="@drawable/tag_delivery"
                     android:text="@string/list_item_shop_new_indicator_home_delivery_text"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
 
@@ -110,7 +108,10 @@
 
 
 
+
             <TextView
+                android:maxLines="1"
+                android:visibility="gone"
                 android:id="@+id/delivery"
                 android:layout_marginTop="5dp"
                 android:text="@string/list_item_shop_new_delivery_text"
@@ -168,26 +169,11 @@
         </LinearLayout>
 
 
-
-
-
-
-
-        <!--<TextView-->
-        <!--android:visibility="gone"-->
-        <!--android:id="@+id/border_bottom_two"-->
-        <!--android:background="#88000000"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/description"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp" />-->
-
-
-
     </LinearLayout>
 
-
-
 </androidx.cardview.widget.CardView>
+
+
+
+
 

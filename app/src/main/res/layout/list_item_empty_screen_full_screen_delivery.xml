@@ -10,7 +10,7 @@
 
     <ImageView
         android:layout_marginBottom="100dp"
-        app:srcCompat="@drawable/ic_receipt_color"
+        app:srcCompat="@drawable/ic_receipt_white"
         android:id="@+id/graphic_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

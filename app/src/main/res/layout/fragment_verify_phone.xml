@@ -17,7 +17,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textColor="@color/white"
-        android:background="@color/buttonColorDark"
+        android:background="@drawable/button_accent"
         android:id="@+id/update_phone"
         android:text="@string/fragment_verify_phone_update_phone_text"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -174,7 +174,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/text_input_email"
                 app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/check_icon"
-                app:srcCompat="@drawable/ic_check_circle_black_24px"
+                app:srcCompat="@drawable/ic_check_circle_green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:padding="10dp"
+    android:id="@+id/list_item"
+    android:background="?android:selectableItemBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:scaleType="centerCrop"
+        app:riv_corner_radius="5dp"
+        android:id="@+id/shop_photo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="100dp"
+        android:layout_height="60dp"/>
+
+
+    <TextView
+        android:maxLines="2"
+        android:id="@+id/shop_name"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:text="Shop Name really long "
+        app:layout_constraintEnd_toEndOf="@id/shop_photo"
+        app:layout_constraintStart_toStartOf="@id/shop_photo"
+        app:layout_constraintTop_toBottomOf="@id/shop_photo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

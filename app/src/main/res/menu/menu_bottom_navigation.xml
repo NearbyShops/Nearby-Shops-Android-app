@@ -14,7 +14,7 @@
 
     <item
         android:id="@+id/bottom_tab_items"
-        android:icon="@drawable/ic_items_24px"
+        android:icon="@drawable/ic_items_white"
         android:title="Items" />
 
 
@@ -28,12 +28,12 @@
 
 
 
-    <item
-        android:id="@+id/bottom_tab_orders"
-        android:enabled="true"
-        android:icon="@drawable/ic_local_shipping_black_24px"
-        android:title="Orders"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/bottom_tab_orders"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_local_shipping_black_24px"-->
+<!--        android:title="Orders"-->
+<!--        app:showAsAction="ifRoom" />-->
 
 
 

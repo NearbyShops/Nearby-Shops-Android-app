@@ -16,7 +16,7 @@
     <item android:id="@+id/delete"
         android:orderInCategory="2"
         android:title="Delete"
-        android:icon="@drawable/ic_search_white_24px" />
+        android:icon="@drawable/ic_search_icon" />
 
 
 

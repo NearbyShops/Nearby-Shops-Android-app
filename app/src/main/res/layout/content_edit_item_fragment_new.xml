@@ -21,6 +21,7 @@
         <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
         <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@color/header_text_color"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:layout_scrollFlags="scroll|enterAlways"
             android:id="@+id/toolbar"
@@ -57,6 +58,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintDimensionRatio="H,1:1"
@@ -133,7 +135,7 @@
                     android:id="@+id/itemID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Item ID"/>
+                    android:hint="Item ID"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,6 +192,8 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -200,6 +204,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="List Price (MRP)"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:id="@+id/discounted_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Discounted Price"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -391,7 +411,7 @@
             android:paddingEnd="2dp"
             android:paddingStart="2dp"
             android:textColor="@color/white"
-            android:background="@color/phonographyBlue"
+            android:background="@drawable/button_accent"
             android:textStyle="normal"
             android:textSize="18sp"
             android:layout_margin="10dp"

@@ -2,67 +2,50 @@ Nearby Shops
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Nearby%20Shops%20Open%20Source%20Food%20Delivery%20and%20Hyperlocal%20app&url=https://github.com/NearbyShops/Nearby-Shops-End-User-Android-app&via=moraysumeet&hashtags=opensource,androiddev,fooddelivery,android,ecommerce)
 =============
 
-<img src="https://github.com/SumeetMoray/Nearby-Shops-End-User-Android-app/blob/master/media/nearby-shops-logo-small.png" width="80">    <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.enduserappnew&hl=en"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
+<img src="https://nearbyshops.org/images/Roundlogos.png" width="80">  <a href="https://play.google.com/store/apps/details?id=org.nearbyshops.whitelabelapp"><img class="alignnone" src="https://goldtonemusicgroup.com/img/goldtone/main-page/news/playstore-badge.png" alt="Get it on Google Play" width="130" height="40" /></a> <a href="https://twitter.com/nearbyshopsapp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">
 <img src="https://www.mathlearningcenter.org/sites/default/files/images/Follow%20on%20Twitter.png"
 width="120">
 </a>
 
 
 
-About Nearby Shops
---------------------
+About Nearby Shops - MultiVendor Food Delivery and Ecommerce App
+--------------------------------------------------------------------
 
-Nearby Shops is an Open-Source food delivery, grocery and hyperlocal app platform. You can install your self-hosted instance on Digital Ocean or AWS and get your grocery or food delivery market up and running in just 5 $ per month in hosting fees.
+Nearby Shops is a **Free and Open-Source** food delivery, grocery and local shopping platform. 
 
-
-Nearby Shops implements Alibaba's Grocery Online-to-Offline Concept. Customers can place and order from the app and pick it up in the store. Home Delivery is also available !
-
-The installation guide and app customization guide is provided at http://developer.nearbyshops.org
-
+Install using docker in 10 minutes at http://developer.nearbyshops.org
 
 Website :  https://nearbyshops.org | Developers Guide: http://developer.nearbyshops.org
 
 
-<img src="https://nearbyshops.org/images/screenshots_usa/shops_list_new.png" width="208">   <img src="https://nearbyshops.org/images/multi-categories-3.png" width="208">   <img src="https://nearbyshops.org/images/screenshots_usa/order_detail_john_doe_.png" width="208"> 
+<img src="https://nearbyshops.org/images/1.jpg" width="208">   <img src="https://nearbyshops.org/images/3.jpg" width="208">   <img src="https://nearbyshops.org/images/6.jpg" width="208"> 
 
 
 
 ## 🚩 Table of Contents
-- [Concept](#concept)
 - [Tech Stack and App Architecture](#tech-stack-and-app-architecture)
-- [Features and highlights](#features-and-highlights)
+- [Features and highlightList](#features-and-highlightList)
 - [Libraries Used](#libraries-used)
 - [Third Party Integrations](#third-party-integrations)
+- [Concept](#concept)
 - [Connect with Us](#community---need-help-)
 - [Contributions Required](#contributions-welcome)
 - [Development Instructions](#development-instructions)
 - [License](#license)
 
 
-Concept
-----------
-Nearby Shops is a Hyperlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get their orders delivered to their home or just pick the order up from the shop. 
-
-In the new emerging world, customers are getting tired of going outside the home to shop every day. They would much prefer to simply place an order and have the products delivered to their home the same day. 
-
-Conventional e-commerce has issues ... the delivery takes a long time and it's more difficult to trust unknown vendors whom you cannot see and meet. Hyperlocal e-commerce solves these issues because delivery is faster and customers can reach out to the vendors easily. 
-
-Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food. 
-
-Nearby Shops implements Alibaba's New Offline-to-Online Concept, where customers discover products online and then pick those products up from physical stores. 
-
-![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
 
 
 
 Tech Stack and app Architecture
 --------------------------------
 
-Uses Android Jetpack and Google’s Recommended Architecture Patterns - Migration to MVVM is planned
+Uses Android Jetpack and Google’s Recommended Architecture Patterns
 
-Written in both Java and Kotlin : Migration to kotlin is planned and will be coming in near future
+Written in both Java and Kotlin
 
-Built using Butterknife, Retrofit, Ok-HTTP, Picasso, Dagger, and the Mapbox Android SDK
+Libraries Used Retrofit, Ok-HTTP, Picasso, Dagger, and the Mapbox Android SDK
 
 User-Interface is made using the modular View-Holder Pattern which makes the UI blocks modular, easy to reuse, modify and understand.
 
@@ -121,6 +104,22 @@ Payment Gateway - Razorpay
 For more information please see https://developer.nearbyshops.org/integrations/e-mail-integration.html
 
 
+Concept
+----------
+Nearby Shops is a Hyperlocal Shopping platform where a customer can buy directly from the shops available in his/her local area and get their orders delivered to their home or just pick the order up from the shop.
+
+In the new emerging world, customers are getting tired of going outside the home to shop every day. They would much prefer to simply place an order and have the products delivered to their home the same day.
+
+Conventional e-commerce has issues ... the delivery takes a long time and it's more difficult to trust unknown vendors whom you cannot see and meet. Hyperlocal e-commerce solves these issues because delivery is faster and customers can reach out to the vendors easily. 
+
+Nearby Shops can also be used as a food Delivery platform where restaurants can use it to deliver food. 
+
+Nearby Shops implements Alibaba's New Offline-to-Online Concept, where customers discover products online and then pick those products up from physical stores. 
+
+![Online to Offline](https://www.innovationiseverywhere.com/wp-content/uploads/2015/05/what-is-o2o-online-to-offline-digital-ecommerce-retail-china-gmic-1-2.jpg)
+
+
+
 Connect With us - Need Help ? 
 ------------------------
 
@@ -157,34 +156,25 @@ Code Review and Architecture
 
 
 
-## Hiring Remote Workers - Be the part of Our International Community !
-
-Benefit from the flexible working hours and work from anywhere in the world. We are looking for Volunteers who can help us in the following areas
-
-1. Raise funds for the Project - Example : Create Kickstarter campaign and raise donations
-2. Content Creators 
-   - Create Images and Video for publicity purposes
-   - Write articles to create publicity
-3. Growth Hackers - help us grow the platform 
-4. Distribution Experts / Digital Marketing Experts / Social Media Experts
-5. Developers - Android, Web, PostgreSQL, Java
-6. Any other way you want to help – Suggestions and Ideas are Welcome !
-
-If you're interested please get in touch with us on https://forum.nearbyshops.org
-
-
-
-### Commercial use Requires Permission
-
-Commercial use or commercial fork of this project must require our permission. 
-
-
 License
 =======
 
-Copyright (c) 2020 Nearby Shops Commercial License
+Copyright (c) 2020 Nearby Shops
 
-Commercial Use or any Commercial Fork must require our explict legal permission. 
+                     GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+                            Preamble
+
+  The GNU General Public License is a free, copyleft license for
+software and other kinds of works.
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

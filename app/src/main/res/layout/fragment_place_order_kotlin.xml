@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    android:layout_width="match_parent"
+    android:background="@color/colorWhite"
+    android:layout_height="match_parent">
+
+
+<!--    android:theme="@style/AppTheme.AppBarOverlay"-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:layout_scrollFlags = "scroll|enterAlways"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary" >
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/header"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="21sp"
+                    android:textColor="@color/header_text_color"
+                    android:text="@string/activity_place_order_app_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/shop_name"
+                    app:layout_constraintStart_toStartOf="@id/header"
+                    app:layout_constraintTop_toBottomOf="@id/header"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="@color/header_text_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_marginTop="0dp"
+        android:id="@+id/scroll_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
+        app:layout_constraintBottom_toTopOf="@id/border_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <TextView
+                android:textColor="@color/white"
+                android:padding="3dp"
+                android:paddingStart="5dp"
+                android:background="@drawable/button_accent_two"
+                android:textSize="15sp"
+                android:layout_marginTop="0dp"
+                android:text="Step 1 : Pickup or Delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/pickup"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@drawable/border_background"
+                    android:text="Pickup"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/delivery"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@drawable/border_background"
+                    android:text="Delivery"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:padding="5dp"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:background="@drawable/button_accent"
+                android:text="Price Details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/item_total_text"
+                    android:text="@string/list_item_order_order_detail_item_total_text_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/item_total_value"
+                    android:text=" - "
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/item_total_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/item_total_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/delivery_charge_text"
+                    android:text="@string/list_item_order_order_detail_delivery_charge_text_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/delivery_charge_value"
+                    android:text=" - "
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/delivery_charge_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/delivery_charge_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/distance_fee_text"
+                    android:text="Distance Fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/distance_fee_value"
+                    android:text=" - "
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/distance_fee_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/border"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/distance_fee_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:background="@color/blueGrey800"
+                    android:layout_width="0dp"
+                    android:layout_height="3dp"/>
+
+
+
+
+                <TextView
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/net_payable_text"
+                    android:text="@string/list_item_order_order_detail_net_payable_text_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/net_payable_value"
+                    android:text=" - "
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/net_payable_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/net_payable_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/savings_block"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:text="Savings Over M.R.P "
+                        android:textSize="15sp"
+                        android:id="@+id/savings_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+
+                    <TextView
+                        android:text=" - "
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:id="@+id/savings_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/savings_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/border_bill_bottom"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/savings_block"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:background="@color/blueGrey800"
+                    android:layout_width="0dp"
+                    android:layout_height="3dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+            <TextView
+                android:textColor="@color/white"
+                android:padding="3dp"
+                android:paddingStart="5dp"
+                android:background="@drawable/button_accent_two"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+                android:text="Step 2 : Delivery Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="0dp"
+                android:background="@drawable/border_background"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/change_address_button"
+                    android:textAllCaps="false"
+                    android:padding="10dp"
+                    android:layout_marginTop="0dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:text="Change Address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:padding="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="No Address "
+                        android:id="@+id/address_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:text="No address Selected please add or select an address by clicking change address."
+                        android:id="@+id/delivery_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+
+                    <TextView
+                        android:id="@+id/address_phone"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/gplus_color_1"
+                        android:layout_marginTop="5dp"
+                        android:text="Address Not Selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+
+<!--                <TextView-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:gravity="end"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:text="To Pay $ 150"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
+
+
+<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+            <TextView
+                android:padding="3dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_accent_two"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:text="Step 3 : Payment Method"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/pay_by_cash"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@drawable/border_background"
+                    android:text="Pay On Delivery"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+
+                <TextView
+                    android:id="@+id/pay_online"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@drawable/border_background"
+                    android:text="Pay Online"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            <TextView
+                android:id="@+id/payment_message"
+                android:layout_marginTop="20dp"
+                android:text="Pay using Cash or GooglePay, PhonePay, PayTM or BHIM app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <TextView
+        android:id="@+id/border_bottom"
+        android:background="@color/blueGrey800"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@id/place_order_button"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
+
+
+
+    <TextView
+        android:textSize="20sp"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toTopOf="@id/place_order_button"
+        app:layout_constraintBottom_toBottomOf="@id/place_order_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/place_order_button"
+        android:id="@+id/to_pay"
+        android:textStyle="bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=" - "/>
+
+
+
+    <TextView
+        android:id="@+id/place_order_button"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/to_pay"
+        android:padding="10dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Place Order"
+        android:background="@drawable/button_accent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar_place_order"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/place_order_button"
+        app:layout_constraintEnd_toEndOf="@id/place_order_button"
+        app:layout_constraintStart_toStartOf="@id/place_order_button"
+        app:layout_constraintTop_toTopOf="@id/place_order_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+

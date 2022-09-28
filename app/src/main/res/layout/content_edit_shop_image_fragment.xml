@@ -19,6 +19,7 @@
         <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
         <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@color/header_text_color"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:layout_scrollFlags="scroll|enterAlways"
             android:id="@+id/toolbar"
@@ -173,7 +174,7 @@
                     android:id="@+id/captionTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Caption Title"/>
+                    android:hint="Caption Title (Optional"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -187,7 +188,7 @@
                     android:id="@+id/caption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Caption"/>
+                    android:hint="Caption (Optional)"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -199,7 +200,7 @@
                     android:id="@+id/image_copyrights_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Image Copyrights Information"/>
+                    android:hint="Image Copyrights Information (Optional)"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -213,7 +214,7 @@
                     android:id="@+id/imageOrder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Image Order"/>
+                    android:hint="Image Order (Optional)"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -263,7 +264,7 @@
             android:paddingEnd="2dp"
             android:paddingStart="2dp"
             android:textColor="@color/white"
-            android:background="@color/phonographyBlue"
+            android:background="@drawable/button_accent"
             android:textStyle="normal"
             android:textSize="18sp"
             android:layout_margin="10dp"

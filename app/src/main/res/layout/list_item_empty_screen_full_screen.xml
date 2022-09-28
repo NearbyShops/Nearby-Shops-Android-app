@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingBottom="56dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <ImageView
-        android:layout_marginBottom="100dp"
         android:id="@+id/graphic_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="150dp"
-        android:layout_height="150dp" />
-
-
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
 
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/copyrights"
         app:layout_constraintEnd_toEndOf="@id/graphic_image"
         app:layout_constraintStart_toStartOf="@id/graphic_image"
@@ -34,7 +36,7 @@
 
 
     <TextView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:textSize="17sp"
         android:id="@+id/title"
@@ -59,5 +61,25 @@
         android:layout_height="wrap_content" />
 
 
+    <Button
+        android:textAllCaps="false"
+        android:id="@+id/button"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/message"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:background="@drawable/button_accent"
+        android:text="Button"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

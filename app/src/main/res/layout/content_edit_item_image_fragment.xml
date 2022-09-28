@@ -20,6 +20,7 @@
         <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
         <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@color/header_text_color"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:layout_scrollFlags="scroll|enterAlways"
             android:id="@+id/toolbar"
@@ -265,7 +266,7 @@
             android:paddingEnd="2dp"
             android:paddingStart="2dp"
             android:textColor="@color/white"
-            android:background="@color/phonographyBlue"
+            android:background="@drawable/button_accent"
             android:textStyle="normal"
             android:textSize="18sp"
             android:layout_margin="10dp"

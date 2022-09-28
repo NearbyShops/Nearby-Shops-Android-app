@@ -12,6 +12,7 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@color/header_text_color"
             app:layout_scrollFlags="scroll|enterAlways"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -31,7 +32,7 @@
 
 
             <TextView
-                android:textColor="@color/white"
+                android:textColor="@color/header_text_color"
                 android:layout_marginStart="5dp"
                 android:id="@+id/text_sub"
                 android:padding="5dp"
@@ -53,7 +54,7 @@
                 android:layout_height="match_parent" />
 
             <TextView
-                android:textColor="@color/white"
+                android:textColor="@color/header_text_color"
                 android:layout_marginEnd="5dp"
                 android:id="@+id/text_sort"
                 android:padding="5dp"

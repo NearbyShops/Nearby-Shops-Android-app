@@ -4,15 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="1dp"
-    android:background="@color/darkGreen"
+    android:background="@drawable/button_accent"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
     android:minHeight="60dp"
     android:orientation="vertical"
     android:layout_margin="5dp"
-    android:padding="10dp"
+    android:padding="15dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/market_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +25,6 @@
 
 
     <TextView
-        android:layout_marginTop="5dp"
         android:id="@+id/dashboard_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

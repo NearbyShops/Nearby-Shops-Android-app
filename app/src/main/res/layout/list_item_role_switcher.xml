@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
+    android:background="@drawable/button_accent"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:minHeight="60dp"
+    android:orientation="vertical"
+    android:layout_margin="5dp"
+    android:padding="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/dashboard_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+
+    <TextView
+        android:id="@+id/dashboard_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white" />
+
+</LinearLayout>

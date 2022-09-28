@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/list_item_shop"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="15dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+    <ImageView
+        android:layout_weight="0.7"
+        app:srcCompat="@drawable/ic_nature_people_grey"
+        android:background="@color/light_grey"
+        android:scaleType="centerCrop"
+        android:id="@+id/shop_logo"
+        android:minHeight="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.65"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+
+
+    <LinearLayout
+        android:padding="10dp"
+        android:id="@+id/shop_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shop_logo"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textSize="17sp"
+            android:id="@+id/shop_name"
+            android:text="@string/list_item_shop_new_shop_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <LinearLayout
+            android:weightSum="2"
+            android:layout_marginTop="5dp"
+            android:id="@+id/labels_delivery"
+            app:layout_constraintTop_toBottomOf="@id/shop_address"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:id="@+id/indicator_pick_from_shop"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/tag_pickup"
+                android:text="@string/list_item_shop_new_indicator_pick_from_shop_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <TextView
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:id="@+id/indicator_home_delivery"
+                android:layout_marginStart="0dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/tag_delivery"
+                android:text="@string/list_item_shop_new_indicator_home_delivery_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/rating"
+                    android:text="@string/list_item_shop_new_delivery_text"
+                    android:textColor="@color/white"
+                    android:paddingStart="3dp"
+                    android:paddingEnd="3dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/button_color_yellow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/rating_count"
+                    android:text="@string/list_item_shop_new_rating_count_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"/>
+
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/more_options"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_more_vert_black_48px"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+        <TextView
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:id="@+id/shop_address"
+            android:text="@string/list_item_shop_new_delivery_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+        <TextView
+            android:maxLines="1"
+            android:visibility="gone"
+            android:id="@+id/delivery"
+            android:layout_marginTop="5dp"
+            android:text="@string/list_item_shop_new_delivery_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/distance"-->
+        <!--            android:text="Distance : -"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content" />-->
+
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+
+
+

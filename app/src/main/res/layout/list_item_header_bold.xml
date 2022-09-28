@@ -13,10 +13,10 @@
     <TextView
         android:text="@string/list_item_header_bold_header_text"
         android:id="@+id/header"
-        android:padding="5dp"
-        android:textSize="24sp"
+        android:padding="10dp"
+        android:textSize="20sp"
         android:textColor="@color/white"
-        android:background="@color/blueGrey800"
+        android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
